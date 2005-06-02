@@ -2,19 +2,20 @@
 /*************************************************************************************
  * geshi.php
  * ---------
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
- * Copyright: (c) 2004 Nigel McNie
- * Release Version: 1.0.6
- * CVS Revision Version: $Revision$
- * Date Started: 2004/05/20
- * Last Modified: $Date$
- *
+ * 
  * The GeSHi class for Generic Syntax Highlighting. Please refer to the documentation
  * at http://qbnz.com/highlighter/documentation.php for more information about how to
  * use this class.
  *
  * For changes, release notes, TODOs etc, see the relevant files in the docs/ directory
+ * 
+ * @package   core
+ * @author    Nigel McNie <nigel@geshi.org>
+ * @copyright (c) 2004 Nigel McNie
+ * @license   http://gnu.org/copyleft/gpl.html GNU GPL
+ * @version   $Id$
  *
+ * @todo Define a GESHI_VERSION constant
  *************************************************************************************
  *
  *     This file is part of GeSHi.
@@ -43,16 +44,17 @@
 // version
 //
 
-// For the future (though this may never be realised)
+/** For the future (though this may never be realised) */
 define('GESHI_OUTPUT_HTML', 0);
 
-// Shouldn't be used by your program
-define('GESHI_COMMENTS', 0);
-
 // Error detection - use these to analyse faults
+/** No sourcecode to highlight was specified */
 define('GESHI_ERROR_NO_INPUT', 1);
+/** The language specified does not exist */
 define('GESHI_ERROR_NO_SUCH_LANG', 2);
+/** GeSHi could not open a file for reading (generally a language file) */
 define('GESHI_ERROR_FILE_NOT_READABLE', 3);
+
 // Human error messages - added in 1.0.2
 $_GESHI_ERRORS = array(
 	GESHI_ERROR_NO_INPUT => 'No source code inputted',
@@ -61,35 +63,20 @@ $_GESHI_ERRORS = array(
 );
 
 // Line numbers - use with enable_line_numbers()
+/** Use no line numbers when building the result */
 define('GESHI_NO_LINE_NUMBERS', 0);
+/** Use normal line numbers when building the result */
 define('GESHI_NORMAL_LINE_NUMBERS', 1);
+/** Use fancy line numbers when building the result */
 define('GESHI_FANCY_LINE_NUMBERS', 2);
 
+/**#@+
+ *  @access private
+ */
 // Strict mode - shouldn't be used by your scripts
 define('GESHI_NEVER', 0);
 define('GESHI_MAYBE', 1);
 define('GESHI_ALWAYS', 2);
-
-// Container HTML type - use these (added in 1.0.1)
-define('GESHI_HEADER_DIV', 1);
-define('GESHI_HEADER_PRE', 2);
-
-// Capatalisation constants - use these (added in 1.0.1)
-define('GESHI_CAPS_NO_CHANGE', 0);
-define('GESHI_CAPS_UPPER', 1);
-define('GESHI_CAPS_LOWER', 2);
-
-// Link style constants - use these (added in 1.0.2)
-define('GESHI_LINK', 0);
-define('GESHI_HOVER', 1);
-define('GESHI_ACTIVE', 2);
-define('GESHI_VISITED', 3);
-
-// Important string starter/finisher - use these (added in 1.0.2).
-// Note that if you change these, they should be as-is: i.e., don't
-// write them as if they had been run through @htmlentities()
-define('GESHI_START_IMPORTANT', '<BEGIN GeSHi>');
-define('GESHI_END_IMPORTANT', '<END GeSHi>');
 
 // Advanced regexp handling - don't use these (added in 1.0.2)
 define('GESHI_SEARCH', 0);
@@ -98,6 +85,44 @@ define('GESHI_MODIFIERS', 2);
 define('GESHI_BEFORE', 3);
 define('GESHI_AFTER', 4);
 
+// Used in language files only
+define('GESHI_COMMENTS', 0);
+/**#@-*/
+
+// Container HTML type - use these (added in 1.0.1)
+/** Use a <div> to surround the source */
+define('GESHI_HEADER_DIV', 1);
+/** Use a <pre> to surround the source */
+define('GESHI_HEADER_PRE', 2);
+
+// Capatalisation constants - use these (added in 1.0.1)
+/** Lowercase keywords found */
+define('GESHI_CAPS_NO_CHANGE', 0);
+/** Uppercase keywords found */
+define('GESHI_CAPS_UPPER', 1);
+/** Leave keywords found as the case that they are */
+define('GESHI_CAPS_LOWER', 2);
+
+// Link style constants - use these (added in 1.0.2)
+/** Links in the source in the :link state */
+define('GESHI_LINK', 0);
+/** Links in the source in the :hover state */
+define('GESHI_HOVER', 1);
+/** Links in the source in the :active state */
+define('GESHI_ACTIVE', 2);
+/** Links in the source in the :visited state */
+define('GESHI_VISITED', 3);
+
+// Important string starter/finisher - use these (added in 1.0.2).
+// Note that if you change these, they should be as-is: i.e., don't
+// write them as if they had been run through htmlentities()
+/** The starter for important parts of the source */
+define('GESHI_START_IMPORTANT', '<BEGIN GeSHi>');
+/** The ender for important parts of the source */
+define('GESHI_END_IMPORTANT', '<END GeSHi>');
+
+
+
 // Begin Class GeSHi
 class GeSHi
 {
@@ -105,57 +130,237 @@ class GeSHi
 	// Data Fields
 	//
 
-	// Basic fields
-	var $source = '';                     // The source code to highlight
-	var $language = '';                   // The language to use when highlighting
-	var $language_data = array();         // The data for the language used
-	var $language_path = 'geshi/';        // The path to the language files
-	var $error = false;                   // The error message associated with an error
-	var $strict_mode = false;             // Whether highlighting is strict or not
-	var $use_classes = false;             // Whether to use classes
-	var $header_type = GESHI_HEADER_PRE;  // The type of header to use
-	var $lexic_permissions = array();     // Array of permissions for which lexics should be highlighted
-	// Added in 1.0.2 basic fields
-	var $time = 0;                        // The time it took to parse the code
-	var $header_content = '';             // The content of the header block
-	var $footer_content = '';             // The content of the footer block
-	var $header_content_style = '';       // The style of the header block
-	var $footer_content_style = '';       // The style of the footer block
-	var $link_styles = array();           // The styles for hyperlinks in the code
-	var $enable_important_blocks = true;  // Whether important blocks should be recognised or not
+    /**#@+
+     * @access private
+     */
+    /**
+     * The source code to highlight
+     * @var string
+     */
+	var $source = '';
+    
+    /**
+     * The language to use when highlighting
+     * @var string
+     */
+	var $language = '';
+    
+    /**
+     * The data for the language used
+     * @var array
+     */
+	var $language_data = array();
+    
+    /**
+     * The path to the language files
+     * @var string
+     */
+	var $language_path = 'geshi/';
+    
+    /**
+     * The error message associated with an error
+     * @var string
+     * @todo check
+     */
+	var $error = false;
+    
+    /**
+     * Whether highlighting is strict or not
+     * @var boolean
+     */
+	var $strict_mode = false;
+    
+    /**
+     * Whether to use CSS classes in output
+     * @var boolean
+     */
+	var $use_classes = false;
+    
+    /**
+     * The type of header to use
+     * @var int
+     * @todo Better docs
+     */
+	var $header_type = GESHI_HEADER_PRE;
+    
+    /**
+     * Array of permissions for which lexics should be highlighted
+     * @var array
+     */
+	var $lexic_permissions = array();
+    
+    /**
+     * The time it took to parse the code
+     * @var double
+     */
+    var $time = 0;
+    
+    /**
+     * The content of the header block
+     * @var string
+     */
+	var $header_content = '';
+    
+    /**
+     * The content of the footer block
+     * @var string
+     */
+	var $footer_content = '';
+    
+    /**
+     * The style of the header block
+     * @var string
+     */
+	var $header_content_style = '';
+    
+    /**
+     * The style of the footer block
+     * @var string
+     */
+	var $footer_content_style = '';
+    
+    /**
+     * The styles for hyperlinks in the code
+     * @var array
+     */
+	var $link_styles = array();
+    
+    /**
+     * Whether important blocks should be recognised or not
+     * @var boolean
+     * @todo Rethink this whole idea
+     */
+	var $enable_important_blocks = true;
+    
+    /**
+     * Styles for important parts of the code
+     * @var string
+     * @todo As above - rethink the whole idea of important blocks as it is buggy and
+     * will be hard to implement in 1.2
+     */
 	var $important_styles = 'font-weight: bold; color: red;'; // Styles for important parts of the code
-	var $add_ids = false;                 // Whether css IDs should be added to the code
-	var $highlight_extra_lines = array(); // Lines that should be highlighted extra
-	var $highlight_extra_lines_style = 'color: #cc0; background-color: #ffc;';// Styles of extra-highlighted lines
-	var $line_numbers_start = 1;          // Number at which line numbers should start at
-
-	// Style fields
-	var $overall_style = '';              // The overall style for this code block
-	// The style for the actual code
-	var $code_style = 'font-family: \'Courier New\', Courier, monospace; font-weight: normal;';
-	var $overall_class = '';              // The overall class for this code block
-	var $overall_id = '';                 // The overall id for this code block
-	// Line number styles
-	var $line_style1 = 'font-family: \'Courier New\', Courier, monospace; color: black; font-weight: normal; font-style: normal;';
-	var $line_style2 = 'font-weight: bold;';
-	var $line_numbers = GESHI_NO_LINE_NUMBERS; // Flag for how line numbers are displayed
-	var $line_nth_row = 0;                // The "nth" value for fancy line highlighting
-
-	// Misc
-	var $tab_width = 8;                   // A value for the size of tab stops.
-	var $max_tabs = 20;                   // Maximum number of spaces per tab
-	var $min_tabs = 0;                    // Minimum  "   "    "    "    "
-	var $link_target = '';                // default target for keyword links
-	var $encoding = 'ISO-8859-1';         // The encoding to use for @htmlentities() calls
-
-	// Deprecated/unused
-	var $output_format = GESHI_OUTPUT_HTML;
-
+    
+    /**
+     * Whether CSS IDs should be added to the code
+     * @var boolean
+     */
+	var $add_ids = false;
+    
+    /**
+     * Lines that should be highlighted extra
+     * @var array
+     * @todo Think about this
+     */
+	var $highlight_extra_lines = array();
+    
+    /**
+     * Styles of extra-highlighted lines
+     * @var string
+     */
+	var $highlight_extra_lines_style = 'color: #cc0; background-color: #ffc;';
+    
+    /**
+     * Number at which line numbers should start at
+     * @var int
+     * @todo Warning documentation about XHTML compliance
+     */
+	var $line_numbers_start = 1;
 
 	/**
-	 * constructor: GeSHi
-	 * ------------------
+     * The overall style for this code block
+     * @var string
+	 */
+	var $overall_style = '';
+    
+    /**
+     *  The style for the actual code
+     * @var string
+     * @todo Change to 'font-family: monospace;' ?
+     */
+	var $code_style = 'font-family: \'Courier New\', Courier, monospace; font-weight: normal;';
+    
+    /**
+     * The overall class for this code block
+     * @var string
+     */
+	var $overall_class = '';
+    
+    /**
+     * The overall ID for this code block
+     * @var string
+     */
+	var $overall_id = '';
+    
+	/**
+     * Line number styles
+     * @var string
+     */
+	var $line_style1 = 'font-family: \'Courier New\', Courier, monospace; color: black; font-weight: normal; font-style: normal;';
+    
+    /**
+     * Line number styles for fancy lines
+     * @var string
+     */
+	var $line_style2 = 'font-weight: bold;';
+    
+    /**
+     * Flag for how line nubmers are displayed
+     * @var boolean
+     */
+	var $line_numbers = GESHI_NO_LINE_NUMBERS;
+    
+    /**
+     * The "nth" value for fancy line highlighting
+     * @var int
+     */
+	var $line_nth_row = 0;
+
+	/**
+     * The size of tab stops
+     * @var int
+	 */
+	var $tab_width = 8;
+    
+    /**
+     * Maximum number of spaces per tab
+     * @var int
+     * @todo Remove?
+     */
+	var $max_tabs = 20;
+    
+    /**
+     * Minimum number of spaces per tab
+     * @var int
+     * @todo Remove?
+     */
+	var $min_tabs = 0;
+    
+    /**
+     * Default target for keyword links
+     * @var string
+     */
+	var $link_target = '';                // default target for keyword links
+    
+    /**
+     * The encoding to use for entity encoding
+     * @var string
+     */
+	var $encoding = 'ISO-8859-1';
+
+	/**
+     * Unused (planned for future)
+	 */
+	var $output_format = GESHI_OUTPUT_HTML;
+
+    /**#@-*/
+
+	/**
 	 * Creates a new GeSHi object, with source and language
+     * 
+     * @param string The source code to highlight
+     * @param string The language to highlight the source with
+     * @param string The path to the language file directory
+     * @todo Backport the autodetect path thingy
 	 */
 	function GeSHi ($source, $language, $path = 'geshi/')
 	{
@@ -163,33 +368,27 @@ class GeSHi
 		// Security, just in case :)
 		$language = preg_replace('#[^a-zA-Z0-9\-\_]#', '', $language);
 		$this->language = strtolower($language);
-		$this->language_path = ( substr($path, strlen($path) - 1, 1) == '/' ) ? $path : $path . '/';
+		$this->language_path = (substr($path, strlen($path) - 1, 1) == '/') ? $path : $path . '/';
 		$this->load_language();
 	}
 
-
-	//
-	// Error methods
-	//
-
 	/**
-	 * method: error
-	 * -------------
 	 * Returns an error message associated with the last GeSHi operation,
 	 * or false if no error has occured
+     * 
+     * @return string|false An error message if there has been an error, else false
 	 */
 	function error()
 	{
+        //@todo Make this internal
 		global $_GESHI_ERRORS;
-		if ( $this->error != 0 )
-		{
+		if ($this->error != 0) {
 			$msg = $_GESHI_ERRORS[$this->error];
 			$debug_tpl_vars = array(
 				'{LANGUAGE}' => $this->language,
 				'{PATH}' => $this->language_path
 			);
-			foreach ( $debug_tpl_vars as $tpl => $var )
-			{
+			foreach ($debug_tpl_vars as $tpl => $var) {
 				$msg = str_replace($tpl, $var, $msg);
 			}
 			return "<br /><strong>GeSHi Error:</strong> $msg (code $this->error)<br />";
