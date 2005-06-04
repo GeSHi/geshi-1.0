@@ -360,6 +360,7 @@ class GeSHi
      * @param string The source code to highlight
      * @param string The language to highlight the source with
      * @param string The path to the language file directory
+     * @since 1.0.0
      * @todo Backport the autodetect path thingy
 	 */
 	function GeSHi ($source, $language, $path = 'geshi/')
@@ -377,8 +378,9 @@ class GeSHi
 	 * or false if no error has occured
      * 
      * @return string|false An error message if there has been an error, else false
+     * @since  1.0.0
 	 */
-	function error()
+	function error ()
 	{
         //@todo Make this internal
 		global $_GESHI_ERRORS;
@@ -396,48 +398,41 @@ class GeSHi
 		return false;
 	}
 
-
-	//
-	// Getters
-	//
-
 	/**
-	 * get_language_name()
-	 * ---------------
 	 * Gets a human-readable language name (thanks to Simon Patterson
 	 * for the idea :))
+     * 
+     * @return string The name for the current language
+     * @since  1.0.2
 	 */
-	function get_language_name()
+	function get_language_name ()
 	{
-		if ( $this->error == GESHI_ERROR_NO_SUCH_LANG )
-		{
+		if (GESHI_ERROR_NO_SUCH_LANG == $this->_error) {
 			return $this->language_data['LANG_NAME'] . ' (Unknown Language)';
 		}
 		return $this->language_data['LANG_NAME'];
 	}
 
-
-	//
-	// Setters
-	//
-
 	/**
-	 * method: set_source
-	 * ------------------
 	 * Sets the source code for this object
+     * 
+     * @param string The source code to highlight
+     * @since 1.0.0
+     * @todo Error checking?
 	 */
-	function set_source ( $source )
+	function set_source ($source)
 	{
 		$this->source = $source;
 	}
 
-
 	/**
-	 * method: set_language
-	 * --------------------
 	 * Sets the language for this object
+     * 
+     * @param string The name of the language to use
+     * @since 1.0.0
+     * @todo Error checking?
 	 */
-	function set_language ( $language )
+	function set_language ($language)
 	{
 		$language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
 		$this->language = strtolower($language);
@@ -445,450 +440,450 @@ class GeSHi
 		$this->load_language();
 	}
 
-
 	/**
-	 * method: set_language_path
-	 * -------------------------
-	 * Sets the path to the directory containing the language files. NOTE
+	 * Sets the path to the directory containing the language files. Note
 	 * that this path is relative to the directory of the script that included
 	 * geshi.php, NOT geshi.php itself.
+     * 
+     * @param string The path to the language directory
+     * @since 1.0.0
+     * @todo  Deprecate if auto path detection works?
 	 */
-	function set_language_path ( $path )
+	function set_language_path ($path)
 	{
-		$this->language_path = ( substr($path, strlen($path) - 1, 1) == '/' ) ? $path : $path . '/';
+		$this->language_path = ('/' == substr($path, strlen($path) - 1, 1)) ? $path : $path . '/';
 	}
 
-
 	/**
-	 * method: set_header_type
-	 * -----------------------
 	 * Sets the type of header to be used. If GESHI_HEADER_DIV is used,
 	 * the code is surrounded in a <div>. This means more source code but
 	 * more control over tab width and line-wrapping. GESHI_HEADER_PRE
 	 * means that a <pre> is used - less source, but less control. Default
 	 * is GESHI_HEADER_PRE
+     * 
+     * @param int The type of header to be used
+     * @since 1.0.0
+     * @todo Much better comment, and error checking
 	 */
 	function set_header_type ( $type )
 	{
 		$this->header_type = $type;
 	}
 
-
 	/**
-	 * method: set_overall_style
-	 * -------------------------
 	 * Sets the styles for the code that will be outputted
 	 * when this object is parsed. The style should be a
 	 * string of valid stylesheet declarations
+     * 
+     * @param string  The overall style for the outputted code block
+     * @param boolean Whether to merge the styles with the current styles or not
+     * @since 1.0.0
 	 */
-	function set_overall_style ( $style, $preserve_defaults = false )
+	function set_overall_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->overall_style .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
 			$this->overall_style = $style;
+		} else {
+			$this->overall_style .= $style;
 		}
 	}
 
-
 	/**
-	 * method: set_overall_class
-	 * -------------------------
 	 * Sets the overall classname for this block of code. This
 	 * class can then be used in a stylesheet to style this object's
 	 * output
+     * 
+     * @param string The class name to use for this block of code
+     * @since 1.0.0
 	 */
-	function set_overall_class ( $class )
+	function set_overall_class ($class)
 	{
 		$this->overall_class = $class;
 	}
 
-
 	/**
-	 * method: set_overall_id
-	 * ----------------------
 	 * Sets the overall id for this block of code. This id can then
 	 * be used in a stylesheet to style this object's output
+     * 
+     * @param string The ID to use for this block of code
+     * @since 1.0.0
 	 */
-	function set_overall_id ( $id )
+	function set_overall_id ($id)
 	{
 		$this->overall_id = $id;
 	}
 
-
 	/**
-	 * method: enable_classes
-	 * ----------------------
-	 * Sets whether CSS classes should be used to highlight the source. Default
-	 * is off, calling this method with no arguments will turn it on
-	 */
-	function enable_classes ( $flag = true )
+     * Sets whether CSS classes should be used to highlight the source. Default
+     * is off, calling this method with no arguments will turn it on
+     * 
+     * @param boolean Whether to turn classes on or not
+     * @since 1.0.0
+     */
+	function enable_classes ($flag = true)
 	{
-		$this->use_classes = ( $flag ) ? true : false;
+		$this->use_classes = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_code_style
-	 * ----------------------
 	 * Sets the style for the actual code. This should be a string
 	 * containing valid stylesheet declarations. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
 	 *
-	 * NOTE: Use this method to override any style changes you made to
+	 * Note: Use this method to override any style changes you made to
 	 * the line numbers if you are using line numbers, else the line of
 	 * code will have the same style as the line number! Consult the
 	 * GeSHi documentation for more information about this.
+     * 
+     * @param string  The style to use for actual code
+     * @param boolean Whether to merge the current styles with the new styles
 	 */
-	function set_code_style ( $style, $preserve_defaults )
+	function set_code_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->code_style .= $style;
-		}
-		else
-		{
-			$this->code_style = $style;
-		}
-	}
-
+        if (!$preserve_defaults) {
+            $this->code_style = $style;
+        } else {
+            $this->code_style .= $style;
+        }
+    }
 
 	/**
-	 * method: set_line_style
-	 * ----------------------
 	 * Sets the styles for the line numbers. This should be a string
 	 * containing valid stylesheet declarations. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param string The style for the line numbers that are "normal"
+     * @param string|boolean If a string, this is the style of the line
+     *        numbers that are "fancy", otherwise if boolean then this
+     *        defines whether the normal styles should be merged with the
+     *        new normal styles or not
+     * @param boolean If set, is the flag for whether to merge the "fancy"
+     *        styles with the current styles or not
+     * @since 1.0.0
+     * @todo  Comment not in line with what the method actually does? Also check the since tag
 	 */
-	function set_line_style ( $style1, $style2 = '', $preserve_defaults = false )
+	function set_line_style ($style1, $style2 = '', $preserve_defaults = false)
 	{
-		if ( is_bool($style2) )
-		{
+		if (is_bool($style2)) {
 			$preserve_defaults = $style2;
 			$style2 = '';
 		}
-		if ( $preserve_defaults )
-		{
+		if ($preserve_defaults) {
 			$this->line_style1 .= $style1;
 			$this->line_style2 .= $style2;
-		}
-		else
-		{
+		} else {
 			$this->line_style1 = $style1;
 			$this->line_style2 = $style2;
 		}
 	}
 
-
 	/**
-	 * method: enable_line_numbers
-	 * ---------------------------
 	 * Sets whether line numbers should be displayed. GESHI_NO_LINE_NUMBERS = not displayed,
 	 * GESHI_NORMAL_LINE_NUMBERS = displayed, GESHI_FANCY_LINE_NUMBERS = every nth line a
 	 * different class. Default is for no line numbers to be used
+     * 
+     * @param int How line numbers should be displayed
+     * @param int Defines which lines are fancy
+     * @since 1.0.0
+     * @todo Much better comment
 	 */
-	function enable_line_numbers ( $flag, $nth_row = 5 )
+	function enable_line_numbers ($flag, $nth_row = 5)
 	{
 		$this->line_numbers = $flag;
 		$this->line_nth_row = $nth_row;
 	}
 
-
 	/**
-	 * method: set_keyword_group_style
-	 * -------------------------------
 	 * Sets the style for a keyword group. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param int     The key of the keyword group to change the styles of
+     * @param string  The style to make the keywords
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_keyword_group_style ( $key, $style, $preserve_defaults = false )
+	function set_keyword_group_style ($key, $style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+		} else {
+			$this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
 		}
 	}
 
-
 	/**
-	 * method: set_keyword_group_highlighting
-	 * --------------------------------------
 	 * Turns highlighting on/off for a keyword group
+     * 
+     * @param int     The key of the keyword group to turn on or off
+     * @param boolean Whether to turn highlighting for that group on or off
+     * @since 1.0.0
 	 */
 	function set_keyword_group_highlighting ( $key, $flag = true )
 	{
-		$this->lexic_permissions['KEYWORDS'][$key] = ( $flag ) ? true : false;
+		$this->lexic_permissions['KEYWORDS'][$key] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_comments_style
-	 * --------------------------
 	 * Sets the styles for comment groups.  If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param int     The key of the comment group to change the styles of
+     * @param string  The style to make the comments
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_comments_style ( $key, $style, $preserve_defaults = false )
+	function set_comments_style ($key, $style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['COMMENTS'][$key] = $style;
+		} else {
 			$this->language_data['STYLES']['COMMENTS'][$key] .= $style;
 		}
-		else
-		{
-			$this->language_data['STYLES']['COMMENTS'][$key] = $style;
-		}
 	}
 
-
 	/**
-	 * method: set_comments_highlighting
-	 * ---------------------------------
 	 * Turns highlighting on/off for comment groups
+     * 
+     * @param int     The key of the comment group to turn on or off
+     * @param boolean Whether to turn highlighting for that group on or off
+     * @since 1.0.0
 	 */
-	function set_comments_highlighting ( $key, $flag = true )
+	function set_comments_highlighting ($key, $flag = true)
 	{
-		$this->lexic_permissions['COMMENTS'][$key] = ( $flag ) ? true : false;
+		$this->lexic_permissions['COMMENTS'][$key] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_escape_characters_style
-	 * -----------------------------------
 	 * Sets the styles for escaped characters. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param string  The style to make the escape characters
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_escape_characters_style ( $style, $preserve_defaults = false )
+	function set_escape_characters_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['ESCAPE_CHAR'][0] = $style;
+		} else {
 			$this->language_data['STYLES']['ESCAPE_CHAR'][0] .= $style;
 		}
-		else
-		{
-			$this->language_data['STYLES']['ESCAPE_CHAR'][0] = $style;
-		}
 	}
 
-
 	/**
-	 * method: set_escape_characters_highlighting
-	 * ------------------------------------------
 	 * Turns highlighting on/off for escaped characters
+     * 
+     * @param boolean Whether to turn highlighting for escape characters on or off
+     * @since 1.0.0
 	 */
-	function set_escape_characters_highlighting ( $flag = true )
+	function set_escape_characters_highlighting ($flag = true)
 	{
-		$this->lexic_permissions['ESCAPE_CHAR'] = ( $flag ) ? true : false;
+		$this->lexic_permissions['ESCAPE_CHAR'] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_brackets_style
-	 * --------------------------
 	 * Sets the styles for brackets. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
 	 *
 	 * This method is DEPRECATED: use set_symbols_style instead.
 	 * This method will be removed in 1.2.X
+     * 
+     * @param string  The style to make the brackets
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
+     * @deprecated In favour of set_symbols_style
 	 */
-	function set_brackets_style ( $style, $preserve_defaults = false )
+	function set_brackets_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->language_data['STYLES']['BRACKETS'][0] .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['BRACKETS'][0] = $style;
+		} else {
 			$this->language_data['STYLES']['BRACKETS'][0] = $style;
 		}
 	}
 
-
 	/**
-	 * method: set_brackets_highlighting
-	 * ---------------------------------
 	 * Turns highlighting on/off for brackets
 	 *
 	 * This method is DEPRECATED: use set_symbols_highlighting instead.
 	 * This method will be remove in 1.2.X
+     * 
+     * @param boolean Whether to turn highlighting for brackets on or off
+     * @since 1.0.0
+     * @deprecated In favour of set_symbols_highlighting
 	 */
-	function set_brackets_highlighting ( $flag )
+	function set_brackets_highlighting ($flag)
 	{
-		$this->lexic_permissions['BRACKETS'] = ( $flag ) ? true : false;
+		$this->lexic_permissions['BRACKETS'] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_symbols_style
-	 * --------------------------
 	 * Sets the styles for symbols. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param string  The style to make the symbols
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.1
 	 */
-	function set_symbols_style ( $style, $preserve_defaults = false )
+	function set_symbols_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->language_data['STYLES']['SYMBOLS'][0] .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['SYMBOLS'][0] = $style;
+		} else {
 			$this->language_data['STYLES']['SYMBOLS'][0] = $style;
 		}
 		// For backward compatibility
-		$this->set_brackets_style ( $style, $preserve_defaults );
+		$this->set_brackets_style ($style, $preserve_defaults);
 	}
 
-
 	/**
-	 * method: set_symbols_highlighting
-	 * ---------------------------------
 	 * Turns highlighting on/off for symbols
+     * 
+     * @param boolean Whether to turn highlighting for symbols on or off
+     * @since 1.0.0
 	 */
-	function set_symbols_highlighting ( $flag )
+	function set_symbols_highlighting ($flag)
 	{
-		$this->lexic_permissions['SYMBOLS'] = ( $flag ) ? true : false;
+		$this->lexic_permissions['SYMBOLS'] = ($flag) ? true : false;
 		// For backward compatibility
-		$this->set_brackets_highlighting ( $flag );
+		$this->set_brackets_highlighting ($flag);
 	}
 
-
 	/**
-	 * method: set_strings_style
-	 * -------------------------
 	 * Sets the styles for strings. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param string  The style to make the escape characters
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_strings_style ( $style, $preserve_defaults = false )
+	function set_strings_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->language_data['STYLES']['STRINGS'][0] .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['STRINGS'][0] = $style;
+		} else {
 			$this->language_data['STYLES']['STRINGS'][0] = $style;
 		}
 	}
 
-
 	/**
-	 * method: set_strings_highlighting
-	 * --------------------------------
 	 * Turns highlighting on/off for strings
+     * 
+     * @param boolean Whether to turn highlighting for strings on or off
+     * @since 1.0.0
 	 */
-	function set_strings_highlighting ( $flag )
+	function set_strings_highlighting ($flag)
 	{
-		$this->lexic_permissions['STRINGS'] = ( $flag ) ? true : false;
+		$this->lexic_permissions['STRINGS'] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_numbers_style
-	 * -------------------------
 	 * Sets the styles for numbers. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param string  The style to make the numbers
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_numbers_style ( $style, $preserve_defaults = false )
+	function set_numbers_style ($style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->language_data['STYLES']['NUMBERS'][0] .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['NUMBERS'][0] = $style;
+		} else {
 			$this->language_data['STYLES']['NUMBERS'][0] = $style;
 		}
 	}
 
-
 	/**
-	 * method: set_numbers_highlighting
-	 * --------------------------------
 	 * Turns highlighting on/off for numbers
+     * 
+     * @param boolean Whether to turn highlighting for numbers on or off
+     * @since 1.0.0
 	 */
-	function set_numbers_highlighting ( $flag )
+	function set_numbers_highlighting ($flag)
 	{
-		$this->lexic_permissions['NUMBERS'] = ( $flag ) ? true : false;
+		$this->lexic_permissions['NUMBERS'] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_methods_style
-	 * -------------------------
 	 * Sets the styles for methods. $key is a number that references the
 	 * appropriate "object splitter" - see the language file for the language
 	 * you are highlighting to get this number. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param int     The key of the object splitter to change the styles of
+     * @param string  The style to make the methods
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_methods_style ( $key, $style, $preserve_defaults = false )
+	function set_methods_style ($key, $style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['METHODS'][$key] = $style;
+		} else {
 			$this->language_data['STYLES']['METHODS'][$key] .= $style;
 		}
-		else
-		{
-			$this->language_data['STYLES']['METHODS'][$key] = $style;
-		}
 	}
 
-
 	/**
-	 * method: set_methods_highlighting
-	 * --------------------------------
 	 * Turns highlighting on/off for methods
+     * 
+     * @param boolean Whether to turn highlighting for methods on or off
+     * @since 1.0.0
 	 */
-	function set_methods_highlighting ( $flag )
+	function set_methods_highlighting ($flag)
 	{
-		$this->lexic_permissions['METHODS'] = ( $flag ) ? true : false;
+		$this->lexic_permissions['METHODS'] = ($flag) ? true : false;
 	}
 
-
 	/**
-	 * method: set_regexps_style
-	 * -------------------------
 	 * Sets the styles for regexps. If $preserve_defaults is
 	 * true, then styles are merged with the default styles, with the
 	 * user defined styles having priority
+     * 
+     * @param string  The style to make the regular expression matches
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @since 1.0.0
 	 */
-	function set_regexps_style ( $key, $style, $preserve_defaults = false )
+	function set_regexps_style ($key, $style, $preserve_defaults = false)
 	{
-		if ( $preserve_defaults )
-		{
-			$this->language_data['STYLES']['REGEXPS'][$key] .= $style;
-		}
-		else
-		{
+		if (!$preserve_defaults) {
+			$this->language_data['STYLES']['REGEXPS'][$key] = $style;
+		} else {
 			$this->language_data['STYLES']['REGEXPS'][$key] = $style;
 		}
 	}
 
-
 	/**
-	 * method: set_regexps_highlighting
-	 * --------------------------------
 	 * Turns highlighting on/off for regexps
+     * 
+     * @param int     The key of the regular expression group to turn on or off
+     * @param boolean Whether to turn highlighting for the regular expression group on or off
+     * @since 1.0.0
 	 */
-	function set_regexps_highlighting ( $key, $flag )
+	function set_regexps_highlighting ($key, $flag)
 	{
-		$this->lexic_permissions['REGEXPS'][$key] = ( $flag ) ? true : false;
+		$this->lexic_permissions['REGEXPS'][$key] = ($flag) ? true : false;
 	}
-
 
 	/**
 	 * method: set_case_sensitivity
