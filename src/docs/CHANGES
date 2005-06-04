@@ -9,9 +9,13 @@ changes - thanks to all who suggested these ideas and gave me the code to show m
 Language files listed under each version were made by the author beside them, and then
 modified by me for consistency/bug fixing.
 
-Please send any bug reports to oracle.shinoda@gmail.com, or use the bug report tracker
+Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.7
+  -  Changed file comments to use phpdoc syntax, and changed code style to be more
+  	 like PEAR
+  -  Fixed bug in set_code_style: Second parameter is now optional
 Version 1.0.6
   -  Added support for smart tabs - tabs that behave just like normal tabs when in
      GESHI_HEADER_DIV mode.
