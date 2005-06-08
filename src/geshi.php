@@ -11,11 +11,10 @@
  * 
  * @package   core
  * @author    Nigel McNie <nigel@geshi.org>
- * @copyright (c) 2004 Nigel McNie
+ * @copyright Copyright &copy; 2004, 2005, Nigel McNie
  * @license   http://gnu.org/copyleft/gpl.html GNU GPL
  * @version   $Id$
  *
- * @todo Define a GESHI_VERSION constant
  *************************************************************************************
  *
  *     This file is part of GeSHi.
@@ -43,6 +42,9 @@
 // their values - you never know when a value may change in a future
 // version
 //
+
+/** The version of this GeSHi file */
+define('GESHI_VERSION', '1.0.7');
 
 /** For the future (though this may never be realised) */
 define('GESHI_OUTPUT_HTML', 0);
@@ -122,14 +124,16 @@ define('GESHI_START_IMPORTANT', '<BEGIN GeSHi>');
 define('GESHI_END_IMPORTANT', '<END GeSHi>');
 
 
-
-// Begin Class GeSHi
+/**
+ * The GeSHi Class.
+ * 
+ * @todo Better comment
+ * @package   core
+ * @author    Nigel McNie <nigel@geshi.org>
+ * @copyright Copyright &copy; 2004, 2005, nigel
+ */
 class GeSHi
 {
-	//
-	// Data Fields
-	//
-
     /**#@+
      * @access private
      */
@@ -339,7 +343,7 @@ class GeSHi
      * Default target for keyword links
      * @var string
      */
-	var $link_target = '';                // default target for keyword links
+	var $link_target = '';
     
     /**
      * The encoding to use for entity encoding
@@ -886,84 +890,78 @@ class GeSHi
 	}
 
 	/**
-	 * method: set_case_sensitivity
-	 * ----------------------------
 	 * Sets whether a set of keywords are checked for in a case sensitive manner
+     * 
+     * @param int The key of the keyword group to change the case sensitivity of
+     * @param boolean Whether to check in a case sensitive manner or not
+     * @since 1.0.0
 	 */
-	function set_case_sensitivity ( $key, $case )
+	function set_case_sensitivity ($key, $case)
 	{
-		$this->language_data['CASE_SENSITIVE'][$key] = ( $case ) ? true : false;
+		$this->language_data['CASE_SENSITIVE'][$key] = ($case) ? true : false;
 	}
 
-
 	/**
-	 * method: set_case_keywords
-	 * -------------------------
 	 * Sets the case that keywords should use when found. Use the constants:
-	 *   GESHI_CAPS_NO_CHANGE: leave keywords as-is
-	 *   GESHI_CAPS_UPPER: convert all keywords to uppercase where found
-	 *   GESHI_CAPS_LOWER: convert all keywords to lowercase where found
-	 * Method added in 1.0.1
+     * 
+     * <ul>
+	 *   <li><b>GESHI_CAPS_NO_CHANGE</b>: leave keywords as-is</li>
+	 *   <li><b>GESHI_CAPS_UPPER</b>: convert all keywords to uppercase where found</li>
+	 *   <li><b>GESHI_CAPS_LOWER</b>: convert all keywords to lowercase where found</li>
+     * </ul>
+     * 
+     * @param int A constant specifying what to do with matched keywords
+     * @since 1.0.1
 	 */
-	function set_case_keywords ( $case )
+	function set_case_keywords ($case)
 	{
 		$this->language_data['CASE_KEYWORDS'] = $case;
 	}
 
-
 	/**
-	 * method: set_tab_width
-	 * ---------------------
 	 * Sets how many spaces a tab is substituted for
-	 * This method will probably be re-engineered later to allow customisability
-	 * in the maximum and minimum number of tabs without mutulating data fields.
+     * 
+     * Widths below zero are ignored
+     * 
+     * @param int The tab width
+     * @since 1.0.0
+     * @todo  Get rid of max/min stuff?
+     * @todo What happens on width 0?
 	 */
-	function set_tab_width ( $width )
+	function set_tab_width ($width)
 	{
 		if ( $width > $this->max_tabs ) $width = $this->max_tabs;
 		if ( $width < $this->min_tabs ) $width = $this->min_tabs;
 		$this->tab_width = $width;
 	}
 
-
 	/**
-	 * method: enable_strict_mode
-	 * --------------------------
 	 * Enables/disables strict highlighting. Default is off, calling this
 	 * method without parameters will turn it on. See documentation
-	 * for more details on strict mode and where to use it
+	 * for more details on strict mode and where to use it.
+     * 
+     * @param boolean Whether to enable strict mode or not
+     * @since 1.0.0
 	 */
-	function enable_strict_mode ( $mode = true )
+	function enable_strict_mode ($mode = true)
 	{
-		$this->strict_mode = ( $mode ) ? true : false;
-		// Turn on strict mode no matter what if language should always
-		// be in strict mode
-		if ( $this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS )
-		{
-			$this->strict_mode = true;
-		}
-		// Turn off strict mode no matter what if language should never
-		// be in strict mode
-		elseif ( $this->language_data['STRICT_MODE_APPLIES'] == GESHI_NEVER )
-		{
-			$this->strict_mode = false;
-		}
+        if (GESHI_MAYBE == $this->language_data['STRICT_MODE_APPLIES']) {
+		  $this->strict_mode = ($mode) ? true : false;
+        }
 	}
 
-
 	/**
-	 * method: disable_highlighting
-	 * ----------------------------
 	 * Disables all highlighting
+     * 
+     * @since 1.0.0
+     * @todo Rewrite with an array traversal
 	 */
 	function disable_highlighting ()
 	{
-		foreach ( $this->language_data['KEYWORDS'] as $key => $words )
-		{
+		foreach ($this->language_data['KEYWORDS'] as $key => $words) {
 			$this->lexic_permissions['KEYWORDS'][$key] = false;
 		}
-		foreach ( $this->language_data['COMMENT_SINGLE'] as $key => $comment )
-		{
+		foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
 			$this->lexic_permissions['COMMENTS'][$key] = false;
 		}
 		// Multiline comments
@@ -983,28 +981,25 @@ class GeSHi
 		// Script
 		$this->lexic_permissions['SCRIPT'] = false;
 		// Regexps
-		foreach ( $this->language_data['REGEXPS'] as $key => $regexp )
-		{
+		foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
 			$this->lexic_permissions['REGEXPS'][$key] = false;
 		}
 		// Context blocks
 		$this->enable_important_blocks = false;
 	}
 
-
 	/**
-	 * method: enable_highlighting
-	 * ---------------------------
 	 * Enables all highlighting
+     * 
+     * @since 1.0.0
+     * @todo  Rewrite with array traversal
 	 */
 	function enable_highlighting ()
 	{
-		foreach ( $this->language_data['KEYWORDS'] as $key => $words )
-		{
+		foreach ($this->language_data['KEYWORDS'] as $key => $words) {
 			$this->lexic_permissions['KEYWORDS'][$key] = true;
 		}
-		foreach ( $this->language_data['COMMENT_SINGLE'] as $key => $comment )
-		{
+		foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
 			$this->lexic_permissions['COMMENTS'][$key] = true;
 		}
 		// Multiline comments
@@ -1024,20 +1019,22 @@ class GeSHi
 		// Script
 		$this->lexic_permissions['SCRIPT'] = true;
 		// Regexps
-		foreach ( $this->language_data['REGEXPS'] as $key => $regexp )
-		{
+		foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
 			$this->lexic_permissions['REGEXPS'][$key] = true;
 		}
 		// Context blocks
 		$this->enable_important_blocks = true;
 	}
 
-
 	/**
-	 * method: get_language_name_from_extension
-	 * ----------------------------------------
 	 * Given a file extension, this method returns either a valid geshi language
 	 * name, or the empty string if it couldn't be found
+     * 
+     * @param string The extension to get a language name for
+     * @param array  A lookup array to use instead of the default
+     * @since 1.0.5
+     * @todo Re-think about how this method works
+     * @todo static?
 	 */
 	function get_language_name_from_extension ( $extension, $lookup = array() )
 	{
@@ -1081,12 +1078,9 @@ class GeSHi
 			);
 		}
 
-		foreach ( $lookup as $lang => $extensions )
-		{
-			foreach ( $extensions as $ext )
-			{
-				if ( $ext == $extension )
-				{
+		foreach ($lookup as $lang => $extensions) {
+			foreach ($extensions as $ext) {
+				if ($ext == $extension) {
 					return $lang;
 				}
 			}
@@ -1095,77 +1089,80 @@ class GeSHi
 	}
 
 	/**
-	 * Method: load_from_file
-	 * ----------------------
 	 * Given a file name, this method loads its contents in, and attempts
 	 * to set the language automatically. An optional lookup table can be
-	 * passed for looking up the language name.
+	 * passed for looking up the language name. If not specified a default
+     * table is used
 	 *
 	 * The language table is in the form
 	 * <pre>array(
 	 *   'lang_name' => array('extension', 'extension', ...),
 	 *   'lang_name' ...
 	 * );</pre>
+     * 
+     * @todo Complete rethink of this and above method
+     * @since 1.0.5
 	 */
-	function load_from_file ( $file_name, $lookup = array() )
+	function load_from_file ($file_name, $lookup = array())
 	{
-		if ( is_readable($file_name) )
-		{
+		if (is_readable($file_name)) {
 			$this->set_source(implode('', file($file_name)));
 			$this->set_language($this->get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
-		}
-		else
-		{
+		} else {
 			$this->error = GESHI_ERROR_FILE_NOT_READABLE;
 		}
 	}
 
 	/**
-	 * method: add_keyword
-	 * -------------------
 	 * Adds a keyword to a keyword group for highlighting
+     * 
+     * @param int    The key of the keyword group to add the keyword to
+     * @param string The word to add to the keyword group
+     * @since 1.0.0 
 	 */
-	function add_keyword( $key, $word )
+	function add_keyword ($key, $word)
 	{
 		$this->language_data['KEYWORDS'][$key][] = $word;
 	}
 
-
 	/**
-	 * method: remove_keyword
-	 * ----------------------
 	 * Removes a keyword from a keyword group
+     * 
+     * @param int    The key of the keyword group to remove the keyword from
+     * @param string The word to remove from the keyword group
+     * @since 1.0.0 
 	 */
-	function remove_keyword ( $key, $word )
+	function remove_keyword ($key, $word)
 	{
-		$this->language_data['KEYWORDS'][$key] = array_diff($this->language_data['KEYWORDS'][$key], array($word));
+		$this->language_data['KEYWORDS'][$key] =
+            array_diff($this->language_data['KEYWORDS'][$key], array($word));
 	}
 
-
 	/**
-	 * method: add_keyword_group
-	 * -------------------------
 	 * Creates a new keyword group
+     * 
+     * @param int    The key of the keyword group to create
+     * @param string The styles for the keyword group
+     * @param boolean Whether the keyword group is case sensitive ornot
+     * @param array  The words to use for the keyword group
+     * @since 1.0.0 
 	 */
 	function add_keyword_group ( $key, $styles, $case_sensitive = true, $words = array() )
 	{
-		if ( !is_array($words) )
-		{
-			$words = array($words);
-		}
+        $words = (array) $words;
 		$this->language_data['KEYWORDS'][$key] = $words;
 		$this->lexic_permissions['KEYWORDS'][$key] = true;
 		$this->language_data['CASE_SENSITIVE'][$key] = $case_sensitive;
 		$this->language_data['STYLES']['KEYWORDS'][$key] = $styles;
 	}
 
-
 	/**
-	 * method: remove_keyword_group
-	 * ----------------------------
 	 * Removes a keyword group
+     * 
+     * @param int    The key of the keyword group to remove
+     * @since 1.0.0 
 	 */
-	function remove_keyword_group ( $key )
+	function remove_keyword_group ($key)
 	{
 		unset($this->language_data['KEYWORDS'][$key]);
 		unset($this->lexic_permissions['KEYWORDS'][$key]);
@@ -1173,101 +1170,102 @@ class GeSHi
 		unset($this->language_data['STYLES']['KEYWORDS'][$key]);
 	}
 
-
 	/**
-	 * method: set_header_content
-	 * --------------------------
 	 * Sets the content of the header block
+     * 
+     * @param string The content of the header block
+     * @since 1.0.2
 	 */
-	function set_header_content ( $content )
+	function set_header_content ($content)
 	{
 		$this->header_content = $content;
 	}
 
-
 	/**
-	 * method: set_footer_content
-	 * --------------------------
 	 * Sets the content of the footer block
+     * 
+     * @param string The content of the footer block
+     * @since 1.0.2
 	 */
-	function set_footer_content ( $content )
+	function set_footer_content ($content)
 	{
 		$this->footer_content = $content;
 	}
 
-
 	/**
-	 * method: set_header_content_style
-	 * --------------------------------
 	 * Sets the style for the header content
+     * 
+     * @param string The style for the header content
+     * @since 1.0.2
 	 */
-	function set_header_content_style ( $style )
+	function set_header_content_style ($style)
 	{
 		$this->header_content_style = $style;
 	}
 
-
 	/**
-	 * method: set_footer_content_style
-	 * --------------------------------
 	 * Sets the style for the footer content
+     * 
+     * @param string The style for the footer content
+     * @since 1.0.2
 	 */
-	function set_footer_content_style ( $style )
+	function set_footer_content_style ($style)
 	{
 		$this->footer_content_style = $style;
 	}
 
-
 	/**
-	 * method: set_url_for_keyword_group
-	 * ---------------------------------
 	 * Sets the base URL to be used for keywords
+     * 
+     * @param int The key of the keyword group to set the URL for
+     * @param string The URL to set for the group. If {FNAME} is in
+     *               the url somewhere, it is replaced by the keyword
+     *               that the URL is being made for
+     * @since 1.0.2
 	 */
-	function set_url_for_keyword_group ( $group, $url )
+	function set_url_for_keyword_group ($group, $url)
 	{
 		$this->language_data['URLS'][$group] = $url;
 	}
 
-
 	/**
-	 * method: set_link_styles
-	 * -----------------------
 	 * Sets styles for links in code
+     * 
+     * @param int A constant that specifies what state the style is being
+     *            set for - e.g. :hover or :visited
+     * @param string The styles to use for that state
+     * @since 1.0.2
 	 */
-	function set_link_styles ( $type, $styles )
+	function set_link_styles ($type, $styles)
 	{
 		$this->link_styles[$type] = $styles;
 	}
 
-
 	/**
-	* method: set_link_target
-	* -----------------------
-	* Sets the target for links in code
-	*/
+     * Sets the target for links in code
+     * 
+     * @param string The target for links in the code, e.g. _blank
+     * @since 1.0.3
+     */
 	function set_link_target ( $target )
 	{
-		if ( empty( $target ) )
-		{
+		if (!$target) {
 			$this->link_target = '';
-		}
-		else
-		{
+		} else {
 			$this->link_target = ' target="' . $target . '" ';
 		}
 	}
 
-
 	/**
-	 * method: set_important_styles
-	 * ----------------------------
 	 * Sets styles for important parts of the code
+     * 
+     * @param string The styles to use on important parts of the code
+     * @since 1.0.2
 	 */
-	function set_important_styles ( $styles )
+	function set_important_styles ($styles)
 	{
 		$this->important_styles = $styles;
 	}
-
 
 	/**
 	 * method: enable_important_blocks
