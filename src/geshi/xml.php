@@ -43,7 +43,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'HTML',
+	'LANG_NAME' => 'XML',
 	'COMMENT_SINGLE' => array(),
 	'COMMENT_MULTI' => array('<!--' => '-->'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
