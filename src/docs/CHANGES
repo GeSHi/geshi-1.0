@@ -16,6 +16,13 @@ Version 1.0.7
   -  Changed file comments to use phpdoc syntax, and changed code style to be more
   	 like PEAR
   -  Fixed bug in set_code_style: Second parameter is now optional
+  -  The $_GESHI_ERRORS array is gone, error messages are internal to the GeSHi class
+  -  Changed name of XML language to XML from HTML
+  -  Removed min and max tab width checks
+  -  Backported GeSHi 1.1.X's automatic language file path detection so you no longer
+     need to use the third parameter of the constructor or set_language_path except for
+     special circumstances.
+  -  Source is checked to make sure it is not empty else an error occurs
 Version 1.0.6
   -  Added support for smart tabs - tabs that behave just like normal tabs when in
      GESHI_HEADER_DIV mode.
