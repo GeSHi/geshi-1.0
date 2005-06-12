@@ -185,7 +185,7 @@ class GeSHi
     /**
      * The error message associated with an error
      * @var string
-     * @todo check
+     * @todo check err reporting works
      */
 	var $error = false;
     
@@ -234,7 +234,7 @@ class GeSHi
      */
 	var $lexic_permissions = array(
         'KEYWORDS' =>    array(),
-        'COMMENTS' =>    array(),
+        'COMMENTS' =>    array('MULTI' => true),
         'REGEXPS' =>     array(),
         'ESCAPE_CHAR' => true,
         'BRACKETS' =>    true,
@@ -1026,32 +1026,6 @@ class GeSHi
                 $this->lexic_permissions[$key] = false;
             }
         }
-		foreach ($this->language_data['KEYWORDS'] as $key => $words) {
-			$this->lexic_permissions['KEYWORDS'][$key] = false;
-		}
-		foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
-			$this->lexic_permissions['COMMENTS'][$key] = false;
-		}
-		// Multiline comments
-		$this->lexic_permissions['COMMENTS']['MULTI'] = false;
-		// Escape characters
-		$this->lexic_permissions['ESCAPE_CHAR'] = false;
-		// Brackets
-		$this->lexic_permissions['BRACKETS'] = false;
-		// Strings
-		$this->lexic_permissions['STRINGS'] = false;
-		// Numbers
-		$this->lexic_permissions['NUMBERS'] = false;
-		// Methods
-		$this->lexic_permissions['METHODS'] = false;
-		// Symbols
-		$this->lexic_permissions['SYMBOLS'] = false;
-		// Script
-		$this->lexic_permissions['SCRIPT'] = false;
-		// Regexps
-		foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
-			$this->lexic_permissions['REGEXPS'][$key] = false;
-		}
 		// Context blocks
 		$this->enable_important_blocks = false;
 	}
@@ -1067,39 +1041,12 @@ class GeSHi
         foreach ($this->lexic_permissions as $key => $value) {
             if (is_array($value)) {
                 foreach ($value as $k => $v) {
-                    $this->lexic_permissions[$key][$k] = false;
+                    $this->lexic_permissions[$key][$k] = true;
                 }
             } else {
-                $this->lexic_permissions[$key] = false;
+                $this->lexic_permissions[$key] = true;
             }
         }
-
-		foreach ($this->language_data['KEYWORDS'] as $key => $words) {
-			$this->lexic_permissions['KEYWORDS'][$key] = true;
-		}
-		foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
-			$this->lexic_permissions['COMMENTS'][$key] = true;
-		}
-		// Multiline comments
-		$this->lexic_permissions['COMMENTS']['MULTI'] = true;
-		// Escape characters
-		$this->lexic_permissions['ESCAPE_CHAR'] = true;
-		// Brackets
-		$this->lexic_permissions['BRACKETS'] = true;
-		// Strings
-		$this->lexic_permissions['STRINGS'] = true;
-		// Numbers
-		$this->lexic_permissions['NUMBERS'] = true;
-		// Methods
-		$this->lexic_permissions['METHODS'] = true;
-		// Symbols
-		$this->lexic_permissions['SYMBOLS'] = true;
-		// Script
-		$this->lexic_permissions['SCRIPT'] = true;
-		// Regexps
-		foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
-			$this->lexic_permissions['REGEXPS'][$key] = true;
-		}
 		// Context blocks
 		$this->enable_important_blocks = true;
 	}
@@ -1590,7 +1537,7 @@ class GeSHi
 							// If so, is there a string open? If there is, we should end it before
 							// the newline and begin it again (so when <li>s are put in the source
 							// remains XHTML compliant)
-							// NOTE TO SELF: This opens up possibility of config files specifying
+							// note to self: This opens up possibility of config files specifying
 							// that languages can/cannot have multiline strings???
 							if ($STRING_OPEN) {
 								if (!$this->use_classes) {
@@ -1807,12 +1754,15 @@ class GeSHi
 	}
 
 	/**
-	 * method: indent
-	 * --------------
 	 * Swaps out spaces and tabs for HTML indentation. Not needed if
 	 * the code is in a pre block...
+     * 
+     * @param  string The source to indent
+     * @return string The source with HTML indenting applied
+     * @since  1.0.0
+     * @access private
 	 */
-	function indent ( $result )
+	function indent ($result)
 	{
             /// Replace tabs with the correct number of spaces
             if (false !== strpos($result, "\t")) {
@@ -1895,92 +1845,99 @@ class GeSHi
 		$result = str_replace('  ', '&nbsp; ', $result);
 		$result = str_replace('  ', ' &nbsp;', $result);
 		$result = str_replace("\n ", "\n&nbsp;", $result);
-		//$result = str_replace("\t", $this->get_tab_replacement(), $result);
-		if ( $this->line_numbers == GESHI_NO_LINE_NUMBERS )
-		{
+
+		if ($this->line_numbers == GESHI_NO_LINE_NUMBERS) {
 			$result = nl2br($result);
 		}
 		return $result;
 	}
 
 	/**
-	 * method: change_case
-	 * -------------------
 	 * Changes the case of a keyword for those languages where a change is asked for
+     * 
+     * @param  string The keyword to change the case of
+     * @return string The keyword with its case changed
+     * @since  1.0.0
+     * @access private
 	 */
-	function change_case ( $instr )
+	function change_case ($instr)
 	{
-		if ( $this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_UPPER )
-		{
+		if ($this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_UPPER) {
 			return strtoupper($instr);
-		}
-		elseif ( $this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_LOWER )
-		{
+		} elseif ($this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_LOWER) {
 			return strtolower($instr);
 		}
 		return $instr;
 	}
 
-
 	/**
-	 * method: add_url_to_keyword
-	 * --------------------------
 	 * Adds a url to a keyword where needed.
-	 * Added in 1.0.2
+	 * 
+     * @param  string The keyword to add the URL HTML to
+     * @param  int What group the keyword is from
+     * @param  boolean Whether to get the HTML for the start or end
+     * @return The HTML for either the start or end of the HTML &lt;a&gt; tag
+     * @since  1.0.2
+     * @access private
+     * @todo   Get rid of ender
 	 */
-	function add_url_to_keyword ( $keyword, $group, $start_or_end )
+	function add_url_to_keyword ($keyword, $group, $start_or_end)
 	{
-		if ( isset($this->language_data['URLS'][$group]) && $this->language_data['URLS'][$group] != '' && substr($keyword, 0, 5) != '&lt;/' )
-		{
+		if (isset($this->language_data['URLS'][$group]) &&
+            $this->language_data['URLS'][$group] != '' &&
+            substr($keyword, 0, 5) != '&lt;/') {
 			// There is a base group for this keyword
-
-			if ( $start_or_end == 'BEGIN' )
-			{
+			if ($start_or_end == 'BEGIN') {
 				// HTML workaround... not good form (tm) but should work for 1.0.X
 				$keyword = ( substr($keyword, 0, 4) == '&lt;' ) ? substr($keyword, 4) : $keyword;
 				$keyword = ( substr($keyword, -4) == '&gt;' ) ? substr($keyword, 0, strlen($keyword) - 4) : $keyword;
-				if ( $keyword != '' )
-				{
+				if ($keyword != '') {
 					$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
-					return '<|UR1|"' . str_replace(array('{FNAME}', '.'), array(@htmlentities($keyword, ENT_COMPAT, $this->encoding), '<DOT>'), $this->language_data['URLS'][$group]) . '">';
+					return '<|UR1|"' .
+                        str_replace(
+                            array('{FNAME}', '.'),
+                            array(@htmlspecialchars($keyword, ENT_COMPAT, $this->encoding), '<DOT>'),
+                            $this->language_data['URLS'][$group]
+                        ) . '">';
 				}
 				return '';
-			}
-			else
-			{
+			} else {
 				return '</a>';
 			}
 		}
 	}
 
-
 	/**
-	 * method: parse_non_string_part
-	 * -----------------------------
 	 * Takes a string that has no strings or comments in it, and highlights
 	 * stuff like keywords, numbers and methods.
+     * 
+     * @param string The string to parse for keyword, numbers etc.
+     * @since 1.0.0
+     * @access private
+     * @todo BUGGY! Why? Why not build string and return?
 	 */
-	function parse_non_string_part ( &$stuff_to_parse )
+	function parse_non_string_part (&$stuff_to_parse)
 	{
-		$stuff_to_parse = ' ' . quotemeta(@htmlentities($stuff_to_parse, ENT_COMPAT, $this->encoding));
+		$stuff_to_parse = ' ' . quotemeta(@htmlspecialchars($stuff_to_parse, ENT_COMPAT, $this->encoding));
+        echo 'IN:<pre>'.$stuff_to_parse.'</pre>';
 		// These vars will disappear in the future
 		$func = '$this->change_case';
 		$func2 = '$this->add_url_to_keyword';
 
-
 		//
 		// Regular expressions
 		//
-		foreach ( $this->language_data['REGEXPS'] as $key => $regexp )
-		{
-			if ( $this->lexic_permissions['REGEXPS'][$key] )
-			{
-				if ( is_array($regexp) )
-				{
-					$stuff_to_parse = preg_replace( "#" . $regexp[GESHI_SEARCH] . "#{$regexp[GESHI_MODIFIERS]}", "{$regexp[GESHI_BEFORE]}<|!REG3XP$key!>{$regexp[GESHI_REPLACE]}|>{$regexp[GESHI_AFTER]}", $stuff_to_parse);
-				}
-				else
-				{
+		foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
+			if ($this->lexic_permissions['REGEXPS'][$key]) {
+				if (is_array($regexp)) {
+					$stuff_to_parse = preg_replace(
+                        "#" .
+                        $regexp[GESHI_SEARCH] .
+                        "#{$regexp[GESHI_MODIFIERS]}",
+                        "{$regexp[GESHI_BEFORE]}<|!REG3XP$key!>{$regexp[GESHI_REPLACE]}|>{$regexp[GESHI_AFTER]}",
+                        $stuff_to_parse
+                    );
+				} else {
 					$stuff_to_parse = preg_replace( "#(" . $regexp . ")#", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
 				}
 			}
@@ -1993,22 +1950,17 @@ class GeSHi
 		// being highlighted twice (eg <span...><span...>5</span></span>)
 		// Put /NUM!/ in for the styles, which gets replaced at the end.
 		//
-		if ( $this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse ) )
-		{
+		if ($this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse )) {
 			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9\#])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
 			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9\#>])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
 		}
 
 		// Highlight keywords
 		// if there is a couple of alpha symbols there *might* be a keyword
-		if ( preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse) )
-		{
-			foreach ( $this->language_data['KEYWORDS'] as $k => $keywordset )
-			{
-				if ( $this->lexic_permissions['KEYWORDS'][$k] )
-				{
-					foreach ( $keywordset as $keyword )
-					{
+		if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
+			foreach ($this->language_data['KEYWORDS'] as $k => $keywordset) {
+				if ($this->lexic_permissions['KEYWORDS'][$k]) {
+					foreach ($keywordset as $keyword) {
 						$keyword = quotemeta($keyword);
 						//
 						// This replacement checks the word is on it's own (except if brackets etc
@@ -2016,22 +1968,26 @@ class GeSHi
 						// in just yet - otherwise languages with the keywords "color" or "or" have
 						// a fit.
 						//
-						if ( false !== stristr($stuff_to_parse, $keyword ) )
-						{
+						if (false !== stristr($stuff_to_parse, $keyword )) {
 							$stuff_to_parse .= ' ';
 							// Might make a more unique string for putting the number in soon
 							// Basically, we don't put the styles in yet because then the styles themselves will
 							// get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
 							$styles = "/$k/";
 							$keyword = quotemeta($keyword);
-							if ( $this->language_data['CASE_SENSITIVE'][$k] )
-							{
-								$stuff_to_parse = preg_replace("#([^a-zA-Z0-9\$_\|\.\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#e", "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'", $stuff_to_parse);
-							}
-							else
-							{
+							if ($this->language_data['CASE_SENSITIVE'][$k]) {
+								$stuff_to_parse = preg_replace(
+                                    "#([^a-zA-Z0-9\$_\|\.\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#e",
+                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'",
+                                    $stuff_to_parse
+                                );
+							} else {
 								// Change the case of the word.
-								$stuff_to_parse = preg_replace("#([^a-zA-Z0-9\$_\|\.\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#ie", "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'", $stuff_to_parse);
+								$stuff_to_parse = preg_replace(
+                                    "#([^a-zA-Z0-9\$_\|\.\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#ie",
+                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'",
+                                    $stuff_to_parse
+                                );
 							}
 							$stuff_to_parse = substr($stuff_to_parse, 0, strlen($stuff_to_parse) - 1);
 						}
@@ -2043,26 +1999,19 @@ class GeSHi
 		//
 		// Now that's all done, replace /[number]/ with the correct styles
 		//
-		foreach ( $this->language_data['KEYWORDS'] as $k => $kws )
-		{
-			if ( !$this->use_classes )
-			{
+		foreach ($this->language_data['KEYWORDS'] as $k => $kws) {
+			if (!$this->use_classes) {
 				$attributes = ' style="' . $this->language_data['STYLES']['KEYWORDS'][$k] . '"';
-			}
-			else
-			{
+			} else {
 				$attributes = ' class="kw' . $k . '"';
 			}
 			$stuff_to_parse = str_replace("/$k/", $attributes, $stuff_to_parse);
-		}
+		}echo 'MID:<pre>'.$stuff_to_parse.'</pre>';
 
 		// Put number styles in
-		if ( !$this->use_classes && $this->lexic_permissions['NUMBERS'] )
-		{
+		if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
 			$attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
-		}
-		else
-		{
+		} else {
 			$attributes = ' class="nu0"';
 		}
 		$stuff_to_parse = str_replace('/NUM!/', $attributes, $stuff_to_parse);
@@ -2070,18 +2019,12 @@ class GeSHi
 		//
 		// Highlight methods and fields in objects
 		//
-		if ( $this->lexic_permissions['METHODS'] && $this->language_data['OOLANG'] )
-		{
-			foreach ( $this->language_data['OBJECT_SPLITTERS'] as $key => $splitter )
-			{
-				if ( false !== stristr($stuff_to_parse, $splitter) )
-				{
-					if ( !$this->use_classes )
-					{
+		if ($this->lexic_permissions['METHODS'] && $this->language_data['OOLANG']) {
+			foreach ($this->language_data['OBJECT_SPLITTERS'] as $key => $splitter) {
+				if (false !== stristr($stuff_to_parse, $splitter)) {
+					if (!$this->use_classes) {
 						$attributes = ' style="' . $this->language_data['STYLES']['METHODS'][$key] . '"';
-					}
-					else
-					{
+					} else {
 						$attributes = ' class="me' . $key . '"';
 					}
 					$stuff_to_parse = preg_replace("#(" . quotemeta($this->language_data['OBJECT_SPLITTERS'][$key]) . "[\s]*)([a-zA-Z\*\(][a-zA-Z0-9_\*]*)#", "\\1<|$attributes>\\2|>", $stuff_to_parse);
@@ -2095,11 +2038,9 @@ class GeSHi
 		// TODO: Fix lexic permissions not converting entities if shouldn't
 		// be highlighting regardless
 		//
-		if ( $this->lexic_permissions['BRACKETS'] )
-		{
+		if ($this->lexic_permissions['BRACKETS']) {
 			$code_entities_match = array('[', ']', '(', ')', '{', '}');
-			if ( !$this->use_classes )
-			{
+			if (!$this->use_classes) {
 				$code_entities_replace = array(
 					'<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#91;|>',
 					'<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#93;|>',
@@ -2108,9 +2049,7 @@ class GeSHi
 					'<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#123;|>',
 					'<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#125;|>',
 				);
-			}
-			else
-			{
+			} else {
 				$code_entities_replace = array(
 					'<| class="br0">&#91;|>',
 					'<| class="br0">&#93;|>',
@@ -2126,16 +2065,11 @@ class GeSHi
 		//
 		// Add class/style for regexps
 		//
-		foreach ( $this->language_data['REGEXPS'] as $key => $regexp )
-		{
-			if ( $this->lexic_permissions['REGEXPS'][$key] )
-			{
-				if ( !$this->use_classes )
-				{
+		foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
+			if ($this->lexic_permissions['REGEXPS'][$key]) {
+				if (!$this->use_classes) {
 					$attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
-				}
-				else
-				{
+				} else {
 					$attributes = ' class="re' . $key . '"';
 				}
 				$stuff_to_parse = str_replace("!REG3XP$key!", "$attributes", $stuff_to_parse);
@@ -2145,19 +2079,13 @@ class GeSHi
 		// Replace <DOT> with . for urls
 		$stuff_to_parse = str_replace('<DOT>', '.', $stuff_to_parse);
 		// Replace <|UR1| with <a href= for urls also
-		if ( isset($this->link_styles[GESHI_LINK]) )
-		{
-			if ( $this->use_classes )
-			{
+		if (isset($this->link_styles[GESHI_LINK])) {
+			if ($this->use_classes) {
 				$stuff_to_parse = str_replace('<|UR1|', '<a' . $this->link_target . ' href=', $stuff_to_parse);
-			}
-			else
-			{
+			} else {
 				$stuff_to_parse = str_replace('<|UR1|', '<a' . $this->link_target . ' style="' . $this->link_styles[GESHI_LINK] . '" href=', $stuff_to_parse);
 			}
-		}
-		else
-		{
+		} else {
 			$stuff_to_parse = str_replace('<|UR1|', '<a' . $this->link_target . ' href=', $stuff_to_parse);
 		}
 
@@ -2168,15 +2096,19 @@ class GeSHi
 		$stuff_to_parse = str_replace('<|', '<span', $stuff_to_parse);
 		$stuff_to_parse = str_replace ( '|>', '</span>', $stuff_to_parse );
 
+        echo 'OUT:<pre>'.$stuff_to_parse.'</pre>';
 		return substr(stripslashes($stuff_to_parse), 1);
 	}
 
 	/**
-	 * method: set_time
-	 * ----------------
 	 * Sets the time taken to parse the code
+     * 
+     * @param microtime The time when parsing started
+     * @param microtime The time when parsing ended
+     * @since 1.0.2
+     * @access private
 	 */
-	function set_time ( $start_time, $end_time )
+	function set_time ($start_time, $end_time)
 	{
 		$start = explode(' ', $start_time);
 		$end = explode(' ', $end_time);
@@ -2184,9 +2116,10 @@ class GeSHi
 	}
 
 	/**
-	 * method: get_time
-	 * ----------------
 	 * Gets the time taken to parse the code
+     * 
+     * @return double The time taken to parse the code
+     * @since  1.0.2
 	 */
 	function get_time ()
 	{
@@ -2194,60 +2127,38 @@ class GeSHi
 	}
 
 	/**
-	 * method: load_language
-	 * ---------------------
 	 * Gets language information and stores it for later use
+     * 
      * @access private
      * @todo Needs to load keys for lexic permissions for keywords, regexps etc
 	 */
 	function load_language ($file_name)
 	{
-		require($file_name);
+		require $file_name;
 		// Perhaps some checking might be added here later to check that
 		// $language data is a valid thing but maybe not
 		$this->language_data = $language_data;
 		// Set strict mode if should be set
-		if ( $this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS )
-		{
+		if ($this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS) {
 			$this->strict_mode = true;
 		}
 		// Set permissions for all lexics to true
 		// so they'll be highlighted by default
+        foreach ($this->language_data['KEYWORDS'] as $key => $words) {
+            $this->lexic_permissions['KEYWORDS'][$key] = true;
+        }
+        foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
+            $this->lexic_permissions['COMMENTS'][$key] = true;
+        }
+        foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
+            $this->lexic_permissions['REGEXPS'][$key] = true;
+        }
 		$this->enable_highlighting();
 		// Set default class for CSS
 		$this->overall_class = $this->language;
 	}
 
 	/**
-	 * method: get_tab_replacement
-	 * ---------------------------
-	 * Gets the replacement string for tabs in the source code. Useful for
-	 * HTML highlighting, where tabs don't mean anything to a browser.
-	 */
-	 /*
-	function get_tab_replacement ()
-	{
-		$i = 0;
-		$result = '';
-		while ( $i < $this->tab_width )
-		{
-			$i++;
-			if ( $i % 2 == 0 )
-			{
-				$result .= ' ';
-			}
-			else
-			{
-				$result .= '&nbsp;';
-			}
-		}
-		return $result;
-	}
-	*/
-
-	/**
-	 * method: finalise
-	 * ----------------
 	 * Takes the parsed code and various options, and creates the HTML
 	 * surrounding it to make it look nice.
 	 */
