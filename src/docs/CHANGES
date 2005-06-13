@@ -23,6 +23,13 @@ Version 1.0.7
      need to use the third parameter of the constructor or set_language_path except for
      special circumstances.
   -  Source is checked to make sure it is not empty else an error occurs
+  -  Removed excess characters after ?> in ada.php, apache.php and cpp.php that caused
+     http headers to be sent ()
+  -  Removed second "foreach" keyword for smarty language file that was causing
+     duplication ()
+  -  Added underscore to allowed characters in match for XML tags ()
+  -  Added some missing java keywords like "abstract" and "transient"
+  -  Added "list" and "continue" PHP keywords
 Version 1.0.6
   -  Added support for smart tabs - tabs that behave just like normal tabs when in
      GESHI_HEADER_DIV mode.
