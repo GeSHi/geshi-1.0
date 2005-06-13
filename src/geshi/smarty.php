@@ -49,7 +49,7 @@ $language_data = array (
 	'KEYWORDS' => array(
 		1 => array(
 			'$smarty', 'now', 'const', 'capture', 'config', 'section', 'foreach', 'template', 'version', 'ldelim', 'rdelim',
-			'config_load', 'foreach', 'foreachelse', 'include', 'include_php', 'insert', 'if', 'elseif', 'else', 'php',
+			'config_load', 'foreachelse', 'include', 'include_php', 'insert', 'if', 'elseif', 'else', 'php',
 			'sectionelse', 'clear_all_cache', 'clear_cache', 'is_cached', 'from', 'item'
 			),
 		2 => array(
