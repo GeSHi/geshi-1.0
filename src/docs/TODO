@@ -11,6 +11,13 @@ Or to the feature request tracker:
 http://sourceforge.net/tracker/?group_id=114997&atid=670234
 
 
+  TODO for version 1.0.8
+
+- Rewrite parse_code method and parse_non_string_part method to use build
+  rather than replace method of highlighting. This should speed things up
+  while making highlighting much "safer"
+
+
   TODO for version 1.2.0
 
 - Rewrite engine to use remove/replace method (will hopefully almost
