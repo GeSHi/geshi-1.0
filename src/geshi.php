@@ -1919,7 +1919,6 @@ class GeSHi
 	function parse_non_string_part (&$stuff_to_parse)
 	{
 		$stuff_to_parse = ' ' . quotemeta(@htmlspecialchars($stuff_to_parse, ENT_COMPAT, $this->encoding));
-        echo 'IN:<pre>'.$stuff_to_parse.'</pre>';
 		// These vars will disappear in the future
 		$func = '$this->change_case';
 		$func2 = '$this->add_url_to_keyword';
@@ -2006,7 +2005,7 @@ class GeSHi
 				$attributes = ' class="kw' . $k . '"';
 			}
 			$stuff_to_parse = str_replace("/$k/", $attributes, $stuff_to_parse);
-		}echo 'MID:<pre>'.$stuff_to_parse.'</pre>';
+		}
 
 		// Put number styles in
 		if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
@@ -2096,7 +2095,6 @@ class GeSHi
 		$stuff_to_parse = str_replace('<|', '<span', $stuff_to_parse);
 		$stuff_to_parse = str_replace ( '|>', '</span>', $stuff_to_parse );
 
-        echo 'OUT:<pre>'.$stuff_to_parse.'</pre>';
 		return substr(stripslashes($stuff_to_parse), 1);
 	}
 
@@ -2161,161 +2159,136 @@ class GeSHi
 	/**
 	 * Takes the parsed code and various options, and creates the HTML
 	 * surrounding it to make it look nice.
+     * 
+     * @param  string The code already parsed
+     * @return string The code nicely finalised
+     * @since  1.0.0
+     * @access private
 	 */
-	function finalise ( $parsed_code )
+	function finalise ($parsed_code)
 	{
-		// Remove end parts of important declarations
-		// This is BUGGY!! My fault for bad code: fix coming in 1.2
-		if ( $this->enable_important_blocks && (strstr($parsed_code, @htmlentities(GESHI_START_IMPORTANT, ENT_COMPAT, $this->encoding)) === false) )
-		{
-			$parsed_code = str_replace(@htmlentities(GESHI_END_IMPORTANT, ENT_COMPAT, $this->encoding), '', $parsed_code);
-		}
+        // Remove end parts of important declarations
+        // This is BUGGY!! My fault for bad code: fix coming in 1.2
+        // @todo Remove this crap
+        if ($this->enable_important_blocks &&
+            (strstr($parsed_code, @htmlspecialchars(GESHI_START_IMPORTANT, ENT_COMPAT, $this->encoding)) === false)) {
+        	$parsed_code = str_replace(@htmlspecialchars(GESHI_END_IMPORTANT, ENT_COMPAT, $this->encoding), '', $parsed_code);
+        }
+        
+        // Add HTML whitespace stuff if we're using the <div> header
+        if ($this->header_type == GESHI_HEADER_DIV) {
+            $parsed_code = $this->indent($parsed_code);
+        }
+        
+        // If we're using line numbers, we insert <li>s and appropriate
+        // markup to style them (otherwise we don't need to do anything)
+        if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+        	// If we're using the <pre> header, we shouldn't add newlines because
+            // the <pre> will line-break them (and the <li>s already do this for us)
+            $ls = ($this->header_type != GESHI_HEADER_PRE) ? "\n" : '';
+            // Get code into lines
+            $code = explode("\n", $parsed_code);
+            // Set vars to defaults for following loop
+            $parsed_code = '';
+            $i = 0;
+            // Foreach line...
+            foreach ($code as $line) {
+                $line = ( $line ) ? $line : '&nbsp;';
+                // If this is a "special line"...
+        	    if ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS &&
+                    $i % $this->line_nth_row == ($this->line_nth_row - 1)) {
+            		// Set the attributes to style the line
+                    if ($this->use_classes) {
+            			$attr = ' class="li2"';
+            			$def_attr = ' class="de2"';
+                    } else {
+            			$attr = ' style="' . $this->line_style2 . '"';
+            			// This style "covers up" the special styles set for special lines
+            			// so that styles applied to special lines don't apply to the actual
+            			// code on that line
+            			$def_attr = ' style="' . $this->code_style . '"';
+                    }
+            		// Span or div?
+            		$start = "<div$def_attr>";
+            		$end = '</div>';
+            	} else {
+            		if ($this->use_classes) {
+            			$def_attr = ' class="de1"';
+            		} else {
+            			$def_attr = ' style="' . $this->code_style . '"';
+            		}
+            		// Reset everything
+            		$attr = '';
+            		// Span or div?
+            		$start = "<div$def_attr>";
+            		$end = '</div>';
+            	}
+        
+            	++$i;
+            	// Are we supposed to use ids? If so, add them
+            	if ($this->add_ids) {
+            		$attr .= " id=\"{$this->overall_id}-{$i}\"";
+            	}
+            	if ($this->use_classes && in_array($i, $this->highlight_extra_lines)) {
+            		$attr .= " class=\"ln-xtra\"";
+            	}
+            	if (!$this->use_classes && in_array($i, $this->highlight_extra_lines)) {
+            		$attr .= " style=\"{$this->highlight_extra_lines_style}\"";
+            	}
 
-		// Add HTML whitespace stuff if we're using the <div> header
-		if ( $this->header_type == GESHI_HEADER_DIV )
-		{
-			$parsed_code = $this->indent($parsed_code);
-		}
-
-		// If we're using line numbers, we insert <li>s and appropriate
-		// markup to style them (otherwise we don't need to do anything)
-		if ( $this->line_numbers != GESHI_NO_LINE_NUMBERS )
-		{
-			// If we're using the <pre> header, we shouldn't add newlines because
-			// the <pre> will line-break them (and the <li>s already do this for us)
-			$ls = ( $this->header_type != GESHI_HEADER_PRE ) ? "\n" : '';
-			// Get code into lines
-			$code = explode("\n", $parsed_code);
-			// Set vars to defaults for following loop
-			$parsed_code = '';
-			$i = 0;
-			// Foreach line...
-			foreach ( $code as $line )
-			{
-				$line = ( $line ) ? $line : '&nbsp;';
-				// If this is a "special line"...
-				if ( $this->line_numbers == GESHI_FANCY_LINE_NUMBERS && $i % $this->line_nth_row == ($this->line_nth_row - 1) )
-				{
-					// Set the attributes to style the line
-					if ( $this->use_classes )
-					{
-						$attr = ' class="li2"';
-						$def_attr = ' class="de2"';
-					}
-					else
-					{
-						$attr = ' style="' . $this->line_style2 . '"';
-						// This style "covers up" the special styles set for special lines
-						// so that styles applied to special lines don't apply to the actual
-						// code on that line
-						$def_attr = ' style="' . $this->code_style . '"';
-					}
-					// Span or div?
-					$start = "<div$def_attr>";
-					$end = '</div>';
-				}
-				else
-				{
-					if ( $this->use_classes )
-					{
-						$def_attr = ' class="de1"';
-					}
-					else
-					{
-						$def_attr = ' style="' . $this->code_style . '"';
-					}
-					// Reset everything
-					$attr = '';
-					// Span or div?
-					$start = "<div$def_attr>";
-					$end = '</div>';
-				}
-
-				++$i;
-				// Are we supposed to use ids? If so, add them
-				if ( $this->add_ids )
-				{
-					$attr .= " id=\"{$this->overall_id}-{$i}\"";
-				}
-				if ( $this->use_classes && in_array($i, $this->highlight_extra_lines) )
-				{
-					$attr .= " class=\"ln-xtra\"";
-				}
-				if ( !$this->use_classes && in_array($i, $this->highlight_extra_lines) )
-				{
-					$attr .= " style=\"{$this->highlight_extra_lines_style}\"";
-				}
-
-				// Add in the line surrounded by appropriate list HTML
-				$parsed_code .= "<li$attr>$start$line$end</li>$ls";
-			}
-		}
-		else
-		{
-			// No line numbers, but still need to handle highlighting lines extra.
-			// Have to use divs so the full width of the code is highlighted
-			$code = explode("\n", $parsed_code);
-			$parsed_code = '';
-			$i = 0;
-			foreach ( $code as $line )
-			{
-				// Make lines have at least one space in them if they're empty
-				$line = ( $line ) ? $line : '&nbsp;';
-				if ( in_array(++$i, $this->highlight_extra_lines) )
-				{
-					if ( $this->use_classes )
-					{
-						//$id = ( $this->overall_id != '' ) ? $this->overall_id . "-$i" : $this->overall_class . "-$i";
-						$parsed_code .= '<div class="ln-xtra">';
-					}
-					else
-					{
-						$parsed_code .= "<div style=\"{$this->highlight_extra_lines_style}\">";
-					}
-					$parsed_code .= $line . "</div>\n";
-				}
-				else
-				{
-					$parsed_code .= $line . "\n";
-				}
-			}
-		}
-
-		// purge some unnecessary stuff
-		$parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
-		$parsed_code = preg_replace('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
-
-		if ( $this->header_type == GESHI_HEADER_PRE )
-		{
-			// enforce line numbers when using pre
-			$parsed_code = str_replace('<li></li>', '<li>&nbsp;</li>', $parsed_code);
-		}
-
-		return $this->header() . chop($parsed_code) . $this->footer();
-	}
-
+            	// Add in the line surrounded by appropriate list HTML
+            	$parsed_code .= "<li$attr>$start$line$end</li>$ls";
+        	}
+        } else {
+            // No line numbers, but still need to handle highlighting lines extra.
+            // Have to use divs so the full width of the code is highlighted
+            $code = explode("\n", $parsed_code);
+            $parsed_code = '';
+            $i = 0;
+            foreach ($code as $line)
+            {
+            	// Make lines have at least one space in them if they're empty
+            	$line = ($line) ? $line : '&nbsp;';
+            	if (in_array(++$i, $this->highlight_extra_lines)) {
+            		if ($this->use_classes) {
+            			$parsed_code .= '<div class="ln-xtra">';
+            		} else {
+            			$parsed_code .= "<div style=\"{$this->highlight_extra_lines_style}\">";
+            		}
+            		$parsed_code .= $line . "</div>\n";
+            	} else {
+            		$parsed_code .= $line . "\n";
+            	}
+        	}
+        }
+        
+        // purge some unnecessary stuff
+        $parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
+        $parsed_code = preg_replace('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
+        
+        if ($this->header_type == GESHI_HEADER_PRE) {
+        	// enforce line numbers when using pre
+            $parsed_code = str_replace('<li></li>', '<li>&nbsp;</li>', $parsed_code);
+        }
+        
+        return $this->header() . chop($parsed_code) . $this->footer();
+    }
 
 	/**
-	 * method: header
-	 * --------------
 	 * Creates the header for the code block (with correct attributes)
+     * 
+     * @return string The header for the code block
+     * @since  1.0.0
+     * @access private
 	 */
 	function header ()
 	{
 		// Get attributes needed
 		$attributes = $this->get_attributes();
 
-		/*if ( $this->use_classes )
-		{*/
-			$ol_attributes = '';
-		/*}
-		else
-		{
-			//$ol_attributes = ' style="margin: 0;"';
-		}*/
+		$ol_attributes = '';
 
-		if ( $this->line_numbers_start != 1 )
-		{
+		if ($this->line_numbers_start != 1) {
 			$ol_attributes .= ' start="' . $this->line_numbers_start . '"';
 		}
 
@@ -2323,124 +2296,105 @@ class GeSHi
 		$header = $this->format_header_content();
 
 		// Work out what to return and do it
-		if ( $this->line_numbers != GESHI_NO_LINE_NUMBERS )
-		{
-			if ( $this->header_type == GESHI_HEADER_PRE )
-			{
+		if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+			if ($this->header_type == GESHI_HEADER_PRE) {
 				return "<pre$attributes>$header<ol$ol_attributes>";
-			}
-			elseif ( $this->header_type == GESHI_HEADER_DIV )
-			{
+			} elseif ($this->header_type == GESHI_HEADER_DIV) {
 				return "<div$attributes>$header<ol$ol_attributes>";
 			}
-		}
-		else
-		{
-			if ( $this->header_type == GESHI_HEADER_PRE )
-			{
+		} else {
+			if ($this->header_type == GESHI_HEADER_PRE) {
 				return "<pre$attributes>$header";
-			}
-			elseif ( $this->header_type == GESHI_HEADER_DIV )
-			{
+			} elseif ($this->header_type == GESHI_HEADER_DIV) {
 				return "<div$attributes>$header";
 			}
 		}
 	}
 
-
 	/**
-	 * method: format_header_content
-	 * -----------------------------
 	 * Returns the header content, formatted for output
+     * 
+     * @return string The header content, formatted for output
+     * @since  1.0.2
+     * @access private
 	 */
 	function format_header_content ()
 	{
 		$header = $this->header_content;
-		if ( $header )
-		{
-			if ( $this->header_type == GESHI_HEADER_PRE )
-			{
+		if ($header) {
+			if ($this->header_type == GESHI_HEADER_PRE) {
 				$header = str_replace("\n", '', $header);
 			}
 			$header = $this->replace_keywords($header);
 
-			if ( $this->use_classes )
-			{
+			if ($this->use_classes) {
 				$attr = ' class="head"';
-			}
-			else
-			{
+			} else {
 				$attr = " style=\"{$this->header_content_style}\"";
 			}
 			return "<div$attr>$header</div>";
 		}
 	}
 
-
 	/**
-	 * method: footer
-	 * --------------
-	 * Returns the footer for the code block. Ending newline removed in 1.0.2
+	 * Returns the footer for the code block.
+     * 
+     * @return string The footer for the code block
+     * @since  1.0.0
+     * @access private
 	 */
 	function footer ()
 	{
 		$footer_content = $this->format_footer_content();
 
-		if ( $this->header_type == GESHI_HEADER_DIV )
-		{
-			if ( $this->line_numbers != GESHI_NO_LINE_NUMBERS )
-			{
+		if ($this->header_type == GESHI_HEADER_DIV) {
+			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "</ol>$footer_content</div>";
 			}
 			return "$footer_content</div>";
-		}
-		else
-		{
-			if ( $this->line_numbers != GESHI_NO_LINE_NUMBERS )
-			{
+		} else {
+			if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 				return "</ol>$footer_content</pre>";
 			}
 			return "$footer_content</pre>";
 		}
 	}
 
-
 	/**
-	 * method: format_footer_content
-	 * -----------------------------
 	 * Returns the footer content, formatted for output
+     * 
+     * @return string The footer content, formatted for output
+     * @since  1.0.2
+     * @access private
 	 */
 	function format_footer_content ()
 	{
 		$footer = $this->footer_content;
-		if ( $footer )
-		{
-			if ( $this->header_type == GESHI_HEADER_PRE )
-			{
+		if ($footer) {
+			if ($this->header_type == GESHI_HEADER_PRE) {
 				$footer = str_replace("\n", '', $footer);;
 			}
 			$footer = $this->replace_keywords($footer);
 
-			if ( $this->use_classes )
-			{
+			if ($this->use_classes) {
 				$attr = ' class="foot"';
-			}
-			else
-			{
+			} else {
 				$attr = " style=\"{$this->footer_content_style}\">";
 			}
 			return "<div$attr>$footer</div>";
 		}
 	}
 
-
 	/**
-	 * method: replace_keywords
-	 * ----------------------
 	 * Replaces certain keywords in the header and footer with
 	 * certain configuration values
+     * 
+     * @param  string The header or footer content to do replacement on
+     * @return string The header or footer with replaced keywords
+     * @since  1.0.2
+     * @access private
 	 */
-	function replace_keywords ( $instr )
+	function replace_keywords ($instr)
 	{
 		$keywords = $replacements = array();
 
@@ -2451,65 +2405,63 @@ class GeSHi
 		$replacements[] = $this->language;
 
 		$keywords[] = '<VERSION>';
-		$replacements[] = '1.0.6';
+		$replacements[] = GESHI_VERSION;
 
 		return str_replace($keywords, $replacements, $instr);
 	}
 
 	/**
-	 * method: get_attributes
-	 * ----------------------
 	 * Gets the CSS attributes for this code
+     * 
+     * @return The CSS attributes for this code
+     * @since  1.0.0
+     * @access private
+     * @todo   Document behaviour change - class is outputted regardless of whether we're using classes or not.
+     *         Same with style
 	 */
 	function get_attributes ()
 	{
 		$attributes = '';
 
-		if ( $this->overall_class != '' && $this->use_classes )
-		{
+		if ($this->overall_class != '') {
 			$attributes .= " class=\"{$this->overall_class}\"";
 		}
-		if ( $this->overall_id != '' )
-		{
+		if ($this->overall_id != '') {
 			$attributes .= " id=\"{$this->overall_id}\"";
 		}
-		if ( $this->overall_style != '' && !$this->use_classes )
-		{
+		if ($this->overall_style != '') {
 			$attributes .= ' style="' . $this->overall_style . '"';
 		}
 		return $attributes;
 	}
 
-
 	/**
-	 * method: get_stylesheet
-	 * ----------------------
 	 * Returns a stylesheet for the highlighted code. If $economy mode
 	 * is true, we only return the stylesheet declarations that matter for
 	 * this code block instead of the whole thing
+     *
+     * @param  boolean Whether to use economy mode or not 
+     * @return string A stylesheet built on the data for the current language
+     * @since  1.0.0
 	 */
-	function get_stylesheet ( $economy_mode = true )
+	function get_stylesheet ($economy_mode = true)
 	{
 		// If there's an error, chances are that the language file
 		// won't have populated the language data file, so we can't
 		// risk getting a stylesheet...
-		if ( $this->error )
-		{
+		if ($this->error) {
 			return '';
 		}
 		// First, work out what the selector should be. If there's an ID,
 		// that should be used, the same for a class. Otherwise, a selector
 		// of '' means that these styles will be applied anywhere
-		$selector = ( $this->overall_id != '' ) ? "#{$this->overall_id} " : '';
-		$selector = ( $selector == '' && $this->overall_class != '' ) ? ".{$this->overall_class} " : $selector;
+		$selector = ($this->overall_id != '') ? "#{$this->overall_id} " : '';
+		$selector = ($selector == '' && $this->overall_class != '') ? ".{$this->overall_class} " : $selector;
 
 		// Header of the stylesheet
-		if ( !$economy_mode )
-		{
+		if (!$economy_mode) {
 			$stylesheet = "/**\n * GeSHi Dynamically Generated Stylesheet\n * --------------------------------------\n * Dynamically generated stylesheet for {$this->language}\n * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n * GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter)\n */\n";
- 		}
-		else
-		{
+ 		} else {
 			$stylesheet = '/* GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter) */' . "\n";
 		}
 
@@ -2517,141 +2469,109 @@ class GeSHi
 		// (<ol>s have margins that should be destroyed so all layout is
 		// controlled by the set_overall_style method, which works on the
 		// <pre> or <div> container). Additionally, set default styles for lines
-		if ( !$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS )
-		{
+		if (!$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
 			//$stylesheet .= "$selector, {$selector}ol, {$selector}ol li {margin: 0;}\n";
 			$stylesheet .= "$selector.de1, $selector.de2 {{$this->code_style}}\n";
 		}
 
 		// Add overall styles
-		if ( !$economy_mode || $this->overall_style != '' )
-		{
+		if (!$economy_mode || $this->overall_style != '') {
 			$stylesheet .= "$selector {{$this->overall_style}}\n";
 		}
 
 		// Add styles for links
-		foreach ( $this->link_styles as $key => $style )
-		{
-			if ( !$economy_mode || $key == GESHI_LINK && $style != '' )
-			{
+		foreach ($this->link_styles as $key => $style) {
+			if (!$economy_mode || $key == GESHI_LINK && $style != '') {
 				$stylesheet .= "{$selector}a:link {{$style}}\n";
 			}
-			if ( !$economy_mode || $key == GESHI_HOVER && $style != '' )
-			{
+			if (!$economy_mode || $key == GESHI_HOVER && $style != '') {
 				$stylesheet .= "{$selector}a:hover {{$style}}\n";
 			}
-			if ( !$economy_mode || $key == GESHI_ACTIVE && $style != '' )
-			{
+			if (!$economy_mode || $key == GESHI_ACTIVE && $style != '') {
 				$stylesheet .= "{$selector}a:active {{$style}}\n";
 			}
-			if ( !$economy_mode || $key == GESHI_VISITED && $style != '' )
-			{
+			if (!$economy_mode || $key == GESHI_VISITED && $style != '') {
 				$stylesheet .= "{$selector}a:visited {{$style}}\n";
 			}
 		}
 
 		// Header and footer
-		if ( !$economy_mode || $this->header_content_style != '' )
-		{
+		if (!$economy_mode || $this->header_content_style != '') {
 			$stylesheet .= "$selector.head {{$this->header_content_style}}\n";
 		}
-		if ( !$economy_mode || $this->footer_content_style != '' )
-		{
+		if (!$economy_mode || $this->footer_content_style != '') {
 			$stylesheet .= "$selector.foot {{$this->footer_content_style}}\n";
 		}
 
 		// Styles for important stuff
-		if ( !$economy_mode || $this->important_styles != '' )
-		{
+		if (!$economy_mode || $this->important_styles != '') {
 			$stylesheet .= "$selector.imp {{$this->important_styles}}\n";
 		}
 
-
 		// Styles for lines being highlighted extra
-		if ( !$economy_mode || count($this->highlight_extra_lines) )
-		{
-			/*foreach ( $this->highlight_extra_lines as $line )
-			{
-				$id = ( $this->overall_id != '' ) ? $this->overall_id . "-$line" : $this->overall_class . "-$line";
-				$stylesheet .= "$selector#$id,";
-			}*/
+		if (!$economy_mode || count($this->highlight_extra_lines)) {
 			$stylesheet .= "$selector.ln-xtra {{$this->highlight_extra_lines_style}}\n";
 		}
 
-
 		// Simple line number styles
-		if ( !$economy_mode || ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->line_style1 != '') )
-		{
+		if (!$economy_mode || ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->line_style1 != '')) {
 			$stylesheet .= "{$selector}li {{$this->line_style1}}\n";
 		}
 
 		// If there is a style set for fancy line numbers, echo it out
-		if ( !$economy_mode || ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS && $this->line_style2 != '') )
-		{
+		if (!$economy_mode || ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS && $this->line_style2 != '')) {
 			$stylesheet .= "{$selector}li.li2 {{$this->line_style2}}\n";
 		}
 
-
-		foreach ( $this->language_data['STYLES']['KEYWORDS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && (!$this->lexic_permissions['KEYWORDS'][$group] || $styles == '')) )
-			{
+		foreach ($this->language_data['STYLES']['KEYWORDS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && (!$this->lexic_permissions['KEYWORDS'][$group] || $styles == ''))) {
 				$stylesheet .= "$selector.kw$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['COMMENTS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['COMMENTS'][$group]) )
-			{
+		foreach ($this->language_data['STYLES']['COMMENTS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') &&
+                !($economy_mode && !$this->lexic_permissions['COMMENTS'][$group])) {
 				$stylesheet .= "$selector.co$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['ESCAPE_CHAR'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['ESCAPE_CHAR']) )
-			{
+		foreach ($this->language_data['STYLES']['ESCAPE_CHAR'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['ESCAPE_CHAR'])) {
 				$stylesheet .= "$selector.es$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['SYMBOLS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['BRACKETS']) )
-			{
+		foreach ($this->language_data['STYLES']['SYMBOLS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['BRACKETS'])) {
 				$stylesheet .= "$selector.br$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['STRINGS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['STRINGS']) )
-			{
+		foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['STRINGS'])) {
 				$stylesheet .= "$selector.st$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['NUMBERS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['NUMBERS']) )
-			{
+		foreach ($this->language_data['STYLES']['NUMBERS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['NUMBERS'])) {
 				$stylesheet .= "$selector.nu$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['METHODS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['METHODS']) )
-			{
+		foreach ($this->language_data['STYLES']['METHODS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['METHODS'])) {
 				$stylesheet .= "$selector.me$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['SCRIPT'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') /*&& !($economy_mode && !$this->lexic_permissions['SCRIPT'])*/ )
-			{
+		foreach ($this->language_data['STYLES']['SCRIPT'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '')) {
 				$stylesheet .= "$selector.sc$group {{$styles}}\n";
 			}
 		}
-		foreach ( $this->language_data['STYLES']['REGEXPS'] as $group => $styles )
-		{
-			if ( !$economy_mode || !($economy_mode && $styles == '') && !($economy_mode && !$this->lexic_permissions['REGEXPS'][$group]) )
-			{
+		foreach ($this->language_data['STYLES']['REGEXPS'] as $group => $styles) {
+			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['REGEXPS'][$group])) {
 				$stylesheet .= "$selector.re$group {{$styles}}\n";
 			}
 		}
@@ -2662,24 +2582,27 @@ class GeSHi
 } // End Class GeSHi
 
 
-if ( !function_exists('geshi_highlight') )
-{
+if (!function_exists('geshi_highlight')) {
 	/**
-	* function: geshi_highlight
-	* -------------------------
-	* Easy way to highlight stuff. Behaves just like highlight_string
-	*/
-	function geshi_highlight ( $string, $language, $path, $return = false )
+     * Easy way to highlight stuff. Behaves just like highlight_string
+     * 
+     * @param string The code to highlight
+     * @param string The language to highlight the code in
+     * @param string The path to the language files. You can leave this blank if you need
+     *               as from version 1.0.7 the path should be automatically detected
+     * @param boolean Whether to return the result or to echo
+     * @return string The code highlighted (if $return is true)
+     * @since 1.0.2
+     */
+	function geshi_highlight ($string, $language, $path, $return = false)
 	{
 		$geshi = new GeSHi($string, $language, $path);
 		$geshi->set_header_type(GESHI_HEADER_DIV);
-		if ( $return )
-		{
+		if ($return) {
 			return str_replace('<div>', '<code>', str_replace('</div>', '</code>', $geshi->parse_code()));
 		}
 		echo str_replace('<div>', '<code>', str_replace('</div>', '</code>', $geshi->parse_code()));
-		if ( $geshi->error() )
-		{
+		if ($geshi->error()) {
 			return false;
 		}
 		return true;
