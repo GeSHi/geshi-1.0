@@ -476,6 +476,9 @@ class GeSHi
 	 */
 	function set_language ($language)
 	{
+        $this->error = false;
+        $this->strict_mode = GESHI_NEVER;
+        
 		$language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
 		$this->language = strtolower($language);
         
