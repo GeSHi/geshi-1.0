@@ -105,7 +105,7 @@ $language_data = array (
 			GESHI_AFTER => '\\4'
 			),
 		1 => array(
-			GESHI_SEARCH => '(&lt;/?[a-z0-9]*(&gt;)?)',
+			GESHI_SEARCH => '(&lt;/?[a-z0-9_]*(&gt;)?)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => 'i',
 			GESHI_BEFORE => '',
