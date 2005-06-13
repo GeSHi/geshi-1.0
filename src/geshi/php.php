@@ -60,8 +60,9 @@ $language_data = array (
 	'KEYWORDS' => array(
 		1 => array(
 			'include', 'require', 'include_once', 'require_once',
-			'for', 'foreach', 'as', 'if', 'elseif', 'else', 'while', 'do', 'endwhile', 'endif', 'switch', 'case', 'endswitch',
-			'return', 'break'
+			'for', 'foreach', 'as', 'if', 'elseif', 'else', 'while', 'do', 'endwhile',
+            'endif', 'switch', 'case', 'endswitch',
+			'return', 'break', 'continue'
 			),
 		2 => array(
 			'null', '__LINE__', '__FILE__',
@@ -254,7 +255,8 @@ $language_data = array (
 			'apache_setenv','apache_response_headers','apache_request_headers','apache_note','apache_lookup_uri','apache_get_version',
 			'apache_child_terminate','aggregation_info','aggregate_properties_by_regexp','aggregate_properties_by_list','aggregate_properties','aggregate_methods_by_regexp',
 			'aggregate_methods_by_list','aggregate_methods','aggregate','addslashes','addcslashes','acosh',
-			'acos','abs','_','echo', 'print', 'global', 'static', 'exit', 'array', 'empty', 'eval', 'isset', 'unset', 'die'
+			'acos','abs','_','echo', 'print', 'global', 'static', 'exit', 'array', 'empty',
+            'eval', 'isset', 'unset', 'die', 'list'
 			)
 		),
 	'SYMBOLS' => array(
