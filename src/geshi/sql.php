@@ -52,7 +52,7 @@
 $language_data = array (
 	'LANG_NAME' => 'SQL',
 	'COMMENT_SINGLE' => array(1 =>'--', 2 => '#'),
-	'COMMENT_MULTI' => array(),
+	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => 1,
 	'QUOTEMARKS' => array("'", '"', '`'),
 	'ESCAPE_CHAR' => '\\',
