@@ -16,6 +16,8 @@ Version 1.0.7
   -  Added language files:
      * Diff (Conny Brunnkvist)
      * VHDL (Alexander Krause)
+     * D (Thomas Kuehne)
+     * Matlab (Florian Knorn)
   -  Python highlighting improved (thither, Federico Quagliata)
   -  Changed file comments to use phpdoc syntax, and changed code style to be more
   	 like PEAR
