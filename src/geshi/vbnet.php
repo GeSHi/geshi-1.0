@@ -167,7 +167,7 @@
 			0 => 'color: #FF0000;'
 			),
 		'METHODS' => array(
-			0 => 'color: #0000FF;'
+			1 => 'color: #0000FF;'
 			),
 		'SYMBOLS' => array(
 			0 => 'color: #008000;'
