@@ -28,12 +28,13 @@ Version 1.0.7
      special circumstances.
   -  Source is checked to make sure it is not empty else an error occurs
   -  Removed excess characters after ?> in ada.php, apache.php and cpp.php that caused
-     http headers to be sent ()
+     http headers to be sent (psichron)
   -  Removed second "foreach" keyword for smarty language file that was causing
-     duplication ()
-  -  Added underscore to allowed characters in match for XML tags ()
+     duplication (Iss)
+  -  Added underscore to allowed characters in match for XML tags (anonymous)
   -  Added some missing java keywords like "abstract" and "transient"
   -  Added "list" and "continue" PHP keywords
+  -  set_language resets error status and strict mode (Andrew Black)
 Version 1.0.6
   -  Added support for smart tabs - tabs that behave just like normal tabs when in
      GESHI_HEADER_DIV mode.
