@@ -16,6 +16,11 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
 - Rewrite parse_code method and parse_non_string_part method to use build
   rather than replace method of highlighting. This should speed things up
   while making highlighting much "safer"
+- Rework the load_from_file method and the one for getting a file extension,
+  as documented in the source.
+- Add option for "standards compliant" or "default" modes, where standards
+  compliance generates the <pre> tags within the <li>s and non compliant mode
+  does what happens currently.
 
 
   TODO for version 1.2.0
