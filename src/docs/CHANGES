@@ -37,6 +37,8 @@ Version 1.0.7
   -  Added some missing java keywords like "abstract" and "transient"
   -  Added "list" and "continue" PHP keywords
   -  set_language resets error status and strict mode (Andrew Black)
+  -  Removed margin:0 declaration from cssgen.php (Andrzej Kubaszek)
+  -  Fixed multiline comment selector in cssgen.php (Andrzej Kubaszek)
 Version 1.0.6
   -  Added support for smart tabs - tabs that behave just like normal tabs when in
      GESHI_HEADER_DIV mode.
