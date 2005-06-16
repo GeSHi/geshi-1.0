@@ -85,6 +85,23 @@ function make_header ( $title )
 		}
 	-->
 	</style>
+    <script type="text/javascript">
+    function select (state)
+    {
+        var cboxes = document.getElementsByTagName(\'input\');
+        for (var i = 0; i < cboxes.length; i++) {
+            if (cboxes[i].type == "checkbox") {
+                if (state == "true") {
+                    cboxes[i].checked = true;
+                } else if (state == "false") {
+                    cboxes[i].checked = false;
+                } else if (state == "invert") {
+                    cboxes[i].checked = !cboxes[i].checked;
+                }
+            }
+        }
+    }
+    </script>
 </head>
 <body>
 <h1>' . $title . '</h1>
@@ -169,11 +186,12 @@ if ( !$step || $step == 1 )
 			$contents .= $line;
 		}
 		if ( strpos($contents, '<?php
-/*************************************************************************************
- * geshi.php
- * ---------
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
- * Copyright: (c) 2004 Nigel McNie') !== false )
+/**
+ * GeSHi - Generic Syntax Highlighter
+ * 
+ * The GeSHi class for Generic Syntax Highlighting. Please refer to the documentation
+ * at http://qbnz.com/highlighter/documentation.php for more information about how to
+ * use this class.') !== false )
  		{
 			echo '<span style="color: green;">Found at ' . realpath($geshi_path) . '</span>';
 		}
@@ -217,11 +235,19 @@ if ( !$step || $step == 1 )
 			echo "
 <br />geshi.php: <input type=\"text\" name=\"geshi-path\" value=\"" . realpath('../geshi.php') . "\" size=\"50\" />";
 		}
+        else
+        {
+            echo '<input type="hidden" name="geshi-path" value="' . htmlspecialchars($geshi_path) . '" />';
+        }
 		if ( $no_lang_dir_error )
 		{
 			echo "
 <br />language files directory: <input type=\"text\" name=\"geshi-lang-path\" value=\"" . realpath('../geshi/') . "/\" size=\"50\" /> (should have a trailing slash)";
 		}
+        else
+        {
+            echo '<input type="hidden" name="geshi-lang-path" value="' . $geshi_lang_path . '" />';
+        }
 
 		echo "
 <br /><input type=\"submit\" value=\"Search\" /></form>";
@@ -259,10 +285,11 @@ elseif ( $step == 2 )
 		$file = readdir($dh);
 	}
 	closedir($dh);
+    sort($lang_files);
 
 	// Now installed languages are in $lang_files
 
-	echo '<form action="cssgen.php?step=3" method="post">
+	echo '<form action="cssgen.php?step=3" method="post" id="step2">
 What languages are you wanting to make this stylesheet for?<br /><br />
 Detected languages:<br />';
 
@@ -271,6 +298,8 @@ Detected languages:<br />';
 		$lang = substr($lang, 0, strpos($lang, '.'));
 		echo "<input type=\"checkbox\" name=\"langs[$lang]\" checked=\"checked\" />&nbsp;$lang<br />\n";
 	}
+
+    echo "Select: <a href=\"javascript:select('true')\">All</a>, <a href=\"javascript:select('false')\">None</a>, <a href=\"javascript:select('invert')\">Invert</a><br />\n"; 
 
 	echo 'If you\'d like any other languages not detected here to be supported, please enter
 them here, one per line:<br /><textarea rows="4" cols="20" name="extra-langs"></textarea><br />
@@ -329,8 +358,9 @@ it includes most of the basic information.</p>';
 		$part_selector_2 .= ".$lang {PART1}, .$lang {PART2}, ";
 		$part_selector_3 .= ".$lang {PART1}, .$lang {PART2}, .$lang {PART3}, ";
 	}
-	$part_selector_1 = substr($part_selector_1, 0, strlen($part_selector_1) - 2);
-	$part_selector_2 = substr($part_selector_2, 0, strlen($part_selector_2) - 2);
+	$part_selector_1 = substr($part_selector_1, 0, -2);
+	$part_selector_2 = substr($part_selector_2, 0, -2);
+    $part_selector_3 = substr($part_selector_3, 0, -2);
 
 
 	$default_styles = get_var('default-styles');
@@ -338,8 +368,7 @@ it includes most of the basic information.</p>';
 	$overall_styles = get_var('overall');
 	$overall_selector = str_replace('{PART}', '', $part_selector_1);
 
-	$stylesheet = "/* GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter) */
-$ol_selector {margin: 0;}";
+	$stylesheet = "/* GeSHi (c) Nigel McNie 2004 (http://qbnz.com/highlighter) */";
 
 	if ( $overall != '' )
 	{
