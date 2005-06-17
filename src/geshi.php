@@ -1083,7 +1083,7 @@ class GeSHi
 				'cpp' => array('cpp'),
 				'csharp' => array(),
 				'css' => array('css'),
-				'delphi' => array('dpk'),
+				'delphi' => array('dpk', 'dpr'),
 				'html4strict' => array('html', 'htm'),
 				'java' => array('java'),
 				'javascript' => array('js'),
