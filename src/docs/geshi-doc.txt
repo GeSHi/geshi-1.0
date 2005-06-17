@@ -1,11 +1,10 @@
 GeSHi Documentation
-Version 1.0.6
+Version 1.0.7
 
-Author:          Nigel McNie (Oracle)
+Author:          Nigel McNie
 Copyright:       © Nigel McNie, 2004
 Email:           oracle.shinoda@gmail.com
 GeSHi Website:   http://qbnz.com/highlighter
-Dev Blog:        http://qbnz.com/blog
 
 This is the documentation for GeSHi - Generic Syntax Highlighter. The most modern version of this document is available on the web - go to http://qbnz.com/highlighter/documentation.php to view it.
 
@@ -142,7 +141,7 @@ Do you want your name on this list? Why not make a language file, or submit a va
 
 I need your feedback! ANYthing you have to say is fine, whether it be a query, congratulations, a bug report or complaint, I don't care! I want to make this software the best it can be, and I need your help! You can contact me in the following ways:
 
-    * E-mail: oracle.shinoda@gmail.com
+    * E-mail: nigel@geshi.org
     * Forums: Sourceforge.net Forums or GeSHi home forums
 
 Remember, any help I am grateful for :)
@@ -1023,7 +1022,7 @@ Let's begin by looking at an example language file - the language file for the f
 /*************************************************************************************
  * php.php
  * --------
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
+ * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
  * Release Version: 1.0.2
  * CVS Revision Version: $Revision$
@@ -1745,6 +1744,6 @@ I'm planning a code rewrite for 1.2.X, which will be based on a new engine - a "
 Anyway, enough blather from me. Get GeSHi working for you already! :D
 
 Nigel McNie
-oracle.shinoda@gmail.com
+nigel@geshi.org
 http://qbnz.com/highlighter
 
