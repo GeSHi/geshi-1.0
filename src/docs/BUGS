@@ -22,6 +22,9 @@
 - The result is built by string replacement instead of by building another string based
   on the source, that would be much safer. The focus of releases beyond 1.0.7 will be on
   changing this behaviour, which may well fix some of the other bugs mentioned above.
+- As of 1.0.7.1, dots (.) are allowed before keywords. This may change highlighting of some
+  things slightly, if you notice anything odd about the highlighting then please report
+  it to me.
 
 Send any bug reports to nigel@geshi.org, or submit them via the bug tracker at
 sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
