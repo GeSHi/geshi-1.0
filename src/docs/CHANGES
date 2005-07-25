@@ -16,7 +16,7 @@ Version 1.0.7.1
   -  Added language files:
      * Div (Gabriel Lorenzo)
      * GML (José Jorge Enríquez Rodríguez)
-     * Eiffel (Zoran )
+     * Eiffel (Zoran Simic)
   -  Minor change to rules regarding when keywords can appear - now dots (.) are
      allowed before keywords. (NikO)
   -  Bugfix: the line style for non-fancy lines when fancy highlighting is enabled
