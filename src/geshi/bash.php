@@ -4,7 +4,7 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.6
+ * Release Version: 1.0.7.1
  * CVS Revision Version: $Revision$
  * Date Started: 2004/08/20
  * Last Modified: $Date$
