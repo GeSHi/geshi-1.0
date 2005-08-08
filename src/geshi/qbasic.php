@@ -51,7 +51,7 @@
  ************************************************************************************/
 $language_data = array (
 	'LANG_NAME' => 'QBasic/QuickBASIC',
-	'COMMENT_SINGLE' => array(1 => "'", 2 => 'REM'),
+	'COMMENT_SINGLE' => array(1 => "'", 2 => ' REM', 3 => "\tREM"),
 	'COMMENT_MULTI' => array(),
 	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
 	'QUOTEMARKS' => array('"'),
@@ -103,7 +103,8 @@ $language_data = array (
 			),
 		'COMMENTS' => array(
 			1 => 'color: #808080;',
-			2 => 'color: #808080;'
+			2 => 'color: #808080;',
+            3 => 'color: #808080;'
 			),
 		'BRACKETS' => array(
 			0 => 'color: #66cc66;'
