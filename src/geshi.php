@@ -777,7 +777,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['BRACKETS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['BRACKETS'][0] = $style;
+			$this->language_data['STYLES']['BRACKETS'][0] .= $style;
 		}
 	}
 
@@ -811,7 +811,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['SYMBOLS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['SYMBOLS'][0] = $style;
+			$this->language_data['STYLES']['SYMBOLS'][0] .= $style;
 		}
 		// For backward compatibility
 		$this->set_brackets_style ($style, $preserve_defaults);
@@ -845,7 +845,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['STRINGS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['STRINGS'][0] = $style;
+			$this->language_data['STYLES']['STRINGS'][0] .= $style;
 		}
 	}
 
@@ -875,7 +875,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['NUMBERS'][0] = $style;
 		} else {
-			$this->language_data['STYLES']['NUMBERS'][0] = $style;
+			$this->language_data['STYLES']['NUMBERS'][0] .= $style;
 		}
 	}
 
@@ -938,7 +938,7 @@ class GeSHi
 		if (!$preserve_defaults) {
 			$this->language_data['STYLES']['REGEXPS'][$key] = $style;
 		} else {
-			$this->language_data['STYLES']['REGEXPS'][$key] = $style;
+			$this->language_data['STYLES']['REGEXPS'][$key] .= $style;
 		}
 	}
 
