@@ -14,7 +14,7 @@
  * CHANGES
  * -------
  * 2004/11/27 (1.0.3)
- *  -  Added support for multiple object splitters
+ *   -  Added support for multiple object splitters
  * 2004/08/05 (1.0.2)
  *   -  Added URL support
  *   -  Added keyword "this", as bugs in GeSHi class ironed out
