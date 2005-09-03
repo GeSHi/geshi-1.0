@@ -130,6 +130,8 @@ $language_data = array (
 			1 => 'color: #006600;'
 			),
 		'REGEXPS' => array(
+            0 => 'color: #9ac;',
+            1 => 'color: #ff0000;'
 			),
 		'SYMBOLS' => array(
 			0 => 'color: #66cc66;'
@@ -148,6 +150,8 @@ $language_data = array (
 		1 => '.'
 		),
 	'REGEXPS' => array(
+        0 => '\$[0-9a-fA-F]+',
+        1 => '\#\$?[0-9]{1,3}'
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
