@@ -14,8 +14,18 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.2
   -  Added language files
+     * Inno (Thomas Klinger)
+     * Ini (Deguix)
+     * DOS (Batchfile) (Alessandro Staltali)
+     * Applescript (Stephan Klimek)
+     * Freebasic (Roberto Rossi)
+     * SDLBasic (Roberto Rossi)
+     * ActionScript (links to French documentation) (NikO)
+  -  NSIS language file updated (deguix)
+  -  Lua language file updated (Roberto Rossi)
   -  Bugfix: Styles incorrectly overriding default styles instead of being merged
      in set_*_styles methods (Stebastian Werner)
+  -  Added GESHI_HEADER_NONE as valid header type. This still allows header content.
 Version 1.0.7.1
   -  Added language files:
      * Div (Gabriel Lorenzo)
