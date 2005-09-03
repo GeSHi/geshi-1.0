@@ -13,8 +13,10 @@
  *
  * CHANGES
  * -------
+ * 2005/09/03 (1.0.2)
+ *   -  Added support for hex numbers and string entities
  * 2004/11/27 (1.0.1)
- *  -  Added support for multiple object splitters
+ *   -  Added support for multiple object splitters
  * 2004/10/27 (1.0.0)
  *   -  First Release
  *
