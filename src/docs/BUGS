@@ -25,7 +25,7 @@
 - As of 1.0.7.1, dots (.) are allowed before keywords. This may change highlighting of some
   things slightly, if you notice anything odd about the highlighting then please report
   it to me.
-
+- Perl/Javascript /.../ regex syntax isn't supported.
 Send any bug reports to nigel@geshi.org, or submit them via the bug tracker at
 sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
