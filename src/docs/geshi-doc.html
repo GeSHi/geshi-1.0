@@ -335,7 +335,7 @@ for phpBB - and hopefully for many forum systems, blogs and other web-based syst
 	<li><a href="http://robloach.net/projects/phpscripts/rweb/">RWeb</a> - A site-building tool</li>
 </ul>
 
-<p>GeSHi is the work of me, <a href="http://qbnz.com/blog">Nigel McNie</a>. In previous versions I had supressed my real name, but things
+<p>GeSHi is the work of me, <a href="mailto:nigel@geshi.org">Nigel McNie</a>. In previous versions I had supressed my real name, but things
 have changed and it doesn't matter any more ;). Others have helped with aspects of GeSHi
 also, they're mentioned in the <a href="THANKS">THANKS</a> file.</p>
 
@@ -592,17 +592,22 @@ The highlighter demo at the <a href="http://qbnz.com/highlighter/demo.php">GeSHi
 function <tt>geshi_highlight</tt>), partly because of the inconsistent and unexpected ways stuff in <tt>&lt;code&gt;</tt>
 tags is highlighted. Besides, <tt>&lt;code&gt;</tt> is an inline element. But this may become an option in future versions.</p>
 
+<p>As of GeSHi 1.0.7.2 there is a new header type, that specifies that the code should not be wrapped in
+anything at all.</p>
+
 <p>To change/set the header to use, you call the <strong><tt>set_header_type()</tt></strong> method:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_DIV<span style="color: #66cc66;">&#41;</span>;<br />
 <span style="color: #808080; font-style: italic;">// or...</span><br />
-<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE<span style="color: #66cc66;">&#41;</span>;</code>
+<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE<span style="color: #66cc66;">&#41;</span>;
+<span style="color: #808080; font-style: italic;">// or...</span><br />
+<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_NONE<span style="color: #66cc66;">&#41;</span>;</code>
 
-<p>Those are the only two arguments you should pass to set_header_type. Passing anything
+<p>Those are the only three arguments you should pass to set_header_type. Passing anything
 else may cause inconsistencies in what is used as the Code Container (although it
 *should* simply use a <tt>&lt;pre&gt;</tt>). Better not to risk it.</p>
 
-<div class="note"><div class="note-header">Note:</div><p>GESHI_HEADER_DIV and GESHI_HEADER_PRE are <em>constants</em>, so don't put them
+<div class="note"><div class="note-header">Note:</div><p>GESHI_HEADER_DIV, GESHI_HEADER_PRE and GESHI_HEADER_NONE are <em>constants</em>, so don't put them
 in strings!</p></div>
 
 <div class="caution"><div class="caution-header">Caution:</div><p>The default styles for the <tt>&lt;pre&gt;</tt> and <tt>&lt;div&gt;</tt> <em>will

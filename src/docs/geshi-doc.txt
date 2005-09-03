@@ -3,7 +3,7 @@ Version 1.0.7.1
 
 Author:          Nigel McNie
 Copyright:       © Nigel McNie, 2004
-Email:           oracle.shinoda@gmail.com
+Email:           nigel@geshi.com
 GeSHi Website:   http://qbnz.com/highlighter
 
 This is the documentation for GeSHi - Generic Syntax Highlighter. The most modern version of this document is available on the web - go to http://qbnz.com/highlighter/documentation.php to view it.
@@ -283,14 +283,18 @@ The <pre> header is the default. If you're familiar with HTML you'll know that w
 
 But if you don't like <pre> or it looks stupid in your browser no matter what styles you try to apply to it or something similar, you might want to use a <div> instead. A <div> will result in more source - GeSHi will have to insert whitespace markup - but in return you can wrap long lines of code that would otherwise have your browser's horizontal scrollbar appear. Of course with <div> you can *not* wrap lines if you please. The highlighter demo at the GeSHi home page uses the <div> approach for this reason.
 
+As of GeSHi 1.0.7.2, there is a new option that allows you to specify that no header should be used.
+
 At this stage there isn't an option to wrap the code in <code> tags (unless you use the function geshi_highlight), partly because of the inconsistent and unexpected ways stuff in <code> tags is highlighted. Besides, <code> is an inline element. But this may become an option in future versions.
 
 To change/set the header to use, you call the set_header_type() method:
 $geshi->set_header_type(GESHI_HEADER_DIV);
 // or...
 $geshi->set_header_type(GESHI_HEADER_PRE);
+// or...
+$geshi->set_header_type(GESHI_HEADER_PRE);
 
-Those are the only two arguments you should pass to set_header_type. Passing anything else may cause inconsistencies in what is used as the Code Container (although it *should* simply use a <pre>). Better not to risk it.
+Those are the only three arguments you should pass to set_header_type. Passing anything else may cause inconsistencies in what is used as the Code Container (although it *should* simply use a <pre>). Better not to risk it.
 Note:
 
 GESHI_HEADER_DIV and GESHI_HEADER_PRE are constants, so don't put them in strings!
