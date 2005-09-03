@@ -40,7 +40,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.1');
+define('GESHI_VERSION', '1.0.7.2');
 
 /** For the future (though this may never be realised) */
 define('GESHI_OUTPUT_HTML', 0);
