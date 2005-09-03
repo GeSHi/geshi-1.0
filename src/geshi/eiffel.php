@@ -4,7 +4,7 @@
  * ----------
  * Author: Zoran Simic (zsimic@axarosenberg.com)
  * Copyright: (c) 2005 Zoran Simic
- * Release Version: 1.0.7.1
+ * Release Version: 1.0.7.2
  * CVS Revision Version: $Revision$
  * Date Started: 2005/06/30
  * Last Modified: $Date$

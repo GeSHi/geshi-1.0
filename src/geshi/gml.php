@@ -4,7 +4,7 @@
  * --------
  * Author: José Jorge Enríquez Rodríguez (aka Geo) (josejorge@gmail.com)
  * Copyright: (c) 2004 José Jorge Enríquez Rodríguez (http://www.zonamakers.com)
- * Release Version: 1.0.7.1
+ * Release Version: 1.0.7.2
  * CVS Revision Version: $Revision$
  * Date Started: 2005/06/21
  * Last Modified: $Date$
