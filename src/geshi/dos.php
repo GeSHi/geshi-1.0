@@ -64,7 +64,7 @@ $language_data = array (
 	'LANG_NAME' => 'DOS',
 	'COMMENT_SINGLE' => array(1 =>'REM', 2 => '@REM'),
 	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAP_NO_CHANGE,
+	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array(),
 	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
