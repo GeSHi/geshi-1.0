@@ -7,16 +7,26 @@
  * and the language files in subdirectory "../geshi/")
  */
 
-include('../geshi.php');
+if (!@include '../geshi.php') {
+    if (!@include 'geshi.php') {
+        die('Could not find geshi.php - make sure it is in your include path!');
+    } else {
+        $path = './';
+    }
+} else {
+    $path = '../';
+}
+
 if ( isset($_POST['submit']) )
 {
 	if ( get_magic_quotes_gpc() ) $_POST['source'] = stripslashes($_POST['source']);
 	if ( !strlen(trim($_POST['source'])) )
 	{
-		$_POST['source'] = implode('', @file('../geshi/' . $_POST['language'] . '.php'));
+        $_POST['language'] = preg_replace('#[^a-zA-Z0-9\-_]#', '', $_POST['language']);
+		$_POST['source'] = implode('', @file($path . 'geshi/' . $_POST['language'] . '.php'));
 		$_POST['language'] = 'php';
 	}
-	$geshi = new GeSHi($_POST['source'], $_POST['language'], '../geshi/');
+	$geshi = new GeSHi($_POST['source'], $_POST['language']);
 	$geshi->set_header_type(GESHI_HEADER_PRE);
 	$geshi->enable_classes();
 	$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 5);
@@ -114,16 +124,23 @@ if ( isset($_POST['submit']) )
 <h3>Choose a language</h3>
 <select name="language">
 <?php
-$dir = @opendir('../geshi');
-
+if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
+    if (!($dir = @opendir(dirname(__FILE__) . '/../geshi'))) {
+        echo '<option>No languages available!</option>';
+    }
+}
+$languages = array();
 while ( $file = readdir($dir) )
 {
 	if ( $file == '..' || $file == '.' || !stristr($file, '.') || $file == 'css-gen.cfg' ) continue;
 	$lang = substr($file, 0,  strpos($file, '.'));
-	echo '<option value="' . $lang . '">' . $lang . "</option>\n";
+    $languages[] = $lang;
 }
-
 closedir($dir);
+sort($languages);
+foreach ($languages as $lang) {
+    echo '<option value="' . $lang . '">' . $lang . "</option>\n";
+}
 
 ?>
 </select><br />
