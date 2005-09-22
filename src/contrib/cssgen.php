@@ -4,7 +4,7 @@
  * ----------
  * Author: Nigel McNie (oracle.shinoda@gmail.com)
  * Copyright: (c) 2004 Nigel McNie
- * Release Version: 1.0.7.2
+ * Release Version: 1.0.7.3
  * CVS Revision Version: $Revision$
  * Date Started: 2004/05/20
  * Last Modified: $Date$

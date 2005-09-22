@@ -1,5 +1,5 @@
 GeSHi Documentation
-Version 1.0.7.2
+Version 1.0.7.3
 
 Author:          Nigel McNie
 Copyright:       © Nigel McNie, 2004

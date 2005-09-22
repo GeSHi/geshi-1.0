@@ -40,7 +40,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.2');
+define('GESHI_VERSION', '1.0.7.3');
 
 /** For the future (though this may never be realised) */
 define('GESHI_OUTPUT_HTML', 0);
@@ -69,9 +69,9 @@ define('GESHI_FANCY_LINE_NUMBERS', 2);
 // Container HTML type
 /** Use nothing to surround the source */
 define('GESHI_HEADER_NONE', 0);
-/** Use a <div> to surround the source */
+/** Use a "div" to surround the source */
 define('GESHI_HEADER_DIV', 1);
-/** Use a <pre> to surround the source */
+/** Use a "pre" to surround the source */
 define('GESHI_HEADER_PRE', 2);
 
 // Capatalisation constants
@@ -515,9 +515,9 @@ class GeSHi
 	/**
 	 * Sets the type of header to be used.
      * 
-     * If GESHI_HEADER_DIV is used, the code is surrounded in a <div>.This
+     * If GESHI_HEADER_DIV is used, the code is surrounded in a "div".This
      * means more source code but more control over tab width and line-wrapping.
-     * GESHI_HEADER_PRE means that a <pre> is used - less source, but less
+     * GESHI_HEADER_PRE means that a "pre" is used - less source, but less
      * control. Default is GESHI_HEADER_PRE.
      * 
      * From 1.0.7.2, you can use GESHI_HEADER_NONE to specify that no header code
