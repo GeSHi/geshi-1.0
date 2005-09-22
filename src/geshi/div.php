@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Gabriel Lorenzo (ermakina@gmail.com)
  * Copyright: (c) 2005 Gabriel Lorenzo (http://ermakina.gazpachito.net)
- * Release Version: 1.0.7.2
+ * Release Version: 1.0.7.3
  * CVS Revision Version: $Revision$
  * Date Started: 2005/06/19
  * Last Modified: $Date$
