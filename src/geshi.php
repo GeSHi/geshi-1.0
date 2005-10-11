@@ -2305,7 +2305,10 @@ class GeSHi
 		$header = $this->format_header_content();
 
         if (GESHI_HEADER_NONE == $this->header_type) {
-            return "$header<ol$ol_attributes>";
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "$header<ol$ol_attributes>";
+            }
+            return $header;
         }
         
 		// Work out what to return and do it
@@ -2615,11 +2618,11 @@ if (!function_exists('geshi_highlight')) {
 	function geshi_highlight ($string, $language, $path, $return = false)
 	{
 		$geshi = new GeSHi($string, $language, $path);
-		$geshi->set_header_type(GESHI_HEADER_DIV);
+		$geshi->set_header_type(GESHI_HEADER_NONE);
 		if ($return) {
-			return str_replace('<div>', '<code>', str_replace('</div>', '</code>', $geshi->parse_code()));
+			return '<code>' . $geshi->parse_code() . '</code>';
 		}
-		echo str_replace('<div>', '<code>', str_replace('</div>', '</code>', $geshi->parse_code()));
+		echo '<code>' . $geshi->parse_code() . '</code>';
 		if ($geshi->error()) {
 			return false;
 		}
