@@ -1687,14 +1687,19 @@ class GeSHi
 											$test_str = @htmlspecialchars($test_str, ENT_COMPAT, $this->encoding);
 										}
 										$close_pos = strpos($part, "\n", $i);
+                                        $oops = false;
 										if ($close_pos === false) {
 											$close_pos = strlen($part);
+                                            $oops = true;
 										}
 										$test_str .= @htmlspecialchars(substr($part, $i + $com_len, $close_pos - $i - $com_len), ENT_COMPAT, $this->encoding);
 										if ($this->lexic_permissions['COMMENTS'][$comment_key]) {
 											$test_str .= "</span>";
 										}
-										$test_str .= "\n";
+                                        // Take into account that the comment might be the last in the source
+                                        if (!$oops) { 
+										  $test_str .= "\n";
+                                        }
 										$i = $close_pos;
 										// parse the rest
 										$result .= $this->parse_non_string_part($stuff_to_parse);
