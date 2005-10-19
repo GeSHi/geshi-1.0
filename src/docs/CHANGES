@@ -17,6 +17,11 @@ Version 1.0.7.4
      * MySQL (Carl Fürstenberg)
   -  Fixed up geshi_highlight function: it now correctly uses <code> instead of <div> (Remi Faure)
   -  When using GESHI_HEADER_NONE, remove the <ol> if line numbering is not enabled
+  -  Commented example.php so people can use it as a guide better
+  -  Fixed extra newline being generated if a comment is at the end
+     of the source (?)
+  -  Fixed up some documentation issues
+  -  Some minor language file fixes
 Version 1.0.7.3
   -  Added language files
      * Scheme (Jon Raphaelson)
