@@ -75,7 +75,7 @@ $language_data = array (
 			'EXIT_FAILURE', 'EXIT_SUCCESS', 'RAND_MAX', 'CLOCKS_PER_SEC',
 			'virtual', 'public', 'private', 'protected', 'template', 'using', 'namespace',
 			'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
-			'static_cast', 'explicit', 'friend', 'wchar_t', 'typename', 'typeid'
+			'static_cast', 'explicit', 'friend', 'wchar_t', 'typename', 'typeid', 'class'
 			),
 		3 => array(
 			'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
