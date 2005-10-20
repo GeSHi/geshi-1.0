@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.4
   -  Added language files
      * MySQL (Carl Fürstenberg)
+     * BlitzBasic (Pàdraig O`Connel)
   -  Fixed up geshi_highlight function: it now correctly uses <code> instead of <div> (Remi Faure)
   -  When using GESHI_HEADER_NONE, remove the <ol> if line numbering is not enabled
   -  Commented example.php so people can use it as a guide better
