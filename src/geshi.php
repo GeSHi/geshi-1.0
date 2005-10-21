@@ -1740,10 +1740,10 @@ class GeSHi
 					$result .= @htmlspecialchars($part, ENT_COMPAT, $this->encoding);
 				}
 				// Close the <span> that surrounds the block
-                // Removed since the only time this is used is for php and it doesn't need a </span>
-				/*if ($this->strict_mode && $this->lexic_permissions['SCRIPT']) {
+				if ($this->strict_mode && $this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
+                    $this->lexic_permissions['SCRIPT']) {
 					$result .= '</span>';
-				}*/
+				}
 			} else {
                 // Else not a block to highlight
 				$result .= @htmlspecialchars($part, ENT_COMPAT, $this->encoding);
