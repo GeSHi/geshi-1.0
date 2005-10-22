@@ -1,5 +1,5 @@
 GeSHi Documentation
-Version 1.0.7.3
+Version 1.0.7.4
 
 Author:          Nigel McNie
 Copyright:       © Nigel McNie, 2004
@@ -8,7 +8,8 @@ GeSHi Website:   http://qbnz.com/highlighter
 
 This is the documentation for GeSHi - Generic Syntax Highlighter. The most modern version of this document is available on the web - go to http://qbnz.com/highlighter/documentation.php to view it.
 
-[NOTE: This documentation has simply been copy-pasted from the HTML form, I recommend you read that instead]
+[NOTE: This documentation has simply been copy-pasted from the HTML form and is NOT up to date, I recommend you
+read that instead]
 
 Any comments, questions, confusing points? Please contact me! I need all the information I can get to make the use of GeSHi and everything related to it (including this documentation) a breeze.
 Contents

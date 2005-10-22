@@ -4,7 +4,7 @@
  * --------------
  * Author: Pàdraig O`Connel (info@moonsword.info)
  * Copyright: (c) 2005 Pàdraig O`Connel (http://moonsword.info)
- * Release Version: 1.0.0
+ * Release Version: 1.0.7.4
  * CVS Revision Version: $Revision$
  * Date Started: 16.10.2005
  * Last Modified: $Date$

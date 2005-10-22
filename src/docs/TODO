@@ -50,7 +50,7 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
 
   TODO for version 2.0.0
 
-- Support for multiple output formats (XHTML, XML, PDF, RTF etc)
+- Support for multiple output formats (XHTML, XML, PDF, RTF etc) [DONE IN 1.2]
 - Support for auto-indent/code "beautifing"
 - Option for "Lite" highlighting - aims for speed and low server load
 - "Intelligent" highlighting inside comments, and ability to highlight
