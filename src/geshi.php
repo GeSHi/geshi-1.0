@@ -1590,6 +1590,12 @@ class GeSHi
 										$attributes = ' class="es0"';
 									}
 									$char = "<span$attributes>" . $char;
+                                    if (substr($code, $i + 1, 1) == "\n") {
+                                        // escaping a newline, what's the point in putting the span around
+                                        // the newline? It only causes hassles when inserting line numbers
+                                        $char .= '</span>';
+                                        $ESCAPE_CHAR_OPEN = false;
+                                    }
 								}
 							} else {
 								$ESCAPE_CHAR_OPEN = false;
