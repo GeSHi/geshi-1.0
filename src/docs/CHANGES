@@ -16,6 +16,7 @@ Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)
   -  Fixed multiline comment highlighting in SQL (MrBaseball34)
+  -  Fixed two ">" symbols being outputted when using a footer but not CSS classes (MrBaseball34)
 Version 1.0.7.4
   -  Added language files
      * MySQL (Carl Fürstenberg)

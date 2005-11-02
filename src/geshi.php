@@ -2411,7 +2411,7 @@ class GeSHi
 			if ($this->use_classes) {
 				$attr = ' class="foot"';
 			} else {
-				$attr = " style=\"{$this->footer_content_style}\">";
+				$attr = " style=\"{$this->footer_content_style}\"";
 			}
 			return "<div$attr>$footer</div>";
 		}
