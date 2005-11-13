@@ -143,7 +143,7 @@
 </head>
 <body>
 <h1 id="top">GeSHi Documentation</h1>
-<h5 style="text-align: center;">Version 1.0.7.4</h5>
+<h5 style="text-align: center;">Version 1.0.7.5</h5>
 <pre>Author:          Nigel McNie
 Copyright:       &copy; Nigel McNie, 2004
 Email:           <a href="mailto:nigel@geshi.org">nigel@geshi.org</a>
@@ -244,11 +244,6 @@ everything related to it (including this documentation) a breeze.</p>
 			<li><a href="#using-targets">3.13.4 Setting the Link Target</a></li>
 		</ul>
 		<li><a href="#using-contextual-importance">3.14 Using Contextual Importance</a></li>
-		<ul>
-			<li><a href="#context-important-markers">3.14.1 Context-important markers</a></li>
-			<li><a href="#styles-for-context-important-blocks">3.14.2 Styles for context-important blocks</a></li>
-			<li><a href="#disabling-contextual-importance">3.14.3 Disabling contextual importance</a></li>
-		</ul>
 		<li><a href="#highlighting-special-lines-extra">3.15 Highlighting Special Lines &quot;Extra&quot;</a></li>
 		<ul>
 			<li><a href="#specifying-lines-to-highlight-extra">Specifying the Lines to Highlight Extra</a></li>
@@ -292,8 +287,9 @@ GeSHi outputs <acronym>XHTML</acronym> strict compliant code<sup><a href="#xhtml
 make use of <acronym>CSS</acronym> to save on the amount of output. And what is the cost for all of this? You need
 <a href="http://www.php.net/">PHP</a>. That's all!
 
-<p style="font-size: x-small;"><a name="xhtml-strict-note" id="xhtml-strict-note"></a>Most of the time. Some languages do not output XHTML strict code,
-and using line numbers with the PRE header is not legal either. These problems will be fixed in 1.2.</p>
+<p style="font-size: x-small;"><a name="xhtml-strict-note" id="xhtml-strict-note">*</a>Most of the time.
+Some languages do not output XHTML strict code, and using line numbers with the PRE header is not legal either.
+These problems will be fixed in 1.2.</p>
 
 <h4 id="features">1.1: Features</h4>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#about-geshi">Next</a> | <a href="#introduction">Previous</a></div>
@@ -301,10 +297,10 @@ and using line numbers with the PRE header is not legal either. These problems w
 <p>Here are some of the standout features of GeSHi:</p>
 
 <ul>
-	<li><strong>Programmed in PHP:</strong> GeSHi is coded entirely in PHP. Only one extension is used, the <acronym>pcre</acronym> extension,
-	which is typically included with any PHP distribution. This means that where ever you have PHP, you can have GeSHi!</li>
-	<li><strong>Support for many languages:</strong> Release 1.0.7.1 of GeSHi comes with over <em>40</em> languages, including <acronym>PHP</acronym>,
-	<acronym>HTML</acronym>, <acronym>CSS</acronym>, Java, C, Lisp, <acronym>XML</acronym>, Perl, Python, <acronym>ASM</acronym> and more!</li>
+	<li><strong>Programmed in PHP:</strong> GeSHi is coded entirely in PHP. This means that where ever you have PHP, you
+    can have GeSHi! Almost any free webhost supports PHP, and GeSHi works fine with PHP > 4.1.0.</li>
+	<li><strong>Support for many languages:</strong> GeSHi comes with over <em>50</em> languages, including <acronym>PHP</acronym>,
+	<acronym>HTML</acronym>, <acronym>CSS</acronym>, Java, C, Lisp, <acronym>XML</acronym>, Perl, Python, <acronym>ASM</acronym> and many more!</li>
 	<li><strong><acronym>XHTML</acronym> compliant output:</strong> GeSHi produces XHTML compliant output, using stylesheets, so you need not worry about
 	GeSHi ruining your claims to perfection in the standards department ;)</li>
 	<li><strong>Highly customisable:</strong> GeSHi allows you to change the style of the output on the fly, use CSS classes or not, use an external
@@ -324,7 +320,7 @@ languages than the available (which was 0 ;)). However, it quickly spawned into 
 entire project on its own. But now it has been released, work continues on a mod
 for phpBB<sup><a href="#phpbb-note">*</a></sup> - and hopefully for many forum systems, blogs and other web-based systems.</p>
 
-<p style="font-size: x-small;"><a name="phpbb-note" id="phpbb-note"></a>I am no longer working on this MOD, however if someone else wants to they
+<p style="font-size: x-small;"><a name="phpbb-note" id="phpbb-note">*</a>I am no longer working on this MOD, however if someone else wants to they
 can contact me for more information.</p>
 
 <p>Several systems are using GeSHi now, including:</p>
@@ -1527,94 +1523,9 @@ All of this is controlled by one method, <strong><tt>set_link_styles</tt></stron
 <h4 id="using-contextual-importance">3.14: Using Contextual Importance</h4>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#context-important-markers">Next</a> | <a href="#styling-links">Previous</a></div>
 
-<p>Perhaps there's a section of code that is really worth noting for your viewers. A line in an algorithm or keyword that
-is so important that you'd rather that they not miss it. Well, you can use special delimiters in your code to set parts
-that should explicitly be highlighted with a lot more emphasis that the surrounding code.
-
-<h5 id="context-important-markers">3.14.1: Context-Important Markers</h5>
-<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#styles-for-context-important-blocks">Next</a> | <a href="#using-contextual-important">Previous</a></div>
-
-<p>The delimiters that you use to specify code that should be important are <strong><tt>&lt;BEGIN GeSHi&gt;</tt></strong>
-and <strong><tt>&lt;END GeSHi&gt;</tt></strong>. These delimiters will not be included in the output. Anything inside
-these delimiters will be highlighted with the &quot;important code styles&quot; <strong>instead</strong> of being highlighted
-normally. Here is an example:</p>
-
-<code><span style="color: #808080; font-style: italic;">//</span><br />
-<span style="color: #808080; font-style: italic;">// Some source with an important part. This could be from a DB query...</span><br />
-<span style="color: #808080; font-style: italic;">//</span><br />
-<span style="color: #0000ff;">$source</span> = <span style="color: #ff0000;">'public int[][] product ( n, m )<br />
-
-{<br />
-&nbsp; int [][] ans = new int[n][m];<br />
-&nbsp; for ( int i = 0; i &lt; n; i++ )<br />
-&nbsp; {<br />
-&nbsp; &nbsp; for ( int j = 0; i &lt; m; j++ )<br />
-
-&nbsp; &nbsp; {<br />
-&nbsp; &nbsp; &nbsp; &lt;BEGIN GeSHi&gt;ans[i][j] = i * j;&lt;END GeSHi&gt;<br />
-&nbsp; &nbsp; }<br />
-&nbsp; }<br />
-
-&nbsp; return ans;<br />
-}'</span>;<br />
-<br />
-<span style="color: #808080; font-style: italic;">//</span><br />
-<span style="color: #808080; font-style: italic;">// Highlight it</span><br />
-<span style="color: #808080; font-style: italic;">//</span><br />
-<span style="color: #0000ff;">$geshi</span> = <span style="color: #000000; font-weight: bold;">new</span> GeSHi<span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$source</span>, <span style="color: #ff0000;">'java'</span><span style="color: #66cc66;">&#41;</span>;<br />
-
-<br />
-<a href="http://www.php.net/echo"><span style="color: #000066;">echo</span></a> <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">parse_code</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;</code>
-
-<p>And this produces:</p>
-
-<code><span style="color: #000000; font-weight: bold;">public</span> <span style="color: #993333;">int</span><span style="color: #66cc66;">&#91;</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#91;</span><span style="color: #66cc66;">&#93;</span> product <span style="color: #66cc66;">&#40;</span> n, m <span style="color: #66cc66;">&#41;</span><br />
-<span style="color: #66cc66;">&#123;</span><br />
-
-&nbsp; <span style="color: #993333;">int</span> <span style="color: #66cc66;">&#91;</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#91;</span><span style="color: #66cc66;">&#93;</span> ans = <span style="color: #000000; font-weight: bold;">new</span> <span style="color: #993333;">int</span><span style="color: #66cc66;">&#91;</span>n<span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#91;</span>m<span style="color: #66cc66;">&#93;</span>;<br />
-&nbsp; <span style="color: #b1b100;">for</span> <span style="color: #66cc66;">&#40;</span> <span style="color: #993333;">int</span> i = <span style="color: #cc66cc;">0</span>; i &lt; n; i++ <span style="color: #66cc66;">&#41;</span><br />
-
-&nbsp; <span style="color: #66cc66;">&#123;</span><br />
-&nbsp; &nbsp; <span style="color: #b1b100;">for</span> <span style="color: #66cc66;">&#40;</span> <span style="color: #993333;">int</span> j = <span style="color: #cc66cc;">0</span>; i &lt; m; j++ <span style="color: #66cc66;">&#41;</span><br />
-&nbsp; &nbsp; <span style="color: #66cc66;">&#123;</span><br />
-
-&nbsp; &nbsp; &nbsp; <span style="font-weight: bold; color: red;">ans[i][j] = i * j;<br />
-&nbsp;</span>&nbsp; &nbsp;<span style="color: #66cc66;">&#125;</span><br />
-&nbsp; <span style="color: #66cc66;">&#125;</span><br />
-&nbsp; <span style="color: #000000; font-weight: bold;">return</span> ans;<br />
-<span style="color: #66cc66;">&#125;</span></code>
-
-<p>As you can see, it's very easy to see the line highlighted. However, no styling occurs in the important parts (for
-example the brackets in the above example aren't a different colour).</p>
-
-<div class="note"><div class="note-header">Note:</div><p>To change the delimiters, you'll have to go into the GeSHi
-source code and modify the appropriate constants, found near the top of the file <tt>geshi.php</tt></div>
-
-<div class="caution"><div class="caution-header">Caution:</div><p>This is BUGGY! It should work just fine for the most
-part, but if you have strings in your source code with &lt;BEGIN GeSHi&gt; or &lt;END GeSHi&gt; in them, this may
-not work as expected.</div>
-
-<h5 id="styles-for-context-important-blocks">3.14.2: Styles for Context-Important Blocks</h5>
-<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#disabling-contextual-importance">Next</a> | <a href="#context-important-markers">Previous</a></div>
-
-<p>Of course, you're not chained to the bright-red-bold style that is the default. You can set the style of important
-blocks using the <strong><tt>set_important_styles</tt></strong> method:</p>
-
-<code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_important_styles</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#41;</span>;</code>
-
-<p>Where <var>$styles</var> is the stylesheet declarations to apply to context-important blocks.</p>
-
-<h5 id="disabling-contextual-importance">3.14.3: Disabling Contextual Importance</h5>
-<div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#highlighting-special-lines-extra">Next</a> | <a href="#styles-for-context-important-blocks">Previous</a></div>
-
-<p>By default, contextual importance is enabled. However, it can be disabled (and re-enabled) by using the
-<strong><tt>enable_important_blocks</tt></strong> method:</p>
-
-<code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">enable_important_blocks</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$flag</span><span style="color: #66cc66;">&#41;</span>;</code>
-
-<p>Where <var>$flag</var> is <strong>true</strong> to enable contextual importance, and <strong>false</strong> to disable it. If
-contextual importance is disabled, any &lt;BEGIN GeSHi&gt; or &lt;END GeSHi&gt; markers will simply be displayed as part
-of the code.</p>
+<div class="caution"><div class="caution-header">Caution:</div><p>This functionality is not only buggy, but is proving
+very hard to implement in 1.1.X. Therefore, this functionality may well be <strong>removed</strong> in 1.2.0. You are
+hereby warned!</div>
 
 <h4 id="highlighting-special-lines-extra">3.15: Highlighting Special Lines &quot;Extra&quot;</h4>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#specifying-lines-to-highlight-extra">Next</a> | <a href="#disabling-contextual-importance">Previous</a></div>
@@ -1647,7 +1558,7 @@ the array should simply be an array of integers.</p>
 &nbsp; &nbsp; for ( int j = 0; i &lt; m; j++ )<br />
 
 &nbsp; &nbsp; {<br />
-&nbsp; &nbsp; &nbsp; &lt;BEGIN GeSHi&gt;ans[i][j] = i * j;&lt;END GeSHi&gt;<br />
+&nbsp; &nbsp; &nbsp; ans[i][j] = i * j;<br />
 &nbsp; &nbsp; }<br />
 &nbsp; }<br />
 
@@ -1674,9 +1585,9 @@ the array should simply be an array of integers.</p>
 &nbsp; <span style="color: #66cc66;">&#123;</span><br />
 &nbsp; &nbsp; <span style="color: #b1b100;">for</span> <span style="color: #66cc66;">&#40;</span> <span style="color: #993333;">int</span> j = <span style="color: #cc66cc;">0</span>; i &lt; m; j++ <span style="color: #66cc66;">&#41;</span><br />
 &nbsp; &nbsp; <span style="color: #66cc66;">&#123;</span><br />
-
-<div style="color: #cc0; background-color: #ffc;">&nbsp; &nbsp; &nbsp; ans<span style="color: #66cc66;">&#91;</span>i<span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#91;</span>j<span style="color: #66cc66;">&#93;</span> = i * j;<br /></div>
-&nbsp; &nbsp; <span style="color: #66cc66;">&#125;</span><br />
+</code>
+<div style="color: #cc0; background-color: #ffc;"><code>&nbsp; &nbsp; &nbsp; ans<span style="color: #66cc66;">&#91;</span>i<span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#91;</span>j<span style="color: #66cc66;">&#93;</span> = i * j;<br /></code></div>
+<code>&nbsp; &nbsp; <span style="color: #66cc66;">&#125;</span><br />
 &nbsp; <span style="color: #66cc66;">&#125;</span><br />
 &nbsp; <span style="color: #000000; font-weight: bold;">return</span> ans;<br />
 
@@ -2620,12 +2531,9 @@ Here are some points about strict highlighting:</p>
 <h3 id="method-constant-reference">5: Method/Constant Reference</a></h3>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a>Next</a> | <a href="#language-file-tidying-up">Previous</a></div>
 
-<p>Sorry, there isn't one yet ;). I discovered phpdoc most of the way through 1.0.2 (as well as completing my first
-year at university learning about program design), so for the 1.0.X series there will be no reference. All of the
-constants are in geshi.php near the top of the file, and all the methods you need to know about are documented in
-this document.</p>
-
-<p>1.2.X will see the introduction of this section.</p>
+<p>I'm afraid I have been lying for a little while about this now! Since 1.0.7 I have been including a phpdoc API for
+the sourcecode in the <a href="api/index.html">api</a> directory, but have forgot to update the documentation! However, it is
+available, and may assist you in coding, especially for plugin coders.</p>
 
 <hr />
 
@@ -2646,11 +2554,15 @@ load and time taken (by almost eliminating regexps), while providing superior
 highlighting. But fear not! The interface and method names should all remain the
 same ^_^ (though I can't say the same for language files!)</p>
 
+<p>And finally, a couple of people have been asking me: how did you generate that documentation?
+The amazing answer is: my brain. And yes, it took a long time, and I don't reccommend doing it this
+way. And yes, you can borrow the styles if you like, though flick me an e-mail if you do.</p>
+
 <p>Anyway, enough blather from me. Get GeSHi working for you already! :D</p>
 
 <pre>Nigel McNie
 <a href="mailto:nigel@geshi.org">nigel@geshi.org</a>
-<a href="http://qbnz.com/highlighter">http://qbnz.com/highlighter</a></pre>
+<a href="http://qbnz.com/highlighter/">http://qbnz.com/highlighter/</a></pre>
 
 </body>
 </html>
