@@ -40,7 +40,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.4');
+define('GESHI_VERSION', '1.0.7.5');
 
 /** For the future (though this may never be realised) */
 define('GESHI_OUTPUT_HTML', 0);
@@ -286,6 +286,7 @@ class GeSHi
     /**
      * Whether important blocks should be recognised or not
      * @var boolean
+     * @deprecated
      * @todo REMOVE THIS FUNCTIONALITY!
      */
 	var $enable_important_blocks = false;
@@ -293,6 +294,7 @@ class GeSHi
     /**
      * Styles for important parts of the code
      * @var string
+     * @deprecated
      * @todo As above - rethink the whole idea of important blocks as it is buggy and
      * will be hard to implement in 1.2
      */
@@ -1305,6 +1307,7 @@ class GeSHi
 	 * Sets whether context-important blocks are highlighted
      * 
      * @todo REMOVE THIS SHIZ FROM GESHI!
+     * @deprecated
 	 */
 	function enable_important_blocks ( $flag )
 	{
