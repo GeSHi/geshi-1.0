@@ -91,7 +91,7 @@ $language_data = array (
 		3 => array(
 			'ah','al','ax','bh','bl','bp','bx','ch','cl','cr0','cr2','cr3','cs','cx','dh','di','dl',
 			'dr0','dr1','dr2','dr3','dr6','dr7','ds','dx','eax','ebp','ebx','ecx','edi','edx',
-			 'es','esi','esp','fs','gs','si','sp','ss','st','tr3','tr4','tr5','tr6','tr7'
+			 'es','esi','esp','fs','gs','si','sp','ss','st','tr3','tr4','tr5','tr6','tr7', 'ah', 'bh', 'ch', 'dh'
 			),
 		/*Directive*/
 		4 => array(
