@@ -1906,7 +1906,7 @@ class GeSHi
 	 */
 	function add_url_to_keyword ($keyword, $group, $start_or_end)
 	{
-		if (isset($this->language_data['URLS'][$group]) &&
+        if (isset($this->language_data['URLS'][$group]) &&
             $this->language_data['URLS'][$group] != '' &&
             substr($keyword, 0, 5) != '&lt;/') {
 			// There is a base group for this keyword
@@ -1924,7 +1924,8 @@ class GeSHi
                         ) . '">';
 				}
 				return '';
-			} else {
+            // HTML fix. Again, dirty hackage...
+			} elseif (!($this->language == 'html4strict' && '&gt;' == $keyword)) {
 				return '</a>';
 			}
 		}
