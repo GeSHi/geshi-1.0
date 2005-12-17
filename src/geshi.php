@@ -1974,8 +1974,8 @@ class GeSHi
 		// Put /NUM!/ in for the styles, which gets replaced at the end.
 		//
 		if ($this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse )) {
-			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9\#])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
-			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9\#>])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
+			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9_\#])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
+			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9_\#>])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
 		}
 
 		// Highlight keywords
