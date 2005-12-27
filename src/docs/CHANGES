@@ -17,6 +17,7 @@ Version 1.0.7.6
   -  Added support for :keywords and ::access in lisp (Denis Mashkevich)
   -  Prevented number highlighting if they are just after underscores (Joce)
   -  Removed escape characters for strings in XML and HTML (floele)
+  -  Added instanceof keyword (jgottschling)
 Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)

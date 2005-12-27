@@ -66,7 +66,7 @@ $language_data = array (
 			'private', 'protected', 'extends', 'break', 'class',
 			'new', 'try', 'catch', 'throws', 'finally', 'implements',
 			'interface', 'throw', 'native', 'synchronized', 'this',
-            'abstract', 'transient'
+            'abstract', 'transient', 'instanceof'
 			),
 		3 => array(
 			'AbstractAction', 'AbstractBorder', 'AbstractButton', 'AbstractCellEditor',
