@@ -13,6 +13,8 @@
  *
  * CHANGES
  * -------
+ * 2005/12/28 (1.0.4)
+ *   -  Added instanceof keyword
  * 2004/11/27 (1.0.3)
  *   -  Added support for multiple object splitters
  * 2004/08/05 (1.0.2)

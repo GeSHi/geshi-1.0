@@ -17,7 +17,7 @@ Version 1.0.7.6
   -  Added support for :keywords and ::access in lisp (Denis Mashkevich)
   -  Prevented number highlighting if they are just after underscores (Joce)
   -  Removed escape characters for strings in XML and HTML (floele)
-  -  Added instanceof keyword (jgottschling)
+  -  Added instanceof keyword to java (jgottschling)
   -  Fixed comments in ASP (SBD)
   -  Removed unnecessary keyword style index from ini
   -  Removed unnecessary regex style index from blitzbasic

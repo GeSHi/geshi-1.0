@@ -13,6 +13,8 @@
  *
  * CHANGES
  * -------
+ * 2005/12/28 (1.0.2)
+ *   -  Removed escape character for strings
  * 2004/11/27 (1.0.1)
  *   -  Added support for multiple object splitters
  * 2004/10/27 (1.0.0)
