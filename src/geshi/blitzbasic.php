@@ -17,8 +17,10 @@
  *
  * CHANGES
  * -------
+ * 2005/12/28 (1.0.1)
+ *   -  Remove unnecessary style index for regexps
  * 2005/10/22 (1.0.0)
- *  -  First Release
+ *   -  First Release
  *
  * TODO (updated 2005/10/22)
  * -------------------------
@@ -159,7 +161,6 @@
       0 => 'color: #000066;'
       ),
     'REGEXPS' => array(
-      0 => 'font-weight: bold;'
       ),
     'SCRIPT' => array(
       0 => '',
@@ -174,7 +175,6 @@
   	1 => '\\'
 	),
   'REGEXPS' => array(
-
   ),
   'STRICT_MODE_APPLIES' => GESHI_NEVER,
   'SCRIPT_DELIMITERS' => array(),

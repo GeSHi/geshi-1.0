@@ -19,6 +19,8 @@ Version 1.0.7.6
   -  Removed escape characters for strings in XML and HTML (floele)
   -  Added instanceof keyword (jgottschling)
   -  Fixed comments in ASP (SBD)
+  -  Removed unnecessary keyword style index from ini
+  -  Removed unnecessary regex style index from blitzbasic
 Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)

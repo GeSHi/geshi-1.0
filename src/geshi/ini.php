@@ -13,6 +13,8 @@
  *
  * CHANGES
  * -------
+ * 2005/12/28 (1.0.1)
+ *   -  Removed unnecessary keyword style index
  * 2005/04/05 (1.0.0)
  *   -  First Release
  *
@@ -56,7 +58,6 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-		    0 => ''
 			),
 		'COMMENTS' => array(
 			0 => 'color: #666666; font-style: italic;'
