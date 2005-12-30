@@ -18,6 +18,7 @@ Version 1.0.7.6
   -  Prevented number highlighting if they are just after underscores (Joce)
   -  Removed escape characters for strings in XML and HTML (floele)
   -  Added instanceof keyword (jgottschling)
+  -  Fixed comments in ASP (SBD)
 Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)

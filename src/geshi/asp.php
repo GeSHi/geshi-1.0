@@ -13,8 +13,10 @@
  *
  * CHANGES
  * -------
+ * 2005/12/30 (1.0.3)
+ *   -  Strings only delimited by ", comments by '
  * 2004/11/27 (1.0.2)
- *  -  Added support for multiple object splitters
+ *   -  Added support for multiple object splitters
  * 2004/10/27 (1.0.1)
  *   -  Added support for URLs
  * 2004/08/13 (1.0.0)
@@ -49,7 +51,7 @@ $language_data = array (
 	'COMMENT_SINGLE' => array(1 => "'", 2 => '//'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => 0,
-	'QUOTEMARKS' => array("'", '"'),
+	'QUOTEMARKS' => array('"'),
 	'ESCAPE_CHAR' => '\\',
 	'KEYWORDS' => array(
 		1 => array(
