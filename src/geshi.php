@@ -40,10 +40,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.5');
-
-/** For the future (though this may never be realised) */
-define('GESHI_OUTPUT_HTML', 0);
+define('GESHI_VERSION', '1.0.7.6');
 
 /** Set the correct directory separator */
 define('GESHI_DIR_SEPARATOR', ('WIN' != substr(PHP_OS, 0, 3)) ? '/' : '\\');
@@ -390,12 +387,6 @@ class GeSHi
      * @var string
      */
 	var $encoding = 'ISO-8859-1';
-
-	/**
-     * Unused (planned for future)
-     * @var int
-	 */
-	var $output_format = GESHI_OUTPUT_HTML;
 
     /**#@-*/
 
@@ -2000,15 +1991,15 @@ class GeSHi
 							$keyword = quotemeta($keyword);
 							if ($this->language_data['CASE_SENSITIVE'][$k]) {
 								$stuff_to_parse = preg_replace(
-                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#e",
-                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'",
+                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])#e",
+                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
                                 );
 							} else {
 								// Change the case of the word.
 								$stuff_to_parse = preg_replace(
-                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)([^a-zA-Z0-9_<\|%\-&])#ie",
-                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END') . '\\3'",
+                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])#ie",
+                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
                                 );
 							}
