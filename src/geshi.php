@@ -1903,14 +1903,23 @@ class GeSHi
 			// There is a base group for this keyword
 			if ($start_or_end == 'BEGIN') {
 				// HTML workaround... not good form (tm) but should work for 1.0.X
-				$keyword = ( substr($keyword, 0, 4) == '&lt;' ) ? substr($keyword, 4) : $keyword;
-				$keyword = ( substr($keyword, -4) == '&gt;' ) ? substr($keyword, 0, strlen($keyword) - 4) : $keyword;
 				if ($keyword != '') {
-					$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
+                    // Old system: strtolower
+					//$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
+                    // New system: get keyword from language file to get correct case
+                    foreach ($this->language_data['KEYWORDS'][$group] as $word) {
+                        if (strtolower($word) == strtolower($keyword)) {
+                            break;
+                        }
+                    }
+                    $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
+                    $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, strlen($word) - 4) : $word;
+                    if (!$word) return '';
+                    
 					return '<|UR1|"' .
                         str_replace(
                             array('{FNAME}', '.'),
-                            array(@htmlspecialchars($keyword, ENT_COMPAT, $this->encoding), '<DOT>'),
+                            array(@htmlspecialchars($word, ENT_COMPAT, $this->encoding), '<DOT>'),
                             $this->language_data['URLS'][$group]
                         ) . '">';
 				}

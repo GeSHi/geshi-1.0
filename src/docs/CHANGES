@@ -21,6 +21,7 @@ Version 1.0.7.6
   -  Fixed comments in ASP (SBD)
   -  Removed unnecessary keyword style index from ini
   -  Removed unnecessary regex style index from blitzbasic
+  -  Keyword case of URL-ed keywords should be defined by language file (Benny Baumann).
 Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)
