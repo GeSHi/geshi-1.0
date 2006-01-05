@@ -21,8 +21,13 @@ Version 1.0.7.6
   -  Added instanceof keyword to java (jgottschling)
   -  Fixed comments in ASP (SBD)
   -  Removed unnecessary keyword style index from ini
+  -  Added support for " strings in ini
   -  Removed unnecessary regex style index from blitzbasic
-  -  Keyword case of URL-ed keywords should be defined by language file (Benny Baumann).
+  -  Keyword case of URL-ed keywords should be defined by language file (Benny Baumann)
+  -  Added "Hardquote" feature, provides more accurate string highlighting (Cliff Stanford)
+  -  Used hardquote support for @"..." strings in C# (Cliff Stanford)
+  -  Used hardquote support for ' strings in perl (Cliff Stanford)
+  -  Fixed setting of language path (Cliff Stanford)
 Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)
