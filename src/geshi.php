@@ -501,7 +501,8 @@ class GeSHi
 	function set_language_path ($path)
 	{
         if ($path) {
-		  $this->language_path = ('/' == substr($path, strlen($path) - 1, 1)) ? $path : $path . '/';
+			$this->language_path = ('/' == substr($path, strlen($path) - 1, 1)) ? $path : $path . '/';
+			$this->set_language($this->language);	    // otherwise set_language_path has no effect
         }
 	}
 
@@ -1424,6 +1425,7 @@ class GeSHi
 		$HIGHLIGHTING_ON  = ( !$this->strict_mode ) ? true : '';
 		// Whether to highlight inside a block of code
 		$HIGHLIGHT_INSIDE_STRICT = false;
+		$HARDQUOTE_OPEN = false;
 		$stuff_to_parse   = '';
 		$result           = '';
 
@@ -1532,6 +1534,7 @@ class GeSHi
 					for ($i = 0; $i < $length; $i++) {
 						// Get the next char
 						$char = substr($part, $i, 1);
+				        $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
 						// Is this char the newline and line numbers being used?
 						if (($this->line_numbers != GESHI_NO_LINE_NUMBERS
                             || count($this->highlight_extra_lines) > 0)
@@ -1555,10 +1558,27 @@ class GeSHi
                                 ($this->lexic_permissions['STRINGS'] && !$ESCAPE_CHAR_OPEN)) {
 								$char .= '</span>';
 							}
+						    $escape_me = false;
+    						if ($HARDQUOTE_OPEN)
+	    					{
+	    						if ($ESCAPE_CHAR_OPEN)
+								$escape_me = true;
+		    					else {
+			    					foreach ($this->language_data['HARDESCAPE'] as $hardesc)
+				    				if (substr($part, $i, strlen($hardesc)) == $hardesc)
+					    			{
+						    			$escape_me = true;
+							    		break;
+							    	}
+							    }
+						    }
 							if (!$ESCAPE_CHAR_OPEN) {
 								$STRING_OPEN = '';
 								$CLOSE_STRING = true;
 							}
+						    if (!$escape_me) {
+						    	$HARDQUOTE_OPEN = false;
+						    }
 							$ESCAPE_CHAR_OPEN = false;
 						} elseif (in_array($char, $this->language_data['QUOTEMARKS']) &&
                             ($STRING_OPEN == '') && $this->lexic_permissions['STRINGS']) {
@@ -1573,11 +1593,39 @@ class GeSHi
 
 							$result .= $this->parse_non_string_part( $stuff_to_parse );
 							$stuff_to_parse = '';
-						} elseif (($char == $this->language_data['ESCAPE_CHAR']) && ($STRING_OPEN != '')) {
+    				    } elseif (
+    					$hq &&
+    					substr($part, $i, strlen($hq)) == $hq &&
+    					($STRING_OPEN == '') && $this->lexic_permissions['STRINGS']
+    				    )
+    				    {
+    					// The start of a hard quoted string
+    					$STRING_OPEN = $this->language_data['HARDQUOTE'][1];
+    					if (!$this->use_classes) {
+    					    $attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
+    					} else {
+    					    $attributes = ' class="st0"';
+    					}
+    					$char = "<span$attributes>" . $hq;
+    					$i += strlen($hq) - 1;
+    					$HARDQUOTE_OPEN = true;
+    					$result .= $this->parse_non_string_part( $stuff_to_parse );
+    					$stuff_to_parse = '';
+    				    } elseif ($char == $this->language_data['ESCAPE_CHAR'] && $STRING_OPEN != '')
+    				    {
                             // An escape character
 							if (!$ESCAPE_CHAR_OPEN) {
+    							$ESCAPE_CHAR_OPEN = !$HARDQUOTE_OPEN;  // true unless $HARDQUOTE_OPEN
+    							if ($HARDQUOTE_OPEN)
+    								foreach ($this->language_data['HARDESCAPE'] as $hard)
+    								{
+    									if (substr($part, $i, strlen($hard)) == $hard)
+    									{
 								$ESCAPE_CHAR_OPEN = true;
-								if ($this->lexic_permissions['ESCAPE_CHAR']) {
+    										break;
+    									}
+    								}
+    							if ($ESCAPE_CHAR_OPEN && $this->lexic_permissions['ESCAPE_CHAR']) {
 									if (!$this->use_classes) {
 										$attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][0] . '"';
 									} else {
