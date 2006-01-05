@@ -15,6 +15,7 @@
  * -------
  * 2005/12/28 (1.0.1)
  *   -  Removed unnecessary keyword style index
+ *   -  Added support for " strings
  * 2005/04/05 (1.0.0)
  *   -  First Release
  *
@@ -46,7 +47,7 @@ $language_data = array (
 	'COMMENT_SINGLE' => array(0 => ';'),
 	'COMMENT_MULTI' => array(),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array(),
+	'QUOTEMARKS' => array('"'),
 	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
 		),
@@ -69,7 +70,7 @@ $language_data = array (
 		    0 => ''
 			),
 		'STRINGS' => array(
-		    0 => ''
+		    0 => 'color: #933;'
 			),
 		'NUMBERS' => array(
 		    0 => ''
