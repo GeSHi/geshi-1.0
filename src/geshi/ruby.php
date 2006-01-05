@@ -13,6 +13,9 @@
  *
  * CHANGES
  * -------
+ * 2006/01/05 (1.0.1)
+ *   -  Add =begin multiline comments (Juan J. Martínez)
+ *   -  Add ` string (Juan J. Martínez)
  * 2005/09/05 (1.0.0)
  *   -  First Release
  *
@@ -44,8 +47,8 @@
 $language_data = array (
 	'LANG_NAME' => 'Ruby',
 	'COMMENT_SINGLE' => array(1 => "#"),
-	'COMMENT_MULTI' => array(),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+    'COMMENT_MULTI' => array( "=begin" => "=end"),
+    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"', '`'),
 	'ESCAPE_CHAR' => '\\',
 	'KEYWORDS' => array(
@@ -90,7 +93,8 @@ $language_data = array (
 			3 => 'color:#CC0066; font-weight:bold;'
 			),
 		'COMMENTS' => array(
-			1 => 'color:#008000; font-style:italic;'
+			1 => 'color:#008000; font-style:italic;',
+            'MULTI' => 'color:#000080; font-style:italic;'
 			),
 		'ESCAPE_CHAR' => array(
 			0 => 'color:#000099;'
