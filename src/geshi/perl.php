@@ -13,8 +13,10 @@
  *
  * CHANGES
  * -------
+ * 2006/01/05 (1.0.2)
+ *   -  Used hardescape feature for ' strings (Cliff Stanford)
  * 2004/11/27 (1.0.1)
- *  -  Added support for multiple object splitters
+ *   -  Added support for multiple object splitters
  * 2004/08/20 (1.0.0)
  *   -  First Release
  *
@@ -48,7 +50,12 @@ $language_data = array (
 	'COMMENT_SINGLE' => array(1 => '#'),
 	'COMMENT_MULTI' => array( '=pod' => '=cut'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
+	'QUOTEMARKS' => array('"'),
+	'HARDQUOTE' => array("'", "'"),		    // An optional 2-element array defining the beginning and end of a hard-quoted string
+	'HARDESCAPE' => array('\\\'', "\\\\"),	    // Things that must still be escaped inside a hard-quoted string
+						    // If HARDQUOTE is defined, HARDESCAPE must be defined
+						    // This will not work unless the first character of each element is either in the
+						    // QUOTEMARKS array or is the ESCAPE_CHAR
 	'ESCAPE_CHAR' => '\\',
 	'KEYWORDS' => array(
 		1 => array(
