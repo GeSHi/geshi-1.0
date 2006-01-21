@@ -2,7 +2,7 @@
 read that instead]
 
 GeSHi Documentation
-Version 1.0.7.5
+Version 1.0.7.6
 
 Author:          Nigel McNie
 Copyright:       © Nigel McNie, 2004
@@ -678,22 +678,14 @@ Also, you can use the method get_language_name_from_extension if you need to con
 3.7: Error Handling
 Top | Contents | Next | Previous
 
-What happens if you try to highlight using a language that doesn't exist? Or try to highlight nothing at all? The results you get may be confusing. You may check your code over and over, and never find anything wrong. GeSHi provides ways of finding out if GeSHi itself found anything wrong with what you tried to do. After highlighting, you can call the error() method:
+What happens if you try to highlight using a language that doesn't exist? Or if GeSHi can't read a required file? The results you get may be confusing. You may check your code over and over, and never find anything wrong. GeSHi provides ways of finding out if GeSHi itself found anything wrong with what you tried to do. After highlighting, you can call the error() method:
 $geshi = new GeSHi('hi', 'thisLangIsNotSupported');
 
 echo $geshi->error();  // echoes error message
 
-$geshi->set_source('');
-
-echo $geshi->error();
-
-The error message you will get for the first call of error will look like this:
+The error message you will get will look like this:
 
     GeSHi Error: GeSHi could not find the language thisLangIsNotSupported (using path geshi/) (code 2)
-
-And for the second error you will get:
-
-    GeSHi Error: No source code inputted (code 1)
 
 The error outputted will be the last error GeSHi came across, just like how mysql_error() works.
 3.8: Disabling styling of some Lexics
