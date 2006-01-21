@@ -4,7 +4,7 @@
  * --------
  * Author: José Jorge Enríquez (jenriquez@users.sourceforge.net)
  * Copyright: (c) 2005 José Jorge Enríquez Rodríguez (http://www.zonamakers.com)
- * Release Version: 1.0.7.5
+ * Release Version: 1.0.7.6
  * CVS Revision Version: $Revision$
  * Date Started: 2005/06/21
  * Last Modified: $Date$

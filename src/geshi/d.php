@@ -4,7 +4,7 @@
  * -----
  * Author: Thomas Kuehne (thomas@kuehne.cn)
  * Copyright: (c) 2005 Thomas Kuehne (http://thomas.kuehne.cn/)
- * Release Version: 1.0.7.5
+ * Release Version: 1.0.7.6
  * CVS Revision Version: $Revision$
  * Date Started: 2005/04/22
  * Last Modified: $Date$
