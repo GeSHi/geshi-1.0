@@ -128,7 +128,9 @@ define('GESHI_AFTER', 4);
 define('GESHI_COMMENTS', 0);
 
 // Error detection - use these to analyse faults
-/** No sourcecode to highlight was specified */
+/** No sourcecode to highlight was specified
+ * @deprecated
+ */
 define('GESHI_ERROR_NO_INPUT', 1);
 /** The language specified does not exist */
 define('GESHI_ERROR_NO_SUCH_LANG', 2);
@@ -193,7 +195,7 @@ class GeSHi
      * @var array
      */
     var $error_messages = array(
-        GESHI_ERROR_NO_INPUT => 'No source code inputted',
+        //GESHI_ERROR_NO_INPUT => 'No source code inputted',
         GESHI_ERROR_NO_SUCH_LANG => 'GeSHi could not find the language {LANGUAGE} (using path {PATH})',
         GESHI_ERROR_FILE_NOT_READABLE => 'The file specified for load_from_file was not readable',
         GESHI_ERROR_INVALID_HEADER_TYPE => 'The header type specified is invalid',
@@ -221,6 +223,7 @@ class GeSHi
      *   a &lt;pre&gt; HTML element.</li>
      *   <li><b>GESHI_HEADER_DIV</b>: Source is outputted in
      *   a &lt;div&gt; HTML element.</li>
+     *   <li><b>GESHI_HEADER_NONE</b>: No header is outputted.</li>
      * </ul>
      * 
      * @var int
@@ -406,7 +409,7 @@ class GeSHi
 	 */
 	function GeSHi ($source, $language, $path = '')
 	{
-		$this->set_source($source);
+        $this->set_source($source);
         $this->set_language_path($path);
         $this->set_language($language);
 	}
@@ -457,9 +460,6 @@ class GeSHi
 	 */
 	function set_source ($source)
 	{
-        if ('' == trim($source)) {
-            $this->error = GESHI_ERROR_NO_INPUT;
-        }
 		$this->source = $source;
 	}
 
@@ -1398,15 +1398,10 @@ class GeSHi
 
 		// Firstly, if there is an error, we won't highlight
 		if ($this->error) {
-			$result = $this->header();
-			if ($this->header_type != GESHI_HEADER_PRE) {
-				$result .= $this->indent(@htmlspecialchars($this->source, ENT_COMPAT, $this->encoding));
-			} else {
-				$result .= @htmlspecialchars($this->source, ENT_COMPAT, $this->encoding);
-			}
-			// Stop Timing
-			$this->set_time($start_time, microtime());
-			return $result . $this->footer();
+            $result = @htmlspecialchars($this->source, ENT_COMPAT, $this->encoding);
+			// Timing is irrelevant
+			$this->set_time($start_time, $start_time);
+			return $this->finalise($result);
 		}
 
 		// Add spaces for regular expression matching and line numbers

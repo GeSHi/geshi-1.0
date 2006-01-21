@@ -28,6 +28,11 @@ Version 1.0.7.6
   -  Used hardquote support for @"..." strings in C# (Cliff Stanford)
   -  Used hardquote support for ' strings in perl (Cliff Stanford)
   -  Fixed setting of language path (Cliff Stanford)
+  -  Display source correctly formatted with line numbers (if requested) if an error
+     has occured (several people)
+  -  Having no source to highlight is not an error condition anymore
+  -  Delphi language updated to include more keywords and types (BenBE)
+  -  Updated NSIS to version 2.11 (deguix)
 Version 1.0.7.5
   -  Fix for using escape characters to escape newlines breaking XHTML compliance (Yves Goergen)
   -  Fixed method highlighting in VB (Matt Beale)
