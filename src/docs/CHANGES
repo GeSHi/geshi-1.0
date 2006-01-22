@@ -12,6 +12,9 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.7.7
+  -  Added language files
+     * T-SQL (Duncan Lock)
 Version 1.0.7.6
   -  Fix backtick-string highlighting in ruby (Juan J. Martínez)
   -  Add =begin multiline comments in ruby (Juan J. Martínez)
