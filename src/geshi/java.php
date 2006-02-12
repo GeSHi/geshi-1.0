@@ -60,7 +60,7 @@ $language_data = array (
 	'ESCAPE_CHAR' => '\\',
 	'KEYWORDS' => array(
 		1 => array(
-			'for', 'foreach', 'if', 'elseif', 'else', 'while', 'do',
+			'for', 'foreach', 'if', 'else', 'while', 'do',
 			'switch', 'case'
 			),
 		2 => array(
@@ -68,7 +68,9 @@ $language_data = array (
 			'private', 'protected', 'extends', 'break', 'class',
 			'new', 'try', 'catch', 'throws', 'finally', 'implements',
 			'interface', 'throw', 'native', 'synchronized', 'this',
-            'abstract', 'transient', 'instanceof'
+            'abstract', 'transient', 'instanceof', 'assert', 'continue',
+            'default', 'enum', 'package', 'static', 'strictfp', 'super',
+            'volatile', 'const', 'goto'
 			),
 		3 => array(
 			'AbstractAction', 'AbstractBorder', 'AbstractButton', 'AbstractCellEditor',
@@ -1317,7 +1319,7 @@ $language_data = array (
 			'_Remote_Stub '
 			),
 		4 => array(
-			'static', 'void', 'double', 'int', 'real', 'boolean', 'byte', 'short', 'long', 'single'
+			'void', 'double', 'int', 'boolean', 'byte', 'short', 'long', 'char', 'float'
 			)
 		),
 	'SYMBOLS' => array(
@@ -1374,8 +1376,7 @@ $language_data = array (
 		),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(
-		1 => '.',
-		2 => '::'
+		1 => '.'
 		),
 	'REGEXPS' => array(
 		),

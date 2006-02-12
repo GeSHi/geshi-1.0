@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.7
   -  Added language files
      * T-SQL (Duncan Lock)
+  -  A few keyword changes in java, removed :: object splitter (amphi)
 Version 1.0.7.6
   -  Fix backtick-string highlighting in ruby (Juan J. Martínez)
   -  Add =begin multiline comments in ruby (Juan J. Martínez)
