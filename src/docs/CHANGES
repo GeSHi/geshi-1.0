@@ -17,6 +17,7 @@ Version 1.0.7.7
      * T-SQL (Duncan Lock)
      * Robots.txt (Christian Lescuyer)
      * AutoIT (mastrboy)
+     * Java 5 (Clemens Bruckmann)
   -  A few keyword changes in java, removed :: object splitter (amphi)
   -  Now using a simpler regular expression for numbers (Brice Bernard)
 Version 1.0.7.6
