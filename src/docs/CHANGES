@@ -18,6 +18,7 @@ Version 1.0.7.7
      * Robots.txt (Christian Lescuyer)
      * AutoIT (mastrboy)
   -  A few keyword changes in java, removed :: object splitter (amphi)
+  -  Now using a simpler regular expression for numbers (Brice Bernard)
 Version 1.0.7.6
   -  Fix backtick-string highlighting in ruby (Juan J. Martínez)
   -  Add =begin multiline comments in ruby (Juan J. Martínez)

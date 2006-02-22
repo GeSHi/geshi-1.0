@@ -2015,10 +2015,15 @@ class GeSHi
 		// almost exactly the same thing, except the second one prevents a number
 		// being highlighted twice (eg <span...><span...>5</span></span>)
 		// Put /NUM!/ in for the styles, which gets replaced at the end.
+        //
+        // NEW ONE: Brice Bernard
+        // $stuff_to_parse = preg_replace('/([^(\\w|#|\\\|"|\')])(\\d+)/', '\\1<|/NUM!/>\\2|>', $stuff_to_parse);
+        //$stuff_to_parse = preg_replace('/([-+]?\\b(?:[0-9]*\\.)?[0-9]+\\b)/', '<|/NUM!/>\\1|>', $stuff_to_parse);
 		//
 		if ($this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse )) {
-			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9_\#])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
-			$stuff_to_parse = preg_replace('#([^a-zA-Z0-9_\#>])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
+			//$stuff_to_parse = preg_replace('#([^a-zA-Z0-9_\#])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
+			//$stuff_to_parse = preg_replace('#([^a-zA-Z0-9_\#>])([0-9]+)([^a-zA-Z0-9])#', "\\1<|/NUM!/>\\2|>\\3", $stuff_to_parse);
+            $stuff_to_parse = preg_replace('/([-+]?\\b(?:[0-9]*\\.)?[0-9]+\\b)/', '<|/NUM!/>\\1|>', $stuff_to_parse);
 		}
 
 		// Highlight keywords
