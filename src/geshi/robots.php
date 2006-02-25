@@ -4,7 +4,7 @@
  * --------
  * Author: Christian Lescuyer (cl@goelette.net)
  * Copyright: (c) 2006 Christian Lescuyer http://xtian.goelette.info
- * Release Version: 1.0.0
+ * Release Version: 1.0.7.7
  * CVS Revision Version: $Revision$
  * Date Started: 2006/02/17
  * Last Modified: $Date$
