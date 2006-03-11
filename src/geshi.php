@@ -2048,14 +2048,14 @@ class GeSHi
 							$keyword = quotemeta($keyword);
 							if ($this->language_data['CASE_SENSITIVE'][$k]) {
 								$stuff_to_parse = preg_replace(
-                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])#e",
+                                    "#([^a-zA-Z0-9\$_\|\#;>/|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])#e",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
                                 );
 							} else {
 								// Change the case of the word.
 								$stuff_to_parse = preg_replace(
-                                    "#([^a-zA-Z0-9\$_\|\#;>])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])#ie",
+                                    "#([^a-zA-Z0-9\$_\|\#;>/|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])#ie",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
                                 );

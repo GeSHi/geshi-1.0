@@ -134,6 +134,7 @@ $language_data = array (
 			0 => 'color: #D36900;'
 			),
 		'SCRIPT' => array(
+            0 => ''
 			),
 		'REGEXPS' => array(
 			)
