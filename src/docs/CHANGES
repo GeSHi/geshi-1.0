@@ -15,6 +15,9 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.8
   -  Fixed blank at start of MySQL file (W. Tasin)
   -  Fixed smarty functions being broken (ultrabob)
+  -  Changed keyword and regexp detection and parsing
+     slightly to allow more "meta characters" (like #) in
+     keywords
 Version 1.0.7.7
   -  Added language files
      * T-SQL (Duncan Lock)
