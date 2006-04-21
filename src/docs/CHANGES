@@ -12,6 +12,9 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.7.9
+  -  Added language files
+     * Fortran (Cedric Arrabie)
 Version 1.0.7.8
   -  Fixed blank at start of MySQL file (W. Tasin)
   -  Fixed smarty functions being broken (ultrabob)
@@ -30,8 +33,8 @@ Version 1.0.7.7
   -  Now using a simpler regular expression for numbers (Brice Bernard)
   -  Fixed ah, bh etc. regs being highlighted as numbers (Unknown)
 Version 1.0.7.6
-  -  Fix backtick-string highlighting in ruby (Juan J. Martínez)
-  -  Add =begin multiline comments in ruby (Juan J. Martínez)
+  -  Fix backtick-string highlighting in ruby (Juan J. Martï¿½nez)
+  -  Add =begin multiline comments in ruby (Juan J. Martï¿½nez)
   -  Added support for :keywords and ::access in lisp (Denis Mashkevich)
   -  Prevented number highlighting if they are just after underscores (Joce)
   -  Removed escape characters for strings in XML and HTML (floele)
@@ -57,14 +60,14 @@ Version 1.0.7.5
   -  Fixed two ">" symbols being outputted when using a footer but not CSS classes (MrBaseball34)
   -  Marked important block stuff as deprecated
   -  Some documentation tidyup
-  -  Updated GML language file (José Jorge Enríquez Rodríguez)
+  -  Updated GML language file (Josï¿½ Jorge Enrï¿½quez Rodrï¿½guez)
   -  THANKS file tidied up
   -  Fixed double </a> for elements in HTML (Yves Goergen)
   -  Added some keywords for ASM (Dreuzzo)
 Version 1.0.7.4
   -  Added language files
-     * MySQL (Carl Fürstenberg)
-     * BlitzBasic (Pàdraig O`Connel)
+     * MySQL (Carl Fï¿½rstenberg)
+     * BlitzBasic (Pï¿½draig O`Connel)
   -  Fixed up geshi_highlight function: it now correctly uses <code> instead of <div> (Remi Faure)
   -  When using GESHI_HEADER_NONE, remove the <ol> if line numbering is not enabled
   -  Commented example.php so people can use it as a guide better
@@ -101,7 +104,7 @@ Version 1.0.7.2
 Version 1.0.7.1
   -  Added language files:
      * Div (Gabriel Lorenzo)
-     * GML (José Jorge Enríquez Rodríguez)
+     * GML (Josï¿½ Jorge Enrï¿½quez Rodrï¿½guez)
      * Eiffel (Zoran Simic)
   -  Minor change to rules regarding when keywords can appear - now dots (.) are
      allowed before keywords. (NikO)
@@ -182,7 +185,7 @@ Version 1.0.2
      * CADDCL (Roberto Rossi)
      * CadLisp (Roberto Rossi)
      * C++ (Dennis Bayer)
-     * Delphi (Járja Norbert)
+     * Delphi (Jï¿½rja Norbert)
      * Javascript (Ben Keen)
      * Lisp (Roberto Rossi)
      * OpenOffice.org BASIC (Roberto Rossi)
