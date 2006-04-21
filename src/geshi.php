@@ -1098,6 +1098,7 @@ class GeSHi
 				'php' => array('php', 'php5', 'phtml', 'phps'),
 				'python' => array('py'),
 				'qbasic' => array('bi'),
+                'sas' => array('sas'),
 				'smarty' => array(),
 				'vb' => array('bas'),
 				'vbnet' => array(),
