@@ -1004,7 +1004,7 @@ $language_data = array (
 		164 => 'http://java.sun.com/j2se/1.5.0/docs/api/org/xml/sax/ext/{FNAME}.html',
 		165 => 'http://java.sun.com/j2se/1.5.0/docs/api/org/xml/sax/helpers/{FNAME}.html',
 		/* ambiguous class names (appear in more than one package) */
-		166 => 'http://www.google.com/search?sitesearch=java.sun.com&q=allinurl%3Aj2se%2F1+5+0%2Fdocs%2Fapi+{FNAME}'
+		166 => 'http://www.google.com/search?sitesearch=java.sun.com&amp;q=allinurl%3Aj2se%2F1+5+0%2Fdocs%2Fapi+{FNAME}'
 		),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(
