@@ -1083,6 +1083,7 @@ class GeSHi
 				'c_mac' => array('c'),
 				'caddcl' => array(),
 				'cadlisp' => array(),
+                'cdfg' => array('cdfg'),
 				'cpp' => array('cpp'),
 				'csharp' => array(),
 				'css' => array('css'),
@@ -1556,7 +1557,7 @@ class GeSHi
                             // A match of a string delimiter
 							if (($this->lexic_permissions['ESCAPE_CHAR'] && $ESCAPE_CHAR_OPEN) ||
                                 ($this->lexic_permissions['STRINGS'] && !$ESCAPE_CHAR_OPEN)) {
-								$char .= '</span>';
+								$char = htmlspecialchars($char, ENT_COMPAT, $this->encoding) . '</span>';
 							}
 						    $escape_me = false;
     						if ($HARDQUOTE_OPEN)
@@ -1589,7 +1590,7 @@ class GeSHi
 							} else {
 								$attributes = ' class="st0"';
 							}
-							$char = "<span$attributes>" . $char;
+							$char = "<span$attributes>" . htmlspecialchars($char, ENT_COMPAT, $this->encoding);
 
 							$result .= $this->parse_non_string_part( $stuff_to_parse );
 							$stuff_to_parse = '';
@@ -1833,14 +1834,13 @@ class GeSHi
                     if (false === strpos($line, "\t")) {
                         $lines[$key] = $line;
                         continue;
-                    }//echo 'checking line ' . $key . '<br />';
-
+                    }
+                    
                     $pos = 0;
                     $tab_width = $this->tab_width;
                     $length = strlen($line);
                     $result_line = '';
 
-                    //echo '<pre>line: ' . htmlspecialchars($line) . '</pre>';
                     $IN_TAG = false;
                     for ($i = 0; $i < $length; $i++) {
                         $char = substr($line, $i, 1);
@@ -1859,13 +1859,10 @@ class GeSHi
                             $IN_TAG = true;
                             $result_line .= '<';
                             ++$pos;
-                        } elseif (!$IN_TAG && '&' == $char) {
-                            //echo "matched &amp; in line... ";
-                            $substr = substr($line, $i + 3, 4);
+                        } elseif (!$IN_TAG && '&' == $char) {                            $substr = substr($line, $i + 3, 4);
                             //$substr_5 = substr($line, 5, 1);
                             $posi = strpos($substr, ';');
                             if (false !== $posi) {
-                                //echo "found entity at $posi\n";
                                 $pos += $posi + 3;
                             }
                             $result_line .= '&';
@@ -1878,7 +1875,6 @@ class GeSHi
                             //  3 => '&nbsp; &nbsp;' etc etc
                             // to use instead of building a string every time
                             $strs = array(0 => '&nbsp;', 1 => ' ');
-                            //echo "building (pos=$pos i=$i) (" . ($i - $pos) . ") " . ($tab_width - (($i - $pos) % $tab_width)) . " spaces\n";
                             for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); $k++) $str .= $strs[$k % 2];
                             $result_line .= $str;
                             //$pos--;
@@ -1887,7 +1883,6 @@ class GeSHi
 
                             if (false === strpos($line, "\t", $i + 1)) {
                                 //$lines[$key] = $result_line;
-                                //echo 'got here';
                                 $result_line .= substr($line, $i + 1);
                                 break;
                             }
@@ -1992,7 +1987,6 @@ class GeSHi
 	{
 		$stuff_to_parse = ' ' . @htmlspecialchars($stuff_to_parse, ENT_COMPAT, $this->encoding);
         $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
-		// These vars will disappear in the future
 		$func = '$this->change_case';
 		$func2 = '$this->add_url_to_keyword';
 
@@ -2174,7 +2168,7 @@ class GeSHi
 		$stuff_to_parse = str_replace('<|', '<span', $stuff_to_parse);
 		$stuff_to_parse = str_replace ( '|>', '</span>', $stuff_to_parse );
 
-		return substr(stripslashes($stuff_to_parse), 1);
+		return substr($stuff_to_parse, 1);
 	}
 
 	/**
