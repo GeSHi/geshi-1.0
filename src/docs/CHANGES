@@ -16,6 +16,7 @@ Version 1.0.7.9
   -  Added language files
      * Fortran (Cedric Arrabie)
      * SAS (Galen Johnson)
+     * CDFG (John Horigan)
   -  Fixed & in URL in java5 (ClemensWeiß)
   -  Added MD5 and SHA1 to mysql keywords (polarina)
   -  Fixes for highlight_lines_extra with line numbers (ithcy)
