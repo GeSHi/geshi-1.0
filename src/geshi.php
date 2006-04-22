@@ -527,6 +527,10 @@ class GeSHi
             return;
         }
 		$this->header_type = $type;
+        // Set a default overall style if the header is a <div>
+        if (GESHI_HEADER_DIV == $type && !$this->overall_style) {
+            $this->overall_style = 'font-family: monospace;';
+        }
 	}
 
 	/**
@@ -2267,6 +2271,8 @@ class GeSHi
             // Set vars to defaults for following loop
             $parsed_code = '';
             $i = 0;
+            $attrs = array();
+                        
             // Foreach line...
             foreach ($code as $line) {
                 $line = ( $line ) ? $line : '&nbsp;';
@@ -2275,10 +2281,12 @@ class GeSHi
                     $i % $this->line_nth_row == ($this->line_nth_row - 1)) {
             		// Set the attributes to style the line
                     if ($this->use_classes) {
-            			$attr = ' class="li2"';
+            			//$attr = ' class="li2"';
+                        $attrs['class'][] = 'li2';
             			$def_attr = ' class="de2"';
                     } else {
-            			$attr = ' style="' . $this->line_style2 . '"';
+            			//$attr = ' style="' . $this->line_style2 . '"';
+                        $attrs['style'][] = $this->line_style2;
             			// This style "covers up" the special styles set for special lines
             			// so that styles applied to special lines don't apply to the actual
             			// code on that line
@@ -2289,10 +2297,12 @@ class GeSHi
             		$end = '</div>';
             	} else {
             		if ($this->use_classes) {
-                        $attr = ' class="li1"';
+                        //$attr = ' class="li1"';
+                        $attrs['class'][] = 'li1';
             			$def_attr = ' class="de1"';
             		} else {
-                        $attr = ' style="' . $this->line_style1 . '"';
+                        //$attr = ' style="' . $this->line_style1 . '"';
+                        $attrs['style'][] = $this->line_style1;
             			$def_attr = ' style="' . $this->code_style . '"';
             		}
             		$start = "<div$def_attr>";
@@ -2302,17 +2312,25 @@ class GeSHi
             	++$i;
             	// Are we supposed to use ids? If so, add them
             	if ($this->add_ids) {
-            		$attr .= " id=\"{$this->overall_id}-{$i}\"";
+            		//$attr .= " id=\"{$this->overall_id}-{$i}\"";
+                    $attrs['id'][] = "$this->overall_id-$i";
             	}
             	if ($this->use_classes && in_array($i, $this->highlight_extra_lines)) {
-            		$attr .= " class=\"ln-xtra\"";
+            		//$attr .= " class=\"ln-xtra\"";
+                    $attrs['class'][] = 'ln-xtra';
             	}
             	if (!$this->use_classes && in_array($i, $this->highlight_extra_lines)) {
-            		$attr .= " style=\"{$this->highlight_extra_lines_style}\"";
+            		//$attr .= " style=\"{$this->highlight_extra_lines_style}\"";
+                    $attrs['style'][] = $this->highlight_extra_lines_style;
             	}
 
             	// Add in the line surrounded by appropriate list HTML
-            	$parsed_code .= "<li$attr>$start$line$end</li>$ls";
+                $attr_string = ' ';
+                foreach ($attrs as $key => $attr) {
+                    $attr_string .= $key . '="' . implode(' ', $attr) . '"';
+                }
+            	$parsed_code .= "<li$attr_string>$start$line$end</li>$ls";
+                $attrs = array();
         	}
         } else {
             // No line numbers, but still need to handle highlighting lines extra.
@@ -2330,7 +2348,8 @@ class GeSHi
             		} else {
             			$parsed_code .= "<div style=\"{$this->highlight_extra_lines_style}\">";
             		}
-            		$parsed_code .= $line . "</div>\n";
+                    // Remove \n because it stuffs up <pre> header
+            		$parsed_code .= $line . "</div>";
             	} else {
             		$parsed_code .= $line . "\n";
             	}

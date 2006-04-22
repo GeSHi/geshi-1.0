@@ -18,6 +18,7 @@ Version 1.0.7.9
      * SAS (Galen Johnson)
   -  Fixed & in URL in java5 (ClemensWeiß)
   -  Added MD5 and SHA1 to mysql keywords (polarina)
+  -  Fixes for highlight_lines_extra with line numbers (ithcy)
 Version 1.0.7.8
   -  Fixed blank at start of MySQL file (W. Tasin)
   -  Fixed smarty functions being broken (ultrabob)
