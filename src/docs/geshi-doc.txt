@@ -2,10 +2,10 @@
 read that instead]
 
 GeSHi Documentation
-Version 1.0.7.8
+Version 1.0.7.9
 
 Author:          Nigel McNie
-Copyright:       © Nigel McNie, 2004
+Copyright:       ï¿½ Nigel McNie, 2004
 Email:           nigel@geshi.org
 GeSHi Website:   http://qbnz.com/highlighter
 
