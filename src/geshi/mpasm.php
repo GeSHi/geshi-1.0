@@ -4,7 +4,7 @@
  * ---------
  * Author: Bakalex (bakalex@gmail.com)
  * Copyright: (c) 2004 Bakalex, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.8
+ * Release Version: 1.0.7.9
  * CVS Revision Version: $Revision$
  * Date Started: 2004/12/6
  * Last Modified: $Date$

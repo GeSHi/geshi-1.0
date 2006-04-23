@@ -4,7 +4,7 @@
  * --------
  * Author: Duncan Lock (dunc@dflock.co.uk)
  * Copyright: (c) 2006 Duncan Lock (http://dflock.co.uk/), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.8
+ * Release Version: 1.0.7.9
  * CVS Revision Version: $Revision$
  * Date Started: 2005/11/22
  * Last Modified: $Date$

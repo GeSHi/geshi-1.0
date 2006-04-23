@@ -4,7 +4,7 @@
  * --------
  * Author: Conny Brunnkvist (conny@fuchsia.se), W. Tasin (tasin@fhm.edu)
  * Copyright: (c) 2004 Fuchsia Open Source Solutions (http://www.fuchsia.se/)
- * Release Version: 1.0.7.8
+ * Release Version: 1.0.7.9
  * CVS Revision Version: $Revision$
  * Date Started: 2004/12/29
  * Last Modified: $Date$
