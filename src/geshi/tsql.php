@@ -13,7 +13,9 @@
  *
  * CHANGES
  * -------
- * 2004/01/23 (1.0.0)
+ * 2006/04/27 (1.0.1)
+ *  -  Removed \ escape character
+ * 2006/01/23 (1.0.0)
  *  -  First Release
  *
  * TODO (updated 2006/01/23)
@@ -45,7 +47,7 @@ $language_data = array (
 	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
 	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',
+	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
 		1 => array(
 			/* 

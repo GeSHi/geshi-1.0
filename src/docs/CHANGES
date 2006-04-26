@@ -12,6 +12,8 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.7.10
+  -  Removed \ as an escape character in T-SQL (Dave Jackson)
 Version 1.0.7.9
   -  Added language files
      * Fortran (Cedric Arrabie)
