@@ -21,6 +21,8 @@ Version 1.0.7.10
   -  Removed \ as an escape character in T-SQL (Dave Jackson)
   -  Reset extra lines to highlight if source is changed (Diogo Resende)
   -  Allow setting of lexic permissions in language files (SmokingRope)
+  -  Allow regexes to set a CSS class name (SmokingRope)
+  -  Added URL support to DOS language (mastrboy)
 Version 1.0.7.9
   -  Added language files
      * Fortran (Cedric Arrabie)

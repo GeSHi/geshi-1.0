@@ -70,28 +70,28 @@ $language_data = array (
 	'KEYWORDS' => array(
 	    /* Flow control keywords */
 		1 => array(
-			'IF', 'ELSE', 'GOTO',
-			'FOR', 'IN', 'DO',
-			'CALL', 'EXIT'
+			'if', 'else', 'goto',
+			'for', 'in', 'do',
+			'call', 'exit'
 			),
 	    /* IF statement keywords */
 		2 => array(
-			'NOT', 'EXIST', 'ERRORLEVEL',
-			'DEFINED',
-			'EQU', 'NEQ', 'LSS', 'LEQ', 'GTR', 'GEQ'
+			'not', 'exist', 'errorlevel',
+			'defined',
+			'equ', 'neq', 'lss', 'leq', 'gtr', 'geq'
 			),
 	    /* Internal commands */
 		3 => array(
-			'SHIFT',
-			'CD', 'DIR', 'ECHO',
-			'SETLOCAL', 'ENDLOCAL', 'SET',
-			'PAUSE'
+			'shift',
+			'cd', 'dir', 'echo',
+			'setlocal', 'endlocal', 'set',
+			'pause'
 			),
 	    /* Special files */
 
 		4 => array(
-			'PRN', 'NUL', 'LPT3', 'LPT2', 'LPT1', 'CON',
-			'COM4', 'COM3', 'COM2', 'COM1', 'AUX'
+			'prn', 'nul', 'lpt3', 'lpt2', 'lpt1', 'con',
+			'com4', 'com3', 'com2', 'com1', 'aux'
 			)
 		),
 	'SYMBOLS' => array(
@@ -140,6 +140,12 @@ $language_data = array (
 	'OOLANG' => false,
 	'OBJECT_SPLITTERS' => array(
 		),
+    'URLS' => array(
+         1 => 'http://www.ss64.com/nt/{FNAME}.html',
+         2 => 'http://www.ss64.com/nt/{FNAME}.html',
+         3 => 'http://www.ss64.com/nt/{FNAME}.html',
+         4 => 'http://www.ss64.com/nt/{FNAME}.html'
+         ),
 	'REGEXPS' => array(
 	/* Label */
 	    0 => array(
