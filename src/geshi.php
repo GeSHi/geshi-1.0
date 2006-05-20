@@ -123,6 +123,9 @@ define('GESHI_BEFORE', 3);
 /** The key of the regex array defining what bracket group in a
     matched search to put after the replacement */ 
 define('GESHI_AFTER', 4);
+/** The key of the regex array defining a custom keyword to use
+    for this regexp's html tag class */
+define('GESHI_CLASS', 5);
 
 /** Used in language files to mark comments */
 define('GESHI_COMMENTS', 0);
@@ -2143,7 +2146,13 @@ class GeSHi
 				if (!$this->use_classes) {
 					$attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
 				} else {
-					$attributes = ' class="re' . $key . '"';
+                   if(is_array($this->language_data['REGEXPS'][$key]) &&
+                            array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
+                        $attributes = ' class="'
+                            . $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
+                    } else {
+					   $attributes = ' class="re' . $key . '"';
+                    }
 				}
 				$stuff_to_parse = str_replace("!REG3XP$key!", "$attributes", $stuff_to_parse);
 			}
@@ -2673,7 +2682,15 @@ class GeSHi
 		foreach ($this->language_data['STYLES']['REGEXPS'] as $group => $styles) {
 			if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
                 !$this->lexic_permissions['REGEXPS'][$group])) {
-				$stylesheet .= "$selector.re$group {{$styles}}\n";
+                if (is_array($this->language_data['REGEXPS'][$group]) &&
+                         array_key_exists(GESHI_CLASS,
+                                    $this->language_data['REGEXPS'][$group])) {
+                    $stylesheet .= "$selector.";
+                    $stylesheet .= $this->language_data['REGEXPS'][$group][GESHI_CLASS];
+                    $stylesheet .= " {{$styles}}\n";
+                } else {
+				    $stylesheet .= "$selector.re$group {{$styles}}\n";
+                }
 			}
 		}
 
