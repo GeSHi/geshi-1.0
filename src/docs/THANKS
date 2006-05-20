@@ -66,6 +66,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - FreeBasic		Roberto Rossi
 - Fortran		Cedric Arrabie
 - GML			Jos� Jorge Enr�quez Rodr�guez
+- Groovy			Ivan F. Villanueva B.
 - Ini			Deguix
 - Inno			Thomas Klinger
 - Java 5		Clemens Bruckmann
@@ -83,6 +84,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Pascal		Tux
 - Perl			Andreas Gohr, Ben Keen
 - Python		Roberto Rossi
+- Reg			SmokingRope
 - Robots		Christian Lescuyer
 - Ruby			Amit Gupta
 - SAS			Galen Johnson
@@ -90,8 +92,11 @@ PEOPE WHO MADE LANGUAGE FILES
 - Scheme			Jon Raphaelson
 - Smarty			Alan Juden
 - T-SQL			Duncan Lock
+- Text			SmokingRope
+- TCL			Reid van Melle
 - VB.NET		Alan Juden
 - VisualFoxPro	Roberto Armellin
+- Winbatch			Craig Storey
 
 Do you want your name in here? Help me out! Make a language file, or suggest a new
 feature, or make a plugin for GeSHi for some other software, then tell me about it!
