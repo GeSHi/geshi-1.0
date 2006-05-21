@@ -4,7 +4,7 @@
  * -------
  * Author: Galen Johnson (solitaryr@gmail.com)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.9
+ * Release Version: 1.0.7.10
  * CVS Revision Version: $Revision$
  * Date Started: 2005/12/27
  * Last Modified: $Date$

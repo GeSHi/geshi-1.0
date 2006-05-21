@@ -4,7 +4,7 @@
  * --------
  * Author: Stephan Klimek (http://www.initware.org)
  * Copyright: Stephan Klimek (http://www.initware.org)
- * Release Version: 1.0.7.9
+ * Release Version: 1.0.7.10
  * CVS Revision Version: $Revision$
  * Date Started: 2005/07/20
  * Last Modified: $Date$

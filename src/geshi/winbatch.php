@@ -4,7 +4,7 @@
  * ------------
  * Author: Craig Storey (storey.craig@gmail.com)
  * Copyright: (c) 2004 Craig Storey (craig.xcottawa.ca)
- * Release Version: 1.0.0
+ * Release Version: 1.0.7.10
  * CVS Revision Version: $Revision$
  * Date Started: 2006/05/19
  * Last Modified: $Date$
