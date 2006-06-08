@@ -817,20 +817,20 @@ $language_data = array (
             0 => ''
 			),
 		'BRACKETS' => array(
-            0 => ''
+            0 => 'color: #080;'
 			),
 		'STRINGS' => array(
 			//0 => 'color: #A020F0;'
 			),
 		'NUMBERS' => array(
-            0 => ''
+            0 => 'color: #33f;'
 			),
 		'METHODS' => array(
             1 => '',
             2 => ''
 			),
 		'SYMBOLS' => array(
-            0 => ''
+            0 => 'color: #080;'
 			),
 		'REGEXPS' => array(
             0 => 'color:#A020F0;'
