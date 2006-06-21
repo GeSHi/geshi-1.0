@@ -4,7 +4,7 @@
  * --------
  * Author: deguix (cevo_deguix@yahoo.com.br)
  * Copyright: (c) 2005 deguix
- * Release Version: 1.0.7.10
+ * Release Version: 1.0.7.11
  * CVS Revision Version: $Revision$
  * Date Started: 2005/03/27
  * Last Modified: $Date$
