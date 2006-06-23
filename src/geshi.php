@@ -2,11 +2,12 @@
 /**
  * GeSHi - Generic Syntax Highlighter
  * 
- * The GeSHi class for Generic Syntax Highlighting. Please refer to the documentation
- * at http://qbnz.com/highlighter/documentation.php for more information about how to
- * use this class.
+ * The GeSHi class for Generic Syntax Highlighting. Please refer to the
+ * documentation at http://qbnz.com/highlighter/documentation.php for more
+ * information about how to use this class.
  *
- * For changes, release notes, TODOs etc, see the relevant files in the docs/ directory
+ * For changes, release notes, TODOs etc, see the relevant files in the docs/
+ * directory.
  *
  *   This file is part of GeSHi.
  *
@@ -2279,7 +2280,9 @@ class GeSHi
                         
             // Foreach line...
             foreach ($code as $line) {
-                $line = ( $line ) ? $line : '&nbsp;';
+                if ('' == $line || ' ' == $line) {
+                    $line = '&nbsp;';
+                }
                 // If this is a "special line"...
         	    if ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS &&
                     $i % $this->line_nth_row == ($this->line_nth_row - 1)) {
