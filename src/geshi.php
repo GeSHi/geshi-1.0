@@ -1415,11 +1415,11 @@ class GeSHi
 			return $this->finalise($result);
 		}
 
-		// Add spaces for regular expression matching and line numbers
-		$code = ' ' . $this->source . ' ';
 		// Replace all newlines to a common form.
-		$code = str_replace("\r\n", "\n", $code);
+		$code = str_replace("\r\n", "\n", $this->source);
 		$code = str_replace("\r", "\n", $code);
+        // Add spaces for regular expression matching and line numbers
+        $code = "\n" . $code . "\n";
 
 		// Initialise various stuff
 		$length           = strlen($code);
@@ -2345,10 +2345,11 @@ class GeSHi
             $code = explode("\n", $parsed_code);
             $parsed_code = '';
             $i = 0;
-            foreach ($code as $line)
-            {
+            foreach ($code as $line) {
             	// Make lines have at least one space in them if they're empty
-            	$line = ($line) ? $line : '&nbsp;';
+                if ('' == $line || ' ' == $line) {
+                    $line = '&nbsp;';
+                }
             	if (in_array(++$i, $this->highlight_extra_lines)) {
             		if ($this->use_classes) {
             			$parsed_code .= '<div class="ln-xtra">';
