@@ -1371,7 +1371,7 @@ $language_data = array (
 	'URLS' => array(
 		1 => '',
 		2 => '',
-		3 => 'http://www.google.com/search?q=allinurl%3A{FNAME}+java.sun.com&amp;bntl=1',
+		3 => 'http://www.google.com/search?hl=en&amp;q=allinurl%3A{FNAME}+java.sun.com&amp;bntI=I%27m%20Feeling%20Lucky',
 		4 => ''
 		),
 	'OOLANG' => true,
