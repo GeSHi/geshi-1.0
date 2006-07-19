@@ -14,6 +14,14 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.12
   -  Fixed lines being collapsed when they contain just a space (artlover)
+  -  Allowed matching for regexes using start/end matchers at the start/end
+     of the code (Sheri)
+  -  Added (dubious) fix for google "I'm feeling lucky" search for java keywords
+     (dubious in that it doesn't work for me)
+  -  mysql - Made the symbols into their own keyword group as the symbol group
+     isn't used. Added a style for multiline comments.
+  -  Added a couple of php5 keywords to the php language files.
+  -  Allow XML tags to have dashes.
 Version 1.0.7.11
   -  Added language files
      * Smalltalk (Bananeweizen)
