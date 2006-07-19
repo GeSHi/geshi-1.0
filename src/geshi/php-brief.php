@@ -64,7 +64,7 @@ $language_data = array (
 			'null', '__LINE__', '__FILE__',
 			'false', '&lt;?php', '?&gt;',
 			'true', 'var', 'default',
-			'function', 'class', 'new', '&amp;new'
+			'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends',
 			),
 		3 => array(
 			'func_num_args', 'func_get_arg', 'func_get_args', 'strlen', 'strcmp', 'strncmp', 'strcasecmp', 'strncasecmp', 'each', 'error_reporting', 'define', 'defined',
