@@ -101,8 +101,12 @@ $language_data = array (
    'MICROSECOND', 'SECOND', 'MINUTE', 'HOUR', 'DAY', 'WEEK', 'MONTH', 'QUARTER', 'YEAR', 'SECOND_MICROSECOND',  
    'MINUTE_MICROSECOND', 'MINUTE_SECOND', 'HOUR_MICROSECOND', 'HOUR_SECOND', 'HOUR_MINUTE', 'DAY_MICROSECOND', 
    'DAY_SECOND', 'DAY_MINUTE', 'DAY_HOUR', 'YEAR_MONTH', 
+   ),
+   5 => array(
+   'OR', 'XOR', 'AND', 'NOT', 'BETWEEN', 'IS', 'LIKE', 'REGEXP', 'IN', 'DIV',
+    'MOD', 'BINARY', 'COLLATE', 'LIMIT', 'OFFSET'
    ), 
-   ), 
+   ),
    'SYMBOLS' => array( 
    ':=', 
    '||', 'OR', 'XOR', 
@@ -127,15 +131,18 @@ $language_data = array (
    2 => false, 
    3 => false, 
    4 => false, 
+   5 => false
    ), 
    'STYLES' => array( 
    'KEYWORDS' => array( 
    1 => 'color: #993333; font-weight: bold;', 
    2 => 'color: #aa9933; font-weight: bold;', 
    3 => 'color: #aa3399; font-weight: bold;', 
-   4 => 'color: #33aa99; font-weight: bold;', 
+   4 => 'color: #33aa99; font-weight: bold;',
+   5 => 'color: #993333; font-weight: bold;'
    ), 
    'COMMENTS' => array( 
+   'MULTI' => 'color: #808080; font-style: italic;', 
    1 => 'color: #808080; font-style: italic;', 
    2 => 'color: #808080; font-style: italic;' 
    ), 
