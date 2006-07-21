@@ -2265,6 +2265,11 @@ class GeSHi
             $parsed_code = $this->indent($parsed_code);
         }
         
+        // purge some unnecessary stuff
+        $parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
+        $parsed_code = preg_replace('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
+
+        
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
         if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
@@ -2279,7 +2284,7 @@ class GeSHi
             $attrs = array();
                         
             // Foreach line...
-            foreach ($code as $line) {
+            foreach ($code as $line) {//echo "LINE:|".htmlspecialchars($line)."| ".strlen($line)."<br />\n";
                 if ('' == $line || ' ' == $line) {
                     $line = '&nbsp;';
                 }
@@ -2363,11 +2368,7 @@ class GeSHi
             	}
         	}
         }
-        
-        // purge some unnecessary stuff
-        $parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
-        $parsed_code = preg_replace('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
-        
+                
         if ($this->header_type == GESHI_HEADER_PRE) {
         	// enforce line numbers when using pre
             $parsed_code = str_replace('<li></li>', '<li>&nbsp;</li>', $parsed_code);
