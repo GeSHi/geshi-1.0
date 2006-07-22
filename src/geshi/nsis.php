@@ -50,7 +50,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'nsis',
+	'LANG_NAME' => 'NSIS',
 	'COMMENT_SINGLE' => array(1 => ';', 2 => '#'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

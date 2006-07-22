@@ -40,7 +40,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'CFM',
+	'LANG_NAME' => 'ColdFusion',
 	'COMMENT_SINGLE' => array(1 => '//'),
 	'COMMENT_MULTI' => array('<!--' => '-->','&lt;!---' => '---&gt;'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

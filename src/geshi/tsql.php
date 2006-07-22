@@ -40,7 +40,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'TSQL',
+	'LANG_NAME' => 'T-SQL',
 	'COMMENT_SINGLE' => array(1 => '--'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => GESHI_CAPS_UPPER,

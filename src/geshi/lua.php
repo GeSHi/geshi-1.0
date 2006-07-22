@@ -45,7 +45,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'LUA',
+	'LANG_NAME' => 'Lua',
 	'COMMENT_SINGLE' => array(1 => "--"),
 	'COMMENT_MULTI' => array('--[[' => ']]'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

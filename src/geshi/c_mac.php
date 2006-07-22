@@ -40,7 +40,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'C',
+	'LANG_NAME' => 'C (Mac)',
 	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

@@ -22,6 +22,8 @@ Version 1.0.7.12
      isn't used. Added a style for multiline comments.
   -  Added a couple of php5 keywords to the php language files.
   -  Allow XML tags to have dashes.
+  -  Changed LANG_NAME for many languages to be more sensible/correct case
+     (Matthias Mohr)
 Version 1.0.7.11
   -  Added language files
      * Smalltalk (Bananeweizen)

@@ -35,7 +35,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'Robots',
+    'LANG_NAME' => 'robots.txt',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

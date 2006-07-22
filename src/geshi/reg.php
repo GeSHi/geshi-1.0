@@ -59,7 +59,7 @@
 
  ************************************************************************************/
 $language_data = array (
-	'LANG_NAME' => 'REG',
+	'LANG_NAME' => 'Microsoft Registry',
 	'COMMENT_SINGLE' => array(1 =>';'),
 	'COMMENT_MULTI' => array( ),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

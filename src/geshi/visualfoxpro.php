@@ -42,7 +42,7 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'VFP',
+	'LANG_NAME' => 'Visual Fox Pro',
 	'COMMENT_SINGLE' => array(1 => "//", 2 => "\n*"),
 	'COMMENT_MULTI' => array(),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,

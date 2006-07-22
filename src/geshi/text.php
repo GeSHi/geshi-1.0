@@ -45,7 +45,7 @@
 
  ************************************************************************************/
 $language_data = array (
-	'LANG_NAME' => 'TEXT',
+	'LANG_NAME' => 'Text',
 	'COMMENT_SINGLE' => array( ),
 	'COMMENT_MULTI' => array( ),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
