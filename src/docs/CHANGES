@@ -24,6 +24,7 @@ Version 1.0.7.12
   -  Allow XML tags to have dashes.
   -  Changed LANG_NAME for many languages to be more sensible/correct case
      (Matthias Mohr)
+  -  Added case-sensitivity indices to python
 Version 1.0.7.11
   -  Added language files
      * Smalltalk (Bananeweizen)

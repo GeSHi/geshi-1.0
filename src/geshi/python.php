@@ -172,7 +172,10 @@ $language_data = array (
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
-		1 => true
+		1 => true,
+        2 => true,
+        3 => true,
+        4 => true
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
