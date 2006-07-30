@@ -936,7 +936,7 @@ $geshi->enable_ids($flag);
 
 Where $flag is true or not present to enable IDs, and false to disable them again if you need.
 
-The ID generated is in the form {overall-css-id}-{line-number}. So for example, if you set the overall CSS id to be "mycode", then the IDs for each line would by "mycode-1", "mycode-2" etc. If there is no CSS ID set, then the CSS class is used, but this isn't a good idea if you're going to have more than one block of code on any one page.
+The ID generated is in the form {overall-css-id}-{line-number}. So for example, if you set the overall CSS id to be "mycode", then the IDs for each line would by "mycode-1", "mycode-2" etc. If there is no CSS ID set, then one is made up in the form <tt>geshi-[4 random characters]</tt>, but this is not so useful for if you want to do javascript manipulation.
 3.17: Getting the Time of Styling
 Top | Contents | Next | Previous
 
