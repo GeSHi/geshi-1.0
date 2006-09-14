@@ -90,11 +90,11 @@ $language_data = array (
 			 				 2 => 'color: #0000FF;' ),
 		'COMMENTS' => array( 1 => 'color: #009900;' ),
 		'ESCAPE_CHAR' => array(),
-		'BRACKETS' => array(),
+		'BRACKETS' => array(0 => 'color: #000000;'),
 		'STRINGS' => array( 0 => 'color: #009900;' ),
 		'NUMBERS' => array(),
 		'METHODS' => array(),
-		'SYMBOLS' => array(),
+		'SYMBOLS' => array(0 => 'color: #000000;'),
 		'SCRIPT' => array(),
 		'REGEXPS' => array( 
 			0 => '',
@@ -210,5 +210,7 @@ $language_data = array (
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		)
 );
-$this->set_numbers_highlighting(false);
+if (is_a($this, 'GeSHi')) {
+    $this->set_numbers_highlighting(false);
+}
 ?>

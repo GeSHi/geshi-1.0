@@ -75,7 +75,9 @@ $language_data = array (
 	'SCRIPT_DELIMITERS' => array( ),
 	'HIGHLIGHT_STRICT_BLOCK' => array( )
 );
-$this->set_numbers_highlighting(false);
-$this->set_brackets_highlighting(false);
-$this->disable_highlighting();
+if (is_a($this, 'GeSHi')) {
+    $this->set_numbers_highlighting(false);
+    $this->set_brackets_highlighting(false);
+    $this->disable_highlighting();
+}
 ?>
