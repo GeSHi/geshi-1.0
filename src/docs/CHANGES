@@ -16,6 +16,9 @@ Version 1.0.7.14
   -  Added language files
      * thinBasic (Eros Olmi)
      * LaTeX (Matthais Pospiech)
+  -  Removed extra newlines at the end of some files
+  -  Fixed SF bug 1556404 - check before using $this in language files
+     (Clemens Weiß)
 Version 1.0.7.13
   -  Added language files
      * Uno IDL (Cedric Bosdonnat)
