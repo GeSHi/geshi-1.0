@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.13
   -  Added language files
      * Uno IDL (Cedric Bosdonnat)
+     * thinBasic (Eros Olmi)
   -  Fixed add_ids causing odd XHTML (RyanJ)
   -  Fixed extra newline being added to end of result (Andreas Gohr)
 Version 1.0.7.12
