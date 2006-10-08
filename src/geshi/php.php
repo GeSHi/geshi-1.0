@@ -61,7 +61,7 @@ $language_data = array (
         1 => array(
             'include', 'require', 'include_once', 'require_once',
             'for', 'foreach', 'as', 'if', 'elseif', 'else', 'while', 'do', 'endwhile',
-            'endif', 'switch', 'case', 'endswitch',
+            'endif', 'switch', 'case', 'endswitch', 'endfor', 'endforeach',
             'return', 'break', 'continue'
             ),
         2 => array(
