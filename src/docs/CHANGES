@@ -18,6 +18,8 @@ Version 1.0.7.15
      * IO (me, thanks to Johnathan Wright)
      * 
   -  Fixed use of colon in XML (Grigory Rubtsov)
+  -  Fixed notices in text.php, reg.php and latex.php when $this is not
+     available (Clemens Weiß)
 Version 1.0.7.14
   -  Added language files
      * thinBasic (Eros Olmi)
