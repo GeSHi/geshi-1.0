@@ -16,7 +16,7 @@ Version 1.0.7.15
   - Added language files
      * BNF (Rowan Rodrik van der Molen)
      * IO (me, thanks to Johnathan Wright)
-     * 
+     * mIRC (Alberto de Areba Sánchez)
   -  Fixed use of colon in XML (Grigory Rubtsov)
   -  Fixed notices in text.php, reg.php and latex.php when $this is not
      available (Clemens Weiß)
@@ -302,4 +302,5 @@ Version 1.0.0
   -  Initial Release
 
                     $Id$
+
 
