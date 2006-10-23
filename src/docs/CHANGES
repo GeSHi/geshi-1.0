@@ -22,6 +22,7 @@ Version 1.0.7.15
      available (Clemens Weiß)
   -  Made third parameter of geshi_highlight optional (Gaetano Giunta)
   -  Fix incorrect highlighting of the $# variable in bash (Michael Knight)
+  -  Fixed single line comment mistake in thinbasic.php (Eros Olmi)
 Version 1.0.7.14
   -  Added language files
      * thinBasic (Eros Olmi)
