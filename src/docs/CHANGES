@@ -20,6 +20,7 @@ Version 1.0.7.15
   -  Fixed use of colon in XML (Grigory Rubtsov)
   -  Fixed notices in text.php, reg.php and latex.php when $this is not
      available (Clemens Weiß)
+  -  Made third parameter of geshi_highlight optional (Gaetano Giunta)
 Version 1.0.7.14
   -  Added language files
      * thinBasic (Eros Olmi)
@@ -299,3 +300,4 @@ Version 1.0.0
   -  Initial Release
 
                     $Id$
+
