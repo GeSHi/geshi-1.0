@@ -4,7 +4,7 @@
  * -------
  * Author: Cedric Bosdonnat (cedricbosdo@openoffice.org)
  * Copyright: (c) 2006 Cedric Bosdonnat
- * Release Version: 1.0.7.14
+ * Release Version: 1.0.7.15
  * CVS Revision Version: $Revision$
  * Date Started: 2006/08/20
  * Last Modified: $Date$

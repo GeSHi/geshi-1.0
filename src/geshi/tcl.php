@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Reid van Melle (rvanmelle@gmail.com)
  * Copyright: (c) 2004 Reid van Melle (sorry@nowhere)
- * Release Version: 1.0.7.14
+ * Release Version: 1.0.7.15
  * CVS Revision Version: $Revision$
  * Date Started: 2006/05/05
  * Last Modified: $Date$
