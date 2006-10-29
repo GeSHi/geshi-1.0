@@ -2,7 +2,7 @@
 /*************************************************************************************
  * cssgen.php
  * ----------
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
+ * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie
  * Release Version: 1.0.7.3
  * CVS Revision Version: $Revision$

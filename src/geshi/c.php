@@ -2,7 +2,7 @@
 /*************************************************************************************
  * c.php
  * -----
- * Author: Nigel McNie (oracle.shinoda@gmail.com)
+ * Author: Nigel McNie (nigel@geshi.org)
  * Contributors:
  *  - Jack Lloyd (lloyd@randombit.net)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
