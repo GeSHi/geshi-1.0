@@ -4,7 +4,7 @@
  * -------
  * Author: Victor Engmark <victor.engmark@gmail.com>
  * Copyright: (c) 2006 Victor Engmark (http://l0b0.net/)
- * Release Version: 1.0.7.15
+ * Release Version: 1.0.7.16
  * CVS Revision Version: $Revision$
  * Date Started: 2006/10/26
  * Last Modified: $Date$
