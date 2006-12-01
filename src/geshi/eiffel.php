@@ -340,7 +340,7 @@
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #0600FF; background-color: #FFF0E0; font-weight: bold;',
+			1 => 'color: #0600FF; font-weight: bold;',
 			2 => 'color: #0600FF; font-weight: bold;',
 			3 => 'color: #800080;',
 			4 => 'color: #800000',
