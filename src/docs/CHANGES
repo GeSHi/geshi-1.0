@@ -16,6 +16,7 @@ Version 1.0.7.17
   -  Fixed up ends of files having too many newlines (binarygroop)
   -  Removed background colour on keyword group in eiffel (Julian Tschannen)
   -  Removed GESHI_DIR_SEPARATOR constant usage, it's unnecessary (Aleksey Zapparov)
+  -  Added /* ... */ comments to coldfusion (Jeff Howden)
 Version 1.0.7.16
   -  Added language files
      * C++/QT (Iulian M)
