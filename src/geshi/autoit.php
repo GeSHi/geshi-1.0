@@ -169,7 +169,7 @@ $language_data = array (
 		0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*",
 		),
 	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-/*	'SCRIPT_DELIMITERS' => array(
+	'SCRIPT_DELIMITERS' => array(
 		0 => array(
 			'<?php' => '?>'
 			),
@@ -182,8 +182,7 @@ $language_data = array (
 		3 => array(
 			'<script language="php">' => '</script>'
 			)
-		),*/
-
+		),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true,
 		1 => true,
