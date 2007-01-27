@@ -38,7 +38,7 @@
 $language_data = array (
 	'LANG_NAME' => 'AutoIT',
 	'COMMENT_SINGLE' => array(';'),
-	'COMMENT_MULTI' => array('#comments-start' => '#comments-end'),
+	'COMMENT_MULTI' => array('#comments-start' => '#comments-end', '#cs' => '#ce'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',

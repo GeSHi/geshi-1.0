@@ -17,6 +17,7 @@ Version 1.0.7.18
      longer than the ender (Robert Anthony).
   -  Fixed "</span" generated if a multiline comment is the last thing in the
      source (related to the above).
+  -  Added #cs => #ce comment markers to AutoIT (Robert Anthony)
 Version 1.0.7.17
   -  Fixed up ends of files having too many newlines (binarygroop)
   -  Removed background colour on keyword group in eiffel (Julian Tschannen)
