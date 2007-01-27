@@ -1688,9 +1688,14 @@ class GeSHi
 
 									$close_pos = strpos( $part, $close, $i + strlen($close) );
 
+                                    $oops = false;
 									if ($close_pos === false) {
 										$close_pos = strlen($part);
+                                        $oops = true;
 									}
+                                    else {
+                                        $close_pos -= ($com_len - strlen($close));
+                                    }
 
 									// Short-cut through all the multiline code
 									$rest_of_comment = @htmlspecialchars(substr($part, $i + $com_len, $close_pos - $i), ENT_COMPAT, $this->encoding);
@@ -1707,8 +1712,11 @@ class GeSHi
 									if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
                                         $test_str_match == GESHI_START_IMPORTANT) {
 										$test_str .= '</span>';
+                                        if ($oops) {
+                                            $test_str .= "\n";
+                                        }
 									}
-									$i = $close_pos + $com_len - 1;
+                                    $i = $close_pos + $com_len - 1;
 									// parse the rest
 									$result .= $this->parse_non_string_part($stuff_to_parse);
 									$stuff_to_parse = '';
