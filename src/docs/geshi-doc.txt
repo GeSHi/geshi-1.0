@@ -1378,7 +1378,7 @@ Here are the parts you should change:
     * <any-comments> - Any comments you have to make about this language file, perhaps on where you got the keywords for, what dialect of the language this language file is for etc etc. If you don't have any comments, remove the space for them.
     * <date-of-release - The date you released the language file to the public. If you simply send it to me for inclusion in a new GeSHi and don't release it, leave this blank, and I'll replace it with the date of the GeSHi release that it is first added to.
 
-Everything should remain the same, including $Revision$ and $Date$ (I know these may look funny but they have their purpose for those of you who don't know about CVS).
+Everything should remain the same, including $Revision$ and $Date$ (I know these may look funny but they have their purpose for those of you who don't know about SVN).
 
 Also: I'm not sure about the copyright on a new language file. I'm not a lawyer, could someone contact me about whether the copyright for a new language file should be exclusivly the authors, or joint with me (if included in a GeSHi release)?
 4.3.2: The First Indices
