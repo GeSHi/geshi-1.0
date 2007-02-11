@@ -13,6 +13,8 @@ Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.18
+  -  Added language files
+     * ZiLOG Z80 Assembly (BenBE)
   -  Fixed incorrect highlighting when the starter of a multiline comment is
      longer than the ender (Robert Anthony).
   -  Fixed "</span" generated if a multiline comment is the last thing in the
@@ -29,17 +31,17 @@ Version 1.0.7.16
      * C++/QT (Iulian M)
      * PL/SQL (Victor Engmark)
   -  Fixed up my e-mail address everywhere
-  -  Fixed notice with "error" property (IZIU Zielona GÃ³ra)
+  -  Fixed notice with "error" property (IZIU Zielona Góra)
   -  Added some entries to the get_language_name_from_extension table
      (Stebastian Schuberth)
 Version 1.0.7.15
   - Added language files
      * BNF (Rowan Rodrik van der Molen)
      * IO (me, thanks to Johnathan Wright)
-     * mIRC (Alberto de Areba SÃ¡nchez)
+     * mIRC (Alberto de Areba Sánchez)
   -  Fixed use of colon in XML (Grigory Rubtsov)
   -  Fixed notices in text.php, reg.php and latex.php when $this is not
-     available (Clemens WeiÃŸ)
+     available (Clemens Weiß)
   -  Made third parameter of geshi_highlight optional (Gaetano Giunta)
   -  Fix incorrect highlighting of the $# variable in bash (Michael Knight)
   -  Fixed single line comment mistake in thinbasic.php (Eros Olmi)
@@ -49,7 +51,7 @@ Version 1.0.7.14
      * LaTeX (Matthais Pospiech)
   -  Removed extra newlines at the end of some files
   -  Fixed SF bug 1556404 - check before using $this in language files
-     (Clemens WeiÃŸ)
+     (Clemens Weiß)
 Version 1.0.7.13
   -  Added language files
      * Uno IDL (Cedric Bosdonnat)
@@ -90,7 +92,7 @@ Version 1.0.7.9
      * Fortran (Cedric Arrabie)
      * SAS (Galen Johnson)
      * CFDG (John Horigan)
-  -  Fixed & in URL in java5 (ClemensWeiÃŸ)
+  -  Fixed & in URL in java5 (Clemens Weiß)
   -  Added MD5 and SHA1 to mysql keywords (polarina)
   -  Fixes for highlight_lines_extra with line numbers (ithcy)
   -  Fixed backslash characters being removed (ArTourter)
