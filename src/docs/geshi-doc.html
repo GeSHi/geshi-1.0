@@ -1186,6 +1186,8 @@ it points to a valid folder. If it doesn't, that's your tough luck ;)</p>
 <h5 id="changing-the-charset">3.6.4: Changing the Character Set</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#error-handling">Next</a> | <a href="#changing-using-load-from-file">Previous</a></div>
 
+<div class="note"><div class="note-header">Note:</div><p>As of GeSHi 1.0.7.18, you don't need to use this, as htmlspecialchars is not being used due to a security flaw in it (that is unpatched in even the most recent PHP4 versions, and in PHP5 &lt; 5.2). As long as you set the encoding properly with a php <a href="http://php.net/header">header()</a> call, your foreign characters will be displayed correctly.</p></div>
+
 <p>As of version 1.0.3, you can use the method <strong><tt>set_encoding</tt></strong> to specify the character set that your
 source is in. Valid names are those names that are valid for the PHP function <tt><a href="http://www.php.net/htmlentities">htmlentities()</a></tt>:</p>
 
@@ -1207,7 +1209,7 @@ deciding which language to choose. You can use this to override GeSHi's default 
 you're after, or perhaps does have your extension but under a different language. The lookup array is of the form:</p>
 
 <pre>array(
-	 *   'lang_name' => array('extension', 'extension', ...),
+	 *   'lang_name' =&gt; array('extension', 'extension', ...),
 	 *   'lang_name' ...
 	 * );</pre>
 
