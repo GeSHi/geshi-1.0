@@ -1384,6 +1384,11 @@ class GeSHi
 	/**
 	 * Sets the encoding used for htmlspecialchars(), for international
 	 * support.
+     *
+     * NOTE: This is not needed for now because htmlspecialchars() is not
+     * being used (it has a security hole in PHP4 that has not been patched).
+     * Maybe in a future version it may make a return for speed reasons, but
+     * I doubt it.
      * 
      * @param string The encoding to use for the source
      * @since 1.0.3
@@ -1422,7 +1427,7 @@ class GeSHi
 
 		// Firstly, if there is an error, we won't highlight
 		if ($this->error) {
-            $result = @htmlspecialchars($this->source, ENT_COMPAT, $this->encoding);
+            $result = GeSHi::hsc($this->source);
 			// Timing is irrelevant
 			$this->set_time($start_time, $start_time);
 			return $this->finalise($result);
@@ -1575,7 +1580,7 @@ class GeSHi
                             // A match of a string delimiter
 							if (($this->lexic_permissions['ESCAPE_CHAR'] && $ESCAPE_CHAR_OPEN) ||
                                 ($this->lexic_permissions['STRINGS'] && !$ESCAPE_CHAR_OPEN)) {
-								$char = htmlspecialchars($char, ENT_COMPAT, $this->encoding) . '</span>';
+								$char = GeSHi::hsc($char) . '</span>';
 							}
 						    $escape_me = false;
     						if ($HARDQUOTE_OPEN)
@@ -1608,7 +1613,7 @@ class GeSHi
 							} else {
 								$attributes = ' class="st0"';
 							}
-							$char = "<span$attributes>" . htmlspecialchars($char, ENT_COMPAT, $this->encoding);
+							$char = "<span$attributes>" . GeSHi::hsc($char);
 
 							$result .= $this->parse_non_string_part( $stuff_to_parse );
 							$stuff_to_parse = '';
@@ -1687,7 +1692,7 @@ class GeSHi
 											} else {
 												$attributes = ' class="coMULTI"';
 											}
-											$test_str = "<span$attributes>" . @htmlspecialchars($test_str, ENT_COMPAT, $this->encoding);
+											$test_str = "<span$attributes>" . GeSHi::hsc($test_str);
 										} else {
 											if (!$this->use_classes) {
 												$attributes = ' style="' . $this->important_styles . '"';
@@ -1699,7 +1704,7 @@ class GeSHi
 											$test_str = "<span$attributes>";
 										}
 									} else {
-										$test_str = @htmlspecialchars($test_str, ENT_COMPAT, $this->encoding);
+										$test_str = GeSHi::hsc($test_str);
 									}
 
 									$close_pos = strpos( $part, $close, $i + strlen($close) );
@@ -1709,7 +1714,7 @@ class GeSHi
 									}
 
 									// Short-cut through all the multiline code
-									$rest_of_comment = @htmlspecialchars(substr($part, $i + $com_len, $close_pos - $i), ENT_COMPAT, $this->encoding);
+									$rest_of_comment = GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i));
 									if (($this->lexic_permissions['COMMENTS']['MULTI'] ||
                                         $test_str_match == GESHI_START_IMPORTANT) &&
                                         ($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
@@ -1749,9 +1754,9 @@ class GeSHi
 											} else {
 												$attributes = ' class="co' . $comment_key . '"';
 											}
-											$test_str = "<span$attributes>" . @htmlspecialchars($this->change_case($test_str), ENT_COMPAT, $this->encoding);
+											$test_str = "<span$attributes>" . GeSHi::hsc($this->change_case($test_str));
 										} else {
-											$test_str = @htmlspecialchars($test_str, ENT_COMPAT, $this->encoding);
+											$test_str = GeSHi::hsc($test_str);
 										}
 										$close_pos = strpos($part, "\n", $i);
                                         $oops = false;
@@ -1759,7 +1764,7 @@ class GeSHi
 											$close_pos = strlen($part);
                                             $oops = true;
 										}
-										$test_str .= @htmlspecialchars(substr($part, $i + $com_len, $close_pos - $i - $com_len), ENT_COMPAT, $this->encoding);
+										$test_str .= GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i - $com_len));
 										if ($this->lexic_permissions['COMMENTS'][$comment_key]) {
 											$test_str .= "</span>";
 										}
@@ -1780,11 +1785,11 @@ class GeSHi
 							if (strtolower($this->encoding) == 'utf-8') {
 								//only escape <128 (we don't want to break multibyte chars)
 								if (ord($char) < 128) {
-									$char = @htmlspecialchars($char, ENT_COMPAT, $this->encoding);
+									$char = GeSHi::hsc($char);
 								}
 							} else {
 								//encode everthing
-								$char = @htmlspecialchars($char, ENT_COMPAT, $this->encoding);
+								$char = GeSHi::hsc($char);
 							}
 						}
 						// Where are we adding this char?
@@ -1804,7 +1809,7 @@ class GeSHi
 					$result .= $this->parse_non_string_part($stuff_to_parse);
 					$stuff_to_parse = '';
 				} else {
-					$result .= @htmlspecialchars($part, ENT_COMPAT, $this->encoding);
+					$result .= GeSHi::hsc($part);
 				}
 				// Close the <span> that surrounds the block
 				if ($this->strict_mode && $this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
@@ -1813,7 +1818,7 @@ class GeSHi
 				}
 			} else {
                 // Else not a block to highlight
-				$result .= @htmlspecialchars($part, ENT_COMPAT, $this->encoding);
+				$result .= GeSHi::hsc($part);
 			}
 		}
 
@@ -1985,7 +1990,7 @@ class GeSHi
 					return '<|UR1|"' .
                         str_replace(
                             array('{FNAME}', '.'),
-                            array(@htmlspecialchars($word, ENT_COMPAT, $this->encoding), '<DOT>'),
+                            array(GeSHi::hsc($word), '<DOT>'),
                             $this->language_data['URLS'][$group]
                         ) . '">';
 				}
@@ -2008,7 +2013,7 @@ class GeSHi
 	 */
 	function parse_non_string_part (&$stuff_to_parse)
 	{
-		$stuff_to_parse = ' ' . @htmlspecialchars($stuff_to_parse, ENT_COMPAT, $this->encoding);
+		$stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
         $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
 		$func = '$this->change_case';
 		$func2 = '$this->add_url_to_keyword';
@@ -2274,8 +2279,8 @@ class GeSHi
         // This is BUGGY!! My fault for bad code: fix coming in 1.2
         // @todo Remove this crap
         if ($this->enable_important_blocks &&
-            (strstr($parsed_code, @htmlspecialchars(GESHI_START_IMPORTANT, ENT_COMPAT, $this->encoding)) === false)) {
-        	$parsed_code = str_replace(@htmlspecialchars(GESHI_END_IMPORTANT, ENT_COMPAT, $this->encoding), '', $parsed_code);
+            (strstr($parsed_code, GeSHi::hsc(GESHI_START_IMPORTANT)) === false)) {
+        	$parsed_code = str_replace(GeSHi::hsc(GESHI_END_IMPORTANT), '', $parsed_code);
         }
         
         // Add HTML whitespace stuff if we're using the <div> header
@@ -2307,7 +2312,7 @@ class GeSHi
             $attrs = array();
                         
             // Foreach line...
-            foreach ($code as $line) {//echo "LINE:|".htmlspecialchars($line)."| ".strlen($line)."<br />\n";
+            foreach ($code as $line) {
                 if ('' == $line || ' ' == $line) {
                     $line = '&nbsp;';
                 }
@@ -2570,6 +2575,81 @@ class GeSHi
 		}
 		return $attributes;
 	}
+
+    /**
+     * Secure replacement for PHP built-in function htmlspecialchars().
+     *
+     * See ticket #427 (http://wush.net/trac/wikka/ticket/427) for the rationale
+     * for this replacement function.
+     *
+     * The INTERFACE for this function is almost the same as that for
+     * htmlspecialchars(), with the same default for quote style; however, there
+     * is no 'charset' parameter. The reason for this is as follows:
+     *
+     * The PHP docs say:
+     *      "The third argument charset defines character set used in conversion."
+     *
+     * I suspect PHP's htmlspecialchars() is working at the byte-value level and
+     * thus _needs_ to know (or asssume) a character set because the special
+     * characters to be replaced could exist at different code points in
+     * different character sets. (If indeed htmlspecialchars() works at
+     * byte-value level that goes some  way towards explaining why the
+     * vulnerability would exist in this function, too, and not only in
+     * htmlentities() which certainly is working at byte-value level.)
+     *
+     * This replacement function however works at character level and should
+     * therefore be "immune" to character set differences - so no charset
+     * parameter is needed or provided. If a third parameter is passed, it will
+     * be silently ignored.
+     *
+     * In the OUTPUT there is a minor difference in that we use '&#39;' instead
+     * of PHP's '&#039;' for a single quote: this provides compatibility with
+     *      get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES)
+     * (see comment by mikiwoz at yahoo dot co dot uk on
+     * http://php.net/htmlspecialchars); it also matches the entity definition
+     * for XML 1.0
+     * (http://www.w3.org/TR/xhtml1/dtds.html#a_dtd_Special_characters).
+     * Like PHP we use a numeric character reference instead of '&apos;' for the
+     * single quote. For the other special characters we use the named entity
+     * references, as PHP is doing.
+     *
+     * @author      {@link http://wikkawiki.org/JavaWoman Marjolein Katsma}
+     *
+     * @license     http://www.gnu.org/copyleft/lgpl.html
+     *              GNU Lesser General Public License
+     * @copyright   Copyright 2007, {@link http://wikkawiki.org/CreditsPage
+     *              Wikka Development Team}
+     *
+     * @access      public
+     * @param       string  $string string to be converted
+     * @param       integer $quote_style
+     *                      - ENT_COMPAT:   escapes &, <, > and double quote (default)
+     *                      - ENT_NOQUOTES: escapes only &, < and >
+     *                      - ENT_QUOTES:   escapes &, <, >, double and single quotes
+     * @return      string  converted string
+     */
+    function hsc($string, $quote_style=ENT_COMPAT)
+    {
+        // init
+        $aTransSpecchar = array(
+            '&' => '&amp;',
+            '"' => '&quot;',
+            '<' => '&lt;',
+            '>' => '&gt;'
+            );                      // ENT_COMPAT set
+
+        if (ENT_NOQUOTES == $quote_style)       // don't convert double quotes
+        {
+            unset($aTransSpecchar['"']);
+        }
+        elseif (ENT_QUOTES == $quote_style)     // convert single quotes as well
+        {
+            $aTransSpecchar["'"] = '&#39;'; // (apos) htmlspecialchars() uses '&#039;'
+        }
+
+        // return translated string
+        return strtr($string,$aTransSpecchar);
+    }
 
 	/**
 	 * Returns a stylesheet for the highlighted code. If $economy mode
