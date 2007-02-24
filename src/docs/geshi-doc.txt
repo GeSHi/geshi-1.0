@@ -2,10 +2,10 @@
 read that instead]
 
 GeSHi Documentation
-Version 1.0.7.16
+Version 1.0.7.18
 
 Author:          Nigel McNie
-Copyright:       � Nigel McNie, 2004
+Copyright:       � 2004 - 2007, Nigel McNie
 Email:           nigel@geshi.org
 GeSHi Website:   http://qbnz.com/highlighter
 
@@ -70,8 +70,9 @@ Contents
           o 3.13 Keyword URLs
                 + 3.13.1 Setting a URL for a Keyword Group
                 + 3.13.2 Disabling URLs for a Keyword Group
-                + 3.13.3 Styling Links
-                + 3.13.4 Setting the Link Target
+                + 3.13.3 Disabling all URLs for Keywords
+                + 3.13.4 Styling Links
+                + 3.13.5 Setting the Link Target
           o 3.14 Using Contextual Importance
           o 3.15 Highlighting Special Lines "Extra"
                 + Specifying the Lines to Highlight Extra
@@ -843,7 +844,12 @@ Top | Contents | Next | Previous
 
 It's easy to disable a URL for a keyword group: Simply use the method set_url_for_keyword_group to pass an empty string as the URL:
 $geshi->set_url_for_keyword_group($group, '');
-3.13.3: Styling Links
+3.13.3: Disabling all URLs for Keywords
+Top | Contents | Next | Previous
+
+As of GeSHi 1.0.7.18, you can disable all URL linking for keywords:
+$geshi->enable_keyword_links(false);
+3.13.4: Styling Links
 Top | Contents | Next | Previous
 
 You can also style the function links. You can style their default status, hovered, active and visited status. All of this is controlled by one method, set_link_styles:
@@ -857,7 +863,7 @@ Where $mode is one of four values:
     * GESHI_VISITED: The style of links that the user has already visited.
 
 And $styles is the stylesheet declarations to apply to the links.
-3.13.4: Setting the Link Target
+3.13.5: Setting the Link Target
 Top | Contents | Next | Previous
 
 Perhaps you want to set the target of link attributes, so the manual pages open in a new window? Use the set_link_target method:

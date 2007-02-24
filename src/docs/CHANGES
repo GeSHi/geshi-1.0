@@ -21,6 +21,7 @@ Version 1.0.7.18
      source (related to the above).
   -  Added #cs => #ce comment markers to AutoIT (Robert Anthony)
   -  Fixed spelling mistake for keyword in Python (wd3)
+  -  Added a method to enable/disable keyword linking (Ian McKellar)
 Version 1.0.7.17
   -  Fixed up ends of files having too many newlines (binarygroop)
   -  Removed background colour on keyword group in eiffel (Julian Tschannen)
