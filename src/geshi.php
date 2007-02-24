@@ -390,7 +390,13 @@ class GeSHi
      * The encoding to use for entity encoding
      * @var string
      */
-	var $encoding = 'ISO-8859-1';
+    var $encoding = 'ISO-8859-1';
+
+    /**
+     * Should keywords be linked?
+     * @var boolean
+     */
+    var $keyword_links = true;
 
     /**#@-*/
 
@@ -1387,7 +1393,17 @@ class GeSHi
         if ($encoding) {
 		  $this->encoding = $encoding;
         }
-	}
+    }
+
+    /**
+     * Turns linking of keywords on or off.
+     *
+     * @param boolean If true, links will be added to keywords
+     */
+    function enable_keyword_links ($enable = true)
+    {
+        $this->keyword_links = ($enable) ? true : false;
+    }
 
 	/**
 	 * Returns the code in $this->source, highlighted and surrounded by the
@@ -1941,7 +1957,12 @@ class GeSHi
      * @todo   Get rid of ender
 	 */
 	function add_url_to_keyword ($keyword, $group, $start_or_end)
-	{
+    {
+        if (!$this->keyword_links) {
+            // Keyword links have been disabled
+            return;
+        }
+
         if (isset($this->language_data['URLS'][$group]) &&
             $this->language_data['URLS'][$group] != '' &&
             substr($keyword, 0, 5) != '&lt;/') {
