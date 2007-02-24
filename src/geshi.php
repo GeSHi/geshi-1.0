@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.16');
+define('GESHI_VERSION', '1.0.7.17');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -2313,7 +2313,9 @@ class GeSHi
                         
             // Foreach line...
             foreach ($code as $line) {
-                if ('' == $line || ' ' == $line) {
+            	// Make lines have at least one space in them if they're empty
+            	// BenBE: Checking emptiness using trim instead of relying on blanks
+                if ('' == trim($line)) {
                     $line = '&nbsp;';
                 }
                 // If this is a "special line"...
@@ -2378,7 +2380,8 @@ class GeSHi
             $i = 0;
             foreach ($code as $line) {
             	// Make lines have at least one space in them if they're empty
-                if ('' == $line || ' ' == $line) {
+            	// BenBE: Checking emptiness using trim instead of relying on blanks
+                if ('' == trim($line)) {
                     $line = '&nbsp;';
                 }
             	if (in_array(++$i, $this->highlight_extra_lines)) {
