@@ -4,7 +4,7 @@
  * -------
  * Author: Diego ()
  * Copyright: (c) 2006 Diego
- * Release Version: 1.0.7.17
+ * Release Version: 1.0.7.18
  * Date Started: 2006/02/25
  *
  * ColdFusion language file for GeSHi.
