@@ -5,9 +5,7 @@
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
  * Release Version: 1.0.7.16
- * CVS Revision Version: $Revision$
  * Date Started: 2004/06/02
- * Last Modified: $Date$
  *
  * PHP language file for GeSHi (brief version).
  *

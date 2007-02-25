@@ -5,9 +5,7 @@
  * Author: Cedric Bosdonnat (cedricbosdo@openoffice.org)
  * Copyright: (c) 2006 Cedric Bosdonnat
  * Release Version: 1.0.7.16
- * CVS Revision Version: $Revision$
  * Date Started: 2006/08/20
- * Last Modified: $Date$
  *
  * Unoidl language file for GeSHi.
  *

@@ -5,9 +5,7 @@
  * Author: Reid van Melle (rvanmelle@gmail.com)
  * Copyright: (c) 2004 Reid van Melle (sorry@nowhere)
  * Release Version: 1.0.7.16
- * CVS Revision Version: $Revision$
  * Date Started: 2006/05/05
- * Last Modified: $Date$
  *
  * TCL/iTCL language file for GeSHi.
  *

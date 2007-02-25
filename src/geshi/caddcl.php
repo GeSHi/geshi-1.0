@@ -5,9 +5,7 @@
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.16
- * CVS Revision Version: $Revision$
  * Date Started: 2004/08/30
- * Last Modified: $Date$
  *
  * CAD DCL (Dialog Control Language) file for GeSHi.
  *
