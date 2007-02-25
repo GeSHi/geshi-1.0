@@ -4,7 +4,7 @@
  * --------
  * Author: Sean Hanna (smokingrope@gmail.com)
  * Copyright: (c) 2006 Sean Hanna 
- * Release Version: 1.0.7.16
+ * Release Version: 1.0.7.18
  * Date Started: 04/23/2006
  *
  * Standard Text File (No Syntax Highlighting).

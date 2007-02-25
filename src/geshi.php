@@ -151,7 +151,7 @@ define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
  * at http://qbnz.com/highlighter/documentation.php for more information
  * about how to use this class.
  * 
- * @package   core
+ * @package   geshi
  * @author    Nigel McNie <nigel@geshi.org>
  * @copyright (C) 2004 - 2007 Nigel McNie
  */

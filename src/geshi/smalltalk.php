@@ -4,7 +4,7 @@
  * --------
  * Author: Bananeweizen (Bananeweizen@gmx.de)
  * Copyright: (c) 2005 Bananeweizen (www.bananeweizen.de)
- * Release Version: 1.0.7.16
+ * Release Version: 1.0.7.18
  * Date Started: 2005/03/27
  *
  * Smalltalk language file for GeSHi.
