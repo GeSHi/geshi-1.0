@@ -5,9 +5,7 @@
  * Author: Benny Baumann (BenBE@omorphia.de)
  * Copyright: (c) 2007 Benny Baumann (http://www.omorphia.de/), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.17
- * CVS Revision Version: $Revision: 881 $
  * Date Started: 2007/02/06
- * Last Modified: $Date: 2007-01-10 12:14:38 +0100 (Mi, 10 Jan 2007) $
  *
  * ZiLOG Z80 Assembler language file for GeSHi.
  * Syntax definition as commonly used with table assembler TASM32
