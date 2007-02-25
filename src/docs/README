@@ -1,7 +1,7 @@
 
         GeSHi - GEneric Syntax HIlighter
         --------------------------------
-                Version 1.0.7.16
+                Version 1.0.7.18
 
 Author:          Nigel McNie
 Email:           nigel@geshi.org
@@ -31,5 +31,3 @@ GeSHi is free software, released under the GNU GPL. Please see the
 COPYING file for more information. If you do modify this program,
 please tell me about it! Perhaps you've made a good improvement that
 I can learn from :)
-
-     $Id$

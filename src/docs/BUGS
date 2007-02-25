@@ -1,6 +1,6 @@
 
                       BUGS - list of known bugs in GeSHi
-                               Version 1.0.7.16
+                               Version 1.0.7.18
 
 - Putting a > inside an HTML comment will close the comment abruptly. There's nothing that
   can be done about this (at least in the 1.0.X series of GeSHi), but version 1.2 will fix
@@ -18,7 +18,6 @@
   highlighted in just 6 seconds), but above about 25K things get a little slow... If
   you're using this as part of some larger software, you may want to think about
   making some sort of "cache" effect to speed things up and reduce server load.
-- Using encoding other than ISO-8859-1 is a problem, however it hasn't quite been pinpointed yet
 - The result is built by string replacement instead of by building another string based
   on the source, that would be much safer. The focus of releases beyond 1.0.7 will be on
   changing this behaviour, which may well fix some of the other bugs mentioned above.
