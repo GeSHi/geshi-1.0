@@ -19,6 +19,8 @@ Version 1.0.7.19
   -  Fixed invalid HTML being generated and doctypes not being highlighted over
      multiple lines properly when line numbers are on (Validome)
   -  Improved the ruby syntax highlighting by basing it off the Rails file
+  -  Changed some regular expressions to possibly help with badly performing
+     regex support in PHP (Tim Starling)
 Version 1.0.7.18
   -  Added language files
      * ZiLOG Z80 Assembly (BenBE)
