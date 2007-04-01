@@ -23,6 +23,7 @@ Version 1.0.7.19
      regex support in PHP (Tim Starling)
   -  Allow {TIME}, {LANGUAGE} and {VERSION} to be used in the header as well as
      the normal <TIME>/<LANGUAGE>/<VERSION> (AthanD)
+  -  Changed comment regex in bash to prevent malformed XHTML (rv1971)
 Version 1.0.7.18
   -  Added language files
      * ZiLOG Z80 Assembly (BenBE)

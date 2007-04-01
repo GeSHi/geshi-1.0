@@ -122,7 +122,7 @@ $language_data = array (
 		0 => "\\$\\{[a-zA-Z_][a-zA-Z0-9_]*?\\}",
 		1 => "\\$[a-zA-Z_][a-zA-Z0-9_]*",
         2 => "([a-zA-Z_][a-zA-Z0-9_]*)=",
-        3 => "(?<!\\$)#.*\n",
+        3 => "(?<!\\$)#[^\n]*",
         4 => "\\$#"
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
