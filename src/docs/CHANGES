@@ -13,8 +13,12 @@ Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.19
+  -  Added language files
+     * X++ (Simon Butcher)
+     * Rails (Moises Deniz)
   -  Fixed invalid HTML being generated and doctypes not being highlighted over
      multiple lines properly when line numbers are on (Validome)
+  -  Improved the ruby syntax highlighting by basing it off the Rails file
 Version 1.0.7.18
   -  Added language files
      * ZiLOG Z80 Assembly (BenBE)
