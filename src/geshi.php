@@ -2528,13 +2528,16 @@ class GeSHi {
         $keywords = $replacements = array();
 
         $keywords[] = '<TIME>';
-        $replacements[] = number_format($this->get_time(), 3);
+        $keywords[] = '{TIME}';
+        $replacements[] = $replacements[] = number_format($this->get_time(), 3);
 
         $keywords[] = '<LANGUAGE>';
-        $replacements[] = $this->language;
+        $keywords[] = '{LANGUAGE}';
+        $replacements[] = $replacements[] = $this->language;
 
         $keywords[] = '<VERSION>';
-        $replacements[] = GESHI_VERSION;
+        $keywords[] = '{VERSION}';
+        $replacements[] = $replacements[] = GESHI_VERSION;
 
         return str_replace($keywords, $replacements, $instr);
     }

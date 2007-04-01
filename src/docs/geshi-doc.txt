@@ -792,9 +792,9 @@ Top | Contents | Next | Previous
 
 In your header and footer, you can put special keywords that will be replaced with actual configuration values for this GeSHi object. The keywords you can use are:
 
-    * <TIME>: Is replaced by the time it took for the parse_code method - i.e., how long it took for your code to be highlighted. The time is returned to three decimal places.
-    * <LANGUAGE>: Is replaced by a nice, friendly version of the language name used to highlight this code.
-    * <VERSION>: The GeSHi version used to highlight the code.
+    * <TIME> or {TIME}: Is replaced by the time it took for the parse_code method - i.e., how long it took for your code to be highlighted. The time is returned to three decimal places.
+    * <LANGUAGE> or {LANGUAGE}: Is replaced by a nice, friendly version of the language name used to highlight this code.
+    * <VERSION> or {VERSION}: The GeSHi version used to highlight the code.
 
 3.12.2: Setting Header Content
 Top | Contents | Next | Previous
