@@ -21,6 +21,8 @@ Version 1.0.7.19
   -  Improved the ruby syntax highlighting by basing it off the Rails file
   -  Changed some regular expressions to possibly help with badly performing
      regex support in PHP (Tim Starling)
+  -  Allow {TIME}, {LANGUAGE} and {VERSION} to be used in the header as well as
+     the normal <TIME>/<LANGUAGE>/<VERSION> (AthanD)
 Version 1.0.7.18
   -  Added language files
      * ZiLOG Z80 Assembly (BenBE)
