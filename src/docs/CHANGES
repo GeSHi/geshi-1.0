@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.20
   -  Fixed java documentation search for keywords to actually go to the
      documentation (spaze)
+  -  Fixed outdated documentation URL of Perl language file (RuralMoon by BenBE)
 Version 1.0.7.19
   -  Added language files
      * X++ (Simon Butcher)
