@@ -146,7 +146,7 @@ $language_data = array (
 			)
 		),
 	'URLS' => array(
-		3 => 'http://www.perldoc.com/perl5.6/pod/func/{FNAME}.html'
+		3 => 'http://perldoc.perl.org/functions/{FNAME}.html'
 		),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(
