@@ -15,7 +15,12 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.20
   -  Fixed java documentation search for keywords to actually go to the
      documentation (spaze)
+  -  Applied fix for bug 1688864 (bad regexes) (Tim Starling)
+  -  Fixed comment CSS rule in visualfoxpro
+  -  ThinBASIC language update (Eros Olmi)
   -  Fixed outdated documentation URL of Perl language file (RuralMoon by BenBE)
+  -  Fixed tab replacement code not generating the correct number of spaces in
+     some cases (Guillermo Calvo)
 Version 1.0.7.19
   -  Added language files
      * X++ (Simon Butcher)

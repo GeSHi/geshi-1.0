@@ -1878,7 +1878,7 @@ class GeSHi {
                         $strs = array(0 => '&nbsp;', 1 => ' ');
                         for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); $k++) $str .= $strs[$k % 2];
                         $result_line .= $str;
-                        $pos++;
+                        $pos += ($i - $pos) % $tab_width + 1;
 
                         if (false === strpos($line, "\t", $i + 1)) {
                             $result_line .= substr($line, $i + 1);

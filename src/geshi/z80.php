@@ -119,9 +119,9 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
-		0 => '0[0-9a-fA-F][0-9a-fA-F]*[hH]',
-		1 => '\%[01]+[bB]',
-		2 => '^[_a-zA-Z][_a-zA-Z0-9]*\:'
+		0 => '0[0-9a-fA-F]{1,32}[hH]',
+		1 => '\%[01]{1,64}[bB]',
+		2 => '^[_a-zA-Z][_a-zA-Z0-9]{0,50}\:'
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(

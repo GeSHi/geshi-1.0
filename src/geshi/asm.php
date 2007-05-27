@@ -186,7 +186,7 @@ $language_data = array (
 		),
 	'REGEXPS' => array(
 		0 => '0[0-9a-fA-F]{1,32}[hH]',
-		1 => '[01][01]*[bB]'
+		1 => '[01]{1,64}[bB]'
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
