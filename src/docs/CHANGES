@@ -19,6 +19,8 @@ Version 1.0.7.20
   -  Fixed comment CSS rule in visualfoxpro
   -  ThinBASIC language update (Eros Olmi)
   -  Fixed outdated documentation URL of Perl language file (RuralMoon by BenBE)
+  -  Fixed tab replacement code not generating the correct number of spaces in
+     some cases (Guillermo Calvo)
 Version 1.0.7.19
   -  Added language files
      * X++ (Simon Butcher)
