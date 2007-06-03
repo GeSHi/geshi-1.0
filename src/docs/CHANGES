@@ -21,6 +21,7 @@ Version 1.0.7.20
   -  Fixed outdated documentation URL of Perl language file (RuralMoon by BenBE)
   -  Fixed tab replacement code not generating the correct number of spaces in
      some cases (Guillermo Calvo)
+  -  Fixed two typos in Z80 language file
   -  Added language files
      * Motorola 68k Assembler (for MC68HC908GP32 Microcontroller) (BenBE)
 Version 1.0.7.19

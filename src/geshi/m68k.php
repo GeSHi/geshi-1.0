@@ -50,7 +50,7 @@ $language_data = array (
 	'KEYWORDS' => array(
 		/*CPU*/
 		1 => array(
-			'adc','add'.'ais','aix','and','asl','asr','bcc','bclr','bcs','beq',
+			'adc','add','ais','aix','and','asl','asr','bcc','bclr','bcs','beq',
 			'bge','bgt','bhcc','bhcs','bhi','bhs','bih','bil','bit','ble','blo',
 			'bls','blt','bmc','bmi','bms','bne','bpl','bra','brclr','brn',
             'brset','bset','bsr','cbeq','clc','cli','clr','cmp','com','cphx',
