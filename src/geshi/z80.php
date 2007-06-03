@@ -14,7 +14,7 @@
  * CHANGES
  * -------
  * 2007/06/03 (1.0.1)
- *   -  Fixed 2 typos in the language file
+ *   -  Fixed two typos in the language file
  * 2007/02/06 (1.0.0)
  *   -  First Release
  *
@@ -59,7 +59,7 @@ $language_data = array (
 			'reti','retn','rl','rla','rlc','rlca','rld','rr','rra','rrc','rrca',
 			'rrd','rst','sbc','scf','set','sla','sl1','sll','slp','sra','srl',
 			'sub','tst','tstio','xor'
-		  ),
+			),
 		/*registers*/
 		2 => array(
 			'a','b','c','d','e','h','l',
