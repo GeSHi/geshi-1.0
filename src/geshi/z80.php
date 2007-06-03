@@ -13,6 +13,8 @@
  *
  * CHANGES
  * -------
+ * 2007/06/03 (1.0.1)
+ *   -  Fixed 2 typos in the language file
  * 2007/02/06 (1.0.0)
  *   -  First Release
  *
@@ -49,11 +51,11 @@ $language_data = array (
 	'KEYWORDS' => array(
 		/*CPU*/
 		1 => array(
-			'adc','add'.'and','bit','call','ccf','cp','cpd','cpdr','cpir','cpi',
+			'adc','add','and','bit','call','ccf','cp','cpd','cpdr','cpir','cpi',
 			'cpl','daa','dec','di','djnz','ei','ex','exx','halt','im','in',
 			'in0','inc','ind','indr','inir','ini','jp','jr','ld','ldd','lddr',
 			'ldir','ldi','mlt','neg','nop','or','otdm','otdmr','otdr','otim',
-			'otimr','otir','out','out0','outd','outi','pop','push','res'.'ret',
+			'otimr','otir','out','out0','outd','outi','pop','push','res','ret',
 			'reti','retn','rl','rla','rlc','rlca','rld','rr','rra','rrc','rrca',
 			'rrd','rst','sbc','scf','set','sla','sl1','sll','slp','sra','srl',
 			'sub','tst','tstio','xor'
