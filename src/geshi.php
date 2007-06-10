@@ -273,6 +273,13 @@ class GeSHi {
     var $footer_content_style = '';
 
     /**
+     * Tells if a block around the highlighted source should be forced
+     * if not using line numbering
+     * @var boolean
+     */
+    var $force_code_block = false;
+
+    /**
      * The styles for hyperlinks in the code
      * @var array
      */
@@ -1252,6 +1259,17 @@ class GeSHi {
      */
     function set_footer_content_style($style) {
         $this->footer_content_style = $style;
+    }
+
+    /**
+     * Sets whether to force a surrounding block around
+     * the highlighted code or not
+     *
+     * @param boolean Tells whether to enable or disable this feature
+     * @since 1.0.7.20
+     */
+    function enable_inner_code_block($flag) {
+        $this->force_code_block = (bool)$flag;
     }
 
     /**
@@ -2469,7 +2487,8 @@ class GeSHi {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "$header<ol$ol_attributes>";
             }
-            return $header;
+            return $header .
+                ($this->force_code_block ? '<div>' : '');
         }
 
         // Work out what to return and do it
@@ -2483,10 +2502,12 @@ class GeSHi {
         }
         else {
             if ($this->header_type == GESHI_HEADER_PRE) {
-                return "<pre$attributes>$header";
+                return "<pre$attributes>$header"  .
+                    ($this->force_code_block ? '<div>' : '');
             }
             else if ($this->header_type == GESHI_HEADER_DIV) {
-                return "<div$attributes>$header";
+                return "<div$attributes>$header" .
+                    ($this->force_code_block ? '<div>' : '');
             }
         }
     }
@@ -2535,13 +2556,15 @@ class GeSHi {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "</ol>$footer_content</div>";
             }
-            return "$footer_content</div>";
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer_content</div>";
         }
         else {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "</ol>$footer_content</pre>";
             }
-            return "$footer_content</pre>";
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer_content</pre>";
         }
     }
 
