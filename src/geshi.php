@@ -313,6 +313,14 @@ class GeSHi {
      */
     var $highlight_extra_lines_style = 'color: #cc0; background-color: #ffc;';
 
+	/**
+	 * The line ending
+	 * If null, nl2br() will be used on the result string.
+	 * Otherwise, all instances of \n will be replaced with $line_ending
+	 * @var string
+	 */
+	var $line_ending = null;
+
     /**
      * Number at which line numbers should start at
      * @var int
@@ -372,6 +380,12 @@ class GeSHi {
      * @var int
      */
     var $tab_width = 8;
+
+	/**
+	 * Should we use language-defined tab stop widths?
+	 * @var int
+	 */
+	var $use_language_tab_width = false;
 
     /**
      * Default target for keyword links
@@ -973,7 +987,35 @@ class GeSHi {
      */
     function set_tab_width($width) {
         $this->tab_width = intval($width);
+        //Check if it fit's the constraints:
+        if($this->tab_width < 1) {
+            //Return it to the default
+            $this->tab_width = 8;
+        }
     }
+
+	/**
+	 * Sets whether or not to use tab-stop width specifed by language
+	 *
+	 * @param boolean Whether to use language-specific tab-stop widths
+	 */
+	function set_use_language_tab_width($use) {
+		$this->use_language_tab_width = (bool) $use;
+	}
+
+	/**
+	 * Returns the tab width to use, based on the current language and user
+	 * preference
+	 *
+	 * @return int Tab width
+	 */
+	function get_real_tab_width() {
+		if (!$this->use_language_tab_width || !isset($this->language_data['TAB_WIDTH'])) {
+			return $this->tab_width;
+		} else {
+			return $this->language_data['TAB_WIDTH'];
+		}
+	}
 
     /**
      * Enables/disables strict highlighting. Default is off, calling this
@@ -1310,6 +1352,15 @@ class GeSHi {
     function set_highlight_lines_extra_style($styles) {
         $this->highlight_extra_lines_style = $styles;
     }
+
+	/**
+	 * Sets the line-ending
+	 *
+	 * @param string The new line-ending
+	 */
+	function set_line_ending($line_ending) {
+		$this->line_ending = (string)$line_ending;
+	}
 
     /**
      * Sets what number line numbers should start at. Should
@@ -1827,6 +1878,7 @@ class GeSHi {
         /// Replace tabs with the correct number of spaces
         if (false !== strpos($result, "\t")) {
             $lines = explode("\n", $result);
+			$tab_width = $this->get_real_tab_width();
             foreach ($lines as $key => $line) {
                 if (false === strpos($line, "\t")) {
                     $lines[$key] = $line;
@@ -1834,7 +1886,6 @@ class GeSHi {
                 }
 
                 $pos = 0;
-                $tab_width = $this->tab_width;
                 $length = strlen($line);
                 $result_line = '';
 
@@ -1904,8 +1955,12 @@ class GeSHi {
         $result = str_replace('  ', ' &nbsp;', $result);
 
         if ($this->line_numbers == GESHI_NO_LINE_NUMBERS) {
-            $result = nl2br($result);
-        }
+			if ($this->line_ending === null) {
+				$result = nl2br($result);
+			} else {
+				$result = str_replace("\n", $this->line_ending, $result);
+			}
+		}
         return $result;
     }
 
