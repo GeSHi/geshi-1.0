@@ -12,7 +12,7 @@
  * CHANGES
  * -------
  * 2007/06/11 (1.0.7.20)
- *  -  Added a lot of keywords (BenBE / Aurel)
+ *  -  Added a lot of keywords (BenBE / Jan G)
  * 2004/11/27 (1.0.2)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.1)
