@@ -25,8 +25,10 @@ Version 1.0.7.20
   -  Applied fix for bug 1705482 (Jason Frame)
      * Configurable line endings (Replace \n by custom string)
      * per-language tab-widths (Adjustable for width>=1)
-  -  Added a possibility to force generation of a surrounding tag around 
-     the highlighted source 
+     * Included defaults for ASM (x86, m68k, z80), C, C (Mac), C++, C++ (QT), C#,
+       Delphi, CSS,, HTML, PHP, PHP (Brief), QBasic, Ruby, XML
+  -  Added a possibility to force generation of a surrounding tag around
+     the highlighted source
   -  Added language files
      * Motorola 68k Assembler (for MC68HC908GP32 Microcontroller) (BenBE)
 Version 1.0.7.19
@@ -354,7 +356,4 @@ Version 1.0.1
 
 Version 1.0.0
   -  Initial Release
-
-                    $Id$
-
 
