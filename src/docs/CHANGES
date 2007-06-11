@@ -22,6 +22,7 @@ Version 1.0.7.20
   -  Fixed tab replacement code not generating the correct number of spaces in
      some cases (Guillermo Calvo)
   -  Fixed two typos in Z80 language file
+  -  Applied fix for bug 1730168 (Daniel Naber)
   -  Applied fix for bug 1705482 (Jason Frame)
      * Configurable line endings (Replace \n by custom string)
      * per-language tab-widths (Adjustable for width>=1)
