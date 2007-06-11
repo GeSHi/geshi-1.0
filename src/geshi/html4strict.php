@@ -248,7 +248,8 @@ $language_data = array (
 		0 => false,
 		1 => false,
 		2 => true
-		)
+        ),
+    'TAB_WIDTH' => 4
 );
 
 ?>
