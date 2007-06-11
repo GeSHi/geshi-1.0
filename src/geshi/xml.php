@@ -98,7 +98,7 @@ $language_data = array (
 		),
 	'REGEXPS' => array(
 		0 => array(
-			GESHI_SEARCH => '([a-z\-:]+)(=)',
+			GESHI_SEARCH => '([a-z_\-:]+)(=)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => 'i',
 			GESHI_BEFORE => '',
