@@ -31,7 +31,7 @@ Version 1.0.7.20
   -  Added a possibility to force generation of a surrounding tag around
      the highlighted source
   -  Applied fix for additional keywords for the bash language
-     (cf. http://bash.thefreebizhost.com/bash_geshi.php, BenBE)
+     (cf. http://bash.thefreebizhost.com/bash_geshi.php, BenBE / Jan G)
   -  Added language files
      * Motorola 68k Assembler (for MC68HC908GP32 Microcontroller) (BenBE)
 Version 1.0.7.19
