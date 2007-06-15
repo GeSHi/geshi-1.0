@@ -1,6 +1,6 @@
 <?php
 /*************************************************************************************
- * asm.php
+ * z80.php
  * -------
  * Author: Benny Baumann (BenBE@omorphia.de)
  * Copyright: (c) 2007 Benny Baumann (http://www.omorphia.de/), Nigel McNie (http://qbnz.com/highlighter)
