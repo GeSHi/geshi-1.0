@@ -13,6 +13,7 @@ Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.20
+     * ABAP (Andres Picazo)
   -  Fixed java documentation search for keywords to actually go to the
      documentation (spaze)
   -  Applied fix for bug 1688864 (bad regexes) (Tim Starling)
