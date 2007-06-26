@@ -14,6 +14,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.20
      * ABAP (Andres Picazo)
+     * Motorola 68k Assembler (for MC68HC908GP32 Microcontroller) (BenBE)
   -  Fixed java documentation search for keywords to actually go to the
      documentation (spaze)
   -  Applied fix for bug 1688864 (bad regexes) (Tim Starling)
@@ -33,8 +34,7 @@ Version 1.0.7.20
      the highlighted source
   -  Applied fix for additional keywords for the bash language
      (cf. http://bash.thefreebizhost.com/bash_geshi.php, BenBE / Jan G)
-  -  Added language files
-     * Motorola 68k Assembler (for MC68HC908GP32 Microcontroller) (BenBE)
+  -  Fix bad colour definition in GML language (Andreas Gohr)
 Version 1.0.7.19
   -  Added language files
      * X++ (Simon Butcher)
