@@ -4,7 +4,7 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.19
+ * Release Version: 1.0.7.20
  * Date Started: 2004/08/20
  *
  * BASH language file for GeSHi.
