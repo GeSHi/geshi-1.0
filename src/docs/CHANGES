@@ -20,6 +20,7 @@ Version 1.0.7.20
   -  Applied fix for bug 1688864 (bad regexes) (Tim Starling)
   -  Fixed comment CSS rule in visualfoxpro
   -  ThinBASIC language update (Eros Olmi)
+  -  mIRC language update (BenBE)
   -  Fixed outdated documentation URL of Perl language file (RuralMoon by BenBE)
   -  Fixed tab replacement code not generating the correct number of spaces in
      some cases (Guillermo Calvo)
