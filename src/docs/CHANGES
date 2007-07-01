@@ -13,6 +13,9 @@ Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.20
+  -  Added language files
+     * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
+     * Haskell (Dagit)
      * ABAP (Andres Picazo)
      * Motorola 68k Assembler (for MC68HC908GP32 Microcontroller) (BenBE)
   -  Fixed java documentation search for keywords to actually go to the
