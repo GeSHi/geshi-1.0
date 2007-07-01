@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Adrien Friggeri (adrien@friggeri.net)
  * Copyright: (c) 2007 Adrien Friggeri (http://www.friggeri.net)
- * Release Version: 0.1.0
+ * Release Version: 1.0.7.20
  * CVS Revision Version: $Revision: 958 $
  * Date Started: 2007/05/30
  * Last Modified: $Date: 2007-04-01 23:51:03 +1200 (Sun, 01 Apr 2007) $
