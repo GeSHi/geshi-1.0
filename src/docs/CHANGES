@@ -40,6 +40,8 @@ Version 1.0.7.20
   -  Applied fix for additional keywords for the bash language
      (cf. http://bash.thefreebizhost.com/bash_geshi.php, BenBE / Jan G)
   -  Fix bad colour definition in GML language (Andreas Gohr)
+  -  Fixed phpdoc comments not being indented one space if they should be (Andy
+     Hassall)
 Version 1.0.7.19
   -  Added language files
      * X++ (Simon Butcher)

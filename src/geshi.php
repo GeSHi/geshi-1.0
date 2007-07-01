@@ -1750,7 +1750,10 @@ class GeSHi {
                                         ($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
                                         count($this->highlight_extra_lines) > 0)) {
                                         // strreplace to put close span and open span around multiline newlines
-                                        $test_str .= str_replace("\n", "</span>\n<span$attributes>", $rest_of_comment);
+                                        $test_str .= str_replace(
+                                            "\n", "</span>\n<span$attributes>", 
+                                            str_replace("\n ", "\n&nbsp;", $rest_of_comment)
+                                        );
                                     }
                                     else {
                                         $test_str .= $rest_of_comment;
