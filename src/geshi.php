@@ -2221,20 +2221,27 @@ class GeSHi {
         //
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
-                if (!$this->use_classes) {
-                    $attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
+                if (is_callable($this->language_data['STYLES']['REGEXPS'][$key])) {
+                    $func = $this->language_data['STYLES']['REGEXPS'][$key];
+                    $stuff_to_parse = preg_replace("/!REG3XP$key!(.*)\|>/eU",
+                        "' style=\"' . call_user_func(\"$func\", '\\1') . '\"\\1|>'", $stuff_to_parse);
                 }
                 else {
-                   if(is_array($this->language_data['REGEXPS'][$key]) &&
-                            array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
-                        $attributes = ' class="'
-                            . $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
+                    if (!$this->use_classes) {
+                        $attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
                     }
-                   else {
-                       $attributes = ' class="re' . $key . '"';
+                    else {
+                       if (is_array($this->language_data['REGEXPS'][$key]) &&
+                                array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
+                            $attributes = ' class="'
+                                . $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
+                        }
+                       else {
+                           $attributes = ' class="re' . $key . '"';
+                        }
                     }
+                    $stuff_to_parse = str_replace("!REG3XP$key!", "$attributes", $stuff_to_parse);
                 }
-                $stuff_to_parse = str_replace("!REG3XP$key!", "$attributes", $stuff_to_parse);
             }
         }
 
