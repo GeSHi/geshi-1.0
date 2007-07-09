@@ -14,6 +14,8 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.21
   -  Fixed problem with mIRC language highlighting spaces only (BenBE)
+  -  Language files can now specify a function to be called to decide the
+     colour of a regular expression match
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
