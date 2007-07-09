@@ -2124,12 +2124,12 @@ or joint with me (if included in a GeSHi release)?</p>
 
 <p>Here is an example from the php language file of the first indices:</p>
 
-<pre>	'LANG_NAME' => 'PHP',
-	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
-	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
-	'ESCAPE_CHAR' => '\\',</pre>
+<pre>	'LANG_NAME' =&gt; 'PHP',
+	'COMMENT_SINGLE' =&gt; array(1 =&gt; '//', 2 =&gt; '#'),
+	'COMMENT_MULTI' =&gt; array('/*' =&gt; '*/'),
+	'CASE_KEYWORDS' =&gt; GESHI_CAPS_NO_CHANGE,
+	'QUOTEMARKS' =&gt; array("'", '"'),
+	'ESCAPE_CHAR' =&gt; '\\',</pre>
 
 <p>The first indices are the first few lines of a language file before the KEYWORDS index. These indices specify:</p>
 
@@ -2169,13 +2169,13 @@ inbuilt functions, data types, predefined constants etc etc.</p>
 
 <p>Here's a (shortened) example from the php language file:</p>
 
-<pre>	'KEYWORDS' => array(
-		1 => array(
+<pre>	'KEYWORDS' =&gt; array(
+		1 =&gt; array(
 			'include', 'require', 'include_once', 'require_once',
 			'for', 'foreach', 'as', 'if', 'elseif', 'else', 'while', 'do', 'endwhile', 'endif', 'switch', 'case', 'endswitch',
 			'return', 'break'
 			),
-		2 => array(
+		2 =&gt; array(
 			'null', '__LINE__', '__FILE__',
 			'false', '&lt;?php', '?&gt;', '&lt;?',
 			'&lt;script language=', '&lt;/script&gt;',
@@ -2189,7 +2189,7 @@ inbuilt functions, data types, predefined constants etc etc.</p>
 			'E_CORE_ERROR', 'E_CORE_WARNING', 'E_COMPILE_ERROR', 'E_COMPILE_WARNING', 'E_USER_ERROR',
 			'E_USER_WARNING', 'E_USER_NOTICE', 'E_ALL'
 			),
-		3 => array(
+		3 =&gt; array(
 			'zlib_get_coding_type','zend_version','zend_logo_guid','yp_order','yp_next',
 			'yp_match','yp_master','yp_get_default_domain','yp_first','yp_errno','yp_err_string',
 			'yp_cat','yp_all','xml_set_unparsed_entity_decl_handler','xml_set_start_namespace_decl_handler','xml_set_processing_instruction_handler','xml_set_object',
@@ -2236,14 +2236,14 @@ section: here you can set which keyword groups are case sensitive.</p>
 
 <p>Here's an example:</p>
 
-<pre>	'SYMBOLS' => array(
-		'(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>'
+<pre>	'SYMBOLS' =&gt; array(
+		'(', ')', '[', ']', '{', '}', '!', '@', '%', '&amp;', '*', '|', '/', '&lt;', '&gt;'
 		),
-	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
+	'CASE_SENSITIVE' =&gt; array(
+		GESHI_COMMENTS =&gt; false,
+		1 =&gt; false,
+		2 =&gt; false,
+		3 =&gt; false,
 		),</pre>
 
 <ul>
@@ -2264,43 +2264,43 @@ language file.</p>
 
 <p>Here's an example:</p>
 
-<pre>	'STYLES' => array(
-		'KEYWORDS' => array(
-			1 => 'color: #b1b100;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #000066;'
+<pre>	'STYLES' =&gt; array(
+		'KEYWORDS' =&gt; array(
+			1 =&gt; 'color: #b1b100;',
+			2 =&gt; 'color: #000000; font-weight: bold;',
+			3 =&gt; 'color: #000066;'
 			),
-		'COMMENTS' => array(
-			1 => 'color: #808080; font-style: italic;',
-			2 => 'color: #808080; font-style: italic;',
-			'MULTI' => 'color: #808080; font-style: italic;'
+		'COMMENTS' =&gt; array(
+			1 =&gt; 'color: #808080; font-style: italic;',
+			2 =&gt; 'color: #808080; font-style: italic;',
+			'MULTI' =&gt; 'color: #808080; font-style: italic;'
 			),
-		'ESCAPE_CHAR' => array(
-			0 => 'color: #000099; font-weight: bold;'
+		'ESCAPE_CHAR' =&gt; array(
+			0 =&gt; 'color: #000099; font-weight: bold;'
 			),
-		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+		'BRACKETS' =&gt; array(
+			0 =&gt; 'color: #66cc66;'
 			),
-		'STRINGS' => array(
-			0 => 'color: #ff0000;'
+		'STRINGS' =&gt; array(
+			0 =&gt; 'color: #ff0000;'
 			),
-		'NUMBERS' => array(
-			0 => 'color: #cc66cc;'
+		'NUMBERS' =&gt; array(
+			0 =&gt; 'color: #cc66cc;'
 			),
-		'METHODS' => array(
-			0 => 'color: #006600;'
+		'METHODS' =&gt; array(
+			0 =&gt; 'color: #006600;'
 			),
-		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+		'SYMBOLS' =&gt; array(
+			0 =&gt; 'color: #66cc66;'
 			),
-		'REGEXPS' => array(
-			0 => 'color: #0000ff;'
+		'REGEXPS' =&gt; array(
+			0 =&gt; 'color: #0000ff;'
 			),
-		'SCRIPT' => array(
-			0 => '',
-			1 => '',
-			2 => '',
-			3 => ''
+		'SCRIPT' =&gt; array(
+			0 =&gt; '',
+			1 =&gt; '',
+			2 =&gt; '',
+			3 =&gt; ''
 			)
 		),</pre>
 
@@ -2315,8 +2315,13 @@ rule is important.</p>
 	you used in the keywords section to specify the keywords belonging to that group.</li>
 	<li><strong>'COMMENTS':</strong> This is an array, from single-line comment index to style for that index. The
 	index 'MULTI' is used for multiline comments (and cannot be an array)</li>
-	<li><strong>'ESCAPE_CHAR' down to 'REGEXPS':</strong> These are arrays with only one index: 0. You cannot add other indices to
+	<li><strong>'ESCAPE_CHAR' down to 'SYMBOLS':</strong> These are arrays with only one index: 0. You cannot add other indices to
 	these arrays.</li>
+    <li><strong>'REGEXPS':</strong>This is an array with a style for each matching regex. Also, since 1.0.7.21, you can
+    specify the name of a function to be called, that will be given the text matched by the regex, each time a match is
+    found. Note that my testing found that <tt>create_function</tt> would not work with this due to a PHP bug, so you
+    have to put the function definition at the top of the language file. Be sure to prefix the function name with
+    <tt>geshi_[languagename]_</tt> as to not conflict with other functions!</li>
 	<li><strong>'SCRIPT':</strong> For languages that use script delimiters, this is where you can style each block
 	of script. For example, HTML and XML have blocks that begin with &lt; and end with &gt; (i.e. tags) and blocks
 	that begin with &amp; and end with ; (i.e. character entities), and you can set a style to apply to each whole
@@ -2331,11 +2336,11 @@ online manual entries.</p>
 
 <p>Here is an example:</p>
 
-<pre>	'URLS' => array(
-		1 => '',
-		2 => '',
-		3 => 'http://www.php.net/{FNAME}',
-		4 => ''
+<pre>	'URLS' =&gt; array(
+		1 =&gt; '',
+		2 =&gt; '',
+		3 =&gt; 'http://www.php.net/{FNAME}',
+		4 =&gt; ''
 		),</pre>
 
 <p>The indices of this array correspond to the keyword groups you specified in the keywords section. The string <tt>{FNAME}</tt>
@@ -2374,21 +2379,21 @@ only part of those things. This is particularly useful for languages like XML.</
 
 <p>Here is an example (this time the PHP file merged with the XML file):</p>
 
-<pre>		0 => array(
-			GESHI_SEARCH => '(((xml:)?[a-z\-]+))(=)',
-			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => '\\4'
+<pre>		0 =&gt; array(
+			GESHI_SEARCH =&gt; '(((xml:)?[a-z\-]+))(=)',
+			GESHI_REPLACE =&gt; '\\1',
+			GESHI_MODIFIERS =&gt; '',
+			GESHI_BEFORE =&gt; '',
+			GESHI_AFTER =&gt; '\\4'
 			),
-		1 => array(
-			GESHI_SEARCH => '(&lt;/?[a-z0-9]*(&gt;)?)',
-			GESHI_REPLACE => '\\1',
-			GESHI_MODIFIERS => '',
-			GESHI_BEFORE => '',
-			GESHI_AFTER => ''
+		1 =&gt; array(
+			GESHI_SEARCH =&gt; '(&gt;/?[a-z0-9]*(&gt;)?)',
+			GESHI_REPLACE =&gt; '\\1',
+			GESHI_MODIFIERS =&gt; '',
+			GESHI_BEFORE =&gt; '',
+			GESHI_AFTER =&gt; ''
 			),
-		2 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*"</pre>
+		2 =&gt; "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*"</pre>
 
 <p>As you can see there are two formats. One is the &quot;simple&quot; format used in GeSHi &lt; 1.0.2, and the other
 is a more advanced syntax. Firstly, the simple syntax:</p>
@@ -2439,20 +2444,20 @@ then you're an android ;). Here's a better example:</p>
 <p>Let's say that I'm making a language, and variables in this language always start with a dollar sign ($), are always
 written in lowercase letters and always end with an ampersand (&amp;). eg:</p>
 
-<code>$foo& = 'bar'</code>
+<code>$foo&amp; = 'bar'</code>
 
 <p>I want to highlight <em>only the text between the $ and the &amp;</em>. How do I do that? With simple regular
 expressions I can't, but with advanced, it's relatively easy:</p>
 
-<pre>		1 => array(
-			GESHI_SEARCH => '(\$)([a-z]+)(&amp;)',   // search for a dollar sign, then one or more of the characters a-z, then an ampersand
-			GESHI_REPLACE => '\\2',                  // we wanna highlight the characters, which are in the second bracketed group
-			GESHI_MODIFIERS => '',                   // no modifiers, since we're not matching the &quot;anything&quot; regex
-			GESHI_BEFORE => '\\1',                   // before the highlighted characters should be the first bracketed group (always a dollar sign in this example)
-			GESHI_AFTER => '\\3'                     // after the highlighted characters should be the third bracketed group (always an ampersand in this example)
+<pre>		1 =&gt; array(
+			GESHI_SEARCH =&gt; '(\$)([a-z]+)(&amp;)',   // search for a dollar sign, then one or more of the characters a-z, then an ampersand
+			GESHI_REPLACE =&gt; '\\2',                  // we wanna highlight the characters, which are in the second bracketed group
+			GESHI_MODIFIERS =&gt; '',                   // no modifiers, since we're not matching the &quot;anything&quot; regex
+			GESHI_BEFORE =&gt; '\\1',                   // before the highlighted characters should be the first bracketed group (always a dollar sign in this example)
+			GESHI_AFTER =&gt; '\\3'                     // after the highlighted characters should be the third bracketed group (always an ampersand in this example)
 			),</pre>
 
-<p>So if someone tried to highlight using my language, all cases of $foo& would turn into:</p>
+<p>So if someone tried to highlight using my language, all cases of $foo&amp; would turn into:</p>
 
 <code>$&lt;span style=&quot;color: blue;&quot;&gt;foo&lt;/span&gt;&amp;</code>
 
@@ -2468,26 +2473,26 @@ case? You do it with &quot;Strict Blocks&quot;.</p>
 
 <p>Here is an example:</p>
 
-<pre>	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-		0 => array(
+<pre>	'STRICT_MODE_APPLIES' =&gt; GESHI_MAYBE,
+	'SCRIPT_DELIMITERS' =&gt; array(
+		0 =&gt; array(
 			'&lt;?php' =&gt; '?&gt;'
 			),
-		1 => array(
+		1 =&gt; array(
 			'&lt;?' =&gt; '?&gt;'
 			),
-		2 => array(
+		2 =&gt; array(
 			'&lt;%' =&gt; '%&gt;'
 			),
-		3 => array(
+		3 =&gt; array(
 			'&lt;script language="php"&gt;' =&gt; '&lt;/script&gt;'
 			)
 		),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-		0 => true,
-		1 => true,
-		2 => true,
-		3 => true
+	'HIGHLIGHT_STRICT_BLOCK' =&gt; array(
+		0 =&gt; true,
+		1 =&gt; true,
+		2 =&gt; true,
+		3 =&gt; true
 		)</pre>
 
 <p>What is strict mode? Strict mode says that highlighting only occurs inside the blocks you specify. You can see from
