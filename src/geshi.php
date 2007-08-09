@@ -813,17 +813,20 @@ class GeSHi {
      * @param string  The style to make the symbols
      * @param boolean Whether to merge the new styles with the old or just
      *                to overwrite them
+     * @param int     Tells the group of symbols for which style should be set.
      * @since 1.0.1
      */
-    function set_symbols_style($style, $preserve_defaults = false) {
+    function set_symbols_style($style, $preserve_defaults = false, $group = 0) {
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['SYMBOLS'][0] = $style;
+            $this->language_data['STYLES']['SYMBOLS'][$group] = $style;
         }
         else {
-            $this->language_data['STYLES']['SYMBOLS'][0] .= $style;
+            $this->language_data['STYLES']['SYMBOLS'][$group] .= $style;
         }
         // For backward compatibility
-        $this->set_brackets_style ($style, $preserve_defaults);
+        if(0 == $group) {
+            $this->set_brackets_style ($style, $preserve_defaults);
+        }
     }
 
     /**
