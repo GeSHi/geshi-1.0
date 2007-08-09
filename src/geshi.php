@@ -2216,6 +2216,84 @@ class GeSHi {
             $stuff_to_parse = str_replace( $code_entities_match,  $code_entities_replace, $stuff_to_parse );
         }
 
+        //FIX for symbol highlighting ...
+        if($this->lexic_permissions['SYMBOLS']) {
+            //As this is a costy operation, we avoid doing it for multiple groups ...
+            //Instead we perform it for all symbols at once.
+            //
+            //For this to work, we need to reorganize the data arrays.
+            $symbol_data = array();
+            foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
+                if(is_array($symbols)) {
+                    foreach($symbols as $sym) {
+                        if(!isset($symbol_data[$sym])) {
+                            $symbol_data[$sym] = $key;
+                            $symbol_preg[] = preg_quote(htmlspecialchars($sym), '/');
+                        }
+                    }
+                } else {
+                    if(!isset($symbol_data[$symbols])) {
+                        $symbol_data[$symbols] = 0;
+                        $symbol_preg[] = preg_quote(htmlspecialchars($symbols), '/');
+                    }
+                }
+            }
+            //Now we have an array with each possible symbol as the key and the style as the actual data.
+            //This way we can set the correct style just the moment we highlight ...
+            //
+            //Now we need to rewrite our array to get a search string that
+            $sym_search = implode("|", $symbol_preg);
+            //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
+            preg_match_all("/(?:" . $sym_search . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            //Match anything that is a highlighted block ...
+            preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted_in_stuff, PREG_OFFSET_CAPTURE);
+            foreach($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
+                foreach($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
+                    //Do a range check of the found highlight identifier and the OOP match ...
+                    if(($highlight_data[1] <= $stuff_match_data[0][1]) &&
+                        ($highlight_data[1] + strlen($highlight_data[0]) >= $stuff_match_data[0][1] + strlen($stuff_match_data[0][0])))
+                    {
+                        //We found a match that was already highlighted ...
+                        unset($matches_in_stuff[$stuff_match_id]);
+                        break;
+                    }
+                }
+            }
+            //Rebuild the matches array to be ordered by offset ...
+            $symbol_offsets = array();
+            foreach($matches_in_stuff as $stuff_match_data) {
+                $symbol_offsets[$stuff_match_data[0][1]] = $stuff_match_data[0][0];
+            }
+            krsort($symbol_offsets);
+            //Perform the actual replacements ...
+            foreach($symbol_offsets as $symbol_offset => $symbol_match) {
+                $symbol_hl = "";
+                $old_sym = -1;
+                //Split the current stuff to replace into its atomic symbols ...
+                preg_match_all("/$sym_search/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
+                foreach($sym_match_syms[0] as $sym_ms) {
+                    //Check if consequtive symbols belong to the same group to save output ...
+                    if ($symbol_data[$sym_ms] != $old_sym) {
+                        if(0 != $i) {
+                            $symbol_hl .= "|>";
+                        }
+                        $old_sym = $symbol_data[$sym_ms];
+                        if (!$this->use_classes) {
+                            $symbol_hl .= '<| style="' . $this->language_data['STYLES']['SYMBOLS'][$old_sym] . '">';
+                        }
+                        else {
+                            $attributes = '<| class="sy' . $old_sym . '">';
+                        }
+                    }
+                    $symbol_hl .= $sym_ms;
+                }
+                //Close remaining tags and insert the replacement at the right position ...
+                $symbol_hl .= "|>";
+                $stuff_to_parse = substr($stuff_to_parse, 0, $symbol_offset) . $symbol_hl . substr($stuff_to_parse, $symbol_offset + strlen($symbol_match));
+            }
+        }
+        //FIX for symbol highlighting ...
+
         //
         // Add class/style for regexps
         //
