@@ -19,6 +19,9 @@ Version 1.0.7.21
   -  Added single quote to Lua (Darrin Roenfanz)
   -  Compare comments case insensitively (fixes AutoIT comments somewhat)
      (Daniel Gordon)
+  -  Fixed symbols not being highlighted at all (SF #1767953, BenBE)
+  -  Fixed brackets not correctly managed (SF #1767954, BenBE)
+  -  Changed some default languages for some extensions
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
