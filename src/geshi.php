@@ -1707,7 +1707,7 @@ class GeSHi {
                                 $com_len = strlen($open);
                                 $test_str = substr( $part, $i, $com_len );
                                 $test_str_match = $test_str;
-                                if ($open == $test_str) {
+                                if (strtolower($open) == strtolower($test_str)) {
                                     $COMMENT_MATCHED = true;
                                     //@todo If remove important do remove here
                                     if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
