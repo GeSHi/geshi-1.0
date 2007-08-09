@@ -1092,7 +1092,7 @@ class GeSHi {
      * @todo static?
      */
     function get_language_name_from_extension( $extension, $lookup = array() ) {
-        if ( !$lookup ) {
+        if ( !is_array($lookup) ) {
             $lookup = array(
                 'actionscript' => array('as'),
                 'ada' => array('a', 'ada', 'adb', 'ads'),
@@ -1108,7 +1108,8 @@ class GeSHi {
                 'cpp' => array('cpp', 'h', 'hpp'),
                 'csharp' => array(),
                 'css' => array('css'),
-                'delphi' => array('dpk', 'dpr'),
+                'delphi' => array('dpk', 'dpr', 'pp', 'pas'),
+                'dos' => array('bat', 'cmd'),
                 'html4strict' => array('html', 'htm'),
                 'java' => array('java'),
                 'javascript' => array('js'),
@@ -1119,7 +1120,7 @@ class GeSHi {
                 'objc' => array(),
                 'oobas' => array(),
                 'oracle8' => array(),
-                'pascal' => array('pas'),
+                'pascal' => array(),
                 'perl' => array('pl', 'pm'),
                 'php' => array('php', 'php5', 'phtml', 'phps'),
                 'python' => array('py'),
