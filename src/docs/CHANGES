@@ -17,6 +17,8 @@ Version 1.0.7.21
   -  Language files can now specify a function to be called to decide the
      colour of a regular expression match
   -  Added single quote to Lua (Darrin Roenfanz)
+  -  Compare comments case insensitively (fixes AutoIT comments somewhat)
+     (Daniel Gordon)
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
