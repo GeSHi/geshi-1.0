@@ -597,6 +597,10 @@ tags is highlighted. Besides, <tt>&lt;code&gt;</tt> is an inline element. But th
 <p>As of GeSHi 1.0.7.2 there is a new header type, that specifies that the code should not be wrapped in
 anything at all.</p>
 
+<p>Another requested addition has been made in GeSHi 1.0.7.20 to force GeSHi to create a block around the
+highlighted source even if this wasn't necessary, thus styles that are applied to the output of GeSHi
+can directly influence the code only even if headers and footers are present.</p>
+
 <p>To change/set the header to use, you call the <strong><tt>set_header_type()</tt></strong> method:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_DIV<span style="color: #66cc66;">&#41;</span>;<br />
@@ -1048,11 +1052,17 @@ highlighted. Here are the related methods:</p>
 
 <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_strings_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;<br />
 <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_numbers_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;<br />
-<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_methods_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$key</span>, <span style="color: #0000ff;">$styles</span>, <span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;</code>
+<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_methods_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$key</span>, <span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;</code>
 
 <p><var>$styles</var> is a string containing valid stylesheet declarations, while <var>$preserve_defaults</var>
 should be set to true if you want your styles to be merged with the previous styles. In the case of <strong><tt>set_methods_style</tt></strong>,
 you should select a group to set the styles of, check the language files for the number used for each &quot;object splitter&quot;.</p>
+
+<p>Like this was possible for set_method_style a new parameter has been introduced for
+<strong><tt>set_symbols_style</tt></strong> to which allows you to select the group of
+symbols for which you'd like to change your style.
+<code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_symbols_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$group</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;<br /></code>
+If the third parameter is not given, group 0 is assumed. Furthermore you should note that any changes to group 0 are also reflected in the bracket style, i.e. a pass-through call to <strong><tt>set_bracket_style</tt></strong> is made.</p>
 
 <h4 id="case-caps">3.5: Case Sensitivity and Auto Casing</h3>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#auto-caps-nocaps">Next</a> | <a href="#setting-other-styles">Previous</a></div>
@@ -2230,14 +2240,40 @@ are some points to note about these keywords:</p>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#language-file-styles">Next</a> | <a href="#language-file-keywords">Previous</a></div>
 
 <p>So you've put all the keywords for your language in? Now for a breather before we style them :). Symbols define
-what symbols your language uses, these are things like colons, brackets/braces, and other such general punctuation (it's
-important to note that in the 1.0.X series these will <em>not</em> be used), and case sensitivity alludes to the previous
-section: here you can set which keyword groups are case sensitive.</p>
+what symbols your language uses, these are things like colons, brackets/braces, and other such general punctuation,
+and case sensitivity alludes to the previous section: here you can set which keyword groups are case sensitive.</p>
 
-<p>Here's an example:</p>
+<p>As of GeSHi version 1.0.7.21 the symbols section is used in two ways:
+<ul>
+    <li>Flat usage:<br />
+    This mode is the suggested way for existing language files and languages that only need few symbols
+    where no further differentiation is needed or desired. You simply put all the characters in an array
+    under symbols as shown in the first example below. All symbols in flat usage belong to symbol style group 0.</li>
+    <li>Group usage:<br />
+    This is a slightly more enhanced way to provide GeSHi symbol information. To use group you create
+    several subarrays each containing only a subset of the symbols to highlight. Every array will need to have
+    an unique index thus you can assign the appropriate styles later.</li>
+</ul></p>
+
+<p>Here's an example for flat symbol usage</p>
 
 <pre>	'SYMBOLS' =&gt; array(
-		'(', ')', '[', ']', '{', '}', '!', '@', '%', '&amp;', '*', '|', '/', '&lt;', '&gt;'
+		'(', ')', '[', ']', '{', '}', '!', '@', '|', '&', '+', '-', '*', '/', '%', '=', '<', '>'
+		),
+	'CASE_SENSITIVE' =&gt; array(
+		GESHI_COMMENTS =&gt; false,
+		1 => false,
+		2 => false,
+		3 => false,
+		),</pre>
+
+<p>which is not too different from the newly introduced group usage shown below:</p>
+
+<pre>	'SYMBOLS' =&gt; array(
+		0 =&gt; array('(', ')', '[', ']', '{', '}'),
+		1 =&gt; array('!', '@', '|', '&'),
+		2 =&gt; array('+', '-', '*', '/', '%'),
+		3 =&gt; array('=', '<', '>')
 		),
 	'CASE_SENSITIVE' =&gt; array(
 		GESHI_COMMENTS =&gt; false,
@@ -2247,8 +2283,8 @@ section: here you can set which keyword groups are case sensitive.</p>
 		),</pre>
 
 <ul>
-	<li><strong>'SYMBOLS':</strong> An array of the symbols used in your language. <em>Please note that in 1.0.X these
-	are not used.</em> Hopefully they will be used in 1.2.X.</li>
+	<li><strong>'SYMBOLS':</strong> An array of the symbols, or - as of 1.0.7.21 - an array of symbol groups,
+    used in your language. <em>Please note that versions before 1.0.7.21 will silently ignore this setting.</em></li>
 	<li><strong>'CASE_SENSITIVE':</strong> Note the <tt>GESHI_COMMENTS</tt>! This is used to set whether comments
 	are case sensitive or not (for example, BASIC has the REM statement which while not being case sensitive is still
 	alphanumeric, and as in the example given before about the Java language file using &quot;import&quot; as a single line comment,
