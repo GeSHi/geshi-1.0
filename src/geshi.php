@@ -2914,10 +2914,16 @@ class GeSHi {
                 $stylesheet .= "$selector.es$group {{$styles}}\n";
             }
         }
-        foreach ($this->language_data['STYLES']['SYMBOLS'] as $group => $styles) {
+        foreach ($this->language_data['STYLES']['BRACKETS'] as $group => $styles) {
             if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
                 !$this->lexic_permissions['BRACKETS'])) {
                 $stylesheet .= "$selector.br$group {{$styles}}\n";
+            }
+        }
+        foreach ($this->language_data['STYLES']['SYMBOLS'] as $group => $styles) {
+            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['SYMBOLS'])) {
+                $stylesheet .= "$selector.sy$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
