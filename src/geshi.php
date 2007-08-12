@@ -2232,13 +2232,13 @@ class GeSHi {
                     foreach($symbols as $sym) {
                         if(!isset($symbol_data[$sym])) {
                             $symbol_data[$sym] = $key;
-                            $symbol_preg[] = preg_quote(htmlspecialchars($sym), '/');
+                            $symbol_preg[] = preg_quote(GeSHi::hsc($sym), '/');
                         }
                     }
                 } else {
                     if(!isset($symbol_data[$symbols])) {
                         $symbol_data[$symbols] = 0;
-                        $symbol_preg[] = preg_quote(htmlspecialchars($symbols), '/');
+                        $symbol_preg[] = preg_quote(GESHI::hsc($symbols), '/');
                     }
                 }
             }
