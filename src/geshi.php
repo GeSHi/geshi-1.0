@@ -2292,7 +2292,10 @@ class GeSHi {
                     $symbol_hl .= $sym_ms;
                 }
                 //Close remaining tags and insert the replacement at the right position ...
-                $symbol_hl .= "|>";
+                //Take caution if symbol_hl is empty to avoid doubled closing spans.
+                if ("" != $symbol_hl) {
+                    $symbol_hl .= "|>";
+                }
                 $stuff_to_parse = substr($stuff_to_parse, 0, $symbol_offset) . $symbol_hl . substr($stuff_to_parse, $symbol_offset + strlen($symbol_match));
             }
         }
