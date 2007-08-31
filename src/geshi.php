@@ -2277,8 +2277,8 @@ class GeSHi {
                 preg_match_all("/$sym_search/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
                 foreach($sym_match_syms[0] as $sym_ms) {
                     //Check if consequtive symbols belong to the same group to save output ...
-                    if ($symbol_data[$sym_ms] != $old_sym) {
-                        if(0 != $i) {
+                    if (isset($symbol_data[$sym_ms]) && ($symbol_data[$sym_ms] != $old_sym)) {
+                        if(-1 != $old_sym) {
                             $symbol_hl .= "|>";
                         }
                         $old_sym = $symbol_data[$sym_ms];
