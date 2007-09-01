@@ -235,7 +235,7 @@ class GeSHi {
         'REGEXPS' =>     array(),
         'ESCAPE_CHAR' => true,
         'BRACKETS' =>    true,
-        'SYMBOLS' =>     true,
+        'SYMBOLS' =>     false,
         'STRINGS' =>     true,
         'NUMBERS' =>     true,
         'METHODS' =>     true,
