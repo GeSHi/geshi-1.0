@@ -1761,7 +1761,7 @@ class GeSHi {
                                         count($this->highlight_extra_lines) > 0)) {
                                         // strreplace to put close span and open span around multiline newlines
                                         $test_str .= str_replace(
-                                            "\n", "</span>\n<span$attributes>", 
+                                            "\n", "</span>\n<span$attributes>",
                                             str_replace("\n ", "\n&nbsp;", $rest_of_comment)
                                         );
                                     }
@@ -2237,13 +2237,13 @@ class GeSHi {
                 if(is_array($symbols)) {
                     foreach($symbols as $sym) {
                         if(!isset($symbol_data[$sym])) {
-                            $symbol_data[$sym] = $key;
+                            $symbol_data[GeSHi::hsc($sym)] = $key;
                             $symbol_preg[] = preg_quote(GeSHi::hsc($sym), '/');
                         }
                     }
                 } else {
                     if(!isset($symbol_data[$symbols])) {
-                        $symbol_data[$symbols] = 0;
+                        $symbol_data[GeSHi::hsc($symbols)] = 0;
                         $symbol_preg[] = preg_quote(GESHI::hsc($symbols), '/');
                     }
                 }
@@ -2292,14 +2292,14 @@ class GeSHi {
                             $symbol_hl .= '<| style="' . $this->language_data['STYLES']['SYMBOLS'][$old_sym] . '">';
                         }
                         else {
-                            $attributes = '<| class="sy' . $old_sym . '">';
+                            $symbol_hl .= '<| class="sy' . $old_sym . '">';
                         }
                     }
                     $symbol_hl .= $sym_ms;
                 }
                 //Close remaining tags and insert the replacement at the right position ...
                 //Take caution if symbol_hl is empty to avoid doubled closing spans.
-                if ("" != $symbol_hl) {
+                if (-1 != $old_sym) {
                     $symbol_hl .= "|>";
                 }
                 $stuff_to_parse = substr($stuff_to_parse, 0, $symbol_offset) . $symbol_hl . substr($stuff_to_parse, $symbol_offset + strlen($symbol_match));
@@ -2846,7 +2846,14 @@ class GeSHi {
 
         // Header of the stylesheet
         if (!$economy_mode) {
-            $stylesheet = "/**\n * GeSHi Dynamically Generated Stylesheet\n * --------------------------------------\n * Dynamically generated stylesheet for {$this->language}\n * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n * GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter)\n */\n";
+            $stylesheet =
+                "/**\n * GeSHi Dynamically Generated Stylesheet\n".
+                " * --------------------------------------\n".
+                " * Dynamically generated stylesheet for {$this->language}\n".
+                " * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n".
+                " * GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter)\n".
+                " * --------------------------------------\n".
+                " */\n";
          } else {
             $stylesheet = '/* GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter) */' . "\n";
         }
@@ -2910,13 +2917,16 @@ class GeSHi {
         }
 
         foreach ($this->language_data['STYLES']['KEYWORDS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && (!$this->lexic_permissions['KEYWORDS'][$group] || $styles == ''))) {
+            if (!$economy_mode || ($economy_mode && $styles != '') &&
+                (isset($this->lexic_permissions['KEYWORDS'][$group]) &&
+                $this->lexic_permissions['KEYWORDS'][$group])) {
                 $stylesheet .= "$selector.kw$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['COMMENTS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') &&
-                !($economy_mode && !$this->lexic_permissions['COMMENTS'][$group])) {
+            if (!$economy_mode || ($economy_mode && $styles != '') &&
+                (isset($this->lexic_permissions['COMMENTS'][$group]) &&
+                $this->lexic_permissions['COMMENTS'][$group])) {
                 $stylesheet .= "$selector.co$group {{$styles}}\n";
             }
         }
@@ -2962,8 +2972,9 @@ class GeSHi {
             }
         }
         foreach ($this->language_data['STYLES']['REGEXPS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['REGEXPS'][$group])) {
+            if (!$economy_mode || ($economy_mode && $styles != '') &&
+                (isset($this->lexic_permissions['REGEXPS'][$group]) &&
+                $this->lexic_permissions['REGEXPS'][$group])) {
                 if (is_array($this->language_data['REGEXPS'][$group]) &&
                          array_key_exists(GESHI_CLASS,
                                     $this->language_data['REGEXPS'][$group])) {
