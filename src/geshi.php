@@ -982,10 +982,12 @@ class GeSHi {
      *
      * @param int A constant specifying what to do with matched keywords
      * @since 1.0.1
-     * @todo  Error check the passed value
      */
     function set_case_keywords($case) {
-        $this->language_data['CASE_KEYWORDS'] = $case;
+        if(in_array($case, array(
+            GESHI_CAPS_NO_CHANGE, GESHI_CAPS_UPPER, GESHI_CAPS_LOWER))) {
+            $this->language_data['CASE_KEYWORDS'] = $case;
+        }
     }
 
     /**
