@@ -108,7 +108,7 @@ $language_data = array (
         3 => array(
             GESHI_SEARCH => "(\\{)(.*)(\\})",
             GESHI_REPLACE => '\2',
-            GESHI_MODIFIERS => '',
+            GESHI_MODIFIERS => 'U',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
             ),
@@ -116,7 +116,7 @@ $language_data = array (
         4 => array(
             GESHI_SEARCH => "(\[)(.+)(\])",
             GESHI_REPLACE => '\2',
-            GESHI_MODIFIERS => '',
+            GESHI_MODIFIERS => 'U',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
             ),

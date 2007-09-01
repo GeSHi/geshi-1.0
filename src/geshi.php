@@ -235,7 +235,7 @@ class GeSHi {
         'REGEXPS' =>     array(),
         'ESCAPE_CHAR' => true,
         'BRACKETS' =>    true,
-        'SYMBOLS' =>     true,
+        'SYMBOLS' =>     false,
         'STRINGS' =>     true,
         'NUMBERS' =>     true,
         'METHODS' =>     true,
@@ -614,6 +614,7 @@ class GeSHi {
      *
      * @param string  The style to use for actual code
      * @param boolean Whether to merge the current styles with the new styles
+     * @since 1.0.2
      */
     function set_code_style($style, $preserve_defaults = false) {
         if (!$preserve_defaults) {
@@ -813,17 +814,20 @@ class GeSHi {
      * @param string  The style to make the symbols
      * @param boolean Whether to merge the new styles with the old or just
      *                to overwrite them
+     * @param int     Tells the group of symbols for which style should be set.
      * @since 1.0.1
      */
-    function set_symbols_style($style, $preserve_defaults = false) {
+    function set_symbols_style($style, $preserve_defaults = false, $group = 0) {
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['SYMBOLS'][0] = $style;
+            $this->language_data['STYLES']['SYMBOLS'][$group] = $style;
         }
         else {
-            $this->language_data['STYLES']['SYMBOLS'][0] .= $style;
+            $this->language_data['STYLES']['SYMBOLS'][$group] .= $style;
         }
         // For backward compatibility
-        $this->set_brackets_style ($style, $preserve_defaults);
+        if(0 == $group) {
+            $this->set_brackets_style ($style, $preserve_defaults);
+        }
     }
 
     /**
@@ -978,10 +982,12 @@ class GeSHi {
      *
      * @param int A constant specifying what to do with matched keywords
      * @since 1.0.1
-     * @todo  Error check the passed value
      */
     function set_case_keywords($case) {
-        $this->language_data['CASE_KEYWORDS'] = $case;
+        if(in_array($case, array(
+            GESHI_CAPS_NO_CHANGE, GESHI_CAPS_UPPER, GESHI_CAPS_LOWER))) {
+            $this->language_data['CASE_KEYWORDS'] = $case;
+        }
     }
 
     /**
@@ -1005,6 +1011,7 @@ class GeSHi {
 	 * Sets whether or not to use tab-stop width specifed by language
 	 *
 	 * @param boolean Whether to use language-specific tab-stop widths
+     * @since 1.0.7.20
 	 */
 	function set_use_language_tab_width($use) {
 		$this->use_language_tab_width = (bool) $use;
@@ -1015,6 +1022,7 @@ class GeSHi {
 	 * preference
 	 *
 	 * @return int Tab width
+     * @since 1.0.7.20
 	 */
 	function get_real_tab_width() {
 		if (!$this->use_language_tab_width || !isset($this->language_data['TAB_WIDTH'])) {
@@ -1042,42 +1050,37 @@ class GeSHi {
      * Disables all highlighting
      *
      * @since 1.0.0
-     * @todo Rewrite with an array traversal
+     * @todo  Rewrite with array traversal
+     * @deprecated In favour of enable_highlighting
      */
     function disable_highlighting() {
-        foreach ($this->lexic_permissions as $key => $value) {
-            if (is_array($value)) {
-                foreach ($value as $k => $v) {
-                    $this->lexic_permissions[$key][$k] = false;
-                }
-            }
-            else {
-                $this->lexic_permissions[$key] = false;
-            }
-        }
-        // Context blocks
-        $this->enable_important_blocks = false;
+        $this->enable_highlighting(false);
     }
 
     /**
      * Enables all highlighting
      *
+     * The optional flag parameter was added in version 1.0.7.21 and can be used
+     * to enable (true) or disable (false) all highlighting.
+     *
      * @since 1.0.0
+     * @param boolean A flag specifying whether to enable or disable all highlighting
      * @todo  Rewrite with array traversal
      */
-    function enable_highlighting() {
+    function enable_highlighting($flag = true) {
+        $flag = $flag ? true : false;
         foreach ($this->lexic_permissions as $key => $value) {
             if (is_array($value)) {
                 foreach ($value as $k => $v) {
-                    $this->lexic_permissions[$key][$k] = true;
+                    $this->lexic_permissions[$key][$k] = $flag;
                 }
             }
             else {
-                $this->lexic_permissions[$key] = true;
+                $this->lexic_permissions[$key] = $flag;
             }
         }
         // Context blocks
-        $this->enable_important_blocks = true;
+        $this->enable_important_blocks = $flag;
     }
 
     /**
@@ -1085,14 +1088,14 @@ class GeSHi {
      * name, or the empty string if it couldn't be found
      *
      * @param string The extension to get a language name for
-     * @param array  A lookup array to use instead of the default
+     * @param array  A lookup array to use instead of the default one
      * @since 1.0.5
      * @todo Re-think about how this method works (maybe make it private and/or make it
      *       a extension->lang lookup?)
      * @todo static?
      */
     function get_language_name_from_extension( $extension, $lookup = array() ) {
-        if ( !$lookup ) {
+        if ( !is_array($lookup) || !count($lookup)) {
             $lookup = array(
                 'actionscript' => array('as'),
                 'ada' => array('a', 'ada', 'adb', 'ads'),
@@ -1108,7 +1111,8 @@ class GeSHi {
                 'cpp' => array('cpp', 'h', 'hpp'),
                 'csharp' => array(),
                 'css' => array('css'),
-                'delphi' => array('dpk', 'dpr'),
+                'delphi' => array('dpk', 'dpr', 'pp', 'pas'),
+                'dos' => array('bat', 'cmd'),
                 'html4strict' => array('html', 'htm'),
                 'java' => array('java'),
                 'javascript' => array('js'),
@@ -1119,7 +1123,7 @@ class GeSHi {
                 'objc' => array(),
                 'oobas' => array(),
                 'oracle8' => array(),
-                'pascal' => array('pas'),
+                'pascal' => array(),
                 'perl' => array('pl', 'pm'),
                 'php' => array('php', 'php5', 'phtml', 'phps'),
                 'python' => array('py'),
@@ -1155,6 +1159,8 @@ class GeSHi {
      *   'lang_name' ...
      * );</pre>
      *
+     * @param string The filename to load the source from
+     * @param array  A lookup array to use instead of the default one
      * @todo Complete rethink of this and above method
      * @since 1.0.5
      */
@@ -1325,8 +1331,10 @@ class GeSHi {
     /**
      * Sets whether context-important blocks are highlighted
      *
+     * @param boolean Tells whether to enable or disable highlighting of important blocks
      * @todo REMOVE THIS SHIZ FROM GESHI!
      * @deprecated
+     * @since 1.0.2
      */
     function enable_important_blocks($flag) {
         $this->enable_important_blocks = ( $flag ) ? true : false;
@@ -1375,6 +1383,7 @@ class GeSHi {
 	 * Sets the line-ending
 	 *
 	 * @param string The new line-ending
+	 * @since 1.0.2
 	 */
 	function set_line_ending($line_ending) {
 		$this->line_ending = (string)$line_ending;
@@ -1421,6 +1430,7 @@ class GeSHi {
      * Turns linking of keywords on or off.
      *
      * @param boolean If true, links will be added to keywords
+     * @since 1.0.2
      */
     function enable_keyword_links($enable = true) {
         $this->keyword_links = ($enable) ? true : false;
@@ -2224,6 +2234,87 @@ class GeSHi {
             $stuff_to_parse = str_replace( $code_entities_match,  $code_entities_replace, $stuff_to_parse );
         }
 
+        //FIX for symbol highlighting ...
+        if($this->lexic_permissions['SYMBOLS']) {
+            //As this is a costy operation, we avoid doing it for multiple groups ...
+            //Instead we perform it for all symbols at once.
+            //
+            //For this to work, we need to reorganize the data arrays.
+            $symbol_data = array();
+            foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
+                if(is_array($symbols)) {
+                    foreach($symbols as $sym) {
+                        if(!isset($symbol_data[$sym])) {
+                            $symbol_data[$sym] = $key;
+                            $symbol_preg[] = preg_quote(GeSHi::hsc($sym), '/');
+                        }
+                    }
+                } else {
+                    if(!isset($symbol_data[$symbols])) {
+                        $symbol_data[$symbols] = 0;
+                        $symbol_preg[] = preg_quote(GESHI::hsc($symbols), '/');
+                    }
+                }
+            }
+            //Now we have an array with each possible symbol as the key and the style as the actual data.
+            //This way we can set the correct style just the moment we highlight ...
+            //
+            //Now we need to rewrite our array to get a search string that
+            $sym_search = implode("|", $symbol_preg);
+            //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
+            preg_match_all("/(?:" . $sym_search . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            //Match anything that is a highlighted block ...
+            preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted_in_stuff, PREG_OFFSET_CAPTURE);
+            foreach($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
+                foreach($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
+                    //Do a range check of the found highlight identifier and the OOP match ...
+                    if(($highlight_data[1] <= $stuff_match_data[0][1]) &&
+                        ($highlight_data[1] + strlen($highlight_data[0]) >= $stuff_match_data[0][1] + strlen($stuff_match_data[0][0])))
+                    {
+                        //We found a match that was already highlighted ...
+                        unset($matches_in_stuff[$stuff_match_id]);
+                        break;
+                    }
+                }
+            }
+            //Rebuild the matches array to be ordered by offset ...
+            $symbol_offsets = array();
+            foreach($matches_in_stuff as $stuff_match_data) {
+                $symbol_offsets[$stuff_match_data[0][1]] = $stuff_match_data[0][0];
+            }
+            krsort($symbol_offsets);
+            //Perform the actual replacements ...
+            foreach($symbol_offsets as $symbol_offset => $symbol_match) {
+                $symbol_hl = "";
+                $old_sym = -1;
+                //Split the current stuff to replace into its atomic symbols ...
+                preg_match_all("/$sym_search/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
+                foreach($sym_match_syms[0] as $sym_ms) {
+                    //Check if consequtive symbols belong to the same group to save output ...
+                    if (isset($symbol_data[$sym_ms]) && ($symbol_data[$sym_ms] != $old_sym)) {
+                        if(-1 != $old_sym) {
+                            $symbol_hl .= "|>";
+                        }
+                        $old_sym = $symbol_data[$sym_ms];
+                        if (!$this->use_classes) {
+                            $symbol_hl .= '<| style="' . $this->language_data['STYLES']['SYMBOLS'][$old_sym] . '">';
+                        }
+                        else {
+                            $attributes = '<| class="sy' . $old_sym . '">';
+                        }
+                    }
+                    $symbol_hl .= $sym_ms;
+                }
+                //Close remaining tags and insert the replacement at the right position ...
+                //Take caution if symbol_hl is empty to avoid doubled closing spans.
+                if ("" != $symbol_hl) {
+                    $symbol_hl .= "|>";
+                }
+                $stuff_to_parse = substr($stuff_to_parse, 0, $symbol_offset) . $symbol_hl . substr($stuff_to_parse, $symbol_offset + strlen($symbol_match));
+            }
+        }
+        //FIX for symbol highlighting ...
+
         //
         // Add class/style for regexps
         //
@@ -2305,6 +2396,8 @@ class GeSHi {
     /**
      * Gets language information and stores it for later use
      *
+     * @param string The filename of the language file you want to load
+     * @since 1.0.0
      * @access private
      * @todo Needs to load keys for lexic permissions for keywords, regexps etc
      */
@@ -2706,13 +2799,14 @@ class GeSHi {
      * @copyright   Copyright 2007, {@link http://wikkawiki.org/CreditsPage
      *              Wikka Development Team}
      *
-     * @access      public
+     * @access      private
      * @param       string  $string string to be converted
      * @param       integer $quote_style
      *                      - ENT_COMPAT:   escapes &, <, > and double quote (default)
      *                      - ENT_NOQUOTES: escapes only &, < and >
      *                      - ENT_QUOTES:   escapes &, <, >, double and single quotes
      * @return      string  converted string
+     * @since       1.0.7.18
      */
     function hsc($string, $quote_style=ENT_COMPAT) {
         // init
@@ -2840,10 +2934,16 @@ class GeSHi {
                 $stylesheet .= "$selector.es$group {{$styles}}\n";
             }
         }
-        foreach ($this->language_data['STYLES']['SYMBOLS'] as $group => $styles) {
+        foreach ($this->language_data['STYLES']['BRACKETS'] as $group => $styles) {
             if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
                 !$this->lexic_permissions['BRACKETS'])) {
                 $stylesheet .= "$selector.br$group {{$styles}}\n";
+            }
+        }
+        foreach ($this->language_data['STYLES']['SYMBOLS'] as $group => $styles) {
+            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
+                !$this->lexic_permissions['SYMBOLS'])) {
+                $stylesheet .= "$selector.sy$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
