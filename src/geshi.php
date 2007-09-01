@@ -1045,42 +1045,37 @@ class GeSHi {
      * Disables all highlighting
      *
      * @since 1.0.0
-     * @todo Rewrite with an array traversal
+     * @todo  Rewrite with array traversal
+     * @deprecated In favour of enable_highlighting
      */
     function disable_highlighting() {
-        foreach ($this->lexic_permissions as $key => $value) {
-            if (is_array($value)) {
-                foreach ($value as $k => $v) {
-                    $this->lexic_permissions[$key][$k] = false;
-                }
-            }
-            else {
-                $this->lexic_permissions[$key] = false;
-            }
-        }
-        // Context blocks
-        $this->enable_important_blocks = false;
+        $this->enable_highlighting(false);
     }
 
     /**
      * Enables all highlighting
      *
+     * The optional flag parameter was added in version 1.0.7.21 and can be used
+     * to enable (true) or disable (false) all highlighting.
+     *
      * @since 1.0.0
+     * @param boolean A flag specifying whether to enable or disable all highlighting
      * @todo  Rewrite with array traversal
      */
-    function enable_highlighting() {
+    function enable_highlighting($flag = true) {
+        $flag = $flag ? true : false;
         foreach ($this->lexic_permissions as $key => $value) {
             if (is_array($value)) {
                 foreach ($value as $k => $v) {
-                    $this->lexic_permissions[$key][$k] = true;
+                    $this->lexic_permissions[$key][$k] = $flag;
                 }
             }
             else {
-                $this->lexic_permissions[$key] = true;
+                $this->lexic_permissions[$key] = $flag;
             }
         }
         // Context blocks
-        $this->enable_important_blocks = true;
+        $this->enable_important_blocks = $flag;
     }
 
     /**
