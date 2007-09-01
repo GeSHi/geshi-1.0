@@ -614,6 +614,7 @@ class GeSHi {
      *
      * @param string  The style to use for actual code
      * @param boolean Whether to merge the current styles with the new styles
+     * @since 1.0.2
      */
     function set_code_style($style, $preserve_defaults = false) {
         if (!$preserve_defaults) {
@@ -1008,6 +1009,7 @@ class GeSHi {
 	 * Sets whether or not to use tab-stop width specifed by language
 	 *
 	 * @param boolean Whether to use language-specific tab-stop widths
+     * @since 1.0.7.20
 	 */
 	function set_use_language_tab_width($use) {
 		$this->use_language_tab_width = (bool) $use;
@@ -1018,6 +1020,7 @@ class GeSHi {
 	 * preference
 	 *
 	 * @return int Tab width
+     * @since 1.0.7.20
 	 */
 	function get_real_tab_width() {
 		if (!$this->use_language_tab_width || !isset($this->language_data['TAB_WIDTH'])) {
@@ -1083,7 +1086,7 @@ class GeSHi {
      * name, or the empty string if it couldn't be found
      *
      * @param string The extension to get a language name for
-     * @param array  A lookup array to use instead of the default
+     * @param array  A lookup array to use instead of the default one
      * @since 1.0.5
      * @todo Re-think about how this method works (maybe make it private and/or make it
      *       a extension->lang lookup?)
@@ -1154,6 +1157,8 @@ class GeSHi {
      *   'lang_name' ...
      * );</pre>
      *
+     * @param string The filename to load the source from
+     * @param array  A lookup array to use instead of the default one
      * @todo Complete rethink of this and above method
      * @since 1.0.5
      */
@@ -1324,8 +1329,10 @@ class GeSHi {
     /**
      * Sets whether context-important blocks are highlighted
      *
+     * @param boolean Tells whether to enable or disable highlighting of important blocks
      * @todo REMOVE THIS SHIZ FROM GESHI!
      * @deprecated
+     * @since 1.0.2
      */
     function enable_important_blocks($flag) {
         $this->enable_important_blocks = ( $flag ) ? true : false;
@@ -1374,6 +1381,7 @@ class GeSHi {
 	 * Sets the line-ending
 	 *
 	 * @param string The new line-ending
+	 * @since 1.0.2
 	 */
 	function set_line_ending($line_ending) {
 		$this->line_ending = (string)$line_ending;
@@ -1420,6 +1428,7 @@ class GeSHi {
      * Turns linking of keywords on or off.
      *
      * @param boolean If true, links will be added to keywords
+     * @since 1.0.2
      */
     function enable_keyword_links($enable = true) {
         $this->keyword_links = ($enable) ? true : false;
@@ -2377,6 +2386,8 @@ class GeSHi {
     /**
      * Gets language information and stores it for later use
      *
+     * @param string The filename of the language file you want to load
+     * @since 1.0.0
      * @access private
      * @todo Needs to load keys for lexic permissions for keywords, regexps etc
      */
@@ -2778,13 +2789,14 @@ class GeSHi {
      * @copyright   Copyright 2007, {@link http://wikkawiki.org/CreditsPage
      *              Wikka Development Team}
      *
-     * @access      public
+     * @access      private
      * @param       string  $string string to be converted
      * @param       integer $quote_style
      *                      - ENT_COMPAT:   escapes &, <, > and double quote (default)
      *                      - ENT_NOQUOTES: escapes only &, < and >
      *                      - ENT_QUOTES:   escapes &, <, >, double and single quotes
      * @return      string  converted string
+     * @since       1.0.7.18
      */
     function hsc($string, $quote_style=ENT_COMPAT) {
         // init
