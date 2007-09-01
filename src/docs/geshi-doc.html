@@ -1288,6 +1288,12 @@ speed increases by disabling some of the highlighting options. This is done by u
 	means no HTML will surround the lexic like usual, saving on time and bandwidth.</li>
 </ul>
 
+<p>In case all highlighting should be disabled or reenabled GeSHi provides two methods called
+<strong><tt>disnable_highlighting()</tt></strong> and <strong><tt>enable_highlighting(<var>$flag</var>)</tt></strong>.
+The optional paramter <var>$flag</var> has been added in 1.0.7.21 and specifies the desired state,
+i.e. <strong>true</strong> (default) to turn all highlighting on, or <strong>false</strong> to turn all highlighting off.
+Since 1.0.7.21 the method <strong><tt>disnable_highlighting()</tt></strong> has become deprecated.</p>
+
 <h4 id="setting-tab-width">3.9: Setting the Tab Width</h4>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#using-strict-mode">Next</a> | <a href="#disabling-lexics">Previous</a></div>
 

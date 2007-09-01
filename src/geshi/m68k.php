@@ -1,7 +1,7 @@
 <?php
 /*************************************************************************************
- * asm.php
- * -------
+ * m68k.php
+ * --------
  * Author: Benny Baumann (BenBE@omorphia.de)
  * Copyright: (c) 2007 Benny Baumann (http://www.omorphia.de/), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.20
