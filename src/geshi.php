@@ -1093,7 +1093,7 @@ class GeSHi {
      * @todo static?
      */
     function get_language_name_from_extension( $extension, $lookup = array() ) {
-        if ( !is_array($lookup) ) {
+        if ( !is_array($lookup) || !count($lookup)) {
             $lookup = array(
                 'actionscript' => array('as'),
                 'ada' => array('a', 'ada', 'adb', 'ads'),
