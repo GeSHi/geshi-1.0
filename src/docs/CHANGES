@@ -21,7 +21,15 @@ Version 1.0.7.21
      (Daniel Gordon)
   -  Fixed symbols not being highlighted at all (SF #1767953, BenBE)
   -  Fixed brackets not correctly managed (SF #1767954, BenBE)
-  -  Changed some default languages for some extensions
+  -  Changed default languages for some extensions
+  -  Included color and character information for symbol highlighting in some languages (BenBE)
+  -  Fixed a problem with extension detection if default was used (BenBE)
+  -  Fixed a highlighting problem with the LaTeX language (SF #1776182, BenBE)
+  -  Added a new parameter for enable_highlighting to reduce source duplication (SF #1786104, BenBE)
+  -  Updated doxygen documentation to include since tags and some missing parameters
+  -  Disabled symbol highlighting by default (doesn't affect brackets, cf. documentation) (BenBE)
+  -  Added a check for set_case_keywords for the given param to be supported (BenBE)
+  -  Minor rework of the HTML documentation layout \ W3C compliance (BenBE)
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
