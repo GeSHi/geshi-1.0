@@ -1791,6 +1791,9 @@ class GeSHi {
                                     else {
                                         $match = (strtolower($comment_mark) == strtolower($test_str));
                                     }
+                                    if($match && "bash" == $this->language && "#" == $comment_mark) {
+                                        $match = ("$" != substr($part, $i-1, 1)) && (0!=$i);
+                                    }
                                     if ($match) {
                                         $COMMENT_MATCHED = true;
                                         if ($this->lexic_permissions['COMMENTS'][$comment_key]) {
@@ -2521,11 +2524,10 @@ class GeSHi {
                 }
 
                 // Add in the line surrounded by appropriate list HTML
-                $attr_string = ' ';
+                $attr_string = '';
                 foreach ($attrs as $key => $attr) {
-                    $attr_string .= $key . '="' . implode(' ', $attr) . '" ';
+                    $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
-                $attr_string = substr($attr_string, 0, -1);
                 $parsed_code .= "<li$attr_string>$start$line$end</li>$ls";
                 $attrs = array();
             }
