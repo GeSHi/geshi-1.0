@@ -2137,7 +2137,7 @@ class GeSHi {
                             $styles = "/$k/";
                             if ($this->language_data['CASE_SENSITIVE'][$k]) {
                                 $stuff_to_parse = preg_replace(
-                                    "/([^a-zA-Z0-9\$_\|\#;>|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])/e",
+                                    "/([^a-zA-Z0-9\$_\|\#>|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-])/e",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
                                 );
@@ -2147,7 +2147,7 @@ class GeSHi {
                                 // hackage again... must... release... 1.2...
                                 if ('smarty' == $this->language) { $hackage = '\/'; } else { $hackage = ''; }
                                 $stuff_to_parse = preg_replace(
-                                    "/([^a-zA-Z0-9\$_\|\#;>$hackage|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-&])/ie",
+                                    "/([^a-zA-Z0-9\$_\|\#>$hackage|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-])/ie",
                                     "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                     $stuff_to_parse
                                 );
@@ -2848,8 +2848,8 @@ class GeSHi {
 
         // Header of the stylesheet
         if (!$economy_mode) {
-            $stylesheet =
-                "/**\n * GeSHi Dynamically Generated Stylesheet\n".
+            $stylesheet = "/**\n".
+                " * GeSHi Dynamically Generated Stylesheet\n".
                 " * --------------------------------------\n".
                 " * Dynamically generated stylesheet for {$this->language}\n".
                 " * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n".
