@@ -31,6 +31,7 @@ Version 1.0.7.21
   -  Added a check for set_case_keywords for the given param to be supported (BenBE)
   -  Minor rework of the HTML documentation layout \ W3C compliance (BenBE)
   -  Fixed highlighting error in bash language avoiding keywords in comments (SF #1786314, SF #1564839, BenBE)
+  -  Fixed template params for C++ and C# not being highlighted (SF #1772919, BenBE)
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
