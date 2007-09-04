@@ -55,11 +55,11 @@ $language_data = array (
 	'ESCAPE_CHAR' => '\\',
 	'KEYWORDS' => array(
 		1 => array(
-			'case', 'continue', 'default', 'do', 'else', 'for', 'goto', 'if', 'return',
-			'switch', 'while'
+			'break', 'case', 'continue', 'default', 'do', 'else', 'for', 'goto', 'if', 'return',
+			'switch', 'throw', 'while'
 			),
 		2 => array(
-			'NULL', 'false', 'break', 'true', 'enum', 'errno', 'EDOM',
+			'NULL', 'false', 'true', 'enum', 'errno', 'EDOM',
 			'ERANGE', 'FLT_RADIX', 'FLT_ROUNDS', 'FLT_DIG', 'DBL_DIG', 'LDBL_DIG',
 			'FLT_EPSILON', 'DBL_EPSILON', 'LDBL_EPSILON', 'FLT_MANT_DIG', 'DBL_MANT_DIG',
 			'LDBL_MANT_DIG', 'FLT_MAX', 'DBL_MAX', 'LDBL_MAX', 'FLT_MAX_EXP', 'DBL_MAX_EXP',
@@ -106,7 +106,11 @@ $language_data = array (
 			),
 		),
 	'SYMBOLS' => array(
-		'(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
+		0 => array('(', ')', '{', '}', '[', ']'),
+        1 => array('<', '>','='),
+        2 => array('+', '-', '*', '/', '%'),
+        3 => array('!', '^', '&', '|'),
+        4 => array(':')
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
@@ -123,7 +127,7 @@ $language_data = array (
 			4 => 'color: #0000ff;'
 			),
 		'COMMENTS' => array(
-			1 => 'color: #ff0000;',
+			1 => 'color: #666666;',
 			2 => 'color: #339900;',
 			'MULTI' => 'color: #ff0000; font-style: italic;'
 			),
@@ -131,10 +135,10 @@ $language_data = array (
 			0 => 'color: #666666; font-weight: bold;'
 			),
 		'BRACKETS' => array(
-			0 => 'color: #000000;'
+			0 => 'color: #008000;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #666666;'
+			0 => 'color: #FF0000;'
 			),
 		'NUMBERS' => array(
 			0 => 'color: #0000dd;'
@@ -144,7 +148,11 @@ $language_data = array (
 			2 => 'color: #00eeff;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #000000;'
+			0 => 'color: #008000;',
+			1 => 'color: #000080;',
+			2 => 'color: #000040;',
+			3 => 'color: #000040;',
+			4 => 'color: #008080;'
 			),
 		'REGEXPS' => array(
 			),
