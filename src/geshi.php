@@ -2135,23 +2135,26 @@ class GeSHi {
                             // Basically, we don't put the styles in yet because then the styles themselves will
                             // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
                             $styles = "/$k/";
-                            if ($this->language_data['CASE_SENSITIVE'][$k]) {
-                                $stuff_to_parse = preg_replace(
-                                    "/([^a-zA-Z0-9\$_\|\#>|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-])/e",
-                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
-                                    $stuff_to_parse
-                                );
+                            $modifiers = ($this->language_data['CASE_SENSITIVE'][$k]) ? "e" : "ie";
+
+                            $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
+                            $disallowed_after = "a-zA-Z0-9_<\|%\\-&";
+                            if(isset($this->language_data['PARSER_CONTROL'])) {
+                                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
+                                        $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                                    }
+                                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
+                                        $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                                    }
+                                }
                             }
-                            else {
-                                // Change the case of the word.
-                                // hackage again... must... release... 1.2...
-                                if ('smarty' == $this->language) { $hackage = '\/'; } else { $hackage = ''; }
-                                $stuff_to_parse = preg_replace(
-                                    "/([^a-zA-Z0-9\$_\|\#>$hackage|^])($keyword)(?=[^a-zA-Z0-9_<\|%\-])/ie",
-                                    "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
-                                    $stuff_to_parse
-                                );
-                            }
+                            $stuff_to_parse = preg_replace(
+                                "/([^$disallowed_before])($keyword)(?=[^$disallowed_after])/$modifiers",
+                                "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
+                                $stuff_to_parse
+                            );
+
                             $stuff_to_parse = substr($stuff_to_parse, 0, strlen($stuff_to_parse) - 1);
                         }
                     }

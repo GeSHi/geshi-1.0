@@ -226,7 +226,13 @@
 		),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+	'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "a-zA-Z0-9\$_\|\#>|^",
+            'DISALLOWED_AFTER' => "a-zA-Z0-9_<\|%\\-"
+        )
+	)
 );
 
 ?>
