@@ -160,7 +160,13 @@ $language_data = array (
 	),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		0 => true
-		)
+	),
+	'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "a-zA-Z0-9\$_\|\#;>|^",
+            'DISALLOWED_AFTER' => "a-zA-Z0-9_<\|%\\-&"
+        )
+    )
 );
 
 ?>
