@@ -1791,8 +1791,25 @@ class GeSHi {
                                     else {
                                         $match = (strtolower($comment_mark) == strtolower($test_str));
                                     }
-                                    if($match && "bash" == $this->language && "#" == $comment_mark) {
-                                        $match = ("$" != substr($part, $i-1, 1)) && (0!=$i);
+                                    //This check will find special variables like $# in bash or compiler directives of Delphi beginning {$
+                                    if($match) {
+                                        $disallowed_before = "";
+                                        $disallowed_after = "";
+
+                                        if(isset($this->language_data['PARSER_CONTROL'])) {
+                                            if (isset($this->language_data['PARSER_CONTROL']['COMMENTS'])) {
+                                                if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'])) {
+                                                    $disallowed_before = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'];
+                                                }
+                                                if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'])) {
+                                                    $disallowed_after = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'];
+                                                }
+                                            }
+                                        }
+                                        echo $disallowed_before ."...".$disallowed_after;
+
+                                        $match = $match && (!strlen($disallowed_before) || ((false === strpos($disallowed_before, substr($part, $i-1, 1))) && (0!=$i)));
+                                        $match = $match && (!strlen($disallowed_after) || ((false === strpos($disallowed_after, substr($part, $i+1, 1))) && (strlen($part)-1>$i)));
                                     }
                                     if ($match) {
                                         $COMMENT_MATCHED = true;
@@ -2238,7 +2255,7 @@ class GeSHi {
             //Instead we perform it for all symbols at once.
             //
             //For this to work, we need to reorganize the data arrays.
-            $symbol_data = array();
+            $symbol_data = $symbol_preg = array();
             foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
                 if(is_array($symbols)) {
                     foreach($symbols as $sym) {
