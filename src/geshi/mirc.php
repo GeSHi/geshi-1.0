@@ -74,7 +74,7 @@ $language_data = array (
 			)
 		),
 	'SYMBOLS' => array(
-		'(', ')', '{', '}', '[', ']', '|',
+		'(', ')', '{', '}', '[', ']',
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
@@ -128,9 +128,9 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
-		0 => '\$[^$][^ ,\(\)]*',
-		1 => '(%|&).+?[^ ,\)]*',
-		2 => '(#|@).+?[^ ,\)]*',
+		0 => '\$[a-zA-Z0-9]+',
+		1 => '(%|&)[a-zA-Z0-9]+',
+		2 => '(#|@)[a-zA-Z0-9]+',
 		3 => '-[a-z\d]+',
 		4 => '(on|ctcp) (!|@|&)?(\d|\*):[a-zA-Z]+:',
 		/*4 => array(
@@ -141,7 +141,7 @@ $language_data = array (
 			GESHI_AFTER => ''
 			),*/
         5 => 'raw (\d|\*):',
-		6 => '\/timer(?!s\b)[0-9a-zA-Z_]+',
+		6 => '/timer(?!s\b)[0-9a-zA-Z_]+',
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
@@ -150,4 +150,7 @@ $language_data = array (
 		)
 );
 
+if (isset($this) && is_a($this, 'GeSHi')) {
+    $this->set_numbers_highlighting(false);
+}
 ?>
