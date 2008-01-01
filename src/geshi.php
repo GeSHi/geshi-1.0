@@ -1806,7 +1806,6 @@ class GeSHi {
                                                 }
                                             }
                                         }
-                                        echo $disallowed_before ."...".$disallowed_after;
 
                                         $match = $match && (!strlen($disallowed_before) || ((false === strpos($disallowed_before, substr($part, $i-1, 1))) && (0!=$i)));
                                         $match = $match && (!strlen($disallowed_after) || ((false === strpos($disallowed_after, substr($part, $i+1, 1))) && (strlen($part)-1>$i)));
@@ -2071,8 +2070,9 @@ class GeSHi {
 
                     return '<|UR1|"' .
                         str_replace(
-                            array('{FNAME}', '.'),
-                            array(GeSHi::hsc($word), '<DOT>'),
+                            array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
+                            array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
+                                GeSHi::hsc(strtoupper($word)), '<DOT>'),
                             $this->language_data['URLS'][$group]
                         ) . '">';
                 }

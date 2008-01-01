@@ -35,6 +35,8 @@ Version 1.0.7.21
   -  Fixed more reported problems about mirc highlighting
   -  Added some missing keywords for VB.NET
   -  Fixed some warnings in DOS language file (Florian Angehrn)
+  -  Add possibility to handle more than one extra line style (SF #1698255, German Rumm, BenBE)
+  -  Fixed handling of URLs when output case differs from URL case (SF #1815504, Tom Samstag, BenBE)
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
