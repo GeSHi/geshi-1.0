@@ -34,6 +34,7 @@ Version 1.0.7.21
   -  Fixed template params for C++ and C# not being highlighted (SF #1772919, BenBE)
   -  Fixed more reported problems about mirc highlighting
   -  Added some missing keywords for VB.NET
+  -  Fixed some warnings in DOS language file (Florian Angehrn)
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
