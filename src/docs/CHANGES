@@ -13,6 +13,8 @@ Please send any bug reports to nigel@geshi.org, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.7.21
+  -  Added language files
+     * Basic4GL (Matthew Webb)
   -  Fixed problem with mIRC language highlighting spaces only (BenBE)
   -  Language files can now specify a function to be called to decide the
      colour of a regular expression match
@@ -37,6 +39,8 @@ Version 1.0.7.21
   -  Fixed some warnings in DOS language file (Florian Angehrn)
   -  Add possibility to handle more than one extra line style (SF #1698255, German Rumm, BenBE)
   -  Fixed handling of URLs when output case differs from URL case (SF #1815504, Tom Samstag, BenBE)
+  -  Fixed POD (Plain Old Documentation) format problems breaking highlighting of Perl (SF #1891630, Shannon Wynter, BenBE)
+  -  Fixed a problem with mIRC when & was used for identifiers (SF #1875552, BenBE)
 Version 1.0.7.20
   -  Added language files
      * Genero (logic) and Per (forms) (FOURJ's Genero 4GL) (Lars Gersmann)
