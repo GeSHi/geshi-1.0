@@ -2015,7 +2015,7 @@ class GeSHi {
         }
         // Other whitespace
         // BenBE: Fix to reduce the number of replacements to be done
-        $result = str_replace("\n ", "\n&nbsp;", $result);
+        $result = preg_replace('/^ /m', '&nbsp;', $result);
         $result = str_replace('  ', ' &nbsp;', $result);
 
         if ($this->line_numbers == GESHI_NO_LINE_NUMBERS) {
