@@ -129,10 +129,10 @@ $language_data = array (
 		),
 	'REGEXPS' => array(
 		0 => '\$[a-zA-Z0-9]+',
-		1 => '(%|&)[a-zA-Z0-9]+',
+		1 => '(%|&amp;)[a-zA-Z0-9]+',
 		2 => '(#|@)[a-zA-Z0-9]+',
 		3 => '-[a-z\d]+',
-		4 => '(on|ctcp) (!|@|&)?(\d|\*):[a-zA-Z]+:',
+		4 => '(on|ctcp) (!|@|&amp;)?(\d|\*):[a-zA-Z]+:',
 		/*4 => array(
 			GESHI_SEARCH => '((on|ctcp) (!|@|&)?(\d|\*):(Action|Active|Agent|AppActive|Ban|Chat|Close|Connect|Ctcp|CtcpReply|DccServer|DeHelp|DeOp|DeVoice|Dialog|Dns|Error|Exit|FileRcvd|FileSent|GetFail|Help|Hotlink|Input|Invite|Join|KeyDown|KeyUp|Kick|Load|Logon|MidiEnd|Mode|Mp3End|Nick|NoSound|Notice|Notify|Op|Open|Part|Ping|Pong|PlayEnd|Quit|Raw|RawMode|SendFail|Serv|ServerMode|ServerOp|Signal|Snotice|Start|Text|Topic|UnBan|Unload|Unotify|User|Mode|Voice|Wallops|WaveEnd):)',
 			GESHI_REPLACE => '\\1',
