@@ -4,13 +4,15 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.20
+ * Release Version: 1.0.7.21
  * Date Started: 2004/08/20
  *
  * BASH language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2007/09/05 (1.0.7.21)
+ *  -  PARSER_CONTROL patch using SF #1788408 (BenBE)
  * 2007/06/11 (1.0.7.20)
  *  -  Added a lot of keywords (BenBE / Jan G)
  * 2004/11/27 (1.0.2)

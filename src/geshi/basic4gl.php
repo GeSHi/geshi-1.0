@@ -4,14 +4,12 @@
  * ---------------------------------
  * Author: Matthew Webb (bmatthew1@blueyonder.co.uk)
  * Copyright: (c) 2004 Matthew Webb (http://matthew-4gl.wikispaces.com)
- * Release Version: 1.0.0
- * CVS Revision Version: $Revision: 995 $
+ * Release Version: 1.0.7.21
  * Date Started: 2007/09/15
- * Last Modified: $Date: 2007-07-02 00:21:31 +1200 (Mon, 02 Jul 2007) $
  *
  * Basic4GL language file for GeSHi.
  *
- * You can find the Basic4GL Website at (http://www.basic4gl.net/) 
+ * You can find the Basic4GL Website at (http://www.basic4gl.net/)
  *
  * CHANGES
  * -------
@@ -51,9 +49,9 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
 		1 => array(
-			
+
 			// Navy Blue Bold Keywords
-			
+
 			'true','rnd_max','m_pi','m_e','false','VK_ZOOM','VK_UP','VK_TAB','VK_SUBTRACT','VK_SPACE','VK_SNAPSHOT',
 			'VK_SHIFT','VK_SEPARATOR','VK_SELECT','VK_SCROLL','VK_RWIN','VK_RSHIFT','VK_RMENU','VK_RIGHT','VK_RETURN',
 			'VK_RCONTROL','VK_RBUTTON','VK_PROCESSKEY','VK_PRIOR','VK_PRINT','VK_PLAY','VK_PAUSE','VK_NUMPAD9','VK_NUMPAD8',
@@ -199,9 +197,9 @@ $language_data = array (
 			'CHANNEL_MAX'
 			),
 		2 => array(
-		
+
 			// Red Lowercase Keywords
-			
+
 			'WriteWord','WriteString','WriteReal','WriteLine','WriteInt','WriteFloat','WriteDouble','WriteChar','WriteByte',
 			'windowwidth','windowheight','waittimer','Vec4','Vec3','Vec2','val','UpdateJoystick','ucase$','Transpose','tickcount',
 			'textscroll','textrows','textmode','textcols','tanh','tand','tan','synctimercatchup','synctimer','swapbuffers',
@@ -273,16 +271,16 @@ $language_data = array (
 			'beep','atnd','atn2d','atn2','atn','atand','asc','argcount','arg','animatesprites','AcceptConnection','abs'
 			),
 		3 => array(
-		
+
 			// Blue Lowercase Keywords
-			
+
 			'xor','while','wend','until','type','traditional_print','traditional','to','then','struc','string','step','single',
 			'run','return','reset','read','or','null','not','next','lor','loop','language','land','integer','input','if',
 			'goto','gosub','for','endstruc','endif','end','elseif','else','double','do','dim','data','const','basic4gl','as',
 			'and','alloc'
 			)
-			
-		),	
+
+		),
 	'SYMBOLS' => array(
           '=', '<', '>', '>=', '<=', '+', '-', '*', '/', '%', '(', ')', '{', '}', '[', ']', '&', ';', ':', '$'
           ),

@@ -4,7 +4,7 @@
  * ----------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.20
+ * Release Version: 1.0.7.21
  * Date Started: 2004/06/20
  *
  * QBasic/QuickBASIC language file for GeSHi.
@@ -128,7 +128,7 @@ $language_data = array (
 		),
 	'URLS' => array(
 		1 => '',
-		3 => 'http://www.qbasicnews.com/qboho/qck{FNAME}.shtml'
+		3 => 'http://www.qbasicnews.com/qboho/qck{FNAMEL}.shtml'
 		),
 	'OOLANG' => false,
 	'OBJECT_SPLITTERS' => array(

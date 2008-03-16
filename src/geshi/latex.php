@@ -2,8 +2,22 @@
 /*************************************************************************************
  * latex.php
  * -----
- * Original Author: efi
- * modified by Matthias Pospiech (mail@matthiaspospiech.de)
+ * Author: efi, Matthias Pospiech (mail@matthiaspospiech.de)
+ * Copyright: (c) 2006 efi, Matthias Pospiech (mail@matthiaspospiech.de), Nigel McNie (http://qbnz.com/highlighter)
+ * Release Version: 1.0.7.21
+ * Date Started: 2006/09/23
+ *
+ * LaTeX language file for GeSHi.
+ *
+ * CHANGES
+ * -------
+ * 2006/09/23 (1.0.0)
+ *  -  First Release
+ *
+ * TODO
+ * -------------------------
+ * *
+ *
  *************************************************************************************
  *
  *   This file is not yet part of GeSHi. (and is not compatible to the 1.1+ branch)

@@ -27,8 +27,8 @@
  *
  * @package    geshi
  * @subpackage core
- * @author     Nigel McNie <nigel@geshi.org>
- * @copyright  (C) 2004 - 2007 Nigel McNie
+ * @author     Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
+ * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
  * @license    http://gnu.org/copyleft/gpl.html GNU GPL
  *
  */
@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.20');
+define('GESHI_VERSION', '1.0.7.21');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -152,8 +152,8 @@ define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
  * about how to use this class.
  *
  * @package   geshi
- * @author    Nigel McNie <nigel@geshi.org>
- * @copyright (C) 2004 - 2007 Nigel McNie
+ * @author    Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
+ * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
  */
 class GeSHi {
     /**#@+
@@ -313,6 +313,12 @@ class GeSHi {
      * @var array
      */
     var $highlight_extra_lines = array();
+
+    /**
+     * Styles of lines that should be highlighted extra
+     * @var array
+     */
+    var $highlight_extra_lines_styles = array();
 
     /**
      * Styles of extra-highlighted lines
@@ -1353,19 +1359,27 @@ class GeSHi {
     /**
      * Specifies which lines to highlight extra
      *
+     * The extra style parameter was added in 1.0.7.21.
+     *
      * @param mixed An array of line numbers to highlight, or just a line
      *              number on its own.
+     * @param string A string specifying the style to use for this line
      * @since 1.0.2
      * @todo  Some data replication here that could be cut down on
      */
-    function highlight_lines_extra($lines) {
+    function highlight_lines_extra($lines, $style = null) {
         if (is_array($lines)) {
             foreach ($lines as $line) {
-                $this->highlight_extra_lines[intval($line)] = intval($line);
+                $this->highlight_lines_extra(line, $style);
             }
         }
         else {
             $this->highlight_extra_lines[intval($lines)] = intval($lines);
+            if ($style != null) {
+            	$this->highlight_extra_lines_styles[intval($lines)] = $style;
+            } else {
+            	unset($this->highlight_extra_lines_styles[intval($lines)]);
+            }
         }
     }
 
@@ -1814,7 +1828,6 @@ class GeSHi {
                                                 }
                                             }
                                         }
-                                        echo $disallowed_before ."...".$disallowed_after;
 
                                         $match = $match && (!strlen($disallowed_before) || ((false === strpos($disallowed_before, substr($part, $i-1, 1))) && (0!=$i)));
                                         $match = $match && (!strlen($disallowed_after) || ((false === strpos($disallowed_after, substr($part, $i+1, 1))) && (strlen($part)-1>$i)));
@@ -2010,7 +2023,7 @@ class GeSHi {
         }
         // Other whitespace
         // BenBE: Fix to reduce the number of replacements to be done
-        $result = str_replace("\n ", "\n&nbsp;", $result);
+        $result = preg_replace('/^ /m', '&nbsp;', $result);
         $result = str_replace('  ', ' &nbsp;', $result);
 
         if ($this->line_numbers == GESHI_NO_LINE_NUMBERS) {
@@ -2079,8 +2092,9 @@ class GeSHi {
 
                     return '<|UR1|"' .
                         str_replace(
-                            array('{FNAME}', '.'),
-                            array(GeSHi::hsc($word), '<DOT>'),
+                            array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
+                            array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
+                                GeSHi::hsc(strtoupper($word)), '<DOT>'),
                             $this->language_data['URLS'][$group]
                         ) . '">';
                 }
@@ -2353,12 +2367,12 @@ class GeSHi {
                         $attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
                     }
                     else {
-                       if (is_array($this->language_data['REGEXPS'][$key]) &&
-                                array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
-                            $attributes = ' class="'
-                                . $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
+                        if (is_array($this->language_data['REGEXPS'][$key]) &&
+                            array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
+                            $attributes = ' class="' .
+                                $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
                         }
-                       else {
+                        else {
                            $attributes = ' class="re' . $key . '"';
                         }
                     }
@@ -2494,10 +2508,12 @@ class GeSHi {
             // Set vars to defaults for following loop
             $parsed_code = '';
             $i = 0;
-            $attrs = array();
 
             // Foreach line...
             foreach ($code as $line) {
+                //Reset the attributes for a new line ...
+                $attrs = array();
+
                 // Make lines have at least one space in them if they're empty
                 // BenBE: Checking emptiness using trim instead of relying on blanks
                 if ('' == trim($line)) {
@@ -2544,11 +2560,16 @@ class GeSHi {
                 if ($this->add_ids) {
                     $attrs['id'][] = "$this->overall_id-$i";
                 }
-                if ($this->use_classes && in_array($i, $this->highlight_extra_lines)) {
-                    $attrs['class'][] = 'ln-xtra';
-                }
-                if (!$this->use_classes && in_array($i, $this->highlight_extra_lines)) {
-                    $attrs['style'][] = $this->highlight_extra_lines_style;
+                if (in_array($i, $this->highlight_extra_lines)) {
+                    if ($this->use_classes) {
+                        if(array_key_exists($i, $this->highlight_extra_lines_styles)) {
+                            $attrs['class'][] = "lx$i";
+                        } else {
+                            $attrs['class'][] = "ln-xtra";
+                        }
+                    } else {
+                        array_push($attrs['style'], $this->get_line_style($i));
+                    }
                 }
 
                 // Add in the line surrounded by appropriate list HTML
@@ -2557,7 +2578,6 @@ class GeSHi {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
                 $parsed_code .= "<li$attr_string>$start$line$end</li>$ls";
-                $attrs = array();
             }
         }
         else {
@@ -2574,15 +2594,17 @@ class GeSHi {
                 }
                 if (in_array(++$i, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
-                        $parsed_code .= '<div class="ln-xtra">';
-                    }
-                    else {
-                        $parsed_code .= "<div style=\"{$this->highlight_extra_lines_style}\">";
+                        if (array_key_exists($i, $this->highlight_extra_lines_styles)) {
+                            $parsed_code .= "<div class=\"lx$i\">";
+                        } else {
+                            $parsed_code .= "<div class=\"ln-xtra\">";
+                        }
+                    } else {
+                        $parsed_code .= "<div style=\"" . $this->get_line_style($i) . "\">";
                     }
                     // Remove \n because it stuffs up <pre> header
                     $parsed_code .= $line . "</div>";
-                }
-                else {
+                } else {
                     $parsed_code .= $line . "\n";
                 }
             }
@@ -2881,11 +2903,15 @@ class GeSHi {
                 " * --------------------------------------\n".
                 " * Dynamically generated stylesheet for {$this->language}\n".
                 " * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n".
-                " * GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter)\n".
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
                 " * --------------------------------------\n".
                 " */\n";
          } else {
-            $stylesheet = '/* GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter) */' . "\n";
+            $stylesheet = "/**\n".
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
+                " */\n";
         }
 
         // Set the <ol> to have no effect at all if there are line numbers
@@ -2931,16 +2957,10 @@ class GeSHi {
             $stylesheet .= "$selector.imp {{$this->important_styles}}\n";
         }
 
-        // Styles for lines being highlighted extra
-        if (!$economy_mode || count($this->highlight_extra_lines)) {
-            $stylesheet .= "$selector.ln-xtra {{$this->highlight_extra_lines_style}}\n";
-        }
-
         // Simple line number styles
         if (!$economy_mode || ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->line_style1 != '')) {
-            $stylesheet .= "{$selector}li {{$this->line_style1}}\n";
+            $stylesheet .= "{$selector}li, {$selector}li.li1 {{$this->line_style1}}\n";
         }
-
         // If there is a style set for fancy line numbers, echo it out
         if (!$economy_mode || ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS && $this->line_style2 != '')) {
             $stylesheet .= "{$selector}li.li2 {{$this->line_style2}}\n";
@@ -3017,10 +3037,35 @@ class GeSHi {
                 }
             }
         }
+        // Styles for lines being highlighted extra
+        if (!$economy_mode || (count($this->highlight_extra_lines)!=count($this->highlight_extra_lines_styles))) {
+            $stylesheet .= "{$selector}.ln-xtra, {$selector}li.ln-xtra, {$selector}div.ln-xtra {{$this->highlight_extra_lines_style}}\n";
+        }
+        foreach ($this->highlight_extra_lines_styles as $lineid => $linestyle) {
+            $stylesheet .= "{$selector}.lx$lineid, {$selector}li.lx$lineid, {$selector}div.lx$lineid {{$linestyle}}\n";
+        }
 
         return $stylesheet;
     }
 
+    /**
+     * Get's the style that is used for the specified line
+     *
+     * @param int The line number information is requested for
+     * @access private
+     * @since 1.0.7.21
+     */
+    function get_line_style($line) {
+    	//$style = null;
+    	$style = null;
+    	if (array_key_exists($line, $this->highlight_extra_lines_styles)) {
+    		$style = $this->highlight_extra_lines_styles[$line];
+    	} else { // if no "extra" style assigned
+	    	$style = $this->highlight_extra_lines_style;
+    	}
+
+    	return $style;
+    }
 } // End Class GeSHi
 
 

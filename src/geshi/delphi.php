@@ -2,9 +2,9 @@
 /*************************************************************************************
  * delphi.php
  * ----------
- * Author: Járja Norbert (jnorbi@vipmail.hu)
- * Copyright: (c) 2004 Járja Norbert, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.19
+ * Author: Járja Norbert (jnorbi@vipmail.hu), Benny Baumann (BenBE@omorphia.de)
+ * Copyright: (c) 2004 Járja Norbert, Benny Baumann (BenBE@omorphia.de), Nigel McNie (http://qbnz.com/highlighter)
+ * Release Version: 1.0.7.21
  * Date Started: 2004/07/26
  *
  * Delphi (Object Pascal) language file for GeSHi.
