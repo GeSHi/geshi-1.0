@@ -2,11 +2,11 @@
 read that instead]
 
 GeSHi Documentation
-Version 1.0.7.20
+Version 1.0.7.21
 
-Author:          Nigel McNie
-Copyright:       � 2004 - 2007, Nigel McNie
-Email:           nigel@geshi.org
+Author:          Nigel McNie, Benny Baumann
+Copyright:       � 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+Email:           nigel@geshi.org, BenBE@omorphia.de
 GeSHi Website:   http://qbnz.com/highlighter
 
 This is the documentation for GeSHi - Generic Syntax Highlighter. The most modern version of this document is available on the web - go to http://qbnz.com/highlighter/documentation.php to view it.
@@ -182,7 +182,7 @@ To extract GeSHi in Linux (.tar.gz):
    1. Open a shell
    2. cd to the directory where the archive lies
    3. Type tar -xzvf [filename] where [filename] is the name of the archive (typically GeSHi-1.X.X.tar.gz)
-   4. GeSHi will be extracted to its own directory 
+   4. GeSHi will be extracted to its own directory
 
 To extract GeSHi in Windows (.zip):
 
@@ -1011,7 +1011,7 @@ Let's begin by looking at an example language file - the language file for the f
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ************************************************************************************/
- 
+
 $language_data = array (
 	'LANG_NAME' => 'PHP',
 	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
@@ -1300,7 +1300,7 @@ $language_data = array (
 		3 => true
 		)
 );
- 
+
 ?>
 
 If you're remotely familiar with PHP (or even if you're not), you can see that all that a language file consists of is a glorified variable assignment. Easy! All a language file does is assign a variable $language_data. Though still, there's a lot of indices to that array... but this section is here to break each index down and explain it to you.
@@ -1596,7 +1596,7 @@ And now for advanced syntax, which gives you much more control over exactly what
 
     * GESHI_SEARCH: This element specifies the regular expression to search for. If you plan to capture the output, use brackets (()). See how in the first example above, most of the regular expression is in one set of brackets (with the equals sign in other brackets). You should make sure that the part of the regular expression that is supposed to match what is highlighted is in brackets.
     * GESHI_REPLACE: This is what the stuff matched by the regular expression will be replaced with. If you've grouped the stuff you want highlighted into brackets in the GESHI_SEARCH element, then you can use \\number to match that group, where number is a number corresponding to how many open brackets are between the open bracket of the group you want highlighted and the start of the GESHI_SEARCH string + 1. This may sound confusing, and it probably is, but if you're familiar with how PHP's regular expressions work you should understand. In the example above, the opening bracket for the stuff we want highlighted is the very first bracket in the string, so the number of brackets before that bracket and the start of the string is 0. So we add 1 and get our replacement string of \\1 (whew!).
-       
+
       If you didn't understand a word of that, make sure that there are brackets around the string in GESHI_SEARCH and use \\1 for GESHI_REPLACE ;)
     * GESHI_MODIFIERS: Specify modifiers for your regular expression. If your regular expression includes the everything matcher (.*?), then your modifiers should include "s" and "i" (e.g. use 'si' for this).
     * GESHI_BEFORE:Specifies a bracket group that should appear before the highlighted match (this bracketed group will not be highlighted). Use this if you had to match what you wanted by matching part of your regexp string to something before what you wanted to highlight, and you don't want that part to disappear in the highlighted result.

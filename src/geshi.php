@@ -27,8 +27,8 @@
  *
  * @package    geshi
  * @subpackage core
- * @author     Nigel McNie <nigel@geshi.org>
- * @copyright  (C) 2004 - 2007 Nigel McNie
+ * @author     Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
+ * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
  * @license    http://gnu.org/copyleft/gpl.html GNU GPL
  *
  */
@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.20');
+define('GESHI_VERSION', '1.0.7.21');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -152,8 +152,8 @@ define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
  * about how to use this class.
  *
  * @package   geshi
- * @author    Nigel McNie <nigel@geshi.org>
- * @copyright (C) 2004 - 2007 Nigel McNie
+ * @author    Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
+ * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
  */
 class GeSHi {
     /**#@+
@@ -2359,12 +2359,12 @@ class GeSHi {
                         $attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
                     }
                     else {
-                       if (is_array($this->language_data['REGEXPS'][$key]) &&
-                                array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
-                            $attributes = ' class="'
-                                . $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
+                        if (is_array($this->language_data['REGEXPS'][$key]) &&
+                            array_key_exists(GESHI_CLASS, $this->language_data['REGEXPS'][$key])) {
+                            $attributes = ' class="' .
+                                $this->language_data['REGEXPS'][$key][GESHI_CLASS] . '"';
                         }
-                       else {
+                        else {
                            $attributes = ' class="re' . $key . '"';
                         }
                     }
@@ -2895,11 +2895,15 @@ class GeSHi {
                 " * --------------------------------------\n".
                 " * Dynamically generated stylesheet for {$this->language}\n".
                 " * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n".
-                " * GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter)\n".
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
                 " * --------------------------------------\n".
                 " */\n";
          } else {
-            $stylesheet = '/* GeSHi (C) 2004 - 2007 Nigel McNie (http://qbnz.com/highlighter) */' . "\n";
+            $stylesheet = "/**\n".
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
+                " */\n";
         }
 
         // Set the <ol> to have no effect at all if there are line numbers

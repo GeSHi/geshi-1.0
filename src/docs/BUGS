@@ -1,10 +1,13 @@
 
                       BUGS - list of known bugs in GeSHi
-                               Version 1.0.7.20
+                               Version 1.0.7.21
 
 - Putting a > inside an HTML comment will close the comment abruptly. There's nothing that
   can be done about this (at least in the 1.0.X series of GeSHi), but version 1.2 will fix
   this bug. Likewise for putting ?> inside a PHP string when in strict mode.
+- Only opening a < in XML will cause non-compliant output. This is a problem with the way
+  output for this is being processed. There's no easy way to fix this (at least in
+  the 1.0.X series), but version 1.2 will handle this correct.
 - Number highlighting is quite poor [possibly better now]
 - I'm not happy with URLS - there still could be extra bugs, and it's rather unflexible
   (see TODO for a possible fix)
@@ -27,5 +30,5 @@
 - Perl/Javascript /.../ regex syntax isn't supported.
 - The <pre> header output is not XHTML compliant. Please use the <div> header instead.
 
-Send any bug reports to nigel@geshi.org, or submit them via the bug tracker at
+Send any bug reports to BenBE@omorphia.de, or submit them via the bug tracker at
 sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
