@@ -1912,6 +1912,10 @@ class GeSHi {
             }
         }
 
+        //This fix is related to SF#1923020, but has to be applied regardless of
+        //actually highlighting symbols.
+        $result = str_replace('&#semi;', ';', $result);
+
         // Parse the last stuff (redundant?)
         $result .= $this->parse_non_string_part($stuff_to_parse);
 
@@ -2169,7 +2173,7 @@ class GeSHi {
                             $modifiers = ($this->language_data['CASE_SENSITIVE'][$k]) ? "e" : "ie";
 
                             $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
-                            $disallowed_after = "a-zA-Z0-9_<\|%\\-&";
+                            $disallowed_after = "a-zA-Z0-9_<\|%\\-";
                             if(isset($this->language_data['PARSER_CONTROL'])) {
                                 if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
                                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
@@ -2861,6 +2865,14 @@ class GeSHi {
         {
             $aTransSpecchar["'"] = '&#39;'; // (apos) htmlspecialchars() uses '&#039;'
         }
+
+        //This fix is related to SF#1923020, but has to be applied regardless of
+        //actually highlighting symbols.
+
+        //Circumvent a bug with symbol highlighting
+        //This is required as ; would produce undesirable side-effects if it
+        //was not to be processed as an entity.
+        $aTransSpecchar[';'] = '&#semi;'; // Force ; to be processed as entity
 
         // return translated string
         return strtr($string,$aTransSpecchar);
