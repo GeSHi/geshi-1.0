@@ -8,7 +8,7 @@
 			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
 		</head>
 		<body>
-			<div class="page-body">			
+			<div class="page-body">			
 <h2 class="class-name"><img src="../../media/images/Class_logo.png"
 														alt=" Class"
 														title=" Class"
@@ -27,8 +27,8 @@
 <p class="short-description">The GeSHi Class.</p>
 <p class="description"><p>Please refer to the documentation for GeSHi 1.0.X that is available  at http://qbnz.com/highlighter/documentation.php for more information  about how to use this class.</p></p>
 	<ul class="tags">
-				<li><span class="field">copyright:</span> (C) 2004 - 2007 Nigel McNie</li>
-				<li><span class="field">author:</span> Nigel McNie &lt;<a href="mailto:nigel@geshi.org">nigel@geshi.org</a>&gt;</li>
+				<li><span class="field">author:</span> Nigel McNie &lt;<a href="mailto:nigel@geshi.org">nigel@geshi.org</a>&gt;, Benny Baumann &lt;BenBE@omorphia.de&gt;</li>
+				<li><span class="field">copyright:</span> (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann</li>
 			</ul>
 		<p class="notes">
 			Located in <a class="field" href="_geshi.php.html">/geshi.php</a> (line <span class="field">158</span>)
@@ -52,7 +52,7 @@
 		</div>
 		<div class="info-box-body">			
 			<div class="method-summary">
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								<div class="method-definition">
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																<div class="method-definition">
 					<img src="../../media/images/Constructor.png" alt=" "/>
 											<span class="method-result">GeSHi</span>
 										<a href="#GeSHi" title="details" class="method-name">GeSHi</a>
@@ -86,7 +86,7 @@
 					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">void</span>
 										<a href="#enable_highlighting" title="details" class="method-name">enable_highlighting</a>
-										()
+											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span> = <span class="var-default">true</span>])
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
@@ -98,7 +98,13 @@
 					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">void</span>
 										<a href="#enable_important_blocks" title="details" class="method-name">enable_important_blocks</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$flag</span>)
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#enable_inner_code_block" title="details" class="method-name">enable_inner_code_block</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
@@ -138,6 +144,12 @@
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">int</span>
+										<a href="#get_real_tab_width" title="details" class="method-name">get_real_tab_width</a>
+										()
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">string</span>
 										<a href="#get_stylesheet" title="details" class="method-name">get_stylesheet</a>
 											([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$economy_mode</span> = <span class="var-default">true</span>])
@@ -152,19 +164,13 @@
 					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">void</span>
 										<a href="#highlight_lines_extra" title="details" class="method-name">highlight_lines_extra</a>
-											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$lines</span>)
-									</div>
-																<div class="method-definition">
-					<img src="../../media/images/Method.png" alt=" "/>
-											<span class="method-result">string</span>
-										<a href="#hsc" title="details" class="method-name">hsc</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$string</span>, [<span class="var-type">integer</span>&nbsp;<span class="var-name">$quote_style</span> = <span class="var-default">ENT_COMPAT</span>])
+											(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$lines</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span> = <span class="var-default">null</span>])
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">void</span>
 										<a href="#load_from_file" title="details" class="method-name">load_from_file</a>
-											(<span class="var-type"></span>&nbsp;<span class="var-name">$file_name</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$lookup</span> = <span class="var-default">array()</span>])
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$file_name</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$lookup</span> = <span class="var-default">array()</span>])
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
@@ -313,6 +319,12 @@
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">void</span>
+										<a href="#set_line_ending" title="details" class="method-name">set_line_ending</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$line_ending</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
 										<a href="#set_line_style" title="details" class="method-name">set_line_style</a>
 											(<span class="var-type">string</span>&nbsp;<span class="var-name">$style1</span>, [<span class="var-type">string|boolean</span>&nbsp;<span class="var-name">$style2</span> = <span class="var-default">''</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$preserve_defaults</span> = <span class="var-default">false</span>])
 									</div>
@@ -410,7 +422,7 @@
 					<img src="../../media/images/Method.png" alt=" "/>
 											<span class="method-result">void</span>
 										<a href="#set_symbols_style" title="details" class="method-name">set_symbols_style</a>
-											(<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$preserve_defaults</span> = <span class="var-default">false</span>])
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$preserve_defaults</span> = <span class="var-default">false</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$group</span> = <span class="var-default">0</span>])
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
@@ -423,6 +435,12 @@
 											<span class="method-result">void</span>
 										<a href="#set_url_for_keyword_group" title="details" class="method-name">set_url_for_keyword_group</a>
 											(<span class="var-type">int</span>&nbsp;<span class="var-name">$group</span>, <span class="var-type">string</span>&nbsp;<span class="var-name">$url</span>)
+									</div>
+																<div class="method-definition">
+					<img src="../../media/images/Method.png" alt=" "/>
+											<span class="method-result">void</span>
+										<a href="#set_use_language_tab_width" title="details" class="method-name">set_use_language_tab_width</a>
+											(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$use</span>)
 									</div>
 																<div class="method-definition">
 					<img src="../../media/images/Method.png" alt=" "/>
@@ -450,7 +468,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Constructor.png" />
-		<span class="method-title">Constructor GeSHi</span> (line <span class="line-number">411</span>)
+		<span class="method-title">Constructor GeSHi</span> (line <span class="line-number">438</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -487,7 +505,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">add_keyword</span> (line <span class="line-number">1129</span>)
+		<span class="method-title">add_keyword</span> (line <span class="line-number">1190</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -520,7 +538,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">add_keyword_group</span> (line <span class="line-number">1154</span>)
+		<span class="method-title">add_keyword_group</span> (line <span class="line-number">1215</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -559,13 +577,14 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">disable_highlighting</span> (line <span class="line-number">998</span>)
+		<span class="method-title">disable_highlighting</span> (line <span class="line-number">1062</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Disables all highlighting</p>
 	<ul class="tags">
-				<li><span class="field">todo:</span> Rewrite with an array traversal</li>
+				<li><span class="field">deprecated:</span> In favour of enable_highlighting</li>
+				<li><span class="field">todo:</span> Rewrite with array traversal</li>
 				<li><span class="field">since:</span> 1.0.0</li>
 			</ul>
 	
@@ -585,7 +604,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_classes</span> (line <span class="line-number">579</span>)
+		<span class="method-title">enable_classes</span> (line <span class="line-number">606</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -615,11 +634,12 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_highlighting</span> (line <span class="line-number">1019</span>)
+		<span class="method-title">enable_highlighting</span> (line <span class="line-number">1076</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Enables all highlighting</p>
+<p class="description"><p>The optional flag parameter was added in version 1.0.7.21 and can be used  to enable (true) or disable (false) all highlighting.</p></p>
 	<ul class="tags">
 				<li><span class="field">todo:</span> Rewrite with array traversal</li>
 				<li><span class="field">since:</span> 1.0.0</li>
@@ -630,9 +650,14 @@
 		<span class="method-name">
 			enable_highlighting
 		</span>
-				()
+					([<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span> = <span class="var-default">true</span>])
 			</div>
 	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$flag</span><span class="var-description">: A flag specifying whether to enable or disable all highlighting</span>			</li>
+				</ul>
 		
 			
 	</div>
@@ -641,7 +666,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_ids</span> (line <span class="line-number">1281</span>)
+		<span class="method-title">enable_ids</span> (line <span class="line-number">1355</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -671,7 +696,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_important_blocks</span> (line <span class="line-number">1271</span>)
+		<span class="method-title">enable_important_blocks</span> (line <span class="line-number">1345</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -679,6 +704,7 @@
 	<ul class="tags">
 				<li><span class="field">deprecated:</span> </li>
 				<li><span class="field">todo:</span> REMOVE THIS SHIZ FROM GESHI!</li>
+				<li><span class="field">since:</span> 1.0.2</li>
 			</ul>
 	
 	<div class="method-signature">
@@ -686,27 +712,60 @@
 		<span class="method-name">
 			enable_important_blocks
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$flag</span>)
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$flag</span>			</li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$flag</span><span class="var-description">: Tells whether to enable or disable highlighting of important blocks</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodenable_inner_code_block" id="enable_inner_code_block"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">enable_inner_code_block</span> (line <span class="line-number">1283</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets whether to force a surrounding block around  the highlighted code or not</p>
+	<ul class="tags">
+				<li><span class="field">since:</span> 1.0.7.20</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			enable_inner_code_block
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$flag</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$flag</span><span class="var-description">: Tells whether to enable or disable this feature</span>			</li>
 				</ul>
 		
 			
 	</div>
 <a name="methodenable_keyword_links" id="enable_keyword_links"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_keyword_links</span> (line <span class="line-number">1356</span>)
+		<span class="method-title">enable_keyword_links</span> (line <span class="line-number">1449</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Turns linking of keywords on or off.</p>
+	<ul class="tags">
+				<li><span class="field">since:</span> 1.0.2</li>
+			</ul>
 	
 	<div class="method-signature">
 		<span class="method-result">void</span>
@@ -725,11 +784,11 @@
 			
 	</div>
 <a name="methodenable_line_numbers" id="enable_line_numbers"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_line_numbers</span> (line <span class="line-number">650</span>)
+		<span class="method-title">enable_line_numbers</span> (line <span class="line-number">678</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -759,11 +818,11 @@
 			
 	</div>
 <a name="methodenable_strict_mode" id="enable_strict_mode"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">enable_strict_mode</span> (line <span class="line-number">986</span>)
+		<span class="method-title">enable_strict_mode</span> (line <span class="line-number">1049</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -789,11 +848,11 @@
 			
 	</div>
 <a name="methoderror" id="error"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">error</span> (line <span class="line-number">424</span>)
+		<span class="method-title">error</span> (line <span class="line-number">451</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -815,11 +874,11 @@
 			
 	</div>
 <a name="methodget_language_name" id="get_language_name"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">get_language_name</span> (line <span class="line-number">446</span>)
+		<span class="method-title">get_language_name</span> (line <span class="line-number">473</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -841,11 +900,11 @@
 			
 	</div>
 <a name="methodget_language_name_from_extension" id="get_language_name_from_extension"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">get_language_name_from_extension</span> (line <span class="line-number">1045</span>)
+		<span class="method-title">get_language_name_from_extension</span> (line <span class="line-number">1103</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -870,8 +929,34 @@
 				<span class="var-name">$extension</span><span class="var-description">: The extension to get a language name for</span>			</li>
 					<li>
 				<span class="var-type">array</span>
-				<span class="var-name">$lookup</span><span class="var-description">: A lookup array to use instead of the default</span>			</li>
+				<span class="var-name">$lookup</span><span class="var-description">: A lookup array to use instead of the default one</span>			</li>
 				</ul>
+		
+			
+	</div>
+<a name="methodget_real_tab_width" id="get_real_tab_width"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">get_real_tab_width</span> (line <span class="line-number">1033</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Returns the tab width to use, based on the current language and user  preference</p>
+	<ul class="tags">
+				<li><span class="field">return:</span> Tab width</li>
+				<li><span class="field">since:</span> 1.0.7.20</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">int</span>
+		<span class="method-name">
+			get_real_tab_width
+		</span>
+				()
+			</div>
+	
 		
 			
 	</div>
@@ -880,7 +965,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">get_stylesheet</span> (line <span class="line-number">2651</span>)
+		<span class="method-title">get_stylesheet</span> (line <span class="line-number">2886</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -911,7 +996,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">get_time</span> (line <span class="line-number">2212</span>)
+		<span class="method-title">get_time</span> (line <span class="line-number">2429</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -937,11 +1022,12 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">highlight_lines_extra</span> (line <span class="line-number">1293</span>)
+		<span class="method-title">highlight_lines_extra</span> (line <span class="line-number">1370</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Specifies which lines to highlight extra</p>
+<p class="description"><p>The extra style parameter was added in 1.0.7.21.</p></p>
 	<ul class="tags">
 				<li><span class="field">todo:</span> Some data replication here that could be cut down on</li>
 				<li><span class="field">since:</span> 1.0.2</li>
@@ -952,61 +1038,26 @@
 		<span class="method-name">
 			highlight_lines_extra
 		</span>
-					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$lines</span>)
+					(<span class="var-type">mixed</span>&nbsp;<span class="var-name">$lines</span>, [<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span> = <span class="var-default">null</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
 				<span class="var-type">mixed</span>
 				<span class="var-name">$lines</span><span class="var-description">: An array of line numbers to highlight, or just a line               number on its own.</span>			</li>
-				</ul>
-		
-			
-	</div>
-<a name="methodhsc" id="hsc"><!-- --></a>
-<div class="oddrow">
-	
-	<div class="method-header">
-		<img src="../../media/images/Method.png" />
-		<span class="method-title">hsc</span> (line <span class="line-number">2620</span>)
-	</div> 
-	
-	<!-- ========== Info from phpDoc block ========= -->
-<p class="short-description">Secure replacement for PHP built-in function htmlspecialchars().</p>
-<p class="description"><p>See ticket #427 (http://wush.net/trac/wikka/ticket/427) for the rationale  for this replacement function.</p><p>The INTERFACE for this function is almost the same as that for  htmlspecialchars(), with the same default for quote style; however, there  is no 'charset' parameter. The reason for this is as follows:</p><p>The PHP docs say:       &quot;The third argument charset defines character set used in conversion.&quot;</p><p>I suspect PHP's htmlspecialchars() is working at the byte-value level and  thus _needs_ to know (or asssume) a character set because the special  characters to be replaced could exist at different code points in  different character sets. (If indeed htmlspecialchars() works at  byte-value level that goes some  way towards explaining why the  vulnerability would exist in this function, too, and not only in  htmlentities() which certainly is working at byte-value level.)</p><p>This replacement function however works at character level and should  therefore be &quot;immune&quot; to character set differences - so no charset  parameter is needed or provided. If a third parameter is passed, it will  be silently ignored.</p><p>In the OUTPUT there is a minor difference in that we use '&amp;#39;' instead  of PHP's '&amp;#039;' for a single quote: this provides compatibility with       get_html_translation_table(HTML_SPECIALCHARS, ENT_QUOTES)  (see comment by mikiwoz at yahoo dot co dot uk on  http://php.net/htmlspecialchars); it also matches the entity definition  for XML 1.0  (http://www.w3.org/TR/xhtml1/dtds.html#a_dtd_Special_characters).  Like PHP we use a numeric character reference instead of '&amp;apos;' for the  single quote. For the other special characters we use the named entity  references, as PHP is doing.</p></p>
-	<ul class="tags">
-				<li><span class="field">return:</span> converted string</li>
-				<li><span class="field">access:</span> public</li>
-				<li><span class="field">copyright:</span> Copyright 2007, <a href="http://wikkawiki.org/CreditsPage">Wikka Development Team</a></li>
-				<li><span class="field">license:</span> <a href="http://www.gnu.org/copyleft/lgpl.html">GNU Lesser General Public License</a></li>
-				<li><span class="field">author:</span> <a href="http://wikkawiki.org/JavaWoman">Marjolein Katsma</a></li>
-			</ul>
-	
-	<div class="method-signature">
-		<span class="method-result">string</span>
-		<span class="method-name">
-			hsc
-		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$string</span>, [<span class="var-type">integer</span>&nbsp;<span class="var-name">$quote_style</span> = <span class="var-default">ENT_COMPAT</span>])
-			</div>
-	
-			<ul class="parameters">
 					<li>
 				<span class="var-type">string</span>
-				<span class="var-name">$string</span><span class="var-description">: string to be converted</span>			</li>
-					<li>
-				<span class="var-type">integer</span>
-				<span class="var-name">$quote_style</span><span class="var-description">: <ul></ul><ul><li>ENT_NOQUOTES: escapes only &amp;, &lt; and &gt;</li><li>ENT_QUOTES:   escapes &amp;, &lt;, &gt;, double and single quotes</li></ul></span>			</li>
+				<span class="var-name">$style</span><span class="var-description">: A string specifying the style to use for this line</span>			</li>
 				</ul>
 		
 			
 	</div>
 <a name="methodload_from_file" id="load_from_file"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">load_from_file</span> (line <span class="line-number">1112</span>)
+		<span class="method-title">load_from_file</span> (line <span class="line-number">1173</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1016,8 +1067,8 @@
    'lang_name' ...
  );</pre></p></p>
 	<ul class="tags">
-				<li><span class="field">since:</span> 1.0.5</li>
 				<li><span class="field">todo:</span> Complete rethink of this and above method</li>
+				<li><span class="field">since:</span> 1.0.5</li>
 			</ul>
 	
 	<div class="method-signature">
@@ -1025,26 +1076,26 @@
 		<span class="method-name">
 			load_from_file
 		</span>
-					(<span class="var-type"></span>&nbsp;<span class="var-name">$file_name</span>, [<span class="var-type"></span>&nbsp;<span class="var-name">$lookup</span> = <span class="var-default">array()</span>])
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$file_name</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$lookup</span> = <span class="var-default">array()</span>])
 			</div>
 	
 			<ul class="parameters">
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$file_name</span>			</li>
+				<span class="var-type">string</span>
+				<span class="var-name">$file_name</span><span class="var-description">: The filename to load the source from</span>			</li>
 					<li>
-				<span class="var-type"></span>
-				<span class="var-name">$lookup</span>			</li>
+				<span class="var-type">array</span>
+				<span class="var-name">$lookup</span><span class="var-description">: A lookup array to use instead of the default one</span>			</li>
 				</ul>
 		
 			
 	</div>
 <a name="methodparse_code" id="parse_code"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">parse_code</span> (line <span class="line-number">1370</span>)
+		<span class="method-title">parse_code</span> (line <span class="line-number">1463</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1066,11 +1117,11 @@
 			
 	</div>
 <a name="methodremove_keyword" id="remove_keyword"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">remove_keyword</span> (line <span class="line-number">1140</span>)
+		<span class="method-title">remove_keyword</span> (line <span class="line-number">1201</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1099,11 +1150,11 @@
 			
 	</div>
 <a name="methodremove_keyword_group" id="remove_keyword_group"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">remove_keyword_group</span> (line <span class="line-number">1168</span>)
+		<span class="method-title">remove_keyword_group</span> (line <span class="line-number">1229</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1129,11 +1180,11 @@
 			
 	</div>
 <a name="methodset_brackets_highlighting" id="set_brackets_highlighting"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_brackets_highlighting</span> (line <span class="line-number">783</span>)
+		<span class="method-title">set_brackets_highlighting</span> (line <span class="line-number">811</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1161,11 +1212,11 @@
 			
 	</div>
 <a name="methodset_brackets_style" id="set_brackets_style"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_brackets_style</span> (line <span class="line-number">764</span>)
+		<span class="method-title">set_brackets_style</span> (line <span class="line-number">792</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1196,18 +1247,17 @@
 			
 	</div>
 <a name="methodset_case_keywords" id="set_case_keywords"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_case_keywords</span> (line <span class="line-number">962</span>)
+		<span class="method-title">set_case_keywords</span> (line <span class="line-number">992</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Sets the case that keywords should use when found. Use the constants:</p>
 <p class="description"><p><ul><li>GESHI_CAPS_NO_CHANGE: leave keywords as-is</li><li>GESHI_CAPS_UPPER: convert all keywords to uppercase where found</li><li>GESHI_CAPS_LOWER: convert all keywords to lowercase where found</li></ul></p></p>
 	<ul class="tags">
-				<li><span class="field">todo:</span> Error check the passed value</li>
 				<li><span class="field">since:</span> 1.0.1</li>
 			</ul>
 	
@@ -1228,11 +1278,11 @@
 			
 	</div>
 <a name="methodset_case_sensitivity" id="set_case_sensitivity"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_case_sensitivity</span> (line <span class="line-number">947</span>)
+		<span class="method-title">set_case_sensitivity</span> (line <span class="line-number">978</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1261,16 +1311,19 @@
 			
 	</div>
 <a name="methodset_code_style" id="set_code_style"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_code_style</span> (line <span class="line-number">597</span>)
+		<span class="method-title">set_code_style</span> (line <span class="line-number">625</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
 <p class="short-description">Sets the style for the actual code. This should be a string</p>
 <p class="description"><p>containing valid stylesheet declarations. If $preserve_defaults is  true, then styles are merged with the default styles, with the  user defined styles having priority</p><p>Note: Use this method to override any style changes you made to  the line numbers if you are using line numbers, else the line of  code will have the same style as the line number! Consult the  GeSHi documentation for more information about this.</p></p>
+	<ul class="tags">
+				<li><span class="field">since:</span> 1.0.2</li>
+			</ul>
 	
 	<div class="method-signature">
 		<span class="method-result">void</span>
@@ -1292,11 +1345,11 @@
 			
 	</div>
 <a name="methodset_comments_highlighting" id="set_comments_highlighting"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_comments_highlighting</span> (line <span class="line-number">717</span>)
+		<span class="method-title">set_comments_highlighting</span> (line <span class="line-number">745</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1325,11 +1378,11 @@
 			
 	</div>
 <a name="methodset_comments_style" id="set_comments_style"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_comments_style</span> (line <span class="line-number">701</span>)
+		<span class="method-title">set_comments_style</span> (line <span class="line-number">729</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1361,11 +1414,11 @@
 			
 	</div>
 <a name="methodset_encoding" id="set_encoding"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_encoding</span> (line <span class="line-number">1345</span>)
+		<span class="method-title">set_encoding</span> (line <span class="line-number">1437</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1392,11 +1445,11 @@
 			
 	</div>
 <a name="methodset_escape_characters_highlighting" id="set_escape_characters_highlighting"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_escape_characters_highlighting</span> (line <span class="line-number">746</span>)
+		<span class="method-title">set_escape_characters_highlighting</span> (line <span class="line-number">774</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1422,11 +1475,11 @@
 			
 	</div>
 <a name="methodset_escape_characters_style" id="set_escape_characters_style"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_escape_characters_style</span> (line <span class="line-number">731</span>)
+		<span class="method-title">set_escape_characters_style</span> (line <span class="line-number">759</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1455,11 +1508,11 @@
 			
 	</div>
 <a name="methodset_footer_content" id="set_footer_content"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_footer_content</span> (line <span class="line-number">1191</span>)
+		<span class="method-title">set_footer_content</span> (line <span class="line-number">1252</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1485,11 +1538,11 @@
 			
 	</div>
 <a name="methodset_footer_content_style" id="set_footer_content_style"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_footer_content_style</span> (line <span class="line-number">1211</span>)
+		<span class="method-title">set_footer_content_style</span> (line <span class="line-number">1272</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1515,11 +1568,11 @@
 			
 	</div>
 <a name="methodset_header_content" id="set_header_content"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_header_content</span> (line <span class="line-number">1181</span>)
+		<span class="method-title">set_header_content</span> (line <span class="line-number">1242</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1545,11 +1598,11 @@
 			
 	</div>
 <a name="methodset_header_content_style" id="set_header_content_style"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_header_content_style</span> (line <span class="line-number">1201</span>)
+		<span class="method-title">set_header_content_style</span> (line <span class="line-number">1262</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1575,11 +1628,11 @@
 			
 	</div>
 <a name="methodset_header_type" id="set_header_type"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_header_type</span> (line <span class="line-number">519</span>)
+		<span class="method-title">set_header_type</span> (line <span class="line-number">546</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1606,11 +1659,11 @@
 			
 	</div>
 <a name="methodset_highlight_lines_extra_style" id="set_highlight_lines_extra_style"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_highlight_lines_extra_style</span> (line <span class="line-number">1310</span>)
+		<span class="method-title">set_highlight_lines_extra_style</span> (line <span class="line-number">1392</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1636,11 +1689,11 @@
 			
 	</div>
 <a name="methodset_important_styles" id="set_important_styles"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_important_styles</span> (line <span class="line-number">1261</span>)
+		<span class="method-title">set_important_styles</span> (line <span class="line-number">1333</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1666,11 +1719,11 @@
 			
 	</div>
 <a name="methodset_keyword_group_highlighting" id="set_keyword_group_highlighting"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_keyword_group_highlighting</span> (line <span class="line-number">686</span>)
+		<span class="method-title">set_keyword_group_highlighting</span> (line <span class="line-number">714</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1699,11 +1752,11 @@
 			
 	</div>
 <a name="methodset_keyword_group_style" id="set_keyword_group_style"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_keyword_group_style</span> (line <span class="line-number">670</span>)
+		<span class="method-title">set_keyword_group_style</span> (line <span class="line-number">698</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1735,11 +1788,11 @@
 			
 	</div>
 <a name="methodset_language" id="set_language"><!-- --></a>
-<div class="oddrow">
+<div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_language</span> (line <span class="line-number">470</span>)
+		<span class="method-title">set_language</span> (line <span class="line-number">497</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1765,11 +1818,11 @@
 			
 	</div>
 <a name="methodset_language_path" id="set_language_path"><!-- --></a>
-<div class="evenrow">
+<div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_language_path</span> (line <span class="line-number">498</span>)
+		<span class="method-title">set_language_path</span> (line <span class="line-number">525</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1795,12 +1848,42 @@
 		
 			
 	</div>
+<a name="methodset_line_ending" id="set_line_ending"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">set_line_ending</span> (line <span class="line-number">1402</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the line-ending</p>
+	<ul class="tags">
+				<li><span class="field">since:</span> 1.0.2</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_line_ending
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$line_ending</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$line_ending</span><span class="var-description">: The new line-ending</span>			</li>
+				</ul>
+		
+			
+	</div>
 <a name="methodset_line_style" id="set_line_style"><!-- --></a>
 <div class="oddrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_line_style</span> (line <span class="line-number">618</span>)
+		<span class="method-title">set_line_style</span> (line <span class="line-number">646</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1836,7 +1919,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_link_styles</span> (line <span class="line-number">1236</span>)
+		<span class="method-title">set_link_styles</span> (line <span class="line-number">1308</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1869,7 +1952,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_link_target</span> (line <span class="line-number">1246</span>)
+		<span class="method-title">set_link_target</span> (line <span class="line-number">1318</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1899,7 +1982,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_methods_highlighting</span> (line <span class="line-number">906</span>)
+		<span class="method-title">set_methods_highlighting</span> (line <span class="line-number">937</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1929,7 +2012,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_methods_style</span> (line <span class="line-number">891</span>)
+		<span class="method-title">set_methods_style</span> (line <span class="line-number">922</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1966,7 +2049,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_numbers_highlighting</span> (line <span class="line-number">874</span>)
+		<span class="method-title">set_numbers_highlighting</span> (line <span class="line-number">905</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -1996,7 +2079,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_numbers_style</span> (line <span class="line-number">859</span>)
+		<span class="method-title">set_numbers_style</span> (line <span class="line-number">890</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2029,7 +2112,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_overall_class</span> (line <span class="line-number">557</span>)
+		<span class="method-title">set_overall_class</span> (line <span class="line-number">584</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2059,7 +2142,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_overall_id</span> (line <span class="line-number">568</span>)
+		<span class="method-title">set_overall_id</span> (line <span class="line-number">595</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2089,7 +2172,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_overall_style</span> (line <span class="line-number">540</span>)
+		<span class="method-title">set_overall_style</span> (line <span class="line-number">567</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2122,7 +2205,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_regexps_highlighting</span> (line <span class="line-number">936</span>)
+		<span class="method-title">set_regexps_highlighting</span> (line <span class="line-number">967</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2155,7 +2238,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_regexps_style</span> (line <span class="line-number">920</span>)
+		<span class="method-title">set_regexps_style</span> (line <span class="line-number">951</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2191,7 +2274,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_source</span> (line <span class="line-number">459</span>)
+		<span class="method-title">set_source</span> (line <span class="line-number">486</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2221,7 +2304,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_strings_highlighting</span> (line <span class="line-number">845</span>)
+		<span class="method-title">set_strings_highlighting</span> (line <span class="line-number">876</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2251,7 +2334,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_strings_style</span> (line <span class="line-number">830</span>)
+		<span class="method-title">set_strings_style</span> (line <span class="line-number">861</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2284,7 +2367,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_symbols_highlighting</span> (line <span class="line-number">814</span>)
+		<span class="method-title">set_symbols_highlighting</span> (line <span class="line-number">845</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2314,7 +2397,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_symbols_style</span> (line <span class="line-number">797</span>)
+		<span class="method-title">set_symbols_style</span> (line <span class="line-number">826</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2328,7 +2411,7 @@
 		<span class="method-name">
 			set_symbols_style
 		</span>
-					(<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$preserve_defaults</span> = <span class="var-default">false</span>])
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$style</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$preserve_defaults</span> = <span class="var-default">false</span>], [<span class="var-type">int</span>&nbsp;<span class="var-name">$group</span> = <span class="var-default">0</span>])
 			</div>
 	
 			<ul class="parameters">
@@ -2338,6 +2421,9 @@
 					<li>
 				<span class="var-type">boolean</span>
 				<span class="var-name">$preserve_defaults</span><span class="var-description">: Whether to merge the new styles with the old or just                 to overwrite them</span>			</li>
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$group</span><span class="var-description">: Tells the group of symbols for which style should be set.</span>			</li>
 				</ul>
 		
 			
@@ -2347,7 +2433,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_tab_width</span> (line <span class="line-number">974</span>)
+		<span class="method-title">set_tab_width</span> (line <span class="line-number">1007</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2378,7 +2464,7 @@
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">set_url_for_keyword_group</span> (line <span class="line-number">1224</span>)
+		<span class="method-title">set_url_for_keyword_group</span> (line <span class="line-number">1296</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2406,12 +2492,42 @@
 		
 			
 	</div>
-<a name="methodstart_line_numbers_at" id="start_line_numbers_at"><!-- --></a>
+<a name="methodset_use_language_tab_width" id="set_use_language_tab_width"><!-- --></a>
 <div class="evenrow">
 	
 	<div class="method-header">
 		<img src="../../media/images/Method.png" />
-		<span class="method-title">start_line_numbers_at</span> (line <span class="line-number">1329</span>)
+		<span class="method-title">set_use_language_tab_width</span> (line <span class="line-number">1022</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets whether or not to use tab-stop width specifed by language</p>
+	<ul class="tags">
+				<li><span class="field">since:</span> 1.0.7.20</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			set_use_language_tab_width
+		</span>
+					(<span class="var-type">boolean</span>&nbsp;<span class="var-name">$use</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$use</span><span class="var-description">: Whether to use language-specific tab-stop widths</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodstart_line_numbers_at" id="start_line_numbers_at"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="../../media/images/Method.png" />
+		<span class="method-title">start_line_numbers_at</span> (line <span class="line-number">1421</span>)
 	</div> 
 	
 	<!-- ========== Info from phpDoc block ========= -->
@@ -2443,7 +2559,7 @@
 
 	
 	<p class="notes" id="credit">
-		Documentation generated on Sun, 25 Feb 2007 21:29:33 +1300 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.0</a>
+		Documentation generated on Sun, 23 Mar 2008 13:36:21 +0100 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.1</a>
 	</p>
 	</div></body>
-</html>
+</html>

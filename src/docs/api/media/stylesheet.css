@@ -131,9 +131,9 @@ a img { border: 0px; }
 .author { font-style: italic; font-weight: bold }
 .author-blurb { margin: .5em 0em .5em 2em; font-size: 85%; font-weight: normal; font-style: normal }
 .example { border: 1px dashed #999999; background-color: #EEEEEE; padding: .5em; }
-*[class="example"] { line-height : 0.5em; }
+*[class="example"] { line-height : 1.0em; }
 .listing { border: 1px dashed #999999; background-color: #EEEEEE; padding: .5em; white-space: nowrap; }
-*[class="listing"] { line-height : 0.5em; }
+*[class="listing"] { line-height : 1.0em; }
 .release-info { font-size: 85%; font-style: italic; margin: 1em 0em }
 .ref-title-box {  }
 .ref-title {  }
