@@ -702,6 +702,9 @@ class GeSHi {
         else {
             $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
         }
+        if(!isset($this->lexic_permissions['KEYWORDS'][$key])) {
+            $this->lexic_permissions['KEYWORDS'][$key] = true;
+        }
     }
 
     /**
@@ -1031,7 +1034,8 @@ class GeSHi {
      * @since 1.0.7.20
 	 */
 	function get_real_tab_width() {
-		if (!$this->use_language_tab_width || !isset($this->language_data['TAB_WIDTH'])) {
+		if (!$this->use_language_tab_width ||
+            !isset($this->language_data['TAB_WIDTH'])) {
 			return $this->tab_width;
 		} else {
 			return $this->language_data['TAB_WIDTH'];
@@ -2155,7 +2159,8 @@ class GeSHi {
         // if there is a couple of alpha symbols there *might* be a keyword
         if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
             foreach ($this->language_data['KEYWORDS'] as $k => $keywordset) {
-                if ($this->lexic_permissions['KEYWORDS'][$k]) {
+                if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
+                    $this->lexic_permissions['KEYWORDS'][$k]) {
                     foreach ($keywordset as $keyword) {
                         $keyword = preg_quote($keyword, '/');
                         //
@@ -2202,7 +2207,9 @@ class GeSHi {
         //
         foreach ($this->language_data['KEYWORDS'] as $k => $kws) {
             if (!$this->use_classes) {
-                $attributes = ' style="' . $this->language_data['STYLES']['KEYWORDS'][$k] . '"';
+                $attributes = ' style="' .
+                    (isset($this->language_data['STYLES']['KEYWORDS'][$k]) ?
+                    $this->language_data['STYLES']['KEYWORDS'][$k] : "") . '"';
             }
             else {
                 $attributes = ' class="kw' . $k . '"';
