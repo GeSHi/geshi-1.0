@@ -12,6 +12,17 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.7.22
+  -  Added language files
+     * glSlang (BenBE)
+  -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
+     symbols that caused some extra characters to be added in the output or
+     broke highlighting and standard compliance due to missing escaping of
+     internally used characters (SF#192320 and SF#1926259, BenBE)
+  -  Fixed missing style information for ocaml language file (The_PHP_Jedi)
+  -  Fixed a bug causing masses of warnings in rendered output if language file
+     miss style information (The_PHP_Jedi, BenBE)
+  -  Missing tab width information could lead to warnings (BenBE)
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)
