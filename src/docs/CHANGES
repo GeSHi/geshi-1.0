@@ -23,6 +23,8 @@ Version 1.0.7.22
   -  Fixed a bug causing masses of warnings in rendered output if language file
      miss style information (The_PHP_Jedi, BenBE)
   -  Missing tab width information could lead to warnings (BenBE)
+  -  Missing symbol information for ASP (SF#1952038, nfsupport, BenBE)
+  -  Empty delimiter message with OOoBasic (BenBE, Ccornell)
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)
