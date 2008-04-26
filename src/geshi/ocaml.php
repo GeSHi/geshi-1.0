@@ -11,6 +11,8 @@
  *
  * CHANGES
  * -------
+ * 2008/03/29 (1.0.7.22)
+ *   -  Fixed warnings resulting from missing style information
  * 2005/08/27 (1.0.0)
  *   -  First Release
  *
@@ -106,8 +108,11 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #06c; font-weight: bold;' /* nice blue */
-			),
+			1 => 'color: #06c; font-weight: bold;', /* nice blue */
+			2 => 'color: #06c; font-weight: bold;', /* nice blue */
+			3 => 'color: #06c; font-weight: bold;', /* nice blue */
+			4 => 'color: #06c; font-weight: bold;', /* nice blue */
+			5 => 'color: #06c; font-weight: bold;' /* nice blue */			),
 		'COMMENTS' => array(
 			'MULTI' => 'color: #5d478b; font-style: italic;' /* light purple */
 			),

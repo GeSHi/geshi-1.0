@@ -702,6 +702,9 @@ class GeSHi {
         else {
             $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
         }
+        if(!isset($this->lexic_permissions['KEYWORDS'][$key])) {
+            $this->lexic_permissions['KEYWORDS'][$key] = true;
+        }
     }
 
     /**
@@ -1031,7 +1034,8 @@ class GeSHi {
      * @since 1.0.7.20
 	 */
 	function get_real_tab_width() {
-		if (!$this->use_language_tab_width || !isset($this->language_data['TAB_WIDTH'])) {
+		if (!$this->use_language_tab_width ||
+            !isset($this->language_data['TAB_WIDTH'])) {
 			return $this->tab_width;
 		} else {
 			return $this->language_data['TAB_WIDTH'];
@@ -1920,6 +1924,10 @@ class GeSHi {
             }
         }
 
+        //This fix is related to SF#1923020, but has to be applied regardless of
+        //actually highlighting symbols.
+        $result = str_replace(array('<SEMI>', '<PIPE>'), array(';', '|'), $result);
+
         // Parse the last stuff (redundant?)
         $result .= $this->parse_non_string_part($stuff_to_parse);
 
@@ -2159,7 +2167,8 @@ class GeSHi {
         // if there is a couple of alpha symbols there *might* be a keyword
         if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
             foreach ($this->language_data['KEYWORDS'] as $k => $keywordset) {
-                if ($this->lexic_permissions['KEYWORDS'][$k]) {
+                if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
+                    $this->lexic_permissions['KEYWORDS'][$k]) {
                     foreach ($keywordset as $keyword) {
                         $keyword = preg_quote($keyword, '/');
                         //
@@ -2177,7 +2186,7 @@ class GeSHi {
                             $modifiers = ($this->language_data['CASE_SENSITIVE'][$k]) ? "e" : "ie";
 
                             $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
-                            $disallowed_after = "a-zA-Z0-9_<\|%\\-&";
+                            $disallowed_after = "a-zA-Z0-9_\|%\\-&";
                             if(isset($this->language_data['PARSER_CONTROL'])) {
                                 if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
                                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
@@ -2206,7 +2215,9 @@ class GeSHi {
         //
         foreach ($this->language_data['KEYWORDS'] as $k => $kws) {
             if (!$this->use_classes) {
-                $attributes = ' style="' . $this->language_data['STYLES']['KEYWORDS'][$k] . '"';
+                $attributes = ' style="' .
+                    (isset($this->language_data['STYLES']['KEYWORDS'][$k]) ?
+                    $this->language_data['STYLES']['KEYWORDS'][$k] : "") . '"';
             }
             else {
                 $attributes = ' class="kw' . $k . '"';
@@ -2869,6 +2880,15 @@ class GeSHi {
         {
             $aTransSpecchar["'"] = '&#39;'; // (apos) htmlspecialchars() uses '&#039;'
         }
+
+        //This fix is related to SF#1923020, but has to be applied regardless of
+        //actually highlighting symbols.
+
+        //Circumvent a bug with symbol highlighting
+        //This is required as ; would produce undesirable side-effects if it
+        //was not to be processed as an entity.
+        $aTransSpecchar[';'] = '<SEMI>'; // Force ; to be processed as entity
+        $aTransSpecchar['|'] = '<PIPE>'; // Force | to be processed as entity
 
         // return translated string
         return strtr($string,$aTransSpecchar);

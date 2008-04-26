@@ -48,7 +48,7 @@ $language_data = array (
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
     'CASE_KEYWORDS' => 0,
-    'QUOTEMARKS' => array("'", '"'),
+    'QUOTEMARKS' => array("'"),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
@@ -231,13 +231,13 @@ $language_data = array (
         'ESCAPE_CHAR' => array(
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #000066;'
             ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
+            0 => 'color: #0000ff;'
             ),
         'METHODS' => array(
             1 => 'color: #006600;'
@@ -247,10 +247,10 @@ $language_data = array (
             1 => 'color: #ff0000;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;',
-            1 => 'color: #66cc66;',
-            2 => 'color: #66cc66;',
-            3 => 'color: #66cc66;'
+            0 => 'color: #000066;',
+            1 => 'color: #000066;',
+            2 => 'color: #000066;',
+            3 => 'color: #000066;'
             ),
         'SCRIPT' => array(
             )

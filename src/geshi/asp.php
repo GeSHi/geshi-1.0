@@ -77,6 +77,10 @@ $language_data = array (
 			'MoveNext', 'LBound', 'UBound', 'Transfer', 'Open', 'Close', 'MapPath', 'FileExists', 'OpenTextFile', 'ReadAll'
 			)
 		),
+	'SYMBOLS' => array(
+		'(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>',
+        ';', ':', '?', '='
+		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => false,
 		1 => false,
