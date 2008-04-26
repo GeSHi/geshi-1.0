@@ -25,6 +25,8 @@ Version 1.0.7.22
   -  Missing tab width information could lead to warnings (BenBE)
   -  Missing symbol information for ASP (SF#1952038, nfsupport, BenBE)
   -  Empty delimiter message with OOoBasic (BenBE, Ccornell)
+  -  Escaping of comments in LaTeX ignored (SF#1776182, BenBE)
+  -  Modified Math environment $$ in LaTeX to be non-greedy (BenBE)
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)
