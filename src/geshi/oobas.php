@@ -41,15 +41,14 @@
 
 $language_data = array (
 	'LANG_NAME' => 'OpenOffice.org Basic',
-	'COMMENT_SINGLE' => array(1 => "'"),
+	'COMMENT_SINGLE' => array(1 => "'", 2 => 'REM'),
 	'COMMENT_MULTI' => array(),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"'),
 	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(
 		1 => array(
-			'dim','private','public','global','as','if','redim','true','set',
-			'byval',
+			'dim','private','public','global','as','if','redim','true','set','byval',
 			'false','bool','double','integer','long','object','single','variant',
 			'msgbox','print','inputbox','green','blue','red','qbcolor',
 			'rgb','open','close','reset','freefile','get','input','line',
@@ -59,9 +58,9 @@ $language_data = array (
 			'dateserial','datevalue','day','month','weekday','year','cdatetoiso',
 			'cdatefromiso','hour','minute','second','timeserial','timevalue',
 			'date','now','time','timer','erl','err','error','on','error','goto','resume',
-			'and','eqv','imp','not','or','xor','mod','','atn','cos','sin','tan','log',
+			'and','eqv','imp','not','or','xor','mod','atn','cos','sin','tan','log',
 			'exp','rnd','randomize','sqr','fix','int','abs','sgn','hex','oct',
-			'it','then','else','select','case','iif','do','loop','for','next',
+			'it','then','else','select','case','iif','do','loop','for','next','to',
 			'while','wend','gosub','return','goto','on','goto','call','choose','declare',
 			'end','exit','freelibrary','function','rem','stop','sub','switch','with',
 			'cbool','cdate','cdbl','cint','clng','const','csng','cstr','defbool',
@@ -87,7 +86,8 @@ $language_data = array (
 			1 => 'color: #b1b100;'
 			),
 		'COMMENTS' => array(
-			1 => 'color: #808080;'
+			1 => 'color: #808080;',
+			2 => 'color: #808080;'
 			),
 		'BRACKETS' => array(
 			0 => 'color: #66cc66;'
