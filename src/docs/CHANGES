@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
+     * KiXtart (Riley McArdle)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
@@ -32,6 +33,7 @@ Version 1.0.7.22
   -  Introduced Fortran Comments (SF#1914640, SF#1934832, BenBE)
   -  Implemented Heredoc Syntax for PHP (SF#1914640, BenBE)
   -  Implemented Compiler Directives for Delphi (SF#1914640, BenBE)
+  -  Implemented minimalistic support for JavaScript \ Perl Regular Expressions (SF#1786665, BenBE)
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)

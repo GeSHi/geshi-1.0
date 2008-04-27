@@ -43,6 +43,7 @@ $language_data = array (
   'LANG_NAME' => 'Javascript',
   'COMMENT_SINGLE' => array(1 => '//'),
   'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(2 => "/(?<=[\\s^])s\\/(?:\\\\.|[^\/\'])+\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU"),
   'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
   'QUOTEMARKS' => array("'", '"'),
   'ESCAPE_CHAR' => '\\',
@@ -84,6 +85,7 @@ $language_data = array (
       ),
     'COMMENTS' => array(
       1 => 'color: #009900; font-style: italic;',
+      2 => 'color: #009966; font-style: italic;',
       'MULTI' => 'color: #009900; font-style: italic;'
       ),
     'ESCAPE_CHAR' => array(
