@@ -35,6 +35,7 @@ Version 1.0.7.22
   -  Implemented Compiler Directives for Delphi (SF#1914640, BenBE)
   -  Implemented minimalistic support for JavaScript \ Perl Regular Expressions (SF#1786665, BenBE)
   -  Fixed Strings in Matlab to be handled as comments instead of regexps, to prevent keywords being linked (BenBE)
+  -  Applied PARSER_CONTROL fix of CPP for CPP-QT-Derivative (BenBE)
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)
