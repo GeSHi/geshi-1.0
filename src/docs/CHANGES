@@ -27,6 +27,11 @@ Version 1.0.7.22
   -  Empty delimiter message with OOoBasic (BenBE, Ccornell)
   -  Escaping of comments in LaTeX ignored (SF#1749806, BenBE)
   -  Modified Math environment $$ in LaTeX to be non-greedy (BenBE)
+  -  Added possibility to match a regexp as comment (SF#1914640, SF#1945301, SF#1934832, BenBE)
+  -  Introduced C-Style multiline continuation comments (SF#1914640, SF#1945301, BenBE)
+  -  Introduced Fortran Comments (SF#1914640, SF#1934832, BenBE)
+  -  Implemented Heredoc Syntax for PHP (SF#1914640, BenBE)
+  -  Implemented Compiler Directives for Delphi (SF#1914640, BenBE)
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)

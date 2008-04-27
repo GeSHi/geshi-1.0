@@ -43,6 +43,7 @@ $language_data = array (
 	'LANG_NAME'=>'Fortran',
 	'COMMENT_SINGLE'=> array(1 =>'!',2=>'Cf2py'),
 	'COMMENT_MULTI'=> array(),
+	'COMMENT_REGEXP' => array(1 => '/^C.*?$/mi'),
 	'CASE_KEYWORDS'=> GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS'=> array("'",'"'),
 	'ESCAPE_CHAR'=>'\\',

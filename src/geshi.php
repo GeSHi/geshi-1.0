@@ -1730,72 +1730,116 @@ class GeSHi {
                             $test_str = $char;
                         }
                         else if ($STRING_OPEN == '') {
-                            // Is this a multiline comment?
-                            foreach ($this->language_data['COMMENT_MULTI'] as $open => $close) {
-                                $com_len = strlen($open);
-                                $test_str = substr( $part, $i, $com_len );
-                                $test_str_match = $test_str;
-                                if (strtolower($open) == strtolower($test_str)) {
-                                    $COMMENT_MATCHED = true;
-                                    //@todo If remove important do remove here
-                                    if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
-                                        $test_str == GESHI_START_IMPORTANT) {
-                                        if ($test_str != GESHI_START_IMPORTANT) {
-                                            if (!$this->use_classes) {
-                                                $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS']['MULTI'] . '"';
+                            //Have a look for regexp comments
+                            if(isset($this->language_data['COMMENT_REGEXP'])) {
+                                foreach($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
+                                    if(preg_match($regexp, $part, $test_str_match, PREG_OFFSET_CAPTURE, $i)) {
+                                        if(count($test_str_match)) {
+                                            if($i == $test_str_match[0][1]) {
+                                                $COMMENT_MATCHED = true;
+                                                $test_str = GeSHi::hsc($test_str_match[0][0]);
+
+                                                //@todo If remove important do remove here
+                                                if ($this->lexic_permissions['COMMENTS']['MULTI']) {
+                                                    if (!$this->use_classes) {
+                                                        $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment_key] . '"';
+                                                    }
+                                                    else {
+                                                       $attributes = ' class="co' . $comment_key . '"';
+                                                    }
+                                                    $test_str = "<span$attributes>" . $test_str . "</span>";
+
+                                                    // Short-cut through all the multiline code
+                                                    if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
+                                                        count($this->highlight_extra_lines) > 0)) {
+                                                        // strreplace to put close span and open span around multiline newlines
+                                                        $test_str = str_replace(
+                                                            "\n", "</span>\n<span$attributes>",
+                                                            str_replace("\n ", "\n&nbsp;", $test_str)
+                                                        );
+                                                    }
+                                                }
+
+            									$i += strlen($test_str_match[0][0])-1;
+
+                                                // parse the rest
+                                                $result .= $this->parse_non_string_part($stuff_to_parse);
+                                                $stuff_to_parse = '';
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            // If we haven't matched a multiline comment, try single-line comments
+                            if (!$COMMENT_MATCHED) {
+                                // Is this a multiline comment?
+                                foreach ($this->language_data['COMMENT_MULTI'] as $open => $close) {
+                                    $com_len = strlen($open);
+                                    $test_str = substr( $part, $i, $com_len );
+                                    $test_str_match = $test_str;
+                                    if (strtolower($open) == strtolower($test_str)) {
+                                        $COMMENT_MATCHED = true;
+                                        //@todo If remove important do remove here
+                                        if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
+                                            $test_str == GESHI_START_IMPORTANT) {
+                                            if ($test_str != GESHI_START_IMPORTANT) {
+                                                if (!$this->use_classes) {
+                                                    $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS']['MULTI'] . '"';
+                                                }
+                                                else {
+                                                    $attributes = ' class="coMULTI"';
+                                                }
+                                                $test_str = "<span$attributes>" . GeSHi::hsc($test_str);
                                             }
                                             else {
-                                                $attributes = ' class="coMULTI"';
+                                                if (!$this->use_classes) {
+                                                    $attributes = ' style="' . $this->important_styles . '"';
+                                                }
+                                                else {
+                                                    $attributes = ' class="imp"';
+                                                }
+                                                // We don't include the start of the comment if it's an
+                                                // "important" part
+                                                $test_str = "<span$attributes>";
                                             }
-                                            $test_str = "<span$attributes>" . GeSHi::hsc($test_str);
                                         }
                                         else {
-                                            if (!$this->use_classes) {
-                                                $attributes = ' style="' . $this->important_styles . '"';
-                                            }
-                                            else {
-                                                $attributes = ' class="imp"';
-                                            }
-                                            // We don't include the start of the comment if it's an
-                                            // "important" part
-                                            $test_str = "<span$attributes>";
+                                            $test_str = GeSHi::hsc($test_str);
                                         }
-                                    }
-                                    else {
-                                        $test_str = GeSHi::hsc($test_str);
-                                    }
 
-                                    $close_pos = strpos( $part, $close, $i + strlen($close) );
+                                        $close_pos = strpos( $part, $close, $i + strlen($close) );
 
-                                    if ($close_pos === false) {
-                                        $close_pos = strlen($part);
-                                    }
+                                        if ($close_pos === false) {
+                                            $close_pos = strlen($part);
+                                        }
 
-                                    // Short-cut through all the multiline code
-                                    $rest_of_comment = GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i));
-                                    if (($this->lexic_permissions['COMMENTS']['MULTI'] ||
-                                        $test_str_match == GESHI_START_IMPORTANT) &&
-                                        ($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
-                                        count($this->highlight_extra_lines) > 0)) {
-                                        // strreplace to put close span and open span around multiline newlines
-                                        $test_str .= str_replace(
-                                            "\n", "</span>\n<span$attributes>",
-                                            str_replace("\n ", "\n&nbsp;", $rest_of_comment)
-                                        );
-                                    }
-                                    else {
-                                        $test_str .= $rest_of_comment;
-                                    }
+                                        // Short-cut through all the multiline code
+                                        $rest_of_comment = GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i));
+                                        if (($this->lexic_permissions['COMMENTS']['MULTI'] ||
+                                            $test_str_match == GESHI_START_IMPORTANT) &&
+                                            ($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
+                                            count($this->highlight_extra_lines) > 0)) {
+                                            // strreplace to put close span and open span around multiline newlines
+                                            $test_str .= str_replace(
+                                                "\n", "</span>\n<span$attributes>",
+                                                str_replace("\n ", "\n&nbsp;", $rest_of_comment)
+                                            );
+                                        }
+                                        else {
+                                            $test_str .= $rest_of_comment;
+                                        }
 
-                                    if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
-                                        $test_str_match == GESHI_START_IMPORTANT) {
-                                        $test_str .= '</span>';
+                                        if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
+                                            $test_str_match == GESHI_START_IMPORTANT) {
+                                            $test_str .= '</span>';
+                                        }
+    									$i = $close_pos + $com_len - 1;
+                                        // parse the rest
+                                        $result .= $this->parse_non_string_part($stuff_to_parse);
+                                        $stuff_to_parse = '';
+                                        break;
                                     }
-									$i = $close_pos + $com_len - 1;
-                                    // parse the rest
-                                    $result .= $this->parse_non_string_part($stuff_to_parse);
-                                    $stuff_to_parse = '';
-                                    break;
                                 }
                             }
                             // If we haven't matched a multiline comment, try single-line comments
@@ -1920,8 +1964,8 @@ class GeSHi {
         //actually highlighting symbols.
         $result = str_replace(array('<SEMI>', '<PIPE>'), array(';', '|'), $result);
 
-        // Parse the last stuff (redundant?)
-        $result .= $this->parse_non_string_part($stuff_to_parse);
+//        // Parse the last stuff (redundant?)
+//        $result .= $this->parse_non_string_part($stuff_to_parse);
 
         // Lop off the very first and last spaces
         $result = substr($result, 1, -1);
