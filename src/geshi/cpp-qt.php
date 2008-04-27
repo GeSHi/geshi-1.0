@@ -39,6 +39,7 @@ $language_data = array (
 	'LANG_NAME' => 'C++ (QT)',
 	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
+	'COMMENT_REGEXP' => array(1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
 	'ESCAPE_CHAR' => '\\',

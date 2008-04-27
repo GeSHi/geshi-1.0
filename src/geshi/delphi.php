@@ -47,6 +47,7 @@ $language_data = array (
     'LANG_NAME' => 'Delphi',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
+    'COMMENT_REGEXP' => array(2 => '/{\\$.*?}|\\(\\*\\$.*?\\*\\)/U'),
     'CASE_KEYWORDS' => 0,
     'QUOTEMARKS' => array("'"),
     'ESCAPE_CHAR' => '',
@@ -226,6 +227,7 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
+            2 => 'color: #008000; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
