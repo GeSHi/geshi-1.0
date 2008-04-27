@@ -44,6 +44,7 @@ $language_data = array (
 	'LANG_NAME' => 'Matlab M',
 	'COMMENT_SINGLE' => array(1 => '%'),
 	'COMMENT_MULTI' => array(),
+	'COMMENT_REGEXP' => array(2 => "/(?<!\\w)('[^\\n\\r']*?')/"),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array(),
 	'ESCAPE_CHAR' => '',
@@ -810,6 +811,7 @@ $language_data = array (
 			),
 		'COMMENTS' => array(
 			1 => 'color: #228B22;',
+            2 => 'color:#A020F0;'
 			),
 		'ESCAPE_CHAR' => array(
             0 => ''
@@ -831,7 +833,6 @@ $language_data = array (
             0 => 'color: #080;'
 			),
 		'REGEXPS' => array(
-            0 => 'color:#A020F0;'
 			),
 		'SCRIPT' => array(
             0 => ''
@@ -849,13 +850,6 @@ $language_data = array (
 		2 => '::'
 		),
 	'REGEXPS' => array(
-        0 => array(
-            GESHI_SEARCH => "([^\w])'([^\\n\\r']*)'",
-            GESHI_REPLACE => '\\2',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => "\\1'",
-            GESHI_AFTER => "'"
-		)
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
