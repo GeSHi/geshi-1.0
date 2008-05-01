@@ -1808,14 +1808,14 @@ class GeSHi {
                                             $test_str = GeSHi::hsc($test_str);
                                         }
 
-                                        $close_pos = strpos( $part, $close, $i + strlen($close) );
+                                        $close_pos = strpos( $part, $close, $i + strlen($open) );
 
                                         if ($close_pos === false) {
                                             $close_pos = strlen($part);
                                         }
 
                                         // Short-cut through all the multiline code
-                                        $rest_of_comment = GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i));
+                                        $rest_of_comment = GeSHi::hsc(substr($part, $i + strlen($open), $close_pos - $i - strlen($open) + strlen($close)));
                                         if (($this->lexic_permissions['COMMENTS']['MULTI'] ||
                                             $test_str_match == GESHI_START_IMPORTANT) &&
                                             ($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
@@ -1834,7 +1834,7 @@ class GeSHi {
                                             $test_str_match == GESHI_START_IMPORTANT) {
                                             $test_str .= '</span>';
                                         }
-    									$i = $close_pos + $com_len - 1;
+    									$i = $close_pos + strlen($close) - 1;
                                         // parse the rest
                                         $result .= $this->parse_non_string_part($stuff_to_parse);
                                         $stuff_to_parse = '';

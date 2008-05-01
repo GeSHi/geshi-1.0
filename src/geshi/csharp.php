@@ -191,7 +191,7 @@
 			0 => 'color: #000000;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #808080;'
+			0 => 'color: #666666;'
 			),
 		'NUMBERS' => array(
 			0 => 'color: #FF0000;'
