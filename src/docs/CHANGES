@@ -36,6 +36,17 @@ Version 1.0.7.22
   -  Implemented minimalistic support for JavaScript \ Perl Regular Expressions (SF#1786665, BenBE)
   -  Fixed Strings in Matlab to be handled as comments instead of regexps, to prevent keywords being linked (BenBE)
   -  Applied PARSER_CONTROL fix of CPP for CPP-QT-Derivative (BenBE)
+  -  Fixed incorrect treatment of unequally long multiline comment separators (related to SF #1891630, BenBE)
+  -  First of series of color scheme changes. Affected languages (sofar):
+     * C
+     * C#
+     * Delphi
+     * Fortran77
+     * glSlang
+     * OpenOffice.org Basic
+     * Pascal
+     * Perl
+     * PHP and PHP-Brief
 Version 1.0.7.21
   -  Added language files
      * Basic4GL (Matthew Webb)
