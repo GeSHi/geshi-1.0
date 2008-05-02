@@ -43,7 +43,7 @@ $language_data = array (
   'LANG_NAME' => 'Javascript',
   'COMMENT_SINGLE' => array(1 => '//'),
   'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(2 => "/(?<=[\\s^])s\\/(?:\\\\.|[^\/\'])+\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU"),
+  'COMMENT_REGEXP' => array(2 => "/(?<=[\\s^])s\\/(?:\\\\.|[^\/\'])+\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU"),
   'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
   'QUOTEMARKS' => array("'", '"'),
   'ESCAPE_CHAR' => '\\',
@@ -69,7 +69,11 @@ $language_data = array (
       )
     ),
   'SYMBOLS' => array(
-    '(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>'
+    '(', ')', '[', ']', '{', '}',
+    '+', '-', '*', '/', '%',
+    '!', '@', '&', '|', '^',
+    '<', '>', '=',
+    ',', ';', '?', ':'
     ),
   'CASE_SENSITIVE' => array(
     GESHI_COMMENTS => false,
@@ -84,15 +88,15 @@ $language_data = array (
       3 => 'color: #000066;'
       ),
     'COMMENTS' => array(
-      1 => 'color: #009900; font-style: italic;',
+      1 => 'color: #006600; font-style: italic;',
       2 => 'color: #009966; font-style: italic;',
-      'MULTI' => 'color: #009900; font-style: italic;'
+      'MULTI' => 'color: #006600; font-style: italic;'
       ),
     'ESCAPE_CHAR' => array(
       0 => 'color: #000099; font-weight: bold;'
       ),
     'BRACKETS' => array(
-      0 => 'color: #66cc66;'
+      0 => 'color: #009900;'
       ),
     'STRINGS' => array(
       0 => 'color: #3366CC;'
@@ -104,7 +108,7 @@ $language_data = array (
       1 => 'color: #006600;'
       ),
     'SYMBOLS' => array(
-      0 => 'color: #66cc66;'
+      0 => 'color: #339933;'
       ),
     'REGEXPS' => array(
       0 => 'color: #0066FF;'

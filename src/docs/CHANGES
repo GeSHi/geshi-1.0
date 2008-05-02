@@ -38,12 +38,16 @@ Version 1.0.7.22
   -  Fixed Strings in Matlab to be handled as comments instead of regexps, to prevent keywords being linked (BenBE)
   -  Applied PARSER_CONTROL fix of CPP for CPP-QT-Derivative (BenBE)
   -  Fixed incorrect treatment of unequally long multiline comment separators (related to SF #1891630, BenBE)
+  -  Added PARSER_CONTROL settings for keywords in ASM language file (SF#1835148, BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
+     * Assembler (x86)
      * C
      * C#
      * Delphi
      * Fortran77
      * glSlang
+     * Java & Java 5
+     * JavaScript
      * OpenOffice.org Basic
      * Pascal
      * Perl

@@ -47,6 +47,7 @@ $language_data = array (
 	'LANG_NAME' => 'ASM',
 	'COMMENT_SINGLE' => array(1 => ';'),
 	'COMMENT_MULTI' => array(),
+	'COMMENT_REGEXP' => array(2 => "/^(?:[0-9a-f]{0,4}:)?[0-9a-f]{4}(?:[0-9a-f]{4})?/mi"),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
 	'ESCAPE_CHAR' => '',
@@ -132,7 +133,9 @@ $language_data = array (
 			)
 		),
 	'SYMBOLS' => array(
-		'[', ']', '(', ')'
+		'[', ']', '(', ')',
+		'+', '-', '*', '/', '%',
+		'.', ',', ';', ':'
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
@@ -144,35 +147,36 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #00007f;',
-			2 => 'color: #0000ff;',
-			3 => 'color: #46aa03; font-weight:bold;',
-			4 => 'color: #0000ff;',
-			5 => 'color: #0000ff;'
+			1 => 'color: #00007f; font-weight: bold;',
+			2 => 'color: #0000ff; font-weight: bold;',
+			3 => 'color: #00007f;',
+			4 => 'color: #000000; font-weight: bold;',
+			5 => 'color: #000000; font-weight: bold;'
 			),
 		'COMMENTS' => array(
-			1 => 'color: #adadad; font-style: italic;',
+			1 => 'color: #666666; font-style: italic;',
+			2 => 'color: #adadad; font-style: italic;',
 			),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 			),
 		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #009900; font-weight: bold;'
 			),
 		'STRINGS' => array(
 			0 => 'color: #7f007f;'
 			),
 		'NUMBERS' => array(
-			0 => 'color: #ff0000;'
+			0 => 'color: #0000ff;'
 			),
 		'METHODS' => array(
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #339933;'
 			),
 		'REGEXPS' => array(
-			0 => 'color: #ff0000;',
-			1 => 'color: #ff0000;'
+			0 => 'color: #0000ff;',
+			1 => 'color: #0000ff;'
 			),
 		'SCRIPT' => array(
 			)
@@ -185,15 +189,21 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
-		0 => '0[0-9a-fA-F]{1,32}[hH]',
-		1 => '[01]{1,64}[bB]'
+		0 => /*  */ "(?<=([\\s\\(\\)\\[\\],;.:+\\-/*]))(?:[0-9][0-9a-fA-F]{0,31}[hH]|0x[0-9a-fA-F]{1,32})(?=([\\s\\(\\)\\[\\],;.:+\\-/*]))",
+		1 => "(?<=([\\s\\(\\)\\[\\],;.:+\\-/*]))[01]{1,64}[bB](?=([\\s\\(\\)\\[\\],;.:+\\-/*]))"
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(
 		),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 8
+    'TAB_WIDTH' => 8,
+	'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "a-zA-Z0-9\$_\|\#>|^",
+            'DISALLOWED_AFTER' => "a-zA-Z0-9_<\|%"
+        )
+	)
 );
 
 ?>
