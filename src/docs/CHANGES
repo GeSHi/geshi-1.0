@@ -41,6 +41,7 @@ Version 1.0.7.22
   -  Added PARSER_CONTROL settings for keywords in ASM language file (SF#1835148, BenBE)
   -  Fixed missing CASSE_SENSITIVE entry for DOS language file (SF#1956314, BenBE)
   -  Fixed accidential highlighting of keywords in argument names (SF#1956456, Milian Wolff, BenBE)
+  -  Fixed yet again some #-related bash problem (SF#1956459, Milian Wolff, BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
