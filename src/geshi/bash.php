@@ -195,6 +195,7 @@ $language_data = array (
 		),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		),
+    'TAB_WIDTH' => 4,
 	'PARSER_CONTROL' => array(
 	    'COMMENTS' => array(
 	       'DISALLOWED_BEFORE' => '$'
