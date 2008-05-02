@@ -68,7 +68,7 @@ $language_data = array (
 	'KEYWORDS' => array(
 	    /* Flow control keywords */
 		1 => array(
-			'if', 'else', 'goto',
+			'if', 'else', 'goto', 'shift',
 			'for', 'in', 'do',
 			'call', 'exit'
 			),
@@ -80,26 +80,27 @@ $language_data = array (
 			),
 	    /* Internal commands */
 		3 => array(
-			'shift',
-			'cd', 'dir', 'echo',
+			'cd', 'md', 'rd', 'chdir', 'mkdir', 'rmdir', 'dir',
+			'del', 'copy',
+            'echo',
 			'setlocal', 'endlocal', 'set',
 			'pause'
 			),
 	    /* Special files */
-
 		4 => array(
 			'prn', 'nul', 'lpt3', 'lpt2', 'lpt1', 'con',
 			'com4', 'com3', 'com2', 'com1', 'aux'
 			)
 		),
 	'SYMBOLS' => array(
-		'(', ')'
+		'(', ')', '@', '%'
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => false,
 			1 => false,
 			2 => false,
 			3 => false,
+			4 => false
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
@@ -179,7 +180,8 @@ $language_data = array (
 	'SCRIPT_DELIMITERS' => array(
 		),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
-		)
+		),
+    'TAB_WIDTH' => 4
 );
 
 ?>
