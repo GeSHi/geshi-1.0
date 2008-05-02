@@ -199,6 +199,9 @@ $language_data = array (
 	'PARSER_CONTROL' => array(
 	    'COMMENTS' => array(
 	       'DISALLOWED_BEFORE' => '$'
+        ),
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "\-a-zA-Z0-9\$_\|\#>|^",
         )
     )
 );
