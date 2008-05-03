@@ -60,8 +60,9 @@ $language_data = array (
         '=pod' => '=cut'
     ),
     'COMMENT_REGEXP' => array(
-        2 => "/(?<=[\\s^])s\\/(?:\\\\.|[^\/\'])+\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|[^\/\'])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU",
-        3 => '/\$\d+/'
+        2 => "/(?<=[\\s^])(s|tr|y)\\/(?:\\\\.|[^\\/\\\\])+\\/(?:\\\\.|[^\\/\\\\])*\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?:\\\\.|[^\\/\\\\])+\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU",
+        3 => '/\$\d+/',
+        4 => '/<<\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'
     ),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"'),
@@ -138,6 +139,7 @@ $language_data = array (
 			1 => 'color: #666666; font-style: italic;',
 			2 => 'color: #009966; font-style: italic;',
 			3 => 'color: #0000ff;',
+			4 => 'color: #cc0000; font-style: italic;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
@@ -185,4 +187,5 @@ $language_data = array (
 		)
 );
 
+echo "/(?<=[\\s^])(s|tr|y)\\/(?:\\\\.|[^\/])+\\/(?:\\\\.|[^\/])*\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?:\\\\.|[^\/\'])+\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU";
 ?>
