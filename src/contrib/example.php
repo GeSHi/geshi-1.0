@@ -22,6 +22,7 @@ if (!@include '../geshi.php') {
     $path = '../';
 }
 
+$fill_source = false;
 if ( isset($_POST['submit']) )
 {
 	if ( get_magic_quotes_gpc() ) $_POST['source'] = stripslashes($_POST['source']);
@@ -30,6 +31,8 @@ if ( isset($_POST['submit']) )
         $_POST['language'] = preg_replace('#[^a-zA-Z0-9\-_]#', '', $_POST['language']);
 		$_POST['source'] = implode('', @file($path . 'geshi/' . $_POST['language'] . '.php'));
 		$_POST['language'] = 'php';
+	} else {
+		$fill_source = true;
 	}
     
     // Here's a free demo of how GeSHi works.
@@ -95,7 +98,7 @@ if ( isset($_POST['submit']) )
 	if ( isset($_POST['submit']) )
 	{
         // Output the stylesheet. Note it doesn't output the <style> tag
-		echo $geshi->get_stylesheet();
+		echo $geshi->get_stylesheet(false);
 	}
 	?>
 	html {
@@ -161,7 +164,7 @@ if ( isset($_POST['submit']) )
 ?>
 <form action="example.php" method="post">
 <h3>Source to highlight</h3>
-<textarea rows="10" cols="60" name="source"></textarea>
+<textarea rows="10" cols="60" name="source"><?php echo $fill_source ? htmlspecialchars($_POST['source']) : '' ?></textarea>
 <h3>Choose a language</h3>
 <select name="language">
 <?php
@@ -180,7 +183,12 @@ while ( $file = readdir($dir) )
 closedir($dir);
 sort($languages);
 foreach ($languages as $lang) {
-    echo '<option value="' . $lang . '">' . $lang . "</option>\n";
+	if (isset($_POST['language']) && $_POST['language'] == $lang) {
+		$selected = 'selected="selected"';
+	} else {
+		$selected = '';
+	}
+	echo '<option value="' . $lang . '" '. $selected .'>' . $lang . "</option>\n";
 }
 
 ?>
