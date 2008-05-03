@@ -54,7 +54,10 @@ $language_data = array (
     // 1564839)
 	'COMMENT_SINGLE' => array('#'),
 	'COMMENT_MULTI' => array(),
-	'COMMENT_REGEXP' => array(1 => "/\\$\\{[^\\n\\}]*?\\}/i"),
+	'COMMENT_REGEXP' => array(
+        1 => "/\\$\\{[^\\n\\}]*?\\}/i",
+        2 => '/<<-?\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'
+        ),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
 	'ESCAPE_CHAR' => '\\',
@@ -132,7 +135,7 @@ $language_data = array (
 			)
 		),
 	'SYMBOLS' => array(
-		'(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>', ';;'
+		'(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>', ';;', '`'
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => false,
@@ -147,8 +150,9 @@ $language_data = array (
 			3 => 'color: #7a0874; font-weight: bold;'
 			),
 		'COMMENTS' => array(
-			0 => 'color: #808080; font-style: italic;',
-			1 => 'color: #007800;'
+			0 => 'color: #666666; font-style: italic;',
+			1 => 'color: #800000;',
+			2 => 'color: #cc0000; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
