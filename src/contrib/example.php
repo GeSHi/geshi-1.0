@@ -85,6 +85,9 @@ if ( isset($_POST['submit']) )
     // You can use <TIME> and <VERSION> as placeholders
 	$geshi->set_footer_content('Parsed in <TIME> seconds,  using GeSHi <VERSION>');
 	$geshi->set_footer_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-top: 1px solid #d0d0d0; padding: 2px;');
+} else {
+    // make sure we don't preselect any language
+    $_POST['language'] = null;
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
@@ -164,9 +167,9 @@ if ( isset($_POST['submit']) )
 ?>
 <form action="example.php" method="post">
 <h3>Source to highlight</h3>
-<textarea rows="10" cols="60" name="source"><?php echo $fill_source ? htmlspecialchars($_POST['source']) : '' ?></textarea>
+<textarea rows="10" cols="60" name="source" id="source"><?php echo $fill_source ? htmlspecialchars($_POST['source']) : '' ?></textarea>
 <h3>Choose a language</h3>
-<select name="language">
+<select name="language" id="language">
 <?php
 if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
     if (!($dir = @opendir(dirname(__FILE__) . '/../geshi'))) {
@@ -194,6 +197,7 @@ foreach ($languages as $lang) {
 ?>
 </select><br />
 <input type="submit" name="submit" value="Highlight Source">
+<input type="submit" name="clear" onclick="document.getElementById('source').value='';document.getElementById('language').value='';return false" value="clear" />
 </form>
 <div id="footer">GeSHi &copy; Nigel McNie, 2004, released under the GNU GPL<br />
 For a better demonstration, check out the <a href="http://qbnz.com/highlighter/demo.php">online demo</a>

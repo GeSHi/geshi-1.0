@@ -44,6 +44,7 @@ Version 1.0.7.22
   -  Fixed yet again some #-related bash problem (SF#1956459, Milian Wolff, BenBE)
   -  Added backticks as symbols (Milian Wolff)
   -  Example script remembers selections and source submitted (Milian Wolff)
+  -  Example script allows remembered source and preselected language to be cleared (Milian Wolff)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
