@@ -45,6 +45,7 @@ Version 1.0.7.22
   -  Added backticks as symbols (Milian Wolff)
   -  Example script remembers selections and source submitted (Milian Wolff)
   -  Example script allows remembered source and preselected language to be cleared (Milian Wolff)
+  -  Code cleanup by using direct string indexing instead of substr with length 1 (Milian Wolff)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
