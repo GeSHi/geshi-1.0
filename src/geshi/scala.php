@@ -1,7 +1,7 @@
 <?php
 /*************************************************************************************
  * scala.php
- * --------
+ * ----------
  * Author: Franco Lombardo (franco@francolombardo.net)
  * Copyright: (c) 2008 Franco Lombardo, Benny Baumann
  * Release Version: 1.0.7.22
@@ -14,9 +14,8 @@
  * 2008/02/08 (1.0.7.22)
  *   -  First Release
  *
- * TODO
- * ----
- * * Complete list of keywords
+ * TODO (updated 2007/04/27)
+ * -------------------------
  *
  *************************************************************************************
  *
@@ -38,6 +37,7 @@
  *
  ************************************************************************************/
 
+
 $language_data = array (
 	'LANG_NAME' => 'Scala',
 	'COMMENT_SINGLE' => array(1 => '//'),
@@ -56,12 +56,14 @@ $language_data = array (
 			'trait', 'try', 'true', 'type', 'val',
 			'var', 'while', 'with', 'yield'
  		    ),
-		4 => array(
+		2 => array(
 			'void', 'double', 'int', 'boolean', 'byte', 'short', 'long', 'char', 'float'
 			)
 		),
 	'SYMBOLS' => array(
-		'_', ':', '=', '=>', '<<:', '<%', '>:', '#', '@'
+		'(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?',
+		'_', ':', '=', '=>', '<<:',
+		'<%', '>:', '#', '@'
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
@@ -73,7 +75,7 @@ $language_data = array (
 	'STYLES' => array(
 		'KEYWORDS' => array(
 			1 => 'color: #0000ff; font-weight: bold;',
-			4 => 'color: #993333;'
+			2 => 'color: #9999cc; font-weight: bold;',
 			),
 		'COMMENTS' => array(
 			1=> 'color: #008000; font-style: italic;',
@@ -87,7 +89,7 @@ $language_data = array (
 			0 => 'color: #F78811;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #000000; font-weight: bold;'
+			0 => 'color: #6666FF;'
 			),
 		'NUMBERS' => array(
 			0 => 'color: #F78811;'
@@ -97,7 +99,7 @@ $language_data = array (
 			2 => 'color: #000000;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #F78811;'
+			0 => 'color: #000080;'
 			),
 		'SCRIPT' => array(
 			),
@@ -105,10 +107,8 @@ $language_data = array (
 			)
 		),
 	'URLS' => array(
-		1 => '',
-		2 => '',
-		3 => 'http://scala-lang.org',
-		4 => ''
+		1 => 'http://scala-lang.org',
+		2 => ''
 		),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(
