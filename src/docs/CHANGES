@@ -16,6 +16,7 @@ Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
      * KiXtart (Riley McArdle)
+     * Scala (Franco Lombardo)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
@@ -31,18 +32,31 @@ Version 1.0.7.22
   -  Added possibility to match a regexp as comment (SF#1914640, SF#1945301, SF#1934832, BenBE)
   -  Introduced C-Style multiline continuation comments (SF#1914640, SF#1945301, BenBE)
   -  Introduced Fortran Comments (SF#1914640, SF#1934832, BenBE)
-  -  Implemented Heredoc Syntax for PHP (SF#1914640, BenBE)
+  -  Implemented Heredoc Syntax for PHP and Perl (SF#1914640, BenBE)
   -  Implemented Compiler Directives for Delphi (SF#1914640, BenBE)
-  -  Implemented minimalistic support for JavaScript \ Perl Regular Expressions (SF#1786665, BenBE)
+  -  Implemented minimalistic support for JavaScript \ Perl Regular Expressions (SF#1786665, SF#1754333, SF#1956631, BenBE)
   -  Fixed Strings in Matlab to be handled as comments instead of regexps, to prevent keywords being linked (BenBE)
   -  Applied PARSER_CONTROL fix of CPP for CPP-QT-Derivative (BenBE)
   -  Fixed incorrect treatment of unequally long multiline comment separators (related to SF #1891630, BenBE)
+  -  Added PARSER_CONTROL settings for keywords in ASM language file (SF#1835148, BenBE)
+  -  Fixed missing CASSE_SENSITIVE entry for DOS language file (SF#1956314, BenBE)
+  -  Fixed accidential highlighting of keywords in argument names (SF#1956456, Milian Wolff, BenBE)
+  -  Fixed yet again some #-related bash problem (SF#1956459, Milian Wolff, BenBE)
+  -  Added backticks as symbols (Milian Wolff)
+  -  Example script remembers selections and source submitted (Milian Wolff)
+  -  Example script allows remembered source and preselected language to be cleared (Milian Wolff)
+  -  Code cleanup by using direct string indexing instead of substr with length 1 (Milian Wolff)
   -  First of series of color scheme changes. Affected languages (sofar):
+     * Assembler (x86)
+     * Bash
      * C
      * C#
      * Delphi
      * Fortran77
      * glSlang
+     * Java & Java 5
+     * JavaScript
+     * OCaml
      * OpenOffice.org Basic
      * Pascal
      * Perl

@@ -524,7 +524,7 @@ class GeSHi {
      */
     function set_language_path($path) {
         if ($path) {
-            $this->language_path = ('/' == substr($path, strlen($path) - 1, 1)) ? $path : $path . '/';
+            $this->language_path = ('/' == $path[strlen($path) - 1]) ? $path : $path . '/';
             $this->set_language($this->language);        // otherwise set_language_path has no effect
         }
     }
@@ -1378,11 +1378,12 @@ class GeSHi {
             }
         }
         else {
-            $this->highlight_extra_lines[intval($lines)] = intval($lines);
+            $lines = intval($lines);
+            $this->highlight_extra_lines[$lines] = $lines;
             if ($style != null) {
-            	$this->highlight_extra_lines_styles[intval($lines)] = $style;
+                $this->highlight_extra_lines_styles[$lines] = $style;
             } else {
-            	unset($this->highlight_extra_lines_styles[intval($lines)]);
+                unset($this->highlight_extra_lines_styles[$lines]);
             }
         }
     }
@@ -1451,7 +1452,7 @@ class GeSHi {
      * @since 1.0.2
      */
     function enable_keyword_links($enable = true) {
-        $this->keyword_links = ($enable) ? true : false;
+        $this->keyword_links = (bool) $enable;
     }
 
     /**
@@ -1509,7 +1510,7 @@ class GeSHi {
             $parts = array(0 => array(0 => ''));
             $k = 0;
             for ($i = 0; $i < $length; $i++) {
-                $char = substr($code, $i, 1);
+                $char = $code[$i];
                 if (!$HIGHLIGHTING_ON) {
                     foreach ($this->language_data['SCRIPT_DELIMITERS'] as $key => $delimiters) {
                         foreach ($delimiters as $open => $close) {
@@ -1605,7 +1606,7 @@ class GeSHi {
                     $length = strlen($part);
                     for ($i = 0; $i < $length; $i++) {
                         // Get the next char
-                        $char = substr($part, $i, 1);
+                        $char = $part[$i];
                         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
                         // Is this char the newline and line numbers being used?
                         if (($this->line_numbers != GESHI_NO_LINE_NUMBERS
@@ -1707,7 +1708,7 @@ class GeSHi {
                                         $attributes = ' class="es0"';
                                     }
                                     $char = "<span$attributes>" . $char;
-                                    if (substr($code, $i + 1, 1) == "\n") {
+                                    if ($code[$i + 1] == "\n") {
                                         // escaping a newline, what's the point in putting the span around
                                         // the newline? It only causes hassles when inserting line numbers
                                         $char .= '</span>';
@@ -1869,8 +1870,8 @@ class GeSHi {
                                             }
                                         }
 
-                                        $match = $match && (!strlen($disallowed_before) || ((false === strpos($disallowed_before, substr($part, $i-1, 1))) && (0!=$i)));
-                                        $match = $match && (!strlen($disallowed_after) || ((false === strpos($disallowed_after, substr($part, $i+1, 1))) && (strlen($part)-1>$i)));
+                                        $match = $match && (!strlen($disallowed_before) || ((false === strpos($disallowed_before, $part[$i-1])) && (0!=$i)));
+                                        $match = $match && (!strlen($disallowed_after) || ((false === strpos($disallowed_after, $part[$i+1])) && (strlen($part)-1>$i)));
                                     }
                                     if ($match) {
                                         $COMMENT_MATCHED = true;
@@ -2007,7 +2008,7 @@ class GeSHi {
 
                 $IN_TAG = false;
                 for ($i = 0; $i < $length; $i++) {
-                    $char = substr($line, $i, 1);
+                    $char = $line[$i];
                     // Simple engine to work out whether we're in a tag.
                     // If we are we modify $pos. This is so we ignore HTML
                     // in the line and only workout the tab replacement

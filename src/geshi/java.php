@@ -59,16 +59,16 @@ $language_data = array (
 	'KEYWORDS' => array(
 		1 => array(
 			'for', 'foreach', 'if', 'else', 'while', 'do',
-			'switch', 'case'
-			),
-		2 => array(
-			'null', 'return', 'false', 'final', 'true', 'public',
+			'switch', 'case',  'return', 'public',
 			'private', 'protected', 'extends', 'break', 'class',
 			'new', 'try', 'catch', 'throws', 'finally', 'implements',
-			'interface', 'throw', 'native', 'synchronized', 'this',
+			'interface', 'throw', 'final', 'native', 'synchronized', 'this',
             'abstract', 'transient', 'instanceof', 'assert', 'continue',
             'default', 'enum', 'package', 'static', 'strictfp', 'super',
             'volatile', 'const', 'goto'
+			),
+		2 => array(
+			'null', 'false', 'true'
 			),
 		3 => array(
 			'AbstractAction', 'AbstractBorder', 'AbstractButton', 'AbstractCellEditor',
@@ -1321,7 +1321,11 @@ $language_data = array (
 			)
 		),
 	'SYMBOLS' => array(
-		'(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?'
+		'(', ')', '[', ']', '{', '}',
+        '+', '-', '*', '/', '%',
+        '!', '&', '|', '^',
+        '<', '>', '=',
+        '?', ':', ';',
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => true,
@@ -1332,34 +1336,34 @@ $language_data = array (
 		),
 	'STYLES' => array(
 		'KEYWORDS' => array(
-			1 => 'color: #b1b100;',
-			2 => 'color: #000000; font-weight: bold;',
-			3 => 'color: #aaaadd; font-weight: bold;',
-			4 => 'color: #993333;'
+			1 => 'color: #000000; font-weight: bold;',
+			2 => 'color: #000066; font-weight: bold;',
+			3 => 'color: #003399;',
+			4 => 'color: #000066; font-weight: bold;'
 			),
 		'COMMENTS' => array(
-			1=> 'color: #808080; font-style: italic;',
-			2=> 'color: #a1a100;',
-			'MULTI' => 'color: #808080; font-style: italic;'
+			1=> 'color: #666666; font-style: italic;',
+			2=> 'color: #999900;',
+			'MULTI' => 'color: #666666; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
 			0 => 'color: #000099; font-weight: bold;'
 			),
 		'BRACKETS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #009900;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #ff0000;'
+			0 => 'color: #0000ff;'
 			),
 		'NUMBERS' => array(
 			0 => 'color: #cc66cc;'
 			),
 		'METHODS' => array(
-			1 => 'color: #006600;',
-			2 => 'color: #006600;'
+			1 => 'color: #006633;',
+			2 => 'color: #006633;'
 			),
 		'SYMBOLS' => array(
-			0 => 'color: #66cc66;'
+			0 => 'color: #339933;'
 			),
 		'SCRIPT' => array(
 			),

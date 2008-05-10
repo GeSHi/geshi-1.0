@@ -112,7 +112,8 @@ $language_data = array (
 			2 => 'color: #06c; font-weight: bold;', /* nice blue */
 			3 => 'color: #06c; font-weight: bold;', /* nice blue */
 			4 => 'color: #06c; font-weight: bold;', /* nice blue */
-			5 => 'color: #06c; font-weight: bold;' /* nice blue */			),
+			5 => 'color: #06c; font-weight: bold;' /* nice blue */
+            ),
 		'COMMENTS' => array(
 			'MULTI' => 'color: #5d478b; font-style: italic;' /* light purple */
 			),
