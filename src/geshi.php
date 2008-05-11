@@ -1505,53 +1505,38 @@ class GeSHi {
         if ($this->strict_mode) {
             // Break the source into bits. Each bit will be a portion of the code
             // within script delimiters - for example, HTML between < and >
-            $parts = array(0 => array(0 => ''));
+            $parts = array(0 => array(0 => '', 1 => ''));
             $k = 0;
             for ($i = 0; $i < $length; ++$i) {
-                $char = $code[$i];
-                if (!$HIGHLIGHTING_ON) {
-                    foreach ($this->language_data['SCRIPT_DELIMITERS'] as $key => $delimiters) {
-                        foreach ($delimiters as $open => $close) {
-                            // Get the next little bit for this opening string
-                            $check = substr($code, $i, strlen($open));
-                            // If it matches...
-                            if ($check == $open) {
-                                // We start a new block with the highlightable
-                                // code in it
-                                $HIGHLIGHTING_ON = $open;
-                                $i += strlen($open) - 1;
-                                $char = $open;
-                                $parts[++$k][0] = $char;
+                foreach ($this->language_data['SCRIPT_DELIMITERS'] as $delimiters) {
+                    foreach ($delimiters as $open => $close) {
+                        // Get the next little bit for this opening string
+                        $open_strlen = strlen($open);
+                        $check = substr($code, $i, $open_strlen);
+                        // If it matches...
+                        if ($check == $open) {
+                            // We start a new block with the highlightable
+                            // code in it
+                            ++$k;
+                            $parts[$k][0] = $open;
+                            $close_i = strpos($code, $close, $i + $open_strlen)  + strlen($close);
+                            if ($close_i === false) {
+                                $close_i = $length - 1;
+                            }
+                            $parts[$k][1] = substr($code, $i, $close_i - $i);
+                            $i = $close_i - 1;
+                            ++$k;
+                            $parts[$k][0] = '';
+                            $parts[$k][1] = '';
 
-                                // No point going around again...
-                                break(2);
-                            }
+                            // No point going around again...
+                            continue 3;
                         }
                     }
                 }
-                else {
-                    foreach ($this->language_data['SCRIPT_DELIMITERS'] as $key => $delimiters) {
-                        foreach ($delimiters as $open => $close) {
-                            if ($open == $HIGHLIGHTING_ON) {
-                                // Found the closing tag
-                                break(2);
-                            }
-                        }
-                    }
-                    // We check code from our current position BACKWARDS. This is so
-                    // the ending string for highlighting can be included in the block
-                    $check = substr($code, $i - strlen($close) + 1, strlen($close));
-                    if ($check == $close) {
-                        $HIGHLIGHTING_ON = '';
-                        // Add the string to the rest of the string for this part
-                        $parts[$k][1] = ( isset($parts[$k][1]) ) ? $parts[$k][1] . $char : $char;
-                        $parts[++$k][0] = '';
-                        $char = '';
-                    }
-                }
-                $parts[$k][1] = ( isset($parts[$k][1]) ) ? $parts[$k][1] . $char : $char;
+                // only non-highlightable text reaches this point
+                $parts[$k][1] .= $code[$i];
             }
-            $HIGHLIGHTING_ON = '';
         }
         else {
             // Not strict mode - simply dump the source into
