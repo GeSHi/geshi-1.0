@@ -4,7 +4,7 @@
  *
  * Just point your browser at this script (with geshi.php in the parent directory,
  * and the language files in subdirectory "../geshi/")
- * 
+ *
  * @author  Nigel McNie
  * @version $Id$
  */
@@ -34,31 +34,31 @@ if ( isset($_POST['submit']) )
 	} else {
 		$fill_source = true;
 	}
-    
+
     // Here's a free demo of how GeSHi works.
-    
+
     // First the initialisation: source code to highlight and the language to use. Make sure
     // you sanitise correctly if you use $_POST of course - this very script has had a security
     // advisory against it in the past because of this. Please try not to use this script on a
     // live site.
 	$geshi =& new GeSHi($_POST['source'], $_POST['language']);
-    
+
     // Use the PRE header. This means less output source since we don't have to output &nbsp;
     // everywhere. Of course it also means you can't set the tab width.
 	$geshi->set_header_type(GESHI_HEADER_PRE);
-    
+
     // Enable CSS classes. You can use get_stylesheet() to output a stylesheet for your code. Using
     // CSS classes results in much less output source.
 	$geshi->enable_classes();
-    
+
     // Enable line numbers. We want fancy line numbers, and we want every 5th line number to be fancy
 	$geshi->enable_line_numbers(GESHI_FANCY_LINE_NUMBERS, 5);
-    
+
     // Set the style for the PRE around the code. The line numbers are contained within this box (not
     // XHTML compliant btw, but if you are liberally minded about these things then you'll appreciate
     // the reduced source output).
 	$geshi->set_overall_style('color: #000066; border: 1px solid #d0d0d0; background-color: #f0f0f0;', true);
-    
+
 	// Set the style for line numbers. In order to get style for line numbers working, the <li> element
     // is being styled. This means that the code on the line will also be styled, and most of the time
     // you don't want this. So the set_code_style reverts styles for the line (by using a <div> on the line).
