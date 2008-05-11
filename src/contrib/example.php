@@ -12,15 +12,14 @@
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
 // it could be in the current directory if the include_path is set. There's nowhere else
 // we can reasonably guess.
-if (!@include '../geshi.php') {
-    if (!@include 'geshi.php') {
-        die('Could not find geshi.php - make sure it is in your include path!');
-    } else {
-        $path = './';
-    }
-} else {
+if (is_readable('../geshi.php')) {
     $path = '../';
+} elseif (is_readable('geshi.php')) {
+    $path = './';
+} else {
+    die('Could not find geshi.php - make sure it is in your include path!');
 }
+require $path . 'geshi.php';
 
 $fill_source = false;
 if (isset($_POST['submit'])) {
