@@ -1509,7 +1509,7 @@ class GeSHi {
             // within script delimiters - for example, HTML between < and >
             $parts = array(0 => array(0 => ''));
             $k = 0;
-            for ($i = 0; $i < $length; $i++) {
+            for ($i = 0; $i < $length; ++$i) {
                 $char = $code[$i];
                 if (!$HIGHLIGHTING_ON) {
                     foreach ($this->language_data['SCRIPT_DELIMITERS'] as $key => $delimiters) {
@@ -1604,7 +1604,7 @@ class GeSHi {
                     // is really the engine of GeSHi (along with the method
                     // parse_non_string_part).
                     $length = strlen($part);
-                    for ($i = 0; $i < $length; $i++) {
+                    for ($i = 0; $i < $length; ++$i) {
                         // Get the next char
                         $char = $part[$i];
                         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
@@ -2007,7 +2007,7 @@ class GeSHi {
                 $result_line = '';
 
                 $IN_TAG = false;
-                for ($i = 0; $i < $length; $i++) {
+                for ($i = 0; $i < $length; ++$i) {
                     $char = $line[$i];
                     // Simple engine to work out whether we're in a tag.
                     // If we are we modify $pos. This is so we ignore HTML
@@ -2044,7 +2044,7 @@ class GeSHi {
                         //  3 => '&nbsp; &nbsp;' etc etc
                         // to use instead of building a string every time
                         $strs = array(0 => '&nbsp;', 1 => ' ');
-                        for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); $k++) $str .= $strs[$k % 2];
+                        for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); ++$k) $str .= $strs[$k % 2];
                         $result_line .= $str;
                         $pos += ($i - $pos) % $tab_width + 1;
 
