@@ -2069,13 +2069,14 @@ class GeSHi {
      * @access private
      */
     function change_case($instr) {
-        if ($this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_UPPER) {
-            return strtoupper($instr);
+        switch ($this->language_data['CASE_KEYWORDS']) {
+            case GESHI_CAPS_UPPER:
+                return strtoupper($instr);
+            case GESHI_CAPS_LOWER:
+                return strtolower($instr);
+            default:
+                return $instr;
         }
-        else if ($this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_LOWER) {
-            return strtolower($instr);
-        }
-        return $instr;
     }
 
     /**
