@@ -1374,7 +1374,7 @@ class GeSHi {
     function highlight_lines_extra($lines, $style = null) {
         if (is_array($lines)) {
             foreach ($lines as $line) {
-                $this->highlight_lines_extra(line, $style);
+                $this->highlight_lines_extra($line, $style);
             }
         }
         else {
