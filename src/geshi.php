@@ -1716,39 +1716,37 @@ class GeSHi {
                             if(isset($this->language_data['COMMENT_REGEXP'])) {
                                 foreach($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
                                     if(preg_match($regexp, $part, $test_str_match, PREG_OFFSET_CAPTURE, $i)) {
-                                        if(count($test_str_match)) {
-                                            if($i == $test_str_match[0][1]) {
-                                                $COMMENT_MATCHED = true;
-                                                $test_str = GeSHi::hsc($test_str_match[0][0]);
+                                        if($i == $test_str_match[0][1]) {
+                                            $COMMENT_MATCHED = true;
+                                            $test_str = GeSHi::hsc($test_str_match[0][0]);
 
-                                                //@todo If remove important do remove here
-                                                if ($this->lexic_permissions['COMMENTS']['MULTI']) {
-                                                    if (!$this->use_classes) {
-                                                        $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment_key] . '"';
-                                                    }
-                                                    else {
-                                                       $attributes = ' class="co' . $comment_key . '"';
-                                                    }
-                                                    $test_str = "<span$attributes>" . $test_str . "</span>";
-
-                                                    // Short-cut through all the multiline code
-                                                    if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
-                                                        count($this->highlight_extra_lines) > 0)) {
-                                                        // strreplace to put close span and open span around multiline newlines
-                                                        $test_str = str_replace(
-                                                            "\n", "</span>\n<span$attributes>",
-                                                            str_replace("\n ", "\n&nbsp;", $test_str)
-                                                        );
-                                                    }
+                                            //@todo If remove important do remove here
+                                            if ($this->lexic_permissions['COMMENTS']['MULTI']) {
+                                                if (!$this->use_classes) {
+                                                    $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment_key] . '"';
                                                 }
+                                                else {
+                                                    $attributes = ' class="co' . $comment_key . '"';
+                                                }
+                                                $test_str = "<span$attributes>" . $test_str . "</span>";
 
-            									$i += strlen($test_str_match[0][0])-1;
-
-                                                // parse the rest
-                                                $result .= $this->parse_non_string_part($stuff_to_parse);
-                                                $stuff_to_parse = '';
-                                                break;
+                                                // Short-cut through all the multiline code
+                                                if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
+                                                    count($this->highlight_extra_lines) > 0)) {
+                                                    // strreplace to put close span and open span around multiline newlines
+                                                    $test_str = str_replace(
+                                                        "\n", "</span>\n<span$attributes>",
+                                                        str_replace("\n ", "\n&nbsp;", $test_str)
+                                                    );
+                                                }
                                             }
+
+                                            $i += strlen($test_str_match[0][0])-1;
+
+                                            // parse the rest
+                                            $result .= $this->parse_non_string_part($stuff_to_parse);
+                                            $stuff_to_parse = '';
+                                            break;
                                         }
                                     }
                                 }
