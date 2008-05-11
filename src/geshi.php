@@ -1148,10 +1148,8 @@ class GeSHi {
         }
 
         foreach ($lookup as $lang => $extensions) {
-            foreach ($extensions as $ext) {
-                if ($ext == $extension) {
-                    return $lang;
-                }
+            if (in_array($extension, $extensions)) {
+                return $lang;
             }
         }
         return '';
@@ -1576,10 +1574,8 @@ class GeSHi {
                 if ($this->strict_mode) {
                     // Find the class key for this block of code
                     foreach ($this->language_data['SCRIPT_DELIMITERS'] as $script_key => $script_data) {
-                        foreach ($script_data as $open => $close) {
-                            if ($data[0] == $open) {
-                                break(2);
-                            }
+                        if (isset($script_data[$data[0]])) {
+                            break;
                         }
                     }
 
