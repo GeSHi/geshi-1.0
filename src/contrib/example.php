@@ -23,11 +23,11 @@ if (!@include '../geshi.php') {
 }
 
 $fill_source = false;
-if ( isset($_POST['submit']) )
-{
-    if ( get_magic_quotes_gpc() ) $_POST['source'] = stripslashes($_POST['source']);
-    if ( !strlen(trim($_POST['source'])) )
-    {
+if (isset($_POST['submit'])) {
+    if (get_magic_quotes_gpc()) {
+        $_POST['source'] = stripslashes($_POST['source']);
+    }
+    if (!strlen(trim($_POST['source']))) {
         $_POST['language'] = preg_replace('#[^a-zA-Z0-9\-_]#', '', $_POST['language']);
         $_POST['source'] = implode('', @file($path . 'geshi/' . $_POST['language'] . '.php'));
         $_POST['language'] = 'php';
@@ -98,8 +98,7 @@ if ( isset($_POST['submit']) )
     <style type="text/css">
     <!--
     <?php
-    if ( isset($_POST['submit']) )
-    {
+    if (isset($_POST['submit'])) {
         // Output the stylesheet. Note it doesn't output the <style> tag
         echo $geshi->get_stylesheet(false);
     }
@@ -158,8 +157,7 @@ include_path, and that the language files are in a subdirectory of GeSHi's direc
 <p>Enter your source and a language to highlight the source in and submit, or just choose a language to
 have that language file highlighted in PHP.</p>
 <?php
-if ( isset($_POST['submit']) )
-{
+if (isset($_POST['submit'])) {
     // The fun part :)
     echo $geshi->parse_code();
     echo '<hr />';
@@ -177,9 +175,10 @@ if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
     }
 }
 $languages = array();
-while ( $file = readdir($dir) )
-{
-    if ( $file == '..' || $file == '.' || !stristr($file, '.') || $file == 'css-gen.cfg' ) continue;
+while ($file = readdir($dir)) {
+    if ( $file == '..' || $file == '.' || !stristr($file, '.') || $file == 'css-gen.cfg' ) {
+        continue;
+    }
     $lang = substr($file, 0,  strpos($file, '.'));
     $languages[] = $lang;
 }
