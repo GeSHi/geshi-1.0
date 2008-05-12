@@ -1148,10 +1148,8 @@ class GeSHi {
         }
 
         foreach ($lookup as $lang => $extensions) {
-            foreach ($extensions as $ext) {
-                if ($ext == $extension) {
-                    return $lang;
-                }
+            if (in_array($extension, $extensions)) {
+                return $lang;
             }
         }
         return '';
@@ -1374,7 +1372,7 @@ class GeSHi {
     function highlight_lines_extra($lines, $style = null) {
         if (is_array($lines)) {
             foreach ($lines as $line) {
-                $this->highlight_lines_extra(line, $style);
+                $this->highlight_lines_extra($line, $style);
             }
         }
         else {
@@ -1507,53 +1505,38 @@ class GeSHi {
         if ($this->strict_mode) {
             // Break the source into bits. Each bit will be a portion of the code
             // within script delimiters - for example, HTML between < and >
-            $parts = array(0 => array(0 => ''));
+            $parts = array(0 => array(0 => '', 1 => ''));
             $k = 0;
-            for ($i = 0; $i < $length; $i++) {
-                $char = $code[$i];
-                if (!$HIGHLIGHTING_ON) {
-                    foreach ($this->language_data['SCRIPT_DELIMITERS'] as $key => $delimiters) {
-                        foreach ($delimiters as $open => $close) {
-                            // Get the next little bit for this opening string
-                            $check = substr($code, $i, strlen($open));
-                            // If it matches...
-                            if ($check == $open) {
-                                // We start a new block with the highlightable
-                                // code in it
-                                $HIGHLIGHTING_ON = $open;
-                                $i += strlen($open) - 1;
-                                $char = $open;
-                                $parts[++$k][0] = $char;
+            for ($i = 0; $i < $length; ++$i) {
+                foreach ($this->language_data['SCRIPT_DELIMITERS'] as $delimiters) {
+                    foreach ($delimiters as $open => $close) {
+                        // Get the next little bit for this opening string
+                        $open_strlen = strlen($open);
+                        $check = substr($code, $i, $open_strlen);
+                        // If it matches...
+                        if ($check == $open) {
+                            // We start a new block with the highlightable
+                            // code in it
+                            ++$k;
+                            $parts[$k][0] = $open;
+                            $close_i = strpos($code, $close, $i + $open_strlen)  + strlen($close);
+                            if ($close_i === false) {
+                                $close_i = $length - 1;
+                            }
+                            $parts[$k][1] = substr($code, $i, $close_i - $i);
+                            $i = $close_i - 1;
+                            ++$k;
+                            $parts[$k][0] = '';
+                            $parts[$k][1] = '';
 
-                                // No point going around again...
-                                break(2);
-                            }
+                            // No point going around again...
+                            continue 3;
                         }
                     }
                 }
-                else {
-                    foreach ($this->language_data['SCRIPT_DELIMITERS'] as $key => $delimiters) {
-                        foreach ($delimiters as $open => $close) {
-                            if ($open == $HIGHLIGHTING_ON) {
-                                // Found the closing tag
-                                break(2);
-                            }
-                        }
-                    }
-                    // We check code from our current position BACKWARDS. This is so
-                    // the ending string for highlighting can be included in the block
-                    $check = substr($code, $i - strlen($close) + 1, strlen($close));
-                    if ($check == $close) {
-                        $HIGHLIGHTING_ON = '';
-                        // Add the string to the rest of the string for this part
-                        $parts[$k][1] = ( isset($parts[$k][1]) ) ? $parts[$k][1] . $char : $char;
-                        $parts[++$k][0] = '';
-                        $char = '';
-                    }
-                }
-                $parts[$k][1] = ( isset($parts[$k][1]) ) ? $parts[$k][1] . $char : $char;
+                // only non-highlightable text reaches this point
+                $parts[$k][1] .= $code[$i];
             }
-            $HIGHLIGHTING_ON = '';
         }
         else {
             // Not strict mode - simply dump the source into
@@ -1576,10 +1559,8 @@ class GeSHi {
                 if ($this->strict_mode) {
                     // Find the class key for this block of code
                     foreach ($this->language_data['SCRIPT_DELIMITERS'] as $script_key => $script_data) {
-                        foreach ($script_data as $open => $close) {
-                            if ($data[0] == $open) {
-                                break(2);
-                            }
+                        if (isset($script_data[$data[0]])) {
+                            break;
                         }
                     }
 
@@ -1604,7 +1585,7 @@ class GeSHi {
                     // is really the engine of GeSHi (along with the method
                     // parse_non_string_part).
                     $length = strlen($part);
-                    for ($i = 0; $i < $length; $i++) {
+                    for ($i = 0; $i < $length; ++$i) {
                         // Get the next char
                         $char = $part[$i];
                         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
@@ -1735,39 +1716,37 @@ class GeSHi {
                             if(isset($this->language_data['COMMENT_REGEXP'])) {
                                 foreach($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
                                     if(preg_match($regexp, $part, $test_str_match, PREG_OFFSET_CAPTURE, $i)) {
-                                        if(count($test_str_match)) {
-                                            if($i == $test_str_match[0][1]) {
-                                                $COMMENT_MATCHED = true;
-                                                $test_str = GeSHi::hsc($test_str_match[0][0]);
+                                        if($i == $test_str_match[0][1]) {
+                                            $COMMENT_MATCHED = true;
+                                            $test_str = GeSHi::hsc($test_str_match[0][0]);
 
-                                                //@todo If remove important do remove here
-                                                if ($this->lexic_permissions['COMMENTS']['MULTI']) {
-                                                    if (!$this->use_classes) {
-                                                        $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment_key] . '"';
-                                                    }
-                                                    else {
-                                                       $attributes = ' class="co' . $comment_key . '"';
-                                                    }
-                                                    $test_str = "<span$attributes>" . $test_str . "</span>";
-
-                                                    // Short-cut through all the multiline code
-                                                    if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
-                                                        count($this->highlight_extra_lines) > 0)) {
-                                                        // strreplace to put close span and open span around multiline newlines
-                                                        $test_str = str_replace(
-                                                            "\n", "</span>\n<span$attributes>",
-                                                            str_replace("\n ", "\n&nbsp;", $test_str)
-                                                        );
-                                                    }
+                                            //@todo If remove important do remove here
+                                            if ($this->lexic_permissions['COMMENTS']['MULTI']) {
+                                                if (!$this->use_classes) {
+                                                    $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment_key] . '"';
                                                 }
+                                                else {
+                                                    $attributes = ' class="co' . $comment_key . '"';
+                                                }
+                                                $test_str = "<span$attributes>" . $test_str . "</span>";
 
-            									$i += strlen($test_str_match[0][0])-1;
-
-                                                // parse the rest
-                                                $result .= $this->parse_non_string_part($stuff_to_parse);
-                                                $stuff_to_parse = '';
-                                                break;
+                                                // Short-cut through all the multiline code
+                                                if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
+                                                    count($this->highlight_extra_lines) > 0)) {
+                                                    // strreplace to put close span and open span around multiline newlines
+                                                    $test_str = str_replace(
+                                                        "\n", "</span>\n<span$attributes>",
+                                                        str_replace("\n ", "\n&nbsp;", $test_str)
+                                                    );
+                                                }
                                             }
+
+                                            $i += strlen($test_str_match[0][0])-1;
+
+                                            // parse the rest
+                                            $result .= $this->parse_non_string_part($stuff_to_parse);
+                                            $stuff_to_parse = '';
+                                            break;
                                         }
                                     }
                                 }
@@ -2007,7 +1986,7 @@ class GeSHi {
                 $result_line = '';
 
                 $IN_TAG = false;
-                for ($i = 0; $i < $length; $i++) {
+                for ($i = 0; $i < $length; ++$i) {
                     $char = $line[$i];
                     // Simple engine to work out whether we're in a tag.
                     // If we are we modify $pos. This is so we ignore HTML
@@ -2044,7 +2023,7 @@ class GeSHi {
                         //  3 => '&nbsp; &nbsp;' etc etc
                         // to use instead of building a string every time
                         $strs = array(0 => '&nbsp;', 1 => ' ');
-                        for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); $k++) $str .= $strs[$k % 2];
+                        for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); ++$k) $str .= $strs[$k % 2];
                         $result_line .= $str;
                         $pos += ($i - $pos) % $tab_width + 1;
 
@@ -2090,13 +2069,14 @@ class GeSHi {
      * @access private
      */
     function change_case($instr) {
-        if ($this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_UPPER) {
-            return strtoupper($instr);
+        switch ($this->language_data['CASE_KEYWORDS']) {
+            case GESHI_CAPS_UPPER:
+                return strtoupper($instr);
+            case GESHI_CAPS_LOWER:
+                return strtolower($instr);
+            default:
+                return $instr;
         }
-        else if ($this->language_data['CASE_KEYWORDS'] == GESHI_CAPS_LOWER) {
-            return strtolower($instr);
-        }
-        return $instr;
     }
 
     /**
