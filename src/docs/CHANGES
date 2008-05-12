@@ -16,6 +16,8 @@ Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
      * KiXtart (Riley McArdle)
+     * Lotus Notes @Formulas (Richard Civil)
+     * LotusScript (Richard Civil)
      * Scala (Franco Lombardo)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
