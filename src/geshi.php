@@ -1588,6 +1588,7 @@ class GeSHi {
                     for ($i = 0; $i < $length; ++$i) {
                         // Get the next char
                         $char = $part[$i];
+
                         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
                         // Is this char the newline and line numbers being used?
                         if (($this->line_numbers != GESHI_NO_LINE_NUMBERS
@@ -1689,7 +1690,7 @@ class GeSHi {
                                         $attributes = ' class="es0"';
                                     }
                                     $char = "<span$attributes>" . $char;
-                                    if ($code[$i + 1] == "\n") {
+                                    if ($part[$i + 1] == "\n") {
                                         // escaping a newline, what's the point in putting the span around
                                         // the newline? It only causes hassles when inserting line numbers
                                         $char .= '</span>';
@@ -1751,7 +1752,7 @@ class GeSHi {
                                     }
                                 }
                             }
-                            // If we haven't matched a multiline comment, try single-line comments
+                            // If we haven't matched a regexp comment, try multi-line comments
                             if (!$COMMENT_MATCHED) {
                                 // Is this a multiline comment?
                                 foreach ($this->language_data['COMMENT_MULTI'] as $open => $close) {
