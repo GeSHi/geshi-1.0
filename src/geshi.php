@@ -1584,6 +1584,12 @@ class GeSHi {
                     // Now, highlight the code in this block. This code
                     // is really the engine of GeSHi (along with the method
                     // parse_non_string_part).
+
+                    // cache comment regexps incrementally
+                    $comment_regexp_cache = array();
+                    $next_comment_regexp_pos = -1;
+                    $comment_regexp_cache_per_key = array();
+
                     $length = strlen($part);
                     for ($i = 0; $i < $length; ++$i) {
                         // Get the next char
@@ -1713,44 +1719,65 @@ class GeSHi {
                             $test_str = $char;
                         }
                         else if ($STRING_OPEN == '') {
-                            //Have a look for regexp comments
-                            if(isset($this->language_data['COMMENT_REGEXP'])) {
-                                foreach($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
-                                    if(preg_match($regexp, $part, $test_str_match, PREG_OFFSET_CAPTURE, $i)) {
-                                        if($i == $test_str_match[0][1]) {
-                                            $COMMENT_MATCHED = true;
-                                            $test_str = GeSHi::hsc($test_str_match[0][0]);
+                            // update regexp comment cache if needed
+                            if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
+                                $next_comment_regexp_pos = $length + 1;
+                                foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
+                                    $match_i = false;
+                                    if (isset($comment_regexp_cache_per_key[$comment_key]) &&
+                                        $comment_regexp_cache_per_key[$comment_key] > $i) {
+                                        // we have already matched something
+                                        $match_i = $comment_regexp_cache_per_key[$comment_key];
+                                    }
+                                    else if (preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i)) {
+                                        $match_i = $match[0][1];
+                                        $comment_regexp_cache[$match_i] = array(
+                                            'key' => $comment_key,
+                                            'length' => strlen($match[0][0]),
+                                        );
+                                        $comment_regexp_cache_per_key[$comment_key] = $match_i;
+                                    }
 
-                                            //@todo If remove important do remove here
-                                            if ($this->lexic_permissions['COMMENTS']['MULTI']) {
-                                                if (!$this->use_classes) {
-                                                    $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment_key] . '"';
-                                                }
-                                                else {
-                                                    $attributes = ' class="co' . $comment_key . '"';
-                                                }
-                                                $test_str = "<span$attributes>" . $test_str . "</span>";
-
-                                                // Short-cut through all the multiline code
-                                                if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
-                                                    count($this->highlight_extra_lines) > 0)) {
-                                                    // strreplace to put close span and open span around multiline newlines
-                                                    $test_str = str_replace(
-                                                        "\n", "</span>\n<span$attributes>",
-                                                        str_replace("\n ", "\n&nbsp;", $test_str)
-                                                    );
-                                                }
-                                            }
-
-                                            $i += strlen($test_str_match[0][0])-1;
-
-                                            // parse the rest
-                                            $result .= $this->parse_non_string_part($stuff_to_parse);
-                                            $stuff_to_parse = '';
+                                    if ($match_i && $match_i < $next_comment_regexp_pos) {
+                                        $next_comment_regexp_pos = $match_i;
+                                        if ($match_i === $i) {
                                             break;
                                         }
                                     }
                                 }
+                            }
+                            //Have a look for regexp comments
+                            if ($i === $next_comment_regexp_pos) {
+                                $COMMENT_MATCHED = true;
+                                $comment = $comment_regexp_cache[$next_comment_regexp_pos];
+                                $test_str = GeSHi::hsc(substr($part, $i, $comment['length']));
+
+                                //@todo If remove important do remove here
+                                if ($this->lexic_permissions['COMMENTS']['MULTI']) {
+                                    if (!$this->use_classes) {
+                                        $attributes = ' style="' . $this->language_data['STYLES']['COMMENTS'][$comment['key']] . '"';
+                                    }
+                                    else {
+                                        $attributes = ' class="co' . $comment['key'] . '"';
+                                    }
+                                    $test_str = "<span$attributes>" . $test_str . "</span>";
+
+                                    // Short-cut through all the multiline code
+                                    if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
+                                        count($this->highlight_extra_lines) > 0)) {
+                                        // strreplace to put close span and open span around multiline newlines
+                                        $test_str = str_replace(
+                                            "\n", "</span>\n<span$attributes>",
+                                            str_replace("\n ", "\n&nbsp;", $test_str)
+                                        );
+                                    }
+                                }
+
+                                $i += $comment['length'] - 1;
+
+                                // parse the rest
+                                $result .= $this->parse_non_string_part($stuff_to_parse);
+                                $stuff_to_parse = '';
                             }
                             // If we haven't matched a regexp comment, try multi-line comments
                             if (!$COMMENT_MATCHED) {
