@@ -2134,13 +2134,14 @@ class GeSHi {
                     // Old system: strtolower
                     //$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
                     // New system: get keyword from language file to get correct case
+                    $lower_keyword = strtolower($keyword);
                     foreach ($this->language_data['KEYWORDS'][$group] as $word) {
-                        if (strtolower($word) == strtolower($keyword)) {
+                        if (strtolower($word) == $lower_keyword) {
                             break;
                         }
                     }
                     $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
-                    $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, strlen($word) - 4) : $word;
+                    $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;
                     if (!$word) return '';
 
                     return '<|UR1|"' .
