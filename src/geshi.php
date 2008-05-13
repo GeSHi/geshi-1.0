@@ -2211,9 +2211,27 @@ class GeSHi {
         // Highlight keywords
         // if there is a couple of alpha symbols there *might* be a keyword
         if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
+            $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
+            $disallowed_after = "a-zA-Z0-9_\|%\\-&";
+            if(isset($this->language_data['PARSER_CONTROL'])) {
+                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
+                        $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                    }
+                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
+                        $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                    }
+                }
+            }
+
             foreach ($this->language_data['KEYWORDS'] as $k => $keywordset) {
                 if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
                     $this->lexic_permissions['KEYWORDS'][$k]) {
+
+                    $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
+                    $modifiers = $case_sensitive ? 'e' : 'ie';
+                    $styles = "/$k/";
+
                     foreach ($keywordset as $keyword) {
                         $keyword = preg_quote($keyword, '/');
                         //
@@ -2222,33 +2240,24 @@ class GeSHi {
                         // in just yet - otherwise languages with the keywords "color" or "or" have
                         // a fit.
                         //
-                        if (false !== stristr($stuff_to_parse_pregquote, $keyword )) {
-                            $stuff_to_parse .= ' ';
+                        if ($case_sensitive) {
+                            $keyword_found = strpos($stuff_to_parse_pregquote, $keyword) !== false;
+                        } else {
+                            $keyword_found = stristr($stuff_to_parse_pregquote, $keyword) !== false;
+                        }
+                        if ($keyword_found) {
                             // Might make a more unique string for putting the number in soon
                             // Basically, we don't put the styles in yet because then the styles themselves will
                             // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-                            $styles = "/$k/";
-                            $modifiers = ($this->language_data['CASE_SENSITIVE'][$k]) ? "e" : "ie";
 
-                            $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
-                            $disallowed_after = "a-zA-Z0-9_\|%\\-&";
-                            if(isset($this->language_data['PARSER_CONTROL'])) {
-                                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
-                                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
-                                        $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
-                                    }
-                                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
-                                        $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
-                                    }
-                                }
-                            }
+                            $stuff_to_parse .= ' ';
                             $stuff_to_parse = preg_replace(
                                 "/([^$disallowed_before])($keyword)(?=[^$disallowed_after])/$modifiers",
                                 "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                 $stuff_to_parse
                             );
 
-                            $stuff_to_parse = substr($stuff_to_parse, 0, strlen($stuff_to_parse) - 1);
+                            $stuff_to_parse = substr($stuff_to_parse, 0, -1);
                         }
                     }
                 }
