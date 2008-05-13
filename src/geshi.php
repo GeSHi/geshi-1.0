@@ -2543,7 +2543,7 @@ class GeSHi {
         // This is BUGGY!! My fault for bad code: fix coming in 1.2
         // @todo Remove this crap
         if ($this->enable_important_blocks &&
-            (strstr($parsed_code, GeSHi::hsc(GESHI_START_IMPORTANT)) === false)) {
+            (strpos($parsed_code, GeSHi::hsc(GESHI_START_IMPORTANT)) === false)) {
             $parsed_code = str_replace(GeSHi::hsc(GESHI_END_IMPORTANT), '', $parsed_code);
         }
 
