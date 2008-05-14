@@ -1105,7 +1105,7 @@ class GeSHi {
      * @todo static?
      */
     function get_language_name_from_extension( $extension, $lookup = array() ) {
-        if ( !is_array($lookup) || !count($lookup)) {
+        if ( !is_array($lookup) || empty($lookup)) {
             $lookup = array(
                 'actionscript' => array('as'),
                 'ada' => array('a', 'ada', 'adb', 'ads'),
@@ -1549,6 +1549,10 @@ class GeSHi {
             );
         }
 
+
+        $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
+        $check_linenumbers = $this->line_numbers != GESHI_NO_LINE_NUMBERS
+                                || !empty($this->highlight_extra_lines);
         // Now we go through each part. We know that even-indexed parts are
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
@@ -1595,11 +1599,8 @@ class GeSHi {
                         // Get the next char
                         $char = $part[$i];
 
-                        $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
                         // Is this char the newline and line numbers being used?
-                        if (($this->line_numbers != GESHI_NO_LINE_NUMBERS
-                            || count($this->highlight_extra_lines) > 0)
-                            && $char == "\n") {
+                        if ($check_linenumbers && $char == "\n") {
                             // If so, is there a string open? If there is, we should end it before
                             // the newline and begin it again (so when <li>s are put in the source
                             // remains XHTML compliant)
@@ -1763,8 +1764,7 @@ class GeSHi {
                                     $test_str = "<span$attributes>" . $test_str . "</span>";
 
                                     // Short-cut through all the multiline code
-                                    if (($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
-                                        count($this->highlight_extra_lines) > 0)) {
+                                    if ($check_linenumbers) {
                                         // strreplace to put close span and open span around multiline newlines
                                         $test_str = str_replace(
                                             "\n", "</span>\n<span$attributes>",
@@ -1826,8 +1826,7 @@ class GeSHi {
                                         $rest_of_comment = GeSHi::hsc(substr($part, $i + strlen($open), $close_pos - $i - strlen($open) + strlen($close)));
                                         if (($this->lexic_permissions['COMMENTS']['MULTI'] ||
                                             $test_str_match == GESHI_START_IMPORTANT) &&
-                                            ($this->line_numbers != GESHI_NO_LINE_NUMBERS ||
-                                            count($this->highlight_extra_lines) > 0)) {
+                                            $check_linenumbers) {
                                             // strreplace to put close span and open span around multiline newlines
                                             $test_str .= str_replace(
                                                 "\n", "</span>\n<span$attributes>",
