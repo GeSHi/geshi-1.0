@@ -1553,6 +1553,23 @@ class GeSHi {
         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
         $check_linenumbers = $this->line_numbers != GESHI_NO_LINE_NUMBERS
                                 || !empty($this->highlight_extra_lines);
+
+
+        // this is used for single-line comments
+        $sc_disallowed_before = "";
+        $sc_disallowed_after = "";
+
+        if(isset($this->language_data['PARSER_CONTROL'])) {
+            if (isset($this->language_data['PARSER_CONTROL']['COMMENTS'])) {
+                if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'])) {
+                    $sc_disallowed_before = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'];
+                }
+                if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'])) {
+                    $sc_disallowed_after = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'];
+                }
+            }
+        }
+
         // Now we go through each part. We know that even-indexed parts are
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
@@ -1819,7 +1836,7 @@ class GeSHi {
                                         $close_pos = strpos( $part, $close, $i + strlen($open) );
 
                                         if ($close_pos === false) {
-                                            $close_pos = strlen($part);
+                                            $close_pos = $length;
                                         }
 
                                         // Short-cut through all the multiline code
@@ -1862,22 +1879,8 @@ class GeSHi {
                                     }
                                     //This check will find special variables like $# in bash or compiler directives of Delphi beginning {$
                                     if($match) {
-                                        $disallowed_before = "";
-                                        $disallowed_after = "";
-
-                                        if(isset($this->language_data['PARSER_CONTROL'])) {
-                                            if (isset($this->language_data['PARSER_CONTROL']['COMMENTS'])) {
-                                                if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'])) {
-                                                    $disallowed_before = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_BEFORE'];
-                                                }
-                                                if (isset($this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'])) {
-                                                    $disallowed_after = $this->language_data['PARSER_CONTROL']['COMMENTS']['DISALLOWED_AFTER'];
-                                                }
-                                            }
-                                        }
-
-                                        $match = $match && (!strlen($disallowed_before) || ((false === strpos($disallowed_before, $part[$i-1])) && (0!=$i)));
-                                        $match = $match && (!strlen($disallowed_after) || ((false === strpos($disallowed_after, $part[$i+1])) && (strlen($part)-1>$i)));
+                                        $match = $match && (empty($sc_disallowed_before) || ((false === strpos($sc_disallowed_before, $part[$i-1])) && (0 != $i)));
+                                        $match = $match && (empty($sc_disallowed_after) || ((false === strpos($sc_disallowed_after, $part[$i+1])) && ($length-1>$i)));
                                     }
                                     if ($match) {
                                         $COMMENT_MATCHED = true;
@@ -1896,7 +1899,7 @@ class GeSHi {
                                         $close_pos = strpos($part, "\n", $i);
                                         $oops = false;
                                         if ($close_pos === false) {
-                                            $close_pos = strlen($part);
+                                            $close_pos = $length;
                                             $oops = true;
                                         }
                                         $test_str .= GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i - $com_len));
