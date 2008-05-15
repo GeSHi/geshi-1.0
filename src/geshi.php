@@ -1483,9 +1483,6 @@ class GeSHi {
 
         // Initialise various stuff
         $length           = strlen($code);
-        $STRING_OPEN      = '';
-        $CLOSE_STRING     = false;
-        $ESCAPE_CHAR_OPEN = false;
         $COMMENT_MATCHED  = false;
         // Turn highlighting on if strict mode doesn't apply to this language
         $HIGHLIGHTING_ON  = ( !$this->strict_mode ) ? true : '';
@@ -1551,9 +1548,21 @@ class GeSHi {
 
 
         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
+        $hq_strlen = strlen($hq);
+
         $check_linenumbers = $this->line_numbers != GESHI_NO_LINE_NUMBERS
                                 || !empty($this->highlight_extra_lines);
+        $escaped_escape_char = GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
 
+
+        if (!$this->use_classes) {
+            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
+            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][0] . '"';
+        }
+        else {
+            $string_attributes = ' class="st0"';
+            $escape_char_attributes = ' class="es0"';
+        }
 
         // this is used for single-line comments
         $sc_disallowed_before = "";
@@ -1616,127 +1625,142 @@ class GeSHi {
                         // Get the next char
                         $char = $part[$i];
 
-                        // Is this char the newline and line numbers being used?
-                        if ($check_linenumbers && $char == "\n") {
-                            // If so, is there a string open? If there is, we should end it before
-                            // the newline and begin it again (so when <li>s are put in the source
-                            // remains XHTML compliant)
-                            // note to self: This opens up possibility of config files specifying
-                            // that languages can/cannot have multiline strings???
-                            if ($STRING_OPEN) {
-                                if (!$this->use_classes) {
-                                    $attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
-                                }
-                                else {
-                                    $attributes = ' class="st0"';
-                                }
-                                $char = '</span>' . $char . "<span$attributes>";
-                            }
-                        }
-                        else if ($char == $STRING_OPEN) {
-                            // A match of a string delimiter
-                            if (($this->lexic_permissions['ESCAPE_CHAR'] && $ESCAPE_CHAR_OPEN) ||
-                                ($this->lexic_permissions['STRINGS'] && !$ESCAPE_CHAR_OPEN)) {
-                                $char = GeSHi::hsc($char) . '</span>';
-                            }
-                            $escape_me = false;
-                            if ($HARDQUOTE_OPEN) {
-                                if ($ESCAPE_CHAR_OPEN) {
-                                    $escape_me = true;
-                                }
-                                else {
-                                    foreach ($this->language_data['HARDESCAPE'] as $hardesc) {
-                                        if (substr($part, $i, strlen($hardesc)) == $hardesc) {
-                                            $escape_me = true;
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (!$ESCAPE_CHAR_OPEN) {
-                                $STRING_OPEN = '';
-                                $CLOSE_STRING = true;
-                            }
-                            if (!$escape_me) {
-                                $HARDQUOTE_OPEN = false;
-                            }
-                            $ESCAPE_CHAR_OPEN = false;
-                        }
-                        else if (in_array($char, $this->language_data['QUOTEMARKS']) &&
-                            ($STRING_OPEN == '') && $this->lexic_permissions['STRINGS']) {
+                        if (in_array($char, $this->language_data['QUOTEMARKS']) && $this->lexic_permissions['STRINGS']) {
                             // The start of a new string
-                            $STRING_OPEN = $char;
-                            if (!$this->use_classes) {
-                                $attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
-                            }
-                            else {
-                                $attributes = ' class="st0"';
-                            }
-                            $char = "<span$attributes>" . GeSHi::hsc($char);
 
-                            $result .= $this->parse_non_string_part( $stuff_to_parse );
-                            $stuff_to_parse = '';
-                        }
-                        else if ($hq && substr($part, $i, strlen($hq)) == $hq &&
-                            ($STRING_OPEN == '') && $this->lexic_permissions['STRINGS']) {
-                            // The start of a hard quoted string
-                            $STRING_OPEN = $this->language_data['HARDQUOTE'][1];
-                            if (!$this->use_classes) {
-                                $attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
-                            }
-                            else {
-                                $attributes = ' class="st0"';
-                            }
-                            $char = "<span$attributes>" . $hq;
-                            $i += strlen($hq) - 1;
-                            $HARDQUOTE_OPEN = true;
+                            // parse the stuff before this
                             $result .= $this->parse_non_string_part($stuff_to_parse);
                             $stuff_to_parse = '';
+
+                            // now handle the string
+                            $string = '';
+
+                            // look for closing quote
+                            $start = $i;
+                            while ($close_pos = strpos($part, $char, $start + 1)) {
+                                $start = $close_pos;
+                                if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
+                                    // this quote is escaped
+                                    continue;
+                                }
+                                // found closing quote
+                                break;
+                            }
+                            if (!$close_pos) {
+                              // span till the end of this $part when no closing delimiter is found
+                              $close_pos = $length;
+                            }
+
+                            $i = $close_pos;
+
+                            // handle escape chars and encode html chars
+                            // (special because when we have escape chars within our string they may not be escaped)
+                            if ($this->lexic_permissions['ESCAPE_CHAR'] && $this->language_data['ESCAPE_CHAR']) {
+                                $start = 0;
+                                while ($es_pos = strpos($part, $this->language_data['ESCAPE_CHAR'], $start + $i)) {
+                                    $string .= GeSHi::hsc(substr($part, $i + $start,$es_pos - $start - $i))
+                                                  . "<span$escape_char_attributes>" . $escaped_escape_char;
+                                    if ($string[$es_pos + 1] == "\n") {
+                                      // don't put a newline around newlines
+                                      $string .= "</span>\n";
+                                    } else {
+                                      $string .= GeSHi::hsc($part[$es_pos + 1]) . '</span>';
+                                    }
+                                    $start = $es_pos + 2;
+                                }
+                                $string .= GeSHi::hsc(substr($string, $start));
+                            } else {
+                                $string = GeSHi::hsc(substr($part, $i, $close_pos - $i + 1));
+                            }
+
+                            if ($check_linenumbers) {
+                                // Are line numbers used? If, we should end the string before
+                                // the newline and begin it again (so when <li>s are put in the source
+                                // remains XHTML compliant)
+                                // note to self: This opens up possibility of config files specifying
+                                // that languages can/cannot have multiline strings???
+                                $string = str_replace("\n", "</span>\n<span$string_attributes>", $string);
+                            }
+
+                            $result .= "<span$string_attributes>" . $string . '</span>';
+                            $string = '';
+                            continue;
                         }
-                        else if ($char == $this->language_data['ESCAPE_CHAR'] && $STRING_OPEN != '') {
-                            // An escape character
-                            if (!$ESCAPE_CHAR_OPEN) {
-                                $ESCAPE_CHAR_OPEN = !$HARDQUOTE_OPEN;  // true unless $HARDQUOTE_OPEN
-                                if ($HARDQUOTE_OPEN) {
-                                    foreach ($this->language_data['HARDESCAPE'] as $hard) {
-                                        if (substr($part, $i, strlen($hard)) == $hard) {
-                                            $ESCAPE_CHAR_OPEN = true;
-                                            break;
+                        else if ($hq && substr($part, $i, $hq_strlen) == $hq && $this->lexic_permissions['STRINGS']) {
+                            // The start of a hard quoted string
+
+                            // parse the stuff before this
+                            $result .= $this->parse_non_string_part($stuff_to_parse);
+                            $stuff_to_parse = '';
+
+                            // now handle the string
+                            $string = '';
+
+                            // look for closing quote
+                            $start = $i + $hq_strlen;
+                            while ($close_pos = strpos($part, $this->language_data['HARDQUOTE'][1], $start + 1)) {
+                                $start = $close_pos;
+                                if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
+                                    // make sure this quote is not escaped
+                                    foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
+                                        if (substr($part, $close_pos - 1, strlen($hardescape)) == $hardescape) {
+                                            // this quote is escaped
+                                            continue 2;
                                         }
                                     }
                                 }
-                                if ($ESCAPE_CHAR_OPEN && $this->lexic_permissions['ESCAPE_CHAR']) {
-                                    if (!$this->use_classes) {
-                                        $attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][0] . '"';
+                                // found closing quote
+                                break;
+                            }
+                            if (!$close_pos) {
+                              // span till the end of this $part when no closing delimiter is found
+                              $close_pos = $length;
+                            }
+
+                            $string = substr($part, $i, $close_pos - $i + 1);
+                            $i = $close_pos;
+
+                            // handle escape chars and encode html chars
+                            // (special because when we have escape chars within our string they may not be escaped)
+                            if ($this->lexic_permissions['ESCAPE_CHAR'] && $this->language_data['ESCAPE_CHAR']) {
+                                $start = 0;
+                                $new_string = '';
+                                while ($es_pos = strpos($string, $this->language_data['ESCAPE_CHAR'], $start)) {
+                                    // hmtl escape stuff before
+                                    $new_string .= GeSHi::hsc(substr($string, $start, $es_pos - $start));
+                                    // check if this is a hard escape
+                                    foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
+                                        if (substr($string, $es_pos, strlen($hardescape)) == $hardescape) {
+                                            // indeed, this is a hardescape
+                                          $new_string .= "<span$escape_char_attributes>" . GeSHi::hsc($hardescape)
+                                                        . '</span>';
+                                          $start = $es_pos + strlen($hardescape);
+                                          continue 2;
+                                        }
                                     }
-                                    else {
-                                        $attributes = ' class="es0"';
-                                    }
-                                    $char = "<span$attributes>" . $char;
-                                    if ($part[$i + 1] == "\n") {
-                                        // escaping a newline, what's the point in putting the span around
-                                        // the newline? It only causes hassles when inserting line numbers
-                                        $char .= '</span>';
-                                        $ESCAPE_CHAR_OPEN = false;
-                                    }
+                                    // not a hard escape
+                                    $new_string .= $escaped_escape_char;
+                                    $start = $es_pos + 1;
                                 }
+                                $string = $new_string . GeSHi::hsc(substr($string, $start));
+                            } else {
+                                $string = GeSHi::hsc($string);
                             }
-                            else {
-                                $ESCAPE_CHAR_OPEN = false;
-                                if ($this->lexic_permissions['ESCAPE_CHAR']) {
-                                    $char .= '</span>';
-                                }
+
+                            if ($check_linenumbers) {
+                                // Are line numbers used? If, we should end the string before
+                                // the newline and begin it again (so when <li>s are put in the source
+                                // remains XHTML compliant)
+                                // note to self: This opens up possibility of config files specifying
+                                // that languages can/cannot have multiline strings???
+                                $string = str_replace("\n", "</span>\n<span$string_attributes>", $string);
                             }
+
+                            $result .= "<span$string_attributes>" . $string . '</span>';
+                            $string = '';
+                            continue;
                         }
-                        else if ($ESCAPE_CHAR_OPEN) {
-                            if ($this->lexic_permissions['ESCAPE_CHAR']) {
-                                $char .= '</span>';
-                            }
-                            $ESCAPE_CHAR_OPEN = false;
-                            $test_str = $char;
-                        }
-                        else if ($STRING_OPEN == '') {
+                        else {
                             // update regexp comment cache if needed
                             if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
                                 $next_comment_regexp_pos = $length + 1;
@@ -1919,28 +1943,9 @@ class GeSHi {
                                 }
                             }
                         }
-                        else if ($STRING_OPEN != '') {
-                            // Otherwise, convert it to HTML form
-                            if (strtolower($this->encoding) == 'utf-8') {
-                                //only escape <128 (we don't want to break multibyte chars)
-                                if (ord($char) < 128) {
-                                    $char = GeSHi::hsc($char);
-                                }
-                            }
-                            else {
-                                //encode everthing
-                                $char = GeSHi::hsc($char);
-                            }
-                        }
                         // Where are we adding this char?
                         if (!$COMMENT_MATCHED) {
-                            if (($STRING_OPEN == '') && !$CLOSE_STRING) {
-                                $stuff_to_parse .= $char;
-                            }
-                            else {
-                                $result .= $char;
-                                $CLOSE_STRING = false;
-                            }
+                            $stuff_to_parse .= $char;
                         }
                         else {
                             $result .= $test_str;
@@ -1979,11 +1984,6 @@ class GeSHi {
 
         // Lop off the very first and last spaces
         $result = substr($result, 1, -1);
-
-        // Are we still in a string?
-        if ($STRING_OPEN) {
-            $result .= '</span>';
-        }
 
         // We're finished: stop timing
         $this->set_time($start_time, microtime());
