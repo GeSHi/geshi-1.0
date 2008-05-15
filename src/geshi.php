@@ -1651,26 +1651,29 @@ class GeSHi {
                               $close_pos = $length;
                             }
 
+                            $string = substr($part, $i, $close_pos - $i + 1);
                             $i = $close_pos;
 
                             // handle escape chars and encode html chars
                             // (special because when we have escape chars within our string they may not be escaped)
                             if ($this->lexic_permissions['ESCAPE_CHAR'] && $this->language_data['ESCAPE_CHAR']) {
                                 $start = 0;
-                                while ($es_pos = strpos($part, $this->language_data['ESCAPE_CHAR'], $start + $i)) {
-                                    $string .= GeSHi::hsc(substr($part, $i + $start,$es_pos - $start - $i))
+                                $new_string = '';
+                                while ($es_pos = strpos($string, $this->language_data['ESCAPE_CHAR'], $start)) {
+                                    $new_string .= GeSHi::hsc(substr($string, $start, $es_pos - $start))
                                                   . "<span$escape_char_attributes>" . $escaped_escape_char;
                                     if ($string[$es_pos + 1] == "\n") {
                                       // don't put a newline around newlines
-                                      $string .= "</span>\n";
+                                      $new_string .= "</span>\n";
                                     } else {
-                                      $string .= GeSHi::hsc($part[$es_pos + 1]) . '</span>';
+                                      $new_string .= GeSHi::hsc($string[$es_pos + 1]) . '</span>';
                                     }
                                     $start = $es_pos + 2;
                                 }
-                                $string .= GeSHi::hsc(substr($string, $start));
+                                $string = $new_string . GeSHi::hsc(substr($string, $start));
+                                $new_string = '';
                             } else {
-                                $string = GeSHi::hsc(substr($part, $i, $close_pos - $i + 1));
+                                $string = GeSHi::hsc($string);
                             }
 
                             if ($check_linenumbers) {
