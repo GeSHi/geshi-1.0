@@ -51,7 +51,9 @@ Version 1.0.7.22
   -  Code cleanup by using direct string indexing instead of substr with length 1 (Milian Wolff)
   -  Optimized generation of code parts in strict mode (Milian Wolff)
   -  Optimized COMMENT_REGEXP by using an incremental regexp cache (Milian Wolff, BenBE)
-  -  Fixed a problem the could rarely skipped highlighting of escaped chars that usually should be highlighted (BenBE)
+  -  Fixed a problem that rarely skipped highlighting of escaped chars which usually should have gotten highlighted (BenBE)
+  -  Optimized generation of highlighted strings to use fast skip forward while highlighting them (Milian Wolff, BenBE)
+  -  Lots of other minor optimizations based on coding style improvements (Milian Wolff)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
