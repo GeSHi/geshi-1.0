@@ -1546,12 +1546,16 @@ class GeSHi {
             );
         }
 
-
+        //Preload some repeatedly used values regarding hardquotes ...
         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
         $hq_strlen = strlen($hq);
 
+        //Preload if line numbers are to be generated afterwards
+        //TODO: Add a check if line breaks should be forced even without line numbers
         $check_linenumbers = $this->line_numbers != GESHI_NO_LINE_NUMBERS
                                 || !empty($this->highlight_extra_lines);
+
+        //preload the escape char for faster checking ...
         $escaped_escape_char = GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
 
 
@@ -2929,7 +2933,16 @@ class GeSHi {
             '&' => '&amp;',
             '"' => '&quot;',
             '<' => '&lt;',
-            '>' => '&gt;'
+            '>' => '&gt;',
+
+            //This fix is related to SF#1923020, but has to be applied
+            //regardless of actually highlighting symbols.
+
+            //Circumvent a bug with symbol highlighting
+            //This is required as ; would produce undesirable side-effects if it
+            //was not to be processed as an entity.
+            ';' => '<SEMI>', // Force ; to be processed as entity
+            '|' => '<PIPE>' // Force | to be processed as entity
             );                      // ENT_COMPAT set
 
         if (ENT_NOQUOTES == $quote_style)       // don't convert double quotes
@@ -2940,15 +2953,6 @@ class GeSHi {
         {
             $aTransSpecchar["'"] = '&#39;'; // (apos) htmlspecialchars() uses '&#039;'
         }
-
-        //This fix is related to SF#1923020, but has to be applied regardless of
-        //actually highlighting symbols.
-
-        //Circumvent a bug with symbol highlighting
-        //This is required as ; would produce undesirable side-effects if it
-        //was not to be processed as an entity.
-        $aTransSpecchar[';'] = '<SEMI>'; // Force ; to be processed as entity
-        $aTransSpecchar['|'] = '<PIPE>'; // Force | to be processed as entity
 
         // return translated string
         return strtr($string,$aTransSpecchar);
