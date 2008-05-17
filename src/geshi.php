@@ -2013,9 +2013,10 @@ class GeSHi {
             $lines = explode("\n", $result);
             unset($result);//Save memory while we process the lines individually
 			$tab_width = $this->get_real_tab_width();
+			$tab_string = '&nbsp;' . str_repeat(' ', $tab_width);
+
             foreach ($lines as $key => $line) {
                 if (false === strpos($line, "\t")) {
-                    $lines[$key] = $line;
                     continue;
                 }
 
@@ -2061,11 +2062,12 @@ class GeSHi {
                         //  2 => '&nbsp; ',
                         //  3 => '&nbsp; &nbsp;' etc etc
                         // to use instead of building a string every time
-                        $strs = array(0 => '&nbsp;', 1 => ' ');
-                        $tab_end_width = $pos + ($tab_width - ($pos % $tab_width)); //Moved out of the look as it doesn't change within the loop
-                        for ($k = $pos; $k < $tab_end_width; ++$k) {
-                            $str .= $strs[$k % 2];
-						}
+                        $tab_end_width = $tab_width - ($pos % $tab_width); //Moved out of the look as it doesn't change within the loop
+                        if(($pos%2) || 1 == $tab_end_width) {
+                            $str .= substr($tab_string, 6, $tab_end_width);
+                        } else {
+                            $str .= substr($tab_string, 0, $tab_end_width+5);
+                        }
                         $result_line .= $str;
                         $pos += $tab_end_width;
 
