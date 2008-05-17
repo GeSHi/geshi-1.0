@@ -2650,7 +2650,7 @@ class GeSHi {
 
                 // Are we supposed to use ids? If so, add them
                 if ($this->add_ids) {
-                    $attrs['id'][] = $this->overall_id . '-' . $i;
+                    $attrs['id'][] = "$this->overall_id-$i";
                 }
 
                 if (in_array($i, $this->highlight_extra_lines)) {
@@ -2671,7 +2671,7 @@ class GeSHi {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
 
-                $parsed_code .= '<li' . $attr_string . '>' . $start . $code[$i - 1] . $end . '</li>' . $ls;
+                $parsed_code .= "<li$attr_string>$start{$code[$i - 1]}$end</li>$ls";
             }
         }
         else {
