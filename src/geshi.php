@@ -2600,14 +2600,14 @@ class GeSHi {
             $i = 0;
 
             // Foreach line...
-            foreach ($code as $line) {
+            for ($i = 0, $n = count($code); $i < $n;) {
                 //Reset the attributes for a new line ...
                 $attrs = array();
 
                 // Make lines have at least one space in them if they're empty
                 // BenBE: Checking emptiness using trim instead of relying on blanks
-                if ('' == trim($line)) {
-                    $line = '&nbsp;';
+                if ('' == trim($code[$i])) {
+                    $code[$i] = '&nbsp;';
                 }
 
                 // If this is a "special line"...
@@ -2647,10 +2647,12 @@ class GeSHi {
                 }
 
                 ++$i;
+
                 // Are we supposed to use ids? If so, add them
                 if ($this->add_ids) {
-                    $attrs['id'][] = "$this->overall_id-$i";
+                    $attrs['id'][] = $this->overall_id . '-' . $i;
                 }
+
                 if (in_array($i, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
                         if(array_key_exists($i, $this->highlight_extra_lines_styles)) {
@@ -2669,20 +2671,19 @@ class GeSHi {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
 
-                $parsed_code .= "<li$attr_string>$start$line$end</li>$ls";
+                $parsed_code .= '<li' . $attr_string . '>' . $start . $code[$i - 1] . $end . '</li>' . $ls;
             }
         }
         else {
             // No line numbers, but still need to handle highlighting lines extra.
             // Have to use divs so the full width of the code is highlighted
-            $i = 0;
-            foreach ($code as $line) {
+            for ($i = 0, $n = count($code); $i < $n; ++$i) {
                 // Make lines have at least one space in them if they're empty
                 // BenBE: Checking emptiness using trim instead of relying on blanks
-                if ('' == trim($line)) {
-                    $line = '&nbsp;';
+                if ('' == trim($code[$i])) {
+                    $code[$i] = '&nbsp;';
                 }
-                if (in_array(++$i, $this->highlight_extra_lines)) {
+                if (in_array($i + 1, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
                         if (array_key_exists($i, $this->highlight_extra_lines_styles)) {
                             $parsed_code .= "<div class=\"lx$i\">";
@@ -2693,12 +2694,13 @@ class GeSHi {
                         $parsed_code .= "<div style=\"" . $this->get_line_style($i) . "\">";
                     }
                     // Remove \n because it stuffs up <pre> header
-                    $parsed_code .= $line . "</div>";
+                    $parsed_code .= $code[$i] . "</div>";
                 } else {
-                    $parsed_code .= $line . "\n";
+                    $parsed_code .= $code[$i] . "\n";
                 }
             }
         }
+        unset($code);
 
         return $this->header() . chop($parsed_code) . $this->footer();
     }
