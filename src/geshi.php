@@ -2585,16 +2585,18 @@ class GeSHi {
             $this->overall_id = 'geshi-' . substr(md5(microtime()), 0, 4);
         }
 
+        // Get code into lines
+        $code = explode("\n", $parsed_code);
+        unset($parsed_code);
+
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
         if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
             // If we're using the <pre> header, we shouldn't add newlines because
             // the <pre> will line-break them (and the <li>s already do this for us)
             $ls = ($this->header_type != GESHI_HEADER_PRE) ? "\n" : '';
-            // Get code into lines
-            $code = explode("\n", $parsed_code);
+
             // Set vars to defaults for following loop
-            $parsed_code = '';
             $i = 0;
 
             // Foreach line...
@@ -2607,6 +2609,7 @@ class GeSHi {
                 if ('' == trim($line)) {
                     $line = '&nbsp;';
                 }
+
                 // If this is a "special line"...
                 if ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS &&
                     $i % $this->line_nth_row == ($this->line_nth_row - 1)) {
@@ -2665,17 +2668,13 @@ class GeSHi {
                 foreach ($attrs as $key => $attr) {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
-                if ('' == trim($line)) {
-                    $line = '&nbsp;';
-                }
+
                 $parsed_code .= "<li$attr_string>$start$line$end</li>$ls";
             }
         }
         else {
             // No line numbers, but still need to handle highlighting lines extra.
             // Have to use divs so the full width of the code is highlighted
-            $code = explode("\n", $parsed_code);
-            $parsed_code = '';
             $i = 0;
             foreach ($code as $line) {
                 // Make lines have at least one space in them if they're empty
