@@ -2012,22 +2012,23 @@ class GeSHi {
      * @since  1.0.0
      * @access private
      */
-    function indent($result) {
+    function indent(&$result) {
         /// Replace tabs with the correct number of spaces
         if (false !== strpos($result, "\t")) {
             $lines = explode("\n", $result);
-            unset($result);//Save memory while we process the lines individually
+            $result = null;//Save memory while we process the lines individually
 			$tab_width = $this->get_real_tab_width();
 			$tab_string = '&nbsp;' . str_repeat(' ', $tab_width);
 
-            foreach ($lines as $key => $line) {
+            for ($key = 0, $n = count($lines); $key < $n; $key++) {
+                $line = $lines[$key];
+                $lines[$key] = ''; // reduce memory
                 if (false === strpos($line, "\t")) {
                     continue;
                 }
 
                 $pos = 0;
                 $length = strlen($line);
-                $result_line = '';
 
                 $IN_TAG = false;
                 for ($i = 0; $i < $length; ++$i) {
@@ -2043,11 +2044,11 @@ class GeSHi {
                         if('>' == $char) {
                             $IN_TAG = false;
                         }
-                        $result_line .= $char;
+                        $lines[$key] .= $char;
                     }
                     else if ('<' == $char) {
                         $IN_TAG = true;
-                        $result_line .= '<';
+                        $lines[$key] .= '<';
                     }
                     else if ('&' == $char) {
                         $substr = substr($line, $i + 3, 5);
@@ -2057,7 +2058,7 @@ class GeSHi {
                         } else {
                             $pos -= $posi+2;
                         }
-                        $result_line .= $char;
+                        $lines[$key] .= $char;
                     }
                     else if ("\t" == $char) {
                         $str = '';
@@ -2073,24 +2074,23 @@ class GeSHi {
                         } else {
                             $str .= substr($tab_string, 0, $tab_end_width+5);
                         }
-                        $result_line .= $str;
+                        $lines[$key] .= $str;
                         $pos += $tab_end_width;
 
                         if (false === strpos($line, "\t", $i + 1)) {
-                            $result_line .= substr($line, $i + 1);
+                            $lines[$key] .= substr($line, $i + 1);
                             break;
                         }
                     }
                     else if (0 == $pos && ' ' == $char) {
-                        $result_line .= '&nbsp;';
+                        $lines[$key] .= '&nbsp;';
                         ++$pos;
                     }
                     else {
-                        $result_line .= $char;
+                        $lines[$key] .= $char;
                         ++$pos;
                     }
                 }
-                $lines[$key] = $result_line;
             }
             $result = implode("\n", $lines);
             unset($lines);//We don't need the lines separated beyond this --- free them!
