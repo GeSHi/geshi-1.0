@@ -2011,6 +2011,7 @@ class GeSHi {
         /// Replace tabs with the correct number of spaces
         if (false !== strpos($result, "\t")) {
             $lines = explode("\n", $result);
+            unset($result);//Save memory while we process the lines individually
 			$tab_width = $this->get_real_tab_width();
             foreach ($lines as $key => $line) {
                 if (false === strpos($line, "\t")) {
@@ -2060,7 +2061,8 @@ class GeSHi {
                         //  3 => '&nbsp; &nbsp;' etc etc
                         // to use instead of building a string every time
                         $strs = array(0 => '&nbsp;', 1 => ' ');
-                        for ($k = 0; $k < ($tab_width - (($i - $pos) % $tab_width)); ++$k) $str .= $strs[$k % 2];
+                        $tab_end_width = ($tab_width - (($i - $pos) % $tab_width)); //Moved out of the look as it doesn't change within the loop
+                        for ($k = 0; $k < $tab_end_width; ++$k) $str .= $strs[$k % 2];
                         $result_line .= $str;
                         $pos += ($i - $pos) % $tab_width + 1;
 
