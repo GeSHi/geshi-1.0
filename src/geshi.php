@@ -2033,26 +2033,27 @@ class GeSHi {
                     // This test could be improved to include strings in the
                     // html so that < or > would be allowed in user's styles
                     // (e.g. quotes: '<' '>'; or similar)
-                    if ($IN_TAG && '>' == $char) {
-                        $IN_TAG = false;
-                        $result_line .= '>';
-                        ++$pos;
+                    if ($IN_TAG) {
+                        if('>' == $char) {
+                            $IN_TAG = false;
+                        }
+                        $result_line .= $char;
                     }
-                    else if (!$IN_TAG && '<' == $char) {
+                    else if ('<' == $char) {
                         $IN_TAG = true;
                         $result_line .= '<';
-                        ++$pos;
                     }
-                    else if (!$IN_TAG && '&' == $char) {
-                        $substr = substr($line, $i + 3, 4);
-                        //$substr_5 = substr($line, 5, 1);
+                    else if ('&' == $char) {
+                        $substr = substr($line, $i + 3, 5);
                         $posi = strpos($substr, ';');
-                        if (false !== $posi) {
-                            $pos += $posi + 3;
+                        if (false === $posi) {
+							++$pos;
+                        } else {
+                            $pos -= $posi+2;
                         }
-                        $result_line .= '&';
+                        $result_line .= $char;
                     }
-                    else if (!$IN_TAG && "\t" == $char) {
+                    else if ("\t" == $char) {
                         $str = '';
                         // OPTIMISE - move $strs out. Make an array:
                         // $tabs = array(
@@ -2061,28 +2062,31 @@ class GeSHi {
                         //  3 => '&nbsp; &nbsp;' etc etc
                         // to use instead of building a string every time
                         $strs = array(0 => '&nbsp;', 1 => ' ');
-                        $tab_end_width = ($tab_width - (($i - $pos) % $tab_width)); //Moved out of the look as it doesn't change within the loop
-                        for ($k = 0; $k < $tab_end_width; ++$k) $str .= $strs[$k % 2];
+                        $tab_end_width = $pos + ($tab_width - ($pos % $tab_width)); //Moved out of the look as it doesn't change within the loop
+                        for ($k = $pos; $k < $tab_end_width; ++$k) {
+                            $str .= $strs[$k % 2];
+						}
                         $result_line .= $str;
-                        $pos += ($i - $pos) % $tab_width + 1;
+                        $pos += $tab_end_width;
 
                         if (false === strpos($line, "\t", $i + 1)) {
                             $result_line .= substr($line, $i + 1);
                             break;
                         }
                     }
-                    else if ($IN_TAG) {
+                    else if (0 == $pos && ' ' == $char) {
+                        $result_line .= '&nbsp;';
                         ++$pos;
-                        $result_line .= $char;
                     }
                     else {
                         $result_line .= $char;
-                        //++$pos;
+                        ++$pos;
                     }
                 }
                 $lines[$key] = $result_line;
             }
             $result = implode("\n", $lines);
+            unset($lines);//We don't need the lines separated beyond this --- free them!
         }
         // Other whitespace
         // BenBE: Fix to reduce the number of replacements to be done
