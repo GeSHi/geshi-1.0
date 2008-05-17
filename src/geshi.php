@@ -2587,7 +2587,7 @@ class GeSHi {
 
         // Get code into lines
         $code = explode("\n", $parsed_code);
-        unset($parsed_code);
+        $parsed_code = '';
 
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
