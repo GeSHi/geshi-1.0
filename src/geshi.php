@@ -2665,6 +2665,9 @@ class GeSHi {
                 foreach ($attrs as $key => $attr) {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
+                if ('' == trim($line)) {
+                    $line = '&nbsp;';
+                }
                 $parsed_code .= "<li$attr_string>$start$line$end</li>$ls";
             }
         }
@@ -2696,11 +2699,6 @@ class GeSHi {
                     $parsed_code .= $line . "\n";
                 }
             }
-        }
-
-        if ($this->header_type == GESHI_HEADER_PRE) {
-            // enforce line numbers when using pre
-            $parsed_code = str_replace('<li></li>', '<li>&nbsp;</li>', $parsed_code);
         }
 
         return $this->header() . chop($parsed_code) . $this->footer();
