@@ -1546,6 +1546,9 @@ class GeSHi {
             );
         }
 
+        //Unset variables we won't need any longer
+        unset($code);
+
         //Preload some repeatedly used values regarding hardquotes ...
         $hq = isset($this->language_data['HARDQUOTE']) ? $this->language_data['HARDQUOTE'][0] : false;
         $hq_strlen = strlen($hq);
@@ -1557,7 +1560,6 @@ class GeSHi {
 
         //preload the escape char for faster checking ...
         $escaped_escape_char = GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
-
 
         if (!$this->use_classes) {
             $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
@@ -1770,11 +1772,11 @@ class GeSHi {
                         else {
                             // update regexp comment cache if needed
                             if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
-                                $next_comment_regexp_pos = $length + 1;
+                                $next_comment_regexp_pos = $length;
                                 foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
                                     $match_i = false;
                                     if (isset($comment_regexp_cache_per_key[$comment_key]) &&
-                                        $comment_regexp_cache_per_key[$comment_key] > $i) {
+                                        $comment_regexp_cache_per_key[$comment_key] >= $i) {
                                         // we have already matched something
                                         $match_i = $comment_regexp_cache_per_key[$comment_key];
                                     }
@@ -1785,9 +1787,12 @@ class GeSHi {
                                             'length' => strlen($match[0][0]),
                                         );
                                         $comment_regexp_cache_per_key[$comment_key] = $match_i;
+                                    } else {
+                                        $comment_regexp_cache_per_key[$comment_key] = false;
+                                        continue;
                                     }
 
-                                    if ($match_i && $match_i < $next_comment_regexp_pos) {
+                                    if ($match_i !== false && $match_i < $next_comment_regexp_pos) {
                                         $next_comment_regexp_pos = $match_i;
                                         if ($match_i === $i) {
                                             break;
@@ -1796,7 +1801,7 @@ class GeSHi {
                                 }
                             }
                             //Have a look for regexp comments
-                            if ($i === $next_comment_regexp_pos) {
+                            if ($i == $next_comment_regexp_pos) {
                                 $COMMENT_MATCHED = true;
                                 $comment = $comment_regexp_cache[$next_comment_regexp_pos];
                                 $test_str = GeSHi::hsc(substr($part, $i, $comment['length']));
