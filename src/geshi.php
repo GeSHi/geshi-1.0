@@ -2052,13 +2052,13 @@ class GeSHi {
 
             for ($key = 0, $n = count($lines); $key < $n; $key++) {
                 $line = $lines[$key];
-                $lines[$key] = ''; // reduce memory
                 if (false === strpos($line, "\t")) {
                     continue;
                 }
 
                 $pos = 0;
                 $length = strlen($line);
+                $lines[$key] = ''; // reduce memory
 
                 $IN_TAG = false;
                 for ($i = 0; $i < $length; ++$i) {
