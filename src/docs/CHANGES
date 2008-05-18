@@ -55,6 +55,7 @@ Version 1.0.7.22
   -  Optimized generation of highlighted strings to use fast skip forward while highlighting them (Milian Wolff, BenBE)
   -  Optimization using basic rework of indent function improving tab expansion performance (BenBE)
   -  Lots of other minor optimizations based on coding style improvements (Milian Wolff)
+  -  Implemented setting to force spans to be closed before newlines, see SF#1727398 (Milian Wolff)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
