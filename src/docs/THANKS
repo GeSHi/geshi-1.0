@@ -35,6 +35,8 @@ I owe these people/groups my thanks for help with GeSHi. Thanks, guys!
 - Karim Scheik          - Thanks for the php5 support report
 - Marcin Gryszkalis     - Thanks for those links for C, Java, Perl
 - M. Uli Kusterer       - Thanks for the idea about URL case conversion
+- Milian Wolff          - Thanks for the loads of optimizations
+                        - Thanks for helping with implementation of various features
 - Roberto Armellin      - Thanks for pointing out some flaws in GeSHi (that will be solved
                           in 1.2 guaranteed)
 - Sterling Christensen  - Thanks for those links to language specs
@@ -64,6 +66,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - CadLisp                Roberto Rossi
 - CDFG                   John Horigan
 - ColdFusion             Diego
+- D                      Thomas Kuehne
 - Delphi                 J�rja Norbert
 - Div                    Gabriel Lorenzo
 - DOS                    Alessandro Staltari
@@ -85,6 +88,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - m86k                   Benny Baumann
 - mIRC                   Alberto de Areba Sánchez
 - MPASM                  Bakalex
+- MXML                   David Spurr
 - MySQL                  Carl F�rstenberg
 - NSIS                   Tux (updated by Deguix)
 - Objective C            M. Uli Kusterer

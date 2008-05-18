@@ -18,6 +18,7 @@ Version 1.0.7.22
      * KiXtart (Riley McArdle)
      * Lotus Notes @Formulas (Richard Civil)
      * LotusScript (Richard Civil)
+     * MXML (David Spurr)
      * Scala (Franco Lombardo)
      * ActionScript 3 (Jordi Boggiano)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
@@ -57,6 +58,7 @@ Version 1.0.7.22
   -  Optimization using basic rework of indent function improving tab expansion performance (BenBE)
   -  Lots of other minor optimizations based on coding style improvements (Milian Wolff)
   -  Implemented setting to force spans to be closed before newlines, see SF#1727398 (Milian Wolff)
+  -  Added missing credits for D language file to THANKS file (SF#1720899, BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
