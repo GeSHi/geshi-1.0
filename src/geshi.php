@@ -2685,7 +2685,7 @@ class GeSHi {
 
                 if (in_array($i, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
-                        if(array_key_exists($i, $this->highlight_extra_lines_styles)) {
+                        if (isset($this->highlight_extra_lines_styles[$i])) {
                             $attrs['class'][] = "lx$i";
                         } else {
                             $attrs['class'][] = "ln-xtra";
@@ -2715,7 +2715,7 @@ class GeSHi {
                 }
                 if (in_array($i + 1, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
-                        if (array_key_exists($i, $this->highlight_extra_lines_styles)) {
+                        if (isset($this->highlight_extra_lines_styles[$i])) {
                             $parsed_code .= "<div class=\"lx$i\">";
                         } else {
                             $parsed_code .= "<div class=\"ln-xtra\">";
@@ -3184,7 +3184,7 @@ class GeSHi {
     function get_line_style($line) {
         //$style = null;
         $style = null;
-        if (array_key_exists($line, $this->highlight_extra_lines_styles)) {
+        if (isset($this->highlight_extra_lines_styles[$line])) {
             $style = $this->highlight_extra_lines_styles[$line];
         } else { // if no "extra" style assigned
             $style = $this->highlight_extra_lines_style;
