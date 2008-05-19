@@ -426,6 +426,13 @@ class GeSHi {
      */
     var $keyword_links = true;
 
+    /**
+     * Currently loaded language file
+     * @var string
+     * @since 1.0.7.22
+     */
+    var $loaded_language = '';
+
     /**#@-*/
 
     /**
@@ -2557,6 +2564,11 @@ class GeSHi {
      * @todo Needs to load keys for lexic permissions for keywords, regexps etc
      */
     function load_language($file_name) {
+        if ($file_name == $this->loaded_language) {
+            // this file is already loaded!
+            return;
+        }
+        $this->loaded_language = $file_name;
         $this->enable_highlighting();
         $language_data = array();
         require $file_name;
