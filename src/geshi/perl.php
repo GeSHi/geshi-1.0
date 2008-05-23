@@ -11,6 +11,9 @@
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *   -  Added description of extra language features (SF#1970248)
+ *   -  Added comment_regexp for predefined variables
  * 2008/02/15 (1.003)
  *   -  Fixed SF#1891630 with placebo patch
  * 2006/01/05 (1.0.2)
@@ -60,9 +63,14 @@ $language_data = array (
         '=pod' => '=cut'
     ),
     'COMMENT_REGEXP' => array(
+        //Regular expressions
         2 => "/(?<=[\\s^])(s|tr|y)\\/(?:\\\\.|[^\\/\\\\])+\\/(?:\\\\.|[^\\/\\\\])*\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?:\\\\.|[^\\/\\\\])+\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU",
+        //Regular expression match variables
         3 => '/\$\d+/',
-        4 => '/<<\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'
+        //Heredoc
+        4 => '/<<\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
+        //Predefined variables
+        5 => '/\$(\^[a-zA-Z]?|[\$`\'&_.,+\-~:\\\\\/"\|%=\?!@<>\(\)\[\]])|@_/',
     ),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"'),
@@ -140,6 +148,7 @@ $language_data = array (
 			2 => 'color: #009966; font-style: italic;',
 			3 => 'color: #0000ff;',
 			4 => 'color: #cc0000; font-style: italic;',
+			5 => 'color: #0000ff;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
@@ -177,7 +186,9 @@ $language_data = array (
 		2 => '::'
 		),
 	'REGEXPS' => array(
+        //Variable
 		0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
+		//File Descriptor
 		4 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,

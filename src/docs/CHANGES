@@ -62,6 +62,7 @@ Version 1.0.7.22
   -  Optimization to prevent loading the current language file twice (Milian Wolff)
   -  Optimization: Use file_get_contents() to load sourcecode from files.
      Even if GeSHi worked with PHP 4.1 before, it doesn't now. (Milian Wolff)
+  -  Added description of extra language features (SF#1970248, BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash

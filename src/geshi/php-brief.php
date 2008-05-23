@@ -4,13 +4,15 @@
  * -------------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2004/06/02
  *
  * PHP language file for GeSHi (brief version).
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *  -  Added description of extra language features (SF#1970248)
  * 2004/11/27 (1.0.3)
  *  -  Added support for multiple object splitters
  *  -  Fixed &new problem
@@ -49,7 +51,8 @@ $language_data = array (
 	'LANG_NAME' => 'PHP',
 	'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(3 => '/<<<([a-zA-Z0-9]+)\\n.*\\n\\1(?![a-zA-Z0-9])/siU'),
+	//Heredoc and Nowdoc syntax
+	'COMMENT_REGEXP' => array(3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
 	'ESCAPE_CHAR' => '\\',
@@ -147,6 +150,7 @@ $language_data = array (
 		2 => '::'
 		),
 	'REGEXPS' => array(
+        //Variables
 		0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*"
 		),
 	'STRICT_MODE_APPLIES' => GESHI_MAYBE,

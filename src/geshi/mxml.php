@@ -92,7 +92,7 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
-		// xml decloration
+		// xml declaration
 		0 => array(
 			GESHI_SEARCH => '(&lt;[/?|(\?xml)]?[a-z0-9_\-:]*(\?&gt;))',
 			GESHI_REPLACE => '\\1',

@@ -300,8 +300,6 @@ $language_data = array (
             0 => 'color: #66cc66;'
             ),
         'REGEXPS' => array(
-            0 => 'color: #0000ff;',
-            1 => 'color: #ff0000'
             ),
         'SCRIPT' => array(
             )
@@ -317,14 +315,6 @@ $language_data = array (
         1 => '.'
         ),
     'REGEXPS' => array(
-        0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*",
-        1 => array(
-            GESHI_SEARCH  => "([a-zA-Z]+)(\n)(.*)(\n)(\\1;?)",
-            GESHI_REPLACE => '\3',
-            GESHI_BEFORE => '\1\2',
-            GESHI_AFTER => '\4\5',
-            GESHI_MODIFIERS => 'siU'
-            )
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(

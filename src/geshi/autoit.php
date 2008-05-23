@@ -3,8 +3,8 @@
  * autoit.php
  * --------
  * Author: mastrboy
- * Copyright: (c) 2006 and to GESHi ;)
- * Release Version: 1.0.7.21
+ * Copyright: (c) 2006 and to GeSHi ;)
+ * Release Version: 1.0.7.22
  * Date Started: 2006/01/26
  *
  * Current bugs & todo:
@@ -166,6 +166,7 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
+	   //Variables
 		0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*",
 		),
 	'STRICT_MODE_APPLIES' => GESHI_MAYBE,

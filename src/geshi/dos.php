@@ -4,20 +4,21 @@
  * -------
  * Author: Alessandro Staltari (staltari@geocities.com)
  * Copyright: (c) 2005 Alessandro Staltari (http://www.geocities.com/SiliconValley/Vista/8155/)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2005/07/05
  *
  * DOS language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *   -  Added description of extra language features (SF#1970248)
  * 2005/07/05 (1.0.0)
  *  -  First Release
  *
  * TODO (updated 2005/07/05)
  * -------------------------
  *
- * - Find a way to higlight %*
  * - Highlight pipes and redirection (do we really need this?)
  * - Add missing keywords.
  * - Find a good hyperlink for keywords.
@@ -60,8 +61,10 @@
 
 $language_data = array (
 	'LANG_NAME' => 'DOS',
-	'COMMENT_SINGLE' => array(1 =>'REM', 2 => '@REM'),
+	'COMMENT_SINGLE' => array(),
 	'COMMENT_MULTI' => array(),
+	//DOS comment lines
+	'COMMENT_REGEXP' => array(1 => "/^\s*@?REM/mi"),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array(),
 	'ESCAPE_CHAR' => '',
@@ -148,33 +151,33 @@ $language_data = array (
          4 => 'http://www.ss64.com/nt/{FNAME}.html'
          ),
 	'REGEXPS' => array(
-	/* Label */
+    	/* Label */
 	    0 => array(
-/*		GESHI_SEARCH => '((?si:[@\s]+GOTO\s+|\s+:)[\s]*)((?<!\n)[^\s\n]*)',*/
-		GESHI_SEARCH => '((?si:[@\s]+GOTO\s+|\s+:)[\s]*)((?<!\n)[^\n]*)',
-		GESHI_REPLACE => '\\2',
-		GESHI_MODIFIERS => 'si',
-		GESHI_BEFORE => '\\1',
-		GESHI_AFTER => ''
-		),
-	/* Variable assignement */
+/*		    GESHI_SEARCH => '((?si:[@\s]+GOTO\s+|\s+:)[\s]*)((?<!\n)[^\s\n]*)',*/
+    		GESHI_SEARCH => '((?si:[@\s]+GOTO\s+|\s+:)[\s]*)((?<!\n)[^\n]*)',
+    		GESHI_REPLACE => '\\2',
+    		GESHI_MODIFIERS => 'si',
+    		GESHI_BEFORE => '\\1',
+    		GESHI_AFTER => ''
+	    ),
+        /* Variable assignement */
 	    1 => array(
-/*		GESHI_SEARCH => '(SET[\s]+(?si:/A[\s]+|/P[\s]+|))([^=\s\n]+)([\s]*=)',*/
-		GESHI_SEARCH => '(SET[\s]+(?si:/A[\s]+|/P[\s]+|))([^=\n]+)([\s]*=)',
-		GESHI_REPLACE => '\\2',
-		GESHI_MODIFIERS => 'si',
-		GESHI_BEFORE => '\\1',
-		GESHI_AFTER => '\\3'
-		),
-	/* Arguments or variable evaluation */
+/*		    GESHI_SEARCH => '(SET[\s]+(?si:/A[\s]+|/P[\s]+|))([^=\s\n]+)([\s]*=)',*/
+    		GESHI_SEARCH => '(SET[\s]+(?si:/A[\s]+|/P[\s]+|))([^=\n]+)([\s]*=)',
+    		GESHI_REPLACE => '\\2',
+    		GESHI_MODIFIERS => 'si',
+    		GESHI_BEFORE => '\\1',
+    		GESHI_AFTER => '\\3'
+    		),
+	    /* Arguments or variable evaluation */
 	    2 => array(
-/*		GESHI_SEARCH => '(%)([\d*]|[^%\s]*(?=%))((?<!%\d)%|)',*/
-		GESHI_SEARCH => '(%)([\d*]|[^%]*(?=%))((?<!%\d)%|)',
-		GESHI_REPLACE => '\\2',
-		GESHI_MODIFIERS => 'si',
-		GESHI_BEFORE => '\\1',
-		GESHI_AFTER => '\\3'
-		)
+/*		    GESHI_SEARCH => '(%)([\d*]|[^%\s]*(?=%))((?<!%\d)%|)',*/
+    		GESHI_SEARCH => '(%)([\d*]|[^%]*(?=%))((?<!%\d)%|)',
+    		GESHI_REPLACE => '\\2',
+    		GESHI_MODIFIERS => 'si',
+    		GESHI_BEFORE => '\\1',
+    		GESHI_AFTER => '\\3'
+    		)
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(

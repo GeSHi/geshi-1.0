@@ -4,13 +4,15 @@
  * ---------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2004/08/30
  *
  * OpenOffice.org Basic language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *  -  Added description of extra language features (SF#1970248)
  * 2004/11/27 (1.0.1)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.0)
@@ -41,8 +43,10 @@
 
 $language_data = array (
 	'LANG_NAME' => 'OpenOffice.org Basic',
-	'COMMENT_SINGLE' => array(1 => "'", 2 => 'REM'),
+	'COMMENT_SINGLE' => array(1 => "'"),
 	'COMMENT_MULTI' => array(),
+	//Single-Line comments using REM keyword
+	'COMMENT_REGEXP' => array(2 => '/\bREM.*?$/i'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"'),
 	'ESCAPE_CHAR' => '',
