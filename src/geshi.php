@@ -1160,6 +1160,7 @@ class GeSHi {
                 'css' => array('css'),
                 'delphi' => array('dpk', 'dpr', 'pp', 'pas'),
                 'dos' => array('bat', 'cmd'),
+                'gettext' => array('po', 'pot'),
                 'html4strict' => array('html', 'htm'),
                 'java' => array('java'),
                 'javascript' => array('js'),

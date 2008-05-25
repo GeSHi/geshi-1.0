@@ -21,6 +21,7 @@ Version 1.0.7.22
      * MXML (David Spurr)
      * Scala (Franco Lombardo)
      * ActionScript 3 (Jordi Boggiano)
+     * GNU Gettext .po/.pot (Milian Wolff)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
