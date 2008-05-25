@@ -56,18 +56,19 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'Abstract', 'And', 'Array', 'As', 'Asm', 'At', 'Begin', 'Case', 'Class',
-            'Const', 'Constructor', 'Contains', 'Destructor', 'DispInterface', 'Div',
-            'Do', 'DownTo', 'Else', 'End', 'Except', 'File', 'Finalization',
-            'Finally', 'For', 'Function', 'Goto', 'If', 'Implementation', 'In',
-            'Inherited', 'Initialization', 'Inline', 'Interface', 'Is', 'Label',
+            'Abstract', 'And', 'Array', 'As', 'Asm', 'At', 'Begin', 'Case',
+            'Class', 'Const', 'Constructor', 'Contains', 'Destructor',
+            'DispInterface', 'Div', 'Do', 'DownTo', 'Else', 'End', 'Except',
+            'Export', 'Exports', 'External', 'File', 'Finalization', 'Finally',
+            'For', 'Function', 'Goto', 'If', 'Implementation', 'In', 'Inherited',
+            'Initialization', 'Inline', 'Interface', 'Is', 'Label', 'Library',
             'Mod', 'Not', 'Object', 'Of', 'On', 'Or', 'Overload', 'Override',
             'Package', 'Packed', 'Private', 'Procedure', 'Program', 'Property',
-            'Protected', 'Public', 'Published', 'Raise', 'Record', 'Repeat',
-            'Requires', 'Resourcestring', 'Set', 'Shl', 'Shr', 'Then', 'ThreadVar',
-            'To', 'Try', 'Type', 'Unit', 'Until', 'Uses', 'Var', 'Virtual', 'While',
-            'With', 'Xor', 'assembler', 'cdecl', 'far', 'near', 'pascal', 'register',
-            'safecall', 'stdcall', 'varargs'
+            'Protected', 'Public', 'Published', 'Raise', 'Record', 'Register',
+            'Repeat', 'Requires', 'Resourcestring', 'Set', 'Shl', 'Shr', 'Then',
+            'ThreadVar', 'To', 'Try', 'Type', 'Unit', 'Until', 'Uses', 'Var',
+            'Virtual', 'While', 'With', 'Xor', 'assembler', 'cdecl', 'far',
+            'near', 'pascal', 'register', 'cdecl', 'safecall', 'stdcall', 'varargs'
             ),
         2 => array(
             'nil', 'false', 'self', 'true', 'var', 'type', 'const'
