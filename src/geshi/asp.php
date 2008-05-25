@@ -4,7 +4,7 @@
  * --------
  * Author: Amit Gupta (http://blog.igeek.info/)
  * Copyright: (c) 2004 Amit Gupta (http://blog.igeek.info/), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2004/08/13
  *
  * ASP language file for GeSHi.
@@ -48,7 +48,7 @@ $language_data = array (
 	'LANG_NAME' => 'ASP',
 	'COMMENT_SINGLE' => array(1 => "'", 2 => '//'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
-	'CASE_KEYWORDS' => 0,
+	'CASE_KEYWORDS' => GESSHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"'),
 	'ESCAPE_CHAR' => '',
 	'KEYWORDS' => array(

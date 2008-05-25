@@ -326,13 +326,13 @@ class GeSHi {
      */
     var $highlight_extra_lines_style = 'color: #cc0; background-color: #ffc;';
 
-	/**
-	 * The line ending
-	 * If null, nl2br() will be used on the result string.
-	 * Otherwise, all instances of \n will be replaced with $line_ending
-	 * @var string
-	 */
-	var $line_ending = null;
+    /**
+     * The line ending
+     * If null, nl2br() will be used on the result string.
+     * Otherwise, all instances of \n will be replaced with $line_ending
+     * @var string
+     */
+    var $line_ending = null;
 
     /**
      * Number at which line numbers should start at
@@ -401,11 +401,11 @@ class GeSHi {
      */
     var $tab_width = 8;
 
-	/**
-	 * Should we use language-defined tab stop widths?
-	 * @var int
-	 */
-	var $use_language_tab_width = false;
+    /**
+     * Should we use language-defined tab stop widths?
+     * @var int
+     */
+    var $use_language_tab_width = false;
 
     /**
      * Default target for keyword links
@@ -425,6 +425,13 @@ class GeSHi {
      * @var boolean
      */
     var $keyword_links = true;
+
+    /**
+     * Currently loaded language file
+     * @var string
+     * @since 1.0.7.22
+     */
+    var $loaded_language = '';
 
     /**#@-*/
 
@@ -1046,31 +1053,31 @@ class GeSHi {
         }
     }
 
-	/**
-	 * Sets whether or not to use tab-stop width specifed by language
-	 *
-	 * @param boolean Whether to use language-specific tab-stop widths
+    /**
+     * Sets whether or not to use tab-stop width specifed by language
+     *
+     * @param boolean Whether to use language-specific tab-stop widths
      * @since 1.0.7.20
-	 */
-	function set_use_language_tab_width($use) {
-		$this->use_language_tab_width = (bool) $use;
-	}
+     */
+    function set_use_language_tab_width($use) {
+        $this->use_language_tab_width = (bool) $use;
+    }
 
-	/**
-	 * Returns the tab width to use, based on the current language and user
-	 * preference
-	 *
-	 * @return int Tab width
+    /**
+     * Returns the tab width to use, based on the current language and user
+     * preference
+     *
+     * @return int Tab width
      * @since 1.0.7.20
-	 */
-	function get_real_tab_width() {
-		if (!$this->use_language_tab_width ||
+     */
+    function get_real_tab_width() {
+        if (!$this->use_language_tab_width ||
             !isset($this->language_data['TAB_WIDTH'])) {
-			return $this->tab_width;
-		} else {
-			return $this->language_data['TAB_WIDTH'];
-		}
-	}
+            return $this->tab_width;
+        } else {
+            return $this->language_data['TAB_WIDTH'];
+        }
+    }
 
     /**
      * Enables/disables strict highlighting. Default is off, calling this
@@ -1153,6 +1160,7 @@ class GeSHi {
                 'css' => array('css'),
                 'delphi' => array('dpk', 'dpr', 'pp', 'pas'),
                 'dos' => array('bat', 'cmd'),
+                'gettext' => array('po', 'pot'),
                 'html4strict' => array('html', 'htm'),
                 'java' => array('java'),
                 'javascript' => array('js'),
@@ -1204,7 +1212,7 @@ class GeSHi {
      */
     function load_from_file($file_name, $lookup = array()) {
         if (is_readable($file_name)) {
-            $this->set_source(implode('', file($file_name)));
+            $this->set_source(file_get_contents($file_name));
             $this->set_language($this->get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
         }
         else {
@@ -1426,15 +1434,15 @@ class GeSHi {
         $this->highlight_extra_lines_style = $styles;
     }
 
-	/**
-	 * Sets the line-ending
-	 *
-	 * @param string The new line-ending
-	 * @since 1.0.2
-	 */
-	function set_line_ending($line_ending) {
-		$this->line_ending = (string)$line_ending;
-	}
+    /**
+     * Sets the line-ending
+     *
+     * @param string The new line-ending
+     * @since 1.0.2
+     */
+    function set_line_ending($line_ending) {
+        $this->line_ending = (string)$line_ending;
+    }
 
     /**
      * Sets what number line numbers should start at. Should
@@ -1924,7 +1932,7 @@ class GeSHi {
                                             $test_str_match == GESHI_START_IMPORTANT) {
                                             $test_str .= '</span>';
                                         }
-    									$i = $close_pos + strlen($close) - 1;
+                                        $i = $close_pos + strlen($close) - 1;
                                         // parse the rest
                                         $result .= $this->parse_non_string_part($stuff_to_parse);
                                         $stuff_to_parse = '';
@@ -2047,8 +2055,8 @@ class GeSHi {
         if (false !== strpos($result, "\t")) {
             $lines = explode("\n", $result);
             $result = null;//Save memory while we process the lines individually
-			$tab_width = $this->get_real_tab_width();
-			$tab_string = '&nbsp;' . str_repeat(' ', $tab_width);
+            $tab_width = $this->get_real_tab_width();
+            $tab_string = '&nbsp;' . str_repeat(' ', $tab_width);
 
             for ($key = 0, $n = count($lines); $key < $n; $key++) {
                 $line = $lines[$key];
@@ -2084,7 +2092,7 @@ class GeSHi {
                         $substr = substr($line, $i + 3, 5);
                         $posi = strpos($substr, ';');
                         if (false === $posi) {
-							++$pos;
+                            ++$pos;
                         } else {
                             $pos -= $posi+2;
                         }
@@ -2131,12 +2139,12 @@ class GeSHi {
         $result = str_replace('  ', ' &nbsp;', $result);
 
         if ($this->line_numbers == GESHI_NO_LINE_NUMBERS) {
-			if ($this->line_ending === null) {
-				$result = nl2br($result);
-			} else {
-				$result = str_replace("\n", $this->line_ending, $result);
-			}
-		}
+            if ($this->line_ending === null) {
+                $result = nl2br($result);
+            } else {
+                $result = str_replace("\n", $this->line_ending, $result);
+            }
+        }
         return $result;
     }
 
@@ -2557,6 +2565,11 @@ class GeSHi {
      * @todo Needs to load keys for lexic permissions for keywords, regexps etc
      */
     function load_language($file_name) {
+        if ($file_name == $this->loaded_language) {
+            // this file is already loaded!
+            return;
+        }
+        $this->loaded_language = $file_name;
         $this->enable_highlighting();
         $language_data = array();
         require $file_name;
@@ -2685,7 +2698,7 @@ class GeSHi {
 
                 if (in_array($i, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
-                        if(array_key_exists($i, $this->highlight_extra_lines_styles)) {
+                        if (isset($this->highlight_extra_lines_styles[$i])) {
                             $attrs['class'][] = "lx$i";
                         } else {
                             $attrs['class'][] = "ln-xtra";
@@ -2715,7 +2728,7 @@ class GeSHi {
                 }
                 if (in_array($i + 1, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
-                        if (array_key_exists($i, $this->highlight_extra_lines_styles)) {
+                        if (isset($this->highlight_extra_lines_styles[$i])) {
                             $parsed_code .= "<div class=\"lx$i\">";
                         } else {
                             $parsed_code .= "<div class=\"ln-xtra\">";
@@ -3182,15 +3195,15 @@ class GeSHi {
      * @since 1.0.7.21
      */
     function get_line_style($line) {
-    	//$style = null;
-    	$style = null;
-    	if (array_key_exists($line, $this->highlight_extra_lines_styles)) {
-    		$style = $this->highlight_extra_lines_styles[$line];
-    	} else { // if no "extra" style assigned
-	    	$style = $this->highlight_extra_lines_style;
-    	}
+        //$style = null;
+        $style = null;
+        if (isset($this->highlight_extra_lines_styles[$line])) {
+            $style = $this->highlight_extra_lines_styles[$line];
+        } else { // if no "extra" style assigned
+            $style = $this->highlight_extra_lines_style;
+        }
 
-    	return $style;
+        return $style;
     }
 } // End Class GeSHi
 

@@ -4,13 +4,15 @@
  * -----------
  * Author: Cedric Arrabie (cedric.arrabie@univ-pau.fr)
  * Copyright: (C) 2006 Cetric Arrabie
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2006/04/22
  *
  * Fortran language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *   -  Added description of extra language features (SF#1970248)
  * 2006/04/20 (1.0.0)
  *   -  First Release
  *
@@ -43,6 +45,7 @@ $language_data = array (
 	'LANG_NAME'=>'Fortran',
 	'COMMENT_SINGLE'=> array(1 =>'!',2=>'Cf2py'),
 	'COMMENT_MULTI'=> array(),
+	//Fortran Comments
 	'COMMENT_REGEXP' => array(1 => '/^C.*?$/mi'),
 	'CASE_KEYWORDS'=> GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS'=> array("'",'"'),

@@ -4,7 +4,7 @@
  * -----
  * Author: efi, Matthias Pospiech (mail@matthiaspospiech.de)
  * Copyright: (c) 2006 efi, Matthias Pospiech (mail@matthiaspospiech.de), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2006/09/23
  *
  * LaTeX language file for GeSHi.

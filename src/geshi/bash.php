@@ -4,13 +4,15 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2004/08/20
  *
  * BASH language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *  -  Added description of extra language features (SF#1970248)
  * 2007/09/05 (1.0.7.21)
  *  -  PARSER_CONTROL patch using SF #1788408 (BenBE)
  * 2007/06/11 (1.0.7.20)
@@ -55,7 +57,9 @@ $language_data = array (
 	'COMMENT_SINGLE' => array('#'),
 	'COMMENT_MULTI' => array(),
 	'COMMENT_REGEXP' => array(
+        //Variables
         1 => "/\\$\\{[^\\n\\}]*?\\}/i",
+        //BASH-style Heredoc
         2 => '/<<-?\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'
         ),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -190,10 +194,13 @@ $language_data = array (
 	'OBJECT_SPLITTERS' => array(
 		),
 	'REGEXPS' => array(
+        //Variables (will be handled by comment_regexps)
 		0 => "\\$\\{[a-zA-Z_][a-zA-Z0-9_]*?\\}",
+		//Variables without braces
 		1 => "\\$[a-zA-Z_][a-zA-Z0-9_]*",
+		//Variable assignment
 		2 => "([a-zA-Z_][a-zA-Z0-9_]*)=",
-//		3 => "(?<!\\$)#[^\n]*",
+		//Shorthand shell variables
 		4 => "\\$[*#\$\\-\\?!]"
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,

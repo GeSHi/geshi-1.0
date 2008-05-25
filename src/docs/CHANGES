@@ -21,6 +21,7 @@ Version 1.0.7.22
      * MXML (David Spurr)
      * Scala (Franco Lombardo)
      * ActionScript 3 (Jordi Boggiano)
+     * GNU Gettext .po/.pot (Milian Wolff)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
@@ -59,6 +60,12 @@ Version 1.0.7.22
   -  Lots of other minor optimizations based on coding style improvements (Milian Wolff)
   -  Implemented setting to force spans to be closed before newlines, see SF#1727398 (Milian Wolff)
   -  Added missing credits for D language file to THANKS file (SF#1720899, BenBE)
+  -  Optimization to prevent loading the current language file twice (Milian Wolff)
+  -  Optimization: Use file_get_contents() to load sourcecode from files.
+     Even if GeSHi worked with PHP 4.1 before, it doesn't now. (Milian Wolff)
+  -  Added description of extra language features (SF#1970248, BenBE)
+  -  Added support for highlighting the C# using and namespace directives (SF #1395677, BenBE)
+  -  Added support for highlighting the Java import and package directives (SF #1395677, BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash

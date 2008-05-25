@@ -11,6 +11,8 @@
  *
  * CHANGES
  * -------
+ * 2008/05/23 (1.0.7.22)
+ *  -  Added description of extra language features (SF#1970248)
  * 2004/11/27 (1.0.1)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.0)
@@ -43,6 +45,7 @@ $language_data = array (
   'LANG_NAME' => 'Javascript',
   'COMMENT_SINGLE' => array(1 => '//'),
   'COMMENT_MULTI' => array('/*' => '*/'),
+  //Regular Expressions
   'COMMENT_REGEXP' => array(2 => "/(?<=[\\s^])s\\/(?:\\\\.|[^\\/\\\\])+\\/(?:\\\\.|[^\\/\\\\])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|[^\\/\\\\])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU"),
   'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
   'QUOTEMARKS' => array("'", '"'),
@@ -111,7 +114,6 @@ $language_data = array (
       0 => 'color: #339933;'
       ),
     'REGEXPS' => array(
-      0 => 'color: #0066FF;'
       ),
     'SCRIPT' => array(
       0 => '',
@@ -130,7 +132,6 @@ $language_data = array (
   	1 => '.'
 	),
   'REGEXPS' => array(
-    0 => "/.*/([igm]*)?"         // matches js reg exps
     ),
   'STRICT_MODE_APPLIES' => GESHI_MAYBE,
   'SCRIPT_DELIMITERS' => array(
