@@ -11,6 +11,8 @@
  *
  * CHANGES
  * -------
+ * 2008/05/25 (1.0.7.22)
+ *   -  Added highlighting of import and package directives as non-OOP
  * 2005/12/28 (1.0.4)
  *   -  Added instanceof keyword
  * 2004/11/27 (1.0.3)
@@ -50,8 +52,11 @@
 
 $language_data = array (
 	'LANG_NAME' => 'Java(TM) 2 Platform Standard Edition 5.0',
-	'COMMENT_SINGLE' => array(1 => '//'),   /* import statements are not comments! */
+	'COMMENT_SINGLE' => array(1 => '//'),
 	'COMMENT_MULTI' => array('/*' => '*/'),
+	'COMMENT_REGEXP' => array(
+        //Import and Package directives (Basic Support only)
+        2 => '/(?:(?<=import[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i'),
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array("'", '"'),
 	'ESCAPE_CHAR' => '\\',
@@ -809,6 +814,7 @@ $language_data = array (
 			),
 		'COMMENTS' => array(
 			1 => 'color: #666666; font-style: italic;',
+			1 => 'color: #006699;',
 			'MULTI' => 'color: #666666; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
