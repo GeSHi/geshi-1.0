@@ -350,7 +350,7 @@ class GeSHi {
      *  The style for the actual code
      * @var string
      */
-    var $code_style = 'font-family: \'Courier New\', Courier, monospace; font-weight: normal;';
+    var $code_style = 'font-family: \'Courier New\', Courier, monospace; font-weight: normal; font-style: normal;';
 
     /**
      * The overall class for this code block
@@ -368,7 +368,7 @@ class GeSHi {
      * Line number styles
      * @var string
      */
-    var $line_style1 = 'font-family: \'Courier New\', Courier, monospace; color: black; font-weight: normal; font-style: normal;';
+    var $line_style1 = 'font-weight: normal;';
 
     /**
      * Line number styles for fancy lines
@@ -2313,7 +2313,7 @@ class GeSHi {
 
                             $stuff_to_parse .= ' ';
                             $stuff_to_parse = preg_replace(
-                                "/([^$disallowed_before])($keyword)(?=[^$disallowed_after])/$modifiers",
+                                "/([^$disallowed_before])($keyword)(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after])/$modifiers",
                                 "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                                 $stuff_to_parse
                             );
