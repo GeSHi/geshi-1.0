@@ -235,6 +235,7 @@ $language_data = array (
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
+            0 => 'color: #ff0000; font-weight: bold;'
             ),
         'BRACKETS' => array(
             0 => 'color: #000066;'

@@ -147,7 +147,7 @@ $language_data = array (
 
 			'&lt;ul&gt;', '&lt;u&gt;',
 			'&lt;ul', '&lt;u',
-			'&lt;/ul&gt;', '&lt;/ul&gt;',
+			'&lt;/ul&gt;', '&lt;/u&gt;',
 			'&lt;/ul', '&lt;/u',
 
 			'&lt;var&gt;',

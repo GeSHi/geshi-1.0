@@ -69,10 +69,12 @@ $language_data = array (
             1 => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
+            0 =>  'color: #000000; font-weight: bold;'
             ),
         'BRACKETS' => array(
             ),
         'STRINGS' => array(
+            0 =>  'color: #000000;'
             ),
         'NUMBERS' => array(
             ),
