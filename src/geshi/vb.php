@@ -38,7 +38,8 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ************************************************************************************/
- $language_data = array (
+
+$language_data = array (
 	'LANG_NAME' => 'Visual Basic',
 	'COMMENT_SINGLE' => array(1 => "'"),
 	'COMMENT_MULTI' => array(),

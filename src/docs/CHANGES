@@ -22,6 +22,7 @@ Version 1.0.7.22
      * Scala (Franco Lombardo)
      * ActionScript 3 (Jordi Boggiano)
      * GNU Gettext .po/.pot (Milian Wolff)
+     * Verilog (Günter Dannoritzer)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
@@ -66,6 +67,8 @@ Version 1.0.7.22
   -  Added description of extra language features (SF#1970248, BenBE)
   -  Added support for highlighting the C# using and namespace directives (SF #1395677, BenBE)
   -  Added support for highlighting the Java import and package directives (SF #1395677, BenBE)
+  -  Fixed minor problem in Haskell cuasing accidential start of comment (SF#1987221, BenBE)
+  -  Fixed minor issue causing loads of warnings if a language files defines no symbols (BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
