@@ -2374,7 +2374,7 @@ class GeSHi {
         //
         if ($this->lexic_permissions['BRACKETS']) {
             $code_entities_match = array('[', ']', '(', ')', '{', '}');
-            if (!$this->use_classes) {
+            if (!$this->use_classes && isset($this->language_data['STYLES']['BRACKETS'][0])) {
                 $code_entities_replace = array(
                     '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#91;|>',
                     '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#93;|>',
@@ -2398,7 +2398,7 @@ class GeSHi {
         }
 
         //FIX for symbol highlighting ...
-        if($this->lexic_permissions['SYMBOLS']) {
+        if($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
             //As this is a costy operation, we avoid doing it for multiple groups ...
             //Instead we perform it for all symbols at once.
             //
