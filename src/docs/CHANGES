@@ -67,6 +67,7 @@ Version 1.0.7.22
   -  Added description of extra language features (SF#1970248, BenBE)
   -  Added support for highlighting the C# using and namespace directives (SF #1395677, BenBE)
   -  Added support for highlighting the Java import and package directives (SF #1395677, BenBE)
+  -  Fixed minor problem in Haskell cuasing accidential start of comment (SF#1987221, BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
