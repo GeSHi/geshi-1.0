@@ -1,7 +1,7 @@
 
         GeSHi - GEneric Syntax HIghlighter
         ----------------------------------
-                Version 1.0.7.21
+                Version 1.0.7.22
 
 Author:          Nigel McNie, Benny Baumann
 Email:           nigel@geshi.org, BenBE@omorphia.de
@@ -18,7 +18,7 @@ the documentation is available in the docs/ directory. Documentation
 is also available at http://qbnz.com/highlighter/documentation.php
 
 If you think you've found a bug in GeSHi, contact me with a bug
-report at nigel@geshi.org, or submit it to the bug tracker at
+report at BenBE@omorphia.de, or submit it to the bug tracker at
 http://sourceforge.net/tracker/?group_id=114997&atid=670231. Be
 aware that minor highlighting errors may well just be incorrect
 language files, but if you do find something major please contact me.
