@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.21');
+define('GESHI_VERSION', '1.0.7.22');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {

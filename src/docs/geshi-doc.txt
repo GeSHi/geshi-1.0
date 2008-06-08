@@ -2,10 +2,10 @@
 read that instead]
 
 GeSHi Documentation
-Version 1.0.7.21
+Version 1.0.7.22
 
 Author:          Nigel McNie, Benny Baumann
-Copyright:       � 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+Copyright:       © 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
 Email:           nigel@geshi.org, BenBE@omorphia.de
 GeSHi Website:   http://qbnz.com/highlighter
 
@@ -106,17 +106,19 @@ Top | Contents | Next | Previous
 
 Here are some of the standout features of GeSHi:
 
-    * Programmed in PHP: GeSHi is coded entirely in PHP. This means that where ever you have PHP, you can have GeSHi! Almost any free webhost supports PHP, and GeSHi works fine with PHP > 4.1.0.
-    * Support for many languages: GeSHi comes with over 50 languages, including PHP, HTML, CSS, Java, C, Lisp, XML, Perl, Python, ASM and many more!
+    * Programmed in PHP: GeSHi is coded entirely in PHP. This means that where ever you have PHP, you can have GeSHi! Almost any free webhost supports PHP, and GeSHi works fine with PHP > 4.3.0*.
+    * Support for many languages: GeSHi comes with about 100 languages, including PHP, HTML, CSS, Java, C, Lisp, XML, Perl, Python, ASM and many more!
     * XHTML compliant output: GeSHi produces XHTML compliant output, using stylesheets, so you need not worry about GeSHi ruining your claims to perfection in the standards department ;)
     * Highly customisable: GeSHi allows you to change the style of the output on the fly, use CSS classes or not, use an external stylesheet or not, use line numbering, change the case of output keywords... the list goes on and on!
     * Flexible: Unfortunately, GeSHi is quite load/time intensive for large blocks of code. However, you want speed? Turn off any features you don't like, pre-make a stylesheet and use CSS classes to reduce the amount of output and more - it's easy to strike a balance that suits you.
 
 This is just a taste of what you get with GeSHi - the best syntax highlighter for the web in the world!
+
+*Support is granted for PHP 4.3.0 and above, but especially 4.3.x cannot be guaranteed to work due to a lack of test systems. If you are forced to use such old PHP versions complain at your hoster or contact us if you find compatibility issues so we can try to resolve them. It's only PHP 4.4.X and above that is verified to work.
 1.2: About GeSHi
 Top | Contents | Next | Previous
 
-GeSHi started as a mod for the phpBB forum system, to enable highlighting of more languages than the available (which was 0 ;)). However, it quickly spawned into an entire project on its own. But now it has been released, work continues on a mod for phpBB* - and hopefully for many forum systems, blogs and other web-based systems.
+GeSHi started as a mod for the phpBB forum system, to enable highlighting of more languages than the available (which can be roughly estimated to exactly 0 ;)). However, it quickly spawned into an entire project on its own. But now it has been released, work continues on a mod for phpBB* - and hopefully for many forum systems, blogs and other web-based systems.
 
 *I am no longer working on this MOD, however if someone else wants to they can contact me for more information.
 
@@ -135,7 +137,7 @@ Several systems are using GeSHi now, including:
 
 * Available as plugin only. In addition, some of the other entries mentioned here may only have GeSHi available as a plugin.
 
-GeSHi is the work of me, Nigel McNie. Others have helped with aspects of GeSHi also, they're mentioned in the THANKS file.
+GeSHi is the original work of Nigel McNie. The project was later handed over to Benny Baumann. Others have helped with aspects of GeSHi also, they're mentioned in the THANKS file.
 1.3: Credits
 Top | Contents | Next | Previous
 
@@ -168,8 +170,8 @@ Top | Contents | Next | Previous
 
 GeSHi requires the following to be installable:
 
-    * PHP. It's untested with anything other than 4.3.X. I hope to extend this range soon. I see no reason why it won't work with any version of PHP above 4.1.0.
-    * Approximately 700 kilobytes of space. The actual script is small - around 85K - but most of the size comes from the large number of language files (over 50!). If you're pushed for space, make sure you don't upload to your server the docs/ or contrib/ directory, and you may want to leave out any language files that don't take your fancy either.
+    * PHP. It's untested with anything other below 4.4.X. I hope to extend this range soon. I see no reason why it won't work with any version of PHP above 4.3.0.
+    * Approximately 2 megabytes of space. The actual script is small - around 150K - but most of the size comes from the large number of language files (over 100!). If you're pushed for space, make sure you don't upload to your server the docs/ or contrib/ directory, and you may want to leave out any language files that don't take your fancy either.
 
 As you can see, the requirements are very small. If GeSHi does NOT work for you in a particular version of PHP, let me know why and I'll fix it.
 
@@ -293,6 +295,8 @@ At this stage there isn't an option to wrap the code in <code> tags (unless you 
 
 As of GeSHi 1.0.7.2 there is a new header type, that specifies that the code should not be wrapped in anything at all.
 
+Another requested addition has been made in GeSHi 1.0.7.20 to force GeSHi to create a block around the highlighted source even if this wasn't necessary, thus styles that are applied to the output of GeSHi can directly influence the code only even if headers and footers are present.
+
 To change/set the header to use, you call the set_header_type() method:
 $geshi->set_header_type(GESHI_HEADER_DIV);
 // or...
@@ -348,6 +352,9 @@ By default, the styles you pass overwrite the current styles. Add a boolean "tru
 $geshi->set_line_style('background: red;', true);
 // or, for fancy line numbers
 $geshi->set_line_style('background: red;', 'background: blue;', true);
+Note:
+
+Due to a bug with Firefox the issue that should have been fixed with 1.0.2 has reappeared in another form as Firefox includes extra text\markup into plaintext versions of webpage copies. This can sometimes be useful (actually it's used to get the plaintext version of this documentation), but more often is quite annoying. Best practice so far is to either not use line numbers, or offer the visitor of your page a plaintext version of your source. To learn more have a look at the SF.net BugTracker Issue #1651996. This will hopefully be fixed in GeSHi version 1.2 or as soon as Firefox provides webdevelopers with adequate ways to control this feature - whichever comes first!
 Caution:
 
 When you set line number styles, the code will inherit those styles! This is the main issue to come out of the 1.0.2 release. If you want your code to be styled in a predictable manner, you'll have to call the set_code_style() method to rectify this problem.
@@ -374,7 +381,7 @@ Although I'd like GeSHi to have XHTML strict compliance, this feature will break
 3.3: Using CSS Classes
 Top | Contents | Next | Previous
 
-Using CSS to highlight your code instead of in-lining the styles is a definate bonus. Not only is it more compliant (the w3c is deprecating the style attribute in XHTML 2.0) but it results in far less outputted code - up to a whopping 50% saving - which makes a *huge* difference to those of us on modems!
+Using CSS to highlight your code instead of in-lining the styles is a definate bonus. Not only is it more compliant (the w3c is deprecating the style attribute in XHTML 2.0) but it results in far less outputted code - up to a whopping 90% saving - which makes a *huge* difference to those unlucky of us on modems!
 3.3.1: Enabling CSS Classes
 Top | Contents | Next | Previous
 
@@ -385,6 +392,9 @@ If you want to turn classes OFF for some reason later:
 $geshi->enable_classes(false);
 
 If classes are enabled when parse_code() is called, then the resultant source will use CSS classes in the output, otherwise it will in-line the styles. The advantages of using classes are great - the reduction in source will be very noticeable, and what's more you can use one stylesheet for several different highlights on the same page. In fact, you can even use an external stylesheet and link to that, saving even more time and source (because stylesheets are cached by browsers).
+Note:
+
+There have been problems with inline styles and the Symbol Highlighting added in 1.0.7.21. If you can you should therefore turn CSS classes ON to avoid those issues.
 Caution:
 
 This should be the very first method you call after creating a new GeSHi object! That way, various other methods can act upon your choice to use classes correctly. In theory, you could call this method just before parsing the code, but this may result in unexpected behaviour.
@@ -539,7 +549,7 @@ $geshi->set_keyword_group_style($group, $styles);
 
 Where $group is the group to change the styles for and $styles is a string containing the styles to apply to that group.
 
-By default, the styles you pass overwrite the current styles. Add a boolean "true" after the styles you specify to combine them with the current styles:
+By default, the styles you pass overwrite the current styles. Add a boolean true after the styles you specify to combine them with the current styles:
 $geshi->set_keyword_group_style(3, 'color: white;', true);
 3.4.4: Setting Comment Styles
 Top | Contents | Next | Previous
@@ -551,8 +561,11 @@ Where $group is either a number corresponding to a single-line comment, or the s
 $geshi->set_comments_style(1, 'font-style: italic;');
 $geshi->set_comments_style('MULTI', 'display: hidden;');
 
-By default, the styles you pass overwrite the current styles. Add a boolean "true" after the styles you specify to combine them with the current styles:
+By default, the styles you pass overwrite the current styles. Add a boolean true after the styles you specify to combine them with the current styles:
 $geshi->set_comments_style(1, 'font-weight: 100;', true);
+Note:
+
+In 1.0.7.22 a new kind of Comments called "COMMENT_REGEXP" has been added. Those are handled by setting single line comment styles.
 3.4.5: Setting Other Styles
 Top | Contents | Next | Previous
 
@@ -561,9 +574,13 @@ $geshi->set_escape_characters_style($styles[, $preserve_defaults]);
 $geshi->set_symbols_style($styles[, $preserve_defaults]);
 $geshi->set_strings_style($styles[, $preserve_defaults]);
 $geshi->set_numbers_style($styles[, $preserve_defaults]);
-$geshi->set_methods_style($key, $styles, [, $preserve_defaults]);
+$geshi->set_methods_style($key, $styles[, $preserve_defaults]);
+$geshi->set_regexps_style($key, $styles[, $preserve_defaults]);
 
 $styles is a string containing valid stylesheet declarations, while $preserve_defaults should be set to true if you want your styles to be merged with the previous styles. In the case of set_methods_style, you should select a group to set the styles of, check the language files for the number used for each "object splitter".
+
+Like this was possible for set_method_style a new parameter has been introduced for set_symbols_style too which allows you to select the group of symbols for which you'd like to change your style. $geshi->set_symbols_style($styles[, $preserve_defaults[, $group]]);
+If the third parameter is not given, group 0 is assumed. Furthermore you should note that any changes to group 0 are also reflected in the bracket style, i.e. a pass-through call to set_bracket_style is made.
 3.5: Case Sensitivity and Auto Casing
 Top | Contents | Next | Previous
 
@@ -657,6 +674,9 @@ $geshi->set_language_path($newpath);
 It doesn't matter whether the path has a trailing slash after it or not - only that it points to a valid folder. If it doesn't, that's your tough luck ;)
 3.6.4: Changing the Character Set
 Top | Contents | Next | Previous
+Note:
+
+As of GeSHi 1.0.7.18, you don't need to use this, as htmlspecialchars is not being used due to a security flaw in it (that is unpatched in even the most recent PHP4 versions, and in PHP5 < 5.2). As long as you set the encoding properly with a php header() call, your foreign characters will be displayed correctly.
 
 As of version 1.0.3, you can use the method set_encoding to specify the character set that your source is in. Valid names are those names that are valid for the PHP function htmlentities():
 $geshi->set_encoding($encoding);
@@ -705,6 +725,7 @@ One disadvantage of GeSHi is that for large source files using complex languages
           o set_methods_highlighting($flag)
       Work on their respective lexics (e.g. set_methods_highlighting will disable/enable highlighting of methods). For each method, if $flag is false then the related lexics will not be highlighted at all (this means no HTML will surround the lexic like usual, saving on time and bandwidth.
 
+In case all highlighting should be disabled or reenabled GeSHi provides two methods called disable_highlighting() and enable_highlighting($flag). The optional paramter $flag has been added in 1.0.7.21 and specifies the desired state, i.e. true (default) to turn all highlighting on, or false to turn all highlighting off. Since 1.0.7.21 the method disnable_highlighting() has become deprecated.
 3.9: Setting the Tab Width
 Top | Contents | Next | Previous
 
@@ -779,7 +800,7 @@ If you specify a $key for which there is already a keyword group, the old keywor
 3.11.4: Removing a Keyword Group
 Top | Contents | Next | Previous
 
-Perhaps you *really* need speed? Why not just remove an entire keyword group? GeSHi won't have to loop through each keyword checking for its existance, saving much time. You removing a keyword group by using the remove_keyword_group method:
+Perhaps you *really* need speed? Why not just remove an entire keyword group? GeSHi won't have to loop through each keyword checking for its existance, saving much time. You remove a keyword group by using the remove_keyword_group method:
 $geshi->remove_keyword_group($key);
 
 Where $key is the key of the group you wish to remove. This implies knowleged of the language file.
@@ -839,12 +860,15 @@ Where $group is the keyword group you want to assign the URL for, and $url is th
 You may be wondering how to make each keyword in the group point to the correct URL. You do this by putting {FNAME} in the URL at the correct place. For example, PHP makes it easy by linking www.php.net/function-name to the documentation for that function, so the URL used is http://www.php.net/{FNAME}.
 
 Of course, when you get to a language like Java, that puts its class documentation in related folders, it gets a little trickier to work out an appropriate URL (see the Java language file!). I hope to provide some kind of redirection service at the GeSHi website in the future.
+Note:
+
+As of Version 1.0.7.21 there have been added two more symbols you can use to link to functions. {FNAMEL} will generate the lowercase version of the keyword, {FNAMEU} will generate the upper-case version. {FNAME} will provide the keyword as specified in the language file.
 3.13.2: Disabling a URL for a Keyword Group
 Top | Contents | Next | Previous
 
 It's easy to disable a URL for a keyword group: Simply use the method set_url_for_keyword_group to pass an empty string as the URL:
 $geshi->set_url_for_keyword_group($group, '');
-3.13.3: Disabling all URLs for Keywords
+3.13.3 Disabling all URLs for Keywords
 Top | Contents | Next | Previous
 
 As of GeSHi 1.0.7.18, you can disable all URL linking for keywords:
@@ -942,14 +966,14 @@ $geshi->enable_ids($flag);
 
 Where $flag is true or not present to enable IDs, and false to disable them again if you need.
 
-The ID generated is in the form {overall-css-id}-{line-number}. So for example, if you set the overall CSS id to be "mycode", then the IDs for each line would by "mycode-1", "mycode-2" etc. If there is no CSS ID set, then one is made up in the form <tt>geshi-[4 random characters]</tt>, but this is not so useful for if you want to do javascript manipulation.
+The ID generated is in the form {overall-css-id}-{line-number}. So for example, if you set the overall CSS id to be "mycode", then the IDs for each line would by "mycode-1", "mycode-2" etc. If there is no CSS ID set, then one is made up in the form geshi-[4 random characters], but this is not so useful for if you want to do javascript manipulation.
 3.17: Getting the Time of Styling
 Top | Contents | Next | Previous
 
 Once you've called parse_code, you can get the time it took to run the highlighting by calling the get_time method:
 $geshi = new GeSHi($source, $language, $path);
 
-$code = addslashes($geshi->parse_code());
+$code = mysql_real_escape_string($geshi->parse_code());
 $time = $geshi->get_time();
 
 // do something with it
@@ -1459,12 +1483,19 @@ You can see that the index 'KEYWORDS' refers to an array of arrays, indexed by p
 4.3.4: Symbols and Case Sensitivity
 Top | Contents | Next | Previous
 
-So you've put all the keywords for your language in? Now for a breather before we style them :). Symbols define what symbols your language uses, these are things like colons, brackets/braces, and other such general punctuation (it's important to note that in the 1.0.X series these will not be used), and case sensitivity alludes to the previous section: here you can set which keyword groups are case sensitive.
+So you've put all the keywords for your language in? Now for a breather before we style them :). Symbols define what symbols your language uses, these are things like colons, brackets/braces, and other such general punctuation, and case sensitivity alludes to the previous section: here you can set which keyword groups are case sensitive.
 
-Here's an example:
+As of GeSHi version 1.0.7.21 the symbols section is used in two ways:
+
+    * Flat usage:
+      This mode is the suggested way for existing language files and languages that only need few symbols where no further differentiation is needed or desired. You simply put all the characters in an array under symbols as shown in the first example below. All symbols in flat usage belong to symbol style group 0.
+    * Group usage:
+      This is a slightly more enhanced way to provide GeSHi symbol information. To use group you create several subarrays each containing only a subset of the symbols to highlight. Every array will need to have an unique index thus you can assign the appropriate styles later.
+
+Here's an example for flat symbol usage
 
 	'SYMBOLS' => array(
-		'(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>'
+		'(', ')', '[', ']', '{', '}', '!', '@', '|', '&', '+', '-', '*', '/', '%', '=', '<', '>'
 		),
 	'CASE_SENSITIVE' => array(
 		GESHI_COMMENTS => false,
@@ -1473,7 +1504,22 @@ Here's an example:
 		3 => false,
 		),
 
-    * 'SYMBOLS': An array of the symbols used in your language. Please note that in 1.0.X these are not used. Hopefully they will be used in 1.2.X.
+which is not too different from the newly introduced group usage shown below:
+
+	'SYMBOLS' => array(
+		0 => array('(', ')', '[', ']', '{', '}'),
+		1 => array('!', '@', '|', '&'),
+		2 => array('+', '-', '*', '/', '%'),
+		3 => array('=', '<', '>')
+		),
+	'CASE_SENSITIVE' => array(
+		GESHI_COMMENTS => false,
+		1 => false,
+		2 => false,
+		3 => false,
+		),
+
+    * 'SYMBOLS': An array of the symbols, or - as of 1.0.7.21 - an array of symbol groups, used in your language. Please note that versions before 1.0.7.21 will silently ignore this setting.
     * 'CASE_SENSITIVE': Note the GESHI_COMMENTS! This is used to set whether comments are case sensitive or not (for example, BASIC has the REM statement which while not being case sensitive is still alphanumeric, and as in the example given before about the Java language file using "import" as a single line comment, this can be useful sometimes. true if comments are case sensitive, false otherwise. All of the other indices correspond to indices in the 'KEYWORDS' section (see above).
 
 4.3.5: Styles for your Language File
@@ -1529,7 +1575,8 @@ All strings here should contain valid stylesheet declarations (it's also find to
 
     * 'KEYWORDS': This is an array, from keyword index to style. The index you use is the index you used in the keywords section to specify the keywords belonging to that group.
     * 'COMMENTS': This is an array, from single-line comment index to style for that index. The index 'MULTI' is used for multiline comments (and cannot be an array)
-    * 'ESCAPE_CHAR' down to 'REGEXPS': These are arrays with only one index: 0. You cannot add other indices to these arrays.
+    * 'ESCAPE_CHAR' down to 'SYMBOLS': These are arrays with only one index: 0. You cannot add other indices to these arrays.
+    * 'REGEXPS':This is an array with a style for each matching regex. Also, since 1.0.7.21, you can specify the name of a function to be called, that will be given the text matched by the regex, each time a match is found. Note that my testing found that create_function would not work with this due to a PHP bug, so you have to put the function definition at the top of the language file. Be sure to prefix the function name with geshi_[languagename]_ as to not conflict with other functions!
     * 'SCRIPT': For languages that use script delimiters, this is where you can style each block of script. For example, HTML and XML have blocks that begin with < and end with > (i.e. tags) and blocks that begin with & and end with ; (i.e. character entities), and you can set a style to apply to each whole block. You specify the delimiters for the blocks below. Note that many languages will not need this feature.
 
 4.3.6: URLs for Functions
@@ -1578,7 +1625,7 @@ Here is an example (this time the PHP file merged with the XML file):
 			GESHI_AFTER => '\\4'
 			),
 		1 => array(
-			GESHI_SEARCH => '(</?[a-z0-9]*(>)?)',
+			GESHI_SEARCH => '(>/?[a-z0-9]*(>)?)',
 			GESHI_REPLACE => '\\1',
 			GESHI_MODIFIERS => '',
 			GESHI_BEFORE => '',

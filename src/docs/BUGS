@@ -1,6 +1,6 @@
 
                       BUGS - list of known bugs in GeSHi
-                               Version 1.0.7.21
+                               Version 1.0.7.22
 
 - Putting a > inside an HTML comment will close the comment abruptly. There's nothing that
   can be done about this (at least in the 1.0.X series of GeSHi), but version 1.2 will fix
@@ -27,7 +27,8 @@
 - As of 1.0.7.1, dots (.) are allowed before keywords. This may change highlighting of some
   things slightly, if you notice anything odd about the highlighting then please report
   it to me.
-- Perl/Javascript /.../ regex syntax isn't supported.
+- Perl/Javascript /.../ regex syntax is only supported basically and there's no
+  guarantee it is working all the time.
 - The <pre> header output is not XHTML compliant. Please use the <div> header instead.
 
 Send any bug reports to BenBE@omorphia.de, or submit them via the bug tracker at

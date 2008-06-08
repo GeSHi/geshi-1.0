@@ -4,14 +4,14 @@
  * -----------
  * Author: Florian Knorn (floz@gmx.de)
  * Copyright: (c) 2004 Florian Knorn (http://www.florian-knorn.com)
- * Release Version: 1.0.7.21
+ * Release Version: 1.0.7.22
  * Date Started: 2005/02/09
  *
  * Matlab M-file language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2006-03-25
+ * 2006-03-25 (1.0.7.22)
  *   - support for the transpose operator
  *   - many keywords added
  *   - links to the matlab documentation at mathworks
