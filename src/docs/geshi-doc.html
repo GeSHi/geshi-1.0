@@ -149,7 +149,7 @@
 </head>
 <body>
 <h1 id="top">GeSHi Documentation</h1>
-<h5 style="text-align: center;">Version 1.0.7.21</h5>
+<h5 style="text-align: center;">Version 1.0.7.22</h5>
 <pre>Author:          Nigel McNie, Benny Baumann
 Copyright:       &copy; 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
 Email:           <a href="mailto:nigel@geshi.org">nigel@geshi.org</a>, <a href="mailto:BenBE@omorphia.de">BenBE@omorphia.de</a>
@@ -159,7 +159,7 @@ GeSHi Website:   <a href="http://qbnz.com/highlighter">http://qbnz.com/highlight
 The most modern version of this document is available on the web -
 go to <a href="http://qbnz.com/highlighter/documentation.php">http://qbnz.com/highlighter/documentation.php</a> to view it.</p>
 
-<p>Any comments, questions, confusing points? Please <a href="mailto:nigel@geshi.org">contact me!</a> I
+<p>Any comments, questions, confusing points? Please <a href="mailto:nigel@geshi.org">contact me</a>! I
 need all the information I can get to make the use of GeSHi and
 everything related to it (including this documentation) a breeze.</p>
 
@@ -305,8 +305,8 @@ These problems will be fixed in 1.2.</p>
 
 <ul>
 	<li><strong>Programmed in PHP:</strong> GeSHi is coded entirely in PHP. This means that where ever you have PHP, you
-    can have GeSHi! Almost any free webhost supports PHP, and GeSHi works fine with PHP > 4.1.0.</li>
-	<li><strong>Support for many languages:</strong> GeSHi comes with over <em>50</em> languages, including <acronym>PHP</acronym>,
+    can have GeSHi! Almost any free webhost supports PHP, and GeSHi works fine with PHP > 4.3.0<sup><a href="#php-version-note">*</a></sup>.</li>
+	<li><strong>Support for many languages:</strong> GeSHi comes with about <em>100</em> languages, including <acronym>PHP</acronym>,
 	<acronym>HTML</acronym>, <acronym>CSS</acronym>, Java, C, Lisp, <acronym>XML</acronym>, Perl, Python, <acronym>ASM</acronym> and many more!</li>
 	<li><strong><acronym>XHTML</acronym> compliant output:</strong> GeSHi produces XHTML compliant output, using stylesheets, so you need not worry about
 	GeSHi ruining your claims to perfection in the standards department ;)</li>
@@ -319,11 +319,15 @@ These problems will be fixed in 1.2.</p>
 
 <p>This is just a taste of what you get with GeSHi - the best syntax highlighter for the web in the world!</p>
 
+<p style="font-size: x-small;"><a name="php-version-note" id="php-version-note">*</a>Support is granted for PHP 4.3.0 and above,
+but especially 4.3.x cannot be guaranteed to work due to a lack of test systems. If you are forced to use such old PHP versions complain at your hoster or
+contact us if you find compatibility issues so we can try to resolve them. It's only PHP 4.4.X and above that is verified to work.</p>
+
 <h4 id="about-geshi">1.2: About GeSHi</h4>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#credits">Next</a> | <a href="#features">Previous</a></div>
 
 <p>GeSHi started as a mod for the <a href="http://www.phpbb.com/"><acronym>phpBB</acronym> forum system</a>, to enable highlighting of more
-languages than the available (which was 0 ;)). However, it quickly spawned into an
+languages than the available (which can be roughly estimated to exactly 0 ;)). However, it quickly spawned into an
 entire project on its own. But now it has been released, work continues on a mod
 for phpBB<sup><a href="#phpbb-note">*</a></sup> - and hopefully for many forum systems, blogs and other web-based systems.</p>
 
@@ -348,8 +352,8 @@ can contact me for more information.</p>
 <p style="font-size: x-small;"><a name="plugin-only" id="plugin-only">*</a> Available as plugin only. In addition, some of the other entries mentioned
 here may only have GeSHi available as a plugin.</p>
 
-<p>GeSHi is the work of me, <a href="mailto:nigel@geshi.org">Nigel McNie</a>.  Others have helped with aspects of GeSHi
-also, they're mentioned in the <a href="THANKS">THANKS</a> file.</p>
+<p>GeSHi is the original work of <a href="mailto:nigel@geshi.org">Nigel McNie</a>. The project was later handed over to <a href="mailto:BenBE@omorphia.de">Benny Baumann</a>.
+Others have helped with aspects of GeSHi also, they're mentioned in the <a href="THANKS">THANKS</a> file.</p>
 
 <h4 id="credits">1.3: Credits</h4>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#feedback">Next</a> | <a href="#about-geshi">Previous</a></div>
@@ -403,10 +407,10 @@ version.</p>
 <p>GeSHi requires the following to be installable:</p>
 
 <ul>
-	<li><strong><a href="http://www.php.net/">PHP</a></strong>. It's untested with anything other than 4.3.X. I hope to extend this range soon.
-	I see no reason why it won't work with any version of PHP above 4.1.0.</li>
-	<li><strong>Approximately 700 kilobytes of space</strong>. The actual script is small - around 85K - but most
-  	of the size comes from the large number of language files (over 50!). If you're pushed for space, make sure
+	<li><strong><a href="http://www.php.net/">PHP</a></strong>. It's untested with anything other below 4.4.X. I hope to extend this range soon.
+	I see no reason why it won't work with any version of PHP above 4.3.0.</li>
+	<li><strong>Approximately 2 megabytes of space</strong>. The actual script is small - around 150K - but most
+  	of the size comes from the large number of language files (over 100!). If you're pushed for space, make sure
 	you don't upload to your server the <tt>docs/</tt> or <tt>contrib/</tt> directory, and you may want to leave
 	out any language files that don't take your fancy either.</li>
 </ul>
@@ -615,7 +619,7 @@ can directly influence the code only even if headers and footers are present.</p
 <span style="color: #808080; font-style: italic;">// or...</span><br />
 <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_NONE<span style="color: #66cc66;">&#41;</span>;</code>
 
-<p>Those are the only three arguments you should pass to set_header_type. Passing anything
+<p>Those are the only three arguments you should pass to <strong><tt>set_header_type</tt></strong>. Passing anything
 else may cause inconsistencies in what is used as the Code Container (although it
 *should* simply use a <tt>&lt;pre&gt;</tt>). Better not to risk it.</p>
 
@@ -643,7 +647,7 @@ line numbers feature.</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">enable_line_numbers</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$flag</span><span style="color: #66cc66;">&#41;</span>;</code>
 
-<p>Where $flag is one of the following:</p>
+<p>Where <var>$flag</var> is one of the following:</p>
 
 <ul>
 	<li><tt>GESHI_NORMAL_LINE_NUMBERS</tt> -  Use normal line numbering</li>
@@ -696,6 +700,8 @@ after the styles you specify to combine them with the current styles:</p>
 <span style="color: #808080; font-style: italic;">// or, for fancy line numbers</span><br />
 <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_line_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'background: red;'</span>, <span style="color: #ff0000;">'background: blue;'</span>, <span style="color: #000000; font-weight: bold;">true</span><span style="color: #66cc66;">&#41;</span>;</code>
 
+<div class="note"><div class="note-header">Note:</div><p>Due to a bug with Firefox the issue that should have been fixed with 1.0.2 has reappeared in another form as Firefox includes extra text\markup into plaintext versions of webpage copies. This can sometimes be useful (actually it's used to get the plaintext version of this documentation), but more often is quite annoying. Best practice so far is to either not use line numbers, or offer the visitor of your page a plaintext version of your source. To learn more have a look at the <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=1651996&group_id=114997&atid=670231">SF.net BugTracker Issue #1651996</a>. This will hopefully be fixed in GeSHi version 1.2 or as soon as Firefox provides webdevelopers with adequate ways to control this feature - whichever comes first!</p></div>
+
 <div class="caution"><div class="caution-header">Caution:</div><p>When you set line number styles, the code will inherit those styles! This
 is the main issue to come out of the 1.0.2 release. If you want your code to be styled in a predictable
 manner, you'll have to call the <strong><tt>set_code_style()</tt></strong> method to rectify this problem.</p>
@@ -747,8 +753,8 @@ Opera versions 7.5 and above (not even Firefox supports this).</p></div>
 
 <p>Using CSS to highlight your code instead of in-lining the styles is a definate
 bonus. Not only is it more compliant (the w3c is deprecating the style attribute
-in XHTML 2.0) but it results in far less outputted code - up to a whopping 50%
-saving - which makes a *huge* difference to those of us on modems!</p>
+in XHTML 2.0) but it results in far less outputted code - up to a whopping 90%
+saving - which makes a *huge* difference to those unlucky of us on modems!</p>
 
 <h5 id="enabling-css-classes">3.3.1: Enabling CSS Classes</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#setting-css-class-id">Next</a> | <a href="#using-css-classes">Previous</a></div>
@@ -770,6 +776,8 @@ of using classes are great - the reduction in source will be very noticeable, an
 what's more you can use one stylesheet for several different highlights on the same
 page. In fact, you can even use an external stylesheet and link to that, saving even
 more time and source (because stylesheets are cached by browsers).</p>
+
+<div class="note"><div class="note-header">Note:</div><p>There have been problems with inline styles and the Symbol Highlighting added in 1.0.7.21. If you can you should therefore turn CSS classes ON to avoid those issues.</p></div>
 
 <div class="caution"><div class="caution-header">Caution:</div><p>This should be the very first method you call after creating a new
 GeSHi object! That way, various other methods can act upon your choice to use classes
@@ -1009,21 +1017,21 @@ actually a small saving in code - but the difference may be confusing for anyone
 
 <p>Perhaps the most regular change you will make will be to the styles of a keyword set. In
 order to change the styles for a particular set, you'll have to know what the set is
-called first. Sets are numbered from 1 up. Typically, set 1 contains keywords like if,
-while, do, for, switch etc, set 2 contains null, false, true etc, set 3 contains
+called first. Sets are numbered from 1 up. Typically, set 1 contains keywords like <tt>if</tt>,
+<tt>while</tt>, <tt>do</tt>, <tt>for</tt>, <tt>switch</tt> etc, set 2 contains <tt>null</tt>, <tt>false</tt>, <tt>true</tt> etc, set 3 contains
 function inbuilt into the language (<tt>echo</tt>, <tt>htmlspecialchars</tt> etc. in PHP) and set 4 contains
-data types and similar variable modifiers: int, double, real, static etc. However
+data types and similar variable modifiers: <tt>int</tt>, <tt>double</tt>, <tt>real</tt>, <tt>static</tt> etc. However
 these things are not fixed, and you should check the language file to see what key
 you want. Having a familiarity with a language file is definately a plus for using it.</p>
 
-<p>To change the styles for a keyword set, call the set_keyword_group_style() method:</p>
+<p>To change the styles for a keyword set, call the <strong><tt>set_keyword_group_style()</tt></strong> method:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_keyword_group_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$group</span>, <span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#41;</span>;</code>
 
 <p>Where <var>$group</var> is the group to change the styles for and <var>$styles</var> is a string containing
 the styles to apply to that group.</p>
 
-<p>By default, the styles you pass overwrite the current styles. Add a boolean "true"
+<p>By default, the styles you pass overwrite the current styles. Add a boolean <strong>true</strong>
 after the styles you specify to combine them with the current styles:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_keyword_group_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #cc66cc;">3</span>, <span style="color: #ff0000;">'color: white;'</span>, <span style="color: #000000; font-weight: bold;">true</span><span style="color: #66cc66;">&#41;</span>;</code>
@@ -1041,10 +1049,12 @@ after the styles you specify to combine them with the current styles:</p>
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_comments_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #cc66cc;">1</span>, <span style="color: #ff0000;">'font-style: italic;'</span><span style="color: #66cc66;">&#41;</span>;<br />
 <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_comments_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'MULTI'</span>, <span style="color: #ff0000;">'display: hidden;'</span><span style="color: #66cc66;">&#41;</span>;</code>
 
-<p>By default, the styles you pass overwrite the current styles. Add a boolean "true"
+<p>By default, the styles you pass overwrite the current styles. Add a boolean <strong>true</strong>
 after the styles you specify to combine them with the current styles:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_comments_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #cc66cc;">1</span>, <span style="color: #ff0000;">'font-weight: 100;'</span>, <span style="color: #000000; font-weight: bold;">true</span><span style="color: #66cc66;">&#41;</span>;</code>
+
+<div class="note"><div class="note-header">Note:</div><p>In 1.0.7.22 a new kind of Comments called "COMMENT_REGEXP" has been added. Those are handled by setting single line comment styles.</p></div>
 
 <h5 id="setting-other-styles">3.4.5: Setting Other Styles</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#auto-caps-nocaps">Next</a> | <a href="#setting-comment-styles">Previous</a></div>
@@ -1062,11 +1072,11 @@ highlighted. Here are the related methods:</p>
 <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_regexps_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$key</span>, <span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;</code>
 
 <p><var>$styles</var> is a string containing valid stylesheet declarations, while <var>$preserve_defaults</var>
-should be set to true if you want your styles to be merged with the previous styles. In the case of <strong><tt>set_methods_style</tt></strong>,
+should be set to <strong>true</strong> if you want your styles to be merged with the previous styles. In the case of <strong><tt>set_methods_style</tt></strong>,
 you should select a group to set the styles of, check the language files for the number used for each &quot;object splitter&quot;.</p>
 
-<p>Like this was possible for set_method_style a new parameter has been introduced for
-<strong><tt>set_symbols_style</tt></strong> to which allows you to select the group of
+<p>Like this was possible for <strong><tt>set_method_style</tt></strong> a new parameter has been introduced for
+<strong><tt>set_symbols_style</tt></strong> too which allows you to select the group of
 symbols for which you'd like to change your style.
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_symbols_style</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$styles</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$preserve_defaults</span><span style="color: #66cc66;">&#91;</span>, <span style="color: #0000ff;">$group</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#93;</span><span style="color: #66cc66;">&#41;</span>;<br /></code>
 If the third parameter is not given, group 0 is assumed. Furthermore you should note that any changes to group 0 are also reflected in the bracket style, i.e. a pass-through call to <strong><tt>set_bracket_style</tt></strong> is made.</p>
@@ -1243,9 +1253,8 @@ out if GeSHi itself found anything wrong with what you tried to do. After highli
 method:</p>
 
 <code><span style="color: #0000ff;">$geshi</span> = <span style="color: #000000; font-weight: bold;">new</span> GeSHi<span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'hi'</span>, <span style="color: #ff0000;">'thisLangIsNotSupported'</span><span style="color: #66cc66;">&#41;</span>;</code><br />
-
 <br />
-<a href="http://www.php.net/echo"><span style="color: #000066;">echo</span></a> <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">error</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;&nbsp; <span style="color: #808080; font-style: italic;">// echoes error message</span><br />
+<code><a href="http://www.php.net/echo"><span style="color: #000066;">echo</span></a> <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">error</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;&nbsp; <span style="color: #808080; font-style: italic;">// echoes error message</span></code><br />
 
 <p>The error message you will get will look like this:</p>
 
@@ -1258,7 +1267,7 @@ method:</p>
 
 <p>One disadvantage of GeSHi is that for large source files using complex languages, it can be quite slow with every option
 turned on. Although future releases will concentrate on the speed/resource side of highlighting, for now you can gain
-speed increases by disabling some of the highlighting options. This is done by using a series of set_*_highlighting methods:</p>
+speed increases by disabling some of the highlighting options. This is done by using a series of <strong><tt>set_*_highlighting</tt></strong> methods:</p>
 
 <ul>
 	<li><strong><tt>set_keyword_group_highlighting(<var>$group</var>, <var>$flag</var>):</tt></strong> Sets whether a particular
@@ -1314,7 +1323,7 @@ tabs will be replaced with the specified number of spaces.</p>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#adding-removing-keywords">Next</a> | <a href="#setting-tab-width">Previous</a></div>
 
 <p>Some languages like to get tricky, and jump in and out of the file that they're in. For example, the vast majority of you reading
-this will have used a PHP file. And you know that PHP code is only executed if it's within delimiters like &lt;?php and ?&gt; (there
+this will have used a PHP file. And you know that PHP code is only executed if it's within delimiters like <code>&lt;?php</code> and <code>?&gt;</code> (there
 are others of course...). So what happens if you do the following in a php file?</p>
 
 <code>&lt;img src=&quot;&lt;?php echo rand(1, 100) ?&gt;&quot; /&gt;</code>
@@ -1358,7 +1367,7 @@ of speed? GeSHi can handle all of this!</p>
 
 <div class="note"><div class="note-header">Note:</div><p>Keywords should contain at least two alphabetical characters (lower or upper case letters
 only). This is to enable GeSHi to work much faster by not bothering to try to detect keywords in parts of your source where there is no alphabetical
-characters.</div>
+characters.</p></div>
 
 <h5 id="removing-a-keyword">3.11.2: Removing a Keyword</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#adding-a-keyword-group">Next</a> | <a href="#adding-a-keyword">Previous</a></div>
@@ -1406,7 +1415,7 @@ safe and use a number like 10 or 42.</div>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#headers-and-footers">Next</a> | <a href="#adding-a-keyword-group">Previous</a></div>
 
 <p>Perhaps you *really* need speed? Why not just remove an entire keyword group? GeSHi won't have to loop through each
-keyword checking for its existance, saving much time. You removing a keyword group by using the <strong><tt>remove_keyword_group</tt></strong>
+keyword checking for its existance, saving much time. You remove a keyword group by using the <strong><tt>remove_keyword_group</tt></strong>
 method:</p>
 
 <code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">remove_keyword_group</span><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$key</span><span style="color: #66cc66;">&#41;</span>;</code>
@@ -1500,6 +1509,8 @@ that function, so the URL used is <tt>http://www.php.net/{FNAME}</tt>.</p>
 <p>Of course, when you get to a language like Java, that puts its class documentation in related folders, it gets a little trickier
 to work out an appropriate URL (see the Java language file!). I hope to provide some kind of redirection service at
 the GeSHi website in the future.</p>
+
+<div class="note"><div class="note-header">Note:</div><p>As of Version 1.0.7.21 there have been added two more symbols you can use to link to functions. <tt>{FNAMEL}</tt> will generate the lowercase version of the keyword, <tt>{FNAMEU}</tt> will generate the upper-case version. <tt>{FNAME}</tt> will provide the keyword as specified in the language file.</p></div>
 
 <h5 id="disabling-urls">3.13.2: Disabling a URL for a Keyword Group</h5>
 <div class="nav"><a href="#top">Top</a> | <a href="#contents">Contents</a> | <a href="#disabling-all-urls">Next</a> | <a href="#setting-a-url">Previous</a></div>
@@ -1659,7 +1670,7 @@ so useful for if you want to do javascript manipulation.</p>
 <code><span style="color: #0000ff;">$geshi</span> = <span style="color: #000000; font-weight: bold;">new</span> GeSHi<span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$source</span>, <span style="color: #0000ff;">$language</span>, <span style="color: #0000ff;">$path</span><span style="color: #66cc66;">&#41;</span>;<br />
 
 <br />
-<span style="color: #0000ff;">$code</span> = <a href="http://www.php.net/addslashes"><span style="color: #000066;">addslashes</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">parse_code</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span>;<br />
+<span style="color: #0000ff;">$code</span> = <a href="http://www.php.net/mysql_real_escape_string"><span style="color: #000066;">mysql_real_escape_string</span></a><span style="color: #66cc66;">&#40;</span><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">parse_code</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span>;<br />
 <span style="color: #0000ff;">$time</span> = <span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">get_time</span><span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#41;</span>;<br />
 
 <br />
@@ -2301,7 +2312,7 @@ and case sensitivity alludes to the previous section: here you can set which key
 	<li><strong>'CASE_SENSITIVE':</strong> Note the <tt>GESHI_COMMENTS</tt>! This is used to set whether comments
 	are case sensitive or not (for example, BASIC has the REM statement which while not being case sensitive is still
 	alphanumeric, and as in the example given before about the Java language file using &quot;import&quot; as a single line comment,
-	this can be useful sometimes. <tt>true</tt> if comments are case sensitive, <tt>false</tt> otherwise. All of the other
+	this can be useful sometimes. <strong>true</strong> if comments are case sensitive, <strong>false</strong> otherwise. All of the other
 	indices correspond to indices in the <tt>'KEYWORDS'</tt> section (see above).</li>
 </ul>
 

@@ -69,6 +69,7 @@ Version 1.0.7.22
   -  Added support for highlighting the Java import and package directives (SF #1395677, BenBE)
   -  Fixed minor problem in Haskell cuasing accidential start of comment (SF#1987221, BenBE)
   -  Fixed minor issue causing loads of warnings if a language files defines no symbols (BenBE)
+  -  Updated some aspects of the documentation and included further hints (BenBE)
   -  First of series of color scheme changes. Affected languages (sofar):
      * Assembler (x86)
      * Bash
