@@ -128,6 +128,9 @@ define('GESHI_CLASS', 5);
 /** Used in language files to mark comments */
 define('GESHI_COMMENTS', 0);
 
+/** Used to work around missing PHP features **/
+define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
+
 // Error detection - use these to analyse faults
 /** No sourcecode to highlight was specified
  * @deprecated
@@ -1818,8 +1821,13 @@ class GeSHi {
                                         // we have already matched something
                                         $match_i = $comment_regexp_cache_per_key[$comment_key];
                                     }
-                                    else if (preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i)) {
+                                    else if (
+                                      (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
+                                      (preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i)) ) {
                                         $match_i = $match[0][1];
+                                        if ($below_php_433) {
+                                            $match_i += $i;
+                                        }
                                         $comment_regexp_cache[$match_i] = array(
                                             'key' => $comment_key,
                                             'length' => strlen($match[0][0]),
