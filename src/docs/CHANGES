@@ -12,6 +12,8 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8
+  -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
@@ -443,7 +445,6 @@ Version 1.0.2
   -  Function geshi_highlight added to make it even easier to highlight on the fly
   -  Advanced regular expression handling
   -  Bug fixes to lexic_permission handling
-
 Version 1.0.1
   -  Added methods set_symbols_style() and set_symbols_highlighting(). These should be used
      instead of set_brackets_style and set_brackets_highlighting respectively.
@@ -467,7 +468,6 @@ Version 1.0.1
      * ASM (Tux)
      * NSIS (Tux)
      * Pascal (Tux)
-
 Version 1.0.0
   -  Initial Release
 

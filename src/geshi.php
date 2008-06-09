@@ -1823,9 +1823,10 @@ class GeSHi {
                                     }
                                     else if (
                                       (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
-                                      (preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i)) ) {
+                                      (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i))
+                                      ) {
                                         $match_i = $match[0][1];
-                                        if ($below_php_433) {
+                                        if (GESHI_PHP_PRE_433) {
                                             $match_i += $i;
                                         }
                                         $comment_regexp_cache[$match_i] = array(
