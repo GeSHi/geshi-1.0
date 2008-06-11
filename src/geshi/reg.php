@@ -217,5 +217,7 @@ $language_data = array (
 	'HIGHLIGHT_STRICT_BLOCK' => array(
 		)
 );
-
+if (isset($this) && is_a($this, 'GeSHi')) {
+    $this->set_numbers_highlighting(false);
+}
 ?>
