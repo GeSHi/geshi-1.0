@@ -2600,6 +2600,31 @@ class GeSHi {
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
             $this->lexic_permissions['REGEXPS'][$key] = true;
         }
+        if (!empty($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS'])) {
+            foreach ($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS'] as $flag => $value) {
+                // it's either true or false and maybe is true as well
+                $perm = $value !== GESHI_NEVER;
+                if ($flag == 'ALL') {
+                    $this->enable_highlighting($perm);
+                    continue;
+                }
+                if (!isset($this->lexic_permissions[$flag])) {
+                    // unknown lexic permission
+                    continue;
+                }
+                if (is_array($this->lexic_permissions[$flag])) {
+                    // this is redundant with the foreaches above but I'm too tired
+                    // to think of something better... (milian)
+                    foreach ($this->lexic_permissions[$flag] as $key => $val) {
+                        $this->lexic_permissions[$flag][$key] = $perm;
+                    }
+                }
+                else {
+                    $this->lexic_permissions[$flag] = $perm;
+                }
+            }
+            unset($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS']);
+        }
         // Set default class for CSS
         $this->overall_class = $this->language;
     }

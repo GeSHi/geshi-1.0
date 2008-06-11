@@ -71,13 +71,12 @@ $language_data = array (
     'REGEXPS' => array(    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array( ),
-    'HIGHLIGHT_STRICT_BLOCK' => array( )
+    'HIGHLIGHT_STRICT_BLOCK' => array( ),
+    'PARSER_CONTROL' => array(
+        'ENABLE_FLAGS' => array(
+            'ALL' => GESHI_NEVER
+        ),
+    )
 );
-
-if (isset($this) && is_a($this, 'GeSHi')) {
-    $this->set_numbers_highlighting(false);
-    $this->set_brackets_highlighting(false);
-    $this->disable_highlighting();
-}
 
 ?>
