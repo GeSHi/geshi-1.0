@@ -177,7 +177,7 @@ if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
 }
 $languages = array();
 while ($file = readdir($dir)) {
-    if ( $file[0] == '.' || strpos($file, '.', 1) === false || $file == 'css-gen.cfg' ) {
+    if ( $file[0] == '.' || strpos($file, '.', 1) === false) {
         continue;
     }
     $lang = substr($file, 0,  strpos($file, '.'));
