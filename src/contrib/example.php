@@ -9,6 +9,8 @@
  * @version $Id$
  */
 
+error_reporting(E_ALL);
+
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
 // it could be in the current directory if the include_path is set. There's nowhere else
 // we can reasonably guess.
