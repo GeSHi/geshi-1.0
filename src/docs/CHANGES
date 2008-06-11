@@ -14,6 +14,8 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
+  -  Use spaces instead of tabs for indendation in language files to have a consistent
+     coding standard accross geshi files (milian)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
