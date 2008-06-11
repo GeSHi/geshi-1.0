@@ -101,7 +101,6 @@ $language_data = array (
 		'STRINGS' => array(
 			),
         'NUMBERS' => array(
-            0 => '',
 			),
 		'METHODS' => array(
 			),
@@ -158,7 +157,4 @@ $language_data = array (
 		)
 );
 
-if (isset($this) && is_a($this, 'GeSHi')) {
-    $this->set_numbers_highlighting(false);
-}
 ?>

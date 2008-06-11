@@ -380,7 +380,7 @@ class GeSHi {
     var $line_style2 = 'font-weight: bold;';
 
     /**
-     * Flag for how line nubmers are displayed
+     * Flag for how line numbers are displayed
      * @var boolean
      */
     var $line_numbers = GESHI_NO_LINE_NUMBERS;

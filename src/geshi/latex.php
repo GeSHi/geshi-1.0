@@ -38,11 +38,6 @@
  *
  ************************************************************************************/
 
-if (isset($this) && is_a($this, 'GeSHi')) {
-    $this->set_symbols_highlighting(false);
-    $this->set_numbers_highlighting(false);
-}
-
 $language_data = array (
     'LANG_NAME' => 'LaTeX',
     'COMMENT_SINGLE' => array(1 => '%'),
