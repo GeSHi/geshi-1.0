@@ -36,20 +36,20 @@
  ************************************************************************************/
 
 $language_data = array (
-	'LANG_NAME' => 'AutoIT',
-	'COMMENT_SINGLE' => array(';'),
-	'COMMENT_MULTI' => array('#comments-start' => '#comments-end'),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-	'QUOTEMARKS' => array("'", '"'),
+    'LANG_NAME' => 'AutoIT',
+    'COMMENT_SINGLE' => array(';'),
+    'COMMENT_MULTI' => array('#comments-start' => '#comments-end'),
+    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+    'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
-	'KEYWORDS' => array(
-		1 => array(
+    'KEYWORDS' => array(
+        1 => array(
             'continueloop', 'and', 'byref', 'case', 'const', 'dim', 'do', 'else',
             'elseif', 'endfunc', 'endif', 'endselect', 'exit', 'exitloop', 'for',
             'func', 'global', 'if', 'local', 'next', 'not', 'or', 'redim', 'return',
             'select', 'step', 'then', 'to', 'until', 'wend', 'while'
-			),
-		2 => array(
+            ),
+        2 => array(
             '@appdatacommondir','@appdatadir','@autoitexe','@autoitversion','@commonfilesdir',
             '@compiled','@computername','@comspec','@cr','@crlf','@desktopcommondir','@desktopdepth','@desktopdir',
             '@desktopheight','@desktoprefresh','@desktopwidth','@documentscommondir','@error','@extended',
@@ -63,8 +63,8 @@ $language_data = array (
             '@sw_showmaximized','@sw_showminimized','@sw_showminnoactive','@sw_showna','@sw_shownoactivate',
             '@sw_shownormal','@systemdir','@tab','@tempdir','@username','@userprofiledir','@wday','@windowsdir',
             '@workingdir','@yday','@year'
-			),
-		3 => array(
+            ),
+        3 => array(
             'abs','acos','adlibdisable','adlibenable','asc','asin','assign','atan','autoitsetoption',
             'autoitwingettitle','autoitwinsettitle','bitand','bitnot','bitor','bitshift','bitxor','blockinput',
             'break','call','cdtray','chr','clipget','clipput','consolewrite','controlclick','controlcommand','controldisable',
@@ -106,90 +106,90 @@ $language_data = array (
             'wingetprocess','wingetstate','wingettext','wingettitle','winkill','winlist','winmenuselectitem',
             'winminimizeall','winminimizeallundo','winmove','winsetontop','winsetstate','winsettitle','winsettrans',
             'winshow','winwait','winwaitactive','winwaitclose','winwaitnotactive'
-			)
+            )
         ),
-	'SYMBOLS' => array(
-		'(', ')', '[', ']', '&', '*', '/', '<', '>', '+', '-', '^', '='
-		),
-	'CASE_SENSITIVE' => array(
-		GESHI_COMMENTS => false,
-		1 => false,
-		2 => false,
-		3 => false,
-		),
-	'STYLES' => array(
-		'KEYWORDS' => array(
-			1 => 'color: #0000FF; font-weight: bold;',
-			2 => 'color: #FF33FF; font-weight: bold;',
-			3 => 'color: #000090; font-style: italic; font-weight: bold;',
-			),
-		'COMMENTS' => array(
-			0 => 'font-style: italic; color: #669900;', 'MULTI' => 'font-style: italic; color: #669900;'
-			),
-		'ESCAPE_CHAR' => array(
-			0 => ''
-			),
-		'BRACKETS' => array(
-			0 => 'color: #FF0000; font-weight: bold;'
-			),
-		'STRINGS' => array(
-			0 => 'font-weight: bold; color: #9999CC;'
-			),
-		'NUMBERS' => array(
-			0 => 'font-style: italic; font-weight: bold; color: #AC00A9;'
-			),
-		'METHODS' => array(
-			1 => 'color: #006600;',
-			2 => 'color: #006600;'
-			),
-		'SYMBOLS' => array(
-			0 => 'color: #FF0000; font-weight: bold;'
-			),
-		'REGEXPS' => array(
-			0 => 'font-weight: bold; color: #AA0000;'
-			),
-		'SCRIPT' => array(
-			0 => '',
-			1 => '',
-			2 => '',
-			3 => ''
-			)
-		),
-	'URLS' => array(
-		1 => 'http://www.autoitscript.com/autoit3/docs/keywords.htm',
-		2 => 'http://www.autoitscript.com/autoit3/docs/macros.htm',
-		3 => 'http://www.autoitscript.com/autoit3/docs/functions/{FNAME}.htm',
-		4 => ''
-		),
+    'SYMBOLS' => array(
+        '(', ')', '[', ']', '&', '*', '/', '<', '>', '+', '-', '^', '='
+        ),
+    'CASE_SENSITIVE' => array(
+        GESHI_COMMENTS => false,
+        1 => false,
+        2 => false,
+        3 => false,
+        ),
+    'STYLES' => array(
+        'KEYWORDS' => array(
+            1 => 'color: #0000FF; font-weight: bold;',
+            2 => 'color: #FF33FF; font-weight: bold;',
+            3 => 'color: #000090; font-style: italic; font-weight: bold;',
+            ),
+        'COMMENTS' => array(
+            0 => 'font-style: italic; color: #669900;', 'MULTI' => 'font-style: italic; color: #669900;'
+            ),
+        'ESCAPE_CHAR' => array(
+            0 => ''
+            ),
+        'BRACKETS' => array(
+            0 => 'color: #FF0000; font-weight: bold;'
+            ),
+        'STRINGS' => array(
+            0 => 'font-weight: bold; color: #9999CC;'
+            ),
+        'NUMBERS' => array(
+            0 => 'font-style: italic; font-weight: bold; color: #AC00A9;'
+            ),
+        'METHODS' => array(
+            1 => 'color: #006600;',
+            2 => 'color: #006600;'
+            ),
+        'SYMBOLS' => array(
+            0 => 'color: #FF0000; font-weight: bold;'
+            ),
+        'REGEXPS' => array(
+            0 => 'font-weight: bold; color: #AA0000;'
+            ),
+        'SCRIPT' => array(
+            0 => '',
+            1 => '',
+            2 => '',
+            3 => ''
+            )
+        ),
+    'URLS' => array(
+        1 => 'http://www.autoitscript.com/autoit3/docs/keywords.htm',
+        2 => 'http://www.autoitscript.com/autoit3/docs/macros.htm',
+        3 => 'http://www.autoitscript.com/autoit3/docs/functions/{FNAME}.htm',
+        4 => ''
+        ),
 
-	'OOLANG' => false,
-	'OBJECT_SPLITTERS' => array(
-		),
-	'REGEXPS' => array(
-	   //Variables
-		0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*",
-		),
-	'STRICT_MODE_APPLIES' => GESHI_MAYBE,
-	'SCRIPT_DELIMITERS' => array(
-		0 => array(
-			'<?php' => '?>'
-			),
-		1 => array(
-			'<?' => '?>'
-			),
-		2 => array(
-			'<%' => '%>'
-			),
-		3 => array(
-			'<script language="php">' => '</script>'
-			)
-		),
-	'HIGHLIGHT_STRICT_BLOCK' => array(
-		0 => true,
-		1 => true,
-		2 => true,
-		3 => true
-		)
+    'OOLANG' => false,
+    'OBJECT_SPLITTERS' => array(
+        ),
+    'REGEXPS' => array(
+       //Variables
+        0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*",
+        ),
+    'STRICT_MODE_APPLIES' => GESHI_MAYBE,
+    'SCRIPT_DELIMITERS' => array(
+        0 => array(
+            '<?php' => '?>'
+            ),
+        1 => array(
+            '<?' => '?>'
+            ),
+        2 => array(
+            '<%' => '%>'
+            ),
+        3 => array(
+            '<script language="php">' => '</script>'
+            )
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        0 => true,
+        1 => true,
+        2 => true,
+        3 => true
+        )
 );
 
 ?>

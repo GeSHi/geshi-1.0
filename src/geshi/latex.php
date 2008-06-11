@@ -212,9 +212,9 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-	'PARSER_CONTROL' => array(
-	    'COMMENTS' => array(
-	       'DISALLOWED_BEFORE' => '\\'
+    'PARSER_CONTROL' => array(
+        'COMMENTS' => array(
+            'DISALLOWED_BEFORE' => '\\'
         )
     )
 );

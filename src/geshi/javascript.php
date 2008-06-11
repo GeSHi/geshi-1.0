@@ -123,14 +123,14 @@ $language_data = array (
       )
     ),
   'URLS' => array(
-		1 => '',
-		2 => '',
-		3 => ''
-  	),
+        1 => '',
+        2 => '',
+        3 => ''
+      ),
   'OOLANG' => true,
   'OBJECT_SPLITTERS' => array(
-  	1 => '.'
-	),
+      1 => '.'
+    ),
   'REGEXPS' => array(
     ),
   'STRICT_MODE_APPLIES' => GESHI_MAYBE,
