@@ -2600,6 +2600,10 @@ class GeSHi {
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
             $this->lexic_permissions['REGEXPS'][$key] = true;
         }
+        // for BenBE and future code reviews:
+        // we can use empty here since we only check for existance and emptiness of an array
+        // if it is not an array at all but rather false or null this will work as intended as well
+        // even if $this->language_data['PARSER_CONTROL'] is undefined this won't trigger a notice
         if (!empty($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS'])) {
             foreach ($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS'] as $flag => $value) {
                 // it's either true or false and maybe is true as well
