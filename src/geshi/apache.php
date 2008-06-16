@@ -86,7 +86,7 @@ $language_data = array (
             'maxkeepaliverequests','maxrequestsperchild','maxspareservers','metadir',
             'metafiles','metasuffix','mimemagicfile','minspareservers',
             'mmapfile','namevirtualhost','nocache','options','order',
-            'passenv','pidfile','port','proxyblock','proxydomain',
+            'passenv','php_value','pidfile','port','proxyblock','proxydomain',
             'proxypass','proxypassreverse','proxyreceivebuffersize','proxyremote',
             'proxyrequests','proxyvia','qsc','readmename',
             'redirect','redirectmatch','redirectpermanent','redirecttemp',
@@ -106,7 +106,7 @@ $language_data = array (
             'virtualdocumentrootip','virtualscriptalias','virtualscriptaliasip',
             'xbithack','from','all'
           ),
-        /*keyords 2*/
+        /*keywords 2*/
         2 => array(
             'on','off','standalone','inetd',
             'force-response-1.0','downgrade-1.0','nokeepalive',
