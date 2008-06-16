@@ -112,6 +112,22 @@ $language_data = array (
             'force-response-1.0','downgrade-1.0','nokeepalive',
             'ndexes','includes','followsymlinks','none',
             'x-compress','x-gzip'
+        ),
+        /*keywords 3*/
+        3 => array(
+            '&lt;Directory', '&lt;/Directory&gt;',
+            '&lt;DirectoryMatch', '&lt;/DirectoryMatch&gt;',
+            '&lt;Files', '&lt;/Files&gt;',
+            '&lt;FilesMatch', '&lt;/FilesMatch&gt;',
+            '&lt;IfDefine', '&lt;/IfDefine&gt;',
+            '&lt;IfModule', '&lt;/IfModule&gt;',
+            '&lt;IfVersion', '&lt;/IfVersion&gt;',
+            '&lt;Location', '&lt;/Location&gt;',
+            '&lt;LocationMatch', '&lt;/LocationMatch&gt;',
+            '&lt;Proxy', '&lt;/Proxy&gt;',
+            '&lt;ProxyMatch', '&lt;/ProxyMatch&gt;',
+            '&lt;VirtualHost', '&lt;/VirtualHost&gt;',
+            '&gt;'
         )
     ),
     'SYMBOLS' => array(
@@ -121,11 +137,13 @@ $language_data = array (
         GESHI_COMMENTS => true,
         1 => false,
         2 => false,
+        3 => false,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #00007f;',
             2 => 'color: #0000ff;',
+            3 => 'color: #000000; font-weight:bold;',
             ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',

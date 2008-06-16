@@ -18,6 +18,7 @@ Version 1.0.8
      coding standard accross geshi files (milian)
   -  Make language_permissions configurable in language files via ['PARSER_CONTROL']['ENABLE_FLAGS']
      this makes is_a calls unneeded and thus prevents PHP notices in PHP 5.x (milian)
+  -  Support Apache's configuration sections, see http://httpd.apache.org/docs/2.2/sections.html (milian)
   -  Minor issue with PHP Heredoc and Nowdoc syntax sometimes not getting highlighted (BenBE)
 Version 1.0.7.22
   -  Added language files
