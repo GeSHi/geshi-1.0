@@ -12,6 +12,9 @@
  *
  * CHANGES
  * -------
+ * 2008/17/06 (1.0.8)
+ *  -  Added support for apache configuration sections (milian)
+ *  -  Added missing php keywords (milian)
  * 2004/11/27 (1.0.2)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.1)
@@ -86,7 +89,7 @@ $language_data = array (
             'maxkeepaliverequests','maxrequestsperchild','maxspareservers','metadir',
             'metafiles','metasuffix','mimemagicfile','minspareservers',
             'mmapfile','namevirtualhost','nocache','options','order',
-            'passenv','php_value','pidfile','port','proxyblock','proxydomain',
+            'passenv','php_admin_value','php_admin_flag','php_value','pidfile','port','proxyblock','proxydomain',
             'proxypass','proxypassreverse','proxyreceivebuffersize','proxyremote',
             'proxyrequests','proxyvia','qsc','readmename',
             'redirect','redirectmatch','redirectpermanent','redirecttemp',
