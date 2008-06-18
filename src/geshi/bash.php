@@ -72,6 +72,7 @@ $language_data = array (
             ),
         2 => array(
             'aclocal', 'aconnect', 'aplay', 'apm', 'apmsleep', 'apropos',
+            'apt-cache', 'apt-get', 'apt-key', 'aptitude',
             'ar', 'arch', 'arecord', 'as', 'as86', 'autoconf', 'autoheader',
             'automake', 'awk',
             'basename', 'bc', 'bison', 'bunzip2', 'bzip2', 'bzcat',
