@@ -80,7 +80,7 @@ $language_data = array (
             'fancyindexing','files','filesmatch','forcetype',
             'group','header','headername','hostnamelookups',
             'identitycheck','ifdefine','ifmodule','imapbase',
-            'imapdefault','imapmenu','include','indexignore',
+            'imapdefault','imapmenu','include','indexignore','indexorderdefault',
             'indexoptions','keepalive','keepalivetimeout','languagepriority',
             'limit','limitexcept','limitrequestbody','limitrequestfields',
             'limitrequestfieldsize','limitrequestline','listen','listenbacklog',
