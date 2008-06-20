@@ -17,6 +17,8 @@ Version 1.0.8
      * APT sources.list (milian)
      * Boo (Marcus Griep)
      * CIL (Common Intermediate Language, .NET Assembly) (Marcus Griep)
+     * KLoneC (Mickael Auger)
+     * KLoneC++ (Mickael Auger)
      * Xorg configuration (milian)
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
   -  Use spaces instead of tabs for indendation in language files to have a consistent
@@ -35,7 +37,7 @@ Version 1.0.7.22
      * Scala (Franco Lombardo)
      * ActionScript 3 (Jordi Boggiano)
      * GNU Gettext .po/.pot (Milian Wolff)
-     * Verilog (G�nter Dannoritzer)
+     * Verilog (Günter Dannoritzer)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
@@ -192,17 +194,17 @@ Version 1.0.7.16
      * C++/QT (Iulian M)
      * PL/SQL (Victor Engmark)
   -  Fixed up my e-mail address everywhere
-  -  Fixed notice with "error" property (IZIU Zielona G�ra)
+  -  Fixed notice with "error" property (IZIU Zielona Góra)
   -  Added some entries to the get_language_name_from_extension table
      (Stebastian Schuberth)
 Version 1.0.7.15
   - Added language files
      * BNF (Rowan Rodrik van der Molen)
      * IO (me, thanks to Johnathan Wright)
-     * mIRC (Alberto de Areba S�nchez)
+     * mIRC (Alberto de Areba Sánchez)
   -  Fixed use of colon in XML (Grigory Rubtsov)
   -  Fixed notices in text.php, reg.php and latex.php when $this is not
-     available (Clemens Wei�)
+     available (Clemens Weiß)
   -  Made third parameter of geshi_highlight optional (Gaetano Giunta)
   -  Fix incorrect highlighting of the $# variable in bash (Michael Knight)
   -  Fixed single line comment mistake in thinbasic.php (Eros Olmi)
@@ -212,7 +214,7 @@ Version 1.0.7.14
      * LaTeX (Matthais Pospiech)
   -  Removed extra newlines at the end of some files
   -  Fixed SF bug 1556404 - check before using $this in language files
-     (Clemens Wei�)
+     (Clemens Weiß)
 Version 1.0.7.13
   -  Added language files
      * Uno IDL (Cedric Bosdonnat)
@@ -253,7 +255,7 @@ Version 1.0.7.9
      * Fortran (Cedric Arrabie)
      * SAS (Galen Johnson)
      * CFDG (John Horigan)
-  -  Fixed & in URL in java5 (Clemens Wei�)
+  -  Fixed & in URL in java5 (Clemens Weiß)
   -  Added MD5 and SHA1 to mysql keywords (polarina)
   -  Fixes for highlight_lines_extra with line numbers (ithcy)
   -  Fixed backslash characters being removed (ArTourter)
@@ -275,8 +277,8 @@ Version 1.0.7.7
   -  Now using a simpler regular expression for numbers (Brice Bernard)
   -  Fixed ah, bh etc. regs being highlighted as numbers (Unknown)
 Version 1.0.7.6
-  -  Fix backtick-string highlighting in ruby (Juan J. Mart�nez)
-  -  Add =begin multiline comments in ruby (Juan J. Mart�nez)
+  -  Fix backtick-string highlighting in ruby (Juan J. Martínez)
+  -  Add =begin multiline comments in ruby (Juan J. Martínez)
   -  Added support for :keywords and ::access in lisp (Denis Mashkevich)
   -  Prevented number highlighting if they are just after underscores (Joce)
   -  Removed escape characters for strings in XML and HTML (floele)
@@ -302,14 +304,14 @@ Version 1.0.7.5
   -  Fixed two ">" symbols being outputted when using a footer but not CSS classes (MrBaseball34)
   -  Marked important block stuff as deprecated
   -  Some documentation tidyup
-  -  Updated GML language file (Jos� Jorge Enr�quez Rodr�guez)
+  -  Updated GML language file (Jos? Jorge Enr?quez Rodr?guez)
   -  THANKS file tidied up
   -  Fixed double </a> for elements in HTML (Yves Goergen)
   -  Added some keywords for ASM (Dreuzzo)
 Version 1.0.7.4
   -  Added language files
-     * MySQL (Carl F�rstenberg)
-     * BlitzBasic (P�draig O`Connel)
+     * MySQL (Carl Fürstenberg)
+     * BlitzBasic (Pàdraig O`Connel)
   -  Fixed up geshi_highlight function: it now correctly uses <code> instead of <div> (Remi Faure)
   -  When using GESHI_HEADER_NONE, remove the <ol> if line numbering is not enabled
   -  Commented example.php so people can use it as a guide better
@@ -346,7 +348,7 @@ Version 1.0.7.2
 Version 1.0.7.1
   -  Added language files:
      * Div (Gabriel Lorenzo)
-     * GML (Jos� Jorge Enr�quez Rodr�guez)
+     * GML (José Jorge Enríquez Rodríguez)
      * Eiffel (Zoran Simic)
   -  Minor change to rules regarding when keywords can appear - now dots (.) are
      allowed before keywords. (NikO)
@@ -427,7 +429,7 @@ Version 1.0.2
      * CADDCL (Roberto Rossi)
      * CadLisp (Roberto Rossi)
      * C++ (Dennis Bayer)
-     * Delphi (J�rja Norbert)
+     * Delphi (Járja Norbert)
      * Javascript (Ben Keen)
      * Lisp (Roberto Rossi)
      * OpenOffice.org BASIC (Roberto Rossi)

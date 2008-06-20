@@ -1,4 +1,4 @@
-﻿
+
              THANKS - List of credits for GeSHi
 
 I owe these people/groups my thanks for help with GeSHi. Thanks, guys!
@@ -70,7 +70,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - CIL                    Marcus Griep
 - ColdFusion             Diego
 - D                      Thomas Kuehne
-- Delphi                 J�rja Norbert
+- Delphi                 Járja Norbert, Benny Baumann
 - Div                    Gabriel Lorenzo
 - DOS                    Alessandro Staltari
 - Eiffel                 Zoran Simic
@@ -78,7 +78,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Fortran                Cedric Arrabie
 - glSlang                Benny Baumann
 - Gettext                Milian Wolff
-- GML                    Jos� Jorge Enr�quez Rodr�guez
+- GML                    José Jorge Enríquez Rodríguez
 - Groovy                 Ivan F. Villanueva B.
 - Haskell                Dagit
 - Ini                    Deguix
@@ -86,6 +86,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - Java 5                 Clemens Bruckmann
 - Javascript             Ben Keen
 - KiXtart                Riley McArdle
+- KLone C                Mickael Auger
+- KLone C++              Mickael Auger
 - LaTeX                  Matthais Pospiech
 - Lisp                   Roberto Rossi
 - Lua                    Roberto Rossi
@@ -93,8 +95,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - mIRC                   Alberto de Areba Sánchez
 - MPASM                  Bakalex
 - MXML                   David Spurr
-- MySQL                  Carl F�rstenberg
-- NSIS                   Tux (updated by Deguix)
+- MySQL                  Carl Fürstenberg
+- NSIS                   Tux, Deguix
 - Objective C            M. Uli Kusterer
 - Ocaml                  Flaie
 - Ocaml-brief            Flaie
