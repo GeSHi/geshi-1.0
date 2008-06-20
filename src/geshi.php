@@ -1520,7 +1520,7 @@ class GeSHi {
         $code = str_replace("\r\n", "\n", $this->source);
         $code = str_replace("\r", "\n", $code);
         // Add spaces for regular expression matching and line numbers
-        $code = "\n" . $code . "\n";
+//        $code = "\n" . $code . "\n";
 
         // Initialise various stuff
         $length           = strlen($code);
@@ -2042,7 +2042,7 @@ class GeSHi {
 //        $result .= $this->parse_non_string_part($stuff_to_parse);
 
         // Lop off the very first and last spaces
-        $result = substr($result, 1, -1);
+//        $result = substr($result, 1, -1);
 
         // We're finished: stop timing
         $this->set_time($start_time, microtime());
