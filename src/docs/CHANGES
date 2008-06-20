@@ -16,6 +16,7 @@ Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
      * Boo (Marcus Griep)
+     * CIL (Common Intermediate Language, .NET Assembly) (Marcus Griep)
      * Xorg configuration (milian)
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
   -  Use spaces instead of tabs for indendation in language files to have a consistent
