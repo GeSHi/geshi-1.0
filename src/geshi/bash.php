@@ -11,6 +11,9 @@
  *
  * CHANGES
  * -------
+ * 2008/06/21 (1.0.8)
+ *  -  Added loads of keywords and commands of GNU/Linux
+ *  -  Added support for parameters starting with a dash
  * 2008/05/23 (1.0.7.22)
  *  -  Added description of extra language features (SF#1970248)
  * 2007/09/05 (1.0.7.21)
@@ -204,8 +207,8 @@ $language_data = array (
             0 => 'color: #007800;',
             1 => 'color: #007800;',
             2 => 'color: #007800;',
-//            3 => 'color: #808080; font-style: italic;',
-            4 => 'color: #007800;'
+            4 => 'color: #007800;',
+            5 => 'color: #660033;'
             ),
         'SCRIPT' => array(
             )
@@ -226,7 +229,9 @@ $language_data = array (
         //Variable assignment
         2 => "([a-zA-Z_][a-zA-Z0-9_]*)=",
         //Shorthand shell variables
-        4 => "\\$[*#\$\\-\\?!]"
+        4 => "\\$[*#\$\\-\\?!]",
+        //Parameters of commands
+        5 => "(?<=\s)-[a-zA-Z\-]+(?=[\s=]|$)"
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(

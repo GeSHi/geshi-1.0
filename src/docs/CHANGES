@@ -20,6 +20,7 @@ Version 1.0.8
      * KLoneC (Mickael Auger)
      * KLoneC++ (Mickael Auger)
      * Xorg configuration (milian)
+  -  Added support for parameters beginning with dash in BASH language (BenBE)
   -  Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
   -  Use spaces instead of tabs for indendation in language files to have a consistent
