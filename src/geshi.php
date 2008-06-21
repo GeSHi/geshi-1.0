@@ -1970,6 +1970,11 @@ class GeSHi {
                                             $test_str .= $rest_of_comment;
                                         }
 
+                                        //Fix to SF#1738173: HTML comments spawning multiple lines
+                                        if ($STRICTATTRS != '') {
+                                            $test_str = str_replace("\n", "</span>\n<span$STRICTATTRS>", $test_str);
+                                        }
+
                                         if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
                                             $test_str_match == GESHI_START_IMPORTANT) {
                                             $test_str .= '</span>';
