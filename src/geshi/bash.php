@@ -231,7 +231,7 @@ $language_data = array (
         //Shorthand shell variables
         4 => "\\$[*#\$\\-\\?!]",
         //Parameters of commands
-        5 => "(?<=\s)-[a-zA-Z\-]+(?=[\s=]|$)"
+        5 => "(?<=\s)-[0-9a-zA-Z\-]+(?=[\s=]|$)"
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
