@@ -90,7 +90,8 @@ $language_data = array (
 
             'dash', 'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'dialog',
             'diff', 'diff3', 'dir', 'dircolors', 'directomatic', 'dirname',
-            'dmesg', 'dnsdomainname', 'domainname', 'dselect', 'du', 'dumpkeys',
+            'dmesg', 'dnsdomainname', 'domainname', 'dpkg', 'dselect', 'du',
+            'dumpkeys',
 
             'ed', 'egrep', 'env', 'expr',
 
@@ -112,7 +113,8 @@ $language_data = array (
 
             'lame', 'last', 'lastb', 'ld', 'ld86', 'ldd', 'less', 'lex', 'link',
             'ln', 'loadkeys', 'loadunimap', 'locate', 'lockfile', 'login',
-            'logname', 'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old', 'lynx',
+            'logname', 'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old',
+            'lspci', 'ltrace', 'lynx',
 
             'm4', 'make', 'man', 'mapscrn', 'mesg', 'mkdir', 'mkfifo',
             'mknod', 'mktemp', 'more', 'mount', 'mplayer', 'msgfmt', 'mv',
@@ -130,14 +132,15 @@ $language_data = array (
             'rbash', 'rcs', 'read', 'readlink', 'red', 'resizecons', 'rev', 'rm',
             'rmdir', 'rsh', 'run-parts',
 
-            'sash', 'scp', 'sed', 'seq', 'sendmail', 'setfont', 'setkeycodes',
-            'setleds', 'setmetamode', 'setserial', 'setterm', 'sh',
-            'showkey', 'shred', 'size', 'size86', 'skill', 'sleep', 'slogin',
-            'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
-            'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strings',
-            'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'sync',
+            'sash', 'scp', 'screen', 'sed', 'seq', 'sendmail', 'setfont',
+            'setkeycodes', 'setleds', 'setmetamode', 'setserial', 'setterm',
+            'sh', 'showkey', 'shred', 'size', 'size86', 'skill', 'sleep',
+            'slogin', 'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
+            'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strace',
+            'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'sync',
 
-            'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'true',
+            'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'tree',
+            'true',
 
             'umount', 'uname', 'unicode_start', 'unicode_stop', 'uniq',
             'unlink', 'unzip', 'updatedb', 'updmap', 'uptime', 'users',
