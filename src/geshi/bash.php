@@ -73,58 +73,82 @@ $language_data = array (
         2 => array(
             'aclocal', 'aconnect', 'aplay', 'apm', 'apmsleep', 'apropos',
             'apt-cache', 'apt-get', 'apt-key', 'aptitude',
-            'ar', 'arch', 'arecord', 'as', 'as86', 'autoconf', 'autoheader',
-            'automake', 'awk',
-            'basename', 'bc', 'bison', 'bunzip2', 'bzip2', 'bzcat',
+            'ar', 'arch', 'arecord', 'as', 'as86', 'ash', 'autoconf',
+            'autoheader', 'automake', 'awk',
+
+            'basename', 'bash', 'bc', 'bison', 'bunzip2', 'bzip2', 'bzcat',
             'bzcmp', 'bzdiff', 'bzegrep', 'bzegrep', 'bzfgrep', 'bzgrep',
             'bzip2', 'bzip2recover', 'bzless', 'bzmore',
+
             'c++', 'cal', 'cat', 'chattr', 'cc', 'cdda2wav', 'cdparanoia',
             'cdrdao', 'cd-read', 'cdrecord', 'chfn', 'chgrp', 'chmod',
             'chown', 'chroot', 'chsh', 'chvt', 'clear', 'cmp', 'comm', 'co',
-            'col', 'cp', 'cpio', 'cpp', 'cut',
-            'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'diff', 'diff3', 'dir',
-            'dircolors', 'directomatic', 'dirname', 'dmesg',
+            'col', 'cp', 'cpio', 'cpp', 'csh', 'cut',
+
+            'dash', 'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'diff',
+            'diff3', 'dir', 'dircolors', 'directomatic', 'dirname', 'dmesg',
             'dnsdomainname', 'domainname', 'du', 'dumpkeys',
+
             'ed', 'egrep', 'env', 'expr',
-            'false', 'fbset', 'fgconsole','fgrep', 'find', 'file', 'flex', 'flex++',
+
+            'false', 'fbset', 'fgconsole','fgrep', 'file', 'find', 'flex', 'flex++',
             'fmt', 'free', 'ftp', 'funzip', 'fuser',
+
             'g++', 'gawk', 'gc','gcc', 'gdb', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
             'gimptool', 'gmake', 'gocr', 'grep', 'groups', 'gs', 'gunzip',
             'gzexe', 'gzip',
+
             'head', 'hexdump', 'hostname',
-            'id', 'igawk', 'install',
+
+            'id', 'ifconfig', 'igawk', 'install',
+
             'join',
+
             'kbd_mode','kbdrate', 'kdialog', 'kfile', 'kill', 'killall',
+
             'last', 'lastb', 'ld', 'ld86', 'ldd', 'less', 'lex', 'link', 'ln', 'loadkeys',
             'loadunimap', 'locate', 'lockfile', 'login', 'logname',
             'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old', 'lynx',
+
             'm4', 'make', 'man', 'mapscrn', 'mesg', 'mkdir', 'mkfifo',
             'mknod', 'mktemp', 'more', 'mount', 'msgfmt', 'mv',
+
             'namei', 'nano', 'nasm', 'nawk', 'netstat', 'nice',
             'nisdomainname', 'nl', 'nm', 'nm86', 'nmap', 'nohup', 'nop',
+
             'od', 'openvt',
+
             'passwd', 'patch', 'pcregrep', 'pcretest', 'perl', 'perror',
             'pgawk', 'pidof', 'ping', 'pr', 'procmail', 'prune', 'ps', 'pstree',
             'ps2ascii', 'ps2epsi', 'ps2frag', 'ps2pdf', 'ps2ps', 'psbook',
             'psmerge', 'psnup', 'psresize', 'psselect', 'pstops',
+
             'rbash', 'rcs', 'read', 'readlink', 'red', 'resizecons', 'rev', 'rm',
-            'rmdir', 'run-parts',
+            'rmdir', 'rsh', 'run-parts',
+
             'sash', 'sed', 'setfont', 'setkeycodes', 'setleds',
             'setmetamode', 'setserial', 'scp', 'seq', 'setterm', 'sh',
             'showkey', 'shred', 'size', 'size86', 'skill', 'sleep', 'slogin',
             'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
             'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strings',
             'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'sync',
+
             'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'true',
+
             'umount', 'uname', 'unicode_start', 'unicode_stop', 'uniq',
             'unlink', 'unzip', 'updatedb', 'updmap', 'uptime', 'users',
             'utmpdump', 'uuidgen',
-            'vdir', 'vmstat',
+
+            'valgrind', 'vdir', 'vi', 'vmstat',
+
             'w', 'wall', 'wc', 'wget', 'whatis', 'whereis', 'which', 'who',
             'whoami', 'write',
+
             'xargs', 'xhost', 'xmodmap', 'xset',
+
             'yacc', 'yes', 'ypdomainname',
+
             'zcat', 'zcmp', 'zdiff', 'zegrep', 'zfgrep', 'zforce', 'zgrep',
             'zip', 'zless', 'zmore', 'znew', 'zsh', ' zsoelim'
             ),
@@ -215,7 +239,7 @@ $language_data = array (
            'DISALLOWED_BEFORE' => '$'
         ),
         'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => "\.\-a-zA-Z0-9\$_\|\#>|^",
+            'DISALLOWED_BEFORE' => "\.\-a-zA-Z0-9\$_\#",
         )
     )
 );
