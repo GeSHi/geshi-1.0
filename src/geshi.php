@@ -1167,6 +1167,8 @@ class GeSHi {
                 'html4strict' => array('html', 'htm'),
                 'java' => array('java'),
                 'javascript' => array('js'),
+                'klonec' => array('kl1'),
+                'klonecpp' => array('klx'),
                 'lisp' => array('lisp'),
                 'lua' => array('lua'),
                 'mpasm' => array(),
@@ -1626,6 +1628,20 @@ class GeSHi {
             }
         }
 
+        //Fix for SF#1932083: Multichar Quotemarks unsupported
+        $is_string_starter = array();
+        foreach($this->language_data['QUOTEMARKS'] as $quotemark) {
+            if(!isset($is_string_starter[$quotemark[0]])) {
+                $is_string_starter[$quotemark[0]] = (string)$quotemark;
+            } else if(is_string($is_string_starter[$quotemark[0]])) {
+                $is_string_starter[$quotemark[0]] = array(
+                    $is_string_starter[$quotemark[0]],
+                    $quotemark);
+            } else {
+                $is_string_starter[$quotemark[0]][] = $quotemark;
+            }
+        }
+
         // Now we go through each part. We know that even-indexed parts are
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
@@ -1672,8 +1688,21 @@ class GeSHi {
                         // Get the next char
                         $char = $part[$i];
 
-                        if (in_array($char, $this->language_data['QUOTEMARKS']) && $this->lexic_permissions['STRINGS']) {
-                            // The start of a new string
+                        if (isset($is_string_starter[$char]) && $this->lexic_permissions['STRINGS']) {
+                            // Possibly the start of a new string ...
+
+                            //Check which starter it was ...
+                            //Fix for SF#1932083: Multichar Quotemarks unsupported
+                            if(is_array($is_string_starter[$char])) {
+                                $char_new = $char;
+                                foreach($is_string_starter[$char] as $testchar) {
+                                    if($testchar === substr($part, $i, strlen($testchar)) &&
+                                        strlen($testchar) > strlen($char_new)) {
+                                        $char_new = $testchar;
+                                    }
+                                }
+                                $char = $char_new;
+                            }
 
                             // parse the stuff before this
                             $result .= $this->parse_non_string_part($stuff_to_parse);
