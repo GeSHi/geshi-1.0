@@ -85,14 +85,14 @@ $language_data = array (
             'chown', 'chroot', 'chsh', 'chvt', 'clear', 'cmp', 'comm', 'co',
             'col', 'cp', 'cpio', 'cpp', 'csh', 'cut',
 
-            'dash', 'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'diff',
-            'diff3', 'dir', 'dircolors', 'directomatic', 'dirname', 'dmesg',
-            'dnsdomainname', 'domainname', 'du', 'dumpkeys',
+            'dash', 'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'dialog',
+            'diff', 'diff3', 'dir', 'dircolors', 'directomatic', 'dirname',
+            'dmesg', 'dnsdomainname', 'domainname', 'dselect', 'du', 'dumpkeys',
 
             'ed', 'egrep', 'env', 'expr',
 
-            'false', 'fbset', 'fgconsole','fgrep', 'file', 'find', 'flex', 'flex++',
-            'fmt', 'free', 'ftp', 'funzip', 'fuser',
+            'false', 'fbset', 'ffmpeg', 'fgconsole','fgrep', 'file', 'find',
+            'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
 
             'g++', 'gawk', 'gc','gcc', 'gdb', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
@@ -107,12 +107,12 @@ $language_data = array (
 
             'kbd_mode','kbdrate', 'kdialog', 'kfile', 'kill', 'killall',
 
-            'last', 'lastb', 'ld', 'ld86', 'ldd', 'less', 'lex', 'link', 'ln', 'loadkeys',
-            'loadunimap', 'locate', 'lockfile', 'login', 'logname',
-            'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old', 'lynx',
+            'lame', 'last', 'lastb', 'ld', 'ld86', 'ldd', 'less', 'lex', 'link',
+            'ln', 'loadkeys', 'loadunimap', 'locate', 'lockfile', 'login',
+            'logname', 'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old', 'lynx',
 
             'm4', 'make', 'man', 'mapscrn', 'mesg', 'mkdir', 'mkfifo',
-            'mknod', 'mktemp', 'more', 'mount', 'msgfmt', 'mv',
+            'mknod', 'mktemp', 'more', 'mount', 'mplayer', 'msgfmt', 'mv',
 
             'namei', 'nano', 'nasm', 'nawk', 'netstat', 'nice',
             'nisdomainname', 'nl', 'nm', 'nm86', 'nmap', 'nohup', 'nop',
@@ -127,8 +127,8 @@ $language_data = array (
             'rbash', 'rcs', 'read', 'readlink', 'red', 'resizecons', 'rev', 'rm',
             'rmdir', 'rsh', 'run-parts',
 
-            'sash', 'sed', 'setfont', 'setkeycodes', 'setleds',
-            'setmetamode', 'setserial', 'scp', 'seq', 'setterm', 'sh',
+            'sash', 'scp', 'sed', 'seq', 'sendmail', 'setfont', 'setkeycodes',
+            'setleds', 'setmetamode', 'setserial', 'setterm', 'sh',
             'showkey', 'shred', 'size', 'size86', 'skill', 'sleep', 'slogin',
             'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
             'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strings',
@@ -140,10 +140,10 @@ $language_data = array (
             'unlink', 'unzip', 'updatedb', 'updmap', 'uptime', 'users',
             'utmpdump', 'uuidgen',
 
-            'valgrind', 'vdir', 'vi', 'vmstat',
+            'valgrind', 'vdir', 'vi', 'vim', 'vmstat',
 
-            'w', 'wall', 'wc', 'wget', 'whatis', 'whereis', 'which', 'who',
-            'whoami', 'write',
+            'w', 'wall', 'wc', 'wget', 'whatis', 'whereis', 'which', 'whiptail',
+            'who', 'whoami', 'write',
 
             'xargs', 'xhost', 'xmodmap', 'xset',
 
@@ -239,7 +239,8 @@ $language_data = array (
            'DISALLOWED_BEFORE' => '$'
         ),
         'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => "\.\-a-zA-Z0-9\$_\#",
+            'DISALLOWED_BEFORE' => "\.\-a-zA-Z0-9_\$\#",
+            'DISALLOWED_AFTER' =>  "\.\-a-zA-Z0-9_%"
         )
     )
 );
