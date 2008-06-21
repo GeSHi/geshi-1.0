@@ -1694,7 +1694,7 @@ class GeSHi {
                             //Check which starter it was ...
                             //Fix for SF#1932083: Multichar Quotemarks unsupported
                             if(is_array($is_string_starter[$char])) {
-                                $char_new = $char;
+                                $char_new = '';
                                 foreach($is_string_starter[$char] as $testchar) {
                                     if($testchar === substr($part, $i, strlen($testchar)) &&
                                         strlen($testchar) > strlen($char_new)) {
@@ -1703,6 +1703,10 @@ class GeSHi {
                                 }
                                 $char = $char_new;
                             }
+
+                            // @todo: There is a bug if we have only multichar
+                            //starters and the source contains a sequence that
+                            //is not the start of a string.
 
                             // parse the stuff before this
                             $result .= $this->parse_non_string_part($stuff_to_parse);
@@ -1991,8 +1995,10 @@ class GeSHi {
                                     }
                                     //This check will find special variables like $# in bash or compiler directives of Delphi beginning {$
                                     if($match) {
-                                        $match = $match && (empty($sc_disallowed_before) || ((false === strpos($sc_disallowed_before, $part[$i-1])) && (0 != $i)));
-                                        $match = $match && (empty($sc_disallowed_after) || ((false === strpos($sc_disallowed_after, $part[$i+1])) && ($length-1>$i)));
+                                        $match = $match && (empty($sc_disallowed_before) || (0 >= $i) ||
+                                            (false === strpos($sc_disallowed_before, $part[$i-1])));
+                                        $match = $match && (empty($sc_disallowed_after) || ($length-1 <= $i) ||
+                                            (false === strpos($sc_disallowed_after, $part[$i+1])));
                                     }
                                     if ($match) {
                                         $COMMENT_MATCHED = true;
