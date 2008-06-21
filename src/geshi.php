@@ -1713,7 +1713,7 @@ class GeSHi {
 
                             // look for closing quote
                             $start = $i;
-                            while ($close_pos = strpos($part, $char, $start + 1)) {
+                            while ($close_pos = strpos($part, $char, $start + strlen($char))) {
                                 $start = $close_pos;
                                 if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
                                     // this quote is escaped
@@ -1727,8 +1727,8 @@ class GeSHi {
                               $close_pos = $length;
                             }
 
-                            $string = substr($part, $i, $close_pos - $i + 1);
-                            $i = $close_pos;
+                            $string = substr($part, $i, $close_pos - $i + strlen($char));
+                            $i = $close_pos + strlen($char) - 1;
 
                             // handle escape chars and encode html chars
                             // (special because when we have escape chars within our string they may not be escaped)
