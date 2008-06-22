@@ -11,6 +11,8 @@
  *
  * CHANGES
  * -------
+ * 2008/06/22 (1.0.8)
+ *   -  Added support for system calls in backticks (Corley Kinnane)
  * 2008/05/23 (1.0.7.22)
  *   -  Added description of extra language features (SF#1970248)
  *   -  Added comment_regexp for predefined variables
@@ -73,7 +75,7 @@ $language_data = array (
         5 => '/\$(\^[a-zA-Z]?|[\$`\'&_.,+\-~:\\\\\/"\|%=\?!@<>\(\)\[\]])|@_/',
     ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"'),
+    'QUOTEMARKS' => array('"','`'),
     'HARDQUOTE' => array("'", "'"),            // An optional 2-element array defining the beginning and end of a hard-quoted string
     'HARDESCAPE' => array('\\\'', "\\\\"),        // Things that must still be escaped inside a hard-quoted string
                             // If HARDQUOTE is defined, HARDESCAPE must be defined
