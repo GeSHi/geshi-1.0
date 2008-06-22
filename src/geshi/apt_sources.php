@@ -45,7 +45,26 @@ $language_data = array (
         /*keywords*/
         1 => array(
             'deb-src', 'deb'
-          ),
+            ),
+        2 => array(
+            //Generic
+            'stable', 'old-stable', 'testing', 'testing-proposed-updates',
+            'unstable', 'unstable-proposed-updates', 'experimental',
+            'non-US', 'security',
+            //Debian
+            'buzz', 'rex', 'bo', 'hamm', 'slink', 'potato', 'woody', 'sarge',
+            'etch', 'lenny', 'sid',
+            //Ubuntu
+            'warty', 'warty-updates', 'warty-security', 'warty-proposed',
+            'hoary', 'hoary-updates', 'hoary-security', 'hoary-proposed',
+            'breezy', 'breezy-updates', 'breezy-security', 'breezy-proposed',
+            'dapper', 'dapper-updates', 'dapper-security', 'dapper-proposed',
+            'edgy', 'edgy-updates', 'edgy-security', 'edgy-proposed',
+            'feisty', 'feisty-updates', 'feisty-security', 'feisty-proposed',
+            'gutsy', 'gutsy-updates', 'gutsy-security', 'gutsy-proposed',
+            'hardy', 'hardy-updates', 'hardy-security', 'hardy-proposed',
+            'intrepid', 'intrepid-updates', 'intrepid-security', 'intrepid-proposed',
+            ),
     ),
     'REGEXPS' => array(
         0 => "(((http|ftp)://|file:/)[^\s]+)|(cdrom:\[[^\]]*\][^\s]*)",
