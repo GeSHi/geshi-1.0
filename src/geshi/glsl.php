@@ -119,7 +119,7 @@ $language_data = array (
         ),
     'SYMBOLS' => array(
         '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^',
-        '&', '?', ':', '|', ';', ',', '<', '>'
+        '&', '?', ':', '.', '|', ';', ',', '<', '>'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
@@ -157,8 +157,7 @@ $language_data = array (
             0 => 'color: #0000ff;'
             ),
         'METHODS' => array(
-            1 => 'color: #009900;',
-            2 => 'color: #663300;'
+            1 => 'color: #006600;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #000066;'
@@ -176,7 +175,7 @@ $language_data = array (
         5 => '',
         6 => ''
         ),
-    'OOLANG' => false,
+    'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
         ),
@@ -187,7 +186,14 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'OOLANG' => array(
+           'MATCH_BEFORE' => '',
+           'MATCH_AFTER' => '[a-zA-Z_][a-zA-Z0-9_]*',
+           'MATCH_SPACES' => '[\s]*'
+            )
+        )
 );
 
 ?>
