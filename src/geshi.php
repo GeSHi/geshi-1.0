@@ -2623,6 +2623,48 @@ class GeSHi {
     }
 
     /**
+     * Merges arrays recursively, overwriting values of the first array with values of later arrays
+     *
+     * @since 1.0.8
+     * @access private
+     */
+    function merge_arrays()
+    {
+        $arrays = func_get_args();
+        $narrays = count($arrays);
+
+        // check arguments
+        // comment out if more performance is necessary (in this case the foreach loop will trigger a warning if the argument is not an array)
+        for ($i = 0; $i < $narrays; $i ++) {
+            if (!is_array($arrays[$i])) {
+                // also array_merge_recursive returns nothing in this case
+                trigger_error('Argument #' . ($i+1) . ' is not an array - trying to merge array with scalar! Returning false!', E_USER_WARNING);
+                return false;
+            }
+        }
+
+        // the first array is in the output set in every case
+        $ret = $arrays[0];
+
+        // merege $ret with the remaining arrays
+        for ($i = 1; $i < $narrays; $i ++) {
+            foreach ($arrays[$i] as $key => $value) {
+                if (is_array($value) && isset($ret[$key])) {
+                    // if $ret[$key] is not an array you try to merge an scalar value with an array - the result is not defined (incompatible arrays)
+                    // in this case the call will trigger an E_USER_WARNING and the $ret[$key] will be false.
+                    $ret[$key] = GeSHi::merge_arrays($ret[$key], $value);
+                }
+                else
+                {
+                    $ret[$key] = $value;
+                }
+            }
+        }
+
+        return $ret;
+    }
+
+    /**
      * Gets language information and stores it for later use
      *
      * @param string The filename of the language file you want to load
@@ -2686,6 +2728,20 @@ class GeSHi {
             }
             unset($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS']);
         }
+
+        //NEW in 1.0.8: Allow styles to be loaded from a separate file to override defaults
+        $style_filename = substr($file_name, 0, -4) . '.style.php';
+        if(is_readable($style_filename)) {
+            if(isset($style_data)) {
+                unset($style_data);
+            }
+            include $style_filename;
+            if(isset($style_data) && is_array($style_data)) {
+                $this->language_data['STYLES'] =
+                    GeSHi::merge_arrays($this->language_data['STYLES'], $style_data);
+            }
+        }
+
         // Set default class for CSS
         $this->overall_class = $this->language;
     }
