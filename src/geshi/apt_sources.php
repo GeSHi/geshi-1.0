@@ -64,6 +64,7 @@ $language_data = array (
             'gutsy', 'gutsy-updates', 'gutsy-security', 'gutsy-proposed',
             'hardy', 'hardy-updates', 'hardy-security', 'hardy-proposed',
             'intrepid', 'intrepid-updates', 'intrepid-security', 'intrepid-proposed',
+            'commercial',
             ),
     ),
     'REGEXPS' => array(
