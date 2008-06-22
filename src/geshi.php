@@ -2402,6 +2402,23 @@ class GeSHi {
         // Highlight methods and fields in objects
         //
         if ($this->lexic_permissions['METHODS'] && $this->language_data['OOLANG']) {
+            $oolang_spaces = "[\s]*";
+            $oolang_before = "";
+            $oolang_after = "[a-zA-Z\*\(][a-zA-Z0-9_\*]*";
+            if(isset($this->language_data['PARSER_CONTROL'])) {
+                if (isset($this->language_data['PARSER_CONTROL']['OOLANG'])) {
+                    if (isset($this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_BEFORE'])) {
+                        $oolang_before = $this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_BEFORE'];
+                    }
+                    if (isset($this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_AFTER'])) {
+                        $oolang_after = $this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_AFTER'];
+                    }
+                    if (isset($this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_SPACES'])) {
+                        $oolang_spaces = $this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_SPACES'];
+                    }
+                }
+            }
+
             foreach ($this->language_data['OBJECT_SPLITTERS'] as $key => $splitter) {
                 if (false !== stristr($stuff_to_parse, $splitter)) {
                     if (!$this->use_classes) {
@@ -2410,7 +2427,7 @@ class GeSHi {
                     else {
                         $attributes = ' class="me' . $key . '"';
                     }
-                    $stuff_to_parse = preg_replace("/(" . preg_quote($this->language_data['OBJECT_SPLITTERS'][$key], 1) . "[\s]*)([a-zA-Z\*\(][a-zA-Z0-9_\*]*)/", "\\1<|$attributes>\\2|>", $stuff_to_parse);
+                    $stuff_to_parse = preg_replace("/($oolang_before)(" . preg_quote($this->language_data['OBJECT_SPLITTERS'][$key], 1) . ")($oolang_spaces)($oolang_after)/", "\\1\\2\\3<|$attributes>\\4|>", $stuff_to_parse);
                 }
             }
         }

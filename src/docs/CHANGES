@@ -20,6 +20,7 @@ Version 1.0.8
      * KLoneC (Mickael Auger)
      * KLoneC++ (Mickael Auger)
      * Xorg configuration (milian)
+  -  Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
   -  Fixed HTML comments spawning multiple lines producing invalid XHTML output (SF#1738173, BenBE)
   -  Added support for multichar string delimiters (SF#1932083, BenBE)
   -  Added support for parameters beginning with dash in BASH language (BenBE)
