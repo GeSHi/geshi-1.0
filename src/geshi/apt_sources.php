@@ -50,7 +50,7 @@ $language_data = array (
             //Generic
             'stable', 'old-stable', 'testing', 'testing-proposed-updates',
             'unstable', 'unstable-proposed-updates', 'experimental',
-            'non-US', 'security',
+            'non-US', 'security', 'volatile', 'volatile-sloppy',
             //Debian
             'buzz', 'rex', 'bo', 'hamm', 'slink', 'potato', 'woody', 'sarge',
             'etch', 'lenny', 'sid',
