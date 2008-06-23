@@ -58,8 +58,8 @@ if (isset($_POST['submit'])) {
     // Set the style for the PRE around the code. The line numbers are contained within this box (not
     // XHTML compliant btw, but if you are liberally minded about these things then you'll appreciate
     // the reduced source output).
-    $geshi->set_overall_style('color: #000066; border: 1px solid #d0d0d0; background-color: #f0f0f0;', true);
-
+    $geshi->set_overall_style('font: normal normal 90% monospace; color: #000066; border: 1px solid #d0d0d0; background-color: #f0f0f0;', false);
+    
     // Set the style for line numbers. In order to get style for line numbers working, the <li> element
     // is being styled. This means that the code on the line will also be styled, and most of the time
     // you don't want this. So the set_code_style reverts styles for the line (by using a <div> on the line).
@@ -69,8 +69,8 @@ if (isset($_POST['submit'])) {
     // <li style="[set_line_style styles]"><div style="[set_code_style styles]>...</div></li>
     // ...
     // </ol></pre>
-    $geshi->set_line_style('font: normal normal 95% \'Courier New\', Courier, monospace; color: #003030;', 'font-weight: bold; color: #006060;', true);
-    $geshi->set_code_style('color: #000020;', 'color: #000020;');
+    $geshi->set_line_style('color: #003030;', 'font-weight: bold; color: #006060;', true);
+    $geshi->set_code_style('color: #000020;', true);
 
     // Styles for hyperlinks in the code. GESHI_LINK for default styles, GESHI_HOVER for hover style etc...
     // note that classes must be enabled for this to work.
@@ -81,11 +81,11 @@ if (isset($_POST['submit'])) {
     // affected by the styles set by set_overall_style. So if the PRE has a border then the header/footer will
     // appear inside it.
     $geshi->set_header_content('GeSHi &copy; 2004, Nigel McNie. View source of example.php for example of using GeSHi');
-    $geshi->set_header_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
+    $geshi->set_header_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
 
     // You can use <TIME> and <VERSION> as placeholders
     $geshi->set_footer_content('Parsed in <TIME> seconds,  using GeSHi <VERSION>');
-    $geshi->set_footer_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-top: 1px solid #d0d0d0; padding: 2px;');
+    $geshi->set_footer_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-top: 1px solid #d0d0d0; padding: 2px;');
 } else {
     // make sure we don't preselect any language
     $_POST['language'] = null;
