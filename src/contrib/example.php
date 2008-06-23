@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
     // you sanitise correctly if you use $_POST of course - this very script has had a security
     // advisory against it in the past because of this. Please try not to use this script on a
     // live site.
-    $geshi =& new GeSHi($_POST['source'], $_POST['language']);
+    $geshi = new GeSHi($_POST['source'], $_POST['language']);
 
     // Use the PRE header. This means less output source since we don't have to output &nbsp;
     // everywhere. Of course it also means you can't set the tab width.
