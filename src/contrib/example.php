@@ -166,8 +166,11 @@ if (isset($_POST['submit'])) {
 ?>
 <form action="example.php" method="post">
 <h3>Source to highlight</h3>
+<p>
 <textarea rows="10" cols="60" name="source" id="source"><?php echo $fill_source ? htmlspecialchars($_POST['source']) : '' ?></textarea>
+</p>
 <h3>Choose a language</h3>
+<p>
 <select name="language" id="language">
 <?php
 if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
@@ -195,11 +198,15 @@ foreach ($languages as $lang) {
 }
 
 ?>
-</select><br />
-<input type="submit" name="submit" value="Highlight Source">
+</select>
+</p>
+<p>
+<input type="submit" name="submit" value="Highlight Source" />
 <input type="submit" name="clear" onclick="document.getElementById('source').value='';document.getElementById('language').value='';return false" value="clear" />
+</p>
 </form>
 <div id="footer">GeSHi &copy; Nigel McNie, 2004, released under the GNU GPL<br />
 For a better demonstration, check out the <a href="http://qbnz.com/highlighter/demo.php">online demo</a>
+</div>
 </body>
 </html>
