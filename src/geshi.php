@@ -3214,107 +3214,113 @@ class GeSHi {
         }
 
         // Add overall styles
-        if (!$economy_mode || $this->overall_style != '') {
+        // note: neglect economy_mode, empty styles are meaningless
+        if ($this->overall_style != '') {
             $stylesheet .= "$selector {{$this->overall_style}}\n";
         }
 
         // Add styles for links
+        // note: economy mode does not make _any_ sense here
+        //       either the style is empty and thus no selector is needed
+        //       or the appropriate key is given.
         foreach ($this->link_styles as $key => $style) {
-            if (!$economy_mode || $key == GESHI_LINK && $style != '') {
-                $stylesheet .= "{$selector}a:link {{$style}}\n";
-            }
-            if (!$economy_mode || $key == GESHI_HOVER && $style != '') {
-                $stylesheet .= "{$selector}a:hover {{$style}}\n";
-            }
-            if (!$economy_mode || $key == GESHI_ACTIVE && $style != '') {
-                $stylesheet .= "{$selector}a:active {{$style}}\n";
-            }
-            if (!$economy_mode || $key == GESHI_VISITED && $style != '') {
-                $stylesheet .= "{$selector}a:visited {{$style}}\n";
+            if ($style != '') {
+                switch ($key) {
+                    case GESHI_LINK:
+                        $stylesheet .= "{$selector}a:link {{$style}}\n";
+                        break;
+                    case GESHI_HOVER:
+                        $stylesheet .= "{$selector}a:hover {{$style}}\n";
+                        break;
+                    case GESHI_ACTIVE:
+                        $stylesheet .= "{$selector}a:active {{$style}}\n";
+                        break;
+                    case GESHI_VISITED:
+                        $stylesheet .= "{$selector}a:visited {{$style}}\n";
+                        break;
+                }
             }
         }
 
         // Header and footer
-        if (!$economy_mode || $this->header_content_style != '') {
+        // note: neglect economy_mode, empty styles are meaningless
+        if ($this->header_content_style != '') {
             $stylesheet .= "$selector.head {{$this->header_content_style}}\n";
         }
-        if (!$economy_mode || $this->footer_content_style != '') {
+        if ($this->footer_content_style != '') {
             $stylesheet .= "$selector.foot {{$this->footer_content_style}}\n";
         }
 
         // Styles for important stuff
-        if (!$economy_mode || $this->important_styles != '') {
+        // note: neglect economy_mode, empty styles are meaningless
+        if ($this->important_styles != '') {
             $stylesheet .= "$selector.imp {{$this->important_styles}}\n";
         }
 
         // Simple line number styles
-        if (!$economy_mode || ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->line_style1 != '')) {
+        if ((!$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS) && $this->line_style1 != '') {
             $stylesheet .= "{$selector}li, {$selector}li.li1 {{$this->line_style1}}\n";
         }
         // If there is a style set for fancy line numbers, echo it out
-        if (!$economy_mode || ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS && $this->line_style2 != '')) {
+        if ((!$economy_mode || $this->line_numbers == GESHI_FANCY_LINE_NUMBERS) && $this->line_style2 != '') {
             $stylesheet .= "{$selector}li.li2 {{$this->line_style2}}\n";
         }
 
+        // note: empty styles are meaningless
         foreach ($this->language_data['STYLES']['KEYWORDS'] as $group => $styles) {
-            if (!$economy_mode || ($economy_mode && $styles != '') &&
+            if ($styles != '' && (!$economy_mode ||
                 (isset($this->lexic_permissions['KEYWORDS'][$group]) &&
-                $this->lexic_permissions['KEYWORDS'][$group])) {
+                $this->lexic_permissions['KEYWORDS'][$group]))) {
                 $stylesheet .= "$selector.kw$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['COMMENTS'] as $group => $styles) {
-            if (!$economy_mode || ($economy_mode && $styles != '') &&
+            if ($styles != '' && (!$economy_mode || 
                 (isset($this->lexic_permissions['COMMENTS'][$group]) &&
-                $this->lexic_permissions['COMMENTS'][$group])) {
+                $this->lexic_permissions['COMMENTS'][$group]))) {
                 $stylesheet .= "$selector.co$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['ESCAPE_CHAR'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['ESCAPE_CHAR'])) {
+            if ($styles != '' && (!$economy_mode || $this->lexic_permissions['ESCAPE_CHAR'])) {
                 $stylesheet .= "$selector.es$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['BRACKETS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['BRACKETS'])) {
+            if ($styles != '' && (!$economy_mode || $this->lexic_permissions['BRACKETS'])) {
                 $stylesheet .= "$selector.br$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['SYMBOLS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['SYMBOLS'])) {
+            if ($styles != '' && (!$economy_mode || $this->lexic_permissions['SYMBOLS'])) {
                 $stylesheet .= "$selector.sy$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['STRINGS'])) {
+            if ($styles != '' && (!$economy_mode || $this->lexic_permissions['STRINGS'])) {
                 $stylesheet .= "$selector.st$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['NUMBERS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['NUMBERS'])) {
+            if ($styles != '' && (!$economy_mode || $this->lexic_permissions['NUMBERS'])) {
                 $stylesheet .= "$selector.nu$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['METHODS'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '') && !($economy_mode &&
-                !$this->lexic_permissions['METHODS'])) {
+            if ($styles != '' && (!$economy_mode || $this->lexic_permissions['METHODS'])) {
                 $stylesheet .= "$selector.me$group {{$styles}}\n";
             }
         }
+        // note: neglect economy_mode, empty styles are meaningless
         foreach ($this->language_data['STYLES']['SCRIPT'] as $group => $styles) {
-            if (!$economy_mode || !($economy_mode && $styles == '')) {
+            if ($styles != '') {
                 $stylesheet .= "$selector.sc$group {{$styles}}\n";
             }
         }
         foreach ($this->language_data['STYLES']['REGEXPS'] as $group => $styles) {
-            if (!$economy_mode || ($economy_mode && $styles != '') &&
+            if ($styles != '' && (!$economy_mode ||
                 (isset($this->lexic_permissions['REGEXPS'][$group]) &&
-                $this->lexic_permissions['REGEXPS'][$group])) {
+                $this->lexic_permissions['REGEXPS'][$group]))) {
                 if (is_array($this->language_data['REGEXPS'][$group]) &&
                          array_key_exists(GESHI_CLASS,
                                     $this->language_data['REGEXPS'][$group])) {

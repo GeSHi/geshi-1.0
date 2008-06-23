@@ -101,7 +101,7 @@ if (isset($_POST['submit'])) {
     <?php
     if (isset($_POST['submit'])) {
         // Output the stylesheet. Note it doesn't output the <style> tag
-        echo $geshi->get_stylesheet(false);
+        echo $geshi->get_stylesheet(true);
     }
     ?>
     html {
