@@ -1233,7 +1233,9 @@ class GeSHi {
      * @since 1.0.0
      */
     function add_keyword($key, $word) {
-        $this->language_data['KEYWORDS'][$key][] = $word;
+        if (!in_array($word, $this->language_data['KEYWORDS'][$key])) {
+            $this->language_data['KEYWORDS'][$key][] = $word;
+        }
     }
 
     /**
@@ -1245,7 +1247,9 @@ class GeSHi {
      */
     function remove_keyword($key, $word) {
         $key_to_remove = array_search($word, $this->language_data['KEYWORDS'][$key]);
-        unset($this->language_data['KEYWORDS'][$key][$key_to_remove]);
+        if ($key_to_remove !== false) {
+            unset($this->language_data['KEYWORDS'][$key][$key_to_remove]);
+        }
     }
 
     /**
