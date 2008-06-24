@@ -1244,8 +1244,8 @@ class GeSHi {
      * @since 1.0.0
      */
     function remove_keyword($key, $word) {
-        $this->language_data['KEYWORDS'][$key] =
-            array_diff($this->language_data['KEYWORDS'][$key], array($word));
+        $key_to_remove = array_search($word, $this->language_data['KEYWORDS'][$key]);
+        unset($this->language_data['KEYWORDS'][$key][$key_to_remove]);
     }
 
     /**
