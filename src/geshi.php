@@ -2865,7 +2865,10 @@ class GeSHi {
                     $attr_string .= ' ' . $key . '="' . implode(' ', $attr) . '"';
                 }
 
-                $parsed_code .= "<li$attr_string>$start{$code[$i - 1]}$end</li>$ls";
+                $parsed_code .= "<li$attr_string>$start{$code[$i - 1]}$end</li>";
+                if ($i != $n) {
+                    $parsed_code .= $ls;
+                }
                 unset($code[$i - 1]);
             }
         }
@@ -2891,13 +2894,16 @@ class GeSHi {
                     // Remove \n because it stuffs up <pre> header
                     $parsed_code .= $code[$i] . "</div>";
                 } else {
-                    $parsed_code .= $code[$i] . "\n";
+                    $parsed_code .= $code[$i];
+                    if ($i != $n - 1) {
+                        $parsed_code .= "\n";
+                    }
                 }
                 unset($code[$i]);
             }
         }
 
-        return $this->header() . chop($parsed_code) . $this->footer();
+        return $this->header() . $parsed_code . $this->footer();
     }
 
     /**
