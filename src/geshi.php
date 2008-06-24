@@ -2866,6 +2866,7 @@ class GeSHi {
                 }
 
                 $parsed_code .= "<li$attr_string>$start{$code[$i - 1]}$end</li>$ls";
+                unset($code[$i - 1]);
             }
         }
         else {
@@ -2892,9 +2893,9 @@ class GeSHi {
                 } else {
                     $parsed_code .= $code[$i] . "\n";
                 }
+                unset($code[$i]);
             }
         }
-        unset($code);
 
         return $this->header() . chop($parsed_code) . $this->footer();
     }
