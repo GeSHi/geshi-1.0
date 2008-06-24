@@ -19,6 +19,7 @@ Version 1.0.8
      * CIL (Common Intermediate Language, .NET Assembly) (Marcus Griep)
      * KLoneC (Mickael Auger)
      * KLoneC++ (Mickael Auger)
+     * PowerShell (Frode Aarebrot)
      * Xorg configuration (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
   -  Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
