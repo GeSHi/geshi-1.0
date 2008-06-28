@@ -3322,9 +3322,11 @@ class GeSHi {
             }
         }
         foreach ($this->language_data['STYLES']['COMMENTS'] as $group => $styles) {
-            if ($styles != '' && (!$economy_mode || 
+            if ($styles != '' && (!$economy_mode ||
                 (isset($this->lexic_permissions['COMMENTS'][$group]) &&
-                $this->lexic_permissions['COMMENTS'][$group]))) {
+                $this->lexic_permissions['COMMENTS'][$group]) ||
+                (!empty($this->language_data['COMMENT_REGEXP']) &&
+                !empty($this->language_data['COMMENT_REGEXP'][$group])))) {
                 $stylesheet .= "$selector.co$group {{$styles}}\n";
             }
         }
