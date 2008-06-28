@@ -138,13 +138,13 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => 'http://smarty.php.net/{FNAME}',
-        2 => 'http://smarty.php.net/{FNAME}',
-        3 => 'http://smarty.php.net/{FNAME}',
-        4 => 'http://smarty.php.net/{FNAME}',
-        5 => 'http://smarty.php.net/{FNAME}',
+        1 => 'http://smarty.php.net/{FNAMEL}',
+        2 => 'http://smarty.php.net/{FNAMEL}',
+        3 => 'http://smarty.php.net/{FNAMEL}',
+        4 => 'http://smarty.php.net/{FNAMEL}',
+        5 => 'http://smarty.php.net/{FNAMEL}',
         6 => '',
-        7 => 'http://smarty.php.net/{FNAME}'
+        7 => 'http://smarty.php.net/{FNAMEL}'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

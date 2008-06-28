@@ -116,7 +116,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://sap4.com/wiki/index.php?title={FNAME}',
+        3 => 'http://sap4.com/wiki/index.php?title={FNAMEL}',
         4 => ''
         ),
     'OOLANG' => true,

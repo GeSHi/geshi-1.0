@@ -158,7 +158,7 @@ $language_data = array (
     'URLS' => array(
         1 => 'http://www.autoitscript.com/autoit3/docs/keywords.htm',
         2 => 'http://www.autoitscript.com/autoit3/docs/macros.htm',
-        3 => 'http://www.autoitscript.com/autoit3/docs/functions/{FNAME}.htm',
+        3 => 'http://www.autoitscript.com/autoit3/docs/functions/{FNAMEL}.htm',
         4 => ''
         ),
 

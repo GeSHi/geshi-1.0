@@ -2298,11 +2298,16 @@ class GeSHi {
                     // Old system: strtolower
                     //$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
                     // New system: get keyword from language file to get correct case
-                    $lower_keyword = strtolower($keyword);
-                    foreach ($this->language_data['KEYWORDS'][$group] as $word) {
-                        if (strtolower($word) == $lower_keyword) {
-                            break;
+                    if (!$this->language_data['CASE_SENSITIVE'][$group]
+                          && strpos($this->language_data['URLS'][$group], '{FNAME}') !== false) {
+                        $lower_keyword = strtolower($keyword);
+                        foreach ($this->language_data['KEYWORDS'][$group] as $word) {
+                            if (strtolower($word) == $lower_keyword) {
+                                break;
+                            }
                         }
+                    } else {
+                        $word = $keyword;
                     }
                     $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
                     $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;

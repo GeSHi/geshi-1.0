@@ -146,10 +146,10 @@ $language_data = array (
     'OBJECT_SPLITTERS' => array(
         ),
     'URLS' => array(
-         1 => 'http://www.ss64.com/nt/{FNAME}.html',
-         2 => 'http://www.ss64.com/nt/{FNAME}.html',
-         3 => 'http://www.ss64.com/nt/{FNAME}.html',
-         4 => 'http://www.ss64.com/nt/{FNAME}.html'
+         1 => 'http://www.ss64.com/nt/{FNAMEL}.html',
+         2 => 'http://www.ss64.com/nt/{FNAMEL}.html',
+         3 => 'http://www.ss64.com/nt/{FNAMEL}.html',
+         4 => 'http://www.ss64.com/nt/{FNAMEL}.html'
          ),
     'REGEXPS' => array(
         /* Label */

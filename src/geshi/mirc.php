@@ -123,7 +123,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.mirc.com/{FNAME}',
+        3 => 'http://www.mirc.com/{FNAMEL}',
         4 => ''
         ),
     'OOLANG' => false,

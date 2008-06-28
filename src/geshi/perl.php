@@ -180,7 +180,7 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        3 => 'http://perldoc.perl.org/functions/{FNAME}.html'
+        3 => 'http://perldoc.perl.org/functions/{FNAMEL}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

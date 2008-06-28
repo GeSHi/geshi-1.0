@@ -2,8 +2,8 @@
 /*************************************************************************************
  * gml.php
  * --------
- * Author: José Jorge Enríquez (jenriquez@users.sourceforge.net)
- * Copyright: (c) 2005 José Jorge Enríquez Rodríguez (http://www.zonamakers.com)
+ * Author: Josï¿½ Jorge Enrï¿½quez (jenriquez@users.sourceforge.net)
+ * Copyright: (c) 2005 Josï¿½ Jorge Enrï¿½quez Rodrï¿½guez (http://www.zonamakers.com)
  * Release Version: 1.0.7.22
  * Date Started: 2005/06/21
  *
@@ -480,11 +480,6 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => '',
-        2 => '',
-        // All GML functions have been indexed, but need some corrections.
-        3 => 'http://www.zonamakers.com/gmlreference/{FNAME}.html', // (provisional, could change soon!)
-        4 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

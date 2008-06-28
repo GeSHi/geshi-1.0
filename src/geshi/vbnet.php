@@ -178,7 +178,7 @@
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.google.com/search?q={FNAME}+msdn.microsoft.com',
+        3 => 'http://www.google.com/search?q={FNAMEU}+site:msdn.microsoft.com',
         4 => ''
         ),
     'OOLANG' => true,

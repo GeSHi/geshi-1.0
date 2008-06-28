@@ -219,10 +219,10 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAME}.html',
+        3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAMEL}.html',
         4 => '',
-        5 => 'http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/{FNAME}.html',
-        6 => 'http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/{FNAME}.html'
+        5 => 'http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/{FNAMEL}/Reference/Reference.html',
+        6 => 'http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/{FNAMEL}/Reference/Reference.html'
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

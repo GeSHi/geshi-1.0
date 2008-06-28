@@ -251,7 +251,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://doc.trolltech.com/4.2/{FNAME}.html'
+        5 => 'http://doc.trolltech.com/latest/{FNAMEL}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

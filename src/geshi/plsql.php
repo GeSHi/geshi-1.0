@@ -239,11 +239,11 @@ $language_data = array (
             )
         ),
         'URLS' => array(
-            1 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAME}',
-            2 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAME}',
-            3 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAME}',
-            4 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAME}',
-            5 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAME}'
+            1 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
+            2 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
+            3 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
+            4 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}',
+            5 => 'http://www.oracle.com/pls/db92/db92.drilldown?word={FNAMEU}'
             ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),

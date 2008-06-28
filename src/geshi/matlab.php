@@ -211,7 +211,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => 'http://www.mathworks.com/access/helpdesk/help/techdoc/ref/{FNAME}.html',
+        2 => 'http://www.mathworks.com/access/helpdesk/help/techdoc/ref/{FNAMEL}.html',
         3 => '',
         4 => ''
         ),
