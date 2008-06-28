@@ -1310,7 +1310,7 @@ class GeSHi {
      */
     function optimize_keyword_group($key) {
         $this->language_data['CACHED_KEYWORD_LISTS'][$key] =
-                    self::optimize_regexp_list($this->language_data['KEYWORDS'][$key]);
+                    GeSHi::optimize_regexp_list($this->language_data['KEYWORDS'][$key]);
     }
 
     /**
@@ -3484,7 +3484,7 @@ class GeSHi {
                 }
                 if ($level == 0 && !empty($tokens)) {
                     // we can dump current tokens into the string and throw them away afterwards
-                    $regexp_list .= self::_optimize_regexp_list_tokens_to_string($tokens) .'|';
+                    $regexp_list .= GeSHi::_optimize_regexp_list_tokens_to_string($tokens) .'|';
                     $tokens = array();
                 }
                 // no further common denominator found
@@ -3495,7 +3495,7 @@ class GeSHi {
             unset($list[$i]);
         }
         // make sure the last tokens get converted as well
-        $regexp_list .= self::_optimize_regexp_list_tokens_to_string($tokens);
+        $regexp_list .= GeSHi::_optimize_regexp_list_tokens_to_string($tokens);
         return $regexp_list;
     }
     /**
@@ -3515,7 +3515,7 @@ class GeSHi {
             $close_entry = isset($sub_tokens['']);
             unset($sub_tokens['']);
             if (!empty($sub_tokens)) {
-                $list .= '(?:' . self::_optimize_regexp_list_tokens_to_string($sub_tokens, true) . ')';
+                $list .= '(?:' . GeSHi::_optimize_regexp_list_tokens_to_string($sub_tokens, true) . ')';
                 if ($close_entry) {
                     // make sub_tokens optional
                     $list .= '?';
