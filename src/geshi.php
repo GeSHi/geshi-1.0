@@ -131,10 +131,12 @@ define('GESHI_COMMENTS', 0);
 /** Used to work around missing PHP features **/
 define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
 
-/** some old PHP / PCRE subpatterns only support up to 200 subpatterns in
+/** some old PHP / PCRE subpatterns only support up to xxx subpatterns in
     regular expressions. Set this to false if your PCRE lib is up to date
-    @see GeSHi::optimize_regexp_list() **/
-define('GESHI_MAX_PCRE_SUBPATTERNS', 200);
+    @see GeSHi::optimize_regexp_list()
+    TODO: are really the subpatterns the culprit or the overall length of the pattern?
+    **/
+define('GESHI_MAX_PCRE_SUBPATTERNS', 500);
 
 // Error detection - use these to analyse faults
 /** No sourcecode to highlight was specified
