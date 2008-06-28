@@ -21,7 +21,12 @@ Version 1.0.8
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
      * Xorg configuration (milian)
-  -  some more memory & speed optimizations all over GeSHi (milian)
+  -  Reduced memory overhead when highlighting keywords (BenBE)
+  -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
+  -  Improved comment handling with TCL (Lars Hellström, BenBE)
+  -  Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
+  -  Broken handling with XML comments (BenBE)
+  -  Some more memory & speed optimizations all over GeSHi (milian)
   -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 100%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
@@ -38,6 +43,8 @@ Version 1.0.8
   -  Support Apache's configuration sections, see http://httpd.apache.org/docs/2.2/sections.html (milian)
   -  Minor issue with PHP Heredoc and Nowdoc syntax sometimes not getting highlighted (BenBE)
   -  Fixed economy mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
+  -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
+  -  Some typos and mistakes in the documentation (BenBE)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
