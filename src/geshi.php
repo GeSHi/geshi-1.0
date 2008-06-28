@@ -2353,7 +2353,7 @@ class GeSHi {
                 if (is_array($regexp)) {
                     $stuff_to_parse = preg_replace(
                         "/" .
-                        str_replace('/', '\/', $regexp[GESHI_SEARCH]) .
+                        $regexp[GESHI_SEARCH] .
                         "/{$regexp[GESHI_MODIFIERS]}",
                         "{$regexp[GESHI_BEFORE]}<|!REG3XP$key!>{$regexp[GESHI_REPLACE]}|>{$regexp[GESHI_AFTER]}",
                         $stuff_to_parse

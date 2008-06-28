@@ -163,8 +163,8 @@ $language_data = array (
         ),
         /* Variable assignement */
         1 => array(
-/*            GESHI_SEARCH => '(SET[\s]+(?si:/A[\s]+|/P[\s]+|))([^=\s\n]+)([\s]*=)',*/
-            GESHI_SEARCH => '(SET[\s]+(?si:/A[\s]+|/P[\s]+|))([^=\n]+)([\s]*=)',
+/*            GESHI_SEARCH => '(SET[\s]+(?si:\/A[\s]+|\/P[\s]+|))([^=\s\n]+)([\s]*=)',*/
+            GESHI_SEARCH => '(SET[\s]+(?si:\/A[\s]+|\/P[\s]+|))([^=\n]+)([\s]*=)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'si',
             GESHI_BEFORE => '\\1',

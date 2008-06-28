@@ -120,14 +120,14 @@ $language_data = array (
             GESHI_AFTER => '\\2'
             ),
         1 => array(//Initial header line
-            GESHI_SEARCH => '(&lt;[/?|(\?xml)]?[a-z0-9_\-:]*(\??&gt;)?)',
+            GESHI_SEARCH => '(&lt;[\/?|(\?xml)]?[a-z0-9_\-:]*(\??&gt;)?)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
         2 => array(//Tag end markers
-            GESHI_SEARCH => '(([/|\?])?&gt;)',
+            GESHI_SEARCH => '(([\/|\?])?&gt;)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',

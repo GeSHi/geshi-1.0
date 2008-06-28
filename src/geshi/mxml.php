@@ -94,7 +94,7 @@ $language_data = array (
     'REGEXPS' => array(
         // xml declaration
         0 => array(
-            GESHI_SEARCH => '(&lt;[/?|(\?xml)]?[a-z0-9_\-:]*(\?&gt;))',
+            GESHI_SEARCH => '(&lt;[\/?|(\?xml)]?[a-z0-9_\-:]*(\?&gt;))',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
@@ -102,7 +102,7 @@ $language_data = array (
             ),
         // opening tags
         1 => array(
-            GESHI_SEARCH => '(&lt;/?[a-z]+:[a-z]+)',
+            GESHI_SEARCH => '(&lt;\/?[a-z]+:[a-z]+)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
@@ -110,7 +110,7 @@ $language_data = array (
             ),
         // closing tags
         2 => array(
-            GESHI_SEARCH => '(/?&gt;)',
+            GESHI_SEARCH => '(\/?&gt;)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
