@@ -1692,6 +1692,7 @@ class GeSHi {
                         // Get the next char
                         $char = $part[$i];
 
+                        $string_started = false;
                         if (isset($is_string_starter[$char]) && $this->lexic_permissions['STRINGS']) {
                             // Possibly the start of a new string ...
 
@@ -1703,15 +1704,26 @@ class GeSHi {
                                     if($testchar === substr($part, $i, strlen($testchar)) &&
                                         strlen($testchar) > strlen($char_new)) {
                                         $char_new = $testchar;
+                                        $string_started = true;
                                     }
                                 }
-                                $char = $char_new;
+                                if($string_started) {
+                                    $char = $char_new;
+                                }
+                            } else {
+                                $testchar = $is_string_starter[$char];
+                                if($testchar === substr($part, $i, strlen($testchar))) {
+                                    $char = $testchar;
+                                    $string_started = true;
+                                }
                             }
 
                             // @todo: There is a bug if we have only multichar
                             //starters and the source contains a sequence that
                             //is not the start of a string.
+                        }
 
+                        if($string_started) {
                             // parse the stuff before this
                             $result .= $this->parse_non_string_part($stuff_to_parse);
                             $stuff_to_parse = '';
