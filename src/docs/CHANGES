@@ -21,6 +21,8 @@ Version 1.0.8
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
      * Xorg configuration (milian)
+  -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 100%.
+     The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
   -  Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
   -  Fixed HTML comments spawning multiple lines producing invalid XHTML output (SF#1738173, BenBE)

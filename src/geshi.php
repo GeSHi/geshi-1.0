@@ -1235,6 +1235,9 @@ class GeSHi {
     function add_keyword($key, $word) {
         if (!in_array($word, $this->language_data['KEYWORDS'][$key])) {
             $this->language_data['KEYWORDS'][$key][] = $word;
+            
+            //NEW in 1.0.8 don't recompile the whole optimized regexp, simply append it
+            $this->language_data['CACHED_KEYWORD_LISTS'][$key] .= '|' . preg_quote($word, '/');
         }
     }
 
@@ -1243,12 +1246,23 @@ class GeSHi {
      *
      * @param int    The key of the keyword group to remove the keyword from
      * @param string The word to remove from the keyword group
+     * @param bool   Wether to automatically recompile the optimized regexp list or not.
+     *               Note: if you set this to false, you have to manually call
+     *               @see GeSHi::optimize_keyword_group() or the removed keyword will stay
+     *               in cache and still be highlighted! On the other hand it might be too
+     *               expensive to recompile the regexp list for every removal if you want to
+     *               remove a lot of keywords.
      * @since 1.0.0
      */
-    function remove_keyword($key, $word) {
+    function remove_keyword($key, $word, $recompile = true) {
         $key_to_remove = array_search($word, $this->language_data['KEYWORDS'][$key]);
         if ($key_to_remove !== false) {
             unset($this->language_data['KEYWORDS'][$key][$key_to_remove]);
+            
+            //NEW in 1.0.8, optionally recompile keyword group
+            if ($recompile) {
+                $this->optimize_keyword_group($key);
+            }
         }
     }
 
@@ -1267,6 +1281,9 @@ class GeSHi {
         $this->lexic_permissions['KEYWORDS'][$key] = true;
         $this->language_data['CASE_SENSITIVE'][$key] = $case_sensitive;
         $this->language_data['STYLES']['KEYWORDS'][$key] = $styles;
+        
+        //NEW in 1.0.8, cache keyword regexp
+        $this->optimize_keyword_group($key);
     }
 
     /**
@@ -1280,6 +1297,20 @@ class GeSHi {
         unset($this->lexic_permissions['KEYWORDS'][$key]);
         unset($this->language_data['CASE_SENSITIVE'][$key]);
         unset($this->language_data['STYLES']['KEYWORDS'][$key]);
+        
+        //NEW in 1.0.8
+        unset($this->language_data['CACHED_KEYWORD_LISTS'][$key]);
+    }
+    
+    /**
+     * compile optimized regexp list for keyword group
+     * 
+     * @param int   The key of the keyword group to compile & optimize
+     * @since 1.0.8
+     */
+    function optimize_keyword_group($key) {
+        $this->language_data['CACHED_KEYWORD_LISTS'][$key] =
+                    self::optimize_regexp_list($this->language_data['KEYWORDS'][$key]);
     }
 
     /**
@@ -2339,6 +2370,11 @@ class GeSHi {
         if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
             $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
             $disallowed_after = "a-zA-Z0-9_\|%\\-&";
+            if ($this->lexic_permissions['STRINGS']) {
+                $quotemarks = preg_quote(implode($this->language_data['QUOTEMARKS']), '/');
+                $disallowed_before .= $quotemarks;
+                $disallowed_after .= $quotemarks;
+            }
             if(isset($this->language_data['PARSER_CONTROL'])) {
                 if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
@@ -2349,8 +2385,8 @@ class GeSHi {
                     }
                 }
             }
-
-            foreach ($this->language_data['KEYWORDS'] as $k => $keywordset) {
+            
+            foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
                 if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
                     $this->lexic_permissions['KEYWORDS'][$k]) {
 
@@ -2358,34 +2394,21 @@ class GeSHi {
                     $modifiers = $case_sensitive ? 'e' : 'ie';
                     $styles = "/$k/";
 
-                    foreach ($keywordset as $keyword) {
-                        $keyword = preg_quote($keyword, '/');
-                        //
-                        // This replacement checks the word is on it's own (except if brackets etc
-                        // are next to it), then highlights it. We don't put the color=" for the span
-                        // in just yet - otherwise languages with the keywords "color" or "or" have
-                        // a fit.
-                        //
-                        if ($case_sensitive) {
-                            $keyword_found = strpos($stuff_to_parse_pregquote, $keyword) !== false;
-                        } else {
-                            $keyword_found = stristr($stuff_to_parse_pregquote, $keyword) !== false;
-                        }
-                        if ($keyword_found) {
-                            // Might make a more unique string for putting the number in soon
-                            // Basically, we don't put the styles in yet because then the styles themselves will
-                            // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
+                    //NEW in 1.0.8, the cached regexp list
+                    $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k];
+                    
+                    // Might make a more unique string for putting the number in soon
+                    // Basically, we don't put the styles in yet because then the styles themselves will
+                    // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
 
-                            $stuff_to_parse .= ' ';
-                            $stuff_to_parse = preg_replace(
-                                "/([^$disallowed_before])($keyword)(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after])/$modifiers",
-                                "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
-                                $stuff_to_parse
-                            );
+                    $stuff_to_parse .= ' ';
+                    $stuff_to_parse = preg_replace(
+                        "/([^$disallowed_before])({$keywordset})(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after])/$modifiers",
+                        "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
+                        $stuff_to_parse
+                    );
 
-                            $stuff_to_parse = substr($stuff_to_parse, 0, -1);
-                        }
-                    }
+                    $stuff_to_parse = substr($stuff_to_parse, 0, -1);
                 }
             }
         }
@@ -2704,11 +2727,18 @@ class GeSHi {
         if ($this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS) {
             $this->strict_mode = true;
         }
+        
+        // remove old cache
+        $this->language_data['CACHED_KEYWORD_LISTS'] = array();
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
         foreach ($this->language_data['KEYWORDS'] as $key => $words) {
             $this->lexic_permissions['KEYWORDS'][$key] = true;
+            
+            //NEW in 1.0.8: cache optimized regexp for keyword matching
+            $this->optimize_keyword_group($key);
         }
+
         foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
             $this->lexic_permissions['COMMENTS'][$key] = true;
         }
@@ -3378,6 +3408,134 @@ class GeSHi {
         }
 
         return $style;
+    }
+
+    /**
+    * this functions creates an optimized regular expression list
+    * of an array of strings.
+    * 
+    * @example $list = array('faa', 'foo', 'foobar');
+    *          => string 'f(aa|oo(bar)?)'
+    * 
+    * @param $list array of (unquoted) strings
+    * @param $regexp_delimiter your regular expression delimiter, @see preg_quote()
+    * @return string for regular expression
+    * @author Milian Wolff <mail@milianw.de>
+    * @since 1.0.8
+    */
+    function optimize_regexp_list($list, $regexp_delimiter = '/') {
+        $regex_chars = array('.', '\\', '+', '*', '?', '[', '^', ']', '$',
+            '(', ')', '{', '}', '=', '!', '<', '>', '|', ':', $regexp_delimiter);
+        sort($list);
+        $regexp_list = '';
+        // the tokens which we will use to generate the regexp list
+        $tokens = array();
+        $prev_keys = array();
+        // go through all entries of the list and generate the token list
+        for ($i = 0; isset($list[$i]); ++$i) {
+            $level = 0;
+            $entry = preg_quote((string) $list[$i], $regexp_delimiter);
+            $pointer = &$tokens;
+            // properly assign the new entry to the correct position in the token array
+            // possibly generate smaller common denominator keys
+            while (true) {
+                // get the common denominator
+                if (isset($prev_keys[$level])) {
+                    if ($prev_keys[$level] == $entry) {
+                        // this is a duplicate entry, skip it
+                        continue 2;
+                    }
+                    $char = 0;
+                    while (isset($entry[$char]) && isset($prev_keys[$level][$char])
+                            && $entry[$char] == $prev_keys[$level][$char]) {
+                        ++$char;
+                    }
+                    if ($char > 0) {
+                        // this entry has at least some chars in common with the current key
+                        if ($char == strlen($prev_keys[$level])) {
+                            // current key is totally matched, i.e. this entry has just some bits appended
+                            $pointer = &$pointer[$prev_keys[$level]];
+                        } else {
+                            // only part of the keys match
+                            $new_key_part1 = substr($prev_keys[$level], 0, $char);
+                            $new_key_part2 = substr($prev_keys[$level], $char);
+                            if (in_array($new_key_part1[0], $regex_chars)
+                                || in_array($new_key_part2[0], $regex_chars)) {
+                                // this is bad, a regex char as first character
+                                $pointer[$entry] = array('' => true);
+                                array_splice($prev_keys, $level, count($prev_keys), $entry);
+                                continue;
+                            } else {
+                                // relocate previous tokens
+                                $pointer[$new_key_part1] = array($new_key_part2 => $pointer[$prev_keys[$level]]);
+                                unset($pointer[$prev_keys[$level]]);
+                                $pointer = &$pointer[$new_key_part1];
+                                // recreate key index
+                                array_splice($prev_keys, $level, count($prev_keys), array($new_key_part1, $new_key_part2));
+                            }
+                        }
+                        ++$level;
+                        $entry = substr($entry, $char);
+                        continue;
+                    }
+                    // else: fall trough, i.e. no common denominator was found
+                }
+                if ($level == 0 && !empty($tokens)) {
+                    // we can dump current tokens into the string and throw them away afterwards
+                    $regexp_list .= self::_optimize_regexp_list_tokens_to_string($tokens) .'|';
+                    $tokens = array();
+                }
+                // no further common denominator found
+                $pointer[$entry] = array('' => true);
+                array_splice($prev_keys, $level, count($prev_keys), $entry);
+                break;
+            }
+            unset($list[$i]);
+        }
+        // make sure the last tokens get converted as well
+        $regexp_list .= self::_optimize_regexp_list_tokens_to_string($tokens);
+        return $regexp_list;
+    }
+    /**
+    * this function creates the appropriate regexp string of an token array
+    * you should not call this function directly, @see GeSHi::optimize_regexp_list().
+    * 
+    * @param &$tokens array of tokens
+    * @param $recursed bool to know wether we recursed or not
+    * @return string
+    * @author Milian Wolff <mail@milianw.de>
+    * @since 1.0.8
+    */
+    function _optimize_regexp_list_tokens_to_string(&$tokens, $recursed = false) {
+        $list = '';
+        foreach ($tokens as $token => $sub_tokens) {
+            $list .= $token;
+            $close_entry = isset($sub_tokens['']);
+            unset($sub_tokens['']);
+            if (!empty($sub_tokens)) {
+                $list .= '(?:' . self::_optimize_regexp_list_tokens_to_string($sub_tokens, true) . ')';
+                if ($close_entry) {
+                    // make sub_tokens optional
+                    $list .= '?';
+                }
+            }
+            $list .= '|';
+        }
+        if (!$recursed) {
+            // do some optimizations
+            // common trailing strings
+            // BUGGY!
+            //$list = preg_replace_callback('#(?<=^|\:|\|)\w+?(\w+)(?:\|.+\1)+(?=\|)#', create_function(
+            //    '$matches', 'return "(?:" . preg_replace("#" . preg_quote($matches[1], "#") . "(?=\||$)#", "", $matches[0]) . ")" . $matches[1];'), $list);
+            // (?:p)? => p?
+            $list = preg_replace('#\(\?\:(.)\)\?#', '\1?', $list);
+            // (?:a|b|c|d|...)? => [abcd...]?
+            // TODO: a|bb|c => [ac]|bb
+            $list = preg_replace_callback('#\(\?\:((?:.\|)+.)\)#', create_function(
+                '$matches', 'return "[" . str_replace("|", "", $matches[1]) . "]";'), $list);
+        }
+        // return $list without trailing pipe
+        return substr($list, 0, -1);
     }
 } // End Class GeSHi
 

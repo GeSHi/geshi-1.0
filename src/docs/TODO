@@ -23,11 +23,6 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
   does what happens currently.
 - use analogous vars to $next_comment_regexp_pos for more GeSHi structures,
   should reduce number of functions called and hence improve performance
-- parse_non_string_part: build preg_quoted keyword list and generate one big regular expression
-  which can be used to replace the keywords appropriatly.
-  This might improve performance because it makes a lot of function calls
-  and replacements superflous. Additionally the $stuff_to_parse is only
-  walked through once by the preg_replace function.
 - parse_non_string_part: $sym_search should be cached.
   
   
