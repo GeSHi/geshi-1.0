@@ -114,7 +114,7 @@ $language_data = array (
         1 => array('<', '>','='),
         2 => array('+', '-', '*', '/', '%'),
         3 => array('!', '^', '&', '|'),
-        4 => array(':')
+        4 => array('?', ':', ';')
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,
@@ -180,8 +180,8 @@ $language_data = array (
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => "a-zA-Z0-9\$_\|\#>|^",
-            'DISALLOWED_AFTER' => "a-zA-Z0-9_<\|%\\-"
+            'DISALLOWED_BEFORE' => "a-zA-Z0-9\$_\|\#",
+            'DISALLOWED_AFTER' => "a-zA-Z0-9_\|%\\-"
         )
     )
 );
