@@ -1235,7 +1235,7 @@ class GeSHi {
     function add_keyword($key, $word) {
         if (!in_array($word, $this->language_data['KEYWORDS'][$key])) {
             $this->language_data['KEYWORDS'][$key][] = $word;
-            
+
             //NEW in 1.0.8 don't recompile the whole optimized regexp, simply append it
             $this->language_data['CACHED_KEYWORD_LISTS'][$key] .= '|' . preg_quote($word, '/');
         }
@@ -1258,7 +1258,7 @@ class GeSHi {
         $key_to_remove = array_search($word, $this->language_data['KEYWORDS'][$key]);
         if ($key_to_remove !== false) {
             unset($this->language_data['KEYWORDS'][$key][$key_to_remove]);
-            
+
             //NEW in 1.0.8, optionally recompile keyword group
             if ($recompile) {
                 $this->optimize_keyword_group($key);
@@ -1281,7 +1281,7 @@ class GeSHi {
         $this->lexic_permissions['KEYWORDS'][$key] = true;
         $this->language_data['CASE_SENSITIVE'][$key] = $case_sensitive;
         $this->language_data['STYLES']['KEYWORDS'][$key] = $styles;
-        
+
         //NEW in 1.0.8, cache keyword regexp
         $this->optimize_keyword_group($key);
     }
@@ -1297,14 +1297,14 @@ class GeSHi {
         unset($this->lexic_permissions['KEYWORDS'][$key]);
         unset($this->language_data['CASE_SENSITIVE'][$key]);
         unset($this->language_data['STYLES']['KEYWORDS'][$key]);
-        
+
         //NEW in 1.0.8
         unset($this->language_data['CACHED_KEYWORD_LISTS'][$key]);
     }
-    
+
     /**
      * compile optimized regexp list for keyword group
-     * 
+     *
      * @param int   The key of the keyword group to compile & optimize
      * @since 1.0.8
      */
@@ -2385,7 +2385,7 @@ class GeSHi {
                     }
                 }
             }
-            
+
             foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
                 if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
                     $this->lexic_permissions['KEYWORDS'][$k]) {
@@ -2396,7 +2396,7 @@ class GeSHi {
 
                     //NEW in 1.0.8, the cached regexp list
                     $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k];
-                    
+
                     // Might make a more unique string for putting the number in soon
                     // Basically, we don't put the styles in yet because then the styles themselves will
                     // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
@@ -2724,14 +2724,14 @@ class GeSHi {
         if ($this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS) {
             $this->strict_mode = true;
         }
-        
+
         // remove old cache
         $this->language_data['CACHED_KEYWORD_LISTS'] = array();
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
         foreach (array_keys($this->language_data['KEYWORDS']) as $key) {
             $this->lexic_permissions['KEYWORDS'][$key] = true;
-            
+
             //NEW in 1.0.8: cache optimized regexp for keyword matching
             $this->optimize_keyword_group($key);
         }
@@ -3412,10 +3412,10 @@ class GeSHi {
     /**
     * this functions creates an optimized regular expression list
     * of an array of strings.
-    * 
+    *
     * @example $list = array('faa', 'foo', 'foobar');
     *          => string 'f(aa|oo(bar)?)'
-    * 
+    *
     * @param $list array of (unquoted) strings
     * @param $regexp_delimiter your regular expression delimiter, @see preg_quote()
     * @return string for regular expression
@@ -3498,7 +3498,7 @@ class GeSHi {
     /**
     * this function creates the appropriate regexp string of an token array
     * you should not call this function directly, @see GeSHi::optimize_regexp_list().
-    * 
+    *
     * @param &$tokens array of tokens
     * @param $recursed bool to know wether we recursed or not
     * @return string

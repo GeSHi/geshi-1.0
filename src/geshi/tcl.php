@@ -189,7 +189,7 @@ $language_data = array (
            'DISALLOWED_BEFORE' => '\\'
         ),
         'ENABLE_FLAGS' => array(
-            'KEYWORDS' => GESHI_NEVER,
+//            'KEYWORDS' => GESHI_NEVER,
         )
     )
 );
