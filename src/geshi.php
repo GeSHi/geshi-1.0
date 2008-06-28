@@ -2416,7 +2416,7 @@ class GeSHi {
         //
         // Now that's all done, replace /[number]/ with the correct styles
         //
-        foreach ($this->language_data['KEYWORDS'] as $k => $kws) {
+        foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
             if (!$this->use_classes) {
                 $attributes = ' style="' .
                     (isset($this->language_data['STYLES']['KEYWORDS'][$k]) ?
@@ -2586,7 +2586,7 @@ class GeSHi {
         //
         // Add class/style for regexps
         //
-        foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
+        foreach (array_keys($this->language_data['REGEXPS']) as $key) {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
                 if (is_callable($this->language_data['STYLES']['REGEXPS'][$key])) {
                     $func = $this->language_data['STYLES']['REGEXPS'][$key];
@@ -2732,17 +2732,17 @@ class GeSHi {
         $this->language_data['CACHED_KEYWORD_LISTS'] = array();
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
-        foreach ($this->language_data['KEYWORDS'] as $key => $words) {
+        foreach (array_keys($this->language_data['KEYWORDS']) as $key) {
             $this->lexic_permissions['KEYWORDS'][$key] = true;
             
             //NEW in 1.0.8: cache optimized regexp for keyword matching
             $this->optimize_keyword_group($key);
         }
 
-        foreach ($this->language_data['COMMENT_SINGLE'] as $key => $comment) {
+        foreach (array_keys($this->language_data['COMMENT_SINGLE']) as $key) {
             $this->lexic_permissions['COMMENTS'][$key] = true;
         }
-        foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
+        foreach (array_keys($this->language_data['REGEXPS']) as $key) {
             $this->lexic_permissions['REGEXPS'][$key] = true;
         }
         // for BenBE and future code reviews:

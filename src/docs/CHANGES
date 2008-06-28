@@ -21,6 +21,7 @@ Version 1.0.8
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
      * Xorg configuration (milian)
+  -  some more memory & speed optimizations all over GeSHi (milian)
   -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 100%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
