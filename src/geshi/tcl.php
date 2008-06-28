@@ -52,6 +52,10 @@ $language_data = array (
     'LANG_NAME' => 'TCL',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
+    'COMMENT_REGEXP' => array(
+        1 => '/(?<!\\\\)#(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        2 => '/{[^}\n]+}/'
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
@@ -138,6 +142,7 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
+            2 => 'color: #483d8b;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -178,7 +183,15 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'COMMENTS' => array(
+           'DISALLOWED_BEFORE' => '\\'
+        ),
+        'ENABLE_FLAGS' => array(
+            'KEYWORDS' => GESHI_NEVER,
         )
+    )
 );
 
 ?>
