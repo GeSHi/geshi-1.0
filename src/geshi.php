@@ -2401,14 +2401,11 @@ class GeSHi {
                     // Basically, we don't put the styles in yet because then the styles themselves will
                     // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
 
-                    $stuff_to_parse .= ' ';
                     $stuff_to_parse = preg_replace(
-                        "/([^$disallowed_before])({$keywordset})(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after])/$modifiers",
+                        "/([^$disallowed_before]|^)({$keywordset})(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after]|$)/$modifiers",
                         "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
                         $stuff_to_parse
                     );
-
-                    $stuff_to_parse = substr($stuff_to_parse, 0, -1);
                 }
             }
         }
