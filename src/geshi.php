@@ -2413,7 +2413,6 @@ class GeSHi {
                             $stuff_to_parse
                         );
                     }
-                    echo $set;
                 }
             }
         }
