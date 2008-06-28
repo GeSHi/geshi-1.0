@@ -104,7 +104,8 @@ $language_data = array (
         1 => false,
         2 => true, /* functions name are case sensitive */
         3 => true, /* types name too */
-        4 => true  /* finally exceptions too */
+        4 => true, /* pervasives types */
+        5 => true  /* pervasives exceptions */
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
