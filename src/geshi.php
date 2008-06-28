@@ -131,6 +131,11 @@ define('GESHI_COMMENTS', 0);
 /** Used to work around missing PHP features **/
 define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
 
+/** some old PHP / PCRE subpatterns only support up to 200 subpatterns in
+    regular expressions. Set this to false if your PCRE lib is up to date
+    @see GeSHi::optimize_regexp_list() **/
+define('GESHI_MAX_PCRE_SUBPATTERNS', 200);
+
 // Error detection - use these to analyse faults
 /** No sourcecode to highlight was specified
  * @deprecated
@@ -1237,7 +1242,8 @@ class GeSHi {
             $this->language_data['KEYWORDS'][$key][] = $word;
 
             //NEW in 1.0.8 don't recompile the whole optimized regexp, simply append it
-            $this->language_data['CACHED_KEYWORD_LISTS'][$key] .= '|' . preg_quote($word, '/');
+            $subkey = count($this->language_data['CACHED_KEYWORD_LISTS'][$key]) - 1;
+            $this->language_data['CACHED_KEYWORD_LISTS'][$key][$subkey] .= '|' . preg_quote($word, '/');
         }
     }
 
@@ -2395,17 +2401,19 @@ class GeSHi {
                     $styles = "/$k/";
 
                     //NEW in 1.0.8, the cached regexp list
-                    $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k];
-
-                    // Might make a more unique string for putting the number in soon
-                    // Basically, we don't put the styles in yet because then the styles themselves will
-                    // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-
-                    $stuff_to_parse = preg_replace(
-                        "/([^$disallowed_before]|^)({$keywordset})(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after]|$)/$modifiers",
-                        "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
-                        $stuff_to_parse
-                    );
+                    // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
+                    for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
+                        $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k][$set];
+                        // Might make a more unique string for putting the number in soon
+                        // Basically, we don't put the styles in yet because then the styles themselves will
+                        // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
+                        $stuff_to_parse = preg_replace(
+                            "/([^$disallowed_before]|^)({$keywordset})(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after]|$)/$modifiers",
+                            "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
+                            $stuff_to_parse
+                        );
+                    }
+                    echo $set;
                 }
             }
         }
@@ -3426,7 +3434,10 @@ class GeSHi {
         $regex_chars = array('.', '\\', '+', '*', '?', '[', '^', ']', '$',
             '(', ')', '{', '}', '=', '!', '<', '>', '|', ':', $regexp_delimiter);
         sort($list);
-        $regexp_list = '';
+        $regexp_list = array('');
+        $num_subpatterns = 0;
+        $list_key = 0;
+
         // the tokens which we will use to generate the regexp list
         $tokens = array();
         $prev_keys = array();
@@ -3481,7 +3492,18 @@ class GeSHi {
                 }
                 if ($level == 0 && !empty($tokens)) {
                     // we can dump current tokens into the string and throw them away afterwards
-                    $regexp_list .= GeSHi::_optimize_regexp_list_tokens_to_string($tokens) .'|';
+                    $new_entry = GeSHi::_optimize_regexp_list_tokens_to_string($tokens);
+                    $new_subpatterns = substr_count($new_entry, '(?:');
+                    if (GESHI_MAX_PCRE_SUBPATTERNS && $num_subpatterns + $new_subpatterns > GESHI_MAX_PCRE_SUBPATTERNS) {
+                        $regexp_list[++$list_key] = $new_entry;
+                        $num_subpatterns = $new_subpatterns;
+                    } else {
+                        if (!empty($regexp_list[$list_key])) {
+                            $new_entry = '|' . $new_entry;
+                        }
+                        $regexp_list[$list_key] .= $new_entry;
+                        $num_subpatterns += $new_subpatterns;
+                    }
                     $tokens = array();
                 }
                 // no further common denominator found
@@ -3492,7 +3514,15 @@ class GeSHi {
             unset($list[$i]);
         }
         // make sure the last tokens get converted as well
-        $regexp_list .= GeSHi::_optimize_regexp_list_tokens_to_string($tokens);
+        $new_entry = GeSHi::_optimize_regexp_list_tokens_to_string($tokens);
+        if (GESHI_MAX_PCRE_SUBPATTERNS && $num_subpatterns + substr_count($new_entry, '(?:') > GESHI_MAX_PCRE_SUBPATTERNS) {
+            $regexp_list[++$list_key] = $new_entry;
+        } else {
+            if (!empty($regexp_list[$list_key])) {
+                $new_entry = '|' . $new_entry;
+            }
+            $regexp_list[$list_key] .= $new_entry;
+        }
         return $regexp_list;
     }
     /**
