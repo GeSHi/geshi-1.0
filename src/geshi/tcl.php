@@ -119,8 +119,8 @@ $language_data = array (
         /*
         ** Set 4: special methods
         */
-        4 => array(
-            )
+//        4 => array(
+//            )
 
         ),
     'SYMBOLS' => array(

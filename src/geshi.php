@@ -1285,6 +1285,10 @@ class GeSHi {
      */
     function add_keyword_group($key, $styles, $case_sensitive = true, $words = array()) {
         $words = (array) $words;
+        if  (empty($words)) {
+            // empty word lists mess up highlighting
+            return false;
+        }
         $this->language_data['KEYWORDS'][$key] = $words;
         $this->lexic_permissions['KEYWORDS'][$key] = true;
         $this->language_data['CASE_SENSITIVE'][$key] = $case_sensitive;
@@ -2775,10 +2779,14 @@ class GeSHi {
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
         foreach (array_keys($this->language_data['KEYWORDS']) as $key) {
-            $this->lexic_permissions['KEYWORDS'][$key] = true;
+            if (!empty($this->language_data['KEYWORDS'][$key])) {
+                $this->lexic_permissions['KEYWORDS'][$key] = true;
 
-            //NEW in 1.0.8: cache optimized regexp for keyword matching
-            $this->optimize_keyword_group($key);
+                //NEW in 1.0.8: cache optimized regexp for keyword matching
+                $this->optimize_keyword_group($key);
+            } else {
+                $this->lexic_permissions['KEYWORDS'][$key] = false;
+            }
         }
 
         foreach (array_keys($this->language_data['COMMENT_SINGLE']) as $key) {
