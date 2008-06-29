@@ -51,6 +51,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Ada                    Tux
 - Apache                 Tux
 - Applescript            Stephan Klimek
+- Apt sources.list       Milian Wolff
 - ASM                    Tux
 - ASP                    Amit Gupta
 - AutoIT                 mastrboy
@@ -58,6 +59,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Basic4GL               Matthew Webb
 - BlitzBasic             P�draig O`Connel
 - BNF                    Rowan Rodrik van der Molen
+- Boo                    Marcus Griep
 - C++                    Dennis Bayer, M. Uli Kusterer
 - C++/QT                 Iulian M
 - C#                     Alan Juden
@@ -65,9 +67,10 @@ PEOPE WHO MADE LANGUAGE FILES
 - CADDCL                 Roberto Rossi
 - CadLisp                Roberto Rossi
 - CDFG                   John Horigan
+- CIL                    Marcus Griep
 - ColdFusion             Diego
 - D                      Thomas Kuehne
-- Delphi                 J�rja Norbert
+- Delphi                 Járja Norbert, Benny Baumann
 - Div                    Gabriel Lorenzo
 - DOS                    Alessandro Staltari
 - Eiffel                 Zoran Simic
@@ -75,7 +78,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Fortran                Cedric Arrabie
 - glSlang                Benny Baumann
 - Gettext                Milian Wolff
-- GML                    Jos� Jorge Enr�quez Rodr�guez
+- GML                    José Jorge Enríquez Rodríguez
 - Groovy                 Ivan F. Villanueva B.
 - Haskell                Dagit
 - Ini                    Deguix
@@ -83,6 +86,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - Java 5                 Clemens Bruckmann
 - Javascript             Ben Keen
 - KiXtart                Riley McArdle
+- KLone C                Mickael Auger
+- KLone C++              Mickael Auger
 - LaTeX                  Matthais Pospiech
 - Lisp                   Roberto Rossi
 - Lua                    Roberto Rossi
@@ -90,8 +95,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - mIRC                   Alberto de Areba Sánchez
 - MPASM                  Bakalex
 - MXML                   David Spurr
-- MySQL                  Carl F�rstenberg
-- NSIS                   Tux (updated by Deguix)
+- MySQL                  Carl Fürstenberg
+- NSIS                   Tux, Deguix
 - Objective C            M. Uli Kusterer
 - Ocaml                  Flaie
 - Ocaml-brief            Flaie
@@ -100,6 +105,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Pascal                 Tux
 - Perl                   Andreas Gohr, Ben Keen
 - PL/SQL                 Victor Engmark
+- PowerShell             Frode Aarebrot
 - Python                 Roberto Rossi
 - Rails                  Moises Deniz
 - Reg                    SmokingRope
@@ -121,6 +127,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - VisualFoxPro           Roberto Armellin
 - Winbatch               Craig Storey
 - X++                    Simon Butcher
+- Xorg config            Milian Wolff
 - Z80 Assembler          Benny Baumann
 
 Do you want your name in here? Help me out! Make a language file, or suggest a new

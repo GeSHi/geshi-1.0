@@ -305,9 +305,9 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => 'http://www.kixtart.org/manual/Commands/{FNAME}.htm',
+        1 => 'http://www.kixtart.org/manual/Commands/{FNAMEL}.htm',
         2 => '',
-        3 => 'http://www.kixtart.org/manual/Functions/{FNAME}.htm',
+        3 => 'http://www.kixtart.org/manual/Functions/{FNAMEL}.htm',
         4 => ''
         ),
     'OOLANG' => true,

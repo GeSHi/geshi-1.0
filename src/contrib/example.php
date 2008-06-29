@@ -9,6 +9,8 @@
  * @version $Id$
  */
 
+error_reporting(E_ALL);
+
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
 // it could be in the current directory if the include_path is set. There's nowhere else
 // we can reasonably guess.
@@ -40,7 +42,7 @@ if (isset($_POST['submit'])) {
     // you sanitise correctly if you use $_POST of course - this very script has had a security
     // advisory against it in the past because of this. Please try not to use this script on a
     // live site.
-    $geshi =& new GeSHi($_POST['source'], $_POST['language']);
+    $geshi = new GeSHi($_POST['source'], $_POST['language']);
 
     // Use the PRE header. This means less output source since we don't have to output &nbsp;
     // everywhere. Of course it also means you can't set the tab width.
@@ -56,8 +58,8 @@ if (isset($_POST['submit'])) {
     // Set the style for the PRE around the code. The line numbers are contained within this box (not
     // XHTML compliant btw, but if you are liberally minded about these things then you'll appreciate
     // the reduced source output).
-    $geshi->set_overall_style('color: #000066; border: 1px solid #d0d0d0; background-color: #f0f0f0;', true);
-
+    $geshi->set_overall_style('font: normal normal 90% monospace; color: #000066; border: 1px solid #d0d0d0; background-color: #f0f0f0;', false);
+    
     // Set the style for line numbers. In order to get style for line numbers working, the <li> element
     // is being styled. This means that the code on the line will also be styled, and most of the time
     // you don't want this. So the set_code_style reverts styles for the line (by using a <div> on the line).
@@ -67,8 +69,8 @@ if (isset($_POST['submit'])) {
     // <li style="[set_line_style styles]"><div style="[set_code_style styles]>...</div></li>
     // ...
     // </ol></pre>
-    $geshi->set_line_style('font: normal normal 95% \'Courier New\', Courier, monospace; color: #003030;', 'font-weight: bold; color: #006060;', true);
-    $geshi->set_code_style('color: #000020;', 'color: #000020;');
+    $geshi->set_line_style('color: #003030;', 'font-weight: bold; color: #006060;', true);
+    $geshi->set_code_style('color: #000020;', true);
 
     // Styles for hyperlinks in the code. GESHI_LINK for default styles, GESHI_HOVER for hover style etc...
     // note that classes must be enabled for this to work.
@@ -79,11 +81,11 @@ if (isset($_POST['submit'])) {
     // affected by the styles set by set_overall_style. So if the PRE has a border then the header/footer will
     // appear inside it.
     $geshi->set_header_content('GeSHi &copy; 2004, Nigel McNie. View source of example.php for example of using GeSHi');
-    $geshi->set_header_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
+    $geshi->set_header_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
 
     // You can use <TIME> and <VERSION> as placeholders
     $geshi->set_footer_content('Parsed in <TIME> seconds,  using GeSHi <VERSION>');
-    $geshi->set_footer_content_style('font-family: Verdana, Arial, sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-top: 1px solid #d0d0d0; padding: 2px;');
+    $geshi->set_footer_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-top: 1px solid #d0d0d0; padding: 2px;');
 } else {
     // make sure we don't preselect any language
     $_POST['language'] = null;
@@ -99,7 +101,7 @@ if (isset($_POST['submit'])) {
     <?php
     if (isset($_POST['submit'])) {
         // Output the stylesheet. Note it doesn't output the <style> tag
-        echo $geshi->get_stylesheet(false);
+        echo $geshi->get_stylesheet(true);
     }
     ?>
     html {
@@ -164,8 +166,11 @@ if (isset($_POST['submit'])) {
 ?>
 <form action="example.php" method="post">
 <h3>Source to highlight</h3>
+<p>
 <textarea rows="10" cols="60" name="source" id="source"><?php echo $fill_source ? htmlspecialchars($_POST['source']) : '' ?></textarea>
+</p>
 <h3>Choose a language</h3>
+<p>
 <select name="language" id="language">
 <?php
 if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
@@ -175,7 +180,7 @@ if (!($dir = @opendir(dirname(__FILE__) . '/geshi'))) {
 }
 $languages = array();
 while ($file = readdir($dir)) {
-    if ( $file == '..' || $file == '.' || !stristr($file, '.') || $file == 'css-gen.cfg' ) {
+    if ( $file[0] == '.' || strpos($file, '.', 1) === false) {
         continue;
     }
     $lang = substr($file, 0,  strpos($file, '.'));
@@ -193,11 +198,15 @@ foreach ($languages as $lang) {
 }
 
 ?>
-</select><br />
-<input type="submit" name="submit" value="Highlight Source">
+</select>
+</p>
+<p>
+<input type="submit" name="submit" value="Highlight Source" />
 <input type="submit" name="clear" onclick="document.getElementById('source').value='';document.getElementById('language').value='';return false" value="clear" />
+</p>
 </form>
 <div id="footer">GeSHi &copy; Nigel McNie, 2004, released under the GNU GPL<br />
 For a better demonstration, check out the <a href="http://qbnz.com/highlighter/demo.php">online demo</a>
+</div>
 </body>
 </html>

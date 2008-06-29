@@ -12,6 +12,43 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8
+  -  Added language files
+     * APT sources.list (milian)
+     * Boo (Marcus Griep)
+     * CIL (Common Intermediate Language, .NET Assembly) (Marcus Griep)
+     * KLoneC (Mickael Auger)
+     * KLoneC++ (Mickael Auger)
+     * PowerShell (Frode Aarebrot)
+     * Xorg configuration (milian)
+  -  Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
+  -  Reduced memory overhead when highlighting keywords (BenBE)
+  -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
+  -  Improved comment handling with TCL (Lars Hellström, BenBE)
+  -  Removed explicit escaping of / in Regular Expressions (BenBE)
+  -  Ignoring empty keyword groups when highlighting (milian)
+  -  Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
+  -  Broken handling with XML comments (BenBE)
+  -  Some more memory & speed optimizations all over GeSHi (milian)
+     - keyword linking now uses considerably less strtolower calls
+  -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 100%.
+     The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
+  -  Added support for external style information files to override language defaults without modifying language files (BenBE)
+  -  Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
+  -  Fixed HTML comments spawning multiple lines producing invalid XHTML output (SF#1738173, BenBE)
+  -  Added support for multichar string delimiters (SF#1932083, BenBE)
+  -  Added support for parameters beginning with dash in BASH language (BenBE)
+  -  Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
+  -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
+  -  Use spaces instead of tabs for indendation in language files to have a consistent
+     coding standard accross geshi files (milian)
+  -  Make language_permissions configurable in language files via ['PARSER_CONTROL']['ENABLE_FLAGS']
+     this makes is_a calls unneeded and thus prevents PHP notices in PHP 5.x (milian)
+  -  Support Apache's configuration sections, see http://httpd.apache.org/docs/2.2/sections.html (milian)
+  -  Minor issue with PHP Heredoc and Nowdoc syntax sometimes not getting highlighted (BenBE)
+  -  Fixed economy mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
+  -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
+  -  Some typos and mistakes in the documentation (BenBE)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
@@ -22,7 +59,7 @@ Version 1.0.7.22
      * Scala (Franco Lombardo)
      * ActionScript 3 (Jordi Boggiano)
      * GNU Gettext .po/.pot (Milian Wolff)
-     * Verilog (G�nter Dannoritzer)
+     * Verilog (Günter Dannoritzer)
   -  Fixed a problem not yet addressed in 1.0.7.21 regarding highlighting of
      symbols that caused some extra characters to be added in the output or
      broke highlighting and standard compliance due to missing escaping of
@@ -179,17 +216,17 @@ Version 1.0.7.16
      * C++/QT (Iulian M)
      * PL/SQL (Victor Engmark)
   -  Fixed up my e-mail address everywhere
-  -  Fixed notice with "error" property (IZIU Zielona G�ra)
+  -  Fixed notice with "error" property (IZIU Zielona Góra)
   -  Added some entries to the get_language_name_from_extension table
      (Stebastian Schuberth)
 Version 1.0.7.15
   - Added language files
      * BNF (Rowan Rodrik van der Molen)
      * IO (me, thanks to Johnathan Wright)
-     * mIRC (Alberto de Areba S�nchez)
+     * mIRC (Alberto de Areba Sánchez)
   -  Fixed use of colon in XML (Grigory Rubtsov)
   -  Fixed notices in text.php, reg.php and latex.php when $this is not
-     available (Clemens Wei�)
+     available (Clemens Weiß)
   -  Made third parameter of geshi_highlight optional (Gaetano Giunta)
   -  Fix incorrect highlighting of the $# variable in bash (Michael Knight)
   -  Fixed single line comment mistake in thinbasic.php (Eros Olmi)
@@ -199,7 +236,7 @@ Version 1.0.7.14
      * LaTeX (Matthais Pospiech)
   -  Removed extra newlines at the end of some files
   -  Fixed SF bug 1556404 - check before using $this in language files
-     (Clemens Wei�)
+     (Clemens Weiß)
 Version 1.0.7.13
   -  Added language files
      * Uno IDL (Cedric Bosdonnat)
@@ -240,7 +277,7 @@ Version 1.0.7.9
      * Fortran (Cedric Arrabie)
      * SAS (Galen Johnson)
      * CFDG (John Horigan)
-  -  Fixed & in URL in java5 (Clemens Wei�)
+  -  Fixed & in URL in java5 (Clemens Weiß)
   -  Added MD5 and SHA1 to mysql keywords (polarina)
   -  Fixes for highlight_lines_extra with line numbers (ithcy)
   -  Fixed backslash characters being removed (ArTourter)
@@ -262,8 +299,8 @@ Version 1.0.7.7
   -  Now using a simpler regular expression for numbers (Brice Bernard)
   -  Fixed ah, bh etc. regs being highlighted as numbers (Unknown)
 Version 1.0.7.6
-  -  Fix backtick-string highlighting in ruby (Juan J. Mart�nez)
-  -  Add =begin multiline comments in ruby (Juan J. Mart�nez)
+  -  Fix backtick-string highlighting in ruby (Juan J. Martínez)
+  -  Add =begin multiline comments in ruby (Juan J. Martínez)
   -  Added support for :keywords and ::access in lisp (Denis Mashkevich)
   -  Prevented number highlighting if they are just after underscores (Joce)
   -  Removed escape characters for strings in XML and HTML (floele)
@@ -289,14 +326,14 @@ Version 1.0.7.5
   -  Fixed two ">" symbols being outputted when using a footer but not CSS classes (MrBaseball34)
   -  Marked important block stuff as deprecated
   -  Some documentation tidyup
-  -  Updated GML language file (Jos� Jorge Enr�quez Rodr�guez)
+  -  Updated GML language file (Jos? Jorge Enr?quez Rodr?guez)
   -  THANKS file tidied up
   -  Fixed double </a> for elements in HTML (Yves Goergen)
   -  Added some keywords for ASM (Dreuzzo)
 Version 1.0.7.4
   -  Added language files
-     * MySQL (Carl F�rstenberg)
-     * BlitzBasic (P�draig O`Connel)
+     * MySQL (Carl Fürstenberg)
+     * BlitzBasic (Pàdraig O`Connel)
   -  Fixed up geshi_highlight function: it now correctly uses <code> instead of <div> (Remi Faure)
   -  When using GESHI_HEADER_NONE, remove the <ol> if line numbering is not enabled
   -  Commented example.php so people can use it as a guide better
@@ -333,7 +370,7 @@ Version 1.0.7.2
 Version 1.0.7.1
   -  Added language files:
      * Div (Gabriel Lorenzo)
-     * GML (Jos� Jorge Enr�quez Rodr�guez)
+     * GML (José Jorge Enríquez Rodríguez)
      * Eiffel (Zoran Simic)
   -  Minor change to rules regarding when keywords can appear - now dots (.) are
      allowed before keywords. (NikO)
@@ -414,7 +451,7 @@ Version 1.0.2
      * CADDCL (Roberto Rossi)
      * CadLisp (Roberto Rossi)
      * C++ (Dennis Bayer)
-     * Delphi (J�rja Norbert)
+     * Delphi (Járja Norbert)
      * Javascript (Ben Keen)
      * Lisp (Roberto Rossi)
      * OpenOffice.org BASIC (Roberto Rossi)
@@ -443,7 +480,6 @@ Version 1.0.2
   -  Function geshi_highlight added to make it even easier to highlight on the fly
   -  Advanced regular expression handling
   -  Bug fixes to lexic_permission handling
-
 Version 1.0.1
   -  Added methods set_symbols_style() and set_symbols_highlighting(). These should be used
      instead of set_brackets_style and set_brackets_highlighting respectively.
@@ -467,7 +503,6 @@ Version 1.0.1
      * ASM (Tux)
      * NSIS (Tux)
      * Pascal (Tux)
-
 Version 1.0.0
   -  Initial Release
 

@@ -54,8 +54,8 @@ $language_data = array (
     'LANG_NAME' => 'PHP',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-	//Heredoc and Nowdoc syntax
-	'COMMENT_REGEXP' => array(3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'),
+    //Heredoc and Nowdoc syntax
+    'COMMENT_REGEXP' => array(3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+?)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -71,14 +71,14 @@ $language_data = array (
             'false', '&lt;?php', '?&gt;', '&lt;?',
             '&lt;script language', '&lt;/script&gt;',
             'true', 'var', 'default',
-            'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends',
+            'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends', 'self',
             '__FUNCTION__', '__CLASS__', '__METHOD__', 'PHP_VERSION',
             'PHP_OS', 'DEFAULT_INCLUDE_PATH', 'PEAR_INSTALL_DIR', 'PEAR_EXTENSION_DIR',
             'PHP_EXTENSION_DIR', 'PHP_BINDIR', 'PHP_LIBDIR', 'PHP_DATADIR', 'PHP_SYSCONFDIR',
             'PHP_LOCALSTATEDIR', 'PHP_CONFIG_FILE_PATH', 'PHP_OUTPUT_HANDLER_START', 'PHP_OUTPUT_HANDLER_CONT',
             'PHP_OUTPUT_HANDLER_END', 'E_ERROR', 'E_WARNING', 'E_PARSE', 'E_NOTICE',
             'E_CORE_ERROR', 'E_CORE_WARNING', 'E_COMPILE_ERROR', 'E_COMPILE_WARNING', 'E_USER_ERROR',
-            'E_USER_WARNING', 'E_USER_NOTICE', 'E_ALL'
+            'E_USER_WARNING', 'E_USER_NOTICE', 'E_ALL', 'E_STRICT'
             ),
         3 => array(
             'zlib_get_coding_type','zend_version','zend_logo_guid','yp_order','yp_next',
@@ -306,7 +306,7 @@ $language_data = array (
             0 => 'color: #339933;'
             ),
         'REGEXPS' => array(
-            0 => 'color: #000033;'
+            0 => 'color: #000088;'
             ),
         'SCRIPT' => array(
             0 => '',
@@ -318,7 +318,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.php.net/{FNAME}',
+        3 => 'http://www.php.net/{FNAMEL}',
         4 => ''
         ),
     'OOLANG' => true,
