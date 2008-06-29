@@ -25,6 +25,8 @@ Version 1.0.8
   -  Reduced memory overhead when highlighting keywords (BenBE)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
   -  Improved comment handling with TCL (Lars Hellström, BenBE)
+  -  Removed explicit escaping of / in Regular Expressions (BenBE)
+  -  Ignoring empty keyword groups when highlighting (milian)
   -  Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
   -  Broken handling with XML comments (BenBE)
   -  Some more memory & speed optimizations all over GeSHi (milian)
