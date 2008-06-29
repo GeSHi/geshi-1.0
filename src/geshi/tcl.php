@@ -187,9 +187,6 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
            'DISALLOWED_BEFORE' => '\\'
-        ),
-        'ENABLE_FLAGS' => array(
-//            'KEYWORDS' => GESHI_NEVER,
         )
     )
 );
