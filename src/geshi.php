@@ -1775,8 +1775,16 @@ class GeSHi {
                             while ($close_pos = strpos($part, $char, $start + strlen($char))) {
                                 $start = $close_pos;
                                 if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
-                                    // this quote is escaped
-                                    continue;
+                                    // check wether this quote is escaped or if it is something like '\\'
+                                    $escape_char_pos = $close_pos - 1;
+                                    while ($escape_char_pos > 0
+                                            && $part[$escape_char_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
+                                        --$escape_char_pos;
+                                    }
+                                    if (($close_pos - $escape_char_pos) % 2 == 1) {
+                                        // uneven number of escape chars => this quote is escaped
+                                        continue;
+                                    }
                                 }
                                 // found closing quote
                                 break;
@@ -1842,8 +1850,16 @@ class GeSHi {
                                     // make sure this quote is not escaped
                                     foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
                                         if (substr($part, $close_pos - 1, strlen($hardescape)) == $hardescape) {
-                                            // this quote is escaped
-                                            continue 2;
+                                            // check wether this quote is escaped or if it is something like '\\'
+                                            $escape_char_pos = $close_pos - 1;
+                                            while ($escape_char_pos > 0
+                                                    && $part[$escape_char_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
+                                                --$escape_char_pos;
+                                            }
+                                            if (($close_pos - $escape_char_pos) % 2 == 1) {
+                                                // uneven number of escape chars => this quote is escaped
+                                                continue 2;
+                                            }
                                         }
                                     }
                                 }
@@ -1876,9 +1892,24 @@ class GeSHi {
                                           continue 2;
                                         }
                                     }
-                                    // not a hard escape
-                                    $new_string .= $escaped_escape_char;
-                                    $start = $es_pos + 1;
+                                    // not a hard escape, but a normal escape
+                                    // they come in pairs of two
+                                    $c = 0;
+                                    while (isset($string[$es_pos + $c]) && isset($string[$es_pos + $c + 1])
+                                          && $string[$es_pos + $c] == $this->language_data['ESCAPE_CHAR']
+                                          && $string[$es_pos + $c + 1] == $this->language_data['ESCAPE_CHAR']) {
+                                        $c += 2;
+                                    }
+                                    if ($c) {
+                                        $new_string .= "<span$escape_char_attributes>" .
+                                                          str_repeat($escaped_escape_char, $c) .
+                                                        '</span>';
+                                        $start = $es_pos + $c;
+                                    } else {
+                                        // this is just a single lonely escape char...
+                                        $new_string .= $escaped_escape_char;
+                                        $start = $es_pos + 1;
+                                    }
                                 }
                                 $string = $new_string . GeSHi::hsc(substr($string, $start));
                             } else {

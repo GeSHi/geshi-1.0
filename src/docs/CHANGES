@@ -21,6 +21,7 @@ Version 1.0.8
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
      * Xorg configuration (milian)
+  -  Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
   -  Reduced memory overhead when highlighting keywords (BenBE)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
   -  Improved comment handling with TCL (Lars Hellström, BenBE)

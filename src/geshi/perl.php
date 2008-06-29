@@ -77,7 +77,7 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"','`'),
     'HARDQUOTE' => array("'", "'"),            // An optional 2-element array defining the beginning and end of a hard-quoted string
-    'HARDESCAPE' => array('\\\'', "\\\\"),        // Things that must still be escaped inside a hard-quoted string
+    'HARDESCAPE' => array('\\\'',),        // Things that must still be escaped inside a hard-quoted string
                             // If HARDQUOTE is defined, HARDESCAPE must be defined
                             // This will not work unless the first character of each element is either in the
                             // QUOTEMARKS array or is the ESCAPE_CHAR
