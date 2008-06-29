@@ -185,7 +185,7 @@ $language_data = array (
 			1 => '::'
 		),
 	'REGEXPS' => array(
-			#0 => '%(@)?/(?:(?(1)[^/\\\\\r\n]+|[^/\\\\\r\n \t]+)|\\\\[/\\\\\w+()|.*?$^[\]{}\d])+/%'
+		#0 => '%(@)?\/(?:(?(1)[^\/\\\\\r\n]+|[^\/\\\\\r\n \t]+)|\\\\[\/\\\\\w+()|.*?$^[\]{}\d])+\/%'
 		),
 	'STRICT_MODE_APPLIES' => GESHI_NEVER,
 	'SCRIPT_DELIMITERS' => array(

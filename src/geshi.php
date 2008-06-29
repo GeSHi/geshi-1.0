@@ -2391,7 +2391,7 @@ class GeSHi {
                     );
                 }
                 else {
-                    $stuff_to_parse = preg_replace( "/(" . str_replace('/', '\/', $regexp) . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
                 }
             }
         }

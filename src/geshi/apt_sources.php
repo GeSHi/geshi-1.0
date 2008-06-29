@@ -68,7 +68,7 @@ $language_data = array (
             ),
     ),
     'REGEXPS' => array(
-        0 => "(((http|ftp)://|file:/)[^\s]+)|(cdrom:\[[^\]]*\][^\s]*)",
+        0 => "(((http|ftp):\/\/|file:\/)[^\s]+)|(cdrom:\[[^\]]*\][^\s]*)",
         ),
     'SYMBOLS' => array(
         ),
