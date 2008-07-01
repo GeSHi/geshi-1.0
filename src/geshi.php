@@ -3232,7 +3232,7 @@ class GeSHi {
      */
     function hsc($string, $quote_style=ENT_COMPAT) {
         // init
-        $aTransSpecchar = array(
+        static $aTransSpecchar = array(
             '&' => '&amp;',
             '"' => '&quot;',
             '<' => '&lt;',
@@ -3248,13 +3248,13 @@ class GeSHi {
             '|' => '<PIPE>' // Force | to be processed as entity
             );                      // ENT_COMPAT set
 
-        if (ENT_NOQUOTES == $quote_style)       // don't convert double quotes
-        {
-            unset($aTransSpecchar['"']);
-        }
-        elseif (ENT_QUOTES == $quote_style)     // convert single quotes as well
-        {
-            $aTransSpecchar["'"] = '&#39;'; // (apos) htmlspecialchars() uses '&#039;'
+        switch ($quote_style) {
+            case ENT_NOQUOTES: // don't convert double quotes
+                unset($aTransSpecchar['"']);
+                break;
+            case ENT_QUOTES: // convert single quotes as well
+                $aTransSpecchar["'"] = '&#39;'; // (apos) htmlspecialchars() uses '&#039;'
+                break;
         }
 
         // return translated string
