@@ -3487,7 +3487,7 @@ class GeSHi {
         $tokens = array();
         $prev_keys = array();
         // go through all entries of the list and generate the token list
-        for ($i = 0; isset($list[$i]); ++$i) {
+        for ($i = 0, $i_max = count($list); $i < $i_max; ++$i) {
             $level = 0;
             $entry = preg_quote((string) $list[$i], $regexp_delimiter);
             $pointer = &$tokens;
