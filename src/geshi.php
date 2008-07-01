@@ -2009,7 +2009,7 @@ class GeSHi {
                                     $com_len = strlen($open);
                                     $test_str = substr( $part, $i, $com_len );
                                     $test_str_match = $test_str;
-                                    if (strtolower($open) == strtolower($test_str)) {
+                                    if (strcasecmp($open, $test_str) == 0) {
                                         $COMMENT_MATCHED = true;
                                         //@todo If remove important do remove here
                                         if ($this->lexic_permissions['COMMENTS']['MULTI'] ||
@@ -2086,7 +2086,7 @@ class GeSHi {
                                         $match = ($comment_mark == $test_str);
                                     }
                                     else {
-                                        $match = (strtolower($comment_mark) == strtolower($test_str));
+                                        $match = strcasecmp($comment_mark, $test_str) == 0;
                                     }
                                     //This check will find special variables like $# in bash or compiler directives of Delphi beginning {$
                                     if($match) {
@@ -2335,9 +2335,8 @@ class GeSHi {
                     // New system: get keyword from language file to get correct case
                     if (!$this->language_data['CASE_SENSITIVE'][$group]
                           && strpos($this->language_data['URLS'][$group], '{FNAME}') !== false) {
-                        $lower_keyword = strtolower($keyword);
                         foreach ($this->language_data['KEYWORDS'][$group] as $word) {
-                            if (strtolower($word) == $lower_keyword) {
+                            if (strcasecmp($word, $keyword) == 0) {
                                 break;
                             }
                         }
