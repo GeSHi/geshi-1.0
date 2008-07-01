@@ -2504,7 +2504,7 @@ class GeSHi {
             }
 
             foreach ($this->language_data['OBJECT_SPLITTERS'] as $key => $splitter) {
-                if (false !== stristr($stuff_to_parse, $splitter)) {
+                if (false !== strpos($stuff_to_parse, $splitter)) {
                     if (!$this->use_classes) {
                         $attributes = ' style="' . $this->language_data['STYLES']['METHODS'][$key] . '"';
                     }
