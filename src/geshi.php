@@ -2553,6 +2553,8 @@ class GeSHi {
             preg_match_all("/(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
             //Match anything that is a highlighted block ...
             preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted_in_stuff, PREG_OFFSET_CAPTURE);
+            // Also Rebuild the matches array to be ordered by offset ...
+            $symbol_offsets = array();
             foreach($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
                 foreach($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
                     //Do a range check of the found highlight identifier and the OOP match ...
@@ -2561,15 +2563,12 @@ class GeSHi {
                     {
                         //We found a match that was already highlighted ...
                         unset($matches_in_stuff[$stuff_match_id]);
-                        break;
+                        continue 2;
                     }
                 }
-            }
-            //Rebuild the matches array to be ordered by offset ...
-            $symbol_offsets = array();
-            foreach($matches_in_stuff as $stuff_match_data) {
                 $symbol_offsets[$stuff_match_data[0][1]] = $stuff_match_data[0][0];
             }
+            unset($matches_in_stuff);
             krsort($symbol_offsets);
             //Perform the actual replacements ...
             foreach($symbol_offsets as $symbol_offset => $symbol_match) {
