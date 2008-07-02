@@ -2549,33 +2549,8 @@ class GeSHi {
 
         //FIX for symbol highlighting ...
         if($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
-            //As this is a costy operation, we avoid doing it for multiple groups ...
-            //Instead we perform it for all symbols at once.
-            //
-            //For this to work, we need to reorganize the data arrays.
-            $symbol_data = $symbol_preg = array();
-            foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
-                if(is_array($symbols)) {
-                    foreach($symbols as $sym) {
-                        if(!isset($symbol_data[$sym])) {
-                            $symbol_data[GeSHi::hsc($sym)] = $key;
-                            $symbol_preg[] = preg_quote(GeSHi::hsc($sym), '/');
-                        }
-                    }
-                } else {
-                    if(!isset($symbol_data[$symbols])) {
-                        $symbol_data[GeSHi::hsc($symbols)] = 0;
-                        $symbol_preg[] = preg_quote(GESHI::hsc($symbols), '/');
-                    }
-                }
-            }
-            //Now we have an array with each possible symbol as the key and the style as the actual data.
-            //This way we can set the correct style just the moment we highlight ...
-            //
-            //Now we need to rewrite our array to get a search string that
-            $sym_search = implode("|", $symbol_preg);
             //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
-            preg_match_all("/(?:" . $sym_search . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            preg_match_all("/(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
             //Match anything that is a highlighted block ...
             preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted_in_stuff, PREG_OFFSET_CAPTURE);
             foreach($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
@@ -2601,14 +2576,15 @@ class GeSHi {
                 $symbol_hl = "";
                 $old_sym = -1;
                 //Split the current stuff to replace into its atomic symbols ...
-                preg_match_all("/$sym_search/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
+                preg_match_all("/" . $this->language_data['SYMBOL_SEARCH'] . "/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
                 foreach($sym_match_syms[0] as $sym_ms) {
                     //Check if consequtive symbols belong to the same group to save output ...
-                    if (isset($symbol_data[$sym_ms]) && ($symbol_data[$sym_ms] != $old_sym)) {
+                    if (isset($this->language_data['SYMBOL_DATA'][$sym_ms])
+                        && ($this->language_data['SYMBOL_DATA'][$sym_ms] != $old_sym)) {
                         if(-1 != $old_sym) {
                             $symbol_hl .= "|>";
                         }
-                        $old_sym = $symbol_data[$sym_ms];
+                        $old_sym = $this->language_data['SYMBOL_DATA'][$sym_ms];
                         if (!$this->use_classes) {
                             $symbol_hl .= '<| style="' . $this->language_data['STYLES']['SYMBOLS'][$old_sym] . '">';
                         }
@@ -2678,7 +2654,6 @@ class GeSHi {
 
         $stuff_to_parse = str_replace('<|', '<span', $stuff_to_parse);
         $stuff_to_parse = str_replace ( '|>', '</span>', $stuff_to_parse );
-
         return substr($stuff_to_parse, 1);
     }
 
@@ -2772,6 +2747,67 @@ class GeSHi {
         if ($this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS) {
             $this->strict_mode = true;
         }
+
+        // cache symbol regexp
+        //As this is a costy operation, we avoid doing it for multiple groups ...
+        //Instead we perform it for all symbols at once.
+        //
+        //For this to work, we need to reorganize the data arrays.
+        $this->language_data['SYMBOL_DATA'] = array();
+        $symbol_preg_multi = array(); // multi char symbols
+        $symbol_preg_single = array(); // single char symbols
+        foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
+            if (is_array($symbols)) {
+                foreach ($symbols as $sym) {
+                    $sym = GeSHi::hsc($sym);
+                    if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
+                        $this->language_data['SYMBOL_DATA'][$sym] = $key;
+                        if (isset($sym[2])) { // multiple chars
+                            $symbol_preg_multi[] = preg_quote($sym, '/');
+                        }
+                        else { // single char
+                            if ($sym == '-') {
+                                // don't trigger range out of order error
+                                $symbol_preg_single[] = '\-';
+                            }
+                            else {
+                                $symbol_preg_single[] = preg_quote($sym, '/');
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                $symbols = GeSHi::hsc($symbols);
+                if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
+                    $this->language_data['SYMBOL_DATA'][$symbols] = 0;
+                    if (isset($symbols[2])) { // multiple chars
+                        $symbol_preg_multi[] = preg_quote($symbols, '/');
+                    }
+                    else { // single char
+                        if ($symbols == '-') {
+                            // don't trigger range out of order error
+                            $symbol_preg_single[] = '\-';
+                        }
+                        else {
+                            $symbol_preg_single[] = preg_quote($symbols, '/');
+                        }
+                    }
+                }
+            }
+        }
+        //Now we have an array with each possible symbol as the key and the style as the actual data.
+        //This way we can set the correct style just the moment we highlight ...
+        //
+        //Now we need to rewrite our array to get a search string that
+        $symbol_preg = array();
+        if (!empty($symbol_preg_single)) {
+            $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
+        }
+        if (!empty($symbol_preg_multi)) {
+            $symbol_preg[] = implode('|', $symbol_preg_multi);
+        }
+        $this->language_data['SYMBOL_SEARCH'] = implode("|", $symbol_preg);
 
         // remove old cache
         $this->language_data['CACHED_KEYWORD_LISTS'] = array();
