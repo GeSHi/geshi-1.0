@@ -2548,17 +2548,17 @@ class GeSHi {
         }
 
         //FIX for symbol highlighting ...
-        if($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
+        if ($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
             //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
             preg_match_all("/(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
             //Match anything that is a highlighted block ...
             preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted_in_stuff, PREG_OFFSET_CAPTURE);
             // Also Rebuild the matches array to be ordered by offset ...
             $symbol_offsets = array();
-            foreach($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
-                foreach($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
+            foreach ($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
+                foreach ($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
                     //Do a range check of the found highlight identifier and the OOP match ...
-                    if(($highlight_data[1] <= $stuff_match_data[0][1]) &&
+                    if (($highlight_data[1] <= $stuff_match_data[0][1]) &&
                         ($highlight_data[1] + strlen($highlight_data[0]) >= $stuff_match_data[0][1] + strlen($stuff_match_data[0][0])))
                     {
                         //We found a match that was already highlighted ...
@@ -2571,15 +2571,16 @@ class GeSHi {
             unset($matches_in_stuff);
             krsort($symbol_offsets);
             //Perform the actual replacements ...
-            foreach($symbol_offsets as $symbol_offset => $symbol_match) {
+            foreach ($symbol_offsets as $symbol_offset => $symbol_match) {
                 $symbol_hl = "";
                 $old_sym = -1;
                 //Split the current stuff to replace into its atomic symbols ...
                 preg_match_all("/" . $this->language_data['SYMBOL_SEARCH'] . "/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
-                foreach($sym_match_syms[0] as $sym_ms) {
+                foreach ($sym_match_syms[0] as $sym_ms) {
                     //Check if consequtive symbols belong to the same group to save output ...
                     if (isset($this->language_data['SYMBOL_DATA'][$sym_ms])
-                        && ($this->language_data['SYMBOL_DATA'][$sym_ms] != $old_sym)) {
+                        && ($this->language_data['SYMBOL_DATA'][$sym_ms] != $old_sym))
+                    {
                         if(-1 != $old_sym) {
                             $symbol_hl .= "|>";
                         }
