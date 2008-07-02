@@ -2598,7 +2598,7 @@ class GeSHi {
                 if (-1 != $old_sym) {
                     $symbol_hl .= "|>";
                 }
-                $stuff_to_parse = substr($stuff_to_parse, 0, $symbol_offset) . $symbol_hl . substr($stuff_to_parse, $symbol_offset + strlen($symbol_match));
+                $stuff_to_parse = substr_replace($stuff_to_parse, $symbol_hl, $symbol_offset, strlen($symbol_match));
             }
         }
         //FIX for symbol highlighting ...
