@@ -443,6 +443,14 @@ class GeSHi {
      */
     var $loaded_language = '';
 
+    /**
+     * Wether the caches needed for parsing are built or not
+     *
+     * @var bool
+     * @since 1.0.8
+     */
+    var $parse_cache_built = false;
+
     /**#@-*/
 
     /**
@@ -1544,6 +1552,85 @@ class GeSHi {
     }
 
     /**
+     * Setup caches needed for parsing. This is automatically called in parse_code() when appropriate.
+     * This function makes stylesheet generators much faster as they do not need these caches.
+     *
+     * @since 1.0.8
+     */
+    function build_parse_cache() {
+        // cache symbol regexp
+        //As this is a costy operation, we avoid doing it for multiple groups ...
+        //Instead we perform it for all symbols at once.
+        //
+        //For this to work, we need to reorganize the data arrays.
+        $this->language_data['SYMBOL_DATA'] = array();
+        $symbol_preg_multi = array(); // multi char symbols
+        $symbol_preg_single = array(); // single char symbols
+        foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
+            if (is_array($symbols)) {
+                foreach ($symbols as $sym) {
+                    $sym = GeSHi::hsc($sym);
+                    if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
+                        $this->language_data['SYMBOL_DATA'][$sym] = $key;
+                        if (isset($sym[2])) { // multiple chars
+                            $symbol_preg_multi[] = preg_quote($sym, '/');
+                        }
+                        else { // single char
+                            if ($sym == '-') {
+                                // don't trigger range out of order error
+                                $symbol_preg_single[] = '\-';
+                            }
+                            else {
+                                $symbol_preg_single[] = preg_quote($sym, '/');
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                $symbols = GeSHi::hsc($symbols);
+                if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
+                    $this->language_data['SYMBOL_DATA'][$symbols] = 0;
+                    if (isset($symbols[2])) { // multiple chars
+                        $symbol_preg_multi[] = preg_quote($symbols, '/');
+                    }
+                    else { // single char
+                        if ($symbols == '-') {
+                            // don't trigger range out of order error
+                            $symbol_preg_single[] = '\-';
+                        }
+                        else {
+                            $symbol_preg_single[] = preg_quote($symbols, '/');
+                        }
+                    }
+                }
+            }
+        }
+        //Now we have an array with each possible symbol as the key and the style as the actual data.
+        //This way we can set the correct style just the moment we highlight ...
+        //
+        //Now we need to rewrite our array to get a search string that
+        $symbol_preg = array();
+        if (!empty($symbol_preg_single)) {
+            $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
+        }
+        if (!empty($symbol_preg_multi)) {
+            $symbol_preg[] = implode('|', $symbol_preg_multi);
+        }
+        $this->language_data['SYMBOL_SEARCH'] = implode("|", $symbol_preg);
+
+
+        // cache optimized regexp for keyword matching
+        // remove old cache
+        $this->language_data['CACHED_KEYWORD_LISTS'] = array();
+        foreach (array_keys($this->language_data['KEYWORDS']) as $key) {
+            $this->optimize_keyword_group($key);
+        }
+
+        $this->parse_cache_built = true;
+    }
+
+    /**
      * Returns the code in $this->source, highlighted and surrounded by the
      * nessecary HTML.
      *
@@ -1563,6 +1650,11 @@ class GeSHi {
             // Timing is irrelevant
             $this->set_time($start_time, $start_time);
             return $this->finalise($result);
+        }
+
+        // make sure the parse cache is up2date
+        if (!$this->parse_cache_built) {
+            $this->build_parse_cache();
         }
 
         // Replace all newlines to a common form.
@@ -2737,6 +2829,7 @@ class GeSHi {
             return;
         }
         $this->loaded_language = $file_name;
+        $this->parse_cache_built = false;
         $this->enable_highlighting();
         $language_data = array();
         require $file_name;
@@ -2748,77 +2841,12 @@ class GeSHi {
             $this->strict_mode = true;
         }
 
-        // cache symbol regexp
-        //As this is a costy operation, we avoid doing it for multiple groups ...
-        //Instead we perform it for all symbols at once.
-        //
-        //For this to work, we need to reorganize the data arrays.
-        $this->language_data['SYMBOL_DATA'] = array();
-        $symbol_preg_multi = array(); // multi char symbols
-        $symbol_preg_single = array(); // single char symbols
-        foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
-            if (is_array($symbols)) {
-                foreach ($symbols as $sym) {
-                    $sym = GeSHi::hsc($sym);
-                    if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
-                        $this->language_data['SYMBOL_DATA'][$sym] = $key;
-                        if (isset($sym[2])) { // multiple chars
-                            $symbol_preg_multi[] = preg_quote($sym, '/');
-                        }
-                        else { // single char
-                            if ($sym == '-') {
-                                // don't trigger range out of order error
-                                $symbol_preg_single[] = '\-';
-                            }
-                            else {
-                                $symbol_preg_single[] = preg_quote($sym, '/');
-                            }
-                        }
-                    }
-                }
-            }
-            else {
-                $symbols = GeSHi::hsc($symbols);
-                if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
-                    $this->language_data['SYMBOL_DATA'][$symbols] = 0;
-                    if (isset($symbols[2])) { // multiple chars
-                        $symbol_preg_multi[] = preg_quote($symbols, '/');
-                    }
-                    else { // single char
-                        if ($symbols == '-') {
-                            // don't trigger range out of order error
-                            $symbol_preg_single[] = '\-';
-                        }
-                        else {
-                            $symbol_preg_single[] = preg_quote($symbols, '/');
-                        }
-                    }
-                }
-            }
-        }
-        //Now we have an array with each possible symbol as the key and the style as the actual data.
-        //This way we can set the correct style just the moment we highlight ...
-        //
-        //Now we need to rewrite our array to get a search string that
-        $symbol_preg = array();
-        if (!empty($symbol_preg_single)) {
-            $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
-        }
-        if (!empty($symbol_preg_multi)) {
-            $symbol_preg[] = implode('|', $symbol_preg_multi);
-        }
-        $this->language_data['SYMBOL_SEARCH'] = implode("|", $symbol_preg);
 
-        // remove old cache
-        $this->language_data['CACHED_KEYWORD_LISTS'] = array();
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
         foreach (array_keys($this->language_data['KEYWORDS']) as $key) {
             if (!empty($this->language_data['KEYWORDS'][$key])) {
                 $this->lexic_permissions['KEYWORDS'][$key] = true;
-
-                //NEW in 1.0.8: cache optimized regexp for keyword matching
-                $this->optimize_keyword_group($key);
             } else {
                 $this->lexic_permissions['KEYWORDS'][$key] = false;
             }
