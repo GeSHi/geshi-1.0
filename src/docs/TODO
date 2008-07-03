@@ -23,8 +23,7 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
   does what happens currently.
 - use analogous vars to $next_comment_regexp_pos for more GeSHi structures,
   should reduce number of functions called and hence improve performance
-- parse_non_string_part: $sym_search should be cached.
-  
+
   
   TODO for version 1.2.0
 

@@ -21,6 +21,8 @@ Version 1.0.8
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
      * Xorg configuration (milian)
+  -  setup caches for parsing on demand, makes stylesheet generators fast again (milian)
+  -  reduce strict errors & notices for language files (milian)
   -  Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
   -  Reduced memory overhead when highlighting keywords (BenBE)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
@@ -31,6 +33,7 @@ Version 1.0.8
   -  Broken handling with XML comments (BenBE)
   -  Some more memory & speed optimizations all over GeSHi (milian)
      - keyword linking now uses considerably less strtolower calls
+     - cache symbol search regexp and make symbol highlighting faster
   -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 100%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
