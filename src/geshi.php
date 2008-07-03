@@ -2580,7 +2580,7 @@ class GeSHi {
         if ($this->lexic_permissions['METHODS'] && $this->language_data['OOLANG']) {
             $oolang_spaces = "[\s]*";
             $oolang_before = "";
-            $oolang_after = "[a-zA-Z\*\(][a-zA-Z0-9_\*]*";
+            $oolang_after = "[a-zA-Z][a-zA-Z0-9_]*";
             if(isset($this->language_data['PARSER_CONTROL'])) {
                 if (isset($this->language_data['PARSER_CONTROL']['OOLANG'])) {
                     if (isset($this->language_data['PARSER_CONTROL']['OOLANG']['MATCH_BEFORE'])) {
