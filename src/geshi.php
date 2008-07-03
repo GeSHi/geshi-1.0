@@ -2603,7 +2603,7 @@ class GeSHi {
                     else {
                         $attributes = ' class="me' . $key . '"';
                     }
-                    $stuff_to_parse = preg_replace("/($oolang_before)(" . preg_quote($this->language_data['OBJECT_SPLITTERS'][$key], 1) . ")($oolang_spaces)($oolang_after)/", "\\1\\2\\3<|$attributes>\\4|>", $stuff_to_parse);
+                    $stuff_to_parse = preg_replace("/($oolang_before)(" . preg_quote($this->language_data['OBJECT_SPLITTERS'][$key], '/') . ")($oolang_spaces)($oolang_after)/", "\\1\\2\\3<|$attributes>\\4|>", $stuff_to_parse);
                 }
             }
         }
