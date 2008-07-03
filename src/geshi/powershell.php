@@ -229,6 +229,7 @@ $language_data = array (
             GESHI_BEFORE => '',
             GESHI_AFTER => '\3'
 			),
-        )
+        ),
+    'STRICT_MODE_APPLIES' => GESHI_ALWAYS
 );
 ?>

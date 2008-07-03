@@ -257,10 +257,7 @@ $language_data = array (
         'SYMBOLS' => array(
             0 => 'color: #000000;'
             ),
-        'REGEXPS' => array(
-            0 => 'color: #0000ff;',
-            1 => 'color: #ff0000;'
-            ),
+        'REGEXPS' => array(),
         'SCRIPT' => array(
             0 => 'background-color:#ffccff; font-weight: bold; color:#000000;',
             1 => '',
