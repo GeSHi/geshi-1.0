@@ -2653,11 +2653,11 @@ class GeSHi {
                     if (($highlight_data[1] <= $stuff_match_data[0][1]) &&
                         ($highlight_data[1] + strlen($highlight_data[0]) >= $stuff_match_data[0][1] + strlen($stuff_match_data[0][0])))
                     {
-                        //We found a match that was already highlighted ...
-                        unset($matches_in_stuff[$stuff_match_id]);
+                        //We found a match that was already highlighted ... skip it
                         continue 2;
                     }
                 }
+                // if we reach this point, we have a valid match which needs to be highlighted
                 $symbol_offsets[$stuff_match_data[0][1]] = $stuff_match_data[0][0];
             }
             unset($matches_in_stuff);
