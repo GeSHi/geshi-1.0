@@ -3203,7 +3203,7 @@ class GeSHi {
 
         $keywords[] = '<TIME>';
         $keywords[] = '{TIME}';
-        $replacements[] = $replacements[] = number_format($this->get_time(), 3);
+        $replacements[] = $replacements[] = number_format($time = $this->get_time(), 3);
 
         $keywords[] = '<LANGUAGE>';
         $keywords[] = '{LANGUAGE}';
@@ -3212,6 +3212,20 @@ class GeSHi {
         $keywords[] = '<VERSION>';
         $keywords[] = '{VERSION}';
         $replacements[] = $replacements[] = GESHI_VERSION;
+
+        $keywords[] = '<SPEED>';
+        $keywords[] = '{SPEED}';
+        if($time <= 0) {
+            $speed = 'N/A';
+        } else {
+            $speed = strlen($this->source) / $time;
+            if($speed >= 1024) {
+                $speed = sprintf("%.2f KB/s", $speed / 1024.0);
+            } else {
+                $speed = sprintf("%.0f B/s", $speed);
+            }
+        }
+        $replacements[] = $replacements[] = $speed;
 
         return str_replace($keywords, $replacements, $instr);
     }
