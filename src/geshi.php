@@ -140,6 +140,35 @@ define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
     **/
 define('GESHI_MAX_PCRE_SUBPATTERNS', 500);
 
+//Number format specification
+/** Basic number format for integers */
+define('GESHI_NUMBER_INT_BASIC', 1);        //Default integers \d+
+/** Enhanced number format for integers like seen in C */
+define('GESHI_NUMBER_INT_CSTYLE', 2);       //Default C-Style \d+[lL]?
+/** Number format to highlight binary numbers with a suffix "b" */
+define('GESHI_NUMBER_BIN_SUFFIX', 16);           //[01]+[bB]
+/** Number format to highlight binary numbers with a prefix % */
+define('GESHI_NUMBER_BIN_PREFIX_PERCENT', 32);   //%[01]+
+/** Number format to highlight binary numbers with a prefix 0b (C) */
+define('GESHI_NUMBER_BIN_PREFIX_0B', 64);        //0b[01]+
+/** Number format to highlight octal numbers with a leading zero */
+define('GESHI_NUMBER_OCT_PREFIX', 256);           //0[0-7]+
+/** Number format to highlight octal numbers with a suffix of o */
+define('GESHI_NUMBER_OCT_SUFFIX', 512);           //[0-7]+[oO]
+/** Number format to highlight hex numbers with a prefix 0x */
+define('GESHI_NUMBER_HEX_PREFIX', 4096);           //0x[0-9a-fA-F]+
+/** Number format to highlight hex numbers with a suffix of h */
+define('GESHI_NUMBER_HEX_SUFFIX', 8192);           //[0-9][0-9a-fA-F]*h
+/** Number format to highlight floating-point numbers without support for scientific notation */
+define('GESHI_NUMBER_FLT_NONSCI', 65536);           //23.42
+/** Number format to highlight floating-point numbers without support for scientific notation */
+define('GESHI_NUMBER_FLT_NONSCI_F', 131072);           //23.42f
+/** Number format to highlight floating-point numbers with support for scientific notation (E) and optional leading zero */
+define('GESHI_NUMBER_FLT_SCI_SHORT', 262144);       //1.33e7
+/** Number format to highlight floating-point numbers with support for scientific notation (E) and required leading digit */
+define('GESHI_NUMBER_FLT_SCI_ZERO', 524288);        //.815e42
+//Custom formats are passed by RX string
+
 // Error detection - use these to analyse faults
 /** No sourcecode to highlight was specified
  * @deprecated
