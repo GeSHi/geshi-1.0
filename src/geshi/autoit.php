@@ -38,16 +38,21 @@
 $language_data = array (
     'LANG_NAME' => 'AutoIT',
     'COMMENT_SINGLE' => array(';'),
-    'COMMENT_MULTI' => array('#comments-start' => '#comments-end'),
+    'COMMENT_MULTI' => array(
+        '#comments-start' => '#comments-end',
+        '#cs' => '#ce'),
+    'COMMENT_REGEXP' => array(0 => '/(?<!#)#(\s.*)?$/m'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array("'", '"'),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'continueloop', 'and', 'byref', 'case', 'const', 'dim', 'do', 'else',
-            'elseif', 'endfunc', 'endif', 'endselect', 'exit', 'exitloop', 'for',
-            'func', 'global', 'if', 'local', 'next', 'not', 'or', 'redim', 'return',
-            'select', 'step', 'then', 'to', 'until', 'wend', 'while'
+            'continuecase', 'continueloop', 'and', 'byref', 'case', 'const',
+            'dim', 'do', 'else', 'elseif', 'endfunc', 'endif', 'endselect',
+            'endswitch', 'exit', 'exitloop', 'for', 'func', 'global', 'if',
+            'local', 'next', 'not', 'or', 'redim', 'return', 'select', 'step',
+            'switch', 'then', 'to', 'until', 'wend', 'while',
+            'false', 'true'
             ),
         2 => array(
             '@appdatacommondir','@appdatadir','@autoitexe','@autoitversion','@commonfilesdir',
@@ -109,7 +114,11 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '&', '*', '/', '<', '>', '+', '-', '^', '='
+        '(', ')', '[', ']',
+        '+', '-', '*', '/', '&', '^',
+        '=', '+=', '-=', '*=', '/=', '&=',
+        '==', '<', '<=', '>', '>=',
+        ',',
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -149,10 +158,6 @@ $language_data = array (
             0 => 'font-weight: bold; color: #AA0000;'
             ),
         'SCRIPT' => array(
-            0 => '',
-            1 => '',
-            2 => '',
-            3 => ''
             )
         ),
     'URLS' => array(
@@ -166,23 +171,11 @@ $language_data = array (
     'OBJECT_SPLITTERS' => array(
         ),
     'REGEXPS' => array(
-       //Variables
+        //Variables
         0 => "[\\$]{1,2}[a-zA-Z_][a-zA-Z0-9_]*",
         ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
-        0 => array(
-            '<?php' => '?>'
-            ),
-        1 => array(
-            '<?' => '?>'
-            ),
-        2 => array(
-            '<%' => '%>'
-            ),
-        3 => array(
-            '<script language="php">' => '</script>'
-            )
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
