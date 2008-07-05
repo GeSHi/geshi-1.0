@@ -2951,7 +2951,6 @@ class GeSHi {
 
         // purge some unnecessary stuff
         $parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
-        $parsed_code = preg_replace('#<div[^>]+>(\s*)</div>#', '\\1', $parsed_code);
 
         // If we are using IDs for line numbers, there needs to be an overall
         // ID set to prevent collisions.
