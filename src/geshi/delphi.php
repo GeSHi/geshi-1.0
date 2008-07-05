@@ -2,8 +2,8 @@
 /*************************************************************************************
  * delphi.php
  * ----------
- * Author: Járja Norbert (jnorbi@vipmail.hu), Benny Baumann (BenBE@omorphia.de)
- * Copyright: (c) 2004 Járja Norbert, Benny Baumann (BenBE@omorphia.de), Nigel McNie (http://qbnz.com/highlighter)
+ * Author: Jï¿½rja Norbert (jnorbi@vipmail.hu), Benny Baumann (BenBE@omorphia.de)
+ * Copyright: (c) 2004 Jï¿½rja Norbert, Benny Baumann (BenBE@omorphia.de), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.7.22
  * Date Started: 2004/07/26
  *
@@ -210,7 +210,7 @@ $language_data = array (
             ),
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,

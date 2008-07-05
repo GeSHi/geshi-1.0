@@ -221,7 +221,7 @@ $language_data = array (
         '+', '-', '*', '/', '%', '&', '|', '^', '<', '>', '=', '~',
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,

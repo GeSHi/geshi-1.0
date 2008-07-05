@@ -2,7 +2,7 @@
 /**
  * verilog.php
  * -----------
- * Author: Günter Dannoritzer <dannoritzer@web.de>
+ * Author: Gï¿½nter Dannoritzer <dannoritzer@web.de>
  * Copyright: (C) 2008 Guenter Dannoritzer
  * Release Version: 1.0.7.22
  * Date Started: 2008/05/28
@@ -97,7 +97,7 @@ $language_data = array (
         '@', ';', ','
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,

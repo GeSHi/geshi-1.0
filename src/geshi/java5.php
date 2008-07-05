@@ -606,7 +606,7 @@ $language_data = array (
         '(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?'
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         /* all Java keywords are case sensitive */
         1 => true, 2 => true, 3 => true, 4 => true,
         5 => true, 6 => true, 7 => true, 8 => true, 9 => true,

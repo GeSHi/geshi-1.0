@@ -128,7 +128,7 @@ $language_data = array (
            '++', '!!'
             ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => true,
         2 => true, /* functions name are case seinsitive */
         3 => true, /* types name too */
