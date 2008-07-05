@@ -2213,7 +2213,7 @@ class GeSHi {
                                 foreach ($this->language_data['COMMENT_SINGLE'] as $comment_key => $comment_mark) {
                                     $com_len = strlen($comment_mark);
                                     $test_str = substr($part, $i, $com_len);
-                                    if ($this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS]) {
+                                    if (!$this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS]) {
                                         $match = ($comment_mark == $test_str);
                                     }
                                     else {
