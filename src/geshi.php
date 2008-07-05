@@ -2506,8 +2506,10 @@ class GeSHi {
         //
         // NEW ONE: Brice Bernard
         //
+        $numbers_found = false;
         if ($this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse )) {
             $stuff_to_parse = preg_replace('/([-+]?\\b(?:[0-9]*\\.)?[0-9]+\\b)/', '<|/NUM!/>\\1|>', $stuff_to_parse);
+            $numbers_found = true;
         }
 
         // Highlight keywords
@@ -2571,14 +2573,16 @@ class GeSHi {
             $stuff_to_parse = str_replace("/$k/", $attributes, $stuff_to_parse);
         }
 
-        // Put number styles in
-        if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
-            $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
+        if ($numbers_found) {
+            // Put number styles in
+            if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
+                $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
+            }
+            else {
+                $attributes = ' class="nu0"';
+            }
+            $stuff_to_parse = str_replace('/NUM!/', $attributes, $stuff_to_parse);
         }
-        else {
-            $attributes = ' class="nu0"';
-        }
-        $stuff_to_parse = str_replace('/NUM!/', $attributes, $stuff_to_parse);
 
         //
         // Highlight methods and fields in objects
