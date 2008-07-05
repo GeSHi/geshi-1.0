@@ -3071,13 +3071,16 @@ class GeSHi {
                     // Remove \n because it stuffs up <pre> header
                     $parsed_code .= $code[$i] . "</div>";
                 } else {
-                    $parsed_code .= $code[$i] . "\n";
+                    $parsed_code .= $code[$i];
+                    if ($i + 1 < $n) {
+                        $parsed_code .= "\n";
+                    }
                 }
                 unset($code[$i]);
             }
         }
-
-        return $this->header() . chop($parsed_code) . $this->footer();
+        $parsed_code = $this->header() . $parsed_code . $this->footer();
+        return $parsed_code;
     }
 
     /**
