@@ -42,6 +42,7 @@ Version 1.0.8
   -  Improved overall string support:
      * Added support for multichar string delimiters (SF#1932083, BenBE)
      * Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
+     * Support for multiple styles of strings depending on the starter (BenBE)
   -  Added support for parameters beginning with dash in BASH language (BenBE)
   -  Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)

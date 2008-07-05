@@ -1744,15 +1744,6 @@ class GeSHi {
         //preload the escape char for faster checking ...
         $escaped_escape_char = GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
 
-        if (!$this->use_classes) {
-            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][0] . '"';
-            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][0] . '"';
-        }
-        else {
-            $string_attributes = ' class="st0"';
-            $escape_char_attributes = ' class="es0"';
-        }
-
         // this is used for single-line comments
         $sc_disallowed_before = "";
         $sc_disallowed_after = "";
@@ -1853,13 +1844,25 @@ class GeSHi {
                                     $string_started = true;
                                 }
                             }
-
-                            // @todo: There is a bug if we have only multichar
-                            //starters and the source contains a sequence that
-                            //is not the start of a string.
                         }
 
                         if($string_started) {
+                            // Hand out the correct style information for this string
+                            $string_key = array_search($char, $this->language_data['QUOTEMARKS']);
+                            if(!isset($this->language_data['STYLES']['STRINGS'][$string_key]) ||
+                                !isset($this->language_data['STYLES']['ESCAPE_CHAR'][$string_key])) {
+                                $string_key = 0;
+                            }
+
+                            if (!$this->use_classes) {
+                                $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][$string_key] . '"';
+                                $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][$string_key] . '"';
+                            }
+                            else {
+                                $string_attributes = ' class="st'.$string_key.'"';
+                                $escape_char_attributes = ' class="es'.$string_key.'"';
+                            }
+
                             // parse the stuff before this
                             $result .= $this->parse_non_string_part($stuff_to_parse);
                             $stuff_to_parse = '';
