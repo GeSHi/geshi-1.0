@@ -1628,6 +1628,31 @@ class GeSHi {
             $this->optimize_keyword_group($key);
         }
 
+        // brackets
+        if ($this->lexic_permissions['BRACKETS']) {
+            $this->language_data['CACHE_BRACKET_MATCH'] = array('[', ']', '(', ')', '{', '}');
+            if (!$this->use_classes && isset($this->language_data['STYLES']['BRACKETS'][0])) {
+                $this->language_data['CACHE_BRACKET_REPLACE'] = array(
+                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#91;|>',
+                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#93;|>',
+                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#40;|>',
+                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#41;|>',
+                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#123;|>',
+                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#125;|>',
+                );
+            }
+            else {
+                $this->language_data['CACHE_BRACKET_REPLACE'] = array(
+                    '<| class="br0">&#91;|>',
+                    '<| class="br0">&#93;|>',
+                    '<| class="br0">&#40;|>',
+                    '<| class="br0">&#41;|>',
+                    '<| class="br0">&#123;|>',
+                    '<| class="br0">&#125;|>',
+                );
+            }
+        }
+
         $this->parse_cache_built = true;
     }
 
@@ -2625,28 +2650,8 @@ class GeSHi {
         // be highlighting regardless
         //
         if ($this->lexic_permissions['BRACKETS']) {
-            $code_entities_match = array('[', ']', '(', ')', '{', '}');
-            if (!$this->use_classes && isset($this->language_data['STYLES']['BRACKETS'][0])) {
-                $code_entities_replace = array(
-                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#91;|>',
-                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#93;|>',
-                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#40;|>',
-                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#41;|>',
-                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#123;|>',
-                    '<| style="' . $this->language_data['STYLES']['BRACKETS'][0] . '">&#125;|>',
-                );
-            }
-            else {
-                $code_entities_replace = array(
-                    '<| class="br0">&#91;|>',
-                    '<| class="br0">&#93;|>',
-                    '<| class="br0">&#40;|>',
-                    '<| class="br0">&#41;|>',
-                    '<| class="br0">&#123;|>',
-                    '<| class="br0">&#125;|>',
-                );
-            }
-            $stuff_to_parse = str_replace( $code_entities_match,  $code_entities_replace, $stuff_to_parse );
+            $stuff_to_parse = str_replace( $this->language_data['CACHE_BRACKET_MATCH'],
+                              $this->language_data['CACHE_BRACKET_REPLACE'], $stuff_to_parse );
         }
 
         //FIX for symbol highlighting ...
