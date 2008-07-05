@@ -17,6 +17,7 @@ Version 1.0.8
      * APT sources.list (milian)
      * Boo (Marcus Griep)
      * CIL (Common Intermediate Language, .NET Assembly) (Marcus Griep)
+     * COBOL (Benny Baumann)
      * KLoneC (Mickael Auger)
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
@@ -24,22 +25,23 @@ Version 1.0.8
   -  setup caches for parsing on demand, makes stylesheet generators fast again (milian)
   -  reduce strict errors & notices for language files (milian)
   -  Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
-  -  Reduced memory overhead when highlighting keywords (BenBE)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
   -  Improved comment handling with TCL (Lars Hellström, BenBE)
   -  Removed explicit escaping of / in Regular Expressions (BenBE)
   -  Ignoring empty keyword groups when highlighting (milian)
-  -  Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
   -  Broken handling with XML comments (BenBE)
   -  Some more memory & speed optimizations all over GeSHi (milian)
-     - keyword linking now uses considerably less strtolower calls
-     - cache symbol search regexp and make symbol highlighting faster
-  -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 100%.
+     * Reduced memory overhead when highlighting keywords (BenBE)
+     * Keyword Linking now uses considerably less strtolower calls (milian)
+     * Cache Symbol Search Regexp and make Symbol Highlighting faster (milian)
+  -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 50%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
   -  Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
   -  Fixed HTML comments spawning multiple lines producing invalid XHTML output (SF#1738173, BenBE)
-  -  Added support for multichar string delimiters (SF#1932083, BenBE)
+  -  Improved overall string support:
+     * Added support for multichar string delimiters (SF#1932083, BenBE)
+     * Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
   -  Added support for parameters beginning with dash in BASH language (BenBE)
   -  Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
