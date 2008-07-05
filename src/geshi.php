@@ -2946,7 +2946,7 @@ class GeSHi {
 
         // Add HTML whitespace stuff if we're using the <div> header
         if ($this->header_type != GESHI_HEADER_PRE) {
-            $parsed_code = $this->indent($parsed_code);
+            $this->indent($parsed_code);
         }
 
         // purge some unnecessary stuff
