@@ -80,7 +80,7 @@ if (isset($_POST['submit'])) {
     // Use the header/footer functionality. This puts a div with content within the PRE element, so it is
     // affected by the styles set by set_overall_style. So if the PRE has a border then the header/footer will
     // appear inside it.
-    $geshi->set_header_content('GeSHi &copy; 2004-2007, Nigel McNie, 2007-2008 Benny Baumann. View source of example.php for example of using GeSHi');
+    $geshi->set_header_content('<SPEED> <TIME> GeSHi &copy; 2004-2007, Nigel McNie, 2007-2008 Benny Baumann. View source of example.php for example of using GeSHi');
     $geshi->set_header_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
 
     // You can use <TIME> and <VERSION> as placeholders

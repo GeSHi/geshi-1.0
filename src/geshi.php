@@ -2961,7 +2961,7 @@ class GeSHi {
 
         // Get code into lines
         $code = explode("\n", $parsed_code);
-        $parsed_code = '';
+        $parsed_code = $this->header();
 
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
@@ -3079,7 +3079,7 @@ class GeSHi {
                 unset($code[$i]);
             }
         }
-        $parsed_code = $this->header() . $parsed_code . $this->footer();
+        $parsed_code = $parsed_code . $this->footer();
         return $parsed_code;
     }
 
