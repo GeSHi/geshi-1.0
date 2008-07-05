@@ -1564,68 +1564,74 @@ class GeSHi {
         //Instead we perform it for all symbols at once.
         //
         //For this to work, we need to reorganize the data arrays.
-        $this->language_data['SYMBOL_DATA'] = array();
-        $symbol_preg_multi = array(); // multi char symbols
-        $symbol_preg_single = array(); // single char symbols
-        foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
-            if (is_array($symbols)) {
-                foreach ($symbols as $sym) {
-                    $sym = GeSHi::hsc($sym);
-                    if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
-                        $this->language_data['SYMBOL_DATA'][$sym] = $key;
-                        if (isset($sym[2])) { // multiple chars
-                            $symbol_preg_multi[] = preg_quote($sym, '/');
+        if ($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
+            $this->language_data['SYMBOL_DATA'] = array();
+            $symbol_preg_multi = array(); // multi char symbols
+            $symbol_preg_single = array(); // single char symbols
+            foreach($this->language_data['SYMBOLS'] as $key => $symbols) {
+                if (is_array($symbols)) {
+                    foreach ($symbols as $sym) {
+                        $sym = GeSHi::hsc($sym);
+                        if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
+                            $this->language_data['SYMBOL_DATA'][$sym] = $key;
+                            if (isset($sym[2])) { // multiple chars
+                                $symbol_preg_multi[] = preg_quote($sym, '/');
+                            }
+                            else { // single char
+                                if ($sym == '-') {
+                                    // don't trigger range out of order error
+                                    $symbol_preg_single[] = '\-';
+                                }
+                                else {
+                                    $symbol_preg_single[] = preg_quote($sym, '/');
+                                }
+                            }
+                        }
+                    }
+                }
+                else {
+                    $symbols = GeSHi::hsc($symbols);
+                    if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
+                        $this->language_data['SYMBOL_DATA'][$symbols] = 0;
+                        if (isset($symbols[2])) { // multiple chars
+                            $symbol_preg_multi[] = preg_quote($symbols, '/');
                         }
                         else { // single char
-                            if ($sym == '-') {
+                            if ($symbols == '-') {
                                 // don't trigger range out of order error
                                 $symbol_preg_single[] = '\-';
                             }
                             else {
-                                $symbol_preg_single[] = preg_quote($sym, '/');
+                                $symbol_preg_single[] = preg_quote($symbols, '/');
                             }
                         }
                     }
                 }
             }
-            else {
-                $symbols = GeSHi::hsc($symbols);
-                if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
-                    $this->language_data['SYMBOL_DATA'][$symbols] = 0;
-                    if (isset($symbols[2])) { // multiple chars
-                        $symbol_preg_multi[] = preg_quote($symbols, '/');
-                    }
-                    else { // single char
-                        if ($symbols == '-') {
-                            // don't trigger range out of order error
-                            $symbol_preg_single[] = '\-';
-                        }
-                        else {
-                            $symbol_preg_single[] = preg_quote($symbols, '/');
-                        }
-                    }
-                }
+            //Now we have an array with each possible symbol as the key and the style as the actual data.
+            //This way we can set the correct style just the moment we highlight ...
+            //
+            //Now we need to rewrite our array to get a search string that
+            $symbol_preg = array();
+            if (!empty($symbol_preg_single)) {
+                $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
             }
+            if (!empty($symbol_preg_multi)) {
+                $symbol_preg[] = implode('|', $symbol_preg_multi);
+            }
+            $this->language_data['SYMBOL_SEARCH'] = implode("|", $symbol_preg);
         }
-        //Now we have an array with each possible symbol as the key and the style as the actual data.
-        //This way we can set the correct style just the moment we highlight ...
-        //
-        //Now we need to rewrite our array to get a search string that
-        $symbol_preg = array();
-        if (!empty($symbol_preg_single)) {
-            $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
-        }
-        if (!empty($symbol_preg_multi)) {
-            $symbol_preg[] = implode('|', $symbol_preg_multi);
-        }
-        $this->language_data['SYMBOL_SEARCH'] = implode("|", $symbol_preg);
 
 
         // cache optimized regexp for keyword matching
         // remove old cache
         $this->language_data['CACHED_KEYWORD_LISTS'] = array();
         foreach (array_keys($this->language_data['KEYWORDS']) as $key) {
-            $this->optimize_keyword_group($key);
+            if (!isset($this->lexic_permissions['KEYWORDS'][$key]) ||
+                    $this->lexic_permissions['KEYWORDS'][$key])
+            {
+                $this->optimize_keyword_group($key);
+            }
         }
 
         // brackets
