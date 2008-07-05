@@ -1699,9 +1699,11 @@ class GeSHi {
                             // code in it
                             ++$k;
                             $parts[$k][0] = $open;
-                            $close_i = strpos($code, $close, $i + $open_strlen)  + strlen($close);
+                            $close_i = strpos($code, $close, $i + $open_strlen);
                             if ($close_i === false) {
                                 $close_i = $length - 1;
+                            } else {
+                                $close_i += strlen($close);
                             }
                             $parts[$k][1] = substr($code, $i, $close_i - $i);
                             $i = $close_i - 1;
