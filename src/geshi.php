@@ -68,6 +68,8 @@ define('GESHI_HEADER_NONE', 0);
 define('GESHI_HEADER_DIV', 1);
 /** Use a "pre" to surround the source */
 define('GESHI_HEADER_PRE', 2);
+/** Use a pre to wrap lines when line numbers are enabled or to wrap the whole code. */
+define('GESHI_HEADER_PRE_VALID', 3);
 
 // Capatalisation constants
 /** Lowercase keywords found */
@@ -360,7 +362,7 @@ class GeSHi {
      *  The style for the actual code
      * @var string
      */
-    var $code_style = 'font-family: monospace; font-weight: normal; font-style: normal;';
+    var $code_style = 'font-family: monospace; font-weight: normal; font-style: normal; margin:0;';
 
     /**
      * The overall class for this code block
@@ -576,13 +578,13 @@ class GeSHi {
      * @since 1.0.0
      */
     function set_header_type($type) {
-        if (GESHI_HEADER_DIV != $type && GESHI_HEADER_PRE != $type && GESHI_HEADER_NONE != $type) {
+        if (!in_array($type, array(GESHI_HEADER_NONE, GESHI_HEADER_DIV, GESHI_HEADER_PRE, GESHI_HEADER_PRE_VALID))) {
             $this->error = GESHI_ERROR_INVALID_HEADER_TYPE;
             return;
         }
         $this->header_type = $type;
         // Set a default overall style if the header is a <div>
-        if (GESHI_HEADER_DIV == $type && !$this->overall_style) {
+        if ((GESHI_HEADER_DIV == $type || GESHI_HEADER_PRE_VALID == $type) && !$this->overall_style) {
             $this->overall_style = 'font-family: monospace;';
         }
     }
@@ -2945,7 +2947,7 @@ class GeSHi {
         }
 
         // Add HTML whitespace stuff if we're using the <div> header
-        if ($this->header_type != GESHI_HEADER_PRE) {
+        if ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) {
             $this->indent($parsed_code);
         }
 
@@ -2967,8 +2969,7 @@ class GeSHi {
         if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
             // If we're using the <pre> header, we shouldn't add newlines because
             // the <pre> will line-break them (and the <li>s already do this for us)
-            $ls = ($this->header_type != GESHI_HEADER_PRE) ? "\n" : '';
-
+            $ls = ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) ? "\n" : '';
             // Set vars to defaults for following loop
             $i = 0;
 
@@ -3000,9 +3001,6 @@ class GeSHi {
                         // code on that line
                         $def_attr = ' style="' . $this->code_style . '"';
                     }
-                    // Span or div?
-                    $start = "<div$def_attr>";
-                    $end = '</div>';
                 }
                 else {
                     if ($this->use_classes) {
@@ -3015,6 +3013,12 @@ class GeSHi {
                         $attrs['style'][] = $this->line_style1;
                         $def_attr = ' style="' . $this->code_style . '"';
                     }
+                }
+                if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+                    $start = "<pre$def_attr>";
+                    $end = '</pre>';
+                } else {
+                    // Span or div?
                     $start = "<div$def_attr>";
                     $end = '</div>';
                 }
@@ -3115,12 +3119,13 @@ class GeSHi {
             if ($this->header_type == GESHI_HEADER_PRE) {
                 return "<pre$attributes>$header<ol$ol_attributes>";
             }
-            else if ($this->header_type == GESHI_HEADER_DIV) {
+            else if ($this->header_type == GESHI_HEADER_DIV
+                    || $this->header_type == GESHI_HEADER_PRE_VALID) {
                 return "<div$attributes>$header<ol$ol_attributes>";
             }
         }
         else {
-            if ($this->header_type == GESHI_HEADER_PRE) {
+            if ($this->header_type == GESHI_HEADER_PRE || $this->header_type == GESHI_HEADER_PRE_VALID) {
                 return "<pre$attributes>$header"  .
                     ($this->force_code_block ? '<div>' : '');
             }
@@ -3177,6 +3182,13 @@ class GeSHi {
             }
             return ($this->force_code_block ? '</div>' : '') .
                 "$footer_content</div>";
+        }
+        if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "</ol>$footer_content</div>";
+            }
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer_content</pre>";
         }
         else {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
