@@ -46,7 +46,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'Apache Log',
+    'LANG_NAME' => 'Apache Config',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -111,7 +111,7 @@ $language_data = array (
           ),
         /*keywords 2*/
         2 => array(
-            'on','off','standalone','inetd',
+            'on','off','standalone','inetd','indexes',
             'force-response-1.0','downgrade-1.0','nokeepalive',
             'ndexes','includes','followsymlinks','none',
             'x-compress','x-gzip'
