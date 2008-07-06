@@ -2379,8 +2379,7 @@ class GeSHi {
      * Swaps out spaces and tabs for HTML indentation. Not needed if
      * the code is in a pre block...
      *
-     * @param  string The source to indent
-     * @return string The source with HTML indenting applied
+     * @param  string The source to indent (reference!)
      * @since  1.0.0
      * @access private
      */
@@ -2474,8 +2473,6 @@ class GeSHi {
                 $result = str_replace("\n", $this->line_ending, $result);
             }
         }
-
-        return $result;
     }
 
     /**
@@ -2989,8 +2986,7 @@ class GeSHi {
      * Takes the parsed code and various options, and creates the HTML
      * surrounding it to make it look nice.
      *
-     * @param  string The code already parsed
-     * @return string The code nicely finalised
+     * @param  string The code already parsed (reference!)
      * @since  1.0.0
      * @access private
      */
@@ -3142,7 +3138,6 @@ class GeSHi {
         }
 
         $parsed_code .= $this->footer();
-        return $parsed_code;
     }
 
     /**
