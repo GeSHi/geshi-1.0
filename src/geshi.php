@@ -160,13 +160,13 @@ define('GESHI_NUMBER_HEX_PREFIX', 4096);           //0x[0-9a-fA-F]+
 /** Number format to highlight hex numbers with a suffix of h */
 define('GESHI_NUMBER_HEX_SUFFIX', 8192);           //[0-9][0-9a-fA-F]*h
 /** Number format to highlight floating-point numbers without support for scientific notation */
-define('GESHI_NUMBER_FLT_NONSCI', 65536);           //23.42
+define('GESHI_NUMBER_FLT_NONSCI', 65536);          //\d+\.\d+
 /** Number format to highlight floating-point numbers without support for scientific notation */
-define('GESHI_NUMBER_FLT_NONSCI_F', 131072);           //23.42f
+define('GESHI_NUMBER_FLT_NONSCI_F', 131072);       //\d+(\.\d+)?f
 /** Number format to highlight floating-point numbers with support for scientific notation (E) and optional leading zero */
-define('GESHI_NUMBER_FLT_SCI_SHORT', 262144);       //1.33e7
+define('GESHI_NUMBER_FLT_SCI_SHORT', 262144);      //\.\d+e\d+
 /** Number format to highlight floating-point numbers with support for scientific notation (E) and required leading digit */
-define('GESHI_NUMBER_FLT_SCI_ZERO', 524288);        //.815e42
+define('GESHI_NUMBER_FLT_SCI_ZERO', 524288);       //\d+(\.\d+)?e\d+
 //Custom formats are passed by RX string
 
 // Error detection - use these to analyse faults
