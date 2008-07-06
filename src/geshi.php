@@ -1882,9 +1882,10 @@ class GeSHi {
                     for ($i = 0; $i < $length; ++$i) {
                         // Get the next char
                         $char = $part[$i];
+                        $char_len = 1;
 
                         $string_started = false;
-                        if (isset($is_string_starter[$char]) && $this->lexic_permissions['STRINGS']) {
+                        if ($this->lexic_permissions['STRINGS'] && isset($is_string_starter[$char])) {
                             // Possibly the start of a new string ...
 
                             //Check which starter it was ...
@@ -1908,6 +1909,7 @@ class GeSHi {
                                     $string_started = true;
                                 }
                             }
+                            $char_len = strlen($char);
                         }
 
                         if($string_started) {
@@ -1936,7 +1938,7 @@ class GeSHi {
 
                             // look for closing quote
                             $start = $i;
-                            while ($close_pos = strpos($part, $char, $start + strlen($char))) {
+                            while ($close_pos = strpos($part, $char, $start + $char_len)) {
                                 $start = $close_pos;
                                 if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
                                     // check wether this quote is escaped or if it is something like '\\'
@@ -1958,8 +1960,8 @@ class GeSHi {
                               $close_pos = $length;
                             }
 
-                            $string = substr($part, $i, $close_pos - $i + strlen($char));
-                            $i = $close_pos + strlen($char) - 1;
+                            $string = substr($part, $i, $close_pos - $i + $char_len);
+                            $i = $close_pos + $char_len - 1;
 
                             // handle escape chars and encode html chars
                             // (special because when we have escape chars within our string they may not be escaped)
@@ -1996,7 +1998,7 @@ class GeSHi {
                             $string = '';
                             continue;
                         }
-                        else if ($hq && substr($part, $i, $hq_strlen) == $hq && $this->lexic_permissions['STRINGS']) {
+                        else if ($this->lexic_permissions['STRINGS'] && $hq && substr($part, $i, $hq_strlen) == $hq) {
                             // The start of a hard quoted string
 
                             // parse the stuff before this
@@ -2169,6 +2171,7 @@ class GeSHi {
                                     $com_len = strlen($open);
                                     $test_str = substr( $part, $i, $com_len );
                                     $test_str_match = $test_str;
+                                    //TODO: define in lang file wether multi comments are case sensitive
                                     if (strcasecmp($open, $test_str) == 0) {
                                         $COMMENT_MATCHED = true;
                                         //@todo If remove important do remove here
@@ -2700,10 +2703,15 @@ class GeSHi {
             // Also Rebuild the matches array to be ordered by offset ...
             $symbol_offsets = array();
             foreach ($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
+                $match_strlen = strlen($stuff_match_data[0][0]);
                 foreach ($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
+                    if (!isset($highlight_data['strlen'])) {
+                        $highlighted_in_stuff[0][$highlight_id]['strlen'] = strlen($highlight_data[0]);
+                        $highlight_data = $highlighted_in_stuff[0][$highlight_id];
+                    }
                     //Do a range check of the found highlight identifier and the OOP match ...
                     if (($highlight_data[1] <= $stuff_match_data[0][1]) &&
-                        ($highlight_data[1] + strlen($highlight_data[0]) >= $stuff_match_data[0][1] + strlen($stuff_match_data[0][0])))
+                        ($highlight_data[1] + $highlight_data['strlen'] >= $stuff_match_data[0][1] + $match_strlen))
                     {
                         //We found a match that was already highlighted ... skip it
                         continue 2;
