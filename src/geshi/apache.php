@@ -48,7 +48,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'Apache Config',
+    'LANG_NAME' => 'Apache configuration',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -191,7 +191,8 @@ $language_data = array (
         ),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
-            'BRACKETS' => GESHI_NEVER
+            'BRACKETS' => GESHI_NEVER,
+            'SYMBOLS' => GESHI_NEVER
         ),
     )
 );
