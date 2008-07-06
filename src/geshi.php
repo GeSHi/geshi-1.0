@@ -1284,8 +1284,10 @@ class GeSHi {
             $this->language_data['KEYWORDS'][$key][] = $word;
 
             //NEW in 1.0.8 don't recompile the whole optimized regexp, simply append it
-            $subkey = count($this->language_data['CACHED_KEYWORD_LISTS'][$key]) - 1;
-            $this->language_data['CACHED_KEYWORD_LISTS'][$key][$subkey] .= '|' . preg_quote($word, '/');
+            if ($this->parse_cache_built) {
+                $subkey = count($this->language_data['CACHED_KEYWORD_LISTS'][$key]) - 1;
+                $this->language_data['CACHED_KEYWORD_LISTS'][$key][$subkey] .= '|' . preg_quote($word, '/');
+            }
         }
     }
 
@@ -1295,9 +1297,9 @@ class GeSHi {
      * @param int    The key of the keyword group to remove the keyword from
      * @param string The word to remove from the keyword group
      * @param bool   Wether to automatically recompile the optimized regexp list or not.
-     *               Note: if you set this to false, you have to manually call
-     *               @see GeSHi::optimize_keyword_group() or the removed keyword will stay
-     *               in cache and still be highlighted! On the other hand it might be too
+     *               Note: if you set this to false and @see GeSHi::build_parse_cache() was already called,
+     *               you have to manually call @see GeSHi::optimize_keyword_group() or the removed
+     *               keyword will stay in cache and still be highlighted! On the other hand it might be too
      *               expensive to recompile the regexp list for every removal if you want to
      *               remove a lot of keywords.
      * @since 1.0.0
@@ -1308,7 +1310,7 @@ class GeSHi {
             unset($this->language_data['KEYWORDS'][$key][$key_to_remove]);
 
             //NEW in 1.0.8, optionally recompile keyword group
-            if ($recompile) {
+            if ($recompile && $this->parse_cache_built) {
                 $this->optimize_keyword_group($key);
             }
         }
@@ -1335,7 +1337,9 @@ class GeSHi {
         $this->language_data['STYLES']['KEYWORDS'][$key] = $styles;
 
         //NEW in 1.0.8, cache keyword regexp
-        $this->optimize_keyword_group($key);
+        if ($this->parse_cache_built) {
+            $this->optimize_keyword_group($key);
+        }
     }
 
     /**
