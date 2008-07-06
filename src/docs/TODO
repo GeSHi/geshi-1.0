@@ -18,9 +18,6 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
   while making highlighting much "safer"
 - Rework the load_from_file method and the one for getting a file extension,
   as documented in the source.
-- Add option for "standards compliant" or "default" modes, where standards
-  compliance generates the <pre> tags within the <li>s and non compliant mode
-  does what happens currently.
 - use analogous vars to $next_comment_regexp_pos for more GeSHi structures,
   should reduce number of functions called and hence improve performance
 
