@@ -24,7 +24,6 @@ Version 1.0.8
      * Xorg configuration (milian)
   -  setup caches for parsing on demand, makes stylesheet generators fast again (milian)
   -  reduce strict errors & notices for language files (milian)
-  -  Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
   -  Improved comment handling with TCL (Lars Hellström, BenBE)
   -  Removed explicit escaping of / in Regular Expressions (BenBE)
@@ -34,6 +33,9 @@ Version 1.0.8
      * Reduced memory overhead when highlighting keywords (BenBE)
      * Keyword Linking now uses considerably less strtolower calls (milian)
      * Cache Symbol Search Regexp and make Symbol Highlighting faster (milian)
+     * Use more native functions like substr_replace and strcasecmp to speed things up (milian)
+     * Use considerably less strlen() calls on various points by caching the results (milian)
+     * Properly set comments to be case insensitive where appropriate to increase performance (milian)
   -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 50%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
@@ -43,6 +45,7 @@ Version 1.0.8
      * Added support for multichar string delimiters (SF#1932083, BenBE)
      * Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
      * Support for multiple styles of strings depending on the starter (BenBE)
+     * Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
   -  Added support for parameters beginning with dash in BASH language (BenBE)
   -  Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
   -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
@@ -55,6 +58,11 @@ Version 1.0.8
   -  Fixed economy mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
   -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
   -  Some typos and mistakes in the documentation (BenBE)
+  -  Added new GESHI_HEADER_PRE_VALID type which uses the following markup:
+     * With line numbers:     <div>header<ol><li><pre>...</pre></li>...</ol></div>
+     * Without line numbers:  <pre>header...CODE...</pre>
+     => valid HTML and no need for &nbsp; indentation
+     
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
