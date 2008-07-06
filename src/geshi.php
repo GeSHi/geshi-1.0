@@ -513,14 +513,16 @@ class GeSHi {
      */
     function error() {
         if ($this->error) {
-            $msg = $this->error_messages[$this->error];
+            //Put some template variables for debugging here ...
             $debug_tpl_vars = array(
                 '{LANGUAGE}' => $this->language,
                 '{PATH}' => $this->language_path
             );
-            foreach ($debug_tpl_vars as $tpl => $var) {
-                $msg = str_replace($tpl, $var, $msg);
-            }
+            $msg = str_replace(
+                array_keys($debug_tpl_vars),
+                array_values($debug_tpl_vars),
+                $this->error_messages[$this->error]);
+
             return "<br /><strong>GeSHi Error:</strong> $msg (code $this->error)<br />";
         }
         return false;
