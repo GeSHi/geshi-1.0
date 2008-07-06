@@ -1649,15 +1649,11 @@ class GeSHi {
                         $this->language_data['SYMBOL_DATA'][$symbols] = 0;
                         if (isset($symbols[2])) { // multiple chars
                             $symbol_preg_multi[] = preg_quote($symbols, '/');
-                        }
-                        else { // single char
-                            if ($symbols == '-') {
-                                // don't trigger range out of order error
-                                $symbol_preg_single[] = '\-';
-                            }
-                            else {
-                                $symbol_preg_single[] = preg_quote($symbols, '/');
-                            }
+                        } else if ($symbols == '-') {
+                            // don't trigger range out of order error
+                            $symbol_preg_single[] = '\-';
+                        } else { // single char
+                            $symbol_preg_single[] = preg_quote($symbols, '/');
                         }
                     }
                 }
