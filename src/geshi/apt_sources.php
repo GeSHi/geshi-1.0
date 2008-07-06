@@ -51,6 +51,7 @@ $language_data = array (
             'stable', 'old-stable', 'testing', 'testing-proposed-updates',
             'unstable', 'unstable-proposed-updates', 'experimental',
             'non-US', 'security', 'volatile', 'volatile-sloppy',
+            'main', 'restricted', 'preview', 'apt-build',
             //Debian
             'buzz', 'rex', 'bo', 'hamm', 'slink', 'potato', 'woody', 'sarge',
             'etch', 'lenny', 'sid',
@@ -64,7 +65,7 @@ $language_data = array (
             'gutsy', 'gutsy-updates', 'gutsy-security', 'gutsy-proposed', 'gutsy-backports',
             'hardy', 'hardy-updates', 'hardy-security', 'hardy-proposed', 'hardy-backports',
             'intrepid', 'intrepid-updates', 'intrepid-security', 'intrepid-proposed', 'intrepid-backports',
-            'commercial',
+            'commercial', 'universe', 'multiverse'
             ),
     ),
     'REGEXPS' => array(
@@ -75,10 +76,12 @@ $language_data = array (
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
+        2 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #00007f;',
+            2 => 'color: #b1b100;'
             ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',
@@ -121,6 +124,10 @@ $language_data = array (
             'ESCAPE_CHAR' => GESHI_NEVER,
             'BRACKETS' => GESHI_NEVER,
             'STRINGS' => GESHI_NEVER,
+        ),
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#;>|^\/',
+            'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-&\.'
         )
     ),
     'TAB_WIDTH' => 4
