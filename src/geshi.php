@@ -1512,7 +1512,10 @@ class GeSHi {
      *
      * @param mixed An array of line numbers to highlight, or just a line
      *              number on its own.
-     * @param string A string specifying the style to use for this line
+     * @param string A string specifying the style to use for this line.
+     *              If null is specified, the default style is used.
+     *              If false is specified, the line will be removed from
+     *              special highlighting
      * @since 1.0.2
      * @todo  Some data replication here that could be cut down on
      */
@@ -1526,10 +1529,15 @@ class GeSHi {
             //Mark the line as being highlighted specially
             $lines = intval($lines);
             $this->highlight_extra_lines[$lines] = $lines;
-            if ($style != null) {
-                $this->highlight_extra_lines_styles[$lines] = $style;
-            } else {
+
+            //Decide on which style to use
+            if ($style === null) { //Check if we should use default style
                 unset($this->highlight_extra_lines_styles[$lines]);
+            } else if ($style === false) { //Check if to remove this line
+                unset($this->highlight_extra_lines[$lines]);
+                unset($this->highlight_extra_lines_styles[$lines]);
+            } else {
+                $this->highlight_extra_lines_styles[$lines] = $style;
             }
         }
     }
