@@ -1867,7 +1867,7 @@ class GeSHi {
         foreach ($parts as $key => $data) {
             $part = $data[1];
             // If this block should be highlighted...
-            if ($key % 2) {
+            if ($key & 1) {
                 if ($this->strict_mode) {
                     // Find the class key for this block of code
                     foreach ($this->language_data['SCRIPT_DELIMITERS'] as $script_key => $script_data) {
@@ -1969,7 +1969,7 @@ class GeSHi {
                                             $part[$escape_char_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
                                         --$escape_char_pos;
                                     }
-                                    if (($close_pos - $escape_char_pos) % 2 == 1) {
+                                    if (($close_pos - $escape_char_pos) & 1) {
                                         // uneven number of escape chars => this quote is escaped
                                         continue;
                                     }
@@ -2048,7 +2048,7 @@ class GeSHi {
                                                     && $part[$escape_char_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
                                                 --$escape_char_pos;
                                             }
-                                            if (($close_pos - $escape_char_pos) % 2 == 1) {
+                                            if (($close_pos - $escape_char_pos) & 1) {
                                                 // uneven number of escape chars => this quote is escaped
                                                 continue 2;
                                             }
@@ -2438,7 +2438,7 @@ class GeSHi {
                         //  3 => '&nbsp; &nbsp;' etc etc
                         // to use instead of building a string every time
                         $tab_end_width = $tab_width - ($pos % $tab_width); //Moved out of the look as it doesn't change within the loop
-                        if (($pos%2) || 1 == $tab_end_width) {
+                        if (($pos & 1) || 1 == $tab_end_width) {
                             $str .= substr($tab_string, 6, $tab_end_width);
                         } else {
                             $str .= substr($tab_string, 0, $tab_end_width+5);
