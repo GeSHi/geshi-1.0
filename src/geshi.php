@@ -2520,33 +2520,35 @@ class GeSHi {
             // There is a base group for this keyword
             if ($start_or_end == 'BEGIN') {
                 // HTML workaround... not good form (tm) but should work for 1.0.X
-                if ($keyword != '') {
-                    // Old system: strtolower
-                    //$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
-                    // New system: get keyword from language file to get correct case
-                    if (!$this->language_data['CASE_SENSITIVE'][$group]
-                          && strpos($this->language_data['URLS'][$group], '{FNAME}') !== false) {
-                        foreach ($this->language_data['KEYWORDS'][$group] as $word) {
-                            if (strcasecmp($word, $keyword) == 0) {
-                                break;
-                            }
-                        }
-                    } else {
-                        $word = $keyword;
-                    }
-                    $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
-                    $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;
-                    if (!$word) return '';
-
-                    return '<|UR1|"' .
-                        str_replace(
-                            array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
-                            array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
-                                GeSHi::hsc(strtoupper($word)), '<DOT>'),
-                            $this->language_data['URLS'][$group]
-                        ) . '">';
+                if (!$keyword) {
+                    return '';
                 }
-                return '';
+
+                // Old system: strtolower
+                //$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
+                // New system: get keyword from language file to get correct case
+                if (!$this->language_data['CASE_SENSITIVE'][$group] &&
+                    strpos($this->language_data['URLS'][$group], '{FNAME}') !== false) {
+                    foreach ($this->language_data['KEYWORDS'][$group] as $word) {
+                        if (strcasecmp($word, $keyword) == 0) {
+                            break;
+                        }
+                    }
+                } else {
+                    $word = $keyword;
+                }
+
+                $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
+                $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;
+                if (!$word) return '';
+
+                return '<|UR1|"' .
+                    str_replace(
+                        array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
+                        array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
+                            GeSHi::hsc(strtoupper($word)), '<DOT>'),
+                        $this->language_data['URLS'][$group]
+                    ) . '">';
             // HTML fix. Again, dirty hackage...
             } else if (!($this->language == 'html4strict' && ('&gt;' == $keyword || '&lt;' == $keyword))) {
                 return '</a>';
