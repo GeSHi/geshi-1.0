@@ -3183,7 +3183,7 @@ class GeSHi {
     function format_header_content() {
         $header = $this->header_content;
         if ($header) {
-            if ($this->header_type == GESHI_HEADER_PRE) {
+            if ($this->header_type == GESHI_HEADER_PRE || $this->header_type == GESHI_HEADER_PRE_VALID) {
                 $header = str_replace("\n", '', $header);
             }
             $header = $this->replace_keywords($header);
