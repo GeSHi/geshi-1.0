@@ -15,6 +15,8 @@
  * 2008/17/06 (1.0.8)
  *  -  Added support for apache configuration sections (milian)
  *  -  Added missing php keywords (milian)
+ *  -  Added some more keywords
+ *  -  Disabled highlighting of brackets by default
  * 2004/11/27 (1.0.2)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.1)
@@ -134,7 +136,7 @@ $language_data = array (
         )
     ),
     'SYMBOLS' => array(
-        '(', ')'
+        '+', '-'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -155,7 +157,7 @@ $language_data = array (
             0 => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #339933;'
             ),
         'STRINGS' => array(
             0 => 'color: #7f007f;'
@@ -166,7 +168,7 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #008000;'
             ),
         'REGEXPS' => array(
             ),
@@ -186,7 +188,12 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+        ),
+    'PARSER_CONTROL' => array(
+        'ENABLE_FLAGS' => array(
+            'BRACKETS' => GESHI_NEVER
+        ),
+    )
 );
 
 ?>
