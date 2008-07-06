@@ -1729,6 +1729,11 @@ class GeSHi {
         if ($this->error) {
             //Escape the source for output
             $result = GeSHi::hsc($this->source);
+
+            //This fix is related to SF#1923020, but has to be applied regardless of
+            //actually highlighting symbols.
+            $result = str_replace(array('<SEMI>', '<PIPE>'), array(';', '|'), $result);
+
             // Timing is irrelevant
             $this->set_time($start_time, $start_time);
             return $this->finalise($result);
