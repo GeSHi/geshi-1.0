@@ -20,6 +20,8 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
   as documented in the source.
 - use analogous vars to $next_comment_regexp_pos for more GeSHi structures,
   should reduce number of functions called and hence improve performance
+- make a set of default colours which can be used in the language files.
+  this way we can give languages a uniform look and maybe even add "themes"
 
   
   TODO for version 1.2.0
