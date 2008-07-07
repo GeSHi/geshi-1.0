@@ -2372,7 +2372,8 @@ class GeSHi {
         // We're finished: stop timing
         $this->set_time($start_time, microtime());
 
-        return $this->finalise($result);
+        $this->finalise($result);
+        return $result;
     }
 
     /**
