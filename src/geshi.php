@@ -523,7 +523,7 @@ class GeSHi {
                 array_values($debug_tpl_vars),
                 $this->error_messages[$this->error]);
 
-            return "<br /><strong>GeSHi Error:</strong> $msg (code $this->error)<br />";
+            return "<br /><strong>GeSHi Error:</strong> $msg (code {$this->error})<br />";
         }
         return false;
     }
@@ -2851,8 +2851,7 @@ class GeSHi {
      * @since 1.0.8
      * @access private
      */
-    function merge_arrays()
-    {
+    function merge_arrays() {
         $arrays = func_get_args();
         $narrays = count($arrays);
 
