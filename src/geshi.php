@@ -1901,9 +1901,12 @@ class GeSHi {
                     $comment_regexp_cache = array();
                     $next_comment_regexp_pos = -1;
                     $next_comment_multi_pos = -1;
+                    $next_comment_single_pos = -1;
                     $comment_regexp_cache_per_key = array();
                     $comment_multi_cache_per_key = array();
+                    $comment_single_cache_per_key = array();
                     $next_open_comment_multi = '';
+                    $next_comment_single_key = '';
 
                     $length = strlen($part);
                     for ($i = 0; $i < $length; ++$i) {
@@ -2308,22 +2311,58 @@ class GeSHi {
 
                             // If we haven't matched a multiline comment, try single-line comments
                             if (!$COMMENT_MATCHED) {
-                                foreach ($this->language_data['COMMENT_SINGLE'] as $comment_key => $comment_mark) {
+                                // cache potential single line comment occurances
+                                if (!empty($this->language_data['COMMENT_SINGLE']) && $next_comment_single_pos < $i) {
+                                    $next_comment_single_pos = $length;
+                                    foreach ($this->language_data['COMMENT_SINGLE'] as $comment_key => $comment_mark) {
+                                        $match_i = false;
+                                        if (isset($comment_single_cache_per_key[$comment_key]) &&
+                                            $comment_single_cache_per_key[$comment_key] >= $i) {
+                                            // we have already matched something
+                                            $match_i = $comment_single_cache_per_key[$comment_key];
+                                        } else if (
+                                            // case sensitive comments need quite some code...
+                                            ($this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
+                                            ((GESHI_PHP_500 && ($match_i = stripos($part, $comment_mark, $i)) !== false) ||
+                                            // stripos is PHP5 only!
+                                            (!GESHI_PHP_500 &&
+                                              // additionally the offset param is not supported below PHP 4.3.3
+                                              (GESHI_PHP_PRE_433 && preg_match('/'. preg_quote($comment_mark, '/') . '/', substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
+                                              (!GESHI_PHP_PRE_433 && preg_match('/'. preg_quote($comment_mark, '/') . '/', $part, $match, PREG_OFFSET_CAPTURE, $i))))) ||
+                                            // non case sensitive means simple check
+                                            (!$this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
+                                              (($match_i = strpos($part, $comment_mark, $i)) !== false)))
+                                        {
+                                            if (!GESHI_PHP_500 && $this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS]) {
+                                                $match_i = $match[0][1];
+                                            }
+                                            $comment_single_cache_per_key[$comment_key] = $match_i;
+                                        } else {
+                                            $comment_single_cache_per_key[$comment_key] = false;
+                                            continue;
+                                        }
+                                        if ($match_i !== false && $match_i < $next_comment_single_pos) {
+                                            $next_comment_single_pos = $match_i;
+                                            $next_comment_single_key = $comment_key;
+                                            if ($match_i === $i) {
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+                                if ($next_comment_single_pos == $i) {
+                                    $comment_key = $next_comment_single_key;
+                                    $comment_mark = $this->language_data['COMMENT_SINGLE'][$comment_key];
                                     $com_len = strlen($comment_mark);
-                                    $test_str = substr($part, $i, $com_len);
-                                    if (!$this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS]) {
-                                        $match = ($comment_mark == $test_str);
-                                    } else {
-                                        $match = strcasecmp($comment_mark, $test_str) == 0;
-                                    }
-                                    //This check will find special variables like $# in bash or compiler directives of Delphi beginning {$
-                                    if ($match) {
-                                        $match = $match && (empty($sc_disallowed_before) || (0 >= $i) ||
-                                            (false === strpos($sc_disallowed_before, $part[$i-1])));
-                                        $match = $match && (empty($sc_disallowed_after) || ($length-1 <= $i) ||
-                                            (false === strpos($sc_disallowed_after, $part[$i+1])));
-                                    }
-                                    if ($match) {
+
+                                    // This check will find special variables like $# in bash
+                                    // or compiler directives of Delphi beginning {$
+                                    if ((empty($sc_disallowed_before) || ($i <= 0) ||
+                                          false === strpos($sc_disallowed_before, $part[$i-1])) ||
+                                        (empty($sc_disallowed_after) || ($length-1 <= $i) ||
+                                          false === strpos($sc_disallowed_after, $part[$i + $com_len])))
+                                    {
+                                        // this is a valid comment
                                         $COMMENT_MATCHED = true;
                                         if ($this->lexic_permissions['COMMENTS'][$comment_key]) {
                                             if (!$this->use_classes) {
@@ -2331,9 +2370,9 @@ class GeSHi {
                                             } else {
                                                 $attributes = ' class="co' . $comment_key . '"';
                                             }
-                                            $test_str = "<span$attributes>" . GeSHi::hsc($this->change_case($test_str));
+                                            $test_str = "<span$attributes>" . GeSHi::hsc($this->change_case($comment_mark));
                                         } else {
-                                            $test_str = GeSHi::hsc($test_str);
+                                            $test_str = GeSHi::hsc($comment_mark);
                                         }
 
                                         //Check if this comment is the last in the source
@@ -2358,7 +2397,6 @@ class GeSHi {
                                         // parse the rest
                                         $result .= $this->parse_non_string_part($stuff_to_parse);
                                         $stuff_to_parse = '';
-                                        break;
                                     }
                                 }
                             }
