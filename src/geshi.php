@@ -1870,7 +1870,7 @@ class GeSHi {
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
         for ($key = 0, $num_parts = count($parts); $key < $num_parts; ++$key) {
-            $part = &$parts[$key][1];
+            $part = $parts[$key][1];
             // If this block should be highlighted...
             if ($key & 1) {
                 if ($this->strict_mode) {
@@ -2411,6 +2411,7 @@ class GeSHi {
                             $stuff_to_parse .= $char;
                         } else {
                             $result .= $test_str;
+                            unset($test_str);
                             $COMMENT_MATCHED = false;
                         }
                     }
@@ -2640,7 +2641,7 @@ class GeSHi {
      * @access private
      * @todo BUGGY! Why? Why not build string and return?
      */
-    function parse_non_string_part(&$stuff_to_parse) {
+    function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
         $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
         $func = '$this->change_case';
