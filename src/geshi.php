@@ -1811,6 +1811,10 @@ class GeSHi {
             // Not strict mode - simply dump the source into
             // the array at index 1 (the first highlightable block)
             $parts = array(
+                0 => array(
+                    0 => '',
+                    1 => ''
+                ),
                 1 => array(
                     0 => '',
                     1 => $code
@@ -1865,14 +1869,14 @@ class GeSHi {
         // Now we go through each part. We know that even-indexed parts are
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
-        foreach ($parts as $key => $data) {
-            $part = $data[1];
+        for ($key = 0, $num_parts = count($parts); $key < $num_parts; ++$key) {
+            $part = &$parts[$key][1];
             // If this block should be highlighted...
             if ($key & 1) {
                 if ($this->strict_mode) {
                     // Find the class key for this block of code
                     foreach ($this->language_data['SCRIPT_DELIMITERS'] as $script_key => $script_data) {
-                        if (isset($script_data[$data[0]])) {
+                        if (isset($script_data[$parts[$key][0]])) {
                             break;
                         }
                     }
@@ -2429,6 +2433,7 @@ class GeSHi {
                 // Else not a block to highlight
                 $result .= GeSHi::hsc($part);
             }
+            unset($part, $parts[$key]);
         }
 
         //This fix is related to SF#1923020, but has to be applied regardless of
