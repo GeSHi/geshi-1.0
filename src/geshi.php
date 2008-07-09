@@ -1737,7 +1737,8 @@ class GeSHi {
 
             // Timing is irrelevant
             $this->set_time($start_time, $start_time);
-            return $this->finalise($result);
+            $this->finalise($result);
+            return $result;
         }
 
         // make sure the parse cache is up2date
