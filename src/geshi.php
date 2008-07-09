@@ -2791,43 +2791,40 @@ class GeSHi {
                               $this->language_data['CACHE_BRACKET_REPLACE'], $stuff_to_parse );
         }
 
+
         //FIX for symbol highlighting ...
         if ($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
             //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
-            preg_match_all("/(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $matches_in_stuff, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-            //Match anything that is a highlighted block ...
-            preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted_in_stuff, PREG_OFFSET_CAPTURE);
-            // Also Rebuild the matches array to be ordered by offset ...
-            $symbol_offsets = array();
-            foreach ($matches_in_stuff as $stuff_match_id => $stuff_match_data) {
-                $match_strlen = strlen($stuff_match_data[0][0]);
-                foreach ($highlighted_in_stuff[0] as $highlight_id => $highlight_data) {
-                    if (!isset($highlight_data['strlen'])) {
-                        $highlighted_in_stuff[0][$highlight_id]['strlen'] = strlen($highlight_data[0]);
-                        $highlight_data = $highlighted_in_stuff[0][$highlight_id];
+            $n_symbols = preg_match_all("/(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $pot_symbols, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            if ($n_symbols) {
+                //Match anything that is a highlighted block ...
+                $n_highlighted = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            }
+            $global_offset = 0;
+            for ($s_id = 0; $s_id < $n_symbols; ++$s_id) {
+                $symbol_match = $pot_symbols[$s_id][0][0];
+                $symbol_length = strlen($pot_symbols[$s_id][0][0]);
+                $symbol_offset = $pot_symbols[$s_id][0][1];
+                unset($pot_symbols[$s_id]);
+                $symbol_end = $symbol_length + $symbol_offset;
+                for ($h_id = 0; $h_id < $n_highlighted; ++$h_id) {
+                    if (!isset($highlighted[$h_id]['start'])) {
+                        $highlighted[$h_id]['start'] = $highlighted[$h_id][0][1];
+                        $highlighted[$h_id]['end'] = strlen($highlighted[$h_id][0][0]) + $highlighted[$h_id]['start'];
+                        unset($highlighted[$h_id][0]);
                     }
 
                     //Do a range check of the found highlight identifier and the OOP match ...
-                    if (($highlight_data[1] <= $stuff_match_data[0][1]) &&
-                        ($highlight_data[1] + $highlight_data['strlen'] >= $stuff_match_data[0][1] + $match_strlen)) {
+                    if (($highlighted[$h_id]['start'] <=  $symbol_offset) &&
+                        ($highlighted[$h_id]['end'] >= $symbol_end)) {
                         //We found a match that was already highlighted ... skip it
                         continue 2;
                     }
                 }
-
                 // if we reach this point, we have a valid match which needs to be highlighted
-                $symbol_offsets[$stuff_match_data[0][1]] = $stuff_match_data[0][0];
-            }
-            unset($matches_in_stuff);
-
-            //Sort matches by offset descendingly
-            krsort($symbol_offsets);
-
-            //Perform the actual replacements ...
-            foreach ($symbol_offsets as $symbol_offset => $symbol_match) {
                 $symbol_hl = "";
                 $old_sym = -1;
-                //Split the current stuff to replace into its atomic symbols ...
+                // Split the current stuff to replace into its atomic symbols ...
                 preg_match_all("/" . $this->language_data['SYMBOL_SEARCH'] . "/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
                 foreach ($sym_match_syms[0] as $sym_ms) {
                     //Check if consequtive symbols belong to the same group to save output ...
@@ -2845,12 +2842,20 @@ class GeSHi {
                     }
                     $symbol_hl .= $sym_ms;
                 }
+                unset($sym_match_syms);
+
                 //Close remaining tags and insert the replacement at the right position ...
                 //Take caution if symbol_hl is empty to avoid doubled closing spans.
                 if (-1 != $old_sym) {
                     $symbol_hl .= "|>";
                 }
-                $stuff_to_parse = substr_replace($stuff_to_parse, $symbol_hl, $symbol_offset, strlen($symbol_match));
+
+
+                $stuff_to_parse = substr_replace($stuff_to_parse, $symbol_hl, $symbol_offset + $global_offset, $symbol_length);
+
+                // since we replace old text with something of different size,
+                // we'll have to keep track of the differences
+                $global_offset += strlen($symbol_hl) - $symbol_length;
             }
         }
         //FIX for symbol highlighting ...
