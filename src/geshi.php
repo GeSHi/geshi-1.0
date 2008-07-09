@@ -2440,6 +2440,7 @@ class GeSHi {
 
         //This fix is related to SF#1923020, but has to be applied regardless of
         //actually highlighting symbols.
+        /** NOTE: memorypeak #3 */
         $result = str_replace(array('<SEMI>', '<PIPE>'), array(';', '|'), $result);
 
 //        // Parse the last stuff (redundant?)
@@ -3084,6 +3085,7 @@ class GeSHi {
         }
 
         // purge some unnecessary stuff
+        /** NOTE: memorypeak #1 */
         $parsed_code = preg_replace('#<span[^>]+>(\s*)</span>#', '\\1', $parsed_code);
 
         // If we are using IDs for line numbers, there needs to be an overall
@@ -3093,6 +3095,7 @@ class GeSHi {
         }
 
         // Get code into lines
+        /** NOTE: memorypeak #2 */
         $code = explode("\n", $parsed_code);
         $parsed_code = $this->header();
 
