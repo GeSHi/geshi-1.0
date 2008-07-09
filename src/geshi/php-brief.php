@@ -48,7 +48,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'PHP',
+    'LANG_NAME' => 'PHP (brief)',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     //Heredoc and Nowdoc syntax

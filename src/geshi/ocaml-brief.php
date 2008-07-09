@@ -38,7 +38,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'OCaml',
+    'LANG_NAME' => 'OCaml (brief)',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array('(*' => '*)'),
     'CASE_KEYWORDS' => 0,
