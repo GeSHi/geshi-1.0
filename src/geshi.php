@@ -3471,7 +3471,7 @@ class GeSHi {
      * @return      string  converted string
      * @since       1.0.7.18
      */
-    function hsc($string, $quote_style=ENT_COMPAT) {
+    function hsc($string, $quote_style = ENT_COMPAT) {
         // init
         static $aTransSpecchar = array(
             '&' => '&amp;',
@@ -3499,7 +3499,7 @@ class GeSHi {
         }
 
         // return translated string
-        return strtr($string,$aTransSpecchar);
+        return strtr($string, $aTransSpecchar);
     }
 
     /**
