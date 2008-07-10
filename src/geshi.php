@@ -3193,6 +3193,9 @@ class GeSHi {
                 unset($code[$i - 1]);
             }
         } else {
+            if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+                $parsed_code .= '<pre>';
+            }
             // No line numbers, but still need to handle highlighting lines extra.
             // Have to use divs so the full width of the code is highlighted
             for ($i = 0, $n = count($code); $i < $n; ++$i) {
@@ -3205,15 +3208,15 @@ class GeSHi {
                 if (in_array($i + 1, $this->highlight_extra_lines)) {
                     if ($this->use_classes) {
                         if (isset($this->highlight_extra_lines_styles[$i])) {
-                            $parsed_code .= "<div class=\"lx$i\">";
+                            $parsed_code .= "<span class=\"xtra lx$i\">";
                         } else {
-                            $parsed_code .= "<div class=\"ln-xtra\">";
+                            $parsed_code .= "<span class=\"xtra ln-xtra\">";
                         }
                     } else {
-                        $parsed_code .= "<div style=\"" . $this->get_line_style($i) . "\">";
+                        $parsed_code .= "<span style=\"display:block;" . $this->get_line_style($i) . "\">";
                     }
                     // Remove \n because it stuffs up <pre> header
-                    $parsed_code .= $code[$i] . "</div>";
+                    $parsed_code .= $code[$i] . '</span>';
                 } else {
                     $parsed_code .= $code[$i];
                     if ($i + 1 < $n) {
@@ -3221,6 +3224,10 @@ class GeSHi {
                     }
                 }
                 unset($code[$i]);
+            }
+
+            if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+                $parsed_code .= '</pre>';
             }
         }
 
@@ -3263,10 +3270,10 @@ class GeSHi {
                 return "<div$attributes>$header<ol$ol_attributes>";
             }
         } else {
-            if ($this->header_type == GESHI_HEADER_PRE || $this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->header_type == GESHI_HEADER_PRE) {
                 return "<pre$attributes>$header"  .
                     ($this->force_code_block ? '<div>' : '');
-            } else if ($this->header_type == GESHI_HEADER_DIV) {
+            } else {
                 return "<div$attributes>$header" .
                     ($this->force_code_block ? '<div>' : '');
             }
@@ -3312,20 +3319,14 @@ class GeSHi {
                 : $footer_content;
         }
 
-        if ($this->header_type == GESHI_HEADER_DIV) {
+        if ($this->header_type == GESHI_HEADER_DIV || $this->header_type == GESHI_HEADER_PRE_VALID) {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "</ol>$footer_content</div>";
             }
             return ($this->force_code_block ? '</div>' : '') .
                 "$footer_content</div>";
         }
-        if ($this->header_type == GESHI_HEADER_PRE_VALID) {
-            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                return "</ol>$footer_content</div>";
-            }
-            return ($this->force_code_block ? '</div>' : '') .
-                "$footer_content</pre>";
-        } else {
+        else {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "</ol>$footer_content</pre>";
             }
@@ -3679,6 +3680,7 @@ class GeSHi {
         // Styles for lines being highlighted extra
         if (!$economy_mode || (count($this->highlight_extra_lines)!=count($this->highlight_extra_lines_styles))) {
             $stylesheet .= "{$selector}.ln-xtra, {$selector}li.ln-xtra, {$selector}div.ln-xtra {{$this->highlight_extra_lines_style}}\n";
+            $stylesheet .= "{$selector}span.xtra { display:block; }\n";
         }
         foreach ($this->highlight_extra_lines_styles as $lineid => $linestyle) {
             $stylesheet .= "{$selector}.lx$lineid, {$selector}li.lx$lineid, {$selector}div.lx$lineid {{$linestyle}}\n";
