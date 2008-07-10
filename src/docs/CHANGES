@@ -29,7 +29,7 @@ Version 1.0.8
   -  Improved comment handling with TCL (Lars Hellström, BenBE)
   -  Removed explicit escaping of / in Regular Expressions (BenBE)
   -  Ignoring empty keyword groups when highlighting (milian)
-  -  Broken handling with XML comments (BenBE)
+  -  Broken handling with XML comments (BenBE, SF#1849233)
   -  Some more memory & speed optimizations all over GeSHi (milian)
      * Reduced memory overhead when highlighting keywords (BenBE)
      * Keyword Linking now uses considerably less strtolower calls (milian)
@@ -63,7 +63,7 @@ Version 1.0.8
      * With line numbers:     <div>header<ol><li><pre>...</pre></li>...</ol></div>
      * Without line numbers:  <pre>header...CODE...</pre>
      => valid HTML and no need for &nbsp; indentation
-     
+
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
