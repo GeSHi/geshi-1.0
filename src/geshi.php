@@ -366,7 +366,7 @@ class GeSHi {
      * Styles of extra-highlighted lines
      * @var string
      */
-    var $highlight_extra_lines_style = 'color: #cc0; background-color: #ffc;';
+    var $highlight_extra_lines_style = 'background-color: #ffc;';
 
     /**
      * The line ending
