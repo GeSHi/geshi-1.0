@@ -44,9 +44,13 @@ if (isset($_POST['submit'])) {
     // live site.
     $geshi = new GeSHi($_POST['source'], $_POST['language']);
 
-    // Use the PRE header. This means less output source since we don't have to output &nbsp;
+    // Use the PRE_VALID header. This means less output source since we don't have to output &nbsp;
     // everywhere. Of course it also means you can't set the tab width.
-    $geshi->set_header_type(GESHI_HEADER_PRE);
+    // HEADER_PRE_VALID puts the <pre> tag inside the list items (<li>) thus producing valid HTML markup.
+    // HEADER_PRE puts the <pre> tag around the list (<ol>) which is invalid in HTML 4 and XHTML 1
+    // HEADER_DIV puts a <div> tag arount the list (valid!) but needs to replace whitespaces with &nbsp
+    //            thus producing much larger overhead. You can set the tab width though.
+    $geshi->set_header_type(GESHI_HEADER_PRE_VALID);
 
     // Enable CSS classes. You can use get_stylesheet() to output a stylesheet for your code. Using
     // CSS classes results in much less output source.
