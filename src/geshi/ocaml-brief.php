@@ -38,7 +38,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'OCaml',
+    'LANG_NAME' => 'OCaml (brief)',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array('(*' => '*)'),
     'CASE_KEYWORDS' => 0,
@@ -61,7 +61,7 @@ $language_data = array (
             '>', '<', '(', ')', '[', ']', '&', '|', '#', "'"
             ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         ),
     'STYLES' => array(

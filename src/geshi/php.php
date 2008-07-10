@@ -71,7 +71,7 @@ $language_data = array (
             'false', '&lt;?php', '?&gt;', '&lt;?',
             '&lt;script language', '&lt;/script&gt;',
             'true', 'var', 'default',
-            'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends', 'self',
+            'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends', 'self', 'const',
             '__FUNCTION__', '__CLASS__', '__METHOD__', 'PHP_VERSION',
             'PHP_OS', 'DEFAULT_INCLUDE_PATH', 'PEAR_INSTALL_DIR', 'PEAR_EXTENSION_DIR',
             'PHP_EXTENSION_DIR', 'PHP_BINDIR', 'PHP_LIBDIR', 'PHP_DATADIR', 'PHP_SYSCONFDIR',

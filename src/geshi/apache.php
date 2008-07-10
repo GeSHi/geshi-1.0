@@ -15,6 +15,8 @@
  * 2008/17/06 (1.0.8)
  *  -  Added support for apache configuration sections (milian)
  *  -  Added missing php keywords (milian)
+ *  -  Added some more keywords
+ *  -  Disabled highlighting of brackets by default
  * 2004/11/27 (1.0.2)
  *  -  Added support for multiple object splitters
  * 2004/10/27 (1.0.1)
@@ -46,7 +48,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'Apache Log',
+    'LANG_NAME' => 'Apache configuration',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -111,7 +113,7 @@ $language_data = array (
           ),
         /*keywords 2*/
         2 => array(
-            'on','off','standalone','inetd',
+            'on','off','standalone','inetd','indexes',
             'force-response-1.0','downgrade-1.0','nokeepalive',
             'ndexes','includes','followsymlinks','none',
             'x-compress','x-gzip'
@@ -134,10 +136,10 @@ $language_data = array (
         )
     ),
     'SYMBOLS' => array(
-        '(', ')'
+        '+', '-'
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         2 => false,
         3 => false,
@@ -155,7 +157,7 @@ $language_data = array (
             0 => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #339933;'
             ),
         'STRINGS' => array(
             0 => 'color: #7f007f;'
@@ -166,7 +168,7 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #008000;'
             ),
         'REGEXPS' => array(
             ),
@@ -186,7 +188,13 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+        ),
+    'PARSER_CONTROL' => array(
+        'ENABLE_FLAGS' => array(
+            'BRACKETS' => GESHI_NEVER,
+            'SYMBOLS' => GESHI_NEVER
+        ),
+    )
 );
 
 ?>

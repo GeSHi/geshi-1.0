@@ -82,9 +82,6 @@ $language_data = array (
         ),
         'REGEXPS' => array(
             0 => 'color: #007;',
-            1 => 'color: #099;',
-            2 => 'color: #060;',
-            3 => 'color: #909;'
         ),
         'SCRIPT' => array(
           0 => ''

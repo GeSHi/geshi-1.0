@@ -60,6 +60,12 @@ $language_data = array (
         'STRINGS' => array(
             0 => 'color: #ff0000;'
         ),
+        'REGEXPS' => array(),
+        'SYMBOLS' => array(),
+        'NUMBERS' => array(),
+        'METHODS' => array(),
+        'SCRIPT' => array(),
+        'BRACKETS' => array()
     ),
     'OOLANG' => false,
     'REGEXPS' => array(),

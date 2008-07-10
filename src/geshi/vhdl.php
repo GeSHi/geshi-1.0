@@ -79,7 +79,7 @@ $language_data = array (
         '[', ']', '(', ')',';','<','>',':'
     ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         2 => false
         ),
@@ -110,9 +110,7 @@ $language_data = array (
             ),
         'REGEXPS' => array(
             0 => 'color: #ff0000;',
-            1 => 'color: #ff0000;',
-            2 => 'color: #ff0000;',
-            3 => 'color: #ff0000;'
+            1 => 'color: #ff0000;'
             ),
         'SCRIPT' => array(
             )

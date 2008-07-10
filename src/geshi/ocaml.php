@@ -100,7 +100,7 @@ $language_data = array (
             '>', '<', '(', ')', '[', ']', '&', '|', '#', "'"
             ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => true,
+        GESHI_COMMENTS => false,
         1 => false,
         2 => true, /* functions name are case sensitive */
         3 => true, /* types name too */

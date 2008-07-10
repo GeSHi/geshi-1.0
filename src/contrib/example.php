@@ -8,6 +8,7 @@
  * @author  Nigel McNie
  * @version $Id$
  */
+header('Content-Type: text/html; charset=utf-8');
 
 error_reporting(E_ALL);
 
@@ -44,9 +45,13 @@ if (isset($_POST['submit'])) {
     // live site.
     $geshi = new GeSHi($_POST['source'], $_POST['language']);
 
-    // Use the PRE header. This means less output source since we don't have to output &nbsp;
+    // Use the PRE_VALID header. This means less output source since we don't have to output &nbsp;
     // everywhere. Of course it also means you can't set the tab width.
-    $geshi->set_header_type(GESHI_HEADER_PRE);
+    // HEADER_PRE_VALID puts the <pre> tag inside the list items (<li>) thus producing valid HTML markup.
+    // HEADER_PRE puts the <pre> tag around the list (<ol>) which is invalid in HTML 4 and XHTML 1
+    // HEADER_DIV puts a <div> tag arount the list (valid!) but needs to replace whitespaces with &nbsp
+    //            thus producing much larger overhead. You can set the tab width though.
+    $geshi->set_header_type(GESHI_HEADER_PRE_VALID);
 
     // Enable CSS classes. You can use get_stylesheet() to output a stylesheet for your code. Using
     // CSS classes results in much less output source.
@@ -59,7 +64,7 @@ if (isset($_POST['submit'])) {
     // XHTML compliant btw, but if you are liberally minded about these things then you'll appreciate
     // the reduced source output).
     $geshi->set_overall_style('font: normal normal 90% monospace; color: #000066; border: 1px solid #d0d0d0; background-color: #f0f0f0;', false);
-    
+
     // Set the style for line numbers. In order to get style for line numbers working, the <li> element
     // is being styled. This means that the code on the line will also be styled, and most of the time
     // you don't want this. So the set_code_style reverts styles for the line (by using a <div> on the line).
@@ -80,11 +85,11 @@ if (isset($_POST['submit'])) {
     // Use the header/footer functionality. This puts a div with content within the PRE element, so it is
     // affected by the styles set by set_overall_style. So if the PRE has a border then the header/footer will
     // appear inside it.
-    $geshi->set_header_content('GeSHi &copy; 2004, Nigel McNie. View source of example.php for example of using GeSHi');
+    $geshi->set_header_content('<SPEED> <TIME> GeSHi &copy; 2004-2007, Nigel McNie, 2007-2008 Benny Baumann. View source of example.php for example of using GeSHi');
     $geshi->set_header_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-bottom: 1px solid #d0d0d0; padding: 2px;');
 
     // You can use <TIME> and <VERSION> as placeholders
-    $geshi->set_footer_content('Parsed in <TIME> seconds,  using GeSHi <VERSION>');
+    $geshi->set_footer_content('Parsed in <TIME> seconds at <SPEED>, using GeSHi <VERSION>');
     $geshi->set_footer_content_style('font-family: sans-serif; color: #808080; font-size: 70%; font-weight: bold; background-color: #f0f0ff; border-top: 1px solid #d0d0d0; padding: 2px;');
 } else {
     // make sure we don't preselect any language

@@ -108,7 +108,7 @@ $language_data = array (
       0 => 'color: #CC0000;'
       ),
     'METHODS' => array(
-      1 => 'color: #006600;'
+      1 => 'color: #660066;'
       ),
     'SYMBOLS' => array(
       0 => 'color: #339933;'

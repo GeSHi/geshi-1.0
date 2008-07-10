@@ -48,7 +48,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'PHP',
+    'LANG_NAME' => 'PHP (brief)',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     //Heredoc and Nowdoc syntax
@@ -67,6 +67,7 @@ $language_data = array (
             'false', '&lt;?php', '?&gt;',
             'true', 'var', 'default',
             'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends',
+            'const', 'self'
             ),
         3 => array(
             'func_num_args', 'func_get_arg', 'func_get_args', 'strlen', 'strcmp', 'strncmp', 'strcasecmp', 'strncasecmp', 'each', 'error_reporting', 'define', 'defined',
