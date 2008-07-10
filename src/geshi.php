@@ -392,7 +392,7 @@ class GeSHi {
      *  The style for the actual code
      * @var string
      */
-    var $code_style = 'font-family: monospace; font-weight: normal; font-style: normal; margin:0;';
+    var $code_style = 'font-family: monospace; font-weight: normal; font-style: normal; margin:0; padding:0; background:inherit;';
 
     /**
      * The overall class for this code block
