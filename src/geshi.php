@@ -132,7 +132,30 @@ define('GESHI_COMMENTS', 0);
 
 /** Used to work around missing PHP features **/
 define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
-define('GESHI_PHP_500', !GESHI_PHP_PRE_433 && version_compare(PHP_VERSION, '5.0.0', '>='));
+
+/** make sure we can call stripos **/
+if (!function_exists('stripos')) {
+    // the offset param of preg_match is not supported below PHP 4.3.3
+    if (GESHI_PHP_PRE_433) {
+        function stripos($haystack, $needle, $offset = null) {
+            if (!is_null($offset)) {
+                $haystack = substr($haystack, $offset);
+            }
+            if (preg_match('/'. preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE)) {
+                return $match[0][1];
+            }
+            return false;
+        }
+    }
+    else {
+        function stripos($haystack, $needle, $offset = null) {
+            if (preg_match('/'. preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE, $offset)) {
+                return $match[0][1];
+            }
+            return false;
+        }
+    }
+}
 
 /** some old PHP / PCRE subpatterns only support up to xxx subpatterns in
     regular expressions. Set this to false if your PCRE lib is up to date
@@ -2219,16 +2242,7 @@ class GeSHi {
                                             $comment_multi_cache_per_key[$open] >= $i) {
                                             // we have already matched something
                                             $match_i = $comment_multi_cache_per_key[$open];
-                                        } else if ((GESHI_PHP_500 && ($match_i = stripos($part, $open, $i)) !== false) ||
-                                            // stripos is PHP5 only!
-                                            (!GESHI_PHP_500 &&
-                                              // additionally the offset param is not supported below PHP 4.3.3
-                                              (GESHI_PHP_PRE_433 && preg_match('/'. preg_quote($open, '/') . '/', substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
-                                              (!GESHI_PHP_PRE_433 && preg_match('/'. preg_quote($open, '/') . '/', $part, $match, PREG_OFFSET_CAPTURE, $i))))
-                                        {
-                                            if (!GESHI_PHP_500) {
-                                                $match_i = $match[0][1];
-                                            }
+                                        } else if (($match_i = stripos($part, $open, $i)) !== false) {
                                             $comment_multi_cache_per_key[$open] = $match_i;
                                         } else {
                                             $comment_multi_cache_per_key[$open] = false;
@@ -2326,21 +2340,12 @@ class GeSHi {
                                             // we have already matched something
                                             $match_i = $comment_single_cache_per_key[$comment_key];
                                         } else if (
-                                            // case sensitive comments need quite some code...
+                                            // case sensitive comments
                                             ($this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
-                                            ((GESHI_PHP_500 && ($match_i = stripos($part, $comment_mark, $i)) !== false) ||
-                                            // stripos is PHP5 only!
-                                            (!GESHI_PHP_500 &&
-                                              // additionally the offset param is not supported below PHP 4.3.3
-                                              (GESHI_PHP_PRE_433 && preg_match('/'. preg_quote($comment_mark, '/') . '/', substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
-                                              (!GESHI_PHP_PRE_433 && preg_match('/'. preg_quote($comment_mark, '/') . '/', $part, $match, PREG_OFFSET_CAPTURE, $i))))) ||
-                                            // non case sensitive means simple check
+                                            ($match_i = stripos($part, $comment_mark, $i) !== false)) ||
+                                            // non case sensitive
                                             (!$this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
-                                              (($match_i = strpos($part, $comment_mark, $i)) !== false)))
-                                        {
-                                            if (!GESHI_PHP_500 && $this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS]) {
-                                                $match_i = $match[0][1];
-                                            }
+                                              (($match_i = strpos($part, $comment_mark, $i)) !== false))) {
                                             $comment_single_cache_per_key[$comment_key] = $match_i;
                                         } else {
                                             $comment_single_cache_per_key[$comment_key] = false;
