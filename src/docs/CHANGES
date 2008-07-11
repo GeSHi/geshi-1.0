@@ -23,6 +23,7 @@ Version 1.0.8
      * KLoneC++ (Mickael Auger)
      * PowerShell (Frode Aarebrot)
      * Progress (Marco Aurelio de Pasqual)
+     * TypoScript (Jan-Philipp Halle)
      * Xorg configuration (milian)
   -  setup caches for parsing on demand, makes stylesheet generators fast again (milian)
   -  reduce strict errors & notices for language files (milian)
