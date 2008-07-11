@@ -64,7 +64,7 @@ Version 1.0.8
      * With line numbers:     <div>header<ol><li><pre>...</pre></li>...</ol></div>
      * Without line numbers:  <pre>header...CODE...</pre>
      => valid HTML and no need for &nbsp; indentation
-
+  -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)

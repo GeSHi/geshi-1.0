@@ -191,7 +191,7 @@ define('GESHI_NUMBER_FLT_NONSCI_F', 131072);       //\d+(\.\d+)?f
 define('GESHI_NUMBER_FLT_SCI_SHORT', 262144);      //\.\d+e\d+
 /** Number format to highlight floating-point numbers with support for scientific notation (E) and required leading digit */
 define('GESHI_NUMBER_FLT_SCI_ZERO', 524288);       //\d+(\.\d+)?e\d+
-//Custom formats are passed by RX string
+//Custom formats are passed by RX array
 
 // Error detection - use these to analyse faults
 /** No sourcecode to highlight was specified
@@ -2679,9 +2679,56 @@ class GeSHi {
         //
         // NEW ONE: Brice Bernard
         $numbers_found = false;
-        if ($this->lexic_permissions['NUMBERS'] && preg_match('#[0-9]#', $stuff_to_parse )) {
-            $stuff_to_parse = preg_replace('/([-+]?\\b(?:[0-9]*\\.)?[0-9]+\\b)/', '<|/NUM!/>\\1|>', $stuff_to_parse);
+        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
             $numbers_found = true;
+
+            //Well, this is some bigger task since 1.0.8 ...
+            $numbers_permissions = GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_NONSCI;
+            if(isset($this->language_data['NUMBERS']) &&
+                is_int($this->language_data['NUMBERS']) &&
+                ($this->language_data['NUMBERS'] > 0)) {
+                //So there is a custom format spec present ...
+                $numbers_permissions = $this->language_data['NUMBERS'];
+            }
+
+            //Number format specification
+            //All this formats are matched case-insensitively!
+            $numbers_format = array(
+                GESHI_NUMBER_INT_BASIC =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?(?![0-9a-z\.])',
+                GESHI_NUMBER_INT_CSTYLE =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?l(?![0-9a-z\.])',
+                GESHI_NUMBER_BIN_SUFFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[01]+?b(?![0-9a-z\.])',
+                GESHI_NUMBER_BIN_PREFIX_PERCENT =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])%[01]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_BIN_PREFIX_0B =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])0b[01]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_OCT_PREFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])0[0-7]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_OCT_SUFFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[0-7]+?o(?![0-9a-z\.])',
+                GESHI_NUMBER_HEX_PREFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])0x[0-9a-f]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_HEX_SUFFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d[0-9a-f]*?h(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_NONSCI =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d+?\.\d+?(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_NONSCI_F =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)f(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_SCI_SHORT =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\.\d+?(?:e[+\-]?\d+?)?(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_SCI_ZERO =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)(?:e[+\-]?\d+?)?(?![0-9a-z\.])'
+                );
+
+            //For each of the formats ...
+            foreach($numbers_format as $id => $regexp) {
+                //Check if it should be highlighted ...
+                if($numbers_permissions & $id) {
+                    $stuff_to_parse = preg_replace("/(?<!\d\/>)($regexp)(?!\|>)/i", "<|/NUM!$id/>\\1|>", $stuff_to_parse);
+                }
+            }
         }
 
         // Highlight keywords
@@ -2746,12 +2793,34 @@ class GeSHi {
 
         if ($numbers_found) {
             // Put number styles in
-            if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
-                $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
-            } else {
-                $attributes = ' class="nu0"';
+            foreach($numbers_format as $id => $regexp) {
+                //Get the appropriate style ...
+                if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
+                    //Use default style if no special one given ...
+                    //Some kind of backwards compatibility ...
+                    if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
+                        $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
+                    } else {
+                        $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
+                    }
+                } else {
+                    //Convert Base2-Bitfield into Bit-Index ...
+                    for($id2 = 0, $idc = $id; $idc > 1; $id2++) {
+                        $idc >>= 1;   //I renounce doing this as an one-liner ;-)
+                    }
+
+                    //Check if this style is present
+                    if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
+                        $id2 = 0;
+                    }
+
+                    //Decide on the final attributes ...
+                    $attributes = ' class="nu'.$id2.'"';
+                }
+
+                //Set in the correct styles ...
+                $stuff_to_parse = str_replace("/NUM!$id/", $attributes, $stuff_to_parse);
             }
-            $stuff_to_parse = str_replace('/NUM!/', $attributes, $stuff_to_parse);
         }
 
         // Highlight methods and fields in objects
