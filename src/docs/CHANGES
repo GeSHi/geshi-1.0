@@ -66,6 +66,7 @@ Version 1.0.8
      * Without line numbers:  <pre>header...CODE...</pre>
      => valid HTML and no need for &nbsp; indentation
   -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
+  -  Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
