@@ -148,8 +148,8 @@ $language_data = array (
             0 => 'color: #0000dd;'
             ),
         'METHODS' => array(
-            1 => 'color: #00eeff;',
-            2 => 'color: #00eeff;'
+            1 => 'color: #007788;',
+            2 => 'color: #007788;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #008000;',
