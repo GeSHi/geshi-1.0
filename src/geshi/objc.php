@@ -49,8 +49,19 @@
 
 $language_data = array (
     'LANG_NAME' => 'Objective-C',
-	'COMMENT_SINGLE' => array(1 => '#', 2 => '//'),
+	'COMMENT_SINGLE' => array(
+	    //Compiler directives
+        1 => '#',
+        //Single line C-Comments
+        2 => '//'
+        ),
     'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(
+        //Multiline Continuation for single-line comment
+        2 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        //Pseudo-Highlighting of the @-sign before strings
+        3 => "/@(?=\")/"
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
@@ -295,6 +306,7 @@ $language_data = array (
         'COMMENTS' => array(
 			1 => 'color: #6e371a;',	// Preprocessor directives
 			2 => 'color: #11740a; font-style: italic;',	// Normal C single-line comments
+			3 => 'color: #bf1d1a;', // Q-sign in front of Strings
 			'MULTI' => 'color: #11740a; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
