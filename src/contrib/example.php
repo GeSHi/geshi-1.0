@@ -169,7 +169,7 @@ if (isset($_POST['submit'])) {
     echo '<hr />';
 }
 ?>
-<form action="example.php" method="post">
+<form action="<?php echo basename($_SERVER['PHP_SELF']); ?>" method="post">
 <h3>Source to highlight</h3>
 <p>
 <textarea rows="10" cols="60" name="source" id="source"><?php echo $fill_source ? htmlspecialchars($_POST['source']) : '' ?></textarea>
