@@ -2367,8 +2367,8 @@ class GeSHi {
 
                                     // This check will find special variables like $# in bash
                                     // or compiler directives of Delphi beginning {$
-                                    if ((empty($sc_disallowed_before) || ($i <= 0) ||
-                                          false === strpos($sc_disallowed_before, $part[$i-1])) ||
+                                    if ((empty($sc_disallowed_before) || ($i == 0) ||
+                                          false === strpos($sc_disallowed_before, $part[$i-1])) &&
                                         (empty($sc_disallowed_after) || ($length-1 <= $i) ||
                                           false === strpos($sc_disallowed_after, $part[$i + $com_len])))
                                     {
