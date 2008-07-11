@@ -186,9 +186,9 @@ $language_data = array (
         //DOM Node ID
         0 => '\#[a-zA-Z0-9\-_]+',
         //CSS classname
-        1 => '\.[a-zA-Z0-9\-_]+',
+        1 => '\.(?!\d)[a-zA-Z0-9\-_]+',
         //CSS Pseudo classes
-        2 => ':[a-zA-Z0-9\-]+',
+        2 => ':(?!\d)[a-zA-Z0-9\-]+',
         //Measurements
         3 => '(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
         //Links \ referenced resources
