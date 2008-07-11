@@ -2671,18 +2671,11 @@ class GeSHi {
             }
         }
 
-        // Highlight numbers. This regexp sucks... anyone with a regexp that WORKS
-        // here wins a cookie if they send it to me. At the moment there's two doing
-        // almost exactly the same thing, except the second one prevents a number
-        // being highlighted twice (eg <span...><span...>5</span></span>)
-        // Put /NUM!/ in for the styles, which gets replaced at the end.
-        //
-        // NEW ONE: Brice Bernard
+        // Highlight numbers. As of 1.0.8 we support diffent types of numbers
         $numbers_found = false;
         if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
             $numbers_found = true;
 
-            //Well, this is some bigger task since 1.0.8 ...
             $numbers_permissions = GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_NONSCI;
             if(isset($this->language_data['NUMBERS']) &&
                 is_int($this->language_data['NUMBERS']) &&
