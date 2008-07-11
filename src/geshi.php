@@ -2787,32 +2787,34 @@ class GeSHi {
         if ($numbers_found) {
             // Put number styles in
             foreach($numbers_format as $id => $regexp) {
-                //Get the appropriate style ...
-                if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
-                    //Use default style if no special one given ...
-                    //Some kind of backwards compatibility ...
-                    if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
-                        $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
+                if ($numbers_permissions & $id) {
+                    //Get the appropriate style ...
+                    if (!$this->use_classes && $this->lexic_permissions['NUMBERS']) {
+                        //Use default style if no special one given ...
+                        //Some kind of backwards compatibility ...
+                        if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
+                            $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
+                        } else {
+                            $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
+                        }
                     } else {
-                        $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
-                    }
-                } else {
-                    //Convert Base2-Bitfield into Bit-Index ...
-                    for($id2 = 0, $idc = $id; $idc > 1; $id2++) {
-                        $idc >>= 1;   //I renounce doing this as an one-liner ;-)
+                        //Convert Base2-Bitfield into Bit-Index ...
+                        for($id2 = 0, $idc = $id; $idc > 1; $id2++) {
+                            $idc >>= 1;   //I renounce doing this as an one-liner ;-)
+                        }
+
+                        //Check if this style is present
+                        if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
+                            $id2 = 0;
+                        }
+
+                        //Decide on the final attributes ...
+                        $attributes = ' class="nu'.$id2.'"';
                     }
 
-                    //Check if this style is present
-                    if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
-                        $id2 = 0;
-                    }
-
-                    //Decide on the final attributes ...
-                    $attributes = ' class="nu'.$id2.'"';
+                    //Set in the correct styles ...
+                    $stuff_to_parse = str_replace("/NUM!$id/", $attributes, $stuff_to_parse);
                 }
-
-                //Set in the correct styles ...
-                $stuff_to_parse = str_replace("/NUM!$id/", $attributes, $stuff_to_parse);
             }
         }
 
