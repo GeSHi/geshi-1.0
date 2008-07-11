@@ -186,9 +186,9 @@ $language_data = array (
         //DOM Node ID
         0 => '\#[a-zA-Z0-9\-_]+',
         //CSS classname
-        1 => '\.(?!\d)[a-zA-Z0-9\-_]+',
+        1 => '\.(?!\d)[a-zA-Z0-9\-_]+\b(?=[\{\.#a-zA-Z,])',
         //CSS Pseudo classes
-        2 => ':(?!\d)[a-zA-Z0-9\-]+',
+        2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,]))',
         //Measurements
         3 => '(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
         //Links \ referenced resources
@@ -205,7 +205,12 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-&\.'
+        )
+    )
 );
 
 $language_data['STYLES']['NUMBERS'][0] = $language_data['STYLES']['REGEXPS'][3];
