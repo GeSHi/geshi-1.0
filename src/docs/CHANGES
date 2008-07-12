@@ -68,10 +68,12 @@ Version 1.0.8
      => valid HTML and no need for &nbsp; indentation
   -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
   -  Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
+  -  Added some keywords for VHDL (beshig, BenBE)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
      * CSS
+     * VHDL
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
