@@ -54,6 +54,9 @@ $language_data = array (
     'LANG_NAME' => 'CSS',
     'COMMENT_SINGLE' => array(1 => '@'),
     'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(
+        2 => "/(?<=\\()\\s*(?:(?:[a-z0-9]+?:\\/\\/)?[a-z0-9_\\-\\.\\/:]+?)?[a-z]+?\\.[a-z]+?(\\?[^\)]+?)?\\s*?(?=\\))/i"
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
@@ -146,6 +149,7 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #a1a100;',
+            2 => 'color: #ff0000; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
