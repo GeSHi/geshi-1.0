@@ -195,7 +195,7 @@ $language_data = array (
         //CSS Pseudo classes
         2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,]))',
         //Measurements
-        3 => '(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
+        3 => '[+\-]?(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
         //Links \ referenced resources
         4 => array(
             GESHI_SEARCH    => '(url\()([^)]+)(\))',
