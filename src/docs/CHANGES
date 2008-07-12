@@ -71,6 +71,7 @@ Version 1.0.8
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
+     * CSS
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)
