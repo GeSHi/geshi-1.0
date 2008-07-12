@@ -186,7 +186,7 @@ $language_data = array (
         //DOM Node ID
         0 => '\#[a-zA-Z0-9\-_]+',
         //CSS classname
-        1 => '\.(?!\d)[a-zA-Z0-9\-_]+\s(?=[\{\.#a-zA-Z,])',
+        1 => '\.(?!\d)[a-zA-Z0-9\-_]+\b(?=[\{\.#\s,])',
         //CSS Pseudo classes
         2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,]))',
         //Measurements
