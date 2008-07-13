@@ -197,7 +197,12 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'COMMENTS' => array(
+           'DISALLOWED_BEFORE' => '$'
         )
+    )
 );
 
 ?>
