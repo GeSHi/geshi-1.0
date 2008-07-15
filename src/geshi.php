@@ -1655,7 +1655,7 @@ class GeSHi {
                         $sym = GeSHi::hsc($sym);
                         if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
                             $this->language_data['SYMBOL_DATA'][$sym] = $key;
-                            if (isset($sym[2])) { // multiple chars
+                            if (isset($sym[1])) { // multiple chars
                                 $symbol_preg_multi[] = preg_quote($sym, '/');
                             } else { // single char
                                 if ($sym == '-') {
@@ -1671,7 +1671,7 @@ class GeSHi {
                     $symbols = GeSHi::hsc($symbols);
                     if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
                         $this->language_data['SYMBOL_DATA'][$symbols] = 0;
-                        if (isset($symbols[2])) { // multiple chars
+                        if (isset($symbols[1])) { // multiple chars
                             $symbol_preg_multi[] = preg_quote($symbols, '/');
                         } else if ($symbols == '-') {
                             // don't trigger range out of order error
@@ -2876,6 +2876,7 @@ class GeSHi {
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
                 $symbol_end = $symbol_length + $symbol_offset;
+                // make sure this potential symbol is not already highlighted
                 for ($h_id = 0; $h_id < $n_highlighted; ++$h_id) {
                     if (!isset($highlighted[$h_id]['start'])) {
                         $highlighted[$h_id]['start'] = $highlighted[$h_id][0][1];
