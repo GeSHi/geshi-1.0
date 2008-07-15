@@ -2741,15 +2741,28 @@ class GeSHi {
                 $disallowed_before .= $quotemarks;
                 $disallowed_after .= $quotemarks;
             }
+            $parser_control_pergroup = false;
             if (isset($this->language_data['PARSER_CONTROL'])) {
                 if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                    $x = 0; // check wether per-keyword-group parser_control is enabled
                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
                         $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                        ++$x;
                     }
                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
                         $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                        ++$x;
                     }
+                    $parser_control_pergroup = (count($this->language_data['PARSER_CONTROL']['KEYWORDS']) - $x) > 0;
                 }
+            }
+
+            // if this is changed, don't forget to change it below
+            if (!empty($disallowed_before)) {
+                $disallowed_before = "(?<![$disallowed_before])";
+            }
+            if (!empty($disallowed_after)) {
+                $disallowed_after = "(?![$disallowed_after])";
             }
 
             foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
@@ -2760,6 +2773,29 @@ class GeSHi {
                     $modifiers = $case_sensitive ? 'e' : 'ie';
                     $styles = "/$k/";
 
+                    // NEW in 1.0.8 - per-keyword-group parser control
+                    $disallowed_before_local = $disallowed_before;
+                    $disallowed_after_local = $disallowed_after;
+                    if ($parser_control_pergroup && isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k])) {
+                        if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'])) {
+                            $disallowed_before_local =
+                                    $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
+
+                            if (!empty($disallowed_before_local)) {
+                                $disallowed_before_local = "(?<![$disallowed_before_local])";
+                            }
+                        }
+
+                        if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'])) {
+                            $disallowed_after_local =
+                                    $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
+
+                            if (!empty($disallowed_after_local)) {
+                                $disallowed_after_local = "(?![$disallowed_after_local])";
+                            }
+                        }
+                    }
+
                     //NEW in 1.0.8, the cached regexp list
                     // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
                     for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
@@ -2768,8 +2804,8 @@ class GeSHi {
                         // Basically, we don't put the styles in yet because then the styles themselves will
                         // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
                         $stuff_to_parse = preg_replace(
-                            "/([^$disallowed_before]|^)({$keywordset})(?!\<DOT\>(?:htm|php))(?=[^$disallowed_after]|$)/$modifiers",
-                            "'\\1' . $func2('\\2', '$k', 'BEGIN') . '<|$styles>' . $func('\\2') . '|>' . $func2('\\2', '$k', 'END')",
+                            "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
+                            "$func2('\\1', '$k', 'BEGIN') . '<|$styles>' . $func('\\1') . '|>' . $func2('\\1', '$k', 'END')",
                             $stuff_to_parse
                         );
                     }

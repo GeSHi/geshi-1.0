@@ -52,7 +52,7 @@ $language_data = array (
             '&lt;cfchartseries', '&lt;/cfchartseries&gt;', '&lt;cfcol', '&lt;cfcollection', '&lt;cfcomponent', '&lt;/cfcomponent&gt;',
             '&lt;cfcontent', '&lt;cfcookie', '&lt;/cfdefaultcase&gt;', '&lt;cfdirectory', '&lt;cfdocument', '&lt;/cfdocument&gt;',
             '&lt;cfdocumentitem', '&lt;/cfdocumentitem&gt;', '&lt;cfdocumentsection', '&lt;/cfdocumentsection&gt;', '&lt;cfdump',
-            '&lt;cfelse', '&lt;cfelseif', '&lt;cferror', '&lt;cfexecute', '&lt;/cfexecute&gt;', '&lt;cfexit', '&lt;cffile',
+            '&lt;cfelse&gt;', '&lt;cfelseif', '&lt;cferror', '&lt;cfexecute', '&lt;/cfexecute&gt;', '&lt;cfexit', '&lt;cffile',
             '&lt;cfflush', '&lt;cfform', '&lt;/cfform&gt;', '&lt;cfformgroup', '&lt;/cfformgroup', '&lt;cfformitem',
             '&lt;/cfformitem&gt;', '&lt;cfftp', '&lt;cffunction', '&lt;/cffunction&gt;', '&lt;cfgrid', '&lt;/cfgrid&gt;',
             '&lt;cfgridcolumn', '&lt;cfgridrow', '&lt;cfgridupdate', '&lt;cfheader', '&lt;cfhtmlhead', '&lt;cfhttp',
@@ -69,7 +69,7 @@ $language_data = array (
             '&lt;/cfsilent&gt;', '&lt;cfstoredproc', '&lt;/cfstoredproc&gt;', '&lt;cfswitch', '&lt;/cfswitch&gt;', '&lt;cftable',
             '&lt;/cftable&gt;', '&lt;cftextarea', '&lt;/cftextarea&gt;', '&lt;cfthrow', '&lt;cftimer', '&lt;/cftimer&gt;',
             '&lt;cftrace', '&lt;/cftrace&gt;', '&lt;cftransaction', '&lt;/cftransaction&gt;', '&lt;cftree', '&lt;/cftree&gt;',
-            '&lt;cftreeitem', '&lt;cftry', '&lt;/cftry&gt;', '&lt;cfupdate', '&lt;cfwddx','&lt;','&gt;'
+            '&lt;cftreeitem', '&lt;cftry', '&lt;/cftry&gt;', '&lt;cfupdate', '&lt;cfwddx'
             ),
         /* HTML Tags */
         2 => array(
@@ -167,8 +167,6 @@ $language_data = array (
             '&lt;var',
             '&lt;/var&gt;',
             '&lt;/var',
-
-            '&gt;', '&lt;'
             ),
         /* HTML attributes */
         3 => array(
@@ -235,6 +233,9 @@ $language_data = array (
         /* CFM Attributes */
         6 => array(
             '=','&amp;','name','dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
+            ),
+        7 => array(
+            '&lt;', '&gt;'
             )
         ),
     'SYMBOLS' => array(
@@ -247,7 +248,8 @@ $language_data = array (
         3 => false,
         4 => false,
         5 => false,
-        6 => false
+        6 => false,
+        7 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -256,7 +258,8 @@ $language_data = array (
             3 => 'color: #0000FF;',
             4 => 'color: #000000; font-weight: bold;',
             5 => 'color: #0000FF;',
-            6 => 'color: #0000FF'
+            6 => 'color: #0000FF',
+            7 => 'color: #990000'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
@@ -324,6 +327,14 @@ $language_data = array (
         1 => true,
         2 => true,
         3 => true
+        ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            7 => array(
+                'DISALLOWED_BEFORE' => '',
+                'DISALLOWED_AFTER' => ''
+                )
+            )
         )
 );
 
