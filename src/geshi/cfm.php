@@ -47,7 +47,7 @@ $language_data = array (
     'KEYWORDS' => array(
         /* CFM Tags */
         1 => array(
-            '&lt;cfabort', '&lt;cfapplet', '&lt;cfapplication', '&lt;cfargument', '&lt;cfassociate', '&lt;&lt;cfbreak&gt;',
+            '&lt;cfabort', '&lt;cfapplet', '&lt;cfapplication', '&lt;cfargument', '&lt;cfassociate', '&lt;cfbreak&gt;',
             '&lt;cfcache', '&lt;cfcase', '&lt;cfcatch', '&lt;/cfcatch&gt;', '&lt;cfchart', '&lt;/cfchart&gt;', '&lt;cfchartdata',
             '&lt;cfchartseries', '&lt;/cfchartseries&gt;', '&lt;cfcol', '&lt;cfcollection', '&lt;cfcomponent', '&lt;/cfcomponent&gt;',
             '&lt;cfcontent', '&lt;cfcookie', '&lt;/cfdefaultcase&gt;', '&lt;cfdirectory', '&lt;cfdocument', '&lt;/cfdocument&gt;',
@@ -238,7 +238,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']','gt','lt'
+        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']',#'gt','lt'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -280,6 +280,7 @@ $language_data = array (
             0 => 'color: #0000FF;'
             ),
         'SCRIPT' => array(
+            -1 => 'color: #808080; font-style: italic; background-color:#FFFF99;',
             0 => 'color: #00bbdd;',
             1 => 'color: #0000FF;',
             2 => 'color: #000099;',
@@ -301,6 +302,9 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
+        -1 => array(
+            '<!--' => '-->'
+            ),
         0 => array(
             '<!DOCTYPE' => '>'
             ),
@@ -315,6 +319,7 @@ $language_data = array (
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        -1 => true,
         0 => false,
         1 => true,
         2 => true,
