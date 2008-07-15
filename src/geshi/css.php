@@ -193,7 +193,8 @@ $language_data = array (
         //CSS classname
         1 => '\.(?!\d)[a-zA-Z0-9\-_]+\b(?=[\{\.#\s,:].|<\|)',
         //CSS Pseudo classes
-        2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,:](.|\n)|<\|))',
+        //note: & is needed for &gt; (i.e. > )
+        2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,:+*&](.|\n)|<\|))',
         //Measurements
         3 => '[+\-]?(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
         ),
