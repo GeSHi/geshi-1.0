@@ -196,14 +196,6 @@ $language_data = array (
         2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,]))',
         //Measurements
         3 => '[+\-]?(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
-        //Links \ referenced resources
-        4 => array(
-            GESHI_SEARCH    => '(url\()([^)]+)(\))',
-            GESHI_REPLACE   => '\\2',
-            GESHI_BEFORE    => '\\1',
-            GESHI_AFTER     => '\\3',
-            GESHI_MODIFIERS => 'si'
-            )
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
@@ -217,7 +209,5 @@ $language_data = array (
         )
     )
 );
-
-$language_data['STYLES']['NUMBERS'][0] = $language_data['STYLES']['REGEXPS'][3];
 
 ?>
