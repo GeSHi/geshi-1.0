@@ -69,6 +69,9 @@ Version 1.0.8
   -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
   -  Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
   -  Added some keywords for VHDL (beshig, BenBE)
+  -  fixed severly broken ColdFusion language file (milian)
+  -  make sure strict_mode is set properly when doing repeated set_language calls (milian)
+  -  fixed some incorrectly highlighted things with the CSS language file (milian, BenBE)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
