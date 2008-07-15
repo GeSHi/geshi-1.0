@@ -584,15 +584,22 @@ class GeSHi {
      * @since 1.0.0
      */
     function set_language($language) {
-        $this->error = false;
-        $this->strict_mode = GESHI_NEVER;
-
         //Clean up the language name to prevent malicious code injection
         $language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
-        $this->language = strtolower($language);
+
+        $language = strtolower($language);
 
         //Retreive the full filename
-        $file_name = $this->language_path . $this->language . '.php';
+        $file_name = $this->language_path . $language . '.php';
+        if ($file_name == $this->loaded_language) {
+            // this language is already loaded!
+            return;
+        }
+
+        $this->language = $language;
+
+        $this->error = false;
+        $this->strict_mode = GESHI_NEVER;
 
         //Check if we can read the desired file
         if (!is_readable($file_name)) {
