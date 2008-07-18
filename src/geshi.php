@@ -2911,11 +2911,13 @@ class GeSHi {
             if ($n_symbols) {
                 //Match anything that is a highlighted block ...
                 $n_highlighted = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            } else {
+                $n_highlighted = 0;
             }
             $global_offset = 0;
             for ($s_id = 0; $s_id < $n_symbols; ++$s_id) {
                 $symbol_match = $pot_symbols[$s_id][0][0];
-                $symbol_length = strlen($pot_symbols[$s_id][0][0]);
+                $symbol_length = strlen($symbol_match);
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
                 $symbol_end = $symbol_length + $symbol_offset;
@@ -2928,7 +2930,7 @@ class GeSHi {
                     }
 
                     //Do a range check of the found highlight identifier and the OOP match ...
-                    if (($highlighted[$h_id]['start'] <=  $symbol_offset) &&
+                    if (($highlighted[$h_id]['start'] <= $symbol_offset) &&
                         ($highlighted[$h_id]['end'] >= $symbol_end)) {
                         //We found a match that was already highlighted ... skip it
                         continue 2;
