@@ -53,7 +53,7 @@
 
 $language_data = array (
     'LANG_NAME' => 'C',
-    'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
+    'COMMENT_SINGLE' => array(2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     //Multiline-continued single-line comments
     'COMMENT_REGEXP' => array(1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m'),
