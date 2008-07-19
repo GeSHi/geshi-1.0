@@ -580,10 +580,17 @@ class GeSHi {
     /**
      * Sets the language for this object
      *
+     * @note since 1.0.8 this function won't reset language-settings by default anymore!
+     *       if you need this set $force_reset = true
+     *
      * @param string The name of the language to use
      * @since 1.0.0
      */
-    function set_language($language) {
+    function set_language($language, $force_reset = false) {
+        if ($force_reset) {
+            $this->loaded_language = false;
+        }
+
         //Clean up the language name to prevent malicious code injection
         $language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
 
@@ -2911,13 +2918,11 @@ class GeSHi {
             if ($n_symbols) {
                 //Match anything that is a highlighted block ...
                 $n_highlighted = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-            } else {
-                $n_highlighted = 0;
             }
             $global_offset = 0;
             for ($s_id = 0; $s_id < $n_symbols; ++$s_id) {
                 $symbol_match = $pot_symbols[$s_id][0][0];
-                $symbol_length = strlen($symbol_match);
+                $symbol_length = strlen($pot_symbols[$s_id][0][0]);
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
                 $symbol_end = $symbol_length + $symbol_offset;
@@ -2930,7 +2935,7 @@ class GeSHi {
                     }
 
                     //Do a range check of the found highlight identifier and the OOP match ...
-                    if (($highlighted[$h_id]['start'] <= $symbol_offset) &&
+                    if (($highlighted[$h_id]['start'] <=  $symbol_offset) &&
                         ($highlighted[$h_id]['end'] >= $symbol_end)) {
                         //We found a match that was already highlighted ... skip it
                         continue 2;
