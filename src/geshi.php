@@ -1677,6 +1677,8 @@ class GeSHi {
         //
         //For this to work, we need to reorganize the data arrays.
         if ($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
+            $this->language_data['MULTIPLE_SYMBOL_GROUPS'] = count($this->language_data['STYLES']['SYMBOLS']) > 1;
+
             $this->language_data['SYMBOL_DATA'] = array();
             $symbol_preg_multi = array(); // multi char symbols
             $symbol_preg_single = array(); // single char symbols
@@ -2988,31 +2990,42 @@ class GeSHi {
                 }
                 // if we reach this point, we have a valid match which needs to be highlighted
                 $symbol_hl = "";
-                $old_sym = -1;
-                // Split the current stuff to replace into its atomic symbols ...
-                preg_match_all("/" . $this->language_data['SYMBOL_SEARCH'] . "/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
-                foreach ($sym_match_syms[0] as $sym_ms) {
-                    //Check if consequtive symbols belong to the same group to save output ...
-                    if (isset($this->language_data['SYMBOL_DATA'][$sym_ms])
-                        && ($this->language_data['SYMBOL_DATA'][$sym_ms] != $old_sym)) {
-                        if (-1 != $old_sym) {
-                            $symbol_hl .= "|>";
-                        }
-                        $old_sym = $this->language_data['SYMBOL_DATA'][$sym_ms];
-                        if (!$this->use_classes) {
-                            $symbol_hl .= '<| style="' . $this->language_data['STYLES']['SYMBOLS'][$old_sym] . '">';
-                        } else {
-                            $symbol_hl .= '<| class="sy' . $old_sym . '">';
-                        }
-                    }
-                    $symbol_hl .= $sym_ms;
-                }
-                unset($sym_match_syms);
 
-                //Close remaining tags and insert the replacement at the right position ...
-                //Take caution if symbol_hl is empty to avoid doubled closing spans.
-                if (-1 != $old_sym) {
-                    $symbol_hl .= "|>";
+                // if we have multiple styles, we have to handle them properly
+                if ($this->language_data['MULTIPLE_SYMBOL_GROUPS']) {
+                    $old_sym = -1;
+                    // Split the current stuff to replace into its atomic symbols ...
+                    preg_match_all("/" . $this->language_data['SYMBOL_SEARCH'] . "/", $symbol_match, $sym_match_syms, PREG_PATTERN_ORDER);
+                    foreach ($sym_match_syms[0] as $sym_ms) {
+                        //Check if consequtive symbols belong to the same group to save output ...
+                        if (isset($this->language_data['SYMBOL_DATA'][$sym_ms])
+                            && ($this->language_data['SYMBOL_DATA'][$sym_ms] != $old_sym)) {
+                            if (-1 != $old_sym) {
+                                $symbol_hl .= "|>";
+                            }
+                            $old_sym = $this->language_data['SYMBOL_DATA'][$sym_ms];
+                            if (!$this->use_classes) {
+                                $symbol_hl .= '<| style="' . $this->language_data['STYLES']['SYMBOLS'][$old_sym] . '">';
+                            } else {
+                                $symbol_hl .= '<| class="sy' . $old_sym . '">';
+                            }
+                        }
+                        $symbol_hl .= $sym_ms;
+                    }
+                    unset($sym_match_syms);
+
+                    //Close remaining tags and insert the replacement at the right position ...
+                    //Take caution if symbol_hl is empty to avoid doubled closing spans.
+                    if (-1 != $old_sym) {
+                        $symbol_hl .= "|>";
+                    }
+                } else {
+                    if (!$this->use_classes) {
+                        $symbol_hl = '<| style="' . $this->language_data['STYLES']['SYMBOLS'][0] . '">';
+                    } else {
+                        $symbol_hl = '<| class="sy0">';
+                    }
+                    $symbol_hl .= $symbol_match . '|>';
                 }
 
 
