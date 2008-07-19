@@ -1846,7 +1846,7 @@ class GeSHi {
                             $parts[$k][0] = $open;
                             $close_i = strpos($code, $close, $i + $open_strlen);
                             if ($close_i === false) {
-                                $close_i = $length - 1;
+                                $close_i = $length;
                             } else {
                                 $close_i += strlen($close);
                             }
