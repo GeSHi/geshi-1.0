@@ -176,8 +176,7 @@ $language_data = array (
             0 => 'color: #cc00cc;',
             1 => 'color: #6666ff;',
             2 => 'color: #3333ff;',
-            3 => 'color: #933;',
-            4 => 'color: #933;',
+            3 => 'color: #933;'
             )
         ),
     'URLS' => array(
