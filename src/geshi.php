@@ -1818,9 +1818,8 @@ class GeSHi {
         // Whether to highlight inside a block of code
         $HIGHLIGHT_INSIDE_STRICT = false;
         $HARDQUOTE_OPEN = false;
-        $STRICTATTRS = '';
         $stuff_to_parse   = '';
-        $result           = '';
+        $endresult        = '';
 
         // "Important" selections are handled like multiline comments
         // @todo GET RID OF THIS SHIZ
@@ -1928,6 +1927,9 @@ class GeSHi {
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
         for ($key = 0, $num_parts = count($parts); $key < $num_parts; ++$key) {
+            $STRICTATTRS = '';
+            $result = '';
+
             $part = $parts[$key][1];
             // If this block should be highlighted...
             if ($key & 1) {
@@ -1950,6 +1952,7 @@ class GeSHi {
                             $attributes = ' class="sc' . $script_key . '"';
                         }
                         $result .= "<span$attributes>";
+                        #var_dump($result);
                         $STRICTATTRS = $attributes;
                     }
                 }
@@ -2459,15 +2462,11 @@ class GeSHi {
                     $result .= $this->parse_non_string_part($stuff_to_parse);
                     $stuff_to_parse = '';
                 } else {
-                    if ($STRICTATTRS != '') {
-                        $part = str_replace("\n", "</span>\n<span$STRICTATTRS>", GeSHi::hsc($part));
-                        $STRICTATTRS = '';
-                    }
-                    $result .= $part;
+                    $result .= GeSHi::hsc($part);
                 }
                 // Close the <span> that surrounds the block
-                if ($this->strict_mode && $this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
-                    $this->lexic_permissions['SCRIPT']) {
+                if ($STRICTATTRS != '') {
+                    $result = str_replace("\n", "</span>\n<span$STRICTATTRS>", $result);
                     $result .= '</span>';
                 }
             } else {
@@ -2475,12 +2474,14 @@ class GeSHi {
                 $result .= GeSHi::hsc($part);
             }
             unset($part, $parts[$key]);
+            $endresult .= $result;
         }
+        unset($result);
 
         //This fix is related to SF#1923020, but has to be applied regardless of
         //actually highlighting symbols.
         /** NOTE: memorypeak #3 */
-        $result = str_replace(array('<SEMI>', '<PIPE>'), array(';', '|'), $result);
+        $endresult = str_replace(array('<SEMI>', '<PIPE>'), array(';', '|'), $endresult);
 
 //        // Parse the last stuff (redundant?)
 //        $result .= $this->parse_non_string_part($stuff_to_parse);
@@ -2491,8 +2492,8 @@ class GeSHi {
         // We're finished: stop timing
         $this->set_time($start_time, microtime());
 
-        $this->finalise($result);
-        return $result;
+        $this->finalise($endresult);
+        return $endresult;
     }
 
     /**
