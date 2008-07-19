@@ -1952,7 +1952,6 @@ class GeSHi {
                             $attributes = ' class="sc' . $script_key . '"';
                         }
                         $result .= "<span$attributes>";
-                        #var_dump($result);
                         $STRICTATTRS = $attributes;
                     }
                 }
@@ -2943,35 +2942,19 @@ class GeSHi {
         //FIX for symbol highlighting ...
         if ($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
             //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
-            $n_symbols = preg_match_all("/(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $pot_symbols, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-            if ($n_symbols) {
-                //Match anything that is a highlighted block ...
-                $n_highlighted = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>/", $stuff_to_parse, $highlighted, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
-            }
-
+            $n_symbols = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>|(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $pot_symbols, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
             $global_offset = 0;
             for ($s_id = 0; $s_id < $n_symbols; ++$s_id) {
                 $symbol_match = $pot_symbols[$s_id][0][0];
+                if (!preg_match('/^(?:'. $this->language_data['SYMBOL_SEARCH'] . ')+$/', $symbol_match)) {
+                    continue;
+                }
+                // if we reach this point, we have a valid match which needs to be highlighted
+
                 $symbol_length = strlen($symbol_match);
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
                 $symbol_end = $symbol_length + $symbol_offset;
-                // make sure this potential symbol is not already highlighted
-                for ($h_id = 0; $h_id < $n_highlighted; ++$h_id) {
-                    if (!isset($highlighted[$h_id]['start'])) {
-                        $highlighted[$h_id]['start'] = $highlighted[$h_id][0][1];
-                        $highlighted[$h_id]['end'] = strlen($highlighted[$h_id][0][0]) + $highlighted[$h_id]['start'];
-                        unset($highlighted[$h_id][0]);
-                    }
-
-                    //Do a range check of the found highlight identifier and the OOP match ...
-                    if (($highlighted[$h_id]['start'] <= $symbol_offset) &&
-                        ($highlighted[$h_id]['end'] >= $symbol_end)) {
-                        //We found a match that was already highlighted ... skip it
-                        continue 2;
-                    }
-                }
-                // if we reach this point, we have a valid match which needs to be highlighted
                 $symbol_hl = "";
 
                 // if we have multiple styles, we have to handle them properly
