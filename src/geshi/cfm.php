@@ -283,7 +283,7 @@ $language_data = array (
             0 => 'color: #0000FF;'
             ),
         'SCRIPT' => array(
-            -1 => 'color: #808080; font-style: italic; background-color:#FFFF99;',
+            -1 => 'color: #808080; font-style: italic;',
             0 => 'color: #00bbdd;',
             1 => 'color: #0000FF;',
             2 => 'color: #000099;',
