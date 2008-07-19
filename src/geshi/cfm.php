@@ -40,7 +40,7 @@
 $language_data = array (
     'LANG_NAME' => 'ColdFusion',
     'COMMENT_SINGLE' => array(1 => '//'),
-    'COMMENT_MULTI' => array('<!--' => '-->','&lt;!---' => '---&gt;', '/*' => '*/'),
+    'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -322,7 +322,7 @@ $language_data = array (
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        -1 => true,
+        -1 => false,
         0 => false,
         1 => true,
         2 => true,
