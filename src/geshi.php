@@ -521,7 +521,7 @@ class GeSHi {
      * @var array
      * @since 1.0.8
      */
-    var $_kw_replace = array();
+    var $_kw_replace_group = 0;
 
     /**#@-*/
 
@@ -2614,38 +2614,36 @@ class GeSHi {
     }
 
     /**
-     * Adds a url to a keyword where needed.
+     * Handles replacements of keywords to include markup and links if requested
      *
-     * @param  string The keyword to add the URL HTML to
-     * @param  int What group the keyword is from
-     * @param  boolean Whether to get the HTML for the start or end
-     * @return The HTML for either the start or end of the HTML &lt;a&gt; tag
-     * @since  1.0.2
+     * @param  string The keyword to add the Markup to
+     * @return The HTML for the match found
+     * @since  1.0.8
      * @access private
-     * @todo   Get rid of ender
+     *
+     * @todo   Get rid of ender in keyword links
      */
-    function add_url_to_keyword($keyword, $group, $start_or_end) {
-        if (!$this->keyword_links) {
-            // Keyword links have been disabled
-            return;
-        }
+    function handle_keyword_replace($match) {
+        $k = $this->_kw_replace_group;
+        $keyword = $match[0];
 
-        if (isset($this->language_data['URLS'][$group]) &&
-            $this->language_data['URLS'][$group] != '' &&
-            substr($keyword, 0, 5) != '&lt;/') {
-            // There is a base group for this keyword
-            if ($start_or_end == 'BEGIN') {
-                // HTML workaround... not good form (tm) but should work for 1.0.X
-                if (!$keyword) {
-                    return '';
-                }
+        $before = '';
+        $after = '';
+
+        if ($this->keyword_links) {
+            // Keyword links have been ebabled
+
+            if (isset($this->language_data['URLS'][$k]) &&
+                $this->language_data['URLS'][$k] != '' &&
+                substr($keyword, 0, 5) != '&lt;/') {
+                // There is a base group for this keyword
 
                 // Old system: strtolower
                 //$keyword = ( $this->language_data['CASE_SENSITIVE'][$group] ) ? $keyword : strtolower($keyword);
                 // New system: get keyword from language file to get correct case
-                if (!$this->language_data['CASE_SENSITIVE'][$group] &&
-                    strpos($this->language_data['URLS'][$group], '{FNAME}') !== false) {
-                    foreach ($this->language_data['KEYWORDS'][$group] as $word) {
+                if (!$this->language_data['CASE_SENSITIVE'][$k] &&
+                    strpos($this->language_data['URLS'][$k], '{FNAME}') !== false) {
+                    foreach ($this->language_data['KEYWORDS'][$k] as $word) {
                         if (strcasecmp($word, $keyword) == 0) {
                             break;
                         }
@@ -2656,40 +2654,23 @@ class GeSHi {
 
                 $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
                 $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;
-                if (!$word) return '';
-
-                return '<|UR1|"' .
-                    str_replace(
-                        array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
-                        array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
-                            GeSHi::hsc(strtoupper($word)), '<DOT>'),
-                        $this->language_data['URLS'][$group]
-                    ) . '">';
-            // HTML fix. Again, dirty hackage...
-            } else if (!($this->language == 'html4strict' && ('&gt;' == $keyword || '&lt;' == $keyword))) {
-                return '</a>';
+                if ($word) {
+                    $before = '<|UR1|"' .
+                        str_replace(
+                            array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
+                            array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
+                                GeSHi::hsc(strtoupper($word)), '<DOT>'),
+                            $this->language_data['URLS'][$k]
+                        ) . '">';
+                }
+                // HTML fix. Again, dirty hackage...
+                if (!($this->language == 'html4strict' && ('&gt;' == $keyword || '&lt;' == $keyword))) {
+                    $after = '</a>';
+                }
             }
         }
-    }
 
-    /**
-     * Handles replacements of keywords to include markup and links if requested
-     *
-     * @param  string The keyword to add the Markup to
-     * @return The HTML for the match found
-     * @since  1.0.8
-     * @access private
-     */
-    function handle_keyword_replace($match) {
-        //Shortcut for now ...
-//        return $match[0];
-
-        $func = $this->_kw_replace['func1'];
-        $func2 = $this->_kw_replace['func2'];
-        $k = $this->_kw_replace['k'];
-        $styles = $this->_kw_replace['styles'];
-
-        return $this->$func2($match[0], $k, 'BEGIN') . '<|' . $styles . '>' . $this->$func($match[0]) . '|>' . $this->$func2($match[0], $k, 'END');
+        return $before . '<|/'. $k .'/>' . $this->change_case($keyword) . '|>' . $after;
     }
 
     /**
@@ -2705,7 +2686,6 @@ class GeSHi {
         $stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
         $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
         $func = 'change_case';
-        $func2 = 'add_url_to_keyword';
 
         // Regular expressions
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
@@ -2817,7 +2797,6 @@ class GeSHi {
 
                     $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
                     $modifiers = $case_sensitive ? '' : 'i';
-                    $styles = "/$k/";
 
                     // NEW in 1.0.8 - per-keyword-group parser control
                     $disallowed_before_local = $disallowed_before;
@@ -2849,12 +2828,7 @@ class GeSHi {
                         // Might make a more unique string for putting the number in soon
                         // Basically, we don't put the styles in yet because then the styles themselves will
                         // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-                        $this->_kw_replace = array(
-                            'k' => $k,
-                            'func1' => $func,
-                            'func2' => $func2,
-                            'styles' => $styles
-                            );
+                        $this->_kw_replace_group = $k;
 
                         $stuff_to_parse = preg_replace_callback(
                             "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
