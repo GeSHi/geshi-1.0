@@ -506,6 +506,23 @@ class GeSHi {
      */
     var $parse_cache_built = false;
 
+    /**
+     * Work around for Suhosin Patch with disabled /e modifier
+     *
+     * Note from suhosins author in config file:
+     * <blockquote>
+     *   The /e modifier inside <code>preg_replace()</code> allows code execution.
+     *   Often it is the cause for remote code execution exploits. It is wise to
+     *   deactivate this feature and test where in the application it is used.
+     *   The developer using the /e modifier should be made aware that he should
+     *   use <code>preg_replace_callback()</code> instead
+     * </blockquote>
+     *
+     * @var array
+     * @since 1.0.8
+     */
+    var $_kw_replace = array();
+
     /**#@-*/
 
     /**
@@ -2654,6 +2671,26 @@ class GeSHi {
     }
 
     /**
+     * Handles replacements of keywords to include markup and links if requested
+     *
+     * @param  string The keyword to add the Markup to
+     * @return The HTML for the match found
+     * @since  1.0.8
+     * @access private
+     */
+    function handle_keyword_replace($match) {
+        //Shortcut for now ...
+//        return $match[0];
+
+        $func = $this->_kw_replace['func1'];
+        $func2 = $this->_kw_replace['func2'];
+        $k = $this->_kw_replace['k'];
+        $styles = $this->_kw_replace['styles'];
+
+        return $this->$func2($match[0], $k, 'BEGIN') . '<|' . $styles . '>' . $this->$func($match[0]) . '|>' . $this->$func2($match[0], $k, 'END');
+    }
+
+    /**
      * Takes a string that has no strings or comments in it, and highlights
      * stuff like keywords, numbers and methods.
      *
@@ -2665,8 +2702,8 @@ class GeSHi {
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
         $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
-        $func = '$this->change_case';
-        $func2 = '$this->add_url_to_keyword';
+        $func = 'change_case';
+        $func2 = 'add_url_to_keyword';
 
         // Regular expressions
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
@@ -2777,7 +2814,7 @@ class GeSHi {
                     $this->lexic_permissions['KEYWORDS'][$k]) {
 
                     $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
-                    $modifiers = $case_sensitive ? 'e' : 'ie';
+                    $modifiers = $case_sensitive ? '' : 'i';
                     $styles = "/$k/";
 
                     // NEW in 1.0.8 - per-keyword-group parser control
@@ -2810,11 +2847,18 @@ class GeSHi {
                         // Might make a more unique string for putting the number in soon
                         // Basically, we don't put the styles in yet because then the styles themselves will
                         // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-                        $stuff_to_parse = preg_replace(
+                        $this->_kw_replace = array(
+                            'k' => $k,
+                            'func1' => $func,
+                            'func2' => $func2,
+                            'styles' => $styles
+                            );
+
+                        $stuff_to_parse = preg_replace_callback(
                             "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
-                            "$func2('\\1', '$k', 'BEGIN') . '<|$styles>' . $func('\\1') . '|>' . $func2('\\1', '$k', 'END')",
+                            array($this, 'handle_keyword_replace'),
                             $stuff_to_parse
-                        );
+                            );
                     }
                 }
             }
