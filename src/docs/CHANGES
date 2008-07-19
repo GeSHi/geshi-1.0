@@ -26,6 +26,8 @@ Version 1.0.8
      * Progress (Marco Aurelio de Pasqual)
      * TypoScript (Jan-Philipp Halle)
      * Xorg configuration (milian)
+  -  set_language will not reset any language settings by default anymore.
+     You can use the additional $force_reset param for this. (milian)
   -  setup caches for parsing on demand, makes stylesheet generators fast again (milian)
   -  reduce strict errors & notices for language files (milian)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
