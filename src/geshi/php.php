@@ -54,8 +54,12 @@ $language_data = array (
     'LANG_NAME' => 'PHP',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    //Heredoc and Nowdoc syntax
-    'COMMENT_REGEXP' => array(3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+?)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'),
+    'COMMENT_REGEXP' => array(
+        //Heredoc and Nowdoc syntax
+        3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+?)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
+        // phpdoc comments
+        4 => '#/\*\*(?!\*).*\*/#sU'
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -284,6 +288,7 @@ $language_data = array (
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #666666; font-style: italic;',
             3 => 'color: #0000cc; font-style: italic;',
+            4 => 'color: #0000ff; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
