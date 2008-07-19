@@ -2946,7 +2946,9 @@ class GeSHi {
             $global_offset = 0;
             for ($s_id = 0; $s_id < $n_symbols; ++$s_id) {
                 $symbol_match = $pot_symbols[$s_id][0][0];
-                if (!preg_match('/^(?:'. $this->language_data['SYMBOL_SEARCH'] . ')+$/', $symbol_match)) {
+                if (strpos($symbol_match, '<') !== false || strpos($symbol_match, '>') !== false) {
+                    // already highlighted blocks _must_ include either < or >
+                    // so if this conditional applies, we have to skip this match
                     continue;
                 }
                 // if we reach this point, we have a valid match which needs to be highlighted
