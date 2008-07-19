@@ -522,6 +522,7 @@ class GeSHi {
      * @since 1.0.8
      */
     var $_kw_replace_group = 0;
+    var $_rx_key = 0;
 
     /**#@-*/
 
@@ -2674,6 +2675,19 @@ class GeSHi {
     }
 
     /**
+     * handles regular expressions highlighting-definitions with callback functions
+     *
+     * @param array the matches array
+     * @return The highlighted string
+     * @since 1.0.8
+     * @access private
+     */
+    function handle_regexps_callback($matches) {
+        // before: "' style=\"' . call_user_func(\"$func\", '\\1') . '\"\\1|>'",
+        return  ' style="' . call_user_func($this->language_data['STYLES']['REGEXPS'][$this->_rx_key], $matches[1]) . '"'. $matches[1] . '|>';
+    }
+
+    /**
      * Takes a string that has no strings or comments in it, and highlights
      * stuff like keywords, numbers and methods.
      *
@@ -2685,7 +2699,6 @@ class GeSHi {
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
         $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
-        $func = 'change_case';
 
         // Regular expressions
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
@@ -3016,9 +3029,10 @@ class GeSHi {
         foreach (array_keys($this->language_data['REGEXPS']) as $key) {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
                 if (is_callable($this->language_data['STYLES']['REGEXPS'][$key])) {
-                    $func = $this->language_data['STYLES']['REGEXPS'][$key];
-                    $stuff_to_parse = preg_replace("/!REG3XP$key!(.*)\|>/eU",
-                        "' style=\"' . call_user_func(\"$func\", '\\1') . '\"\\1|>'", $stuff_to_parse);
+                    $this->_rx_key = $key;
+                    $stuff_to_parse = preg_replace_callback("/!REG3XP$key!(.*)\|>/U",
+                        array($this, 'handle_regexps_callback'),
+                        $stuff_to_parse);
                 } else {
                     if (!$this->use_classes) {
                         $attributes = ' style="' . $this->language_data['STYLES']['REGEXPS'][$key] . '"';
