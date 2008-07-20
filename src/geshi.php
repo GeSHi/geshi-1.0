@@ -3390,7 +3390,21 @@ class GeSHi {
      */
     function header() {
         // Get attributes needed
-        $attributes = $this->get_attributes();
+        /**
+         * @todo   Document behaviour change - class is outputted regardless of whether
+         *         we're using classes or not. Same with style
+         */
+        $attributes = '';
+
+        if ($this->overall_class != '') {
+            $attributes .= " class=\"{$this->overall_class}\"";
+        }
+        if ($this->overall_id != '') {
+            $attributes .= " id=\"{$this->overall_id}\"";
+        }
+        if ($this->overall_style != '') {
+            $attributes .= ' style="' . $this->overall_style . '"';
+        }
 
         $ol_attributes = '';
 
@@ -3522,30 +3536,6 @@ class GeSHi {
         $replacements[] = $replacements[] = $speed;
 
         return str_replace($keywords, $replacements, $instr);
-    }
-
-    /**
-     * Gets the CSS attributes for this code
-     *
-     * @return The CSS attributes for this code
-     * @since  1.0.0
-     * @access private
-     * @todo   Document behaviour change - class is outputted regardless of whether we're using classes or not.
-     *         Same with style
-     */
-    function get_attributes() {
-        $attributes = '';
-
-        if ($this->overall_class != '') {
-            $attributes .= " class=\"{$this->overall_class}\"";
-        }
-        if ($this->overall_id != '') {
-            $attributes .= " id=\"{$this->overall_id}\"";
-        }
-        if ($this->overall_style != '') {
-            $attributes .= ' style="' . $this->overall_style . '"';
-        }
-        return $attributes;
     }
 
     /**

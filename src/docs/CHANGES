@@ -75,8 +75,10 @@ Version 1.0.8
   -  Make sure strict_mode is set properly when doing repeated set_language calls (milian)
   -  Fixed some incorrectly highlighted things with the CSS language file (milian, BenBE)
   -  Fixed broken use with Suhosin Patch when /e modifier was disabled (SF#2021800, BenBE)
-  -  Removed format_header/footer_content methods. They were private and both used only in the header/footer
-     methods, thus don't need to be methods at all! (milian)
+  -  Removed some private methods which were only called at exactly one place (milian)
+     * format_header_content
+     * format_footer_content
+     * get_attributes
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
