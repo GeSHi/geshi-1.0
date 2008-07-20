@@ -2241,7 +2241,7 @@ class GeSHi {
                             $result .= "<span$string_attributes>" . $string . '</span>';
                             $string = '';
                             continue;
-                        } else if ($this->lexic_permissions['STRINGS'] && $hq &&
+                        } else if ($this->lexic_permissions['STRINGS'] && $hq && $hq[0] == $char &&
                             substr($part, $i, $hq_strlen) == $hq) {
                             // The start of a hard quoted string
 
