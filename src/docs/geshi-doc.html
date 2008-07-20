@@ -1191,6 +1191,12 @@ file however. So if you're making a language file, remember it should have a nam
 writing a plugin for a particular application, it's up to you to somehow convert user input into a valid language
 name.</p></div>
 
+<div class="note"><div class="note-header">Note:</div><p>Since GeSHi 1.0.8 this function does not reset language
+settings for an already loaded language. If you want to highlight code in the same language with different settings
+add the optional <span style="color: #0000ff;">$force_reset</span> parameter:
+<br /><br />
+<code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_language</span><span style="color: #66cc66;">&#40;</span><span style="color: #ff0000;">'language'</span>, <span style="color: #000000; font-weight: bold; ">true</span><span style="color: #66cc66;">&#41;</span>;</code></p></div>
+
 <div class="caution"><div class="caution-header">Caution:</div><p>GeSHi <strong><tt>include()</tt></strong>s the language file, so be careful to make sure
 that users can't pass some wierd language name to include any old script! GeSHi tries to strip non-valid characters
 out of a language name, but you should always do this your self anyway. In particular, language files are always
