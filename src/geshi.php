@@ -3399,7 +3399,20 @@ class GeSHi {
         }
 
         // Get the header HTML
-        $header = $this->format_header_content();
+        $header = $this->header_content;
+        if ($header) {
+            if ($this->header_type == GESHI_HEADER_PRE || $this->header_type == GESHI_HEADER_PRE_VALID) {
+                $header = str_replace("\n", '', $header);
+            }
+            $header = $this->replace_keywords($header);
+
+            if ($this->use_classes) {
+                $attr = ' class="head"';
+            } else {
+                $attr = " style=\"{$this->header_content_style}\"";
+            }
+            $header = "<div$attr>$header</div>";
+        }
 
         if (GESHI_HEADER_NONE == $this->header_type) {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
@@ -3428,30 +3441,6 @@ class GeSHi {
     }
 
     /**
-     * Returns the header content, formatted for output
-     *
-     * @return string The header content, formatted for output
-     * @since  1.0.2
-     * @access private
-     */
-    function format_header_content() {
-        $header = $this->header_content;
-        if ($header) {
-            if ($this->header_type == GESHI_HEADER_PRE || $this->header_type == GESHI_HEADER_PRE_VALID) {
-                $header = str_replace("\n", '', $header);
-            }
-            $header = $this->replace_keywords($header);
-
-            if ($this->use_classes) {
-                $attr = ' class="head"';
-            } else {
-                $attr = " style=\"{$this->header_content_style}\"";
-            }
-            return "<div$attr>$header</div>";
-        }
-    }
-
-    /**
      * Returns the footer for the code block.
      *
      * @return string The footer for the code block
@@ -3459,37 +3448,6 @@ class GeSHi {
      * @access private
      */
     function footer() {
-        $footer_content = $this->format_footer_content();
-
-        if (GESHI_HEADER_NONE == $this->header_type) {
-            return ($this->line_numbers != GESHI_NO_LINE_NUMBERS) ? '</ol>' . $footer_content
-                : $footer_content;
-        }
-
-        if ($this->header_type == GESHI_HEADER_DIV || $this->header_type == GESHI_HEADER_PRE_VALID) {
-            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                return "</ol>$footer_content</div>";
-            }
-            return ($this->force_code_block ? '</div>' : '') .
-                "$footer_content</div>";
-        }
-        else {
-            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                return "</ol>$footer_content</pre>";
-            }
-            return ($this->force_code_block ? '</div>' : '') .
-                "$footer_content</pre>";
-        }
-    }
-
-    /**
-     * Returns the footer content, formatted for output
-     *
-     * @return string The footer content, formatted for output
-     * @since  1.0.2
-     * @access private
-     */
-    function format_footer_content() {
         $footer = $this->footer_content;
         if ($footer) {
             if ($this->header_type == GESHI_HEADER_PRE) {
@@ -3502,7 +3460,26 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->footer_content_style}\"";
             }
-            return "<div$attr>$footer</div>";
+            $footer = "<div$attr>$footer</div>";
+        }
+
+        if (GESHI_HEADER_NONE == $this->header_type) {
+            return ($this->line_numbers != GESHI_NO_LINE_NUMBERS) ? '</ol>' . $footer : $footer;
+        }
+
+        if ($this->header_type == GESHI_HEADER_DIV || $this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "</ol>$footer</div>";
+            }
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer</div>";
+        }
+        else {
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "</ol>$footer</pre>";
+            }
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer</pre>";
         }
     }
 
