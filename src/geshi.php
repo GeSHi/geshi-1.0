@@ -1969,7 +1969,7 @@ class GeSHi {
                                 'next_match' => -1,
                                 'close_strlen' => strlen($close),
                                 'open_strlen' => strlen($open),
-                                'open' => $open,
+                                'dk' => $dk,
                                 'close' => $close
                             );
                         }
@@ -1992,7 +1992,6 @@ class GeSHi {
                 }
                 // non-highlightable text
                 $parts[$k] = array(
-                    0 => '',
                     1 => substr($code, $i, $next_match_pos - $i)
                 );
                 if ($next_match_pos > $length) {
@@ -2002,7 +2001,7 @@ class GeSHi {
                 // highlightable code
                 ++$k;
                 $close_pos = strpos($code, $next_match_pointer['close'], $next_match_pos + $next_match_pointer['open_strlen']);
-                $parts[$k][0] = $next_match_pointer['open'];
+                $parts[$k][0] = $next_match_pointer['dk'];
                 if ($close_pos === false) {
                     // no closing delimiter found!
                     $parts[$k][1] = substr($code, $next_match_pos);
@@ -2086,12 +2085,8 @@ class GeSHi {
             // If this block should be highlighted...
             if ($key & 1) {
                 if ($this->strict_mode) {
-                    // Find the class key for this block of code
-                    foreach ($this->language_data['SCRIPT_DELIMITERS'] as $script_key => $script_data) {
-                        if (isset($script_data[$parts[$key][0]])) {
-                            break;
-                        }
-                    }
+                    // get the class key for this block of code
+                    $script_key = $parts[$key][0];
 
                     if ($this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
                         $this->lexic_permissions['SCRIPT']) {
