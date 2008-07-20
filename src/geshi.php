@@ -1672,6 +1672,59 @@ class GeSHi {
     }
 
     /**
+     * Setup caches needed for styling. This is automatically called in
+     * parse_code() and get_stylesheet() when appropriate. This function helps
+     * stylesheet generators as they rely on some style information being
+     * preprocessed
+     *
+     * @since 1.0.8
+     * @access private
+     */
+    function build_style_cache() {
+        //Build the style cache needed to highlight numbers appropriate
+        if($this->lexic_permissions['NUMBERS']) {
+            //First check what way highlighting information for numbers are given
+            if(!isset($this->language_data['NUMBERS'])) {
+                $this->language_data['NUMBERS'] = 0;
+            }
+
+            if(is_array($this->language_data['NUMBERS'])) {
+                $this->language_data['NUMBERS_CACHE'] = $this->language_data['NUMBERS'];
+            } else {
+                $this->language_data['NUMBERS_CACHE'] = array();
+                if(!$this->language_data['NUMBERS']) {
+                    $this->language_data['NUMBERS'] =
+                        GESHI_NUMBER_INT_BASIC |
+                        GESHI_NUMBER_FLT_NONSCI;
+                }
+
+                for($i = 0, $j = $this->language_data['NUMBERS']; $j > 0; ++$i, $j>>=1) {
+                    //Rearrange style indices if required ...
+                    if(isset($this->language_data['STYLES']['NUMBERS'][1<<$i])) {
+                        $this->language_data['STYLES']['NUMBERS'][$i] =
+                            $this->language_data['STYLES']['NUMBERS'][1<<$i];
+                        unset($this->language_data['STYLES']['NUMBERS'][1<<$i]);
+                    }
+
+                    //Check if this bit is set for highlighting
+                    if($j&1) {
+                        //So this bit is set ...
+                        //Check if it belongs to group 0 or the actual stylegroup
+                        if(isset($this->language_data['STYLES']['NUMBERS'][$i])) {
+                            $this->language_data['NUMBERS_CACHE'][$i] = 1 << $i;
+                        } else {
+                            if(!isset($this->language_data['NUMBERS_CACHE'][0])) {
+                                $this->language_data['NUMBERS_CACHE'][0] = 0;
+                            }
+                            $this->language_data['NUMBERS_CACHE'][0] |= 1 << $i;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * Setup caches needed for parsing. This is automatically called in parse_code() when appropriate.
      * This function makes stylesheet generators much faster as they do not need these caches.
      *
@@ -1770,6 +1823,68 @@ class GeSHi {
                     '<| class="br0">&#123;|>',
                     '<| class="br0">&#125;|>',
                 );
+            }
+        }
+
+        //Build the parse cache needed to highlight numbers appropriate
+        if($this->lexic_permissions['NUMBERS']) {
+            //Check if the style rearrangements have been processed ...
+            //This also does some preprocessing to check which style groups are useable ...
+            if(!isset($this->language_data['NUMBERS_CACHE'])) {
+                $this->build_style_cache();
+            }
+
+            //Number format specification
+            //All this formats are matched case-insensitively!
+            static $numbers_format = array(
+                GESHI_NUMBER_INT_BASIC =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?(?![0-9a-z\.])',
+                GESHI_NUMBER_INT_CSTYLE =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?l(?![0-9a-z\.])',
+                GESHI_NUMBER_BIN_SUFFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[01]+?b(?![0-9a-z\.])',
+                GESHI_NUMBER_BIN_PREFIX_PERCENT =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])%[01]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_BIN_PREFIX_0B =>
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])0b[01]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_OCT_PREFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])0[0-7]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_OCT_SUFFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[0-7]+?o(?![0-9a-z\.])',
+                GESHI_NUMBER_HEX_PREFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])0x[0-9a-f]+?(?![0-9a-z\.])',
+                GESHI_NUMBER_HEX_SUFFIX =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d[0-9a-f]*?h(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_NONSCI =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d+?\.\d+?(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_NONSCI_F =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)f(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_SCI_SHORT =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\.\d+?(?:e[+\-]?\d+?)?(?![0-9a-z\.])',
+                GESHI_NUMBER_FLT_SCI_ZERO =>
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)(?:e[+\-]?\d+?)?(?![0-9a-z\.])'
+                );
+
+            //At this step we have an associative array with flag groups for a
+            //specific style or an string denoting a regexp given its index.
+            $this->language_data['NUMBERS_RXCACHE'] = array();
+            foreach($this->language_data['NUMBERS_CACHE'] as $key => $rxdata) {
+                if(is_string($rxdata)) {
+                    $regexp = $rxdata;
+                } else {
+                    //This is a bitfield of number flags to highlight:
+                    //Build an array, implode them together and make this the actual RX
+                    $rxuse = array();
+                    for($i = 1; $i <= $rxdata; $i<<=1) {
+                        if($rxdata & $i) {
+                            $rxuse[] = $numbers_format[$i];
+                        }
+                    }
+                    $regexp = implode("|", $rxuse);
+                }
+
+                $this->language_data['NUMBERS_RXCACHE'][$key] =
+                    "/(?<!\d\/>)($regexp)(?!\|>)/i";
             }
         }
 
@@ -2723,51 +2838,10 @@ class GeSHi {
         if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
             $numbers_found = true;
 
-            $numbers_permissions = GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_NONSCI;
-            if(isset($this->language_data['NUMBERS']) &&
-                is_int($this->language_data['NUMBERS']) &&
-                ($this->language_data['NUMBERS'] > 0)) {
-                //So there is a custom format spec present ...
-                $numbers_permissions = $this->language_data['NUMBERS'];
-            }
-
-            //Number format specification
-            //All this formats are matched case-insensitively!
-            $numbers_format = array(
-                GESHI_NUMBER_INT_BASIC =>
-                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?(?![0-9a-z\.])',
-                GESHI_NUMBER_INT_CSTYLE =>
-                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?l(?![0-9a-z\.])',
-                GESHI_NUMBER_BIN_SUFFIX =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[01]+?b(?![0-9a-z\.])',
-                GESHI_NUMBER_BIN_PREFIX_PERCENT =>
-                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])%[01]+?(?![0-9a-z\.])',
-                GESHI_NUMBER_BIN_PREFIX_0B =>
-                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])0b[01]+?(?![0-9a-z\.])',
-                GESHI_NUMBER_OCT_PREFIX =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])0[0-7]+?(?![0-9a-z\.])',
-                GESHI_NUMBER_OCT_SUFFIX =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[0-7]+?o(?![0-9a-z\.])',
-                GESHI_NUMBER_HEX_PREFIX =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])0x[0-9a-f]+?(?![0-9a-z\.])',
-                GESHI_NUMBER_HEX_SUFFIX =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d[0-9a-f]*?h(?![0-9a-z\.])',
-                GESHI_NUMBER_FLT_NONSCI =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d+?\.\d+?(?![0-9a-z\.])',
-                GESHI_NUMBER_FLT_NONSCI_F =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)f(?![0-9a-z\.])',
-                GESHI_NUMBER_FLT_SCI_SHORT =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\.\d+?(?:e[+\-]?\d+?)?(?![0-9a-z\.])',
-                GESHI_NUMBER_FLT_SCI_ZERO =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)(?:e[+\-]?\d+?)?(?![0-9a-z\.])'
-                );
-
             //For each of the formats ...
-            foreach($numbers_format as $id => $regexp) {
+            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
                 //Check if it should be highlighted ...
-                if($numbers_permissions & $id) {
-                    $stuff_to_parse = preg_replace("/(?<!\d\/>)($regexp)(?!\|>)/i", "<|/NUM!$id/>\\1|>", $stuff_to_parse);
-                }
+                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
             }
         }
 
@@ -2870,35 +2944,20 @@ class GeSHi {
 
         if ($numbers_found) {
             // Put number styles in
-            foreach($numbers_format as $id => $regexp) {
-                if ($numbers_permissions & $id) {
+            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
+//Commented out for now, as this needs some review ...
+//                if ($numbers_permissions & $id) {
                     //Get the appropriate style ...
+                        //Checking for unset styles is done by the style cache builder ...
                     if (!$this->use_classes) {
-                        //Use default style if no special one given ...
-                        //Some kind of backwards compatibility ...
-                        if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
-                            $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][0] . '"';
-                        } else {
-                            $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
-                        }
+                        $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
                     } else {
-                        //Convert Base2-Bitfield into Bit-Index ...
-                        for($id2 = 0, $idc = $id; $idc > 1; $id2++) {
-                            $idc >>= 1;   //I renounce doing this as an one-liner ;-)
-                        }
-
-                        //Check if this style is present
-                        if(!isset($this->language_data['STYLES']['NUMBERS'][$id])) {
-                            $id2 = 0;
-                        }
-
-                        //Decide on the final attributes ...
-                        $attributes = ' class="nu'.$id2.'"';
+                        $attributes = ' class="nu'.$id.'"';
                     }
 
                     //Set in the correct styles ...
                     $stuff_to_parse = str_replace("/NUM!$id/", $attributes, $stuff_to_parse);
-                }
+//                }
             }
         }
 
