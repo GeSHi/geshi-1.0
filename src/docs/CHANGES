@@ -42,6 +42,8 @@ Version 1.0.8
      * Use more native functions like substr_replace and strcasecmp to speed things up (milian)
      * Use considerably less strlen() calls on various points by caching the results (milian)
      * Properly set comments to be case insensitive where appropriate to increase performance (milian)
+     * Improve the performance of the strict mode tokenizer, making highlighting of languages like
+       HTML, ColdFusion or XML faster (milian)
   -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 50%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)

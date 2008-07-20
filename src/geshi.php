@@ -1952,40 +1952,68 @@ class GeSHi {
         if ($this->strict_mode) {
             // Break the source into bits. Each bit will be a portion of the code
             // within script delimiters - for example, HTML between < and >
-            $parts = array(0 => array(0 => '', 1 => ''));
             $k = 0;
-            for ($i = 0; $i < $length; ++$i) {
-                foreach ($this->language_data['SCRIPT_DELIMITERS'] as $delimiters) {
+            $parts = array();
+            $matches = array();
+            $next_match_pointer = null;
+            // we use a copy to unset delimiters on demand (when they are not found)
+            $delim_copy = $this->language_data['SCRIPT_DELIMITERS'];
+            $i = 0;
+            while ($i < $length) {
+                $next_match_pos = $length + 1; // never true
+                foreach ($delim_copy as $dk => $delimiters) {
                     foreach ($delimiters as $open => $close) {
+                        // make sure the cache is setup properly
+                        if (!isset($matches[$dk][$open])) {
+                            $matches[$dk][$open] = array(
+                                'next_match' => -1,
+                                'close_strlen' => strlen($close),
+                                'open_strlen' => strlen($open),
+                                'open' => $open,
+                                'close' => $close
+                            );
+                        }
                         // Get the next little bit for this opening string
-                        $open_strlen = strlen($open);
-                        $check = substr($code, $i, $open_strlen);
-                        // If it matches...
-                        if ($check == $open) {
-                            // We start a new block with the highlightable
-                            // code in it
-                            ++$k;
-                            $parts[$k][0] = $open;
-                            $close_i = strpos($code, $close, $i + $open_strlen);
-                            if ($close_i === false) {
-                                $close_i = $length;
-                            } else {
-                                $close_i += strlen($close);
+                        if ($matches[$dk][$open]['next_match'] < $i) {
+                            // only find the next pos if it was not already cached
+                            $open_pos = strpos($code, $open, $i);
+                            if ($open_pos === false) {
+                                // no match for this delimiter ever
+                                unset($delim_copy[$dk][$open]);
+                                continue;
                             }
-                            $parts[$k][1] = substr($code, $i, $close_i - $i);
-                            $i = $close_i - 1;
-                            ++$k;
-                            $parts[$k][0] = '';
-                            $parts[$k][1] = '';
-
-                            // No point going around again...
-                            continue 3;
+                            $matches[$dk][$open]['next_match'] = $open_pos;
+                        }
+                        if ($matches[$dk][$open]['next_match'] < $next_match_pos) {
+                            $next_match_pointer =& $matches[$dk][$open];
+                            $next_match_pos = $matches[$dk][$open]['next_match'];
                         }
                     }
                 }
-                // only non-highlightable text reaches this point
-                $parts[$k][1] .= $code[$i];
+                // non-highlightable text
+                $parts[$k] = array(
+                    0 => '',
+                    1 => substr($code, $i, $next_match_pos - $i)
+                );
+                if ($next_match_pos > $length) {
+                    // out of bounds means no next match was found
+                    break;
+                }
+                // highlightable code
+                ++$k;
+                $close_pos = strpos($code, $next_match_pointer['close'], $next_match_pos + $next_match_pointer['open_strlen']);
+                $parts[$k][0] = $next_match_pointer['open'];
+                if ($close_pos === false) {
+                    // no closing delimiter found!
+                    $parts[$k][1] = substr($code, $next_match_pos);
+                    break;
+                } else {
+                    $i = $close_pos + $next_match_pointer['close_strlen'];
+                    $parts[$k][1] = substr($code, $next_match_pos, $i - $next_match_pos);
+                }
+                ++$k;
             }
+            unset($delim_copy, $next_match_pointer, $next_match_pos, $matches);
         } else {
             // Not strict mode - simply dump the source into
             // the array at index 1 (the first highlightable block)
