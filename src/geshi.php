@@ -137,6 +137,9 @@ define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
 if (!function_exists('stripos')) {
     // the offset param of preg_match is not supported below PHP 4.3.3
     if (GESHI_PHP_PRE_433) {
+        /**
+         * @ignore
+         */
         function stripos($haystack, $needle, $offset = null) {
             if (!is_null($offset)) {
                 $haystack = substr($haystack, $offset);
@@ -148,6 +151,9 @@ if (!function_exists('stripos')) {
         }
     }
     else {
+        /**
+         * @ignore
+         */
         function stripos($haystack, $needle, $offset = null) {
             if (preg_match('/'. preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE, $offset)) {
                 return $match[0][1];
@@ -1364,10 +1370,10 @@ class GeSHi {
      * @param int    The key of the keyword group to remove the keyword from
      * @param string The word to remove from the keyword group
      * @param bool   Wether to automatically recompile the optimized regexp list or not.
-     *               Note: if you set this to false and @see GeSHi::build_parse_cache() was already called,
-     *               you have to manually call @see GeSHi::optimize_keyword_group() or the removed
-     *               keyword will stay in cache and still be highlighted! On the other hand it might be too
-     *               expensive to recompile the regexp list for every removal if you want to
+     *               Note: if you set this to false and @see GeSHi::parse_code() was already called once,
+     *               for the current language, you have to manually call @see GeSHi::optimize_keyword_group()
+     *               or the removed keyword will stay in cache and still be highlighted! On the other hand
+     *               it might be too expensive to recompile the regexp list for every removal if you want to
      *               remove a lot of keywords.
      * @since 1.0.0
      */
@@ -1670,6 +1676,7 @@ class GeSHi {
      * This function makes stylesheet generators much faster as they do not need these caches.
      *
      * @since 1.0.8
+     * @access private
      */
     function build_parse_cache() {
         // cache symbol regexp
@@ -3825,14 +3832,16 @@ class GeSHi {
     * this functions creates an optimized regular expression list
     * of an array of strings.
     *
-    * @example $list = array('faa', 'foo', 'foobar');
-    *          => string 'f(aa|oo(bar)?)'
+    * Example:
+    * <code>$list = array('faa', 'foo', 'foobar');
+    *          => string 'f(aa|oo(bar)?)'</code>
     *
     * @param $list array of (unquoted) strings
     * @param $regexp_delimiter your regular expression delimiter, @see preg_quote()
     * @return string for regular expression
     * @author Milian Wolff <mail@milianw.de>
     * @since 1.0.8
+    * @access private
     */
     function optimize_regexp_list($list, $regexp_delimiter = '/') {
         $regex_chars = array('.', '\\', '+', '*', '?', '[', '^', ']', '$',
@@ -3938,6 +3947,7 @@ class GeSHi {
     * @return string
     * @author Milian Wolff <mail@milianw.de>
     * @since 1.0.8
+    * @access private
     */
     function _optimize_regexp_list_tokens_to_string(&$tokens, $recursed = false) {
         $list = '';
