@@ -2693,7 +2693,6 @@ class GeSHi {
      */
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
-        $stuff_to_parse_pregquote = preg_quote($stuff_to_parse, '/');
 
         // Regular expressions
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
