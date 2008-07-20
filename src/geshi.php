@@ -2062,15 +2062,17 @@ class GeSHi {
 
         //Fix for SF#1932083: Multichar Quotemarks unsupported
         $is_string_starter = array();
-        foreach ($this->language_data['QUOTEMARKS'] as $quotemark) {
-            if (!isset($is_string_starter[$quotemark[0]])) {
-                $is_string_starter[$quotemark[0]] = (string)$quotemark;
-            } else if (is_string($is_string_starter[$quotemark[0]])) {
-                $is_string_starter[$quotemark[0]] = array(
-                    $is_string_starter[$quotemark[0]],
-                    $quotemark);
-            } else {
-                $is_string_starter[$quotemark[0]][] = $quotemark;
+        if ($this->lexic_permissions['STRINGS']) {
+            foreach ($this->language_data['QUOTEMARKS'] as $quotemark) {
+                if (!isset($is_string_starter[$quotemark[0]])) {
+                    $is_string_starter[$quotemark[0]] = (string)$quotemark;
+                } else if (is_string($is_string_starter[$quotemark[0]])) {
+                    $is_string_starter[$quotemark[0]] = array(
+                        $is_string_starter[$quotemark[0]],
+                        $quotemark);
+                } else {
+                    $is_string_starter[$quotemark[0]][] = $quotemark;
+                }
             }
         }
 
@@ -2126,7 +2128,8 @@ class GeSHi {
                         $char_len = 1;
 
                         $string_started = false;
-                        if ($this->lexic_permissions['STRINGS'] && isset($is_string_starter[$char])) {
+
+                        if (isset($is_string_starter[$char])) {
                             // Possibly the start of a new string ...
 
                             //Check which starter it was ...
