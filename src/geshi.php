@@ -2014,6 +2014,7 @@ class GeSHi {
                 ++$k;
             }
             unset($delim_copy, $next_match_pointer, $next_match_pos, $matches);
+            $num_parts = $k + 1;
         } else {
             // Not strict mode - simply dump the source into
             // the array at index 1 (the first highlightable block)
@@ -2027,6 +2028,7 @@ class GeSHi {
                     1 => $code
                 )
             );
+            $num_parts = 2;
         }
 
         //Unset variables we won't need any longer
@@ -2076,7 +2078,7 @@ class GeSHi {
         // Now we go through each part. We know that even-indexed parts are
         // code that shouldn't be highlighted, and odd-indexed parts should
         // be highlighted
-        for ($key = 0, $num_parts = count($parts); $key < $num_parts; ++$key) {
+        for ($key = 0; $key < $num_parts; ++$key) {
             $STRICTATTRS = '';
             $result = '';
 
