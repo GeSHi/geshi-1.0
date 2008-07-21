@@ -1970,7 +1970,8 @@ class GeSHi {
                                 'close_strlen' => strlen($close),
                                 'open_strlen' => strlen($open),
                                 'dk' => $dk,
-                                'close' => $close
+                                'close' => $close,
+                                'open' => $open // needed for grouping of adjacent code blocks (see below)
                             );
                         }
                         // Get the next little bit for this opening string
@@ -1995,20 +1996,36 @@ class GeSHi {
                     1 => substr($code, $i, $next_match_pos - $i)
                 );
                 ++$k;
+
                 if ($next_match_pos > $length) {
                     // out of bounds means no next match was found
                     break;
                 }
+
                 // highlightable code
                 $close_pos = strpos($code, $next_match_pointer['close'], $next_match_pos + $next_match_pointer['open_strlen']);
                 $parts[$k][0] = $next_match_pointer['dk'];
+
+                // group adjacent script blocks, e.g. <foobar><asdf> should be one block, not three!
+                 $i = $next_match_pos + $next_match_pointer['open_strlen'];
+                 do {
+                     $close_pos = strpos($code, $next_match_pointer['close'], $i);
+                     if ($close_pos == false) {
+                         break;
+                     }
+                     $i = $close_pos + $next_match_pointer['close_strlen'];
+                     if ($i == $length) {
+                         break;
+                     }
+                 } while ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
+                     substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open']));
+
                 if ($close_pos === false) {
                     // no closing delimiter found!
                     $parts[$k][1] = substr($code, $next_match_pos);
                     ++$k;
                     break;
                 } else {
-                    $i = $close_pos + $next_match_pointer['close_strlen'];
                     $parts[$k][1] = substr($code, $next_match_pos, $i - $next_match_pos);
                     ++$k;
                 }
