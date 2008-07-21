@@ -2082,11 +2082,12 @@ class GeSHi {
         // be highlighted
         for ($key = 0; $key < $num_parts; ++$key) {
             $STRICTATTRS = '';
-            $result = '';
 
             $part = $parts[$key][1];
             // If this block should be highlighted...
             if ($key & 1) {
+                $result = '';
+
                 if ($this->strict_mode) {
                     // get the class key for this block of code
                     $script_key = $parts[$key][0];
@@ -2616,7 +2617,7 @@ class GeSHi {
                 }
             } else {
                 // Else not a block to highlight
-                $result .= GeSHi::hsc($part);
+                $result = GeSHi::hsc($part);
             }
             unset($part, $parts[$key]);
             $endresult .= $result;
