@@ -133,7 +133,8 @@ $language_data = array (
             ),
         'SCRIPT' => array(
             0 => '',
-            1 => 'color: #009000;'
+            1 => 'color: #808080; font-style: italic;',
+            2 => 'color: #009000;'
             ),
         'REGEXPS' => array(
             )
@@ -159,12 +160,16 @@ $language_data = array (
             '{' => '}'
             ),
         1 => array(
+            '<!--' => '-->',
+        ),
+        2 => array(
             '<' => '>'
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
-        1 => false
+        1 => false,
+        2 => false
     ),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(

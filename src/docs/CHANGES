@@ -81,6 +81,7 @@ Version 1.0.8
      * format_header_content
      * format_footer_content
      * get_attributes
+  - Improved smarty language file (milian)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
