@@ -132,7 +132,8 @@ $language_data = array (
             0 => 'color: #D36900;'
             ),
         'SCRIPT' => array(
-            0 => ''
+            0 => '',
+            1 => 'color: #009000;'
             ),
         'REGEXPS' => array(
             )
@@ -156,10 +157,14 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         0 => array(
             '{' => '}'
+            ),
+        1 => array(
+            '<' => '>'
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        0 => true
+        0 => true,
+        1 => false
     ),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
