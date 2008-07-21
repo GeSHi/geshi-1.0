@@ -46,7 +46,7 @@ $language_data = array (
   'COMMENT_SINGLE' => array(1 => '//'),
   'COMMENT_MULTI' => array('/*' => '*/'),
   //Regular Expressions
-  'COMMENT_REGEXP' => array(2 => "/(?<=[\\s^])s\\/(?:\\\\.|[^\\/\\\\])+\\/(?:\\\\.|[^\\/\\\\])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|[^\\/\\\\])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU"),
+  'COMMENT_REGEXP' => array(2 => "/(?<=[\\s^])s\\/(?:\\\\.|(?!\n)[^\\/\\\\])+\\/(?:\\\\.|(?!\n)[^\\/\\\\])+\\/[gimsu]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])m?\\/(?:\\\\.|(?!\n)[^\\/\\\\])+\\/[gimsu]*(?=[\\s$\\.\\,\\;\\)])/iU"),
   'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
   'QUOTEMARKS' => array("'", '"'),
   'ESCAPE_CHAR' => '\\',

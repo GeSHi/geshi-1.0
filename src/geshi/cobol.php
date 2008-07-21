@@ -41,7 +41,7 @@ $language_data = array (
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(1 => '/^\*.*?$/m'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"'),
+    'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array( //Compiler Directives

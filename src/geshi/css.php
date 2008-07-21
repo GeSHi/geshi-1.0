@@ -54,6 +54,9 @@ $language_data = array (
     'LANG_NAME' => 'CSS',
     'COMMENT_SINGLE' => array(1 => '@'),
     'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(
+        2 => "/(?<=\\()\\s*(?:(?:[a-z0-9]+?:\\/\\/)?[a-z0-9_\\-\\.\\/:]+?)?[a-z]+?\\.[a-z]+?(\\?[^\)]+?)?\\s*?(?=\\))/i"
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
@@ -132,7 +135,8 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '{', '}', ':', ';'
+        '(', ')', '{', '}', ':', ';',
+        '>', '+', '*', ',', '^', '='
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -146,13 +150,14 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #a1a100;',
+            2 => 'color: #ff0000; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #00AA00;'
             ),
         'STRINGS' => array(
             0 => 'color: #ff0000;'
@@ -163,7 +168,7 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #00AA00;'
             ),
         'SCRIPT' => array(
             ),
@@ -171,8 +176,7 @@ $language_data = array (
             0 => 'color: #cc00cc;',
             1 => 'color: #6666ff;',
             2 => 'color: #3333ff;',
-            3 => 'color: #933;',
-            4 => 'color: #933;',
+            3 => 'color: #933;'
             )
         ),
     'URLS' => array(
@@ -186,28 +190,24 @@ $language_data = array (
         //DOM Node ID
         0 => '\#[a-zA-Z0-9\-_]+',
         //CSS classname
-        1 => '\.[a-zA-Z0-9\-_]+',
+        1 => '\.(?!\d)[a-zA-Z0-9\-_]+\b(?=[\{\.#\s,:].|<\|)',
         //CSS Pseudo classes
-        2 => ':[a-zA-Z0-9\-]+',
+        //note: & is needed for &gt; (i.e. > )
+        2 => ':(?!\d)[a-zA-Z0-9\-]+\b(?:\s*(?=[\{\.#a-zA-Z,:+*&](.|\n)|<\|))',
         //Measurements
-        3 => '(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
-        //Links \ referenced resources
-        4 => array(
-            GESHI_SEARCH    => '(url\()([^)]+)(\))',
-            GESHI_REPLACE   => '\\2',
-            GESHI_BEFORE    => '\\1',
-            GESHI_AFTER     => '\\3',
-            GESHI_MODIFIERS => 'si'
-            )
+        3 => '[+\-]?(\d+|(\d*\.\d+))(em|ex|pt|px|cm|in|%)',
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-&\.'
+        )
+    )
 );
-
-$language_data['STYLES']['NUMBERS'][0] = $language_data['STYLES']['REGEXPS'][3];
 
 ?>

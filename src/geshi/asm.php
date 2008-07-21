@@ -176,8 +176,8 @@ $language_data = array (
             0 => 'color: #339933;'
             ),
         'REGEXPS' => array(
-            0 => 'color: #0000ff;',
-            1 => 'color: #0000ff;'
+//            0 => 'color: #0000ff;',
+//            1 => 'color: #0000ff;'
             ),
         'SCRIPT' => array(
             )
@@ -186,14 +186,24 @@ $language_data = array (
         1 => '',
         2 => ''
         ),
+    'NUMBERS' =>
+        GESHI_NUMBER_BIN_PREFIX_PERCENT |
+        GESHI_NUMBER_BIN_SUFFIX |
+        GESHI_NUMBER_HEX_PREFIX |
+        GESHI_NUMBER_HEX_SUFFIX |
+        GESHI_NUMBER_OCT_SUFFIX |
+        GESHI_NUMBER_INT_BASIC |
+        GESHI_NUMBER_FLT_NONSCI |
+        GESHI_NUMBER_FLT_NONSCI_F |
+        GESHI_NUMBER_FLT_SCI_ZERO,
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),
     'REGEXPS' => array(
         //Hex numbers
-        0 => /*  */ "(?<=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))(?:[0-9][0-9a-fA-F]{0,31}[hH]|0x[0-9a-fA-F]{1,32})(?=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))",
+//        0 => /*  */ "(?<=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))(?:[0-9][0-9a-fA-F]{0,31}[hH]|0x[0-9a-fA-F]{1,32})(?=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))",
         //Binary numbers
-        1 => "(?<=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))[01]{1,64}[bB](?=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))"
+//        1 => "(?<=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))[01]{1,64}[bB](?=([\\s\\(\\)\\[\\],;.:+\\-\\/*]))"
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(

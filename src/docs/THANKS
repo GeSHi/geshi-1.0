@@ -107,7 +107,9 @@ PEOPE WHO MADE LANGUAGE FILES
 - Pascal                 Tux
 - Perl                   Andreas Gohr, Ben Keen
 - PL/SQL                 Victor Engmark
+- POV-Ray                Carl Fürstenberg
 - PowerShell             Frode Aarebrot
+- Progress               Marco Aurelio de Pasqual
 - Python                 Roberto Rossi
 - Rails                  Moises Deniz
 - Reg                    SmokingRope
@@ -122,6 +124,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Text                   SmokingRope
 - TCL                    Reid van Melle
 - thinBasic              Eros Olmi
+- TypoScript             Jan-Philipp Halle
 - Uno IDL                Cedric Bosdonnat
 - VB                     Roberto Rossi
 - VB.NET                 Alan Juden

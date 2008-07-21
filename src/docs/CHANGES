@@ -21,8 +21,13 @@ Version 1.0.8
      * Gnuplot (milian)
      * KLoneC (Mickael Auger)
      * KLoneC++ (Mickael Auger)
+     * POV-Ray (Carl Fürstenberg)
      * PowerShell (Frode Aarebrot)
+     * Progress (Marco Aurelio de Pasqual)
+     * TypoScript (Jan-Philipp Halle)
      * Xorg configuration (milian)
+  -  set_language will not reset any language settings by default anymore.
+     You can use the additional $force_reset param for this. (milian)
   -  setup caches for parsing on demand, makes stylesheet generators fast again (milian)
   -  reduce strict errors & notices for language files (milian)
   -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
@@ -37,6 +42,8 @@ Version 1.0.8
      * Use more native functions like substr_replace and strcasecmp to speed things up (milian)
      * Use considerably less strlen() calls on various points by caching the results (milian)
      * Properly set comments to be case insensitive where appropriate to increase performance (milian)
+     * Improve the performance of the strict mode tokenizer, making highlighting of languages like
+       HTML, ColdFusion or XML faster (milian)
   -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 50%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Added support for external style information files to override language defaults without modifying language files (BenBE)
@@ -63,7 +70,22 @@ Version 1.0.8
      * With line numbers:     <div>header<ol><li><pre>...</pre></li>...</ol></div>
      * Without line numbers:  <pre>header...CODE...</pre>
      => valid HTML and no need for &nbsp; indentation
-
+  -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
+  -  Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
+  -  Added some keywords for VHDL (beshig, BenBE)
+  -  Fixed severly broken ColdFusion language file (milian)
+  -  Make sure strict_mode is set properly when doing repeated set_language calls (milian)
+  -  Fixed some incorrectly highlighted things with the CSS language file (milian, BenBE)
+  -  Fixed broken use with Suhosin Patch when /e modifier was disabled (SF#2021800, BenBE)
+  -  Removed some private methods which were only called at exactly one place (milian)
+     * format_header_content
+     * format_footer_content
+     * get_attributes
+  -  Second part of default style changes. Affected in this release:
+     * C++
+     * C++ (QT)
+     * CSS
+     * VHDL
 Version 1.0.7.22
   -  Added language files
      * glSlang (BenBE)

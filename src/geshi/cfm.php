@@ -40,19 +40,19 @@
 $language_data = array (
     'LANG_NAME' => 'ColdFusion',
     'COMMENT_SINGLE' => array(1 => '//'),
-    'COMMENT_MULTI' => array('<!--' => '-->','&lt;!---' => '---&gt;', '/*' => '*/'),
+    'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         /* CFM Tags */
         1 => array(
-            '&lt;cfabort', '&lt;cfapplet', '&lt;cfapplication', '&lt;cfargument', '&lt;cfassociate', '&lt;&lt;cfbreak&gt;',
+            '&lt;cfabort', '&lt;cfapplet', '&lt;cfapplication', '&lt;cfargument', '&lt;cfassociate', '&lt;cfbreak&gt;',
             '&lt;cfcache', '&lt;cfcase', '&lt;cfcatch', '&lt;/cfcatch&gt;', '&lt;cfchart', '&lt;/cfchart&gt;', '&lt;cfchartdata',
             '&lt;cfchartseries', '&lt;/cfchartseries&gt;', '&lt;cfcol', '&lt;cfcollection', '&lt;cfcomponent', '&lt;/cfcomponent&gt;',
             '&lt;cfcontent', '&lt;cfcookie', '&lt;/cfdefaultcase&gt;', '&lt;cfdirectory', '&lt;cfdocument', '&lt;/cfdocument&gt;',
             '&lt;cfdocumentitem', '&lt;/cfdocumentitem&gt;', '&lt;cfdocumentsection', '&lt;/cfdocumentsection&gt;', '&lt;cfdump',
-            '&lt;cfelse', '&lt;cfelseif', '&lt;cferror', '&lt;cfexecute', '&lt;/cfexecute&gt;', '&lt;cfexit', '&lt;cffile',
+            '&lt;cfelse&gt;', '&lt;cfelseif', '&lt;cferror', '&lt;cfexecute', '&lt;/cfexecute&gt;', '&lt;cfexit', '&lt;cffile',
             '&lt;cfflush', '&lt;cfform', '&lt;/cfform&gt;', '&lt;cfformgroup', '&lt;/cfformgroup', '&lt;cfformitem',
             '&lt;/cfformitem&gt;', '&lt;cfftp', '&lt;cffunction', '&lt;/cffunction&gt;', '&lt;cfgrid', '&lt;/cfgrid&gt;',
             '&lt;cfgridcolumn', '&lt;cfgridrow', '&lt;cfgridupdate', '&lt;cfheader', '&lt;cfhtmlhead', '&lt;cfhttp',
@@ -69,7 +69,7 @@ $language_data = array (
             '&lt;/cfsilent&gt;', '&lt;cfstoredproc', '&lt;/cfstoredproc&gt;', '&lt;cfswitch', '&lt;/cfswitch&gt;', '&lt;cftable',
             '&lt;/cftable&gt;', '&lt;cftextarea', '&lt;/cftextarea&gt;', '&lt;cfthrow', '&lt;cftimer', '&lt;/cftimer&gt;',
             '&lt;cftrace', '&lt;/cftrace&gt;', '&lt;cftransaction', '&lt;/cftransaction&gt;', '&lt;cftree', '&lt;/cftree&gt;',
-            '&lt;cftreeitem', '&lt;cftry', '&lt;/cftry&gt;', '&lt;cfupdate', '&lt;cfwddx','&lt;','&gt;'
+            '&lt;cftreeitem', '&lt;cftry', '&lt;/cftry&gt;', '&lt;cfupdate', '&lt;cfwddx'
             ),
         /* HTML Tags */
         2 => array(
@@ -167,8 +167,6 @@ $language_data = array (
             '&lt;var',
             '&lt;/var&gt;',
             '&lt;/var',
-
-            '&gt;', '&lt;'
             ),
         /* HTML attributes */
         3 => array(
@@ -235,10 +233,13 @@ $language_data = array (
         /* CFM Attributes */
         6 => array(
             '=','&amp;','name','dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
+            ),
+        7 => array(
+            '&lt;', '&gt;'
             )
         ),
     'SYMBOLS' => array(
-        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']','gt','lt'
+        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']',#'gt','lt'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -247,7 +248,8 @@ $language_data = array (
         3 => false,
         4 => false,
         5 => false,
-        6 => false
+        6 => false,
+        7 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -256,11 +258,12 @@ $language_data = array (
             3 => 'color: #0000FF;',
             4 => 'color: #000000; font-weight: bold;',
             5 => 'color: #0000FF;',
-            6 => 'color: #0000FF'
+            6 => 'color: #0000FF',
+            7 => 'color: #990000'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
-            'MULTI' => 'color: #808080; font-style: italic; background-color:#FFFF99;'
+            'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
@@ -280,6 +283,7 @@ $language_data = array (
             0 => 'color: #0000FF;'
             ),
         'SCRIPT' => array(
+            -1 => 'color: #808080; font-style: italic;',
             0 => 'color: #00bbdd;',
             1 => 'color: #0000FF;',
             2 => 'color: #000099;',
@@ -301,6 +305,9 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
+        -1 => array(
+            '<!--' => '-->'
+            ),
         0 => array(
             '<!DOCTYPE' => '>'
             ),
@@ -315,10 +322,19 @@ $language_data = array (
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        -1 => false,
         0 => false,
         1 => true,
         2 => true,
         3 => true
+        ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            7 => array(
+                'DISALLOWED_BEFORE' => '',
+                'DISALLOWED_AFTER' => ''
+                )
+            )
         )
 );
 

@@ -52,13 +52,10 @@
 $language_data = array (
     'LANG_NAME' => 'HTML',
     'COMMENT_SINGLE' => array(),
-    'COMMENT_MULTI' => array('<!--' => '-->'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
-        1 => array(
-            ),
         2 => array(
             '&lt;a&gt;', '&lt;abbr&gt;', '&lt;acronym&gt;', '&lt;address&gt;', '&lt;applet&gt;',
             '&lt;a', '&lt;abbr', '&lt;acronym', '&lt;address', '&lt;applet',
@@ -184,18 +181,15 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
         2 => false,
         3 => false,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #b1b100;',
             2 => 'color: #000000; font-weight: bold;',
             3 => 'color: #000066;'
             ),
         'COMMENTS' => array(
-            'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
@@ -215,6 +209,7 @@ $language_data = array (
             0 => 'color: #66cc66;'
             ),
         'SCRIPT' => array(
+            -1 => 'color: #808080; font-style: italic;', // comments
             0 => 'color: #00bbdd;',
             1 => 'color: #ddbb00;',
             2 => 'color: #009900;'
@@ -234,6 +229,9 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
+        -1 => array(
+            '<!--' => '-->'
+            ),
         0 => array(
             '<!DOCTYPE' => '>'
             ),
@@ -245,6 +243,7 @@ $language_data = array (
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        -1 => false,
         0 => false,
         1 => false,
         2 => true
