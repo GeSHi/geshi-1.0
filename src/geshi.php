@@ -1994,12 +1994,12 @@ class GeSHi {
                 $parts[$k] = array(
                     1 => substr($code, $i, $next_match_pos - $i)
                 );
+                ++$k;
                 if ($next_match_pos > $length) {
                     // out of bounds means no next match was found
                     break;
                 }
                 // highlightable code
-                ++$k;
                 $close_pos = strpos($code, $next_match_pointer['close'], $next_match_pos + $next_match_pointer['open_strlen']);
                 $parts[$k][0] = $next_match_pointer['dk'];
                 if ($close_pos === false) {
