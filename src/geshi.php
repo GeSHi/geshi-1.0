@@ -2005,15 +2005,16 @@ class GeSHi {
                 if ($close_pos === false) {
                     // no closing delimiter found!
                     $parts[$k][1] = substr($code, $next_match_pos);
+                    ++$k;
                     break;
                 } else {
                     $i = $close_pos + $next_match_pointer['close_strlen'];
                     $parts[$k][1] = substr($code, $next_match_pos, $i - $next_match_pos);
+                    ++$k;
                 }
-                ++$k;
             }
             unset($delim_copy, $next_match_pointer, $next_match_pos, $matches);
-            $num_parts = $k + 1;
+            $num_parts = $k;
         } else {
             // Not strict mode - simply dump the source into
             // the array at index 1 (the first highlightable block)
