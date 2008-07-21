@@ -345,7 +345,15 @@ $language_data = array (
 		4 => false,
 		5 => true
         ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            6 => array(
+                'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
+                'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
+            )
+        )
+    )
 );
 
 ?>
