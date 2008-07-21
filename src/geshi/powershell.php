@@ -230,6 +230,6 @@ $language_data = array (
             GESHI_AFTER => '\3'
 			),
         ),
-    'STRICT_MODE_APPLIES' => GESHI_ALWAYS
+    'STRICT_MODE_APPLIES' => GESHI_NEVER
 );
 ?>
