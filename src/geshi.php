@@ -2990,7 +2990,7 @@ class GeSHi {
             } else {
                 $attributes = ' class="kw' . $k . '"';
             }
-            $stuff_to_parse = str_replace("/$k/", $attributes, $stuff_to_parse);
+            $stuff_to_parse = str_replace("<|/$k/>", "<|$attributes>", $stuff_to_parse);
         }
 
         if ($numbers_found) {
