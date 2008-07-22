@@ -429,7 +429,7 @@ class GeSHi {
      * The overall style for this code block
      * @var string
      */
-    var $overall_style = '';
+    var $overall_style = 'font-family:monospace;';
 
     /**
      *  The style for the actual code
@@ -705,12 +705,6 @@ class GeSHi {
 
         //Set that new header type
         $this->header_type = $type;
-
-        // Set a default overall style if the header is a <div>
-        if ((GESHI_HEADER_DIV == $type || GESHI_HEADER_PRE_VALID == $type) &&
-            !$this->overall_style) {
-            $this->overall_style = 'font-family: monospace;';
-        }
     }
 
     /**
@@ -3614,7 +3608,7 @@ class GeSHi {
 
         if (GESHI_HEADER_NONE == $this->header_type) {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                return "$header<ol$ol_attributes>";
+                return "$header<ol$attributes$ol_attributes>";
             }
             return $header . ($this->force_code_block ? '<div>' : '');
         }
