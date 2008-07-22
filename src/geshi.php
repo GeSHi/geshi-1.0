@@ -70,6 +70,20 @@ define('GESHI_HEADER_DIV', 1);
 define('GESHI_HEADER_PRE', 2);
 /** Use a pre to wrap lines when line numbers are enabled or to wrap the whole code. */
 define('GESHI_HEADER_PRE_VALID', 3);
+/**
+ * Use a "table" to surround the source:
+ *
+ *  <table>
+ *    <thead><tr><td colspan="2">$header</td></tr></thead>
+ *    <tbody><tr><td><pre>$linenumbers</pre></td><td><pre>$code></pre></td></tr></tbody>
+ *    <tfooter><tr><td colspan="2">$footer</td></tr></tfoot>
+ *  </table>
+ *
+ * this is essentially only a workaround for Firefox, see sf#1651996 or take a look at
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=365805
+ * @note when linenumbers are disabled this is essentially the same as GESHI_HEADER_PRE
+ */
+define('GESHI_HEADER_PRE_TABLE', 4);
 
 // Capatalisation constants
 /** Lowercase keywords found */
@@ -448,6 +462,12 @@ class GeSHi {
     var $line_style2 = 'font-weight: bold;';
 
     /**
+     * Style for line numbers when GESHI_HEADER_PRE_TABLE is chosen
+     * @var string
+     */
+    var $table_linenumber_style = 'font-weight: normal;text-align:right;margin:0;padding:0 5px;';
+
+    /**
      * Flag for how line numbers are displayed
      * @var boolean
      */
@@ -678,7 +698,7 @@ class GeSHi {
     function set_header_type($type) {
         //Check if we got a valid header type
         if (!in_array($type, array(GESHI_HEADER_NONE, GESHI_HEADER_DIV,
-            GESHI_HEADER_PRE, GESHI_HEADER_PRE_VALID))) {
+            GESHI_HEADER_PRE, GESHI_HEADER_PRE_VALID, GESHI_HEADER_PRE_TABLE))) {
             $this->error = GESHI_ERROR_INVALID_HEADER_TYPE;
             return;
         }
@@ -3364,7 +3384,7 @@ class GeSHi {
 
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
-        if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+        if ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->header_type != GESHI_HEADER_PRE_TABLE) {
             // If we're using the <pre> header, we shouldn't add newlines because
             // the <pre> will line-break them (and the <li>s already do this for us)
             $ls = ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) ? "\n" : '';
@@ -3451,16 +3471,58 @@ class GeSHi {
                 unset($code[$i - 1]);
             }
         } else {
+            $n = count($code);
+            if ($this->use_classes) {
+                $attributes = ' class="de1"';
+            } else {
+                $attributes = ' style="'. $this->code_style .'"';
+            }
             if ($this->header_type == GESHI_HEADER_PRE_VALID) {
-                $parsed_code .= '<pre>';
+                $parsed_code .= '<pre'. $attributes .'>';
+            } elseif ($this->header_type == GESHI_HEADER_PRE_TABLE) {
+                if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                    if ($this->use_classes) {
+                        $attrs = ' class="ln"';
+                    } else {
+                        $attrs = ' style="'. $this->table_linenumber_style .'"';
+                    }
+                    $parsed_code .= '<td><pre'. $attrs .'>';
+                    // get linenumbers
+                    // we don't merge it with the for below, since it should be better for
+                    // memory consumption this way
+                    for ($i = 1; $i <= $n; ++$i) {
+                        $parsed_code .= $i;
+                        if ($i != $n) {
+                            $parsed_code .= "\n";
+                        }
+                    }
+                    $parsed_code .= '</pre></td><td>';
+                }
+                $parsed_code .= '<pre'. $attributes .'>';
             }
             // No line numbers, but still need to handle highlighting lines extra.
             // Have to use divs so the full width of the code is highlighted
-            for ($i = 0, $n = count($code); $i < $n; ++$i) {
+            $close = 0;
+            for ($i = 0; $i < $n; ++$i) {
                 // Make lines have at least one space in them if they're empty
                 // BenBE: Checking emptiness using trim instead of relying on blanks
                 if ('' == trim($code[$i])) {
                     $code[$i] = '&nbsp;';
+                }
+                // fancy lines
+                if ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS &&
+                    $i % $this->line_nth_row == ($this->line_nth_row - 1)) {
+                    // Set the attributes to style the line
+                    if ($this->use_classes) {
+                        $parsed_code .= '<span class="xtra li2"><span class="de2">';
+                    } else {
+                        // This style "covers up" the special styles set for special lines
+                        // so that styles applied to special lines don't apply to the actual
+                        // code on that line
+                        $parsed_code .= '<span style="display:block;' . $this->line_style2 . '">'
+                                          .'<span style="' . $this->code_style .'">';
+                    }
+                    $close += 2;
                 }
                 //Is this some line with extra styles???
                 if (in_array($i + 1, $this->highlight_extra_lines)) {
@@ -3473,19 +3535,26 @@ class GeSHi {
                     } else {
                         $parsed_code .= "<span style=\"display:block;" . $this->get_line_style($i) . "\">";
                     }
-                    // Remove \n because it stuffs up <pre> header
-                    $parsed_code .= $code[$i] . '</span>';
-                } else {
-                    $parsed_code .= $code[$i];
-                    if ($i + 1 < $n) {
-                        $parsed_code .= "\n";
-                    }
+                    ++$close;
+                }
+
+                $parsed_code .= $code[$i];
+
+                if ($close) {
+                  $parsed_code .= str_repeat('</span>', $close);
+                  $close = 0;
+                }
+                elseif ($i + 1 < $n) {
+                    $parsed_code .= "\n";
                 }
                 unset($code[$i]);
             }
 
-            if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->header_type == GESHI_HEADER_PRE_VALID || $this->header_type == GESHI_HEADER_PRE_TABLE) {
                 $parsed_code .= '</pre>';
+            }
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                $parsed_code .= '</td>';
             }
         }
 
@@ -3536,7 +3605,11 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->header_content_style}\"";
             }
-            $header = "<div$attr>$header</div>";
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                $header = "<thead><tr><td colspan=\"2\" $attr>$header</td></tr></thead>";
+            } else {
+                $header = "<div$attr>$header</div>";
+            }
         }
 
         if (GESHI_HEADER_NONE == $this->header_type) {
@@ -3553,6 +3626,8 @@ class GeSHi {
             } else if ($this->header_type == GESHI_HEADER_DIV ||
                 $this->header_type == GESHI_HEADER_PRE_VALID) {
                 return "<div$attributes>$header<ol$ol_attributes>";
+            } else if ($this->header_type == GESHI_HEADER_PRE_TABLE) {
+                return "<table$attributes>$header<tbody><tr class=\"li1\">";
             }
         } else {
             if ($this->header_type == GESHI_HEADER_PRE) {
@@ -3585,7 +3660,11 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->footer_content_style}\"";
             }
-            $footer = "<div$attr>$footer</div>";
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->linenumbers != GESHI_NO_LINE_NUMBERS) {
+                $footer = "<tfoot><tr><td colspan=\"2\">$footer</td></tr></tfoot>";
+            } else {
+                $footer = "<div$attr>$footer</div>";
+            }
         }
 
         if (GESHI_HEADER_NONE == $this->header_type) {
@@ -3595,6 +3674,13 @@ class GeSHi {
         if ($this->header_type == GESHI_HEADER_DIV || $this->header_type == GESHI_HEADER_PRE_VALID) {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "</ol>$footer</div>";
+            }
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer</div>";
+        }
+        elseif ($this->header_type == GESHI_HEADER_PRE_TABLE) {
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "</tr></tbody>$footer</table>";
             }
             return ($this->force_code_block ? '</div>' : '') .
                 "$footer</div>";
@@ -3828,11 +3914,14 @@ class GeSHi {
 
         // Simple line number styles
         if ((!$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS) && $this->line_style1 != '') {
-            $stylesheet .= "{$selector}li, {$selector}li.li1 {{$this->line_style1}}\n";
+            $stylesheet .= "{$selector}li, {$selector}.li1 {{$this->line_style1}}\n";
+        }
+        if ((!$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS) && $this->table_linenumber_style != '') {
+            $stylesheet .= "{$selector}.ln {{$this->table_linenumber_style}}\n";
         }
         // If there is a style set for fancy line numbers, echo it out
         if ((!$economy_mode || $this->line_numbers == GESHI_FANCY_LINE_NUMBERS) && $this->line_style2 != '') {
-            $stylesheet .= "{$selector}li.li2 {{$this->line_style2}}\n";
+            $stylesheet .= "{$selector}.li2 {{$this->line_style2}}\n";
         }
 
         // note: empty styles are meaningless
@@ -3905,8 +3994,8 @@ class GeSHi {
         // Styles for lines being highlighted extra
         if (!$economy_mode || (count($this->highlight_extra_lines)!=count($this->highlight_extra_lines_styles))) {
             $stylesheet .= "{$selector}.ln-xtra, {$selector}li.ln-xtra, {$selector}div.ln-xtra {{$this->highlight_extra_lines_style}}\n";
-            $stylesheet .= "{$selector}span.xtra { display:block; }\n";
         }
+        $stylesheet .= "{$selector}span.xtra { display:block; }\n";
         foreach ($this->highlight_extra_lines_styles as $lineid => $linestyle) {
             $stylesheet .= "{$selector}.lx$lineid, {$selector}li.lx$lineid, {$selector}div.lx$lineid {{$linestyle}}\n";
         }

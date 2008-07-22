@@ -66,10 +66,12 @@ Version 1.0.8
   -  Fixed economy mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
   -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
   -  Some typos and mistakes in the documentation (BenBE)
-  -  Added new GESHI_HEADER_PRE_VALID type which uses the following markup:
+  -  Added new GESHI_HEADER_PRE_VALID type which uses the following markup: (milian)
      * With line numbers:     <div>header<ol><li><pre>...</pre></li>...</ol></div>
      * Without line numbers:  <pre>header...CODE...</pre>
      => valid HTML and no need for &nbsp; indentation
+  -  Added new GESHI_HEADER_PRE_TABLE type which can be used to prevent linenumber-selection in Firefox
+     on copy'n'paste. (milian)
   -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
   -  Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
   -  Added some keywords for VHDL (beshig, BenBE)
