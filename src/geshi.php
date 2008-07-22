@@ -2829,6 +2829,8 @@ class GeSHi {
                                 GeSHi::hsc(strtoupper($word)), '<DOT>'),
                             $this->language_data['URLS'][$k]
                         ) . '">';
+                } else {
+                    return $keyword;
                 }
                 // HTML fix. Again, dirty hackage...
                 if (!($this->language == 'html4strict' && ('&gt;' == $keyword || '&lt;' == $keyword))) {
