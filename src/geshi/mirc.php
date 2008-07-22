@@ -149,7 +149,7 @@ $language_data = array (
         //Raw protocol handling
         5 => 'raw (\d|\*):',
         //Timer handling
-        6 => '/timer(?!s\b)[0-9a-zA-Z_]+',
+        6 => '\/timer(?!s\b)[0-9a-zA-Z_]+',
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
