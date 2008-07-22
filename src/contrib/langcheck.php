@@ -201,10 +201,10 @@ if(!$error_abort) {
         } else {
             $langfile_content = file_get_contents($langfile);
             if(preg_match("/\?>(?:\r?\n|\r(?!\n)){2,}\Z/", $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file contains trailing empty lines at EOF!');
+                report_error(TYPE_ERROR, 'Language file contains trailing empty lines at EOF!');
             }
             if(!preg_match("/\?>(?:\r?\n|\r(?!\n))?\Z/", $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file contains no PHP end marker at EOF!');
+                report_error(TYPE_ERROR, 'Language file contains no PHP end marker at EOF!');
             }
             if(preg_match("/\t/", $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains unescaped tabulator chars (probably for indentation)!');
@@ -381,6 +381,33 @@ if(!$error_abort) {
                 if (!is_array($language_data['PARSER_CONTROL'])) {
                     report_error(TYPE_ERROR, 'Language file contains a $language_data[\'PARSER_CONTROL\'] structure which is not an array!');
                 }
+            }
+
+            if(!isset($language_data['STYLES'])) {
+                report_error(TYPE_ERROR, 'Language file contains no $language_data[\'STYLES\'] structure to check!');
+            } else if (!is_array($language_data['STYLES'])) {
+                report_error(TYPE_ERROR, 'Language file contains a $language_data[\'STYLES\'] structure which is not an array!');
+            } else {
+                $style_arrays = array('KEYWORDS', 'COMMENTS', 'ESCAPE_CHAR',
+                    'BRACKETS', 'STRINGS', 'NUMBERS', 'METHODS', 'SYMBOLS',
+                    'REGEXPS', 'SCRIPT');
+                foreach($style_arrays as $style_kind) {
+                    if(!isset($language_data['STYLES'][$style_kind])) {
+                        report_error(TYPE_ERROR, "Language file contains no \$language_data['STYLES']['$style_kind'] structure to check!");
+                    } else if (!is_array($language_data['STYLES'][$style_kind])) {
+                        report_error(TYPE_ERROR, "Language file contains a \$language_data['STYLES\']['$style_kind'] structure which is not an array!");
+                    } else {
+                        foreach($language_data['STYLES'][$style_kind] as $sk_key => $sk_value) {
+                            if(!is_integer($sk_key) && ('COMMENTS' != $style_kind && 'MULTI' != $sk_key)) {
+                                report_error(TYPE_WARNING, "Language file contains an key '$sk_key' in \$language_data['STYLES']['$style_kind'] that is not integer!");
+                            } else if (!is_string($sk_value)) {
+                                report_error(TYPE_WARNING, "Language file contains a CSS specification for \$language_data['STYLES']['$style_kind'][$key] which is not a string!");
+                            }
+                        }
+                    }
+                }
+
+                unset($style_arrays);
             }
 
         }
