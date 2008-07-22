@@ -52,6 +52,7 @@
 $language_data = array (
     'LANG_NAME' => 'HTML',
     'COMMENT_SINGLE' => array(),
+    'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',

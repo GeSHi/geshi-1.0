@@ -143,7 +143,7 @@ $language_data = array (
         3 => ''
     ),
     'OOLANG' => false,
-    'OBJECT_SPLITTER' => '',
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(),

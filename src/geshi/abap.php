@@ -40,6 +40,7 @@
 $language_data = array (
     'LANG_NAME' => 'ABAP',
     'COMMENT_SINGLE' => array(1 => '"', 2 => '*'),
+    'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => 0,
     'QUOTEMARKS' => array("'"),
     'ESCAPE_CHAR' => '',

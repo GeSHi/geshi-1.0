@@ -169,6 +169,10 @@ $language_data = array (
         'REGEXPS' => array(
             )
         ),
+    'URLS' => array(
+        1 => '',
+        2 => ''
+        ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'

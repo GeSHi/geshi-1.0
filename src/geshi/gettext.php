@@ -67,9 +67,17 @@ $language_data = array (
         'SCRIPT' => array(),
         'BRACKETS' => array()
     ),
+    'URLS' => array(
+        1 => ''
+        ),
     'OOLANG' => false,
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
     'TAB_WIDTH' => 4,
 );
 

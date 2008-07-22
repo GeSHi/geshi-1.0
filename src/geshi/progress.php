@@ -450,6 +450,12 @@ $language_data = array(
 		'SCRIPT' => array (
 			)
 		),
+    'URLS' => array(
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => ''
+        ),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(
         0 => ':'

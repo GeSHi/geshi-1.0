@@ -4,6 +4,8 @@
  * --------
  * Author: Carl Fürstenberg (azatoth@gmail.com)
  * Copyright: © 2007 Carl Fürstenberg
+ * Release Version: 1.0.7.22
+ * Date Started: 2008/07/11
  *
  * Povray language file for GeSHi.
  *
@@ -166,7 +168,10 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => ''
-    ),
+        ),
+    'OOLANG' => false,
+    'OBJECT_SPLITTERS' => array(
+        ),
     'REGEXPS' => array(
         # normal hash lines
         0 => '\#(?!(include|declare|local|fopen|fclose|read|write|default|version|if|else|end|ifdef|ifndef|switch|case|range|break|while|debug|error|warning|macro) )[[:word:]]*',
@@ -178,19 +183,17 @@ $language_data = array (
             GESHI_BEFORE => '\1\2',
             GESHI_AFTER => '\4\5',
             GESHI_MODIFIERS => 'siU'
-        )
-    ),
+            )
+        ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
-
-    ),
+        ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
         1 => true,
         2 => true,
         3 => true
-    ),
-    'TAB_WIDTH' => 4,
-    'OOLANG' => false
+        ),
+    'TAB_WIDTH' => 4
 );
 ?>

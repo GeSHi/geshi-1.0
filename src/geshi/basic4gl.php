@@ -320,6 +320,11 @@ $language_data = array (
         'REGEXPS' => array(
             )
         ),
+    'URLS' => array(
+        1 => '',
+        2 => '',
+        3 => ''
+        ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),

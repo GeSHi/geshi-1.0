@@ -108,7 +108,7 @@ $language_data = array (
     'URLS' => array(
         ),
     'OOLANG' => false,
-    'OBJECT_SPLITTER' => '',
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         0 => "[0-9,]+[acd][0-9,]+",
         //Removed lines

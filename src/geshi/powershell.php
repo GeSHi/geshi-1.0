@@ -193,6 +193,16 @@ $language_data = array (
 		'SCRIPT' => array(
 			)
 		),
+    'URLS' => array(
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => '',
+        5 => '',
+        ),
+    'OOLANG' => false,
+    'OBJECT_SPLITTERS' => array(
+        ),
     'REGEXPS' => array(
 		// variables
         0 => "[\\$][a-zA-Z0-9_]*",
@@ -230,6 +240,10 @@ $language_data = array (
             GESHI_AFTER => '\3'
 			),
         ),
-    'STRICT_MODE_APPLIES' => GESHI_NEVER
+    'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
 );
 ?>

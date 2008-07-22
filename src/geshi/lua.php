@@ -119,6 +119,9 @@ $language_data = array (
         'SCRIPT' => array(
             )
         ),
+    'URLS' => array(
+        1 => ''
+        ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),

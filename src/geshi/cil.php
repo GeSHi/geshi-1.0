@@ -41,6 +41,7 @@ $language_data = array (
 	'LANG_NAME' => 'CIL',
 	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
 	'COMMENT_SINGLE' => array('//'),
+	'COMMENT_MULTI' => array(),
 	'QUOTEMARKS' => array('"'),
 	'ESCAPE_CHAR' => '\\',
 	'KEYWORDS' => array(
