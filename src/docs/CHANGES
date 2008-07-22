@@ -81,7 +81,10 @@ Version 1.0.8
      * format_header_content
      * format_footer_content
      * get_attributes
-  - Improved smarty language file (milian)
+  -  Improved smarty language file (milian)
+  -  Fixed a regular expression in mIRC language file that caused a warning message to be issued (BenBE)
+  -  Added a script to contrib/ to verify language files are correct (BenBE)
+  -  Fixed loads of compliancy warnings detected with an automated compliance testing script (BenBE)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
