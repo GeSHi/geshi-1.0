@@ -7,7 +7,7 @@
  * Release Version: 1.0.8
  * Date Started: 2008/07/07
  *
- * Gnuplot script highlighter
+ * Gnuplot script language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -265,7 +265,11 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
         2 => 'http://www.google.com/search?q=%22set+{FNAME}%22+site%3Ahttp%3A%2F%2Fwww.gnuplot.info%2Fdocs%2F&btnI=lucky',
+        3 => '',
+        4 => '',
+        5 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

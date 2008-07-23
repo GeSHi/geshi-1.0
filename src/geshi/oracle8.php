@@ -436,7 +436,11 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false
+        1 => false,
+        3 => false,
+        4 => false,
+        5 => false,
+        6 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -470,6 +474,11 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
+        3 => '',
+        4 => '',
+        5 => '',
+        6 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

@@ -166,7 +166,8 @@ $language_data = array (
       )
     ),
   'URLS' => array(
-        1 => ''
+        1 => '',
+        2 => ''
       ),
   'OOLANG' => false,
   'OBJECT_SPLITTERS' => array(

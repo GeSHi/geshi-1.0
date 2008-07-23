@@ -167,6 +167,16 @@ $language_data = array (
 			)
 		),
 	'URLS' => array(
+		'dotted' => '',
+		'attr' => '',
+		'types' => '',
+		'prefix' => '',
+		'suffix' => '',
+		'base' => '',
+		'object' => '',
+		'other' => '',
+		'literal' => '',
+		'commentlike' => ''
 		),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(

@@ -116,6 +116,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
+        2 => '',
         3 => ''
         ),
     'OOLANG' => true,

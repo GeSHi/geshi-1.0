@@ -103,9 +103,11 @@ $language_data = array (
             7 => 'color: #991111;',
             8 => 'color: #00b000;',
             9 => 'color: #888822;',
-                        ),
+            ),
         ),
     'URLS' => array(
+        1 => '',
+        2 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),

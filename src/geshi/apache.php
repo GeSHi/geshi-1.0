@@ -110,7 +110,7 @@ $language_data = array (
             'user','userdir','virtualhost','virtualdocumentroot',
             'virtualdocumentrootip','virtualscriptalias','virtualscriptaliasip',
             'xbithack','from','all'
-          ),
+            ),
         /*keywords 2*/
         2 => array(
             'on','off','standalone','inetd','indexes',
@@ -177,7 +177,8 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => ''
+        2 => '',
+        3 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

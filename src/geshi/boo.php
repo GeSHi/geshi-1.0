@@ -178,6 +178,23 @@ $language_data = array (
 			)
 		),
 	'URLS' => array(
+		'namespace' => '',
+		'jump' => '',
+		'conditional' => '',
+		'property' => '',
+		'exception' => '',
+		'visibility' => '',
+		'define' => '',
+		'cast' => '',
+		'bimacro' => '',
+		'biattr' => '',
+		'bifunc' => '',
+		'hifunc' => '',
+		'primitive' => '',
+		'operator' => '',
+		'modifier' => '',
+		'access' => '',
+		'pass' => ''
 		),
 	'OOLANG' => true,
 	'OBJECT_SPLITTERS' => array(

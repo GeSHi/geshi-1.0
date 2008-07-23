@@ -180,6 +180,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
+        2 => '',
         3 => 'http://perldoc.perl.org/functions/{FNAMEL}.html'
         ),
     'OOLANG' => true,

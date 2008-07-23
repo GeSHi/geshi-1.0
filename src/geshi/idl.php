@@ -54,11 +54,11 @@ $language_data = array (
             ),
         4 => array(
             'string', 'long', 'byte', 'hyper', 'boolean', 'any', 'char', 'double', 'long',
-            'void', 'sequence', 'unsigned', '...'
+            'void', 'sequence', 'unsigned'
             ),
         ),
     'SYMBOLS' => array(
-        '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':', ';'
+        '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':', ';', '...'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -102,6 +102,10 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

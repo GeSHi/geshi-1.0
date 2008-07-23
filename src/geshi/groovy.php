@@ -51,7 +51,6 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            '||',
             'while',
             'switch',
             'in',
@@ -61,12 +60,6 @@ $language_data = array (
             'else',
             'do',
             'case',
-            '=&gt;',
-            '--',
-            '++',
-            '&lt;&lt;',
-            '&lt;&lt;&lt;',
-            '&&'
             ),
         2 => array(
             'volatile',
@@ -2035,7 +2028,8 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?', '|', '='
+        '(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?', '|', '=',
+        '=>', '||', '-', '+', '<<', '<<<', '&&'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => true,

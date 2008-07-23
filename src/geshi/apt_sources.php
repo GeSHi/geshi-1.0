@@ -7,7 +7,7 @@
  * Release Version: 1.0.8
  * Date Started: 2008/06/17
  *
- * Apt sources.list highlighter
+ * Apt sources.list language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -105,7 +105,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => ''
+        1 => '',
+        2 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 2008/05/28
  *
- * Verilog language file for GeSHi
+ * Verilog language file for GeSHi.
  *
  * CHANGES
  * -------

@@ -58,7 +58,7 @@ $language_data = array (
             ),
         2 => array(
             'abs', 'and', 'mod', 'not', 'or', 'rem', 'xor'
-              ),
+            ),
         3 => array(
             'abort', 'abstract', 'accept', 'access', 'aliased', 'all', 'array', 'at', 'body',
             'constant', 'delay', 'delta', 'digits', 'entry', 'exit',

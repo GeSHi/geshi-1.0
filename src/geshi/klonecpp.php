@@ -305,7 +305,8 @@ $language_data = array (
         3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAMEL}.html',
         4 => 'http://www.koanlogic.com/klone/api/html/globals.html',
         5 => '',
-        6 => 'http://december.com/html/4/element/{FNAMEL}.html'
+        6 => 'http://december.com/html/4/element/{FNAMEL}.html',
+        7 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

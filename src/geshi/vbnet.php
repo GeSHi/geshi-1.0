@@ -179,7 +179,11 @@
         1 => '',
         2 => '',
         3 => 'http://www.google.com/search?q={FNAMEU}+site:msdn.microsoft.com',
-        4 => ''
+        4 => '',
+        5 => '',
+        6 => '',
+        7 => '',
+        8 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
