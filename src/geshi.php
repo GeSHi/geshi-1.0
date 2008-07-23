@@ -2906,84 +2906,81 @@ class GeSHi {
         }
 
         // Highlight keywords
-        // if there is a couple of alpha symbols there *might* be a keyword
-        if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
-            $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
-            $disallowed_after = "a-zA-Z0-9_\|%\\-&";
-            if ($this->lexic_permissions['STRINGS']) {
-                $quotemarks = preg_quote(implode($this->language_data['QUOTEMARKS']), '/');
-                $disallowed_before .= $quotemarks;
-                $disallowed_after .= $quotemarks;
-            }
-            $parser_control_pergroup = false;
-            if (isset($this->language_data['PARSER_CONTROL'])) {
-                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
-                    $x = 0; // check wether per-keyword-group parser_control is enabled
-                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
-                        $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
-                        ++$x;
-                    }
-                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
-                        $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
-                        ++$x;
-                    }
-                    $parser_control_pergroup = (count($this->language_data['PARSER_CONTROL']['KEYWORDS']) - $x) > 0;
+        $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
+        $disallowed_after = "a-zA-Z0-9_\|%\\-&";
+        if ($this->lexic_permissions['STRINGS']) {
+            $quotemarks = preg_quote(implode($this->language_data['QUOTEMARKS']), '/');
+            $disallowed_before .= $quotemarks;
+            $disallowed_after .= $quotemarks;
+        }
+        $parser_control_pergroup = false;
+        if (isset($this->language_data['PARSER_CONTROL'])) {
+            if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                $x = 0; // check wether per-keyword-group parser_control is enabled
+                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
+                    $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                    ++$x;
                 }
+                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
+                    $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                    ++$x;
+                }
+                $parser_control_pergroup = (count($this->language_data['PARSER_CONTROL']['KEYWORDS']) - $x) > 0;
             }
+        }
 
-            // if this is changed, don't forget to change it below
-            if (!empty($disallowed_before)) {
-                $disallowed_before = "(?<![$disallowed_before])";
-            }
-            if (!empty($disallowed_after)) {
-                $disallowed_after = "(?![$disallowed_after])";
-            }
+        // if this is changed, don't forget to change it below
+        if (!empty($disallowed_before)) {
+            $disallowed_before = "(?<![$disallowed_before])";
+        }
+        if (!empty($disallowed_after)) {
+            $disallowed_after = "(?![$disallowed_after])";
+        }
 
-            foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
-                if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
-                    $this->lexic_permissions['KEYWORDS'][$k]) {
+        foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
+            if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
+                $this->lexic_permissions['KEYWORDS'][$k]) {
 
-                    $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
-                    $modifiers = $case_sensitive ? '' : 'i';
+                $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
+                $modifiers = $case_sensitive ? '' : 'i';
 
-                    // NEW in 1.0.8 - per-keyword-group parser control
-                    $disallowed_before_local = $disallowed_before;
-                    $disallowed_after_local = $disallowed_after;
-                    if ($parser_control_pergroup && isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k])) {
-                        if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'])) {
-                            $disallowed_before_local =
-                                    $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
+                // NEW in 1.0.8 - per-keyword-group parser control
+                $disallowed_before_local = $disallowed_before;
+                $disallowed_after_local = $disallowed_after;
+                if ($parser_control_pergroup && isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k])) {
+                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'])) {
+                        $disallowed_before_local =
+                                $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
 
-                            if (!empty($disallowed_before_local)) {
-                                $disallowed_before_local = "(?<![$disallowed_before_local])";
-                            }
-                        }
-
-                        if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'])) {
-                            $disallowed_after_local =
-                                    $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
-
-                            if (!empty($disallowed_after_local)) {
-                                $disallowed_after_local = "(?![$disallowed_after_local])";
-                            }
+                        if (!empty($disallowed_before_local)) {
+                            $disallowed_before_local = "(?<![$disallowed_before_local])";
                         }
                     }
 
-                    //NEW in 1.0.8, the cached regexp list
-                    // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
-                    for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
-                        $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k][$set];
-                        // Might make a more unique string for putting the number in soon
-                        // Basically, we don't put the styles in yet because then the styles themselves will
-                        // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-                        $this->_kw_replace_group = $k;
+                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'])) {
+                        $disallowed_after_local =
+                                $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
 
-                        $stuff_to_parse = preg_replace_callback(
-                            "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
-                            array($this, 'handle_keyword_replace'),
-                            $stuff_to_parse
-                            );
+                        if (!empty($disallowed_after_local)) {
+                            $disallowed_after_local = "(?![$disallowed_after_local])";
+                        }
                     }
+                }
+
+                //NEW in 1.0.8, the cached regexp list
+                // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
+                for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
+                    $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k][$set];
+                    // Might make a more unique string for putting the number in soon
+                    // Basically, we don't put the styles in yet because then the styles themselves will
+                    // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
+                    $this->_kw_replace_group = $k;
+
+                    $stuff_to_parse = preg_replace_callback(
+                        "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
+                        array($this, 'handle_keyword_replace'),
+                        $stuff_to_parse
+                        );
                 }
             }
         }
