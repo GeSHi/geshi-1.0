@@ -85,11 +85,11 @@ $language_data = array (
 		2 => array(
 		// Aliases
 		'ac', 'asnp', 'clc', 'cli', 'clp', 'clv', 'cpi', 'cpp', 'cvpa', 'diff', 'epal', 'epcsv', 'fc',
-		'fl', 'foreach', '%', 'ft', 'fw', 'gal', 'gc', 'gci', 'gcm', 'gdr', 'ghy', 'gi', 'gl', 'gm',
+		'fl', 'foreach', 'ft', 'fw', 'gal', 'gc', 'gci', 'gcm', 'gdr', 'ghy', 'gi', 'gl', 'gm',
 		'gp', 'gps', 'group', 'gsv', 'gsnp', 'gu', 'gv', 'gwmi', 'iex', 'ihy', 'ii', 'ipal', 'ipcsv',
 		'mi', 'mp', 'nal', 'ndr', 'ni', 'nv', 'oh', 'rdr', 'ri', 'rni', 'rnp', 'rp', 'rsnp', 'rv',
 		'rvpa', 'sal', 'sasv', 'sc', 'select', 'si', 'sl', 'sleep', 'sort', 'sp', 'spps', 'spsv', 'sv',
-		'tee', '?', 'write', 'cat', 'cd', 'clear', 'cp', 'h', 'history', 'kill', 'lp', 'ls',
+		'tee', 'write', 'cat', 'cd', 'clear', 'cp', 'h', 'history', 'kill', 'lp', 'ls',
 		'mount', 'mv', 'popd', 'ps', 'pushd', 'pwd', 'r', 'rm', 'rmdir', 'echo', 'cls', 'chdir',
 		'copy', 'del', 'dir', 'erase', 'move', 'rd', 'ren', 'set', 'type'
 			),
@@ -142,7 +142,7 @@ $language_data = array (
 			)
 		),
 	'SYMBOLS' => array(
-		'(', ')', '[', ']', '{', '}', '=', '<', '>', '@', '|', '&', ',',
+		'(', ')', '[', ']', '{', '}', '=', '<', '>', '@', '|', '&', ',', '?',
         '+=', '-=',	'*=', '/=', '%=', '*', '/', '%', '!', '+', '-', '++', '--'
 		),
 	'CASE_SENSITIVE' => array(

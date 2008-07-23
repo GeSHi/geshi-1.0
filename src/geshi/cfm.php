@@ -232,7 +232,7 @@ $language_data = array (
             ),
         /* CFM Attributes */
         6 => array(
-            '=','&amp;','name','dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
+            'name','dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
             ),
         7 => array(
             '&lt;', '&gt;'

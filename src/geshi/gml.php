@@ -104,7 +104,7 @@ $language_data = array (
             'background_index','background_x','background_y','background_width','background_height',
             'background_htiled','background_vtiled','background_xscale','background_yscale',
             'background_hspeed','background_vspeed','background_blend','background_alpha',
-            'background','left, top, width, height','x,y','depth','visible','xscale, yscale','blend','alpha',
+            'background','left, top, width, height','depth','visible','xscale, yscale','blend','alpha',
             'view_enabled','view_current','view_visible','view_yview','view_wview','view_hview','view_xport',
             'view_yport','view_wport','view_hport','view_angle','view_hborder','view_vborder','view_hspeed',
             'view_vspeed','view_object',

@@ -53,7 +53,7 @@ $language_data = array (
         1 => array(
             'break', 'case', 'catch', 'continue', 'elseif', 'else', 'end', 'for',
             'function', 'global', 'if', 'otherwise', 'persistent', 'return',
-            'switch', 'try', 'while','...'
+            'switch', 'try', 'while'
             ),
         2 => array(
             'all','any','exist','find','is','isa','logical','mislocked',

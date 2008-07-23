@@ -59,8 +59,7 @@ $language_data = array (
             'Endscan','Endtext','Endwith','For','Function','Hidden',
             'If','Local','Lparameter','Lparameters','Next','Otherwise',
             'Parameters','Printjob','Procedure','Protected','Public','Scan',
-            'Text','Then','While','With','?','??',
-            '???','Abs','Accept','Access','Aclass','Acopy',
+            'Text','Then','While','With','Abs','Accept','Access','Aclass','Acopy',
             'Acos','Adatabases','Adbobjects','Addbs','Addrelationtoenv','Addtabletoenv',
             'Adel','Adir','Aelement','Aerror','Afields','Afont',
             'Agetclass','Agetfileversion','Ains','Ainstance','Alen','Align',
@@ -385,7 +384,14 @@ $language_data = array (
             'Relation','Session','Shape','Spinner','TextBox' ,'Toolbar'
             ),
         ),
-    'SYMBOLS' => array("!", "@", "$", "%", "(", ")", "-", "+", "=", "/", "{", "}", "[", "]", ":", ";", ",", ".", "*", "&"),
+    'SYMBOLS' => array(
+        "!", "@", "$", "%",
+        "(", ")", "{", "}", "[", "]",
+        "-", "+", "*", "/",
+        "=", "<", ">",
+        ":", ";", ",", ".", "&",
+        "?", "??", "???"
+        ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,

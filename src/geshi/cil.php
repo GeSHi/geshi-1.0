@@ -74,7 +74,7 @@ $language_data = array (
             'streamed_object', 'stream', 'stored_object', 'safearray', 'objectref', 'object', 'nullref', 'method', 'lpwstr',
             'lpvoid', 'lptstr', 'lpstruct', 'lpstr', 'iunknown', 'int64', 'int32', 'int16', 'int8', 'int', 'idispatch',
             'hresult', 'float64', 'float32', 'float', 'decimal', 'date', 'currency', 'class', 'char', 'carray', 'byvalstr',
-            'bytearray', 'boxed', 'bool', 'blob_object', 'blob', 'array', '!!', '!'
+            'bytearray', 'boxed', 'bool', 'blob_object', 'blob', 'array'
             ),
         'prefix' => array(
             'volatile', 'unaligned', 'tail', 'readonly', 'no', 'constrained'
@@ -111,7 +111,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}'
+        '(', ')', '[', ']', '{', '}', '!', '!!'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
