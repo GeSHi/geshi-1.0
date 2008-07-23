@@ -453,8 +453,8 @@ if(!$error_abort) {
                         report_error(TYPE_WARNING, "Language file contains an non-string entry at \$language_data['KEYWORDS'][$key][$id]!");
                     } else if (!strlen($kw)) {
                         report_error(TYPE_ERROR, "Language file contains an empty string entry at \$language_data['KEYWORDS'][$key][$id]!");
-                    } else if (!preg_match('/[a-zA-Z]{2,}/i', $kw)) {
-                        report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') entry with not at least 2 subsequent letters at \$language_data['KEYWORDS'][$key][$id]!");
+//                    } else if (!preg_match('/[a-zA-Z]{2,}/i', $kw)) {
+//                        report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') entry with not at least 2 subsequent letters at \$language_data['KEYWORDS'][$key][$id]!");
                     }
                 }
                 if(count($keywords) != count(array_unique($keywords))) {
