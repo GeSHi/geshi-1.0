@@ -453,14 +453,16 @@ if(!$error_abort) {
                         report_error(TYPE_WARNING, "Language file contains an non-string entry at \$language_data['KEYWORDS'][$key][$id]!");
                     } else if (!strlen($kw)) {
                         report_error(TYPE_ERROR, "Language file contains an empty string entry at \$language_data['KEYWORDS'][$key][$id]!");
-//                    } else if (!preg_match('/[a-zA-Z]{2,}/i', $kw)) {
-//                        report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') entry with not at least 2 subsequent letters at \$language_data['KEYWORDS'][$key][$id]!");
+                    } else if (preg_match('/^([\(\)\{\}\[\]\^=.,:;\-+\*\/%\$\"\']|&[\w#]\w*;)+$/i', $kw)) {
+                        report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') at \$language_data['KEYWORDS'][$key][$id] which seems to be better suited for the symbols section!");
                     }
                 }
                 if(count($keywords) != count(array_unique($keywords))) {
-                    $kw_diffs = array_diff($keywords, array_unique($keywords));
-                    foreach($kw_diffs as $kw) {
-                        report_error(TYPE_WARNING, "Language file contains per-group duplicate keyword '$kw' in \$language_data['KEYWORDS'][$key]!");
+                    $kw_diffs = array_count_values($keywords);
+                    foreach($kw_diffs as $kw => $kw_count) {
+                        if($kw_count > 1) {
+                            report_error(TYPE_WARNING, "Language file contains per-group duplicate keyword '$kw' in \$language_data['KEYWORDS'][$key]!");
+                        }
                     }
                 }
             }
