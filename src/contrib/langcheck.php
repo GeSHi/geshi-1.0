@@ -76,6 +76,7 @@ function report_error($type, $message) {
         border: 2px solid #e0e0e0;
         background-color: #fcfcfc;
         padding: 5px;
+        font-size: 10pt;
     }
     h2 {
         margin: .1em 0 .2em .5em;
@@ -209,7 +210,7 @@ if(!$error_abort) {
             if(preg_match("/\t/", $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains unescaped tabulator chars (probably for indentation)!');
             }
-            if(!preg_match("/^(?!(?:(?:    )*[^ ]| \\*)\r)./m", $langfile_content)) {
+            if(preg_match('/^(?:    )*(?!    )(?! \*) /m', $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains irregular indentation (other than 4 spaces per indentation level)!');
             }
 
@@ -305,6 +306,14 @@ if(!$error_abort) {
                 report_error(TYPE_ERROR, 'Language file contains no $language_data[\'KEYWORDS\'] structure to check!');
             } else if (!is_array($language_data['KEYWORDS'])) {
                 report_error(TYPE_ERROR, 'Language file contains a $language_data[\'KEYWORDS\'] structure which is not an array!');
+            } else {
+                foreach($language_data['KEYWORDS'] as $kw_key => $kw_value) {
+                    if(!is_integer($kw_key)) {
+                        report_error(TYPE_WARNING, "Language file contains an key '$kw_key' in \$language_data['KEYWORDS'] that is not integer!");
+                    } else if (!is_array($kw_value)) {
+                        report_error(TYPE_ERROR, "Language file contains a \$language_data['CASE_SENSITIVE']['$cs_value'] structure which is not an array!");
+                    }
+                }
             }
 
             if(!isset($language_data['SYMBOLS'])) {
@@ -317,12 +326,28 @@ if(!$error_abort) {
                 report_error(TYPE_ERROR, 'Language file contains no $language_data[\'CASE_SENSITIVE\'] structure to check!');
             } else if (!is_array($language_data['CASE_SENSITIVE'])) {
                 report_error(TYPE_ERROR, 'Language file contains a $language_data[\'CASE_SENSITIVE\'] structure which is not an array!');
+            } else {
+                foreach($language_data['CASE_SENSITIVE'] as $cs_key => $cs_value) {
+                    if(!is_integer($cs_key)) {
+                        report_error(TYPE_WARNING, "Language file contains an key '$cs_key' in \$language_data['CASE_SENSITIVE'] that is not integer!");
+                    } else if (!is_bool($cs_value)) {
+                        report_error(TYPE_ERROR, "Language file contains a Case Sensitivity specification for \$language_data['CASE_SENSITIVE']['$cs_value'] which is not a boolean!");
+                    }
+                }
             }
 
             if(!isset($language_data['URLS'])) {
                 report_error(TYPE_ERROR, 'Language file contains no $language_data[\'URLS\'] structure to check!');
             } else if (!is_array($language_data['URLS'])) {
                 report_error(TYPE_ERROR, 'Language file contains a $language_data[\'URLS\'] structure which is not an array!');
+            } else {
+                foreach($language_data['URLS'] as $url_key => $url_value) {
+                    if(!is_integer($url_key)) {
+                        report_error(TYPE_WARNING, "Language file contains an key '$url_key' in \$language_data['URLS'] that is not integer!");
+                    } else if (!is_string($url_value)) {
+                        report_error(TYPE_ERROR, "Language file contains a Documentation URL specification for \$language_data['URLS']['$url_value'] which is not a string!");
+                    }
+                }
             }
 
             if(!isset($language_data['OOLANG'])) {
@@ -409,7 +434,47 @@ if(!$error_abort) {
 
                 unset($style_arrays);
             }
+        }
 
+        if(!$error_abort) {
+            //Initial sanity checks survived? --> Let's dig deeper!
+            foreach($language_data['KEYWORDS'] as $key => $keywords) {
+                if(!isset($language_data['CASE_SENSITIVE'][$key])) {
+                    report_error(TYPE_ERROR, "Language file contains no \$language_data['CASE_SENSITIVE'] specification for keyword group $key!");
+                }
+                if(!isset($language_data['URLS'][$key])) {
+                    report_error(TYPE_ERROR, "Language file contains no \$language_data['URLS'] specification for keyword group $key!");
+                }
+                if(empty($keywords)) {
+                    report_error(TYPE_WARNING, "Language file contains no empty keyword list in \$language_data['KEYWORDS'] for group $key!");
+                }
+                foreach($keywords as $id => $kw) {
+                    if(!is_string($kw)) {
+                        report_error(TYPE_WARNING, "Language file contains an non-string entry at \$language_data['KEYWORDS'][$key][$id]!");
+                    } else if (!strlen($kw)) {
+                        report_error(TYPE_ERROR, "Language file contains an empty string entry at \$language_data['KEYWORDS'][$key][$id]!");
+                    } else if (!preg_match('/[a-zA-Z]{2,}/i', $kw)) {
+                        report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') entry with not at least 2 subsequent letters in at \$language_data['KEYWORDS'][$key][$id]!");
+                    }
+                }
+                if(count($keywords) != count(array_unique($keywords))) {
+                    $kw_diffs = array_diff($keywords, array_unique($keywords));
+                    foreach($kw_diffs as $kw) {
+                        report_error(TYPE_WARNING, "Language file contains per-group duplicate keyword '$kw' in \$language_data['KEYWORDS'][$key]!");
+                    }
+                }
+            }
+            foreach($language_data['KEYWORDS'] as $key => $keywords) {
+                foreach($language_data['KEYWORDS'] as $key2 => $keywords2) {
+                    if($key2 <= $key) {
+                        continue;
+                    }
+                    $kw_diffs = array_intersect($keywords, $keywords2);
+                    foreach($kw_diffs as $kw) {
+                        report_error(TYPE_WARNING, "Language file contains cross-group duplicate keyword '$kw' in \$language_data['KEYWORDS'][$key] and \$language_data['KEYWORDS'][$key2]!");
+                    }
+                }
+            }
         }
 
         output_error_cache();
