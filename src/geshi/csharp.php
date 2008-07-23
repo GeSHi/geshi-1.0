@@ -41,7 +41,7 @@
  *
  ************************************************************************************/
 
- $language_data = array (
+$language_data = array (
     'LANG_NAME' => 'C#',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),

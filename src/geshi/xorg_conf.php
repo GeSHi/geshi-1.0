@@ -7,7 +7,7 @@
  * Release Version: 1.0.8
  * Date Started: 2008/06/18
  *
- * xorg.conf highlighter
+ * xorg.conf language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -45,7 +45,7 @@ $language_data = array (
         // sections
         1 => array(
             'Section', 'EndSection', 'SubSection', 'EndSubSection'
-          ),
+            ),
         2 => array(
             // see http://www.x.org/archive/X11R6.9.0/doc/html/xorg.conf.5.html
             'BiosBase', 'Black', 'Boardname', 'BusID', 'ChipID', 'ChipRev',
@@ -58,15 +58,15 @@ $language_data = array (
             'Screen', 'TextClockFreq', 'UseModes', 'VendorName',
             'VertRefresh', 'VideoAdaptor', 'VideoRam',
             'ViewPort', 'Virtual', 'Visual', 'Weight', 'White'
-          ),
+            ),
         3 => array(
-          // some sub-keywords
-          // screen position
-          'Above', 'Absolute', 'Below', 'LeftOf', 'Relative', 'RightOf',
-          // modes
-          'DotClock', 'Flags', 'HSkew', 'HTimings', 'VScan', 'VTimings'
-          ),
-    ),
+            // some sub-keywords
+            // screen position
+            'Above', 'Absolute', 'Below', 'LeftOf', 'Relative', 'RightOf',
+            // modes
+            'DotClock', 'Flags', 'HSkew', 'HTimings', 'VScan', 'VTimings'
+            ),
+        ),
     'REGEXPS' => array(
         ),
     'SYMBOLS' => array(

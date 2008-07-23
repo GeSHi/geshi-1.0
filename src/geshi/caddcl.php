@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 2004/08/30
  *
- * CAD DCL (Dialog Control Language) file for GeSHi.
+ * CAD DCL (Dialog Control Language) language file for GeSHi.
  *
  * DCL for AutoCAD 12 or later and IntelliCAD all versions.
  *

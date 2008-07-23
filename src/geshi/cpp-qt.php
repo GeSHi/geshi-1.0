@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 2004/09/27
  *
- * C++ language file for GeSHi, with QT extensions.
+ * C++ (with QT extensions) language file for GeSHi.
  *
  * CHANGES
  * -------

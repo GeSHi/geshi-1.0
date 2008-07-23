@@ -37,7 +37,7 @@
  *
  ************************************************************************************/
 
- $language_data = array (
+$language_data = array (
     'LANG_NAME' => 'vb.net',
     'COMMENT_SINGLE' => array(1 => "'"),
     'COMMENT_MULTI' => array(),

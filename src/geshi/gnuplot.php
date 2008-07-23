@@ -55,7 +55,7 @@ $language_data = array (
             'save', 'set', 'shell', 'show',
             'splot', 'system', 'test', 'unset',
             'update'
-          ),
+            ),
         2 => array(
             // set commands as returned by `help set`
             'angles', 'arrow', 'autoscale', 'bars',
@@ -119,7 +119,7 @@ $language_data = array (
             'noytics', 'noyzeroaxis', 'nozdata', 'nozdtics',
             'nozero', 'nozeroaxis', 'nozlabel', 'nozmtics',
             'nozrange', 'noztics', 'nozzeroaxis',
-          ),
+            ),
         3 => array(
             // predefined variables
             'pi', 'NaN', 'GNUTERM',
@@ -128,7 +128,7 @@ $language_data = array (
             'GPVAL_VERSION', 'GPVAL_PATcHLEVEL', 'GPVAL_COMPILE_OPTIONS',
             'MOUSE_KEY', 'MOUSE_X', 'MOUSE_X2', 'MOUSE_Y', 'MOUSE_Y2',
             'MOUSE_BUTTON', 'MOUSE_SHIFT', 'MOUSE_ALT', 'MOUSE_CTRL'
-          ),
+            ),
         4 => array(
             // predefined functions `help functions`
             'abs', 'acos', 'acosh', 'arg',
@@ -147,7 +147,7 @@ $language_data = array (
             'tm_hour', 'tm_mday', 'tm_min', 'tm_mon',
             'tm_sec', 'tm_wday', 'tm_yday', 'tm_year',
             'valid', 'word', 'words',
-        ),
+            ),
         5 => array(
             // mixed arguments
             // there is no sane way to get these ones easily...
@@ -207,9 +207,8 @@ $language_data = array (
             'svg', 'tandy-60dpi', 'tek40xx', 'tek410x',
             'texdraw', 'tgif', 'tkcanvas', 'tpic',
             'vttek', 'x11', 'xlib',
-
-        )
-    ),
+            )
+        ),
     'REGEXPS' => array(
         //Variable assignment
         0 => "([a-zA-Z_][a-zA-Z0-9_]*)\s*=",

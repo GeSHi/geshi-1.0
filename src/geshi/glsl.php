@@ -192,8 +192,8 @@ $language_data = array (
            'MATCH_BEFORE' => '',
            'MATCH_AFTER' => '[a-zA-Z_][a-zA-Z0-9_]*',
            'MATCH_SPACES' => '[\s]*'
-            )
         )
+    )
 );
 
 ?>
