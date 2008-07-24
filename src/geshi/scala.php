@@ -37,7 +37,6 @@
  *
  ************************************************************************************/
 
-
 $language_data = array (
     'LANG_NAME' => 'Scala',
     'COMMENT_SINGLE' => array(1 => '//'),
@@ -55,7 +54,7 @@ $language_data = array (
             'return', 'sealed', 'super', 'this', 'throw',
             'trait', 'try', 'true', 'type', 'val',
             'var', 'while', 'with', 'yield'
-             ),
+            ),
         2 => array(
             'void', 'double', 'int', 'boolean', 'byte', 'short', 'long', 'char', 'float'
             )
@@ -68,9 +67,7 @@ $language_data = array (
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
-        2 => false,
-        3 => true,
-        4 => true
+        2 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(

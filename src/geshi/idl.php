@@ -48,12 +48,12 @@ $language_data = array (
         2 => array(
             'bound', 'maybeambiguous', 'maybedefault', 'maybevoid', 'oneway', 'optional',
             'readonly', 'in', 'out', 'inout', 'attribute', 'transient', 'removable'
-              ),
+            ),
         3 => array(
             'True', 'False', 'TRUE', 'FALSE'
             ),
         4 => array(
-            'string', 'long', 'byte', 'hyper', 'boolean', 'any', 'char', 'double', 'long',
+            'string', 'long', 'byte', 'hyper', 'boolean', 'any', 'char', 'double',
             'void', 'sequence', 'unsigned'
             ),
         ),

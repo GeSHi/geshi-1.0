@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 2007/03/21
  *
- * Ruby language file for GeSHi
+ * Ruby language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -120,10 +120,9 @@ $language_data = array (
                 'Zlib::NeedDict', 'Zlib::StreamEnd', 'Zlib::StreamError',
                 'Zlib::VersionError',
                 'Zlib::ZStream',
-                'Enumerable',
                 'HTML::Selector', 'HashWithIndifferentAccess', 'Inflector',
                 'Inflector::Inflections', 'Mime', 'Mime::Type',
-                'OCI8AutoRecover', 'Symbol', 'TimeZone', 'XmlSimple'
+                'OCI8AutoRecover', 'TimeZone', 'XmlSimple'
             ),
         ),
     'SYMBOLS' => array(

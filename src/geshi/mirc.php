@@ -39,7 +39,7 @@
 $language_data = array (
     'LANG_NAME' => 'mIRC Scripting',
     'COMMENT_SINGLE' => array(1 => ';'),
-      'COMMENT_MULTI' => array(),
+    'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
@@ -51,14 +51,14 @@ $language_data = array (
             'if', 'elseif', 'else', 'while', 'return', 'goto',
             ),
         3 => array(
-            'action','ajinvite','alias','amsg','ame','anick','aop','auser',
+            'action','ajinvite','amsg','ame','anick','aop','auser',
             'avoice','auto','autojoin','away','background','ban','beep',
             'channel','clear','clearall','clipboard','close','closemsg','color',
             'copy','creq','ctcp','ctcpreply','ctcps','dcc','dde','ddeserver',
             'debug','describe','disable','disconnect','dlevel','dll','dns',
             'dqwindow','ebeeps','echo','editbox','emailaddr','enable','events',
             'exit','filter','findtext','finger','flash','flood','flush',
-            'flushini',    'font','fsend','fserve','fullname','ghide','gload',
+            'flushini','font','fsend','fserve','fullname','ghide','gload',
             'gmove','gopts','gplay','gpoint','gqreq','groups','gshow','gsize',
             'gstop','gtalk','gunload','guser','help','hop','ignore','invite',
             'join','kick','linesep','links','list','load','loadbuf','localinfo',
@@ -123,8 +123,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.mirc.com/{FNAMEL}',
-        4 => ''
+        3 => 'http://www.mirc.com/{FNAMEL}'
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

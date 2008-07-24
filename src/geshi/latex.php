@@ -20,7 +20,7 @@
  *
  *************************************************************************************
  *
- *   This file is not yet part of GeSHi. (and is not compatible to the 1.1+ branch)
+ *     This file is part of GeSHi.
  *
  *   GeSHi is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,9 @@
 
 $language_data = array (
     'LANG_NAME' => 'LaTeX',
-    'COMMENT_SINGLE' => array(1 => '%'),
+    'COMMENT_SINGLE' => array(
+        1 => '%'
+        ),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
@@ -52,10 +54,6 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
-        2 => false,
-        3 => false,
-        4 => false,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -198,7 +196,7 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+            )
 
 // ---------------------------------------------
         ),

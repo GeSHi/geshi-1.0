@@ -65,7 +65,7 @@ $language_data = array (
             'remove','rename','flush','seek','tmpfile','tmpname','read','write',
             'clock','date','difftime','execute','exit','getenv','setlocale','time',
             '_G','getfenv','getmetatable','ipairs','loadlib','next','pairs','pcall',
-            'rawegal','rawget','rawset','require','setfenv','setmetatable','xpcall',
+            'rawegal','setfenv','setmetatable','xpcall',
             'string.byte','string.char','string.dump','string.find','string.len',
             'string.lower','string.rep','string.sub','string.upper','string.format','string.gfind','string.gsub',
             'table.concat','table.foreach','table.foreachi','table.getn','table.sort','table.insert','table.remove','table.setn',
@@ -109,7 +109,7 @@ $language_data = array (
             0 => 'color: #cc66cc;'
             ),
         'METHODS' => array(
-      0 => 'color: #b1b100;'
+            0 => 'color: #b1b100;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'

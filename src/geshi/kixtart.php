@@ -307,8 +307,7 @@ $language_data = array (
     'URLS' => array(
         1 => 'http://www.kixtart.org/manual/Commands/{FNAMEL}.htm',
         2 => '',
-        3 => 'http://www.kixtart.org/manual/Functions/{FNAMEL}.htm',
-        4 => ''
+        3 => 'http://www.kixtart.org/manual/Functions/{FNAMEL}.htm'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

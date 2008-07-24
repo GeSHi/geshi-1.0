@@ -142,8 +142,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.php.net/{FNAMEL}',
-        4 => ''
+        3 => 'http://www.php.net/{FNAMEL}'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

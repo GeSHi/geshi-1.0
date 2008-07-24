@@ -38,14 +38,14 @@
  ************************************************************************************/
 
 $language_data = array (
-   'LANG_NAME' => 'thinBasic',
-   'COMMENT_SINGLE' => array(1 => "'"),
-   'COMMENT_MULTI' => array(),
-   'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-   'QUOTEMARKS' => array('"'),
-   'ESCAPE_CHAR' => '',
-   'KEYWORDS' => array(
-       1 => array(
+    'LANG_NAME' => 'thinBasic',
+    'COMMENT_SINGLE' => array(1 => "'"),
+    'COMMENT_MULTI' => array(),
+    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+    'QUOTEMARKS' => array('"'),
+    'ESCAPE_CHAR' => '',
+    'KEYWORDS' => array(
+        1 => array(
             'XOR','XML_TREETOSTRING','XML_PARSEFILE','XML_PARSE','XML_PARENT','XML_NODETYPE','XML_NODETOSTRING','XML_NEXTSIBLING',
             'XML_LASTERROR','XML_GETTAG','XML_FREE','XML_FINDNODE','XML_DECODEPARAM','XML_CHILDDATA','XML_CHILD','XML_ATTRIBVALUE',
             'XML_ATTRIBNAME','XML_ATTRIBCOUNT','WORD','WITH','WIN_SHOW','WIN_SETTITLE','WIN_SETFOREGROUND','WIN_ISZOOMED',
@@ -810,8 +810,8 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-      '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
-      ),
+        '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
+        ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -820,9 +820,7 @@ $language_data = array (
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000FF; font-weight: bold;',
-            2 => 'color: #993333; font-style: italic; font-weight: bold;',
-            3 => 'color: #000066;',
-            4 => 'color: #993333;'
+            2 => 'color: #993333; font-style: italic; font-weight: bold;'
             ),
         'COMMENTS' => array(
             1 => 'color: #008000;'
@@ -852,9 +850,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => '',
-        3 => '',
-        4 => ''
+        2 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

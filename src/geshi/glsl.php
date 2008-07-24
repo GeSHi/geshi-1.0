@@ -189,9 +189,9 @@ $language_data = array (
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'OOLANG' => array(
-           'MATCH_BEFORE' => '',
-           'MATCH_AFTER' => '[a-zA-Z_][a-zA-Z0-9_]*',
-           'MATCH_SPACES' => '[\s]*'
+            'MATCH_BEFORE' => '',
+            'MATCH_AFTER' => '[a-zA-Z_][a-zA-Z0-9_]*',
+            'MATCH_SPACES' => '[\s]*'
         )
     )
 );

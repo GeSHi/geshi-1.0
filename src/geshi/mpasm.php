@@ -60,14 +60,14 @@ $language_data = array (
             'ENDC', 'FILL', '__IDLOCS', '__MAXRAM', 'RES', 'ENDM', 'EXITM', 'EXPAND', 'LOCAL',
             'MACRO', 'NOEXPAND', 'BANKISEL', 'BANKSEL', 'CODE', 'EXTERN', 'GLOBAL', 'IDATA',
             'PAGESEL', 'UDATA', 'UDATA_ACS', 'UDATA_OVR', 'UDATA_SHR'
-          ),
+            ),
         /* 12&14-bit Specific Instruction Set*/
         1 => array(
             'andlw', 'call', 'clrwdt', 'goto', 'iorlw', 'movlw', 'option', 'retlw', 'sleep',
             'tris', 'xorlw', 'addwf', 'andwf', 'clrf', 'clrw', 'comf', 'decf', 'decfsz', 'incf',
             'incfsz', 'iorwf', 'movf', 'movwf', 'nop', 'rlf', 'rrf', 'subwf', 'swapf', 'xorwf',
             'bcf', 'bsf', 'btfsc', 'btfss',
-            'addlw', 'iorlw', 'retfie', 'return', 'sublw', 'xorlw', 'addcf', 'adddcf', 'b', 'bc', 'bdc',
+            'addlw', 'retfie', 'return', 'sublw', 'addcf', 'adddcf', 'b', 'bc', 'bdc',
             'bnc', 'bndc', 'bnz', 'bz', 'clrc', 'clrdc', 'clrz', 'lcall', 'lgoto', 'movfw',
             'negf', 'setc', 'setdc', 'setz', 'skpc', 'skpdc', 'skpnc', 'skpndc', 'skpnz', 'skpz',
             'subcf', 'subdcf', 'tstf'
@@ -89,7 +89,7 @@ $language_data = array (
             ),
         /*Operands*/
         5 => array(
-             'high','low'
+            'high','low'
             )
         ),
     'SYMBOLS' => array(
