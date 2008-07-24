@@ -239,7 +239,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '/', '=', '&', '{', '}', '(', ')', '[', ']', '<', '>'
+        '/', '=', '{', '}', '(', ')', '[', ']', '<', '>', '&'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -339,6 +339,10 @@ $language_data = array (
                 ),
             2 => array(
                 'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
+                'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
+                ),
+            7 => array(
+                'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>&|^', // allow ; before keywords
                 'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
                 )
             )
