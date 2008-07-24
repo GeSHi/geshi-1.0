@@ -15,7 +15,7 @@
 			background-color: #f6f6f6;
 			padding: 10px;
 		}
-		p, ul, ol, div, blockquote {
+		p, ul, ol, div, blockquote, dt {
 			font-size: 80%;
 			line-height: 140%;
 			letter-spacing: 1px;
@@ -611,20 +611,42 @@ anything at all.</p>
 highlighted source even if this wasn't necessary, thus styles that are applied to the output of GeSHi
 can directly influence the code only even if headers and footers are present.</p>
 
-<p>To change/set the header to use, you call the <strong><tt>set_header_type()</tt></strong> method:</p>
+<p>To change/set the header to use, you call the <strong><tt>set_header_type()</tt></strong> method. It has one required
+argument which defines the container type. Available are:</p>
+<dl>
+  <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_DIV<span style="color: #66cc66;">&#41;</span>;</code></dt>
+  <dd><p>Puts a <tt>&lt;div&gt;</tt> around both, code and linenumbers. Whitespace is converted to
+      <tt> &nbsp;</tt> sequences (i.e. one whitespace and the html entity of a non-breaking whitespace) to keep your
+      indendation level in tact. Tabs are converted as well and you can manually <a href="#setting-tab-width">define the tab-width</a>. Lines are automatically wrapped. Linenumbers are created using an ordered list.</p></dd>
+  <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE<span style="color: #66cc66;">&#41;</span>;</code></dt>
+  <dd><p>Wraps code and linenumbers in a <tt>&lt;pre&gt;</tt> container. This way whitespace is kept as-is and thus
+      this header produces less overhead then the <tt>GESHI_HEADER_DIV</tt> header type. Since linenumbers are still
+      created using an ordered list this header type produces <strong>invalid HTML</strong>.</p></dd>
+  <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE_VALID<span style="color: #66cc66;">&#41;</span>;</code>
+  <small><em>Available since 1.0.8</em></small></dt>
+  <dd><p>When linenumbers are disabled, this behaves just like <tt>GESHI_HEADER_PRE</tt>. In the other case though, a
+      <tt>&lt;div&gt;</tt> is used to wrap the code and linenumbers and the <tt>&lt;pre&gt;</tt> is put inside the
+      list items (<tt>&lt;li&gt;</tt>). This means slightly larger HTML output compared to <tt>GESHI_HEADER_PRE</tt>, but
+      the produced HTML code is <strong>valid</strong>.</p></dd>
+  <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE_TABLE<span style="color: #66cc66;">&#41;</span>;</code>
+  <small><em>Available since 1.0.8</em></small></dt>
+  <dd><p>Once again a <tt>&lt;div&gt;</tt> tag wraps the output. This time though no ordered list is used to
+         create an ordered list, but instead we use a table with two cells in a single row. The left cell contains a
+         <tt>&lt;pre&gt;</tt> tag which holds all linenumbers. The second cell holds the highlighted code, also wrapped in
+         a <tt>&lt;pre&gt;</tt> tag, just like with <tt>GESHI_HEADER_PRE</tt>.<br/>
+         This produces <strong>valid HTML</strong> and works around the nasty selection behaviour of Firefox and
+         other Gecko based browsers, see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1651996&amp;group_id=114997&amp;atid=670231">SF#1651996</a> for more information.</p></dt>
+  <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_NONE<span style="color: #66cc66;">&#41;</span>;</code>
+  <small><em>Available since 1.0.7.2</em></small></dt>
+  <dd><p>No wrapper is added.</p></dt>
+</dl>
 
-<code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_DIV<span style="color: #66cc66;">&#41;</span>;<br />
-<span style="color: #808080; font-style: italic;">// or...</span><br />
-<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE<span style="color: #66cc66;">&#41;</span>;
-<span style="color: #808080; font-style: italic;">// or...</span><br />
-<span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_NONE<span style="color: #66cc66;">&#41;</span>;</code>
-
-<p>Those are the only three arguments you should pass to <strong><tt>set_header_type</tt></strong>. Passing anything
+<p>Those are the only arguments you should pass to <strong><tt>set_header_type</tt></strong>. Passing anything
 else may cause inconsistencies in what is used as the Code Container (although it
 *should* simply use a <tt>&lt;pre&gt;</tt>). Better not to risk it.</p>
 
-<div class="note"><div class="note-header">Note:</div><p>GESHI_HEADER_DIV, GESHI_HEADER_PRE and GESHI_HEADER_NONE are <em>constants</em>, so don't put them
-in strings!</p></div>
+<div class="note"><div class="note-header">Note:</div><p>GESHI_HEADER_DIV, GESHI_HEADER_PRE, etc. are <em>constants</em>,
+so don't put them in strings!</p></div>
 
 <div class="caution"><div class="caution-header">Caution:</div><p>The default styles for the <tt>&lt;pre&gt;</tt> and <tt>&lt;div&gt;</tt> <em>will
 be different, especially if you use line numbers!</em>. I have found that a <tt>&lt;pre&gt;</tt> results
