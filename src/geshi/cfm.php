@@ -318,7 +318,7 @@ $language_data = array (
              '#' => '#'
             ),
         2 => array(
-            '<cfscript>' => '</cfscript>;'
+            '<cfscript>' => '</cfscript>'
             ),
         3 => array(
             '<' => '>'
