@@ -446,7 +446,7 @@ if(!$error_abort) {
                     report_error(TYPE_ERROR, "Language file contains no \$language_data['URLS'] specification for keyword group $key!");
                 }
                 if(empty($keywords)) {
-                    report_error(TYPE_WARNING, "Language file contains no empty keyword list in \$language_data['KEYWORDS'] for group $key!");
+                    report_error(TYPE_WARNING, "Language file contains an empty keyword list in \$language_data['KEYWORDS'] for group $key!");
                 }
                 foreach($keywords as $id => $kw) {
                     if(!is_string($kw)) {
@@ -475,6 +475,21 @@ if(!$error_abort) {
                     foreach($kw_diffs as $kw) {
                         report_error(TYPE_WARNING, "Language file contains cross-group duplicate keyword '$kw' in \$language_data['KEYWORDS'][$key] and \$language_data['KEYWORDS'][$key2]!");
                     }
+                }
+            }
+            foreach($language_data['CASE_SENSITIVE'] as $key => $keywords) {
+                if(!isset($language_data['KEYWORDS'][$key]) && $key != GESHI_COMMENTS) {
+                    report_error(TYPE_WARNING, "Language file contains an superfluous \$language_data['CASE_SENSITIVE'] specification for non-existing keyword group $key!");
+                }
+            }
+            foreach($language_data['URLS'] as $key => $keywords) {
+                if(!isset($language_data['KEYWORDS'][$key])) {
+                    report_error(TYPE_WARNING, "Language file contains an superfluous \$language_data['URLS'] specification for non-existing keyword group $key!");
+                }
+            }
+            foreach($language_data['STYLES']['KEYWORDS'] as $key => $keywords) {
+                if(!isset($language_data['KEYWORDS'][$key])) {
+                    report_error(TYPE_WARNING, "Language file contains an superfluous \$language_data['STYLES']['KEYWORDS'] specification for non-existing keyword group $key!");
                 }
             }
         }
