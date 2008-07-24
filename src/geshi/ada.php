@@ -53,7 +53,7 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'begin', 'declare', 'do', 'else', 'elsif', 'exception', 'for', 'if',
-            'is', 'loop', 'while', 'then', 'is', 'end', 'select', 'case', 'while',  'until',
+            'is', 'loop', 'while', 'then', 'end', 'select', 'case', 'until',
             'goto', 'return'
             ),
         2 => array(

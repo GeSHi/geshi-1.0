@@ -66,7 +66,7 @@ $language_data = array (
             'with', 'while', 'void', 'undefined', 'typeof', 'try', 'true',
             'throw', 'this', 'switch', 'super', 'set', 'return', 'public', 'protected',
             'private', 'null', 'new', 'is', 'internal', 'instanceof', 'in',
-            'import', 'if', 'get', 'for', 'false', 'else', 'each', 'each', 'do',
+            'import', 'if', 'get', 'for', 'false', 'else', 'each', 'do',
             'delete', 'default', 'continue', 'catch', 'case', 'break', 'as'
             ),
         2 => array(

@@ -47,7 +47,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            'script','property','prop','end','copy','to','set','global','local','on','to','of',
+            'script','property','prop','end','to','set','global','local','on','of',
             'in','given','with','without','return','continue','tell','if','then','else','repeat',
             'times','while','until','from','exit','try','error','considering','ignoring','timeout',
             'transaction','my','get','put','into','is'

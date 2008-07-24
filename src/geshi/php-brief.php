@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 2004/06/02
  *
- * PHP language file for GeSHi (brief version).
+ * PHP (brief version) language file for GeSHi.
  *
  * CHANGES
  * -------

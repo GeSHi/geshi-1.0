@@ -8,6 +8,7 @@
  * Date Started: 04/23/2006
  *
  * Standard Text File (No Syntax Highlighting).
+ * Plaintext language file for GeSHi.
  *
  * CHANGES
  * -------

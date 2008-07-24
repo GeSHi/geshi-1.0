@@ -79,8 +79,8 @@ $language_data = array (
             'ar', 'arch', 'arecord', 'as', 'as86', 'ash', 'autoconf',
             'autoheader', 'automake', 'awk',
 
-            'basename', 'bash', 'bc', 'bison', 'bunzip2', 'bzip2', 'bzcat',
-            'bzcmp', 'bzdiff', 'bzegrep', 'bzegrep', 'bzfgrep', 'bzgrep',
+            'basename', 'bash', 'bc', 'bison', 'bunzip2', 'bzcat',
+            'bzcmp', 'bzdiff', 'bzegrep', 'bzfgrep', 'bzgrep',
             'bzip2', 'bzip2recover', 'bzless', 'bzmore',
 
             'c++', 'cal', 'cat', 'chattr', 'cc', 'cdda2wav', 'cdparanoia',
@@ -162,7 +162,7 @@ $language_data = array (
             'alias', 'bg', 'bind', 'break', 'builtin', 'cd', 'command',
             'compgen', 'complete', 'continue', 'declare', 'dirs', 'disown',
             'echo', 'enable', 'eval', 'exec', 'exit', 'export', 'fc',
-            'fg', 'getopts', 'hash', 'help', 'history', 'jobs', 'kill', 'let',
+            'fg', 'getopts', 'hash', 'help', 'history', 'jobs', 'let',
             'local', 'logout', 'popd', 'printf', 'pushd', 'pwd', 'readonly',
             'return', 'shift', 'shopt', 'source', 'suspend', 'test', 'times',
             'trap', 'type', 'typeset', 'ulimit', 'umask', 'unalias', 'unset',
@@ -220,7 +220,7 @@ $language_data = array (
         1 => '',
         2 => '',
         3 => ''
-    ),
+        ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),
@@ -244,7 +244,7 @@ $language_data = array (
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
-           'DISALLOWED_BEFORE' => '$'
+            'DISALLOWED_BEFORE' => '$'
         ),
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "\.\-a-zA-Z0-9_\$\#",

@@ -61,7 +61,7 @@ $language_data = array (
             'breezy', 'breezy-updates', 'breezy-security', 'breezy-proposed', 'breezy-backports',
             'dapper', 'dapper-updates', 'dapper-security', 'dapper-proposed', 'dapper-backports',
             'edgy', 'edgy-updates', 'edgy-security', 'edgy-proposed', 'edgy-backports',
-            'feisty', 'feisty-updates', 'feisty-security', 'feisty-proposed', 'gutsy-backports',
+            'feisty', 'feisty-updates', 'feisty-security', 'feisty-proposed', 'feisty-backports',
             'gutsy', 'gutsy-updates', 'gutsy-security', 'gutsy-proposed', 'gutsy-backports',
             'hardy', 'hardy-updates', 'hardy-security', 'hardy-proposed', 'hardy-backports',
             'intrepid', 'intrepid-updates', 'intrepid-security', 'intrepid-proposed', 'intrepid-backports',

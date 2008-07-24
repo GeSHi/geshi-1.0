@@ -63,7 +63,7 @@ $language_data = array (
             ),
         4 => array(
             'type ref to', 'type', 'begin of',  'end of', 'like', 'into',
-            'from', 'where', 'order by', 'with key', 'into', 'string', 'separated by',
+            'from', 'where', 'order by', 'with key', 'string', 'separated by',
             'exporting', 'importing', 'to upper case', 'to', 'exceptions', 'tables',
             'using', 'changing'
             ),

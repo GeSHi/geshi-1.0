@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 03/15/2006
  *
- * Microsoft Registry Editor Language File.
+ * Microsoft Registry Editor language file for GeSHi.
  *
  * CHANGES
  * -------

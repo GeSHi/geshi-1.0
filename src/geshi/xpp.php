@@ -227,7 +227,6 @@ $language_data = array (
             'intvname',
             'intvmax',
             'int64str',
-            'int64str',
             'indexstr',
             'indexnum',
             'indexname2id',
