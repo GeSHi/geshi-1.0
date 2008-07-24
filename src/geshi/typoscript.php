@@ -42,8 +42,9 @@
 
 $language_data = array (
     'LANG_NAME' => 'TypoScript',
-    'COMMENT_SINGLE' => array(1  => '//', 2 => '####', 3 => '# *'),
+    'COMMENT_SINGLE' => array(1  => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(1 => '/(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
@@ -91,13 +92,12 @@ $language_data = array (
             ),
 
         // GIFBUILDER: http://support.typo3.org/documentation/tsref/gifbuilder/
+        // skipped fields: IMAGE, TEXT
         // NOTE! the IMAGE and TEXT field already are linked in group 4, they
         // cannot be linked twice . . . . unfortunately
         6 => array(
             'ADJUST', 'BOX', 'CROP', 'EFFECT', 'EMBOSS',
-            //'IMAGE',
             'IMGMAP', 'OUTLINE', 'SCALE', 'SHADOW',
-            //'TEXT',
             'WORKAREA'
             ),
 
@@ -135,11 +135,11 @@ $language_data = array (
             '!', '&&', '^',
             '<', '>', '=',
             '?', ':',
-            '.',
+            '.'
             ),
         1 => array(
             '(', ')', '{', '}', '[', ']'
-            ),
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -151,19 +151,19 @@ $language_data = array (
         6 => true,
         7 => true,
         8 => true,
-        9 => true,
+        9 => true
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #ed7d14;',
-            2 => 'color: #000000; font-weight: bold;',
-            3 => 'color: #990000;',
-            4 => 'color: #990000;',
-            5 => 'color: #990000;',
-            6 => 'color: #990000;',
-            7 => 'color: #990000;',
-            8 => 'color: #000000; font-weight: bold;',
-            9 => 'color: #990000;',
+            2 => 'font-weight: bold;',
+            3 => 'color: #990000; font-weight: bold;',
+            4 => 'color: #990000; font-weight: bold;',
+            5 => 'color: #990000; font-weight: bold;',
+            6 => 'color: #990000; font-weight: bold;',
+            7 => 'color: #990000; font-weight: bold;',
+            8 => 'font-weight: bold;',
+            9 => 'color: #990000; font-weight: bold;',
             ),
         'COMMENTS' => array(
             1 => 'color: #aaa; font-style: italic;',
@@ -175,30 +175,29 @@ $language_data = array (
             0 => 'color: #ac14aa;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #ac14aa;'
+            0 => 'color: #cc0000;'
             ),
         'METHODS' => array(
             1 => 'color: #0000e0; font-weight: bold;',
             2 => 'color: #0000e0; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #990000; font-weight: bold;'
+            0 => 'color: #009900;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #339933; font-weight: bold;',
                 // Set this to the same value as brackets above
-            1 => 'color: #990000; font-weight: bold;'
+            1 => 'color: #009900; font-weight: bold;'
             ),
         'REGEXPS' => array(
-            0 => 'color: #0000e0;',
-            1 => 'color: #ed9e00;',
-            2 => 'color: #40a6ed;',
-//            3 => 'color: #00b3e0;',
-            4 => 'color: #0000e0; font-weight: bold;',
-//            5 => 'color: #0000e0; font-weight: bold;',
-            6 => 'color: #ed7d14;',
-//            7 => 'color: #990000;',
-            8 => 'color: #0000e0; font-weight: bold;',
+            0 => 'color: #009900;',
+            1 => 'color: #009900; font-weight: bold;',
+            2 => 'color: #3366CC;',
+            3 => 'color: #000066; font-weight: bold;',
+            4 => 'color: #ed7d14;',
+            5 => 'color: #000066; font-weight: bold;',
+            6 => 'color: #009900;',
+            7 => 'color: #3366CC;'
             ),
         'ESCAPE_CHAR' => array(
             ),
@@ -240,49 +239,24 @@ $language_data = array (
 
             // xhtml tag
         2 => array(
-            GESHI_SEARCH => '(&lt;.+?&gt;)',
+            GESHI_SEARCH => '(&lt;[a-zA-Z\!/].*?&gt;)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 's',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
 
-            // HTML entity
-            // TODO these are currently not highlighted properly by GeSHi
-        /*
-        3 => array(
-            //GESHI_SEARCH => '(&amp;[a-zA-Z0-9]+;)',
-            GESHI_SEARCH => '(&amp;(?!([a-zA-Z0-9#]{1,6};)))',
-            GESHI_REPLACE => '\\1\\2',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-         */
-
             // extension keys / tables: (static|user|ttx|tx|tt|fe)_something[_something]
-        4 => array(
-            GESHI_SEARCH => '(plugin\.|[^\.]\b)((static|user|ttx|tx|tt|fe)(_[0-9A-Za-z_]+?)\b)',
+        3 => array(
+            GESHI_SEARCH => '(plugin\.|[^\.]\b)((?:static|user|ttx|tx|tt|fe)(?:_[0-9A-Za-z_]+?)\b)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => ''
             ),
 
-            // markers
-            // TODO these are currently seen as comments by GeSHi
-        /*
-        5 => array(
-            GESHI_SEARCH => '(\#\#\#.+?\#\#\#)',
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-         */
-
             // conditions and controls
-        6 => array(
+        4 => array(
             GESHI_SEARCH => '(\[)(globalVar|global|end)\b',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'i',
@@ -290,27 +264,33 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
 
-            // HEX color codes
-            // TODO these are currently seen as comments by GeSHi
-            /*
-        7 => array(
-            GESHI_SEARCH => '(\#([0-9abcdefABCDEF]{6}|[0-9abcdefABCDEF]{3}))',
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-            */
-
             // lowlevel setup and constant objects
-        8 => array(
+        5 => array(
             GESHI_SEARCH => '([^\.\$-\{]\b)(cObj|field|config|content|file|frameset|includeLibs|lib|page|plugin|register|resources|sitemap|sitetitle|styles|temp|tt_content|tt_news|types|xmlnews)\b',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => ''
+            ),
+
+            // markers
+        6 => array(
+            GESHI_SEARCH => '(###[^#]+###)',
+            GESHI_REPLACE => '\\1',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
+
+            // hex color codes
+        7 => array(
+            GESHI_SEARCH => '(#[a-fA-F0-9]{6}\b|#[a-fA-F0-9]{3}\b)',
+            GESHI_REPLACE => '\\1',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            )
         ),
-    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
         ),
