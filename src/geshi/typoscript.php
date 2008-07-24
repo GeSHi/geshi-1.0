@@ -239,7 +239,7 @@ $language_data = array (
 
             // xhtml tag
         2 => array(
-            GESHI_SEARCH => '(&lt;[a-zA-Z\!/].*?&gt;)',
+            GESHI_SEARCH => '(&lt;[a-zA-Z\!\/].*?&gt;)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 's',
             GESHI_BEFORE => '',
