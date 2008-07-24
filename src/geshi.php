@@ -1976,32 +1976,68 @@ class GeSHi {
             while ($i < $length) {
                 $next_match_pos = $length + 1; // never true
                 foreach ($delim_copy as $dk => $delimiters) {
-                    foreach ($delimiters as $open => $close) {
-                        // make sure the cache is setup properly
-                        if (!isset($matches[$dk][$open])) {
-                            $matches[$dk][$open] = array(
-                                'next_match' => -1,
-                                'close_strlen' => strlen($close),
-                                'open_strlen' => strlen($open),
-                                'dk' => $dk,
-                                'close' => $close,
-                                'open' => $open // needed for grouping of adjacent code blocks (see below)
-                            );
-                        }
-                        // Get the next little bit for this opening string
-                        if ($matches[$dk][$open]['next_match'] < $i) {
-                            // only find the next pos if it was not already cached
-                            $open_pos = strpos($code, $open, $i);
-                            if ($open_pos === false) {
-                                // no match for this delimiter ever
-                                unset($delim_copy[$dk][$open]);
-                                continue;
+                    if(is_array($delimiters)) {
+                        foreach ($delimiters as $open => $close) {
+                            // make sure the cache is setup properly
+                            if (!isset($matches[$dk][$open])) {
+                                $matches[$dk][$open] = array(
+                                    'next_match' => -1,
+                                    'dk' => $dk,
+
+                                    'open' => $open, // needed for grouping of adjacent code blocks (see below)
+                                    'open_strlen' => strlen($open),
+
+                                    'close' => $close,
+                                    'close_strlen' => strlen($close),
+                                );
                             }
-                            $matches[$dk][$open]['next_match'] = $open_pos;
+                            // Get the next little bit for this opening string
+                            if ($matches[$dk][$open]['next_match'] < $i) {
+                                // only find the next pos if it was not already cached
+                                $open_pos = strpos($code, $open, $i);
+                                if ($open_pos === false) {
+                                    // no match for this delimiter ever
+                                    unset($delim_copy[$dk][$open]);
+                                    continue;
+                                }
+                                $matches[$dk][$open]['next_match'] = $open_pos;
+                            }
+                            if ($matches[$dk][$open]['next_match'] < $next_match_pos) {
+                                //So we got a new match, update the close_pos
+                                $matches[$dk][$open]['close_pos'] =
+                                    strpos($code, $close, $matches[$dk][$open]['next_match']+1);
+
+                                $next_match_pointer =& $matches[$dk][$open];
+                                $next_match_pos = $matches[$dk][$open]['next_match'];
+                            }
                         }
-                        if ($matches[$dk][$open]['next_match'] < $next_match_pos) {
-                            $next_match_pointer =& $matches[$dk][$open];
-                            $next_match_pos = $matches[$dk][$open]['next_match'];
+                    } else {
+                        //So we should match an RegExp as Strict Block ...
+                        /**
+                         * The value in $delimiters is expected to be an RegExp
+                         * containing exactly 2 matching groups:
+                         *  - Group 1 is the opener
+                         *  - Group 2 is the closer
+                         */
+                        if(!GESHI_PHP_PRE_433 && //Needs proper rewrite to work with PHP >=4.3.0; 4.3.3 is guaranteed to work.
+                            preg_match($delimiters, $code, $matches_rx, PREG_OFFSET_CAPTURE, $i)) {
+                            //We got a match ...
+                            $matches[$dk] = array(
+                                'next_match' => $matches_rx[0][1],
+                                'dk' => $dk,
+
+                                'close_strlen' => strlen($matches_rx[2][0]),
+                                'close_pos' => $matches_rx[2][1],
+                                );
+                        } else {
+                            // no match for this delimiter ever
+                            unset($delim_copy[$dk]);
+                            continue;
+                        }
+
+                        if ($matches[$dk]['next_match'] <= $next_match_pos) {
+                            $next_match_pointer =& $matches[$dk];
+                            $next_match_pos = $matches[$dk]['next_match'];
                         }
                     }
                 }
@@ -2019,19 +2055,25 @@ class GeSHi {
                 // highlightable code
                 $parts[$k][0] = $next_match_pointer['dk'];
 
-                // group adjacent script blocks, e.g. <foobar><asdf> should be one block, not three!
-                 $i = $next_match_pos + $next_match_pointer['open_strlen'];
-                 do {
-                    $close_pos = strpos($code, $next_match_pointer['close'], $i);
-                    if ($close_pos == false) {
-                        break;
-                    }
-                    $i = $close_pos + $next_match_pointer['close_strlen'];
-                    if ($i == $length) {
-                        break;
-                    }
-                 } while ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
-                    substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open']));
+                //Only combine for non-rx script blocks
+                if(is_array($delim_copy[$next_match_pointer['dk']])) {
+                    // group adjacent script blocks, e.g. <foobar><asdf> should be one block, not three!
+                    $i = $next_match_pos + $next_match_pointer['open_strlen'];
+                    do {
+                        $close_pos = strpos($code, $next_match_pointer['close'], $i);
+                        if ($close_pos == false) {
+                            break;
+                        }
+                        $i = $close_pos + $next_match_pointer['close_strlen'];
+                        if ($i == $length) {
+                            break;
+                        }
+                    } while ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
+                        substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open']));
+                } else {
+                    $close_pos = $next_match_pointer['close_pos'] + $next_match_pointer['close_strlen'];
+                    $i = $close_pos;
+                }
 
                 if ($close_pos === false) {
                     // no closing delimiter found!
