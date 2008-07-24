@@ -239,7 +239,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']',#'gt','lt'
+        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']', 'gt', 'lt'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
