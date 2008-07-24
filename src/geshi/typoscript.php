@@ -110,7 +110,7 @@ $language_data = array (
 
         // MENU common properties: http://support.typo3.org/documentation/tsref/menu/common-properties/
         8 => array(
-            'addParams', 'alternativeSortingField', 'begin', 'debugItemConf',
+            'alternativeSortingField', 'begin', 'debugItemConf',
             'imgNameNotRandom', 'imgNamePrefix',
             'itemArrayProcFunc', 'JSWindow', 'maxItems',
             'minItems', 'overrideId', 'sectionIndex',
