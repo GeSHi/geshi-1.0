@@ -154,13 +154,13 @@ $language_data = array (
             '&lt;/samp', '&lt;/script', '&lt;/select', '&lt;/small', '&lt;/span', '&lt;/strike', '&lt;/strong', '&lt;/style', '&lt;/sub', '&lt;/sup', '&lt;/s',
 
             '&lt;table&gt;', '&lt;tbody&gt;', '&lt;td&gt;', '&lt;textarea&gt;', '&lt;text&gt;', '&lt;tfoot&gt;', '&lt;thead&gt;', '&lt;th&gt;', '&lt;title&gt;', '&lt;tr&gt;', '&lt;tt&gt;',
-            '&lt;table', '&lt;tbody', '&lt;td', '&lt;textarea', '&lt;text', '&lt;tfoot', '&lt;tfoot', '&lt;thead', '&lt;th', '&lt;title', '&lt;tr', '&lt;tt',
-            '&lt;/table&gt;', '&lt;/tbody&gt;', '&lt;/td&gt;', '&lt;/textarea&gt;', '&lt;/text&gt;', '&lt;/tfoot&gt;', '&lt;/thead', '&lt;/tfoot', '&lt;/th&gt;', '&lt;/title&gt;', '&lt;/tr&gt;', '&lt;/tt&gt;',
-            '&lt;/table', '&lt;/tbody', '&lt;/td', '&lt;/textarea', '&lt;/text', '&lt;/tfoot', '&lt;/tfoot', '&lt;/thead', '&lt;/th', '&lt;/title', '&lt;/tr', '&lt;/tt',
+            '&lt;table', '&lt;tbody', '&lt;td', '&lt;textarea', '&lt;text', '&lt;tfoot', '&lt;thead', '&lt;th', '&lt;title', '&lt;tr', '&lt;tt',
+            '&lt;/table&gt;', '&lt;/tbody&gt;', '&lt;/td&gt;', '&lt;/textarea&gt;', '&lt;/text&gt;', '&lt;/tfoot&gt;', '&lt;/thead&gt;', '&lt;/th&gt;', '&lt;/title&gt;', '&lt;/tr&gt;', '&lt;/tt&gt;',
+            '&lt;/table', '&lt;/tbody', '&lt;/td', '&lt;/textarea', '&lt;/text', '&lt;/tfoot', '&lt;/thead', '&lt;/th', '&lt;/title', '&lt;/tr', '&lt;/tt',
 
             '&lt;ul&gt;', '&lt;u&gt;',
             '&lt;ul', '&lt;u',
-            '&lt;/ul&gt;', '&lt;/ul&gt;',
+            '&lt;/ul&gt;', '&lt;/u&gt;',
             '&lt;/ul', '&lt;/u',
 
             '&lt;var&gt;',
@@ -172,7 +172,7 @@ $language_data = array (
         3 => array(
             'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis',
             'background', 'bgcolor', 'border',
-            'cellpadding', 'cellspacing', 'char', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
+            'cellpadding', 'cellspacing', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
             'data', 'datetime', 'declare', 'defer', 'dir', 'disabled',
             'enctype',
             'face', 'for', 'frame', 'frameborder',
@@ -190,11 +190,11 @@ $language_data = array (
             'valign', 'value', 'valuetype', 'version', 'vlink', 'vspace',
             'width'
             ),
-            /* CFM Script delimeters */
+        /* CFM Script delimeters */
         4 => array(
             'var', 'function', 'while', 'if','else'
             ),
-            /* CFM Functions */
+        /* CFM Functions */
         5 => array(
             'Abs', 'GetFunctionList', 'LSTimeFormat','ACos','GetGatewayHelper','LTrim','AddSOAPRequestHeader','GetHttpRequestData',
             'Max','AddSOAPResponseHeader','GetHttpTimeString','Mid','ArrayAppend','GetLocale','Min','ArrayAvg','GetLocaleDisplayName',
@@ -202,7 +202,7 @@ $language_data = array (
             'Now','ArrayIsEmpty','GetProfileSections','NumberFormat','ArrayLen','GetProfileString','ParagraphFormat','ArrayMax',
             'GetLocalHostIP','ParseDateTime','ArrayMin','GetSOAPRequest','Pi','ArrayNew','GetSOAPRequestHeader','PreserveSingleQuotes',
             'ArrayPrepend','GetSOAPResponse','Quarter','ArrayResize','GetSOAPResponseHeader','QueryAddColumn','ArraySet',
-            'GetTempDirectory','QueryAddRow','ArraySort','GetTempDirectory','QueryNew','ArraySum','GetTempFile','QuerySetCell',
+            'GetTempDirectory','QueryAddRow','ArraySort','QueryNew','ArraySum','GetTempFile','QuerySetCell',
             'ArraySwap','GetTickCount','QuotedValueList','ArrayToList','GetTimeZoneInfo','Rand','Asc','GetToken','Randomize',
             'ASin','Hash','RandRange','Atn','Hour','REFind','BinaryDecode','HTMLCodeFormat','REFindNoCase','BinaryEncode',
             'HTMLEditFormat','ReleaseComObject','BitAnd','IIf','RemoveChars','BitMaskClear','IncrementValue','RepeatString',
@@ -232,14 +232,17 @@ $language_data = array (
             ),
         /* CFM Attributes */
         6 => array(
-            'name','dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
+            'dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
             ),
         7 => array(
             '&lt;', '&gt;'
+            ),
+        8 => array(
+            'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', 'NEQ'
             )
         ),
     'SYMBOLS' => array(
-        '/', '=', 'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', '&', '{', '}', '(', ')', '[', ']', 'gt', 'lt'
+        '/', '=', '&', '{', '}', '(', ')', '[', ']'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -249,7 +252,8 @@ $language_data = array (
         4 => false,
         5 => false,
         6 => false,
-        7 => false
+        7 => false,
+        8 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -258,8 +262,9 @@ $language_data = array (
             3 => 'color: #0000FF;',
             4 => 'color: #000000; font-weight: bold;',
             5 => 'color: #0000FF;',
-            6 => 'color: #0000FF',
-            7 => 'color: #990000'
+            6 => 'color: #0000FF;',
+            7 => 'color: #990000;',
+            8 => 'color: #0000FF;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
@@ -299,7 +304,8 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => '',
-        7 => ''
+        7 => '',
+        8 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -315,7 +321,7 @@ $language_data = array (
             '<!DOCTYPE' => '>'
             ),
         1 => array(
-             '#' => '#'
+            '#' => '#'
             ),
         2 => array(
             '<cfscript>' => '</cfscript>'
@@ -323,7 +329,7 @@ $language_data = array (
         3 => array(
             '<' => '>'
             )
-    ),
+        ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         -1 => false,
         0 => false,
@@ -336,11 +342,11 @@ $language_data = array (
             1 => array(
                 'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
                 'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
-            ),
+                ),
             2 => array(
                 'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
                 'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
-            ),
+                ),
             7 => array(
                 'DISALLOWED_BEFORE' => '',
                 'DISALLOWED_AFTER' => ''
