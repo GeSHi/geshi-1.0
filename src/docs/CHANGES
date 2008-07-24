@@ -1,4 +1,4 @@
-﻿
+
               CHANGES - Changelog for GeSHi (geshi.php only)
 
 Changes to the code are listed under the version they occured in, with who suggested
@@ -83,7 +83,8 @@ Version 1.0.8
      * format_header_content
      * format_footer_content
      * get_attributes
-  -  Improved smarty language file (milian)
+  -  Improved Smarty language file (milian)
+  -  Improved LaTeX language file (Андрей Парамонов, BenBE)
   -  Fixed a regular expression in mIRC language file that caused a warning message to be issued (BenBE)
   -  Added a script to contrib/ to verify language files are correct (BenBE)
   -  Fixed loads of compliancy warnings detected with that automated compliance testing script (BenBE)
