@@ -2017,22 +2017,21 @@ class GeSHi {
                 }
 
                 // highlightable code
-                $close_pos = strpos($code, $next_match_pointer['close'], $next_match_pos + $next_match_pointer['open_strlen']);
                 $parts[$k][0] = $next_match_pointer['dk'];
 
                 // group adjacent script blocks, e.g. <foobar><asdf> should be one block, not three!
                  $i = $next_match_pos + $next_match_pointer['open_strlen'];
                  do {
-                     $close_pos = strpos($code, $next_match_pointer['close'], $i);
-                     if ($close_pos == false) {
-                         break;
-                     }
-                     $i = $close_pos + $next_match_pointer['close_strlen'];
-                     if ($i == $length) {
-                         break;
-                     }
+                    $close_pos = strpos($code, $next_match_pointer['close'], $i);
+                    if ($close_pos == false) {
+                        break;
+                    }
+                    $i = $close_pos + $next_match_pointer['close_strlen'];
+                    if ($i == $length) {
+                        break;
+                    }
                  } while ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
-                     substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open']));
+                    substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open']));
 
                 if ($close_pos === false) {
                     // no closing delimiter found!
