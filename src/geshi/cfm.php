@@ -235,14 +235,11 @@ $language_data = array (
             'dbtype','connectstring','datasource','username','password','query','delimeter','description','required','hint','default','access','from','to','list','index'
             ),
         7 => array(
-            '&lt;', '&gt;'
-            ),
-        8 => array(
             'EQ', 'GT', 'LT', 'GTE', 'LTE', 'IS', 'LIKE', 'NEQ'
             )
         ),
     'SYMBOLS' => array(
-        '/', '=', '&', '{', '}', '(', ')', '[', ']'
+        '/', '=', '&', '{', '}', '(', ')', '[', ']', '<', '>'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -252,8 +249,7 @@ $language_data = array (
         4 => false,
         5 => false,
         6 => false,
-        7 => false,
-        8 => false
+        7 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -263,8 +259,7 @@ $language_data = array (
             4 => 'color: #000000; font-weight: bold;',
             5 => 'color: #0000FF;',
             6 => 'color: #0000FF;',
-            7 => 'color: #990000;',
-            8 => 'color: #0000FF;'
+            7 => 'color: #0000FF;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
@@ -304,8 +299,7 @@ $language_data = array (
         4 => '',
         5 => '',
         6 => '',
-        7 => '',
-        8 => ''
+        7 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -346,10 +340,6 @@ $language_data = array (
             2 => array(
                 'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
                 'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
-                ),
-            7 => array(
-                'DISALLOWED_BEFORE' => '',
-                'DISALLOWED_AFTER' => ''
                 )
             )
         )
