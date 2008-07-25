@@ -73,7 +73,7 @@ $language_data = array (
             ),
         2 => array(
             'null', '__LINE__', '__FILE__',
-            'false', '&lt;?php', '?&gt;', '&lt;?',
+            'false', '&lt;?php', '?&gt;', '&lt;?', '&lt;?=', '%&gt;', '&lt;%',
             '&lt;script language', '&lt;/script&gt;',
             'true', 'var', 'default',
             'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends', 'self', 'const',
@@ -358,7 +358,9 @@ $language_data = array (
         0 => true,
         1 => true,
         2 => true,
-        3 => true
+        3 => true,
+        4 => true,
+        5 => true
         ),
     'TAB_WIDTH' => 4
 );
