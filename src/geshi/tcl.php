@@ -60,24 +60,23 @@ $language_data = array (
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
-
         /*
-        ** Set 1: reserved words
-        ** http://python.org/doc/current/ref/keywords.html
-        */
+         * Set 1: reserved words
+         * http://python.org/doc/current/ref/keywords.html
+         */
         1 => array(
             'proc', 'global', 'upvar', 'if', 'then', 'else', 'elseif', 'for', 'foreach',
             'break', 'continue', 'while', 'set', 'eval', 'case', 'in', 'switch',
-            'default', 'exit', 'error', 'proc', 'return', 'uplevel', 'loop',
+            'default', 'exit', 'error', 'return', 'uplevel', 'loop',
             'for_array_keys', 'for_recursive_glob', 'for_file', 'unwind_protect',
             'expr', 'catch', 'namespace', 'rename', 'variable',
             // itcl
             'method', 'itcl_class', 'public', 'protected'),
 
         /*
-        ** Set 2: builtins
-        ** http://asps.activatestate.com/ASPN/docs/ActiveTcl/8.4/tcl/tcl_2_contents.htm
-        */
+         * Set 2: builtins
+         * http://asps.activatestate.com/ASPN/docs/ActiveTcl/8.4/tcl/tcl_2_contents.htm
+         */
         2 => array(
             // string handling
             'append', 'binary', 'format', 're_syntax', 'regexp', 'regsub',
@@ -109,36 +108,36 @@ $language_data = array (
             ),
 
         /*
-        ** Set 3: standard library
-        */
+         * Set 3: standard library
+         */
         3 => array(
             'comment', 'dde', 'filename', 'http', 'library', 'memory',
             'packagens', 'registry', 'resource', 'tcltest', 'tclvars',
             ),
 
         /*
-        ** Set 4: special methods
-        */
+         * Set 4: special methods
+         */
 //        4 => array(
 //            )
 
         ),
     'SYMBOLS' => array(
-            '(', ')', '[', ']', '{', '}', '$', '*', '&', '%', '!', ';', '<', '>', '?'
+        '(', ')', '[', ']', '{', '}', '$', '*', '&', '%', '!', ';', '<', '>', '?'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
-        4 => true
+//        4 => true
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #ff7700;font-weight:bold;',    // Reserved
             2 => 'color: #008000;',                        // Built-ins + self
             3 => 'color: #dc143c;',                        // Standard lib
-            4 => 'color: #0000cd;'                        // Special methods
+//            4 => 'color: #0000cd;'                        // Special methods
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
@@ -172,7 +171,8 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => ''
+        3 => '',
+//        4 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
@@ -189,7 +189,7 @@ $language_data = array (
         ),
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
-           'DISALLOWED_BEFORE' => '\\'
+            'DISALLOWED_BEFORE' => '\\'
         )
     )
 );

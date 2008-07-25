@@ -34,7 +34,8 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ************************************************************************************/
- $language_data = array (
+
+$language_data = array (
     'LANG_NAME' => 'FreeBasic',
     'COMMENT_SINGLE' => array(1 => "'", 2 => '#'),
     'COMMENT_MULTI' => array(),
@@ -67,15 +68,15 @@
             "pascal", "pcopy", "peek", "peeki", "peeks", "pipe", "pmap", "point", "pointer",
             "poke", "pokei", "pokes", "pos", "preserve", "preset", "print", "private",
             "procptr", "pset", "ptr", "public", "put", "random", "randomize", "read",
-            "reallocate", "redim", "rem", "reset", "restore", "resume", "resume", "next",
+            "reallocate", "redim", "rem", "reset", "restore", "resume",
             "return", "rgb", "rgba", "right", "rmdir", "rnd", "rset", "rtrim", "run",
             "sadd", "screen", "screencopy", "screeninfo", "screenlock", "screenptr",
             "screenres", "screenset", "screensync", "screenunlock", "seek", "statement",
-            "seek", "function", "selectcase", "setdate", "setenviron", "setmouse",
+            "selectcase", "setdate", "setenviron", "setmouse",
             "settime", "sgn", "shared", "shell", "shl", "short", "shr", "sin", "single",
             "sizeof", "sleep", "space", "spc", "sqr", "static", "stdcall", "step", "stop",
-            "str", "string", "string", "strptr", "sub", "swap", "system", "tab", "tan",
-            "then", "threadcreate", "threadwait", "time", "time", "timer", "to", "trans",
+            "str", "string", "strptr", "sub", "swap", "system", "tab", "tan",
+            "then", "threadcreate", "threadwait", "time", "timer", "to", "trans",
             "trim", "type", "ubound", "ubyte", "ucase", "uinteger", "ulongint", "union",
             "unlock", "unsigned", "until", "ushort", "using", "va_arg", "va_first",
             "va_next", "val", "val64", "valint", "varptr", "view", "viewprint", "wait",

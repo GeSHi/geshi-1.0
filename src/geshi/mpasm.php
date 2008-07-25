@@ -65,7 +65,7 @@ $language_data = array (
         1 => array(
             'andlw', 'call', 'clrwdt', 'goto', 'iorlw', 'movlw', 'option', 'retlw', 'sleep',
             'tris', 'xorlw', 'addwf', 'andwf', 'clrf', 'clrw', 'comf', 'decf', 'decfsz', 'incf',
-            'incfsz', 'iorwf', 'movf', 'movwf', 'nop', 'rlf', 'rrf', 'subwf', 'swapf', 'xorwf',
+            'incfsz', 'iorwf', 'movf', 'nop', 'rlf', 'rrf', 'subwf', 'swapf', 'xorwf',
             'bcf', 'bsf', 'btfsc', 'btfss',
             'addlw', 'retfie', 'return', 'sublw', 'addcf', 'adddcf', 'b', 'bc', 'bdc',
             'bnc', 'bndc', 'bnz', 'bz', 'clrc', 'clrdc', 'clrz', 'lcall', 'lgoto', 'movfw',
@@ -109,8 +109,7 @@ $language_data = array (
             2 => 'color: #0000ff;',
             3 => 'color: #007f00;',
             4 => 'color: #46aa03; font-weight:bold;',
-            5 => 'color: #7f0000;',
-            6 => 'color: #7f0000;'
+            5 => 'color: #7f0000;'
             ),
         'COMMENTS' => array(
             1 => 'color: #adadad; font-style: italic;',

@@ -65,7 +65,7 @@ $language_data = array (
             'and','eqv','imp','not','or','xor','mod','atn','cos','sin','tan','log',
             'exp','rnd','randomize','sqr','fix','int','abs','sgn','hex','oct',
             'it','then','else','select','case','iif','do','loop','for','next','to',
-            'while','wend','gosub','return','goto','call','choose','declare',
+            'while','wend','gosub','return','call','choose','declare',
             'end','exit','freelibrary','function','rem','stop','sub','switch','with',
             'cbool','cdate','cdbl','cint','clng','const','csng','cstr','defbool',
             'defdate','defdbl','defint','deflng','asc','chr','str','val','cbyte',

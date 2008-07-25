@@ -65,7 +65,7 @@ $language_data = array (
             'Num', 'Obj', 'Oo', 'Parsing', 'Pervasives', 'Printexc', 'Printf', 'Queue', 'Random', 'Scanf',
             'Set', 'Sort', 'Stack', 'StdLabels', 'Str', 'Stream', 'String', 'StringLabels', 'Sys', 'Thread',
             'ThreadUnix', 'Tk'
-           ),
+            ),
         /* just link to the Pervasives functions library, cause it's the default opened library when starting OCaml */
         3 => array(
             'raise', 'invalid_arg', 'failwith', 'compare', 'min', 'max', 'succ', 'pred', 'mod', 'abs',
@@ -84,21 +84,21 @@ $language_data = array (
             'input_byte', 'input_binary_int', 'input_value', 'seek_in', 'pos_in', 'in_channel_length',
             'close_in', 'close_in_noerr', 'set_binary_mode_in', 'incr', 'decr', 'string_of_format',
             'format_of_string', 'exit', 'at_exit'
-           ),
+            ),
         /* here Pervasives Types */
         4 => array (
-           'fpclass', 'in_channel', 'out_channel', 'open_flag', 'Sys_error', 'ref', 'format'
-           ),
+            'fpclass', 'in_channel', 'out_channel', 'open_flag', 'Sys_error', 'ref', 'format'
+            ),
         /* finally Pervasives Exceptions */
         5 => array (
             'Exit', 'Invalid_Argument', 'Failure', 'Division_by_zero'
-           )
+            )
         ),
     /* highlighting symbols is really important in OCaml */
     'SYMBOLS' => array(
-            ';', '!', ':', '.', '=', '%', '^', '*', '-', '/', '+',
-            '>', '<', '(', ')', '[', ']', '&', '|', '#', "'"
-            ),
+        ';', '!', ':', '.', '=', '%', '^', '*', '-', '/', '+',
+        '>', '<', '(', ')', '[', ']', '&', '|', '#', "'"
+        ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -141,7 +141,7 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-       /* some of keywords are Pervasives functions (land, lxor, asr, ...) */
+        /* some of keywords are Pervasives functions (land, lxor, asr, ...) */
         1 => '',
         /* link to the wanted library */
         2 => 'http://caml.inria.fr/pub/docs/manual-ocaml/libref/{FNAME}.html',

@@ -64,7 +64,7 @@ $language_data = array (
             ),
         2 => array(
             'null', '__LINE__', '__FILE__',
-            'false', '&lt;?php', '?&gt;',
+            'false', '&lt;?php', '&lt;?', '&lt;?=', '?&gt;', '&lt;%', '&lt;%=', '%&gt;',
             'true', 'var', 'default',
             'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends',
             'const', 'self'
