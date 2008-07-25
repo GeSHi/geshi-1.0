@@ -136,7 +136,9 @@ $language_data = array (
             0 => '',
             1 => '',
             2 => '',
-            3 => ''
+            3 => '',
+            4 => '',
+            5 => ''
             )
         ),
     'URLS' => array(
@@ -155,16 +157,28 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
-        '<?php' => '?>',
-        '<?' => '?>',
-        '<%' => '%>',
-        '<script language="php">' => '</script>'
+        0 => array(
+            '<?php' => '?>'
+            ),
+        1 => array(
+            '<?' => '?>'
+            ),
+        2 => array(
+            '<%' => '%>'
+            ),
+        3 => array(
+            '<script language="php">' => '</script>'
+            ),
+        4 => "/(<\?(?:php)?)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(\?>|\Z)/sm",
+        5 => "/(<%)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(%>|\Z)/sm"
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
         1 => true,
         2 => true,
-        3 => true
+        3 => true,
+        4 => true,
+        5 => true
         ),
     'TAB_WIDTH' => 4
 );
