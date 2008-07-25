@@ -453,7 +453,7 @@ if(!$error_abort) {
                         report_error(TYPE_WARNING, "Language file contains an non-string entry at \$language_data['KEYWORDS'][$key][$id]!");
                     } else if (!strlen($kw)) {
                         report_error(TYPE_ERROR, "Language file contains an empty string entry at \$language_data['KEYWORDS'][$key][$id]!");
-                    } else if (preg_match('/^([\(\)\{\}\[\]\^=.,:;\-+\*\/%\$\"\']|&[\w#]\w*;)+$/i', $kw)) {
+                    } else if (preg_match('/^([\(\)\{\}\[\]\^=.,:;\-+\*\/%\$\"\'\?]|&[\w#]\w*;)+$/i', $kw)) {
                         report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') at \$language_data['KEYWORDS'][$key][$id] which seems to be better suited for the symbols section!");
                     }
                 }
