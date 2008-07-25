@@ -42,8 +42,12 @@ $language_data = array (
     'LANG_NAME' => 'AppleScript',
     'COMMENT_SINGLE' => array(1 => '--'),
     'COMMENT_MULTI' => array( '(*' => '*)'),
+    'COMMENT_REGEXP' => array(
+        2 => '/(?<=[a-z])\'/i',
+        3 => '/(?<![a-z])\'.*?\'/i',
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"',"'"),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
@@ -87,6 +91,8 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
+            2 => '',
+            3 => 'color: #ff0000;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
