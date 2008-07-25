@@ -91,6 +91,9 @@ Version 1.0.8
   -  Added a script to contrib/ to verify language files are correct (BenBE)
   -  Fixed loads of compliancy warnings detected with that automated compliance testing script (BenBE)
   -  Lifted a limitation that keywords had to have at least 2 subsequent letters (BenBE)
+  -  Languages with STRICT_MODE_APPLIES = GESHI_MAYBE default to strict mode now. When no highlightable
+     code is found in this mode, we fallback to the same setting as if GESHI_NEVER was set. That way it
+     should not be needed to call enable_strictmode() manually. (milian) 
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)

@@ -1226,7 +1226,7 @@ class GeSHi {
      */
     function enable_strict_mode($mode = true) {
         if (GESHI_MAYBE == $this->language_data['STRICT_MODE_APPLIES']) {
-            $this->strict_mode = ($mode) ? true : false;
+            $this->strict_mode = ($mode) ? GESHI_ALWAYS : GESHI_NEVER;
         }
     }
 
@@ -2087,6 +2087,23 @@ class GeSHi {
             }
             unset($delim_copy, $next_match_pointer, $next_match_pos, $matches);
             $num_parts = $k;
+
+            if ($num_parts == 1 && $this->strict_mode == GESHI_MAYBE) {
+                // when we have only one part, we don't have anything to highlight at all.
+                // if we have a "maybe" strict language, this should be handled as highlightable code
+                $parts = array(
+                    0 => array(
+                        0 => '',
+                        1 => ''
+                    ),
+                    1 => array(
+                        0 => '',
+                        1 => $parts[0][1]
+                    )
+                );
+                $num_parts = 2;
+            }
+
         } else {
             // Not strict mode - simply dump the source into
             // the array at index 1 (the first highlightable block)
@@ -2170,7 +2187,7 @@ class GeSHi {
                 // get the class key for this block of code
                 $script_key = $parts[$key][0];
 
-                if ($this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
+                if (!empty($script_key) && $this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
                     $this->lexic_permissions['SCRIPT']) {
                     // Add a span element around the source to
                     // highlight the overall source block
@@ -2185,7 +2202,7 @@ class GeSHi {
                 }
             }
 
-            if (!$this->strict_mode || $this->language_data['HIGHLIGHT_STRICT_BLOCK'][$script_key]) {
+            if (!$this->strict_mode || empty($script_key) || $this->language_data['HIGHLIGHT_STRICT_BLOCK'][$script_key]) {
                 // Now, highlight the code in this block. This code
                 // is really the engine of GeSHi (along with the method
                 // parse_non_string_part).
@@ -3307,9 +3324,7 @@ class GeSHi {
         $this->language_data = $language_data;
 
         // Set strict mode if should be set
-        if ($this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS) {
-            $this->strict_mode = true;
-        }
+        $this->strict_mode = $this->language_data['STRICT_MODE_APPLIES'];
 
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
