@@ -3101,6 +3101,8 @@ class GeSHi {
                     }
                 }
 
+                $this->_kw_replace_group = $k;
+
                 //NEW in 1.0.8, the cached regexp list
                 // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
                 for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
@@ -3108,8 +3110,6 @@ class GeSHi {
                     // Might make a more unique string for putting the number in soon
                     // Basically, we don't put the styles in yet because then the styles themselves will
                     // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-                    $this->_kw_replace_group = $k;
-
                     $stuff_to_parse = preg_replace_callback(
                         "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
                         array($this, 'handle_keyword_replace'),
