@@ -127,8 +127,8 @@ $language_data = array (
             'STRINGS' => GESHI_NEVER,
         ),
         'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#;>|^\/',
-            'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-&\.'
+            'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^\/])',
+            'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\.])'
         )
     ),
     'TAB_WIDTH' => 4

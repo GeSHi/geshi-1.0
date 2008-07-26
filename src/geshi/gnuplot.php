@@ -281,7 +281,7 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             4 => array(
-                'DISALLOWED_AFTER' =>  "\.\-a-zA-Z0-9_%"
+                'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%])"
             )
         )
     ),

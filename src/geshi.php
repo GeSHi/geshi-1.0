@@ -2977,13 +2977,16 @@ class GeSHi {
         }
 
         // Highlight keywords
-        $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
-        $disallowed_after = "a-zA-Z0-9_\|%\\-&";
+        $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^";
+        $disallowed_after = "(?<!a-zA-Z0-9_\|%\\-&";
         if ($this->lexic_permissions['STRINGS']) {
             $quotemarks = preg_quote(implode($this->language_data['QUOTEMARKS']), '/');
             $disallowed_before .= $quotemarks;
             $disallowed_after .= $quotemarks;
         }
+        $disallowed_before .= "])";
+        $disallowed_after .= "])";
+
         $parser_control_pergroup = false;
         if (isset($this->language_data['PARSER_CONTROL'])) {
             if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
@@ -3001,12 +3004,12 @@ class GeSHi {
         }
 
         // if this is changed, don't forget to change it below
-        if (!empty($disallowed_before)) {
-            $disallowed_before = "(?<![$disallowed_before])";
-        }
-        if (!empty($disallowed_after)) {
-            $disallowed_after = "(?![$disallowed_after])";
-        }
+//        if (!empty($disallowed_before)) {
+//            $disallowed_before = "(?<![$disallowed_before])";
+//        }
+//        if (!empty($disallowed_after)) {
+//            $disallowed_after = "(?![$disallowed_after])";
+//        }
 
         foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
             if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
@@ -3021,20 +3024,12 @@ class GeSHi {
                 if ($parser_control_pergroup && isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k])) {
                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'])) {
                         $disallowed_before_local =
-                                $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
-
-                        if (!empty($disallowed_before_local)) {
-                            $disallowed_before_local = "(?<![$disallowed_before_local])";
-                        }
+                            $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
                     }
 
                     if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'])) {
                         $disallowed_after_local =
-                                $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
-
-                        if (!empty($disallowed_after_local)) {
-                            $disallowed_after_local = "(?![$disallowed_after_local])";
-                        }
+                            $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
                     }
                 }
 
