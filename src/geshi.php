@@ -3697,11 +3697,12 @@ class GeSHi {
          * @todo   Document behaviour change - class is outputted regardless of whether
          *         we're using classes or not. Same with style
          */
-        $attributes = '';
-
+        $attributes = ' class="' . $this->language;
         if ($this->overall_class != '') {
-            $attributes .= " class=\"{$this->overall_class}\"";
+            $attributes .= " ".$this->overall_class;
         }
+        $attributes .= '"';
+
         if ($this->overall_id != '') {
             $attributes .= " id=\"{$this->overall_id}\"";
         }
@@ -3961,8 +3962,15 @@ class GeSHi {
         // First, work out what the selector should be. If there's an ID,
         // that should be used, the same for a class. Otherwise, a selector
         // of '' means that these styles will be applied anywhere
-        $selector = ($this->overall_id != '') ? "#{$this->overall_id} " : '';
-        $selector = ($selector == '' && $this->overall_class != '') ? ".{$this->overall_class} " : $selector;
+        if ($this->overall_id) {
+            $selector = '#' . $this->overall_id;
+        } else {
+            $selector = '.' . $this->language;
+            if ($this->overall_class) {
+                $selector .= '.' . $this->overall_class;
+            }
+        }
+        $selector .= ' ';
 
         // Header of the stylesheet
         if (!$economy_mode) {

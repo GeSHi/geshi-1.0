@@ -98,6 +98,7 @@ Version 1.0.8
      expressions used as delimiters inside keywords instead of a simple char group (BenBE)
   -  Removed <, > and / from HTML names, now only containing the real tag names (BenBE)
   -  Fix: Properly handle newlines in REGEXPS so this does not produce invalid html anylonger (milian)
+  -  The overall_class is now up to the user, and the language-code is _always_ added as a class (milian)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
