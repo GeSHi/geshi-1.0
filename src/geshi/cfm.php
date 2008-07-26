@@ -279,7 +279,7 @@ $language_data = array (
         ),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
-            2 => array(
+            1 => array(
                 'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
                 'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
                 ),
