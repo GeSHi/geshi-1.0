@@ -287,7 +287,8 @@ $language_data = array (
             0 => 'color: #00bbdd;',
             1 => 'color: #0000FF;',
             2 => 'color: #000099;',
-            3 => 'color: #333333;'
+            3 => 'color: #333333;',
+            4 => 'color: #333333;'
             ),
         'REGEXPS' => array(
             )
@@ -322,14 +323,16 @@ $language_data = array (
             ),
         3 => array(
             '<' => '>'
-            )
+            ),
+        4 => '/((?!<!)<)(?:"[^"]*"|[^">])+?(>)/si'
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         -1 => false,
         0 => false,
         1 => true,
         2 => true,
-        3 => true
+        3 => true,
+        4 => true
         ),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
