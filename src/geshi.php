@@ -3609,7 +3609,7 @@ class GeSHi {
                     } else {
                         $attrs = ' style="'. $this->table_linenumber_style .'"';
                     }
-                    $parsed_code .= '<td><pre'. $attrs .'>';
+                    $parsed_code .= '<td class="lns"><pre'. $attrs .'>';
                     // get linenumbers
                     // we don't merge it with the for below, since it should be better for
                     // memory consumption this way
