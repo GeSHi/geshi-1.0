@@ -86,7 +86,7 @@ $language_data = array (
             'c++', 'cal', 'cat', 'chattr', 'cc', 'cdda2wav', 'cdparanoia',
             'cdrdao', 'cd-read', 'cdrecord', 'chfn', 'chgrp', 'chmod',
             'chown', 'chroot', 'chsh', 'chvt', 'clear', 'cmp', 'comm', 'co',
-            'col', 'cp', 'cpio', 'cpp', 'csh', 'cut',
+            'col', 'cp', 'cpio', 'cpp', 'csh', 'cut', 'cvs', 'cvs-pserver',
 
             'dash', 'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'dialog',
             'diff', 'diff3', 'dir', 'dircolors', 'directomatic', 'dirname',
@@ -129,15 +129,17 @@ $language_data = array (
             'ps2ascii', 'ps2epsi', 'ps2frag', 'ps2pdf', 'ps2ps', 'psbook',
             'psmerge', 'psnup', 'psresize', 'psselect', 'pstops',
 
-            'rbash', 'rcs', 'read', 'readlink', 'red', 'resizecons', 'rev', 'rm',
-            'rmdir', 'rsh', 'run-parts',
+            'rbash', 'rcs', 'rcs2log', 'read', 'readlink', 'red', 'resizecons',
+            'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
             'sash', 'scp', 'screen', 'sed', 'seq', 'sendmail', 'setfont',
             'setkeycodes', 'setleds', 'setmetamode', 'setserial', 'setterm',
             'sh', 'showkey', 'shred', 'size', 'size86', 'skill', 'sleep',
             'slogin', 'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
             'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strace',
-            'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'sync',
+            'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'svn',
+            'svnadmin', 'svndumpfilter', 'svnlook', 'svnmerge', 'svnmucc',
+            'svnserve', 'svnshell', 'svnsync', 'svnversion', 'svnwrap', 'sync',
 
             'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'tree',
             'true',
