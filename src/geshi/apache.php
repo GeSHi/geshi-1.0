@@ -56,7 +56,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         /*keywords*/
-            1 => array(
+        1 => array(
             'accessconfig','accessfilename','action','addalt',
             'addaltbyencoding','addaltbytype','addcharset',
             'adddefaultcharset','adddescription',
@@ -120,19 +120,18 @@ $language_data = array (
         ),
         /*keywords 3*/
         3 => array(
-            '&lt;Directory', '&lt;/Directory&gt;',
-            '&lt;DirectoryMatch', '&lt;/DirectoryMatch&gt;',
-            '&lt;Files', '&lt;/Files&gt;',
-            '&lt;FilesMatch', '&lt;/FilesMatch&gt;',
-            '&lt;IfDefine', '&lt;/IfDefine&gt;',
-            '&lt;IfModule', '&lt;/IfModule&gt;',
-            '&lt;IfVersion', '&lt;/IfVersion&gt;',
-            '&lt;Location', '&lt;/Location&gt;',
-            '&lt;LocationMatch', '&lt;/LocationMatch&gt;',
-            '&lt;Proxy', '&lt;/Proxy&gt;',
-            '&lt;ProxyMatch', '&lt;/ProxyMatch&gt;',
-            '&lt;VirtualHost', '&lt;/VirtualHost&gt;',
-            '&gt;'
+            'Directory',
+            'DirectoryMatch',
+            'Files',
+            'FilesMatch',
+            'IfDefine',
+            'IfModule',
+            'IfVersion',
+            'Location',
+            'LocationMatch',
+            'Proxy',
+            'ProxyMatch',
+            'VirtualHost'
         )
     ),
     'SYMBOLS' => array(
@@ -195,6 +194,12 @@ $language_data = array (
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER
         ),
+        'KEYWORDS' => array(
+            3 => array(
+                'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
+                'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+            )
+        )
     )
 );
 
