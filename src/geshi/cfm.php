@@ -344,6 +344,10 @@ $language_data = array (
                 'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
                 'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
                 ),
+            3 => array(
+                'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>|^', // allow ; before keywords
+                'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
+                ),
             7 => array(
                 'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#>&|^', // allow ; before keywords
                 'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-', // allow & after keywords
