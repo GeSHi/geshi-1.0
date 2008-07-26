@@ -550,6 +550,18 @@ class GeSHi {
     var $_kw_replace_group = 0;
     var $_rx_key = 0;
 
+    /**
+     * some "callback parameters" for handle_multiline_regexps
+     *
+     * @since 1.0.8
+     * @access private
+     * @var string
+     */
+    var $_hmr_before = '';
+    var $_hmr_replace = '';
+    var $_hmr_after = '';
+    var $_hmr_key = 0;
+
     /**#@-*/
 
     /**
@@ -2936,6 +2948,37 @@ class GeSHi {
     }
 
     /**
+     * handles newlines in REGEXPS matches. Set the _hmr_* vars before calling this
+     *
+     * @note this is a callback, don't use it directly
+     *
+     * @param array the matches array
+     */
+    function handle_multiline_regexps($matches) {
+        $before = $this->_hmr_before;
+        $after = $this->_hmr_after;
+        if ($this->_hmr_replace) {
+            $replace = $this->_hmr_replace;
+            $search = array();
+
+            foreach (array_keys($matches) as $k) {
+                $search[] = '\\' . $k;
+            }
+
+            $before = str_replace($search, $matches, $before);
+            $after = str_replace($search, $matches, $after);
+            $replace = str_replace($search, $matches, $replace);
+        } else {
+            $replace = $matches[0];
+        }
+        return $before
+                    . '<|!REG3XP' . $this->_hmr_key .'!>'
+                        . str_replace("\n", "|>\n<|!REG3XP" . $this->_hmr_key . '!>', $replace)
+                    . '|>'
+              . $after;
+    }
+
+    /**
      * Takes a string that has no strings or comments in it, and highlights
      * stuff like keywords, numbers and methods.
      *
@@ -2951,15 +2994,33 @@ class GeSHi {
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
                 if (is_array($regexp)) {
-                    $stuff_to_parse = preg_replace(
-                        "/" .
-                        $regexp[GESHI_SEARCH] .
-                        "/{$regexp[GESHI_MODIFIERS]}",
-                        "{$regexp[GESHI_BEFORE]}<|!REG3XP$key!>{$regexp[GESHI_REPLACE]}|>{$regexp[GESHI_AFTER]}",
-                        $stuff_to_parse
-                    );
+                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        $this->_hmr_replace = $regexp[GESHI_REPLACE];
+                        $this->_hmr_before = $regexp[GESHI_BEFORE];
+                        $this->_hmr_key = $key;
+                        $this->_hmr_after = $regexp[GESHI_AFTER];
+                        $stuff_to_parse = preg_replace_callback(
+                            "/" . $regexp[GESHI_SEARCH] . "/{$regexp[GESHI_MODIFIERS]}",
+                            array($this, 'handle_multiline_regexps'),
+                            $stuff_to_parse);
+                        $this->_hmr_replace = false;
+                        $this->_hmr_before = '';
+                        $this->_hmr_after = '';
+                    } else {
+                        $stuff_to_parse = preg_replace(
+                            '/' . $regexp[GESHI_SEARCH] . '/' . $regexp[GESHI_MODIFIERS],
+                            $regexp[GESHI_BEFORE] . '<|!REG3XP'. $key .'!>' . $regexp[GESHI_REPLACE] . '|>' . $regexp[GESHI_AFTER],
+                            $stuff_to_parse);
+                    }
                 } else {
-                    $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        $this->_hmr_key = $key;
+                        $stuff_to_parse = preg_replace_callback( "/(" . $regexp . ")/",
+                                              array($this, 'handle_multiline_regexps'), $stuff_to_parse);
+                        $this->_hmr_key = '';
+                    } else {
+                        $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    }
                 }
             }
         }
