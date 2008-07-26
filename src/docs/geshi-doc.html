@@ -619,13 +619,13 @@ argument which defines the container type. Available are:</p>
   <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE<span style="color: #66cc66;">&#41;</span>;</code></dt>
   <dd><p>Wraps code and linenumbers in a <tt>&lt;pre&gt;</tt> container. This way whitespace is kept as-is and thus
       this header produces less overhead then the <tt>GESHI_HEADER_DIV</tt> header type. Since linenumbers are still
-      created using an ordered list this header type produces <strong>invalid XHTML</strong>.</p></dd>
+      created using an ordered list this header type produces <strong>invalid HTML</strong>.</p></dd>
   <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE_VALID<span style="color: #66cc66;">&#41;</span>;</code>
   <small><em>Available since 1.0.8</em></small></dt>
   <dd><p>When linenumbers are disabled, this behaves just like <tt>GESHI_HEADER_PRE</tt>. In the other case though, a
       <tt>&lt;div&gt;</tt> is used to wrap the code and linenumbers and the <tt>&lt;pre&gt;</tt> is put inside the
       list items (<tt>&lt;li&gt;</tt>). This means slightly larger HTML output compared to <tt>GESHI_HEADER_PRE</tt>, but
-      the output is <strong>valid XHTML</strong>.</p></dd>
+      the output is <strong>valid HTML</strong>.</p></dd>
   <dt><code><span style="color: #0000ff;">$geshi</span>-&gt;<span style="color: #006600;">set_header_type</span><span style="color: #66cc66;">&#40;</span>GESHI_HEADER_PRE_TABLE<span style="color: #66cc66;">&#41;</span>;</code>
   <small><em>Available since 1.0.8</em></small></dt>
   <dd><p>Once again a <tt>&lt;div&gt;</tt> tag wraps the output. This time though no ordered list is used to
