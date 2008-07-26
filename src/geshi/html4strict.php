@@ -192,8 +192,8 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             2 => array(
-                'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)', // allow ; before keywords
-                'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)', // allow & after keywords
+                'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
+                'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
             )
         )
     )
