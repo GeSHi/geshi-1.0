@@ -2059,7 +2059,7 @@ class GeSHi {
                 if(is_array($delim_copy[$next_match_pointer['dk']])) {
                     // group adjacent script blocks, e.g. <foobar><asdf> should be one block, not three!
                     $i = $next_match_pos + $next_match_pointer['open_strlen'];
-                    do {
+                    while (true) {
                         $close_pos = strpos($code, $next_match_pointer['close'], $i);
                         if ($close_pos == false) {
                             break;
@@ -2068,8 +2068,21 @@ class GeSHi {
                         if ($i == $length) {
                             break;
                         }
-                    } while ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
-                        substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open']));
+                        if ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
+                            substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open'])) {
+                            // merge adjacent but make sure we don't merge things like <tag><!-- comment -->
+                            foreach ($matches as $submatches) {
+                                foreach ($submatches as $match) {
+                                    if ($match['next_match'] == $i) {
+                                        // a different block already matches here!
+                                        break 3;
+                                    }
+                                }
+                            }
+                        } else {
+                            break;
+                        }
+                    }
                 } else {
                     $close_pos = $next_match_pointer['close_pos'] + $next_match_pointer['close_strlen'];
                     $i = $close_pos;
