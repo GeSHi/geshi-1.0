@@ -93,6 +93,7 @@ $language_data = array (
             'table', 'tbody', 'td', 'textarea', 'text', 'tfoot', 'thead', 'th', 'title', 'tr', 'tt',
 
             'ul', 'u',
+
             'var',
             ),
         3 => array(
