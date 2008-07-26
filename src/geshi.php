@@ -2937,6 +2937,8 @@ class GeSHi {
     /**
      * handles regular expressions highlighting-definitions with callback functions
      *
+     * @note this is a callback, don't use it directly
+     *
      * @param array the matches array
      * @return The highlighted string
      * @since 1.0.8
@@ -2953,6 +2955,9 @@ class GeSHi {
      * @note this is a callback, don't use it directly
      *
      * @param array the matches array
+     * @return string
+     * @since 1.0.8
+     * @access private
      */
     function handle_multiline_regexps($matches) {
         $before = $this->_hmr_before;
@@ -2995,6 +3000,7 @@ class GeSHi {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
                 if (is_array($regexp)) {
                     if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        // produce valid HTML when we match multiple lines
                         $this->_hmr_replace = $regexp[GESHI_REPLACE];
                         $this->_hmr_before = $regexp[GESHI_BEFORE];
                         $this->_hmr_key = $key;
@@ -3014,6 +3020,7 @@ class GeSHi {
                     }
                 } else {
                     if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        // produce valid HTML when we match multiple lines
                         $this->_hmr_key = $key;
                         $stuff_to_parse = preg_replace_callback( "/(" . $regexp . ")/",
                                               array($this, 'handle_multiline_regexps'), $stuff_to_parse);
