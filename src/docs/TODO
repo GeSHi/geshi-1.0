@@ -23,7 +23,6 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
 - make a set of default colours which can be used in the language files.
   this way we can give languages a uniform look and maybe even add "themes"
 - Get better coverage in our coderepo
-- The faulty latex highlighting
 - create a better way to write geshi-doc.*
     idea: _simple_  xml with tags like:
           » h1-h6, link, code (with lang attr.), note, attention
