@@ -465,7 +465,7 @@ class GeSHi {
      * Style for line numbers when GESHI_HEADER_PRE_TABLE is chosen
      * @var string
      */
-    var $table_linenumber_style = 'font-weight: normal;text-align:right;margin:0;padding:0 5px;';
+    var $table_linenumber_style = 'width:1px;font-weight: normal;text-align:right;margin:0;padding:0 2px;';
 
     /**
      * Flag for how line numbers are displayed
@@ -3609,7 +3609,7 @@ class GeSHi {
                     } else {
                         $attrs = ' style="'. $this->table_linenumber_style .'"';
                     }
-                    $parsed_code .= '<td class="lns"><pre'. $attrs .'>';
+                    $parsed_code .= '<td'.$attrs.'><pre>';
                     // get linenumbers
                     // we don't merge it with the for below, since it should be better for
                     // memory consumption this way
