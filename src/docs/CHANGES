@@ -93,7 +93,10 @@ Version 1.0.8
   -  Lifted a limitation that keywords had to have at least 2 subsequent letters (BenBE)
   -  Languages with STRICT_MODE_APPLIES = GESHI_MAYBE default to strict mode now. When no highlightable
      code is found in this mode, we fallback to the same setting as if GESHI_NEVER was set. That way it
-     should not be needed to call enable_strictmode() manually. (milian) 
+     should not be needed to call enable_strictmode() manually. (milian)
+  -  Changed behaviour of PARSER_CONTROL now allowing to provide the full Lookahead and Lookbehind
+     expressions used as delimiters inside keywords instead of a simple char group (BenBE)
+  -  Removed <, > and / from HTML names, now only containing the real tag names (BenBE)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
