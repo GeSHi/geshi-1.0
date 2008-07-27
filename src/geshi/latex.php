@@ -145,7 +145,7 @@ $language_data = array (
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\2'
+            GESHI_AFTER => ''
             ),
         // Structure end
         7 => array(
@@ -153,7 +153,7 @@ $language_data = array (
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\2'
+            GESHI_AFTER => ''
             ),
         // Structure: Label
         8 => array(
@@ -161,7 +161,7 @@ $language_data = array (
             GESHI_REPLACE => '\\1\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\3'
+            GESHI_AFTER => ''
             ),
         // Structure: sections
         /*9 => array(
