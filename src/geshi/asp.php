@@ -122,6 +122,7 @@ $language_data = array (
             0 => '',
             1 => '',
             2 => '',
+            3 => ''
             )
         ),
     'URLS' => array(
@@ -145,12 +146,14 @@ $language_data = array (
             ),
         2 => array(
             '<script language="javascript" runat="server">' => '</script>'
-            )
+            ),
+        3 => "/(<%)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(%>|\Z)/sm"
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
         1 => true,
         2 => true,
+        3 => true
         )
 );
 
