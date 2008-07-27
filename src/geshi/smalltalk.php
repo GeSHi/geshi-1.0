@@ -122,7 +122,7 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         3 => array(
-            GESHI_SEARCH => '\|([a-zA-Z0-9_\s]+)\|', //temporary variables
+            GESHI_SEARCH => '<PIPE>([a-zA-Z0-9_\s]+)<PIPE>', //temporary variables
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '|',
