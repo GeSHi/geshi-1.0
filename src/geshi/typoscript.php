@@ -44,7 +44,7 @@ $language_data = array (
     'LANG_NAME' => 'TypoScript',
     'COMMENT_SINGLE' => array(1  => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(1 => '/(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
+    'COMMENT_REGEXP' => array(2 => '/(?<!(#|\'|"))(?:#(?!(?:[a-fA-F0-9]{6}|[a-fA-F0-9]{3}))[^\n#]+|#{2}[^\n#]+|#{7,999}[^\n]+)/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
@@ -168,7 +168,6 @@ $language_data = array (
         'COMMENTS' => array(
             1 => 'color: #aaa; font-style: italic;',
             2 => 'color: #aaa; font-style: italic;',
-            3 => 'color: #aaa; font-style: italic;',
             'MULTI' => 'color: #aaa; font-style: italic;'
             ),
         'STRINGS' => array(

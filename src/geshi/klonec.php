@@ -51,7 +51,7 @@ $language_data = array (
             'null', 'false', 'break', 'true', 'enum', 'extern', 'inline', 'false'
             ),
         2 => array(//mots-cles KLone
-			'&lt;%=', '&lt;%!', '&lt;%', '%&gt;', 'out', 'request', 'response',
+            '&lt;%=', '&lt;%!', '&lt;%', '%&gt;', 'out', 'request', 'response',
             ),
         3 => array(//fonctions C usuelles
             'printf', 'malloc', 'fopen', 'fclose', 'free', 'fputs', 'fgets', 'feof', 'fwrite',
@@ -84,13 +84,13 @@ $language_data = array (
             'io_get_until', 'io_gets', 'io_codec_add_head', 'io_codec_add_tail',
             'io_codecs_remove', 'io_name_set', 'io_name_get'
             ),
-    	5 => array(//types C
-    		'auto', 'char', 'const', 'double',  'float', 'int', 'long',
-    		'register', 'short', 'signed', 'sizeof', 'static', 'string', 'struct',
-    		'typedef', 'union', 'unsigned', 'void', 'volatile',
-    		'wchar_t', 'time_t', 'FILE'
-    		),
-    	6 => array(//mots-cles HTML
+        5 => array(//types C
+            'auto', 'char', 'const', 'double',  'float', 'int', 'long',
+            'register', 'short', 'signed', 'sizeof', 'static', 'string', 'struct',
+            'typedef', 'union', 'unsigned', 'void', 'volatile',
+            'wchar_t', 'time_t', 'FILE'
+            ),
+        6 => array(//mots-cles HTML
             'a', 'abbr', 'acronym', 'address', 'applet',
 
             'base', 'basefont', 'bdo', 'big', 'blockquote', 'body', 'br', 'button', 'b',
@@ -128,28 +128,28 @@ $language_data = array (
             'ul', 'u',
 
             'var',
-    		),
-    	7 => array(//autres mots-cles HTML
-    		'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis',
-    		'background', 'bgcolor', 'border',
-    		'cellpadding', 'cellspacing', 'char', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
-    		'data', 'datetime', 'declare', 'defer', 'dir', 'disabled',
-    		'enctype',
-    		'face', 'for', 'frame', 'frameborder',
-    		'headers', 'height', 'href', 'hreflang', 'hspace', 'http-equiv',
-    		'id', 'ismap',
-    		'label', 'lang', 'language', 'link', 'longdesc',
-    		'marginheight', 'marginwidth', 'maxlength', 'media', 'method', 'multiple',
-    		'name', 'nohref', 'noresize', 'noshade', 'nowrap',
-    		'object', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onreset', 'onselect', 'onsubmit', 'onunload',
-    		'profile', 'prompt',
-    		'readonly', 'rel', 'rev', 'rowspan', 'rows', 'rules',
-    		'scheme', 'scope', 'scrolling', 'selected', 'shape', 'size', 'span', 'src', 'standby', 'start', 'style', 'summary',
-    		'tabindex', 'target', 'text', 'title', 'type',
-    		'usemap',
-    		'valign', 'value', 'valuetype', 'version', 'vlink', 'vspace',
-    		'width'
-    		)
+            ),
+        7 => array(//autres mots-cles HTML
+            'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis',
+            'background', 'bgcolor', 'border',
+            'cellpadding', 'cellspacing', 'char', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
+            'data', 'datetime', 'declare', 'defer', 'dir', 'disabled',
+            'enctype',
+            'face', 'for', 'frame', 'frameborder',
+            'headers', 'height', 'href', 'hreflang', 'hspace', 'http-equiv',
+            'id', 'ismap',
+            'label', 'lang', 'language', 'link', 'longdesc',
+            'marginheight', 'marginwidth', 'maxlength', 'media', 'method', 'multiple',
+            'name', 'nohref', 'noresize', 'noshade', 'nowrap',
+            'object', 'onblur', 'onchange', 'onclick', 'ondblclick', 'onfocus', 'onkeydown', 'onkeypress', 'onkeyup', 'onload', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onreset', 'onselect', 'onsubmit', 'onunload',
+            'profile', 'prompt',
+            'readonly', 'rel', 'rev', 'rowspan', 'rows', 'rules',
+            'scheme', 'scope', 'scrolling', 'selected', 'shape', 'size', 'span', 'src', 'standby', 'start', 'style', 'summary',
+            'tabindex', 'target', 'text', 'title', 'type',
+            'usemap',
+            'valign', 'value', 'valuetype', 'version', 'vlink', 'vspace',
+            'width'
+            )
         ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}',
@@ -208,8 +208,8 @@ $language_data = array (
             1 => '',
             2 => '',
             3 => 'color: #00bbdd; font-weight: bold;',
-			4 => 'color: #ddbb00;',
-			5 => 'color: #009900;'
+            4 => 'color: #ddbb00;',
+            5 => 'color: #009900;'
             )
         ),
     'URLS' => array(
@@ -231,7 +231,7 @@ $language_data = array (
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
         //delimiteurs pour KLone
-		0 => array(
+        0 => array(
             '<%=' => '%>'
             ),
         1 => array(
@@ -242,22 +242,22 @@ $language_data = array (
             ),
         //delimiteur pour HTML
         3 => array(
-			'<!DOCTYPE' => '>'
-			),
-		4 => array(
-			'&' => ';'
-			),
-		5 => array(
-			'<' => '>'
-			)
+            '<!DOCTYPE' => '>'
+            ),
+        4 => array(
+            '&' => ';'
+            ),
+        5 => array(
+            '<' => '>'
+            )
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => false,
         1 => true,
         2 => true,
         3 => false,
-		4 => false,
-		5 => true
+        4 => false,
+        5 => true
         ),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(

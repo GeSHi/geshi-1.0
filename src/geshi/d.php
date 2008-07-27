@@ -236,7 +236,6 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1=> 'color: #808080; font-style: italic;',
-            2=> 'color: #a1a100;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(

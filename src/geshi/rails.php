@@ -7,7 +7,7 @@
  * Release Version: 1.0.7.22
  * Date Started: 2007/03/21
  *
- * Ruby (with Ruby on Rails Framework) language file for GeSHi
+ * Ruby (with Ruby on Rails Framework) language file for GeSHi.
  *
  *************************************************************************************
  *
