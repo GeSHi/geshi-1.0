@@ -2915,16 +2915,14 @@ class GeSHi {
                     $word = $keyword;
                 }
 
-                if ($word) {
-                    $before = '<|UR1|"' .
-                        str_replace(
-                            array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
-                            array($this->hsc($word), $this->hsc(strtolower($word)),
-                                $this->hsc(strtoupper($word)), '<DOT>'),
-                            $this->language_data['URLS'][$k]
-                        ) . '">';
-                    $after = '</a>';
-                }
+                $before = '<|UR1|"' .
+                    str_replace(
+                        array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
+                        array($this->hsc($word), $this->hsc(strtolower($word)),
+                            $this->hsc(strtoupper($word)), '<DOT>'),
+                        $this->language_data['URLS'][$k]
+                    ) . '">';
+                $after = '</a>';
             }
         }
 
