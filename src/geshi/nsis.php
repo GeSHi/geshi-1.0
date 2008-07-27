@@ -327,14 +327,14 @@ $language_data = array (
         5 => '\$\{.{1,256}\}',
         6 => '\$\\\(.{1,256}\\\)',
         7 => array(
-            GESHI_SEARCH => '([^:\/\\\*\?\"\<\>\|\s]*?)(::)([^:\/\\\*\?\"\<\>\|\s]*?)',
+            GESHI_SEARCH => '([^:\/\\\*\?\"\<\>(?:<PIPE>)\s]*?)(::)([^:\/\\\*\?\"\<\>(?:<PIPE>)\s]*?)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\\2\\3'
             ),
         8 => array(
-            GESHI_SEARCH => '([^:\/\\\*\?\"\<\>\|\s]*?)(::)([^:\/\\\*\?\"\<\>\|]*?\s)',
+            GESHI_SEARCH => '([^:\/\\\*\?\"\<\>(?:<PIPE>)\s]*?)(::)([^:\/\\\*\?\"\<\>(?:<PIPE>)]*?\s)',
             GESHI_REPLACE => '\\3',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1\\2',
