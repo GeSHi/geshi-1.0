@@ -136,7 +136,7 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         5 => array(
-            GESHI_SEARCH => '([:(,=[.*/+-]\s*)([a-zA-Z0-9_]+)', //message parameters, message receivers
+            GESHI_SEARCH => '([:(,=[.*\/+-]\s*)([a-zA-Z0-9_]+)', //message parameters, message receivers
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 's',
             GESHI_BEFORE => '\\1',
