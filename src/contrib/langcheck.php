@@ -541,7 +541,7 @@ if(!$error_abort) {
                     } else {
                         if(preg_match("/(?<!\\\\)\//s", $rv)) {
                             report_error(TYPE_WARNING, "Language file contains a regular expression with an unmasked / character at \$language_data['REGEXPS'][$rk]!");
-                        } elseif (preg_match("/(\\\\\\\\)*\\\\\|/s", $rv)) {
+                        } elseif (preg_match("/(?<!<)(\\\\\\\\)*\\\\\|(?!>)/s", $rv)) {
                             report_error(TYPE_WARNING, "Language file contains a regular expression with an unescaped match for a pipe character '|' which needs escaping as '&lt;PIPE&gt;' instead at \$language_data['REGEXPS'][$rk]!");
                         }
                     }
@@ -553,7 +553,7 @@ if(!$error_abort) {
                     } else {
                         if(preg_match("/(?<!\\\\)\//s", $rv[GESHI_SEARCH])) {
                             report_error(TYPE_WARNING, "Language file contains a regular expression with an unmasked / character at \$language_data['REGEXPS'][$rk]!");
-                        } elseif (preg_match("/(\\\\\\\\)*\\\\\|/s", $rv[GESHI_SEARCH])) {
+                        } elseif (preg_match("/(?<!<)(\\\\\\\\)*\\\\\|(?!>)/s", $rv[GESHI_SEARCH])) {
                             report_error(TYPE_WARNING, "Language file contains a regular expression with an unescaped match for a pipe character '|' which needs escaping as '&lt;PIPE&gt;' instead at \$language_data['REGEXPS'][$rk]!");
                         }
                     }
