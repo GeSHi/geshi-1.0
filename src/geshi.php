@@ -3836,7 +3836,7 @@ class GeSHi {
 
         $keywords[] = '<LANGUAGE>';
         $keywords[] = '{LANGUAGE}';
-        $replacements[] = $replacements[] = $this->language;
+        $replacements[] = $replacements[] = $this->language_data['LANG_NAME'];
 
         $keywords[] = '<VERSION>';
         $keywords[] = '{VERSION}';
