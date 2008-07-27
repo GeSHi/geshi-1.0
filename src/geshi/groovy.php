@@ -44,8 +44,12 @@
 
 $language_data = array (
     'LANG_NAME' => 'Groovy',
-    'COMMENT_SINGLE' => array(1 => '//', 2 => 'import', 3 => '#'),
+    'COMMENT_SINGLE' => array(1 => '//', 3 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(
+        //Import and Package directives (Basic Support only)
+        2 => '/(?:(?<=import[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'''", '"""', "'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -57,7 +61,7 @@ $language_data = array (
         2 => array(
             'abstract', 'as', 'assert', 'break', 'catch', 'class', 'const',
             'continue', 'def', 'default', 'enum', 'extends',
-            'false', 'final', 'finally', 'goto', 'implements',
+            'false', 'final', 'finally', 'goto', 'implements', 'import',
             'instanceof', 'interface', 'native', 'new', 'null',
             'package', 'private', 'property', 'protected',
             'public', 'return', 'static', 'strictfp', 'super',
