@@ -26,17 +26,8 @@ Version 1.0.8
      * Progress (Marco Aurelio de Pasqual)
      * TypoScript (Jan-Philipp Halle)
      * Xorg configuration (milian)
-  -  set_language will not reset any language settings by default anymore.
-     You can use the additional $force_reset param for this. (milian)
-  -  Added support for RegExp-based Strict Blocks (BenBE)
-  -  Fixed highlighting incorrectly stopping at ?> in PHP (SF#1330968, BenBE)
-  -  Setup caches for parsing on demand, makes stylesheet generators fast again (milian)
-  -  Reduce strict errors & notices for language files (milian)
-  -  Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
-  -  Improved comment handling with TCL (Lars Hellström, BenBE)
-  -  Removed explicit escaping of / in Regular Expressions (BenBE)
-  -  Ignoring empty keyword groups when highlighting (milian)
-  -  Broken handling with XML comments (BenBE, SF#1849233)
+  -  Added an optimizer for lists to regular expressions. Using these cached lists results in a speedup of approx. 50%.
+     The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Some more memory & speed optimizations all over GeSHi (milian)
      * Reduced memory overhead when highlighting keywords (BenBE)
      * Keyword Linking now uses considerably less strtolower calls (milian)
@@ -46,59 +37,71 @@ Version 1.0.8
      * Properly set comments to be case insensitive where appropriate to increase performance (milian)
      * Improve the performance of the strict mode tokenizer, making highlighting of languages like
        HTML, ColdFusion or XML faster (milian)
-  -  Added an optimizer for lists in regular expressions. Using these cached lists results in a speedup of approx. 50%.
-     The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
-  -  Added support for external style information files to override language defaults without modifying language files (BenBE)
-  -  Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
-  -  Fixed HTML comments spawning multiple lines producing invalid XHTML output (SF#1738173, BenBE)
-  -  Improved overall string support:
-     * Added support for multichar string delimiters (SF#1932083, BenBE)
-     * Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
-     * Support for multiple styles of strings depending on the starter (BenBE)
-     * Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
-  -  Added support for parameters beginning with dash in BASH language (BenBE)
-  -  Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
-  -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
-  -  Use spaces instead of tabs for indendation in language files to have a consistent
-     coding standard accross geshi files (milian)
-  -  Make language_permissions configurable in language files via ['PARSER_CONTROL']['ENABLE_FLAGS']
-     this makes is_a calls unneeded and thus prevents PHP notices in PHP 5.x (milian)
-  -  Support Apache's configuration sections, see http://httpd.apache.org/docs/2.2/sections.html (milian)
-  -  Minor issue with PHP Heredoc and Nowdoc syntax sometimes not getting highlighted (BenBE)
-  -  Fixed economy mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
-  -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
-  -  Some typos and mistakes in the documentation (BenBE)
+     * Setup caches for parsing on demand to make stylesheet generators fast (milian)
+  -  Various improvements to Strict Block Handling (BenBE, milian)
+     * Added support for RegExp-based Strict Blocks (BenBE)
+     * Fixed highlighting incorrectly stopping at ?> in PHP (SF#1330968, BenBE)
+     * Languages with STRICT_MODE_APPLIES = GESHI_MAYBE default to strict mode now. When no highlightable
+       code is found in this mode, we fallback to the same setting as if GESHI_NEVER was set. That way it
+       should not be needed to call enable_strictmode() manually. (milian)
   -  Added new GESHI_HEADER_PRE_VALID type which uses the following markup: (milian)
      * With line numbers:     <div>header<ol><li><pre>...</pre></li>...</ol></div>
      * Without line numbers:  <pre>header...CODE...</pre>
      => valid HTML and no need for &nbsp; indentation
   -  Added new GESHI_HEADER_PRE_TABLE type which can be used to prevent linenumber-selection in Firefox
      on copy'n'paste. (milian)
-  -  Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
-  -  Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
-  -  Added some keywords for VHDL (beshig, BenBE)
-  -  Fixed severly broken ColdFusion language file (milian)
-  -  Make sure strict_mode is set properly when doing repeated set_language calls (milian)
-  -  Fixed some incorrectly highlighted things with the CSS language file (milian, BenBE)
+  -  set_language will not reset any language settings by default anymore.
+     * Added $force_reset param for to force full reload of a language. (milian)
+     * Make sure strict_mode is set properly when doing repeated set_language calls (milian)
+  -  Fixed some problems with old PHP versions (SF#1975625, milian, BenBE)
   -  Fixed broken use with Suhosin Patch when /e modifier was disabled (SF#2021800, BenBE)
+  -  Added support for external style information files to override language defaults without modifying language files (BenBE)
+  -  The overall_class is now up to the user, and the language-code is _always_ added as a class (milian)
+  -  Fixed Economy Mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
+  -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
+  -  Improved overall string support:
+     * Added support for multichar string delimiters (SF#1932083, BenBE)
+     * Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)
+     * Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
+     * Support for multiple styles of strings depending on the starter (BenBE)
+     * Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
+  -  Improved flexibility in language files (BenBE, milian)
+     * Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
+     * Removed explicit escaping of / in Regular Expressions (BenBE)
+     * Ignoring empty keyword groups when highlighting (milian)
+     * Make language_permissions configurable in language files via ['PARSER_CONTROL']['ENABLE_FLAGS']
+       this makes is_a calls unneeded and thus prevents PHP notices in PHP 5.x (milian)
+     * Extended support for number formats now covering the most common formats (SF#1923058, BenBE)
+     * Lifted a limitation that keywords had to have at least 2 subsequent letters (BenBE)
+     * Changed behaviour of PARSER_CONTROL now allowing to provide the full Lookahead and Lookbehind
+       expressions used as delimiters inside keywords instead of a simple char group (BenBE)
+     * Fixed improper handling of newlines in REGEXPS so this does not produce invalid html anylonger (milian)
+  -  Some typos and mistakes in the documentation (BenBE)
+  -  Added a script to contrib/ to verify language files are correct (BenBE)
+  -  Fixed loads of compliancy warnings detected with that automated compliance testing script (BenBE)
+  -  Many other improvements to various language files (BenBE, milian)
+     * Reduce strict errors & notices for language files (milian)
+     * Fixed symbol highlighting with C++ sometimes missing keywords after ; and comments (BenBE)
+     * Improved comment handling with TCL (Lars Hellström, BenBE)
+     * Fixed broken handling with XML comments (BenBE, SF#1849233)
+     * Fixed HTML comments spawning multiple lines producing invalid XHTML output (SF#1738173, BenBE)
+     * Added support for parameters beginning with dash in BASH language (BenBE)
+     * Support Apache's configuration sections, see http://httpd.apache.org/docs/2.2/sections.html (milian)
+     * Minor issue with PHP Heredoc and Nowdoc syntax sometimes not getting highlighted (BenBE)
+     * Updated Objective-C language file (SF#2013961, Quinn Taylor, BenBE)
+     * Added some keywords for VHDL (beshig, BenBE)
+     * Fixed severly broken ColdFusion language file (milian)
+     * Fixed some incorrectly highlighted things with the CSS language file (milian, BenBE)
+     * Improved Smarty language file (milian)
+     * Improved LaTeX language file (Андрей Парамонов, BenBE)
+     * Fixed a regular expression in mIRC language file that caused a warning message to be issued (BenBE)
+     * Removed <, > and / from HTML names, now only containing the real tag names (BenBE)
+     * Use spaces instead of tabs for indendation in language files to have a consistent
+       coding standard accross geshi files (milian)
   -  Removed some private methods which were only called at exactly one place (milian)
      * format_header_content
      * format_footer_content
      * get_attributes
-  -  Improved Smarty language file (milian)
-  -  Improved LaTeX language file (Андрей Парамонов, BenBE)
-  -  Fixed a regular expression in mIRC language file that caused a warning message to be issued (BenBE)
-  -  Added a script to contrib/ to verify language files are correct (BenBE)
-  -  Fixed loads of compliancy warnings detected with that automated compliance testing script (BenBE)
-  -  Lifted a limitation that keywords had to have at least 2 subsequent letters (BenBE)
-  -  Languages with STRICT_MODE_APPLIES = GESHI_MAYBE default to strict mode now. When no highlightable
-     code is found in this mode, we fallback to the same setting as if GESHI_NEVER was set. That way it
-     should not be needed to call enable_strictmode() manually. (milian)
-  -  Changed behaviour of PARSER_CONTROL now allowing to provide the full Lookahead and Lookbehind
-     expressions used as delimiters inside keywords instead of a simple char group (BenBE)
-  -  Removed <, > and / from HTML names, now only containing the real tag names (BenBE)
-  -  Fix: Properly handle newlines in REGEXPS so this does not produce invalid html anylonger (milian)
-  -  The overall_class is now up to the user, and the language-code is _always_ added as a class (milian)
   -  Second part of default style changes. Affected in this release:
      * C++
      * C++ (QT)
