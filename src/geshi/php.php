@@ -73,7 +73,7 @@ $language_data = array (
             ),
         2 => array(
             'null', '__LINE__', '__FILE__',
-            'false', '&lt;?php', '&lt;?', '&lt;?=', '?&gt;', '&lt;%', '%&lt;%=', '%&gt;',
+            'false', '&lt;?php', '&lt;?', '&lt;?=', '?&gt;', '&lt;%', '&lt;%=', '%&gt;',
             '&lt;script language', '&lt;/script&gt;',
             'true', 'var', 'default',
             'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends', 'self', 'const',
