@@ -2645,7 +2645,7 @@ class GeSHi {
                                     } else if (
                                         // case sensitive comments
                                         ($this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
-                                        ($match_i = stripos($part, $comment_mark, $i) !== false)) ||
+                                        ($match_i = stripos($part, $comment_mark, $i)) !== false) ||
                                         // non case sensitive
                                         (!$this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
                                           (($match_i = strpos($part, $comment_mark, $i)) !== false))) {
