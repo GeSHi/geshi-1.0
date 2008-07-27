@@ -538,7 +538,7 @@ if(!$error_abort) {
                     //Check for unmasked / in regular expressions ...
                     if(empty($rv)) {
                         report_error(TYPE_WARNING, "Language file contains an empty regular expression at \$language_data['REGEXPS'][$rk]!");
-                    } elseif(preg_match("/(?>!\\\\)\//s", $rv)) {
+                    } elseif(preg_match("/(?<!\\\\)\//s", $rv)) {
                         report_error(TYPE_WARNING, "Language file contains a regular expression with an unmasked / character at \$language_data['REGEXPS'][$rk]!");
                     }
                 } elseif(is_array($rv)) {
@@ -546,7 +546,7 @@ if(!$error_abort) {
                         report_error(TYPE_ERROR, "Language file contains no GESHI_SEARCH entry in extended regular expression at \$language_data['REGEXPS'][$rk]!");
                     } elseif(!is_string($rv[GESHI_SEARCH])) {
                         report_error(TYPE_ERROR, "Language file contains a GESHI_SEARCH entry in extended regular expression at \$language_data['REGEXPS'][$rk] which is not a string!");
-                    } elseif(preg_match("/(?>!\\\\)\//s", $rv[GESHI_SEARCH])) {
+                    } elseif(preg_match("/(?<!\\\\)\//s", $rv[GESHI_SEARCH])) {
                         report_error(TYPE_WARNING, "Language file contains a regular expression with an unmasked / character at \$language_data['REGEXPS'][$rk]!");
                     }
                     if(!isset($rv[GESHI_REPLACE])) {
