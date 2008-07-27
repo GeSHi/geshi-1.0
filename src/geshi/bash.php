@@ -157,8 +157,9 @@ $language_data = array (
 
             'yacc', 'yes', 'ypdomainname',
 
-            'zcat', 'zcmp', 'zdiff', 'zegrep', 'zfgrep', 'zforce', 'zgrep',
-            'zip', 'zless', 'zmore', 'znew', 'zsh', ' zsoelim'
+            'zcat', 'zcmp', 'zdiff', 'zdump', 'zegrep', 'zfgrep', 'zforce',
+            'zgrep', 'zip', 'zipgrep', 'zipinfo', 'zless', 'zmore', 'znew',
+            'zsh', 'zsoelim'
             ),
         3 => array(
             'alias', 'bg', 'bind', 'break', 'builtin', 'cd', 'command',
