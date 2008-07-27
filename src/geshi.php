@@ -2898,8 +2898,7 @@ class GeSHi {
             // Keyword links have been ebabled
 
             if (isset($this->language_data['URLS'][$k]) &&
-                $this->language_data['URLS'][$k] != '' &&
-                substr($keyword, 0, 5) != '&lt;/') {
+                $this->language_data['URLS'][$k] != '') {
                 // There is a base group for this keyword
 
                 // Old system: strtolower
@@ -2916,8 +2915,6 @@ class GeSHi {
                     $word = $keyword;
                 }
 
-                $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
-                $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;
                 if ($word) {
                     $before = '<|UR1|"' .
                         str_replace(
