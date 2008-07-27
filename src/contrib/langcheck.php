@@ -423,7 +423,7 @@ if(!$error_abort) {
                         report_error(TYPE_ERROR, "Language file contains a \$language_data['STYLES\']['$style_kind'] structure which is not an array!");
                     } else {
                         foreach($language_data['STYLES'][$style_kind] as $sk_key => $sk_value) {
-                            if(!is_integer($sk_key) && ('COMMENTS' != $style_kind && 'MULTI' != $sk_key)) {
+                            if(!is_int($sk_key) && ('COMMENTS' != $style_kind && 'MULTI' != $sk_key)) {
                                 report_error(TYPE_WARNING, "Language file contains an key '$sk_key' in \$language_data['STYLES']['$style_kind'] that is not integer!");
                             } else if (!is_string($sk_value)) {
                                 report_error(TYPE_WARNING, "Language file contains a CSS specification for \$language_data['STYLES']['$style_kind'][$key] which is not a string!");
@@ -492,6 +492,97 @@ if(!$error_abort) {
                     report_error(TYPE_WARNING, "Language file contains an superfluous \$language_data['STYLES']['KEYWORDS'] specification for non-existing keyword group $key!");
                 }
             }
+
+            foreach($language_data['COMMENT_SINGLE'] as $ck => $cv) {
+                if(!is_int($ck)) {
+                    report_error(TYPE_WARNING, "Language file contains an key '$ck' in \$language_data['COMMENT_SINGLE'] that is not integer!");
+                }
+                if(!is_string($cv)) {
+                    report_error(TYPE_WARNING, "Language file contains an non-string entry at \$language_data['COMMENT_SINGLE'][$ck]!");
+                }
+                if(!isset($language_data['STYLES']['COMMENTS'][$ck])) {
+                    report_error(TYPE_WARNING, "Language file contains no \$language_data['STYLES']['COMMENTS'] specification for comment group $ck!");
+                }
+            }
+            if(isset($language_data['COMMENT_REGEXP'])) {
+                foreach($language_data['COMMENT_REGEXP'] as $ck => $cv) {
+                    if(!is_int($ck)) {
+                        report_error(TYPE_WARNING, "Language file contains an key '$ck' in \$language_data['COMMENT_REGEXP'] that is not integer!");
+                    }
+                    if(!is_string($cv)) {
+                        report_error(TYPE_WARNING, "Language file contains an non-string entry at \$language_data['COMMENT_REGEXP'][$ck]!");
+                    }
+                    if(!isset($language_data['STYLES']['COMMENTS'][$ck])) {
+                        report_error(TYPE_WARNING, "Language file contains no \$language_data['STYLES']['COMMENTS'] specification for comment group $ck!");
+                    }
+                }
+            }
+            foreach($language_data['STYLES']['COMMENTS'] as $ck => $cv) {
+                if($ck != 'MULTI' && !isset($language_data['COMMENT_SINGLE'][$ck]) &&
+                    !isset($language_data['COMMENT_REGEXP'][$ck])) {
+                    report_error(TYPE_NOTICE, "Language file contains an superfluous \$language_data['STYLES']['COMMENTS'] specification for Single Line or Regular-Expression Comment key $ck!");
+                }
+            }
+
+            foreach($language_data['STYLES']['STRINGS'] as $sk => $sv) {
+                if($sk && !isset($language_data['QUOTEMARKS'][$sk])) {
+                    report_error(TYPE_NOTICE, "Language file contains an superfluous \$language_data['STYLES']['STRINGS'] specification for non-existing quotemark key $sk!");
+                }
+            }
+
+            foreach($language_data['REGEXPS'] as $rk => $rv) {
+                if(!is_int($rk)) {
+                    report_error(TYPE_WARNING, "Language file contains an key '$rk' in \$language_data['REGEXPS'] that is not integer!");
+                }
+                if(is_string($rv)) {
+                    //Check for unmasked / in regular expressions ...
+                    if(empty($rv)) {
+                        report_error(TYPE_WARNING, "Language file contains an empty regular expression at \$language_data['REGEXPS'][$rk]!");
+                    } elseif(preg_match("/(?>!\\\\)\//s", $rv)) {
+                        report_error(TYPE_WARNING, "Language file contains a regular expression with an unmasked / character at \$language_data['REGEXPS'][$rk]!");
+                    }
+                } elseif(is_array($rv)) {
+                    if(!isset($rv[GESHI_SEARCH])) {
+                        report_error(TYPE_ERROR, "Language file contains no GESHI_SEARCH entry in extended regular expression at \$language_data['REGEXPS'][$rk]!");
+                    } elseif(!is_string($rv[GESHI_SEARCH])) {
+                        report_error(TYPE_ERROR, "Language file contains a GESHI_SEARCH entry in extended regular expression at \$language_data['REGEXPS'][$rk] which is not a string!");
+                    } elseif(preg_match("/(?>!\\\\)\//s", $rv[GESHI_SEARCH])) {
+                        report_error(TYPE_WARNING, "Language file contains a regular expression with an unmasked / character at \$language_data['REGEXPS'][$rk]!");
+                    }
+                    if(!isset($rv[GESHI_REPLACE])) {
+                        report_error(TYPE_WARNING, "Language file contains no GESHI_REPLACE entry in extended regular expression at \$language_data['REGEXPS'][$rk]!");
+                    } elseif(!is_string($rv[GESHI_REPLACE])) {
+                        report_error(TYPE_ERROR, "Language file contains a GESHI_REPLACE entry in extended regular expression at \$language_data['REGEXPS'][$rk] which is not a string!");
+                    }
+                    if(!isset($rv[GESHI_MODIFIERS])) {
+                        report_error(TYPE_WARNING, "Language file contains no GESHI_MODIFIERS entry in extended regular expression at \$language_data['REGEXPS'][$rk]!");
+                    } elseif(!is_string($rv[GESHI_MODIFIERS])) {
+                        report_error(TYPE_ERROR, "Language file contains a GESHI_MODIFIERS entry in extended regular expression at \$language_data['REGEXPS'][$rk] which is not a string!");
+                    }
+                    if(!isset($rv[GESHI_BEFORE])) {
+                        report_error(TYPE_WARNING, "Language file contains no GESHI_BEFORE entry in extended regular expression at \$language_data['REGEXPS'][$rk]!");
+                    } elseif(!is_string($rv[GESHI_BEFORE])) {
+                        report_error(TYPE_ERROR, "Language file contains a GESHI_BEFORE entry in extended regular expression at \$language_data['REGEXPS'][$rk] which is not a string!");
+                    }
+                    if(!isset($rv[GESHI_AFTER])) {
+                        report_error(TYPE_WARNING, "Language file contains no GESHI_AFTER entry in extended regular expression at \$language_data['REGEXPS'][$rk]!");
+                    } elseif(!is_string($rv[GESHI_AFTER])) {
+                        report_error(TYPE_ERROR, "Language file contains a GESHI_AFTER entry in extended regular expression at \$language_data['REGEXPS'][$rk] which is not a string!");
+                    }
+                } else {
+                    report_error(TYPE_WARNING, "Language file contains an non-string and non-array entry at \$language_data['REGEXPS'][$rk]!");
+                }
+                if(!isset($language_data['STYLES']['REGEXPS'][$rk])) {
+                    report_error(TYPE_WARNING, "Language file contains no \$language_data['STYLES']['REGEXPS'] specification for regexp group $rk!");
+                }
+            }
+            foreach($language_data['STYLES']['REGEXPS'] as $rk => $rv) {
+                if(!isset($language_data['REGEXPS'][$rk])) {
+                    report_error(TYPE_NOTICE, "Language file contains an superfluous \$language_data['STYLES']['REGEXPS'] specification for regexp key $rk!");
+                }
+            }
+
+
         }
 
         output_error_cache();
