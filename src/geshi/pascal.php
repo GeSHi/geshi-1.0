@@ -84,7 +84,7 @@ $language_data = array (
             ),
         ),
     'SYMBOLS' => array(
-        ',', ':', '=', '.', '+', '-', '*', '/'
+        ',', ':', '=', '+', '-', '*', '/'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -119,7 +119,7 @@ $language_data = array (
             0 => 'color: #cc66cc;'
             ),
         'METHODS' => array(
-            1 => 'color: #202020;'
+            1 => 'color: #0066ee;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #339933;'
