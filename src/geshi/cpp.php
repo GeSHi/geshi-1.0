@@ -57,6 +57,7 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
+    'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI,
     'KEYWORDS' => array(
         1 => array(
             'break', 'case', 'continue', 'default', 'do', 'else', 'for', 'goto', 'if', 'return',
