@@ -93,6 +93,8 @@ Version 1.0.8
      * Fixed severly broken ColdFusion language file (milian)
      * Fixed some incorrectly highlighted things with the CSS language file (milian, BenBE)
      * Improved Smarty language file (milian)
+     * Improved CSS language file (milian)
+     * Improved Pascal language file (milian)
      * Improved LaTeX language file (Андрей Парамонов, BenBE)
      * Fixed a regular expression in mIRC language file that caused a warning message to be issued (BenBE)
      * Removed <, > and / from HTML names, now only containing the real tag names (BenBE)
