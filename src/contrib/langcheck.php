@@ -423,7 +423,8 @@ if(!$error_abort) {
                         report_error(TYPE_ERROR, "Language file contains a \$language_data['STYLES\']['$style_kind'] structure which is not an array!");
                     } else {
                         foreach($language_data['STYLES'][$style_kind] as $sk_key => $sk_value) {
-                            if(!is_int($sk_key) && ('COMMENTS' != $style_kind && 'MULTI' != $sk_key)) {
+                            if(!is_int($sk_key) && ('COMMENTS' != $style_kind && 'MULTI' != $sk_key)
+                                && !(('STRINGS' == $style_kind || 'ESCAPE_CHAR' == $style_kind) && 'HARD' == $sk_key)) {
                                 report_error(TYPE_WARNING, "Language file contains an key '$sk_key' in \$language_data['STYLES']['$style_kind'] that is not integer!");
                             } else if (!is_string($sk_value)) {
                                 report_error(TYPE_WARNING, "Language file contains a CSS specification for \$language_data['STYLES']['$style_kind'][$key] which is not a string!");
@@ -523,7 +524,12 @@ if(!$error_abort) {
                     report_error(TYPE_NOTICE, "Language file contains an superfluous \$language_data['STYLES']['COMMENTS'] specification for Single Line or Regular-Expression Comment key $ck!");
                 }
             }
-
+            if (isset($language_data['STYLES']['STRINGS']['HARD'])) {
+                if (empty($language_data['HARDQUOTE'])) {
+                    report_error(TYPE_NOTICE, "Language file contains superfluous \$language_data['STYLES']['STRINGS'] specification for key 'HARD', but no 'HARDQUOTE's are defined!");
+                }
+                unset($language_data['STYLES']['STRINGS']['HARD']);
+            }
             foreach($language_data['STYLES']['STRINGS'] as $sk => $sv) {
                 if($sk && !isset($language_data['QUOTEMARKS'][$sk])) {
                     report_error(TYPE_NOTICE, "Language file contains an superfluous \$language_data['STYLES']['STRINGS'] specification for non-existing quotemark key $sk!");
