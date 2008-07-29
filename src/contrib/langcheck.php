@@ -187,6 +187,10 @@ if(!$error_abort) {
     output_error_cache();
 }
 
+if (isset($_REQUEST['show']) && in_array($_REQUEST['show'], $languages)) {
+    $languages = array($_REQUEST['show']);
+}
+
 if(!$error_abort) {
     foreach ($languages as $lang) {
         echo "</li>\n<li>Validating language file for '$lang' ... ";
