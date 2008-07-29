@@ -153,13 +153,15 @@ $language_data = array (
 			'MULTI' => 'color: #008000; font-style: italic;'
 			),
 		'ESCAPE_CHAR' => array(
-			0 => 'color: #0000FF; font-weight: bold;'
+			0 => 'color: #0000FF; font-weight: bold;',
+			'HARD' => 'color: #0000FF; font-weight: bold;',
 			),
 		'BRACKETS' => array(
 			0 => 'color: #006400;'
 			),
 		'STRINGS' => array(
-			0 => 'color: #008000;'
+			0 => 'color: #008000;',
+			'HARD' => 'color: #008000;'
 			),
 		'NUMBERS' => array(
 			0 => 'color: #00008B;'

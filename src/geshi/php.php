@@ -55,6 +55,7 @@ $language_data = array (
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'HARDQUOTE' => array("'", "'"),
+    'HARDESCAPE' => array("\'"),
     'COMMENT_REGEXP' => array(
         //Heredoc and Nowdoc syntax
         3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+?)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
@@ -62,7 +63,7 @@ $language_data = array (
         4 => '#/\*\*(?!\*).*\*/#sU'
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array("'", '"'),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
@@ -293,13 +294,15 @@ $language_data = array (
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #000099; font-weight: bold;'
+            0 => 'color: #000099; font-weight: bold;',
+            'HARD' => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
             ),
         'STRINGS' => array(
-            0 => 'color: #0000ff;'
+            0 => 'color: #0000ff;',
+            'HARD' => 'color: #0000ff;'
             ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'

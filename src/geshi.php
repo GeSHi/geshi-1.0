@@ -2369,7 +2369,13 @@ class GeSHi {
                     } else if ($this->lexic_permissions['STRINGS'] && $hq && $hq[0] == $char &&
                         substr($part, $i, $hq_strlen) == $hq) {
                         // The start of a hard quoted string
-
+                        if (!$this->use_classes) {
+                            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS']['HARDQUOTE'] . '"';
+                            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR']['HARDESCAPE'] . '"';
+                        } else {
+                            $string_attributes = ' class="st_h"';
+                            $escape_char_attributes = ' class="es_h"';
+                        }
                         // parse the stuff before this
                         $result .= $this->parse_non_string_part($stuff_to_parse);
                         $stuff_to_parse = '';
@@ -2379,8 +2385,8 @@ class GeSHi {
 
                         // look for closing quote
                         $start = $i + $hq_strlen;
-                        while ($close_pos = strpos($part, $this->language_data['HARDQUOTE'][1], $start + 1)) {
-                            $start = $close_pos;
+                        while ($close_pos = strpos($part, $this->language_data['HARDQUOTE'][1], $start)) {
+                            $start = $close_pos + 1;
                             if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
                                 // make sure this quote is not escaped
                                 foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
@@ -4069,6 +4075,10 @@ class GeSHi {
         }
         foreach ($this->language_data['STYLES']['ESCAPE_CHAR'] as $group => $styles) {
             if ($styles != '' && (!$economy_mode || $this->lexic_permissions['ESCAPE_CHAR'])) {
+                // NEW: since 1.0.8 we have to handle hardescapes
+                if ($group == 'HARD') {
+                    $group = '_h';
+                }
                 $stylesheet .= "$selector.es$group {{$styles}}\n";
             }
         }
@@ -4084,6 +4094,10 @@ class GeSHi {
         }
         foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
             if ($styles != '' && (!$economy_mode || $this->lexic_permissions['STRINGS'])) {
+                // NEW: since 1.0.8 we have to handle hardquotes
+                if ($group == 'HARD') {
+                    $group = '_h';
+                }
                 $stylesheet .= "$selector.st$group {{$styles}}\n";
             }
         }
