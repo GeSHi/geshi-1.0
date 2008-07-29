@@ -53,7 +53,7 @@ $language_data = array (
         2 => array(
             'capitalize', 'count_characters', 'cat', 'count_paragraphs', 'count_sentences', 'count_words', 'date_format',
             'default', 'escape', 'indent', 'lower', 'nl2br', 'regex_replace', 'replace', 'spacify', 'string_format',
-            'strip', 'strip_tags', 'truncate', 'upper', 'wordwrap'
+            'strip', 'strip_tags', 'truncate', 'upper', 'wordwrap',
             ),
         3 => array(
             'assign', 'counter', 'cycle', 'debug', 'eval', 'fetch', 'html_checkboxes', 'html_image', 'html_options',
@@ -86,6 +86,10 @@ $language_data = array (
         7 => array(
             'eq', 'neq', 'ne', 'lte', 'gte', 'ge', 'le', 'not', 'mod'
             ),
+        8 => array(
+            // some common php functions
+            'isset', 'is_array', 'empty', 'count', 'sizeof'
+            )
         ),
     'SYMBOLS' => array(
         '/', '=', '==', '!=', '>', '<', '>=', '<=', '!', '%'
@@ -99,6 +103,7 @@ $language_data = array (
         5 => false,
         6 => false,
         7 => false,
+        8 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -108,7 +113,8 @@ $language_data = array (
             4 => 'color: #804040;',        //Variables
             5 => 'color: #008000;',        //Methods
             6 => 'color: #6A0A0A;',        //Attributes
-            7 => 'color: #D36900;'        //Text-based symbols
+            7 => 'color: #D36900;',        //Text-based symbols
+            8 => 'color: #0600FF;'        //php functions
             ),
         'COMMENTS' => array(
             'MULTI' => 'color: #008080; font-style: italic;'
@@ -137,6 +143,7 @@ $language_data = array (
             2 => 'color: #009000;'
             ),
         'REGEXPS' => array(
+            0 => 'color: #00aaff;'
             )
         ),
     'URLS' => array(
@@ -153,6 +160,8 @@ $language_data = array (
         1 => '.'
         ),
     'REGEXPS' => array(
+        // variables
+        0 => '\$[a-zA-Z][a-zA-Z0-9_]*'
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
