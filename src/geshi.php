@@ -4095,7 +4095,7 @@ class GeSHi {
         foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
             if ($styles != '' && (!$economy_mode || $this->lexic_permissions['STRINGS'])) {
                 // NEW: since 1.0.8 we have to handle hardquotes
-                if ($group == 'HARD') {
+                if ($group === 'HARD') {
                     $group = '_h';
                 }
                 $stylesheet .= "$selector.st$group {{$styles}}\n";
