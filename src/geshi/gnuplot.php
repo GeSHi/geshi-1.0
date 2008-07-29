@@ -265,7 +265,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => 'http://www.google.com/search?q=%22set+{FNAME}%22+site%3Ahttp%3A%2F%2Fwww.gnuplot.info%2Fdocs%2F&btnI=lucky',
+        2 => 'http://www.google.com/search?q=%22set+{FNAME}%22+site%3Ahttp%3A%2F%2Fwww.gnuplot.info%2Fdocs%2F&amp;btnI=lucky',
         3 => '',
         4 => '',
         5 => ''

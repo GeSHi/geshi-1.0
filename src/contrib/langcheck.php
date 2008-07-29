@@ -346,6 +346,8 @@ if(!$error_abort) {
                         report_error(TYPE_WARNING, "Language file contains an key '$url_key' in \$language_data['URLS'] that is not integer!");
                     } else if (!is_string($url_value)) {
                         report_error(TYPE_ERROR, "Language file contains a Documentation URL specification for \$language_data['URLS']['$url_value'] which is not a string!");
+                    } else if (preg_match('#&([^;]*(=|$))#U', $url_value)) {
+                        report_error(TYPE_ERROR, "Language file contains unescaped ampersands (&amp;) in \$language_data['URLS']!");
                     }
                 }
             }

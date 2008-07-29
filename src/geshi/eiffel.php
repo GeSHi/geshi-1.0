@@ -376,7 +376,7 @@ $language_data = array (
         1 => '',
         2 => '',
         3 => '',
-        4 => 'http://www.google.com/search?q=site%3Ahttp%3A%2F%2Fdocs.eiffel.com%2Feiffelstudio%2Flibraries+{FNAMEL}&btnI=I%27m+Feeling+Lucky',
+        4 => 'http://www.google.com/search?q=site%3Ahttp%3A%2F%2Fdocs.eiffel.com%2Feiffelstudio%2Flibraries+{FNAMEL}&amp;btnI=I%27m+Feeling+Lucky',
         5 => ''
         ),
     'OOLANG' => true,

@@ -443,7 +443,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://www.google.com/search?q={FNAMEL}%20inurl:http://livedocs.adobe.com/flex/201/langref/%20inurl:{FNAMEL}.html&filter=0&num=100&btnI=lucky',
+        5 => 'http://www.google.com/search?q={FNAMEL}%20inurl:http://livedocs.adobe.com/flex/201/langref/%20inurl:{FNAMEL}.html&amp;filter=0&amp;num=100&amp;btnI=lucky',
         6 => '',
         7 => '',
         8 => ''
