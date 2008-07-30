@@ -109,7 +109,7 @@ $language_data = array (
             ),
         // \keywords
         2 => array(
-            GESHI_SEARCH => "(\\\\)([a-zA-Z][a-zA-Z_0-9]+)",
+            GESHI_SEARCH => "(\\\\)([a-zA-Z]+)",
             GESHI_REPLACE => '\1\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
