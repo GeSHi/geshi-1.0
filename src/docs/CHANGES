@@ -26,6 +26,7 @@ Version 1.0.8
      * Progress (Marco Aurelio de Pasqual)
      * TypoScript (Jan-Philipp Halle)
      * Xorg configuration (milian)
+  -  Make GeSHi's constructor arguments optional, so something like `$foo = new GeSHi;` is possible. (milian)
   -  Added an optimizer for lists to regular expressions. Using these cached lists results in a speedup of approx. 50%.
      The slightly increased memory consumption (~150KB for PHP language file) is more than worth it! (milian)
   -  Some more memory & speed optimizations all over GeSHi (milian)

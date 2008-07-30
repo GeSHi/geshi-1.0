@@ -578,10 +578,14 @@ class GeSHi {
      *               {@link GeSHi->set_language_path()}
      * @since 1.0.0
      */
-    function GeSHi($source, $language, $path = '') {
-        $this->set_source($source);
+    function GeSHi($source = '', $language = '', $path = '') {
+        if (!empty($source)) {
+            $this->set_source($source);
+        }
+        if (!empty($language)) {
+            $this->set_language($language);
+        }
         $this->set_language_path($path);
-        $this->set_language($language);
     }
 
     /**
