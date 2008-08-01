@@ -233,7 +233,7 @@ $language_data = array (
         //Variables without braces
         1 => "\\$[a-zA-Z_][a-zA-Z0-9_]*",
         //Variable assignment
-        2 => "([a-zA-Z_][a-zA-Z0-9_]*)=",
+        2 => "(?<![\.a-zA-Z_])([a-zA-Z_][a-zA-Z0-9_]*?)(?==)",
         //Shorthand shell variables
         4 => "\\$[*#\$\\-\\?!]",
         //Parameters of commands
