@@ -102,6 +102,7 @@ Version 1.0.8
      * Removed <, > and / from HTML names, now only containing the real tag names (BenBE)
      * Use spaces instead of tabs for indendation in language files to have a consistent
        coding standard accross geshi files (milian)
+     * Added some comment styles, keywords and added index highlighting (Chusslove Illich, Часлав Илић)
   -  Removed some private methods which were only called at exactly one place (milian)
      * format_header_content
      * format_footer_content
