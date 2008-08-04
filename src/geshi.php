@@ -2034,7 +2034,7 @@ class GeSHi {
                             preg_match($delimiters, $code, $matches_rx, PREG_OFFSET_CAPTURE, $i)) {
                             //We got a match ...
                             $matches[$dk] = array(
-                                'next_match' => $matches_rx[0][1],
+                                'next_match' => $matches_rx[1][1],
                                 'dk' => $dk,
 
                                 'close_strlen' => strlen($matches_rx[2][0]),
