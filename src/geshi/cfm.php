@@ -257,9 +257,7 @@ $language_data = array (
         1 => array(
             '<!DOCTYPE' => '>'
             ),
-        2 => array(
-            '#' => '#'
-            ),
+        2 => "/(?!<#)(?:(?:##)*)(#)[a-zA-Z0-9_\.\(\)]+(#)/",
         3 => array(
             '<cfscript>' => '</cfscript>'
             ),
