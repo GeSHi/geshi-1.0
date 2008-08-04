@@ -225,12 +225,12 @@ $language_data = array (
             0 => 'color: #0000FF;'
             ),
         'SCRIPT' => array(
-            -1 => 'color: #808080; font-style: italic;',
-            0 => 'color: #00bbdd;',
-            1 => 'color: #0000FF;',
-            2 => 'color: #000099;',
-            3 => 'color: #333333;',
-            4 => 'color: #333333;'
+            0 => 'color: #808080; font-style: italic;',
+            1 => 'color: #00bbdd;',
+            2 => 'color: #0000FF;',
+            3 => 'color: #000099;',
+            4 => 'color: #333333;',
+            5 => 'color: #333333;'
             ),
         'REGEXPS' => array(
             )
@@ -251,30 +251,30 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
-        -1 => array(
+        0 => array(
             '<!--' => '-->'
             ),
-        0 => array(
+        1 => array(
             '<!DOCTYPE' => '>'
             ),
-        1 => array(
+        2 => array(
             '#' => '#'
             ),
-        2 => array(
+        3 => array(
             '<cfscript>' => '</cfscript>'
             ),
-        3 => array(
+        4 => array(
             '<' => '>'
             ),
-        4 => '/((?!<!)<)(?:"[^"]*"|\'[^\']*\'|(?R)|[^">])+?(>)/si'
+        5 => '/((?!<!)<)(?:"[^"]*"|\'[^\']*\'|(?R)|[^">])+?(>)/si'
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        -1 => false,
         0 => false,
-        1 => true,
+        1 => false,
         2 => true,
         3 => true,
-        4 => true
+        4 => true,
+        5 => true
         ),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
