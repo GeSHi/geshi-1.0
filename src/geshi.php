@@ -1965,11 +1965,6 @@ class GeSHi {
         // Initialise various stuff
         $length           = strlen($code);
         $COMMENT_MATCHED  = false;
-        // Turn highlighting on if strict mode doesn't apply to this language
-        $HIGHLIGHTING_ON  = ( !$this->strict_mode ) ? true : '';
-        // Whether to highlight inside a block of code
-        $HIGHLIGHT_INSIDE_STRICT = false;
-        $HARDQUOTE_OPEN = false;
         $stuff_to_parse   = '';
         $endresult        = '';
 
@@ -2126,7 +2121,7 @@ class GeSHi {
                         1 => ''
                     ),
                     1 => array(
-                        0 => '',
+                        0 => null,
                         1 => $parts[0][1]
                     )
                 );
@@ -2142,7 +2137,7 @@ class GeSHi {
                     1 => ''
                 ),
                 1 => array(
-                    0 => '',
+                    0 => null,
                     1 => $code
                 )
             );
@@ -2212,11 +2207,12 @@ class GeSHi {
             $result = '';
             $part = $parts[$key][1];
 
-            if ($this->strict_mode) {
+            $highlight_part = true;
+            if ($this->strict_mode && !is_null($parts[$key][0])) {
                 // get the class key for this block of code
                 $script_key = $parts[$key][0];
-
-                if (!empty($script_key) && $this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
+                $highlight_part = $this->language_data['HIGHLIGHT_STRICT_BLOCK'][$script_key];
+                if ($this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
                     $this->lexic_permissions['SCRIPT']) {
                     // Add a span element around the source to
                     // highlight the overall source block
@@ -2231,7 +2227,7 @@ class GeSHi {
                 }
             }
 
-            if (!$this->strict_mode || empty($script_key) || $this->language_data['HIGHLIGHT_STRICT_BLOCK'][$script_key]) {
+            if ($highlight_part) {
                 // Now, highlight the code in this block. This code
                 // is really the engine of GeSHi (along with the method
                 // parse_non_string_part).
