@@ -47,13 +47,13 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(//mots-cles C++
             'if', 'return', 'while', 'case', 'continue', 'default',
-            'do', 'else', 'for', 'switch', 'goto', 'sizeof',
-            'false', 'break', 'true', 'enum', 'extern', 'inline', 'false',
+            'do', 'else', 'for', 'switch', 'goto',
+            'break', 'true', 'enum', 'extern', 'inline', 'false',
             'errno', 'stdin', 'stdout', 'stderr',
             'virtual', 'public', 'private', 'protected', 'template', 'using', 'namespace',
-            'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
-            'static_cast', 'explicit', 'friend', 'wchar_t', 'typename', 'typeid', 'class',
-            'EDOM',	'ERANGE', 'FLT_RADIX', 'FLT_ROUNDS', 'FLT_DIG', 'DBL_DIG', 'LDBL_DIG',
+            'try', 'catch', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
+            'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class',
+            'EDOM', 'ERANGE', 'FLT_RADIX', 'FLT_ROUNDS', 'FLT_DIG', 'DBL_DIG', 'LDBL_DIG',
             'FLT_EPSILON', 'DBL_EPSILON', 'LDBL_EPSILON', 'FLT_MANT_DIG', 'DBL_MANT_DIG',
             'LDBL_MANT_DIG', 'FLT_MAX', 'DBL_MAX', 'LDBL_MAX', 'FLT_MAX_EXP', 'DBL_MAX_EXP',
             'LDBL_MAX_EXP', 'FLT_MIN', 'DBL_MIN', 'LDBL_MIN', 'FLT_MIN_EXP', 'DBL_MIN_EXP',
@@ -72,10 +72,10 @@ $language_data = array (
             'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
             'printf', 'fprintf', 'snprintf', 'sprintf', 'assert',
             'isalnum', 'isalpha', 'isdigit', 'iscntrl', 'isgraph', 'islower', 'isprint',
-            'ispunct', 'isspace', 'ispunct', 'isupper', 'isxdigit', 'tolower', 'toupper',
+            'ispunct', 'isspace', 'isupper', 'isxdigit', 'tolower', 'toupper',
             'exp', 'log', 'log10', 'pow', 'sqrt', 'ceil', 'floor', 'fabs', 'ldexp',
             'frexp', 'modf', 'fmod', 'sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'atan2',
-            'sinh', 'cosh', 'tanh', 'setjmp', 'longjmp', 'asin', 'acos', 'atan', 'atan2',
+            'sinh', 'cosh', 'tanh', 'setjmp', 'longjmp',
             'va_start', 'va_arg', 'va_end', 'offsetof', 'sizeof', 'fopen', 'freopen',
             'fflush', 'fclose', 'remove', 'rename', 'tmpfile', 'tmpname', 'setvbuf',
             'setbuf', 'vfprintf', 'vprintf', 'vsprintf', 'fscanf', 'scanf', 'sscanf',
@@ -91,7 +91,7 @@ $language_data = array (
             'asctime', 'ctime', 'gmtime', 'localtime', 'strftime'
             ),
         4 => array(//fonctions KLone usuelles
-            'io_printf', 'request_get_cookies', 'request_get_cookie', 'request_get_args', 'request_get_arg',
+            'request_get_cookies', 'request_get_cookie', 'request_get_args', 'request_get_arg',
             'request_io', 'request_get_uri', 'request_get_filename', 'request_get_query_string', 'request_get_path_info',
             'request_get_if_modified_since', 'request_get_http', 'request_get_client_request',
             'request_get_content_length', 'request_get_uploads', 'request_get_uploaded_file',
@@ -113,10 +113,10 @@ $language_data = array (
         5 => array(//types C++
             'auto', 'bool', 'char', 'const', 'double', 'float', 'int', 'long', 'longint',
             'register', 'short', 'shortint', 'signed', 'static', 'struct',
-            'typedef', 'union', 'unsigned', 'void', 'volatile', 'extern', 'jmp_buf',
+            'typedef', 'union', 'unsigned', 'void', 'volatile', 'jmp_buf',
             'signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t', 'FILE', 'fpos_t',
             'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm',
-             'string', 'wchar_t', 'time_t', 'FILE'
+            'string', 'wchar_t'
             ),
         6 => array(//mots-cles HTML
             'a', 'abbr', 'acronym', 'address', 'applet',
@@ -160,7 +160,7 @@ $language_data = array (
         7 => array(//autres mots-cles HTML
             'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis',
             'background', 'bgcolor', 'border',
-            'cellpadding', 'cellspacing', 'char', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
+            'cellpadding', 'cellspacing', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
             'data', 'datetime', 'declare', 'defer', 'dir', 'disabled',
             'enctype',
             'face', 'for', 'frame', 'frameborder',

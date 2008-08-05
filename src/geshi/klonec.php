@@ -48,7 +48,7 @@ $language_data = array (
         1 => array(//mots-cles C
             'if', 'return', 'while', 'case', 'continue', 'default',
             'do', 'else', 'for', 'switch', 'goto',
-            'null', 'false', 'break', 'true', 'enum', 'extern', 'inline', 'false'
+            'null', 'break', 'true', 'enum', 'extern', 'inline', 'false'
             ),
         2 => array(//mots-cles KLone
             '&lt;%=', '&lt;%!', '&lt;%', '%&gt;', 'out', 'request', 'response',
@@ -65,7 +65,7 @@ $language_data = array (
             'time', 'ctime', 'localtime', 'asctime', 'gmtime', 'difftime', 'date'
             ),
         4 => array(//fonctions KLone usuelles
-            'io_printf', 'request_get_cookies', 'request_get_cookie', 'request_get_args', 'request_get_arg',
+            'request_get_cookies', 'request_get_cookie', 'request_get_args', 'request_get_arg',
             'request_io', 'request_get_uri', 'request_get_filename', 'request_get_query_string', 'request_get_path_info',
             'request_get_if_modified_since', 'request_get_http', 'request_get_client_request',
             'request_get_content_length', 'request_get_uploads', 'request_get_uploaded_file',
@@ -132,7 +132,7 @@ $language_data = array (
         7 => array(//autres mots-cles HTML
             'abbr', 'accept-charset', 'accept', 'accesskey', 'action', 'align', 'alink', 'alt', 'archive', 'axis',
             'background', 'bgcolor', 'border',
-            'cellpadding', 'cellspacing', 'char', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
+            'cellpadding', 'cellspacing', 'char', 'charoff', 'charset', 'checked', 'cite', 'class', 'classid', 'clear', 'code', 'codebase', 'codetype', 'color', 'cols', 'colspan', 'compact', 'content', 'coords',
             'data', 'datetime', 'declare', 'defer', 'dir', 'disabled',
             'enctype',
             'face', 'for', 'frame', 'frameborder',
