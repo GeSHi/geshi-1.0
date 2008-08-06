@@ -2340,9 +2340,16 @@ class GeSHi {
                             while ($es_pos = strpos($string, $this->language_data['ESCAPE_CHAR'], $start)) {
                                 $new_string .= $this->hsc(substr($string, $start, $es_pos - $start))
                                               . "<span$escape_char_attributes>" . $escaped_escape_char;
-                                if ($string[$es_pos + 1] == "\n") {
+                                $es_char = $string[$es_pos + 1];
+                                if ($es_char == "\n") {
                                     // don't put a newline around newlines
                                     $new_string .= "</span>\n";
+                                } else if (!GESHI_PHP_PRE_433 && ord($es_char) >= 128) {
+                                    //This is an extended char (UTF8 or single byte)
+                                    //THIS IS A HACK TO WORK AROUND SF#2037598 ...
+                                    preg_match("/[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF][\x80-\xBF]|[\xF0-\xF7][\x80-\xBF][\x80-\xBF][\x80-\xBF]|./s", $string, $es_char_m, null, $es_pos+1);
+                                    $new_string .= $es_char_m[0] . '</span>';
+                                    $es_pos += strlen($es_char_m[0]) - 1;
                                 } else {
                                     $new_string .= $this->hsc($string[$es_pos + 1]) . '</span>';
                                 }
