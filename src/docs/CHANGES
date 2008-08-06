@@ -67,6 +67,7 @@ Version 1.0.8
      * Multichar Quotemarks sometimes had inconsistent behaviour (BenBE)
      * Support for multiple styles of strings depending on the starter (BenBE)
      * Properly handle escapes in strings, i.e. '\\' was not working properly before (milian)
+     * Fixed escape char support when an escape char is followed by multi-byte chars (SF#2037598, BenBE)
   -  Improved flexibility in language files (BenBE, milian)
      * Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
      * Removed explicit escaping of / in Regular Expressions (BenBE)
