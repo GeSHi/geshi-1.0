@@ -2347,7 +2347,9 @@ class GeSHi {
                                 } else if (!GESHI_PHP_PRE_433 && ord($es_char) >= 128) {
                                     //This is an extended char (UTF8 or single byte)
                                     //THIS IS A HACK TO WORK AROUND SF#2037598 ...
-                                    preg_match("/[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF][\x80-\xBF]|[\xF0-\xF7][\x80-\xBF][\x80-\xBF][\x80-\xBF]|./s", $string, $es_char_m, null, $es_pos+1);
+                                    //Improved UTF8 recognition according to:
+                                    //http://www.w3.org/International/questions/qa-forms-utf-8
+                                    preg_match("/[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2}|./s", $string, $es_char_m, null, $es_pos+1);
                                     $new_string .= $es_char_m[0] . '</span>';
                                     $es_pos += strlen($es_char_m[0]) - 1;
                                 } else {
