@@ -3985,6 +3985,13 @@ class GeSHi {
         if ($this->error) {
             return '';
         }
+
+        //Check if the style rearrangements have been processed ...
+        //This also does some preprocessing to check which style groups are useable ...
+        if(!isset($this->language_data['NUMBERS_CACHE'])) {
+            $this->build_style_cache();
+        }
+
         // First, work out what the selector should be. If there's an ID,
         // that should be used, the same for a class. Otherwise, a selector
         // of '' means that these styles will be applied anywhere
