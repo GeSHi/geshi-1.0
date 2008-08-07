@@ -1914,7 +1914,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!\d\/>)($regexp)(?!\|>)/i";
+                    "/(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
             }
         }
 
