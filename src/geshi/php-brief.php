@@ -58,6 +58,8 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'HARDQUOTE' => array("'", "'"),
     'HARDESCAPE' => array("\'"),
+    'NUMBERS' => GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
+                 GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             'include', 'require', 'include_once', 'require_once',
@@ -124,7 +126,10 @@ $language_data = array (
             'HARD' => 'color: #0000ff;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
+            0 => 'color: #cc66cc;',
+            GESHI_NUMBER_OCT_PREFIX => 'color: #208080;',
+            GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
+            GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
             ),
         'METHODS' => array(
             1 => 'color: #004000;',
