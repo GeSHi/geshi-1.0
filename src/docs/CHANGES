@@ -61,6 +61,7 @@ Version 1.0.8
   -  The overall_class is now up to the user, and the language-code is _always_ added as a class (milian)
   -  Fixed Economy Mode for GeSHi::get_stylesheet() - now it just makes so much more sense! (milian)
   -  Fixed Economy Mode when COMMENT_REGEXP are used (BenBE)
+  -  Changed the default encoding to use UTF-8, due to SF#2037598, BenBE)
   -  Improved overall string support:
      * Added support for multichar string delimiters (SF#1932083, BenBE)
      * Fixed problems of unfinished strings and comments producing invalid XHTML (SF#1996353, BenBE)

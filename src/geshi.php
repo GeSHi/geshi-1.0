@@ -506,10 +506,10 @@ class GeSHi {
 
     /**
      * The encoding to use for entity encoding
-     * NOTE: no longer used
+     * NOTE: Used with Escape Char Sequences to fix UTF-8 handling (cf. SF#2037598)
      * @var string
      */
-    var $encoding = 'ISO-8859-1';
+    var $encoding = 'utf-8';
 
     /**
      * Should keywords be linked?
@@ -1687,7 +1687,7 @@ class GeSHi {
      */
     function set_encoding($encoding) {
         if ($encoding) {
-          $this->encoding = $encoding;
+          $this->encoding = strtolower($encoding);
         }
     }
 
@@ -2344,14 +2344,12 @@ class GeSHi {
                                 if ($es_char == "\n") {
                                     // don't put a newline around newlines
                                     $new_string .= "</span>\n";
-                                } else if (!GESHI_PHP_PRE_433 && ord($es_char) >= 128) {
-                                    //This is an extended char (UTF8 or single byte)
-                                    //THIS IS A HACK TO WORK AROUND SF#2037598 ...
-                                    //Improved UTF8 recognition according to:
-                                    //http://www.w3.org/International/questions/qa-forms-utf-8
-                                    preg_match("/[\xC2-\xDF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}|\xED[\x80-\x9F][\x80-\xBF]|\xF0[\x90-\xBF][\x80-\xBF]{2}|[\xF1-\xF3][\x80-\xBF]{3}|\xF4[\x80-\x8F][\x80-\xBF]{2}|./s", $string, $es_char_m, null, $es_pos+1);
-                                    $new_string .= $es_char_m[0] . '</span>';
-                                    $es_pos += strlen($es_char_m[0]) - 1;
+                                } else if (ord($es_char) >= 128) {
+                                    //This is an non-ASCII char (UTF8 or single byte)
+                                    //This code tries to work around SF#2037598 ...
+                                    $es_char_m = mb_substr(substr($string, $es_pos+1, 16), 0, 1, $this->encoding);
+                                    $new_string .= $es_char_m . '</span>';
+                                    $es_pos += strlen($es_char_m) - 1;
                                 } else {
                                     $new_string .= $this->hsc($string[$es_pos + 1]) . '</span>';
                                 }
