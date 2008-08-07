@@ -71,6 +71,7 @@ Version 1.0.8
      * Fixed escape char support when an escape char is followed by multi-byte chars (SF#2037598, BenBE)
   -  Improved flexibility in language files (BenBE, milian)
      * Added PARSER_CONTROL for OOLANG method highlighting (SF#1923060, BenBE)
+     * Added possibility to define strict blocks using an Regexp (BenBE)
      * Removed explicit escaping of / in Regular Expressions (BenBE)
      * Ignoring empty keyword groups when highlighting (milian)
      * Make language_permissions configurable in language files via ['PARSER_CONTROL']['ENABLE_FLAGS']
