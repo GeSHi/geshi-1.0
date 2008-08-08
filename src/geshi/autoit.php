@@ -4,8 +4,10 @@
  * --------
  * Author: big_daddy (robert.i.anthony@gmail.com)
  * Copyright: (c) 2006 and to GESHi ;)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2006/01/26
+ *
+ * AutoIT language file for GeSHi.
  *
  * Current bugs & todo:
  * ----------
@@ -430,7 +432,9 @@ $language_data = array (
         1 => 'http://www.autoitscript.com/autoit3/docs/keywords.htm',
         2 => 'http://www.autoitscript.com/autoit3/docs/macros.htm',
         3 => 'http://www.autoitscript.com/autoit3/docs/functions/{FNAME}.htm',
-        4 => ''
+        4 => '',
+        5 => '',
+        6 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

@@ -6,7 +6,7 @@
  * Contributors:
  *  - Jack Lloyd (lloyd@randombit.net)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2004/06/04
  *
  * C language file for GeSHi.
@@ -60,6 +60,9 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
+    'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
+                 GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
+                 GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             'if', 'return', 'while', 'case', 'continue', 'default',
@@ -114,7 +117,14 @@ $language_data = array (
             0 => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
+            0 => 'color: #0000dd;',
+            GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
+            GESHI_NUMBER_OCT_PREFIX => 'color: #208080;',
+            GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
+            GESHI_NUMBER_FLT_SCI_SHORT => 'color:#800080;',
+            GESHI_NUMBER_FLT_SCI_ZERO => 'color:#800080;',
+            GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
+            GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
             ),
         'METHODS' => array(
             1 => 'color: #202020;',

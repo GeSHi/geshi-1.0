@@ -4,7 +4,7 @@
  * -------
  * Author: Alessandro Staltari (staltari@geocities.com)
  * Copyright: (c) 2005 Alessandro Staltari (http://www.geocities.com/SiliconValley/Vista/8155/)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2005/07/05
  *
  * DOS language file for GeSHi.
@@ -100,10 +100,10 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-            1 => false,
-            2 => false,
-            3 => false,
-            4 => false
+        1 => false,
+        2 => false,
+        3 => false,
+        4 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -113,8 +113,7 @@ $language_data = array (
             4 => 'color: #0000ff; font-weight: bold;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080; font-style: italic;',
-            2 => 'color: #808080; font-style: italic;'
+            1 => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #ff0000; font-weight: bold;'
@@ -146,11 +145,11 @@ $language_data = array (
     'OBJECT_SPLITTERS' => array(
         ),
     'URLS' => array(
-         1 => 'http://www.ss64.com/nt/{FNAMEL}.html',
-         2 => 'http://www.ss64.com/nt/{FNAMEL}.html',
-         3 => 'http://www.ss64.com/nt/{FNAMEL}.html',
-         4 => 'http://www.ss64.com/nt/{FNAMEL}.html'
-         ),
+        1 => 'http://www.ss64.com/nt/{FNAMEL}.html',
+        2 => 'http://www.ss64.com/nt/{FNAMEL}.html',
+        3 => 'http://www.ss64.com/nt/{FNAMEL}.html',
+        4 => 'http://www.ss64.com/nt/{FNAMEL}.html'
+        ),
     'REGEXPS' => array(
         /* Label */
         0 => array(

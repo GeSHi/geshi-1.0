@@ -4,7 +4,7 @@
  * ----------------
  * Author: Jordi Boggiano (j.boggiano@seld.be)
  * Copyright: (c) 2007 Jordi Boggiano (http://www.seld.be/), Benny Baumann (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2007/11/26
  *
  * ActionScript3 language file for GeSHi.
@@ -66,7 +66,7 @@ $language_data = array (
             'with', 'while', 'void', 'undefined', 'typeof', 'try', 'true',
             'throw', 'this', 'switch', 'super', 'set', 'return', 'public', 'protected',
             'private', 'null', 'new', 'is', 'internal', 'instanceof', 'in',
-            'import', 'if', 'get', 'for', 'false', 'else', 'each', 'each', 'do',
+            'import', 'if', 'get', 'for', 'false', 'else', 'each', 'do',
             'delete', 'default', 'continue', 'catch', 'case', 'break', 'as'
             ),
         2 => array(
@@ -443,7 +443,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://www.google.com/search?q={FNAMEL}%20inurl:http://livedocs.adobe.com/flex/201/langref/%20inurl:{FNAMEL}.html&filter=0&num=100&btnI=lucky',
+        5 => 'http://www.google.com/search?q={FNAMEL}%20inurl:http://livedocs.adobe.com/flex/201/langref/%20inurl:{FNAMEL}.html&amp;filter=0&amp;num=100&amp;btnI=lucky',
         6 => '',
         7 => '',
         8 => ''

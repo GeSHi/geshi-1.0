@@ -4,7 +4,7 @@
  * --------
  * Author: Andres Picazo (andres@andrespicazo.com)
  * Copyright: (c) 2007 Andres Picazo
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2004/06/04
  *
  * ABAP language file for GeSHi.
@@ -40,6 +40,7 @@
 $language_data = array (
     'LANG_NAME' => 'ABAP',
     'COMMENT_SINGLE' => array(1 => '"', 2 => '*'),
+    'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => 0,
     'QUOTEMARKS' => array("'"),
     'ESCAPE_CHAR' => '',
@@ -62,7 +63,7 @@ $language_data = array (
             ),
         4 => array(
             'type ref to', 'type', 'begin of',  'end of', 'like', 'into',
-            'from', 'where', 'order by', 'with key', 'into', 'string', 'separated by',
+            'from', 'where', 'order by', 'with key', 'string', 'separated by',
             'exporting', 'importing', 'to upper case', 'to', 'exceptions', 'tables',
             'using', 'changing'
             ),

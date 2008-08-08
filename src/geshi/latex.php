@@ -4,7 +4,7 @@
  * -----
  * Author: efi, Matthias Pospiech (mail@matthiaspospiech.de)
  * Copyright: (c) 2006 efi, Matthias Pospiech (mail@matthiaspospiech.de), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2006/09/23
  *
  * LaTeX language file for GeSHi.
@@ -20,7 +20,7 @@
  *
  *************************************************************************************
  *
- *   This file is not yet part of GeSHi. (and is not compatible to the 1.1+ branch)
+ *     This file is part of GeSHi.
  *
  *   GeSHi is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,9 @@
 
 $language_data = array (
     'LANG_NAME' => 'LaTeX',
-    'COMMENT_SINGLE' => array(1 => '%'),
+    'COMMENT_SINGLE' => array(
+        1 => '%'
+        ),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
@@ -52,10 +54,6 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
-        2 => false,
-        3 => false,
-        4 => false,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -103,13 +101,13 @@ $language_data = array (
     'REGEXPS' => array(
         // Math inner
         1 => array(
-            GESHI_SEARCH => "(\\\\begin\\{)(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign )(\\})(.*)(\\\\end\\{)(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)(\\})",
-            GESHI_REPLACE => '\\4',
-            GESHI_MODIFIERS => 's',
+            GESHI_SEARCH => "(\\\\begin\\{)(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)(\\})(.*)(\\\\end\\{)(\\2)(\\})",
+            GESHI_REPLACE => '\4',
+            GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '\1\2\3',
             GESHI_AFTER => '\5\6\7'
             ),
-        //  \keywords
+        // \keywords
         2 => array(
             GESHI_SEARCH => "(\\\\)([a-zA-Z]+)",
             GESHI_REPLACE => '\1\2',
@@ -121,23 +119,23 @@ $language_data = array (
         3 => array(
             GESHI_SEARCH => "(\\{)(.*)(\\})",
             GESHI_REPLACE => '\2',
-            GESHI_MODIFIERS => 'U',
+            GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
             ),
-        // [Option]
+        // [options]
         4 => array(
             GESHI_SEARCH => "(\[)(.+)(\])",
             GESHI_REPLACE => '\2',
-            GESHI_MODIFIERS => 'U',
+            GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
             ),
-        // Mathe  mit $ ... $
+        // Math mode with $ ... $
         5 => array(
             GESHI_SEARCH => "(\\$)(.+)(\\$)",
             GESHI_REPLACE => '\1\2\3',
-            GESHI_MODIFIERS => 'U',
+            GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
@@ -147,7 +145,7 @@ $language_data = array (
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\2'
+            GESHI_AFTER => ''
             ),
         // Structure end
         7 => array(
@@ -155,15 +153,15 @@ $language_data = array (
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\2'
+            GESHI_AFTER => ''
             ),
-        //Structure: Label
+        // Structure: Label
         8 => array(
             GESHI_SEARCH => "(\\\\)(label|pageref|ref|cite)(?=[^a-zA-Z])",
             GESHI_REPLACE => '\\1\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\3'
+            GESHI_AFTER => ''
             ),
         // Structure: sections
         /*9 => array(
@@ -198,7 +196,7 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+            )
 
 // ---------------------------------------------
         ),

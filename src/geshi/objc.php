@@ -288,7 +288,8 @@ $language_data = array (
 		5 => true,
 		6 => true,
 		7 => true,
-		8 => true
+		8 => true,
+		9 => true
         ),
 	// Define the colors for the groups listed above
     'STYLES' => array(

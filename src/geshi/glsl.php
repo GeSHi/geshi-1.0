@@ -4,7 +4,7 @@
  * -----
  * Author: Benny Baumann (BenBE@omorphia.de)
  * Copyright: (c) 2008 Benny Baumann (BenBE@omorphia.de)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2008/03/20
  *
  * glSlang language file for GeSHi.
@@ -189,11 +189,11 @@ $language_data = array (
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'OOLANG' => array(
-           'MATCH_BEFORE' => '',
-           'MATCH_AFTER' => '[a-zA-Z_][a-zA-Z0-9_]*',
-           'MATCH_SPACES' => '[\s]*'
-            )
+            'MATCH_BEFORE' => '',
+            'MATCH_AFTER' => '[a-zA-Z_][a-zA-Z0-9_]*',
+            'MATCH_SPACES' => '[\s]*'
         )
+    )
 );
 
 ?>

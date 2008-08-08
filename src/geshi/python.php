@@ -4,7 +4,7 @@
  * ----------
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2004/08/30
  *
  * Python language file for GeSHi.
@@ -71,7 +71,7 @@ $language_data = array (
             'file', 'filter', 'float', 'frozenset', 'getattr', 'globals', 'hasattr', 'hash', 'help',
             'hex', 'id', 'input', 'int', 'isinstance', 'issubclass', 'iter', 'len', 'list', 'locals',
             'long', 'map', 'max', 'min', 'object', 'oct', 'open', 'ord', 'pow', 'property', 'range',
-            'raw_input', 'reduce', 'reload', 'repr', 'reversed', 'round', 'set', 'setattr', 'slice',
+            'raw_input', 'reduce', 'reload', 'reversed', 'round', 'set', 'setattr', 'slice',
             'sorted', 'staticmethod', 'str', 'sum', 'super', 'tuple', 'type', 'unichr', 'unicode',
             'vars', 'xrange', 'zip',
             // Built-in constants: http://python.org/doc/current/lib/node35.html
@@ -99,7 +99,7 @@ $language_data = array (
             'array', 'asynchat', 'asyncore', 'atexit', 'audioop', 'base64', 'BaseHTTPServer',
             'Bastion', 'binascii', 'binhex', 'bisect', 'bsddb', 'bz2', 'calendar', 'cd', 'cgi',
             'CGIHTTPServer', 'cgitb', 'chunk', 'cmath', 'cmd', 'code', 'codecs', 'codeop',
-            'collections', 'colorsys', 'commands', 'compileall', 'compiler', 'compiler',
+            'collections', 'colorsys', 'commands', 'compileall', 'compiler',
             'ConfigParser', 'Cookie', 'cookielib', 'copy', 'copy_reg', 'cPickle', 'crypt',
             'cStringIO', 'csv', 'curses', 'datetime', 'dbhash', 'dbm', 'decimal', 'DEVICE',
             'difflib', 'dircache', 'dis', 'distutils', 'dl', 'doctest', 'DocXMLRPCServer', 'dumbdbm',
@@ -161,10 +161,9 @@ $language_data = array (
             '__long__','__lshift__',
             '__mod__','__mul__','__neg__','__oct__','__or__','__pos__','__pow__',
             '__radd__','__rdiv__','__rdivmod__','__rmod__','__rpow__','__rlshift__','__rrshift__',
-            '__rshift__','__rsub__','__rmul__','__repr__','__rand__','__rxor__','__ror__',
+            '__rshift__','__rsub__','__rmul__','__rand__','__rxor__','__ror__',
             '__sub__','__xor__'
             )
-
         ),
     'SYMBOLS' => array(
             '(', ')', '[', ']', '{', '}', '*', '&', '%', '!', ';', '<', '>', '?', '`'
@@ -211,6 +210,10 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

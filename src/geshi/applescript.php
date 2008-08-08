@@ -4,7 +4,7 @@
  * --------
  * Author: Stephan Klimek (http://www.initware.org)
  * Copyright: Stephan Klimek (http://www.initware.org)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2005/07/20
  *
  * AppleScript language file for GeSHi.
@@ -42,12 +42,16 @@ $language_data = array (
     'LANG_NAME' => 'AppleScript',
     'COMMENT_SINGLE' => array(1 => '--'),
     'COMMENT_MULTI' => array( '(*' => '*)'),
+    'COMMENT_REGEXP' => array(
+        2 => '/(?<=[a-z])\'/i',
+        3 => '/(?<![a-z])\'.*?\'/i',
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"',"'"),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            'script','property','prop','end','copy','to','set','global','local','on','to','of',
+            'script','property','prop','end','to','set','global','local','on','of',
             'in','given','with','without','return','continue','tell','if','then','else','repeat',
             'times','while','until','from','exit','try','error','considering','ignoring','timeout',
             'transaction','my','get','put','into','is'
@@ -87,6 +91,8 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
+            2 => '',
+            3 => 'color: #ff0000;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -116,6 +122,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => '',
+        2 => '',
         3 => ''
         ),
     'OOLANG' => true,

@@ -4,10 +4,10 @@
  * -------
  * Author: Sean Hanna (smokingrope@gmail.com)
  * Copyright: (c) 2006 Sean Hanna
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 03/15/2006
  *
- * Microsoft Registry Editor Language File.
+ * Microsoft Registry Editor language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -67,9 +67,9 @@ $language_data = array (
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
-        1 => array(),
-        2 => array()
-        /* Registry Key Constants Not Used
+//        1 => array(),
+//        2 => array(),
+        /* Registry Key Constants Not Used */
         3 => array(
             'HKEY_LOCAL_MACHINE',
             'HKEY_CLASSES_ROOT',
@@ -78,20 +78,22 @@ $language_data = array (
             'HKEY_CURRENT_CONFIG',
             'HKEY_DYN_DATA',
             'HKLM', 'HKCR', 'HKCU', 'HKU', 'HKCC', 'HKDD'
-            )/***/
+            )
         ),
     'SYMBOLS' => array(
         '='
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
-        2 => false
+//        1 => false,
+//        2 => false,
+        3 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #00CCFF;',
-            2 => 'color: #0000FF;'
+//            1 => 'color: #00CCFF;',
+//            2 => 'color: #0000FF;',
+            3 => 'color: #800000;'
             ),
         'COMMENTS' => array(
             1 => 'color: #009900;'
@@ -120,10 +122,15 @@ $language_data = array (
             3 => '',
             4 => 'color: #0000FF;',
             5 => '',
-             6 => '',
-             7 => '',
-             8 => 'color: #FF6600;',
+            6 => '',
+            7 => '',
+            8 => 'color: #FF6600;',
             )
+        ),
+    'URLS' => array(
+//        1 => '',
+//        2 => '',
+        3 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

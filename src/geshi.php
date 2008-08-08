@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.7.22');
+define('GESHI_VERSION', '1.0.8');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -70,6 +70,20 @@ define('GESHI_HEADER_DIV', 1);
 define('GESHI_HEADER_PRE', 2);
 /** Use a pre to wrap lines when line numbers are enabled or to wrap the whole code. */
 define('GESHI_HEADER_PRE_VALID', 3);
+/**
+ * Use a "table" to surround the source:
+ *
+ *  <table>
+ *    <thead><tr><td colspan="2">$header</td></tr></thead>
+ *    <tbody><tr><td><pre>$linenumbers</pre></td><td><pre>$code></pre></td></tr></tbody>
+ *    <tfooter><tr><td colspan="2">$footer</td></tr></tfoot>
+ *  </table>
+ *
+ * this is essentially only a workaround for Firefox, see sf#1651996 or take a look at
+ * https://bugzilla.mozilla.org/show_bug.cgi?id=365805
+ * @note when linenumbers are disabled this is essentially the same as GESHI_HEADER_PRE
+ */
+define('GESHI_HEADER_PRE_TABLE', 4);
 
 // Capatalisation constants
 /** Lowercase keywords found */
@@ -104,7 +118,7 @@ define('GESHI_END_IMPORTANT', '<END GeSHi>');
 /** Strict mode never applies (this is the most common) */
 define('GESHI_NEVER', 0);
 /** Strict mode *might* apply, and can be enabled or
-    disabled by {@link GeSHi::enable_strict_mode()} */
+    disabled by {@link GeSHi->enable_strict_mode()} */
 define('GESHI_MAYBE', 1);
 /** Strict mode always applies */
 define('GESHI_ALWAYS', 2);
@@ -165,7 +179,7 @@ if (!function_exists('stripos')) {
 
 /** some old PHP / PCRE subpatterns only support up to xxx subpatterns in
     regular expressions. Set this to false if your PCRE lib is up to date
-    @see GeSHi::optimize_regexp_list()
+    @see GeSHi->optimize_regexp_list()
     TODO: are really the subpatterns the culprit or the overall length of the pattern?
     **/
 define('GESHI_MAX_PCRE_SUBPATTERNS', 500);
@@ -208,9 +222,9 @@ define('GESHI_ERROR_NO_INPUT', 1);
 define('GESHI_ERROR_NO_SUCH_LANG', 2);
 /** GeSHi could not open a file for reading (generally a language file) */
 define('GESHI_ERROR_FILE_NOT_READABLE', 3);
-/** The header type passed to {@link GeSHi::set_header_type()} was invalid */
+/** The header type passed to {@link GeSHi->set_header_type()} was invalid */
 define('GESHI_ERROR_INVALID_HEADER_TYPE', 4);
-/** The line number type passed to {@link GeSHi::enable_line_numbers()} was invalid */
+/** The line number type passed to {@link GeSHi->enable_line_numbers()} was invalid */
 define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
 /**#@-*/
 
@@ -415,7 +429,7 @@ class GeSHi {
      * The overall style for this code block
      * @var string
      */
-    var $overall_style = '';
+    var $overall_style = 'font-family:monospace;';
 
     /**
      *  The style for the actual code
@@ -446,6 +460,12 @@ class GeSHi {
      * @var string
      */
     var $line_style2 = 'font-weight: bold;';
+
+    /**
+     * Style for line numbers when GESHI_HEADER_PRE_TABLE is chosen
+     * @var string
+     */
+    var $table_linenumber_style = 'width:1px;font-weight: normal;text-align:right;margin:0;padding:0 2px;';
 
     /**
      * Flag for how line numbers are displayed
@@ -486,10 +506,10 @@ class GeSHi {
 
     /**
      * The encoding to use for entity encoding
-     * NOTE: no longer used
+     * NOTE: Used with Escape Char Sequences to fix UTF-8 handling (cf. SF#2037598)
      * @var string
      */
-    var $encoding = 'ISO-8859-1';
+    var $encoding = 'utf-8';
 
     /**
      * Should keywords be linked?
@@ -530,6 +550,18 @@ class GeSHi {
     var $_kw_replace_group = 0;
     var $_rx_key = 0;
 
+    /**
+     * some "callback parameters" for handle_multiline_regexps
+     *
+     * @since 1.0.8
+     * @access private
+     * @var string
+     */
+    var $_hmr_before = '';
+    var $_hmr_replace = '';
+    var $_hmr_after = '';
+    var $_hmr_key = 0;
+
     /**#@-*/
 
     /**
@@ -543,13 +575,17 @@ class GeSHi {
      *               should be automatically set correctly. If you have
      *               renamed the language directory however, you will
      *               still need to set the path using this parameter or
-     *               {@link GeSHi::set_language_path()}
+     *               {@link GeSHi->set_language_path()}
      * @since 1.0.0
      */
-    function GeSHi($source, $language, $path = '') {
-        $this->set_source($source);
+    function GeSHi($source = '', $language = '', $path = '') {
+        if (!empty($source)) {
+            $this->set_source($source);
+        }
+        if (!empty($language)) {
+            $this->set_language($language);
+        }
         $this->set_language_path($path);
-        $this->set_language($language);
     }
 
     /**
@@ -678,19 +714,13 @@ class GeSHi {
     function set_header_type($type) {
         //Check if we got a valid header type
         if (!in_array($type, array(GESHI_HEADER_NONE, GESHI_HEADER_DIV,
-            GESHI_HEADER_PRE, GESHI_HEADER_PRE_VALID))) {
+            GESHI_HEADER_PRE, GESHI_HEADER_PRE_VALID, GESHI_HEADER_PRE_TABLE))) {
             $this->error = GESHI_ERROR_INVALID_HEADER_TYPE;
             return;
         }
 
         //Set that new header type
         $this->header_type = $type;
-
-        // Set a default overall style if the header is a <div>
-        if ((GESHI_HEADER_DIV == $type || GESHI_HEADER_PRE_VALID == $type) &&
-            !$this->overall_style) {
-            $this->overall_style = 'font-family: monospace;';
-        }
     }
 
     /**
@@ -836,7 +866,7 @@ class GeSHi {
     }
 
     /**
-     * Get current setting for multiline spans, see GeSHi::
+     * Get current setting for multiline spans, see GeSHi->enable_multiline_span().
      *
      * @see enable_multiline_span
      * @return bool
@@ -1212,7 +1242,7 @@ class GeSHi {
      */
     function enable_strict_mode($mode = true) {
         if (GESHI_MAYBE == $this->language_data['STRICT_MODE_APPLIES']) {
-            $this->strict_mode = ($mode) ? true : false;
+            $this->strict_mode = ($mode) ? GESHI_ALWAYS : GESHI_NEVER;
         }
     }
 
@@ -1370,8 +1400,8 @@ class GeSHi {
      * @param int    The key of the keyword group to remove the keyword from
      * @param string The word to remove from the keyword group
      * @param bool   Wether to automatically recompile the optimized regexp list or not.
-     *               Note: if you set this to false and @see GeSHi::parse_code() was already called once,
-     *               for the current language, you have to manually call @see GeSHi::optimize_keyword_group()
+     *               Note: if you set this to false and @see GeSHi->parse_code() was already called once,
+     *               for the current language, you have to manually call @see GeSHi->optimize_keyword_group()
      *               or the removed keyword will stay in cache and still be highlighted! On the other hand
      *               it might be too expensive to recompile the regexp list for every removal if you want to
      *               remove a lot of keywords.
@@ -1442,7 +1472,7 @@ class GeSHi {
      */
     function optimize_keyword_group($key) {
         $this->language_data['CACHED_KEYWORD_LISTS'][$key] =
-            GeSHi::optimize_regexp_list($this->language_data['KEYWORDS'][$key]);
+            $this->optimize_regexp_list($this->language_data['KEYWORDS'][$key]);
     }
 
     /**
@@ -1657,7 +1687,7 @@ class GeSHi {
      */
     function set_encoding($encoding) {
         if ($encoding) {
-          $this->encoding = $encoding;
+          $this->encoding = strtolower($encoding);
         }
     }
 
@@ -1746,7 +1776,7 @@ class GeSHi {
             foreach ($this->language_data['SYMBOLS'] as $key => $symbols) {
                 if (is_array($symbols)) {
                     foreach ($symbols as $sym) {
-                        $sym = GeSHi::hsc($sym);
+                        $sym = $this->hsc($sym);
                         if (!isset($this->language_data['SYMBOL_DATA'][$sym])) {
                             $this->language_data['SYMBOL_DATA'][$sym] = $key;
                             if (isset($sym[1])) { // multiple chars
@@ -1762,7 +1792,7 @@ class GeSHi {
                         }
                     }
                 } else {
-                    $symbols = GeSHi::hsc($symbols);
+                    $symbols = $this->hsc($symbols);
                     if (!isset($this->language_data['SYMBOL_DATA'][$symbols])) {
                         $this->language_data['SYMBOL_DATA'][$symbols] = 0;
                         if (isset($symbols[1])) { // multiple chars
@@ -1838,9 +1868,9 @@ class GeSHi {
             //All this formats are matched case-insensitively!
             static $numbers_format = array(
                 GESHI_NUMBER_INT_BASIC =>
-                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?(?![0-9a-z\.])',
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])[1-9]\d*?(?![0-9a-z\.])',
                 GESHI_NUMBER_INT_CSTYLE =>
-                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])\d+?l(?![0-9a-z\.])',
+                    '(?<![0-9a-z_\.%])(?<![\d\.]e[+\-])[1-9]\d*?l(?![0-9a-z\.])',
                 GESHI_NUMBER_BIN_SUFFIX =>
                     '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])[01]+?b(?![0-9a-z\.])',
                 GESHI_NUMBER_BIN_PREFIX_PERCENT =>
@@ -1858,11 +1888,11 @@ class GeSHi {
                 GESHI_NUMBER_FLT_NONSCI =>
                     '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\d+?\.\d+?(?![0-9a-z\.])',
                 GESHI_NUMBER_FLT_NONSCI_F =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)f(?![0-9a-z\.])',
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)?|\.\d+?)f(?![0-9a-z\.])',
                 GESHI_NUMBER_FLT_SCI_SHORT =>
                     '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])\.\d+?(?:e[+\-]?\d+?)?(?![0-9a-z\.])',
                 GESHI_NUMBER_FLT_SCI_ZERO =>
-                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)|\.\d+?)(?:e[+\-]?\d+?)?(?![0-9a-z\.])'
+                    '(?<![0-9a-z_\.])(?<![\d\.]e[+\-])(?:\d+?(?:\.\d*?)?|\.\d+?)(?:e[+\-]?\d+?)?(?![0-9a-z\.])'
                 );
 
             //At this step we have an associative array with flag groups for a
@@ -1884,7 +1914,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!\d\/>)($regexp)(?!\|>)/i";
+                    "/(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
             }
         }
 
@@ -1908,7 +1938,7 @@ class GeSHi {
         // Firstly, if there is an error, we won't highlight
         if ($this->error) {
             //Escape the source for output
-            $result = GeSHi::hsc($this->source);
+            $result = $this->hsc($this->source);
 
             //This fix is related to SF#1923020, but has to be applied regardless of
             //actually highlighting symbols.
@@ -1935,11 +1965,6 @@ class GeSHi {
         // Initialise various stuff
         $length           = strlen($code);
         $COMMENT_MATCHED  = false;
-        // Turn highlighting on if strict mode doesn't apply to this language
-        $HIGHLIGHTING_ON  = ( !$this->strict_mode ) ? true : '';
-        // Whether to highlight inside a block of code
-        $HIGHLIGHT_INSIDE_STRICT = false;
-        $HARDQUOTE_OPEN = false;
         $stuff_to_parse   = '';
         $endresult        = '';
 
@@ -1962,31 +1987,68 @@ class GeSHi {
             while ($i < $length) {
                 $next_match_pos = $length + 1; // never true
                 foreach ($delim_copy as $dk => $delimiters) {
-                    foreach ($delimiters as $open => $close) {
-                        // make sure the cache is setup properly
-                        if (!isset($matches[$dk][$open])) {
-                            $matches[$dk][$open] = array(
-                                'next_match' => -1,
-                                'close_strlen' => strlen($close),
-                                'open_strlen' => strlen($open),
-                                'dk' => $dk,
-                                'close' => $close
-                            );
-                        }
-                        // Get the next little bit for this opening string
-                        if ($matches[$dk][$open]['next_match'] < $i) {
-                            // only find the next pos if it was not already cached
-                            $open_pos = strpos($code, $open, $i);
-                            if ($open_pos === false) {
-                                // no match for this delimiter ever
-                                unset($delim_copy[$dk][$open]);
-                                continue;
+                    if(is_array($delimiters)) {
+                        foreach ($delimiters as $open => $close) {
+                            // make sure the cache is setup properly
+                            if (!isset($matches[$dk][$open])) {
+                                $matches[$dk][$open] = array(
+                                    'next_match' => -1,
+                                    'dk' => $dk,
+
+                                    'open' => $open, // needed for grouping of adjacent code blocks (see below)
+                                    'open_strlen' => strlen($open),
+
+                                    'close' => $close,
+                                    'close_strlen' => strlen($close),
+                                );
                             }
-                            $matches[$dk][$open]['next_match'] = $open_pos;
+                            // Get the next little bit for this opening string
+                            if ($matches[$dk][$open]['next_match'] < $i) {
+                                // only find the next pos if it was not already cached
+                                $open_pos = strpos($code, $open, $i);
+                                if ($open_pos === false) {
+                                    // no match for this delimiter ever
+                                    unset($delim_copy[$dk][$open]);
+                                    continue;
+                                }
+                                $matches[$dk][$open]['next_match'] = $open_pos;
+                            }
+                            if ($matches[$dk][$open]['next_match'] < $next_match_pos) {
+                                //So we got a new match, update the close_pos
+                                $matches[$dk][$open]['close_pos'] =
+                                    strpos($code, $close, $matches[$dk][$open]['next_match']+1);
+
+                                $next_match_pointer =& $matches[$dk][$open];
+                                $next_match_pos = $matches[$dk][$open]['next_match'];
+                            }
                         }
-                        if ($matches[$dk][$open]['next_match'] < $next_match_pos) {
-                            $next_match_pointer =& $matches[$dk][$open];
-                            $next_match_pos = $matches[$dk][$open]['next_match'];
+                    } else {
+                        //So we should match an RegExp as Strict Block ...
+                        /**
+                         * The value in $delimiters is expected to be an RegExp
+                         * containing exactly 2 matching groups:
+                         *  - Group 1 is the opener
+                         *  - Group 2 is the closer
+                         */
+                        if(!GESHI_PHP_PRE_433 && //Needs proper rewrite to work with PHP >=4.3.0; 4.3.3 is guaranteed to work.
+                            preg_match($delimiters, $code, $matches_rx, PREG_OFFSET_CAPTURE, $i)) {
+                            //We got a match ...
+                            $matches[$dk] = array(
+                                'next_match' => $matches_rx[1][1],
+                                'dk' => $dk,
+
+                                'close_strlen' => strlen($matches_rx[2][0]),
+                                'close_pos' => $matches_rx[2][1],
+                                );
+                        } else {
+                            // no match for this delimiter ever
+                            unset($delim_copy[$dk]);
+                            continue;
+                        }
+
+                        if ($matches[$dk]['next_match'] <= $next_match_pos) {
+                            $next_match_pointer =& $matches[$dk];
+                            $next_match_pos = $matches[$dk]['next_match'];
                         }
                     }
                 }
@@ -1995,26 +2057,77 @@ class GeSHi {
                     1 => substr($code, $i, $next_match_pos - $i)
                 );
                 ++$k;
+
                 if ($next_match_pos > $length) {
                     // out of bounds means no next match was found
                     break;
                 }
+
                 // highlightable code
-                $close_pos = strpos($code, $next_match_pointer['close'], $next_match_pos + $next_match_pointer['open_strlen']);
                 $parts[$k][0] = $next_match_pointer['dk'];
+
+                //Only combine for non-rx script blocks
+                if(is_array($delim_copy[$next_match_pointer['dk']])) {
+                    // group adjacent script blocks, e.g. <foobar><asdf> should be one block, not three!
+                    $i = $next_match_pos + $next_match_pointer['open_strlen'];
+                    while (true) {
+                        $close_pos = strpos($code, $next_match_pointer['close'], $i);
+                        if ($close_pos == false) {
+                            break;
+                        }
+                        $i = $close_pos + $next_match_pointer['close_strlen'];
+                        if ($i == $length) {
+                            break;
+                        }
+                        if ($code[$i] == $next_match_pointer['open'][0] && ($next_match_pointer['open_strlen'] == 1 ||
+                            substr($code, $i, $next_match_pointer['open_strlen']) == $next_match_pointer['open'])) {
+                            // merge adjacent but make sure we don't merge things like <tag><!-- comment -->
+                            foreach ($matches as $submatches) {
+                                foreach ($submatches as $match) {
+                                    if ($match['next_match'] == $i) {
+                                        // a different block already matches here!
+                                        break 3;
+                                    }
+                                }
+                            }
+                        } else {
+                            break;
+                        }
+                    }
+                } else {
+                    $close_pos = $next_match_pointer['close_pos'] + $next_match_pointer['close_strlen'];
+                    $i = $close_pos;
+                }
+
                 if ($close_pos === false) {
                     // no closing delimiter found!
                     $parts[$k][1] = substr($code, $next_match_pos);
                     ++$k;
                     break;
                 } else {
-                    $i = $close_pos + $next_match_pointer['close_strlen'];
                     $parts[$k][1] = substr($code, $next_match_pos, $i - $next_match_pos);
                     ++$k;
                 }
             }
             unset($delim_copy, $next_match_pointer, $next_match_pos, $matches);
             $num_parts = $k;
+
+            if ($num_parts == 1 && $this->strict_mode == GESHI_MAYBE) {
+                // when we have only one part, we don't have anything to highlight at all.
+                // if we have a "maybe" strict language, this should be handled as highlightable code
+                $parts = array(
+                    0 => array(
+                        0 => '',
+                        1 => ''
+                    ),
+                    1 => array(
+                        0 => null,
+                        1 => $parts[0][1]
+                    )
+                );
+                $num_parts = 2;
+            }
+
         } else {
             // Not strict mode - simply dump the source into
             // the array at index 1 (the first highlightable block)
@@ -2024,7 +2137,7 @@ class GeSHi {
                     1 => ''
                 ),
                 1 => array(
-                    0 => '',
+                    0 => null,
                     1 => $code
                 )
             );
@@ -2044,7 +2157,7 @@ class GeSHi {
             !empty($this->highlight_extra_lines) || !$this->allow_multiline_span;
 
         //preload the escape char for faster checking ...
-        $escaped_escape_char = GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
+        $escaped_escape_char = $this->hsc($this->language_data['ESCAPE_CHAR']);
 
         // this is used for single-line comments
         $sc_disallowed_before = "";
@@ -2086,7 +2199,7 @@ class GeSHi {
             // If this block should be highlighted...
             if (!($key & 1)) {
                 // Else not a block to highlight
-                $endresult .= GeSHi::hsc($parts[$key][1]);
+                $endresult .= $this->hsc($parts[$key][1]);
                 unset($parts[$key]);
                 continue;
             }
@@ -2094,10 +2207,11 @@ class GeSHi {
             $result = '';
             $part = $parts[$key][1];
 
-            if ($this->strict_mode) {
+            $highlight_part = true;
+            if ($this->strict_mode && !is_null($parts[$key][0])) {
                 // get the class key for this block of code
                 $script_key = $parts[$key][0];
-
+                $highlight_part = $this->language_data['HIGHLIGHT_STRICT_BLOCK'][$script_key];
                 if ($this->language_data['STYLES']['SCRIPT'][$script_key] != '' &&
                     $this->lexic_permissions['SCRIPT']) {
                     // Add a span element around the source to
@@ -2113,7 +2227,7 @@ class GeSHi {
                 }
             }
 
-            if (!$this->strict_mode || $this->language_data['HIGHLIGHT_STRICT_BLOCK'][$script_key]) {
+            if ($highlight_part) {
                 // Now, highlight the code in this block. This code
                 // is really the engine of GeSHi (along with the method
                 // parse_non_string_part).
@@ -2224,20 +2338,45 @@ class GeSHi {
                             $start = 0;
                             $new_string = '';
                             while ($es_pos = strpos($string, $this->language_data['ESCAPE_CHAR'], $start)) {
-                                $new_string .= GeSHi::hsc(substr($string, $start, $es_pos - $start))
+                                $new_string .= $this->hsc(substr($string, $start, $es_pos - $start))
                                               . "<span$escape_char_attributes>" . $escaped_escape_char;
-                                if ($string[$es_pos + 1] == "\n") {
+                                $es_char = $string[$es_pos + 1];
+                                if ($es_char == "\n") {
                                     // don't put a newline around newlines
                                     $new_string .= "</span>\n";
+                                } else if (ord($es_char) >= 128) {
+                                    //This is an non-ASCII char (UTF8 or single byte)
+                                    //This code tries to work around SF#2037598 ...
+                                    if(function_exists('mb_substr')) {
+                                        $es_char_m = mb_substr(substr($string, $es_pos+1, 16), 0, 1, $this->encoding);
+                                        $new_string .= $es_char_m . '</span>';
+                                    } else if (!GESHI_PHP_PRE_433 && 'utf-8' == $this->encoding) {
+                                        if(preg_match("/[\xC2-\xDF][\x80-\xBF]".
+                                            "|\xE0[\xA0-\xBF][\x80-\xBF]".
+                                            "|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}".
+                                            "|\xED[\x80-\x9F][\x80-\xBF]".
+                                            "|\xF0[\x90-\xBF][\x80-\xBF]{2}".
+                                            "|[\xF1-\xF3][\x80-\xBF]{3}".
+                                            "|\xF4[\x80-\x8F][\x80-\xBF]{2}/s",
+                                            $string, $es_char_m, null, $es_pos + 1)) {
+                                            $es_char_m = $es_char_m[0];
+                                        } else {
+                                            $es_char_m = $es_char;
+                                        }
+                                        $new_string .= $this->hsc($es_char_m) . '</span>';
+                                    } else {
+                                        $es_char_m = $this->hsc($es_char);
+                                    }
+                                    $es_pos += strlen($es_char_m) - 1;
                                 } else {
-                                    $new_string .= GeSHi::hsc($string[$es_pos + 1]) . '</span>';
+                                    $new_string .= $this->hsc($es_char) . '</span>';
                                 }
                                 $start = $es_pos + 2;
                             }
-                            $string = $new_string . GeSHi::hsc(substr($string, $start));
+                            $string = $new_string . $this->hsc(substr($string, $start));
                             $new_string = '';
                         } else {
-                            $string = GeSHi::hsc($string);
+                            $string = $this->hsc($string);
                         }
 
                         if ($check_linenumbers) {
@@ -2255,7 +2394,13 @@ class GeSHi {
                     } else if ($this->lexic_permissions['STRINGS'] && $hq && $hq[0] == $char &&
                         substr($part, $i, $hq_strlen) == $hq) {
                         // The start of a hard quoted string
-
+                        if (!$this->use_classes) {
+                            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS']['HARDQUOTE'] . '"';
+                            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR']['HARDESCAPE'] . '"';
+                        } else {
+                            $string_attributes = ' class="st_h"';
+                            $escape_char_attributes = ' class="es_h"';
+                        }
                         // parse the stuff before this
                         $result .= $this->parse_non_string_part($stuff_to_parse);
                         $stuff_to_parse = '';
@@ -2265,8 +2410,8 @@ class GeSHi {
 
                         // look for closing quote
                         $start = $i + $hq_strlen;
-                        while ($close_pos = strpos($part, $this->language_data['HARDQUOTE'][1], $start + 1)) {
-                            $start = $close_pos;
+                        while ($close_pos = strpos($part, $this->language_data['HARDQUOTE'][1], $start)) {
+                            $start = $close_pos + 1;
                             if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
                                 // make sure this quote is not escaped
                                 foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
@@ -2306,13 +2451,13 @@ class GeSHi {
                             $new_string = '';
                             while ($es_pos = strpos($string, $this->language_data['ESCAPE_CHAR'], $start)) {
                                 // hmtl escape stuff before
-                                $new_string .= GeSHi::hsc(substr($string, $start, $es_pos - $start));
+                                $new_string .= $this->hsc(substr($string, $start, $es_pos - $start));
                                 // check if this is a hard escape
                                 foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
                                     if (substr($string, $es_pos, strlen($hardescape)) == $hardescape) {
                                         // indeed, this is a hardescape
                                         $new_string .= "<span$escape_char_attributes>" .
-                                            GeSHi::hsc($hardescape) . '</span>';
+                                            $this->hsc($hardescape) . '</span>';
                                         $start = $es_pos + strlen($hardescape);
                                         continue 2;
                                     }
@@ -2336,9 +2481,9 @@ class GeSHi {
                                     $start = $es_pos + 1;
                                 }
                             }
-                            $string = $new_string . GeSHi::hsc(substr($string, $start));
+                            $string = $new_string . $this->hsc(substr($string, $start));
                         } else {
-                            $string = GeSHi::hsc($string);
+                            $string = $this->hsc($string);
                         }
 
                         if ($check_linenumbers) {
@@ -2396,7 +2541,7 @@ class GeSHi {
                         if ($i == $next_comment_regexp_pos) {
                             $COMMENT_MATCHED = true;
                             $comment = $comment_regexp_cache[$next_comment_regexp_pos];
-                            $test_str = GeSHi::hsc(substr($part, $i, $comment['length']));
+                            $test_str = $this->hsc(substr($part, $i, $comment['length']));
 
                             //@todo If remove important do remove here
                             if ($this->lexic_permissions['COMMENTS']['MULTI']) {
@@ -2467,7 +2612,7 @@ class GeSHi {
                                         } else {
                                             $attributes = ' class="coMULTI"';
                                         }
-                                        $test_str = "<span$attributes>" . GeSHi::hsc($open);
+                                        $test_str = "<span$attributes>" . $this->hsc($open);
                                     } else {
                                         if (!$this->use_classes) {
                                             $attributes = ' style="' . $this->important_styles . '"';
@@ -2480,7 +2625,7 @@ class GeSHi {
                                         $test_str = "<span$attributes>";
                                     }
                                 } else {
-                                    $test_str = GeSHi::hsc($open);
+                                    $test_str = $this->hsc($open);
                                 }
 
                                 $close_pos = strpos( $part, $close, $i + $open_strlen );
@@ -2490,7 +2635,7 @@ class GeSHi {
                                 }
 
                                 // Short-cut through all the multiline code
-                                $rest_of_comment = GeSHi::hsc(substr($part, $i + $open_strlen, $close_pos - $i - $open_strlen + $close_strlen));
+                                $rest_of_comment = $this->hsc(substr($part, $i + $open_strlen, $close_pos - $i - $open_strlen + $close_strlen));
                                 if (($this->lexic_permissions['COMMENTS']['MULTI'] ||
                                     $test_str_match == GESHI_START_IMPORTANT) &&
                                     $check_linenumbers) {
@@ -2531,7 +2676,7 @@ class GeSHi {
                                     } else if (
                                         // case sensitive comments
                                         ($this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
-                                        ($match_i = stripos($part, $comment_mark, $i) !== false)) ||
+                                        ($match_i = stripos($part, $comment_mark, $i)) !== false) ||
                                         // non case sensitive
                                         (!$this->language_data['CASE_SENSITIVE'][GESHI_COMMENTS] &&
                                           (($match_i = strpos($part, $comment_mark, $i)) !== false))) {
@@ -2569,9 +2714,9 @@ class GeSHi {
                                         } else {
                                             $attributes = ' class="co' . $comment_key . '"';
                                         }
-                                        $test_str = "<span$attributes>" . GeSHi::hsc($this->change_case($comment_mark));
+                                        $test_str = "<span$attributes>" . $this->hsc($this->change_case($comment_mark));
                                     } else {
-                                        $test_str = GeSHi::hsc($comment_mark);
+                                        $test_str = $this->hsc($comment_mark);
                                     }
 
                                     //Check if this comment is the last in the source
@@ -2581,7 +2726,7 @@ class GeSHi {
                                         $close_pos = $length;
                                         $oops = true;
                                     }
-                                    $test_str .= GeSHi::hsc(substr($part, $i + $com_len, $close_pos - $i - $com_len));
+                                    $test_str .= $this->hsc(substr($part, $i + $com_len, $close_pos - $i - $com_len));
                                     if ($this->lexic_permissions['COMMENTS'][$comment_key]) {
                                         $test_str .= "</span>";
                                     }
@@ -2614,7 +2759,7 @@ class GeSHi {
                 $result .= $this->parse_non_string_part($stuff_to_parse);
                 $stuff_to_parse = '';
             } else {
-                $result .= GeSHi::hsc($part);
+                $result .= $this->hsc($part);
             }
             // Close the <span> that surrounds the block
             if ($STRICTATTRS != '') {
@@ -2784,8 +2929,7 @@ class GeSHi {
             // Keyword links have been ebabled
 
             if (isset($this->language_data['URLS'][$k]) &&
-                $this->language_data['URLS'][$k] != '' &&
-                substr($keyword, 0, 5) != '&lt;/') {
+                $this->language_data['URLS'][$k] != '') {
                 // There is a base group for this keyword
 
                 // Old system: strtolower
@@ -2802,21 +2946,14 @@ class GeSHi {
                     $word = $keyword;
                 }
 
-                $word = ( substr($word, 0, 4) == '&lt;' ) ? substr($word, 4) : $word;
-                $word = ( substr($word, -4) == '&gt;' ) ? substr($word, 0, - 4) : $word;
-                if ($word) {
-                    $before = '<|UR1|"' .
-                        str_replace(
-                            array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
-                            array(GeSHi::hsc($word), GeSHi::hsc(strtolower($word)),
-                                GeSHi::hsc(strtoupper($word)), '<DOT>'),
-                            $this->language_data['URLS'][$k]
-                        ) . '">';
-                }
-                // HTML fix. Again, dirty hackage...
-                if (!($this->language == 'html4strict' && ('&gt;' == $keyword || '&lt;' == $keyword))) {
-                    $after = '</a>';
-                }
+                $before = '<|UR1|"' .
+                    str_replace(
+                        array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
+                        array($this->hsc($word), $this->hsc(strtolower($word)),
+                            $this->hsc(strtoupper($word)), '<DOT>'),
+                        $this->language_data['URLS'][$k]
+                    ) . '">';
+                $after = '</a>';
             }
         }
 
@@ -2825,6 +2962,8 @@ class GeSHi {
 
     /**
      * handles regular expressions highlighting-definitions with callback functions
+     *
+     * @note this is a callback, don't use it directly
      *
      * @param array the matches array
      * @return The highlighted string
@@ -2837,6 +2976,40 @@ class GeSHi {
     }
 
     /**
+     * handles newlines in REGEXPS matches. Set the _hmr_* vars before calling this
+     *
+     * @note this is a callback, don't use it directly
+     *
+     * @param array the matches array
+     * @return string
+     * @since 1.0.8
+     * @access private
+     */
+    function handle_multiline_regexps($matches) {
+        $before = $this->_hmr_before;
+        $after = $this->_hmr_after;
+        if ($this->_hmr_replace) {
+            $replace = $this->_hmr_replace;
+            $search = array();
+
+            foreach (array_keys($matches) as $k) {
+                $search[] = '\\' . $k;
+            }
+
+            $before = str_replace($search, $matches, $before);
+            $after = str_replace($search, $matches, $after);
+            $replace = str_replace($search, $matches, $replace);
+        } else {
+            $replace = $matches[0];
+        }
+        return $before
+                    . '<|!REG3XP' . $this->_hmr_key .'!>'
+                        . str_replace("\n", "|>\n<|!REG3XP" . $this->_hmr_key . '!>', $replace)
+                    . '|>'
+              . $after;
+    }
+
+    /**
      * Takes a string that has no strings or comments in it, and highlights
      * stuff like keywords, numbers and methods.
      *
@@ -2846,21 +3019,41 @@ class GeSHi {
      * @todo BUGGY! Why? Why not build string and return?
      */
     function parse_non_string_part($stuff_to_parse) {
-        $stuff_to_parse = ' ' . GeSHi::hsc($stuff_to_parse);
+        $stuff_to_parse = ' ' . $this->hsc($stuff_to_parse);
 
         // Regular expressions
         foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
             if ($this->lexic_permissions['REGEXPS'][$key]) {
                 if (is_array($regexp)) {
-                    $stuff_to_parse = preg_replace(
-                        "/" .
-                        $regexp[GESHI_SEARCH] .
-                        "/{$regexp[GESHI_MODIFIERS]}",
-                        "{$regexp[GESHI_BEFORE]}<|!REG3XP$key!>{$regexp[GESHI_REPLACE]}|>{$regexp[GESHI_AFTER]}",
-                        $stuff_to_parse
-                    );
+                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        // produce valid HTML when we match multiple lines
+                        $this->_hmr_replace = $regexp[GESHI_REPLACE];
+                        $this->_hmr_before = $regexp[GESHI_BEFORE];
+                        $this->_hmr_key = $key;
+                        $this->_hmr_after = $regexp[GESHI_AFTER];
+                        $stuff_to_parse = preg_replace_callback(
+                            "/" . $regexp[GESHI_SEARCH] . "/{$regexp[GESHI_MODIFIERS]}",
+                            array($this, 'handle_multiline_regexps'),
+                            $stuff_to_parse);
+                        $this->_hmr_replace = false;
+                        $this->_hmr_before = '';
+                        $this->_hmr_after = '';
+                    } else {
+                        $stuff_to_parse = preg_replace(
+                            '/' . $regexp[GESHI_SEARCH] . '/' . $regexp[GESHI_MODIFIERS],
+                            $regexp[GESHI_BEFORE] . '<|!REG3XP'. $key .'!>' . $regexp[GESHI_REPLACE] . '|>' . $regexp[GESHI_AFTER],
+                            $stuff_to_parse);
+                    }
                 } else {
-                    $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        // produce valid HTML when we match multiple lines
+                        $this->_hmr_key = $key;
+                        $stuff_to_parse = preg_replace_callback( "/(" . $regexp . ")/",
+                                              array($this, 'handle_multiline_regexps'), $stuff_to_parse);
+                        $this->_hmr_key = '';
+                    } else {
+                        $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    }
                 }
             }
         }
@@ -2878,84 +3071,76 @@ class GeSHi {
         }
 
         // Highlight keywords
-        // if there is a couple of alpha symbols there *might* be a keyword
-        if (preg_match('#[a-zA-Z]{2,}#', $stuff_to_parse)) {
-            $disallowed_before = "a-zA-Z0-9\$_\|\#;>|^";
-            $disallowed_after = "a-zA-Z0-9_\|%\\-&";
-            if ($this->lexic_permissions['STRINGS']) {
-                $quotemarks = preg_quote(implode($this->language_data['QUOTEMARKS']), '/');
-                $disallowed_before .= $quotemarks;
-                $disallowed_after .= $quotemarks;
-            }
-            $parser_control_pergroup = false;
-            if (isset($this->language_data['PARSER_CONTROL'])) {
-                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
-                    $x = 0; // check wether per-keyword-group parser_control is enabled
-                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
-                        $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
-                        ++$x;
-                    }
-                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
-                        $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
-                        ++$x;
-                    }
-                    $parser_control_pergroup = (count($this->language_data['PARSER_CONTROL']['KEYWORDS']) - $x) > 0;
+        $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^&";
+        $disallowed_after = "(?![a-zA-Z0-9_\|%\\-&;";
+        if ($this->lexic_permissions['STRINGS']) {
+            $quotemarks = preg_quote(implode($this->language_data['QUOTEMARKS']), '/');
+            $disallowed_before .= $quotemarks;
+            $disallowed_after .= $quotemarks;
+        }
+        $disallowed_before .= "])";
+        $disallowed_after .= "])";
+
+        $parser_control_pergroup = false;
+        if (isset($this->language_data['PARSER_CONTROL'])) {
+            if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                $x = 0; // check wether per-keyword-group parser_control is enabled
+                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
+                    $disallowed_before = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                    ++$x;
                 }
+                if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
+                    $disallowed_after = $this->language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                    ++$x;
+                }
+                $parser_control_pergroup = (count($this->language_data['PARSER_CONTROL']['KEYWORDS']) - $x) > 0;
             }
+        }
 
-            // if this is changed, don't forget to change it below
-            if (!empty($disallowed_before)) {
-                $disallowed_before = "(?<![$disallowed_before])";
-            }
-            if (!empty($disallowed_after)) {
-                $disallowed_after = "(?![$disallowed_after])";
-            }
+        // if this is changed, don't forget to change it below
+//        if (!empty($disallowed_before)) {
+//            $disallowed_before = "(?<![$disallowed_before])";
+//        }
+//        if (!empty($disallowed_after)) {
+//            $disallowed_after = "(?![$disallowed_after])";
+//        }
 
-            foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
-                if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
-                    $this->lexic_permissions['KEYWORDS'][$k]) {
+        foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
+            if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
+                $this->lexic_permissions['KEYWORDS'][$k]) {
 
-                    $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
-                    $modifiers = $case_sensitive ? '' : 'i';
+                $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
+                $modifiers = $case_sensitive ? '' : 'i';
 
-                    // NEW in 1.0.8 - per-keyword-group parser control
-                    $disallowed_before_local = $disallowed_before;
-                    $disallowed_after_local = $disallowed_after;
-                    if ($parser_control_pergroup && isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k])) {
-                        if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'])) {
-                            $disallowed_before_local =
-                                    $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
-
-                            if (!empty($disallowed_before_local)) {
-                                $disallowed_before_local = "(?<![$disallowed_before_local])";
-                            }
-                        }
-
-                        if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'])) {
-                            $disallowed_after_local =
-                                    $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
-
-                            if (!empty($disallowed_after_local)) {
-                                $disallowed_after_local = "(?![$disallowed_after_local])";
-                            }
-                        }
+                // NEW in 1.0.8 - per-keyword-group parser control
+                $disallowed_before_local = $disallowed_before;
+                $disallowed_after_local = $disallowed_after;
+                if ($parser_control_pergroup && isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k])) {
+                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'])) {
+                        $disallowed_before_local =
+                            $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_BEFORE'];
                     }
 
-                    //NEW in 1.0.8, the cached regexp list
-                    // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
-                    for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
-                        $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k][$set];
-                        // Might make a more unique string for putting the number in soon
-                        // Basically, we don't put the styles in yet because then the styles themselves will
-                        // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
-                        $this->_kw_replace_group = $k;
-
-                        $stuff_to_parse = preg_replace_callback(
-                            "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
-                            array($this, 'handle_keyword_replace'),
-                            $stuff_to_parse
-                            );
+                    if (isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'])) {
+                        $disallowed_after_local =
+                            $this->language_data['PARSER_CONTROL']['KEYWORDS'][$k]['DISALLOWED_AFTER'];
                     }
+                }
+
+                $this->_kw_replace_group = $k;
+
+                //NEW in 1.0.8, the cached regexp list
+                // since we don't want PHP / PCRE to crash due to too large patterns we split them into smaller chunks
+                for ($set = 0, $set_length = count($this->language_data['CACHED_KEYWORD_LISTS'][$k]); $set <  $set_length; ++$set) {
+                    $keywordset =& $this->language_data['CACHED_KEYWORD_LISTS'][$k][$set];
+                    // Might make a more unique string for putting the number in soon
+                    // Basically, we don't put the styles in yet because then the styles themselves will
+                    // get highlighted if the language has a CSS keyword in it (like CSS, for example ;))
+                    $stuff_to_parse = preg_replace_callback(
+                        "/$disallowed_before_local({$keywordset})(?!\<DOT\>(?:htm|php))$disallowed_after_local/$modifiers",
+                        array($this, 'handle_keyword_replace'),
+                        $stuff_to_parse
+                        );
                 }
             }
         }
@@ -2971,7 +3156,7 @@ class GeSHi {
             } else {
                 $attributes = ' class="kw' . $k . '"';
             }
-            $stuff_to_parse = str_replace("/$k/", $attributes, $stuff_to_parse);
+            $stuff_to_parse = str_replace("<|/$k/>", "<|$attributes>", $stuff_to_parse);
         }
 
         if ($numbers_found) {
@@ -3203,7 +3388,7 @@ class GeSHi {
                 if (is_array($value) && isset($ret[$key])) {
                     // if $ret[$key] is not an array you try to merge an scalar value with an array - the result is not defined (incompatible arrays)
                     // in this case the call will trigger an E_USER_WARNING and the $ret[$key] will be false.
-                    $ret[$key] = GeSHi::merge_arrays($ret[$key], $value);
+                    $ret[$key] = $this->merge_arrays($ret[$key], $value);
                 } else {
                     $ret[$key] = $value;
                 }
@@ -3241,9 +3426,7 @@ class GeSHi {
         $this->language_data = $language_data;
 
         // Set strict mode if should be set
-        if ($this->language_data['STRICT_MODE_APPLIES'] == GESHI_ALWAYS) {
-            $this->strict_mode = true;
-        }
+        $this->strict_mode = $this->language_data['STRICT_MODE_APPLIES'];
 
         // Set permissions for all lexics to true
         // so they'll be highlighted by default
@@ -3303,7 +3486,7 @@ class GeSHi {
             //Apply the new styles to our current language styles
             if (isset($style_data) && is_array($style_data)) {
                 $this->language_data['STYLES'] =
-                    GeSHi::merge_arrays($this->language_data['STYLES'], $style_data);
+                    $this->merge_arrays($this->language_data['STYLES'], $style_data);
             }
         }
 
@@ -3324,8 +3507,8 @@ class GeSHi {
         // This is BUGGY!! My fault for bad code: fix coming in 1.2
         // @todo Remove this crap
         if ($this->enable_important_blocks &&
-            (strpos($parsed_code, GeSHi::hsc(GESHI_START_IMPORTANT)) === false)) {
-            $parsed_code = str_replace(GeSHi::hsc(GESHI_END_IMPORTANT), '', $parsed_code);
+            (strpos($parsed_code, $this->hsc(GESHI_START_IMPORTANT)) === false)) {
+            $parsed_code = str_replace($this->hsc(GESHI_END_IMPORTANT), '', $parsed_code);
         }
 
         // Add HTML whitespace stuff if we're using the <div> header
@@ -3350,7 +3533,7 @@ class GeSHi {
 
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
-        if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+        if ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->header_type != GESHI_HEADER_PRE_TABLE) {
             // If we're using the <pre> header, we shouldn't add newlines because
             // the <pre> will line-break them (and the <li>s already do this for us)
             $ls = ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) ? "\n" : '';
@@ -3437,16 +3620,58 @@ class GeSHi {
                 unset($code[$i - 1]);
             }
         } else {
+            $n = count($code);
+            if ($this->use_classes) {
+                $attributes = ' class="de1"';
+            } else {
+                $attributes = ' style="'. $this->code_style .'"';
+            }
             if ($this->header_type == GESHI_HEADER_PRE_VALID) {
-                $parsed_code .= '<pre>';
+                $parsed_code .= '<pre'. $attributes .'>';
+            } elseif ($this->header_type == GESHI_HEADER_PRE_TABLE) {
+                if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                    if ($this->use_classes) {
+                        $attrs = ' class="ln"';
+                    } else {
+                        $attrs = ' style="'. $this->table_linenumber_style .'"';
+                    }
+                    $parsed_code .= '<td'.$attrs.'><pre>';
+                    // get linenumbers
+                    // we don't merge it with the for below, since it should be better for
+                    // memory consumption this way
+                    for ($i = 1; $i <= $n; ++$i) {
+                        $parsed_code .= $i;
+                        if ($i != $n) {
+                            $parsed_code .= "\n";
+                        }
+                    }
+                    $parsed_code .= '</pre></td><td>';
+                }
+                $parsed_code .= '<pre'. $attributes .'>';
             }
             // No line numbers, but still need to handle highlighting lines extra.
             // Have to use divs so the full width of the code is highlighted
-            for ($i = 0, $n = count($code); $i < $n; ++$i) {
+            $close = 0;
+            for ($i = 0; $i < $n; ++$i) {
                 // Make lines have at least one space in them if they're empty
                 // BenBE: Checking emptiness using trim instead of relying on blanks
                 if ('' == trim($code[$i])) {
                     $code[$i] = '&nbsp;';
+                }
+                // fancy lines
+                if ($this->line_numbers == GESHI_FANCY_LINE_NUMBERS &&
+                    $i % $this->line_nth_row == ($this->line_nth_row - 1)) {
+                    // Set the attributes to style the line
+                    if ($this->use_classes) {
+                        $parsed_code .= '<span class="xtra li2"><span class="de2">';
+                    } else {
+                        // This style "covers up" the special styles set for special lines
+                        // so that styles applied to special lines don't apply to the actual
+                        // code on that line
+                        $parsed_code .= '<span style="display:block;' . $this->line_style2 . '">'
+                                          .'<span style="' . $this->code_style .'">';
+                    }
+                    $close += 2;
                 }
                 //Is this some line with extra styles???
                 if (in_array($i + 1, $this->highlight_extra_lines)) {
@@ -3459,19 +3684,26 @@ class GeSHi {
                     } else {
                         $parsed_code .= "<span style=\"display:block;" . $this->get_line_style($i) . "\">";
                     }
-                    // Remove \n because it stuffs up <pre> header
-                    $parsed_code .= $code[$i] . '</span>';
-                } else {
-                    $parsed_code .= $code[$i];
-                    if ($i + 1 < $n) {
-                        $parsed_code .= "\n";
-                    }
+                    ++$close;
+                }
+
+                $parsed_code .= $code[$i];
+
+                if ($close) {
+                  $parsed_code .= str_repeat('</span>', $close);
+                  $close = 0;
+                }
+                elseif ($i + 1 < $n) {
+                    $parsed_code .= "\n";
                 }
                 unset($code[$i]);
             }
 
-            if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->header_type == GESHI_HEADER_PRE_VALID || $this->header_type == GESHI_HEADER_PRE_TABLE) {
                 $parsed_code .= '</pre>';
+            }
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                $parsed_code .= '</td>';
             }
         }
 
@@ -3491,11 +3723,12 @@ class GeSHi {
          * @todo   Document behaviour change - class is outputted regardless of whether
          *         we're using classes or not. Same with style
          */
-        $attributes = '';
-
+        $attributes = ' class="' . $this->language;
         if ($this->overall_class != '') {
-            $attributes .= " class=\"{$this->overall_class}\"";
+            $attributes .= " ".$this->overall_class;
         }
+        $attributes .= '"';
+
         if ($this->overall_id != '') {
             $attributes .= " id=\"{$this->overall_id}\"";
         }
@@ -3522,12 +3755,16 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->header_content_style}\"";
             }
-            $header = "<div$attr>$header</div>";
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                $header = "<thead><tr><td colspan=\"2\" $attr>$header</td></tr></thead>";
+            } else {
+                $header = "<div$attr>$header</div>";
+            }
         }
 
         if (GESHI_HEADER_NONE == $this->header_type) {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                return "$header<ol$ol_attributes>";
+                return "$header<ol$attributes$ol_attributes>";
             }
             return $header . ($this->force_code_block ? '<div>' : '');
         }
@@ -3539,6 +3776,8 @@ class GeSHi {
             } else if ($this->header_type == GESHI_HEADER_DIV ||
                 $this->header_type == GESHI_HEADER_PRE_VALID) {
                 return "<div$attributes>$header<ol$ol_attributes>";
+            } else if ($this->header_type == GESHI_HEADER_PRE_TABLE) {
+                return "<table$attributes>$header<tbody><tr class=\"li1\">";
             }
         } else {
             if ($this->header_type == GESHI_HEADER_PRE) {
@@ -3571,7 +3810,11 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->footer_content_style}\"";
             }
-            $footer = "<div$attr>$footer</div>";
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->linenumbers != GESHI_NO_LINE_NUMBERS) {
+                $footer = "<tfoot><tr><td colspan=\"2\">$footer</td></tr></tfoot>";
+            } else {
+                $footer = "<div$attr>$footer</div>";
+            }
         }
 
         if (GESHI_HEADER_NONE == $this->header_type) {
@@ -3581,6 +3824,13 @@ class GeSHi {
         if ($this->header_type == GESHI_HEADER_DIV || $this->header_type == GESHI_HEADER_PRE_VALID) {
             if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 return "</ol>$footer</div>";
+            }
+            return ($this->force_code_block ? '</div>' : '') .
+                "$footer</div>";
+        }
+        elseif ($this->header_type == GESHI_HEADER_PRE_TABLE) {
+            if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                return "</tr></tbody>$footer</table>";
             }
             return ($this->force_code_block ? '</div>' : '') .
                 "$footer</div>";
@@ -3612,7 +3862,7 @@ class GeSHi {
 
         $keywords[] = '<LANGUAGE>';
         $keywords[] = '{LANGUAGE}';
-        $replacements[] = $replacements[] = $this->language;
+        $replacements[] = $replacements[] = $this->language_data['LANG_NAME'];
 
         $keywords[] = '<VERSION>';
         $keywords[] = '{VERSION}';
@@ -3735,11 +3985,25 @@ class GeSHi {
         if ($this->error) {
             return '';
         }
+
+        //Check if the style rearrangements have been processed ...
+        //This also does some preprocessing to check which style groups are useable ...
+        if(!isset($this->language_data['NUMBERS_CACHE'])) {
+            $this->build_style_cache();
+        }
+
         // First, work out what the selector should be. If there's an ID,
         // that should be used, the same for a class. Otherwise, a selector
         // of '' means that these styles will be applied anywhere
-        $selector = ($this->overall_id != '') ? "#{$this->overall_id} " : '';
-        $selector = ($selector == '' && $this->overall_class != '') ? ".{$this->overall_class} " : $selector;
+        if ($this->overall_id) {
+            $selector = '#' . $this->overall_id;
+        } else {
+            $selector = '.' . $this->language;
+            if ($this->overall_class) {
+                $selector .= '.' . $this->overall_class;
+            }
+        }
+        $selector .= ' ';
 
         // Header of the stylesheet
         if (!$economy_mode) {
@@ -3814,11 +4078,14 @@ class GeSHi {
 
         // Simple line number styles
         if ((!$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS) && $this->line_style1 != '') {
-            $stylesheet .= "{$selector}li, {$selector}li.li1 {{$this->line_style1}}\n";
+            $stylesheet .= "{$selector}li, {$selector}.li1 {{$this->line_style1}}\n";
+        }
+        if ((!$economy_mode || $this->line_numbers != GESHI_NO_LINE_NUMBERS) && $this->table_linenumber_style != '') {
+            $stylesheet .= "{$selector}.ln {{$this->table_linenumber_style}}\n";
         }
         // If there is a style set for fancy line numbers, echo it out
         if ((!$economy_mode || $this->line_numbers == GESHI_FANCY_LINE_NUMBERS) && $this->line_style2 != '') {
-            $stylesheet .= "{$selector}li.li2 {{$this->line_style2}}\n";
+            $stylesheet .= "{$selector}.li2 {{$this->line_style2}}\n";
         }
 
         // note: empty styles are meaningless
@@ -3840,6 +4107,10 @@ class GeSHi {
         }
         foreach ($this->language_data['STYLES']['ESCAPE_CHAR'] as $group => $styles) {
             if ($styles != '' && (!$economy_mode || $this->lexic_permissions['ESCAPE_CHAR'])) {
+                // NEW: since 1.0.8 we have to handle hardescapes
+                if ($group == 'HARD') {
+                    $group = '_h';
+                }
                 $stylesheet .= "$selector.es$group {{$styles}}\n";
             }
         }
@@ -3855,6 +4126,10 @@ class GeSHi {
         }
         foreach ($this->language_data['STYLES']['STRINGS'] as $group => $styles) {
             if ($styles != '' && (!$economy_mode || $this->lexic_permissions['STRINGS'])) {
+                // NEW: since 1.0.8 we have to handle hardquotes
+                if ($group === 'HARD') {
+                    $group = '_h';
+                }
                 $stylesheet .= "$selector.st$group {{$styles}}\n";
             }
         }
@@ -3891,8 +4166,8 @@ class GeSHi {
         // Styles for lines being highlighted extra
         if (!$economy_mode || (count($this->highlight_extra_lines)!=count($this->highlight_extra_lines_styles))) {
             $stylesheet .= "{$selector}.ln-xtra, {$selector}li.ln-xtra, {$selector}div.ln-xtra {{$this->highlight_extra_lines_style}}\n";
-            $stylesheet .= "{$selector}span.xtra { display:block; }\n";
         }
+        $stylesheet .= "{$selector}span.xtra { display:block; }\n";
         foreach ($this->highlight_extra_lines_styles as $lineid => $linestyle) {
             $stylesheet .= "{$selector}.lx$lineid, {$selector}li.lx$lineid, {$selector}div.lx$lineid {{$linestyle}}\n";
         }
@@ -3996,7 +4271,7 @@ class GeSHi {
                 }
                 if ($level == 0 && !empty($tokens)) {
                     // we can dump current tokens into the string and throw them away afterwards
-                    $new_entry = GeSHi::_optimize_regexp_list_tokens_to_string($tokens);
+                    $new_entry = $this->_optimize_regexp_list_tokens_to_string($tokens);
                     $new_subpatterns = substr_count($new_entry, '(?:');
                     if (GESHI_MAX_PCRE_SUBPATTERNS && $num_subpatterns + $new_subpatterns > GESHI_MAX_PCRE_SUBPATTERNS) {
                         $regexp_list[++$list_key] = $new_entry;
@@ -4018,7 +4293,7 @@ class GeSHi {
             unset($list[$i]);
         }
         // make sure the last tokens get converted as well
-        $new_entry = GeSHi::_optimize_regexp_list_tokens_to_string($tokens);
+        $new_entry = $this->_optimize_regexp_list_tokens_to_string($tokens);
         if (GESHI_MAX_PCRE_SUBPATTERNS && $num_subpatterns + substr_count($new_entry, '(?:') > GESHI_MAX_PCRE_SUBPATTERNS) {
             $regexp_list[++$list_key] = $new_entry;
         } else {
@@ -4031,7 +4306,7 @@ class GeSHi {
     }
     /**
     * this function creates the appropriate regexp string of an token array
-    * you should not call this function directly, @see GeSHi::optimize_regexp_list().
+    * you should not call this function directly, @see $this->optimize_regexp_list().
     *
     * @param &$tokens array of tokens
     * @param $recursed bool to know wether we recursed or not
@@ -4047,7 +4322,7 @@ class GeSHi {
             $close_entry = isset($sub_tokens['']);
             unset($sub_tokens['']);
             if (!empty($sub_tokens)) {
-                $list .= '(?:' . GeSHi::_optimize_regexp_list_tokens_to_string($sub_tokens, true) . ')';
+                $list .= '(?:' . $this->_optimize_regexp_list_tokens_to_string($sub_tokens, true) . ')';
                 if ($close_entry) {
                     // make sub_tokens optional
                     $list .= '?';

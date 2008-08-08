@@ -4,7 +4,7 @@
  * -------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2004/06/04
  *
  * SQL language file for GeSHi.
@@ -121,6 +121,9 @@ $language_data = array (
             ),
         'REGEXPS' => array(
             )
+        ),
+    'URLS' => array(
+        1 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

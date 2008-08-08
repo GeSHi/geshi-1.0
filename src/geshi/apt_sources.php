@@ -7,7 +7,7 @@
  * Release Version: 1.0.8
  * Date Started: 2008/06/17
  *
- * Apt sources.list highlighter
+ * Apt sources.list language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -61,7 +61,7 @@ $language_data = array (
             'breezy', 'breezy-updates', 'breezy-security', 'breezy-proposed', 'breezy-backports',
             'dapper', 'dapper-updates', 'dapper-security', 'dapper-proposed', 'dapper-backports',
             'edgy', 'edgy-updates', 'edgy-security', 'edgy-proposed', 'edgy-backports',
-            'feisty', 'feisty-updates', 'feisty-security', 'feisty-proposed', 'gutsy-backports',
+            'feisty', 'feisty-updates', 'feisty-security', 'feisty-proposed', 'feisty-backports',
             'gutsy', 'gutsy-updates', 'gutsy-security', 'gutsy-proposed', 'gutsy-backports',
             'hardy', 'hardy-updates', 'hardy-security', 'hardy-proposed', 'hardy-backports',
             'intrepid', 'intrepid-updates', 'intrepid-security', 'intrepid-proposed', 'intrepid-backports',
@@ -105,7 +105,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => ''
+        1 => '',
+        2 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -126,8 +127,8 @@ $language_data = array (
             'STRINGS' => GESHI_NEVER,
         ),
         'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => 'a-zA-Z0-9\$_\|\#;>|^\/',
-            'DISALLOWED_AFTER' => 'a-zA-Z0-9_\|%\\-&\.'
+            'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^\/])',
+            'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\.])'
         )
     ),
     'TAB_WIDTH' => 4

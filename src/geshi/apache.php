@@ -4,7 +4,7 @@
  * ----------
  * Author: Tux (tux@inmail.cz)
  * Copyright: (c) 2004 Tux (http://tux.a4.cz/), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2004/29/07
  *
  * Apache language file for GeSHi.
@@ -56,7 +56,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         /*keywords*/
-            1 => array(
+        1 => array(
             'accessconfig','accessfilename','action','addalt',
             'addaltbyencoding','addaltbytype','addcharset',
             'adddefaultcharset','adddescription',
@@ -67,14 +67,14 @@ $language_data = array (
             'anonymous_authoritative','anonymous_logemail','anonymous_mustgiveemail',
             'anonymous_nouserid','anonymous_verifyemail','authauthoritative',
             'authdbauthoritative','authdbgroupfile','authdbmauthoritative',
-            'authdbmgroupfile','authdbmgroupfile','authdbuserfile','authdbmuserfile',
+            'authdbmgroupfile','authdbuserfile','authdbmuserfile',
             'authdigestfile','authgroupfile','authname','authtype',
             'authuserfile','bindaddress','browsermatch','browsermatchnocase',
             'bs2000account','cachedefaultexpire','cachedirlength','cachedirlevels',
             'cacheforcecompletion','cachegcinterval','cachelastmodifiedfactor','cachemaxexpire',
             'cachenegotiateddocs','cacheroot','cachesize','checkspelling',
             'clearmodulelist','contentdigest','cookieexpires','cookielog',
-            'cookielog','cookietracking','coredumpdirectory','customlog',
+            'cookietracking','coredumpdirectory','customlog',
             'defaulticon','defaultlanguage','defaulttype','define',
             'deny','directory','directorymatch','directoryindex',
             'documentroot','errordocument','errorlog','example',
@@ -110,7 +110,7 @@ $language_data = array (
             'user','userdir','virtualhost','virtualdocumentroot',
             'virtualdocumentrootip','virtualscriptalias','virtualscriptaliasip',
             'xbithack','from','all'
-          ),
+            ),
         /*keywords 2*/
         2 => array(
             'on','off','standalone','inetd','indexes',
@@ -120,19 +120,18 @@ $language_data = array (
         ),
         /*keywords 3*/
         3 => array(
-            '&lt;Directory', '&lt;/Directory&gt;',
-            '&lt;DirectoryMatch', '&lt;/DirectoryMatch&gt;',
-            '&lt;Files', '&lt;/Files&gt;',
-            '&lt;FilesMatch', '&lt;/FilesMatch&gt;',
-            '&lt;IfDefine', '&lt;/IfDefine&gt;',
-            '&lt;IfModule', '&lt;/IfModule&gt;',
-            '&lt;IfVersion', '&lt;/IfVersion&gt;',
-            '&lt;Location', '&lt;/Location&gt;',
-            '&lt;LocationMatch', '&lt;/LocationMatch&gt;',
-            '&lt;Proxy', '&lt;/Proxy&gt;',
-            '&lt;ProxyMatch', '&lt;/ProxyMatch&gt;',
-            '&lt;VirtualHost', '&lt;/VirtualHost&gt;',
-            '&gt;'
+            'Directory',
+            'DirectoryMatch',
+            'Files',
+            'FilesMatch',
+            'IfDefine',
+            'IfModule',
+            'IfVersion',
+            'Location',
+            'LocationMatch',
+            'Proxy',
+            'ProxyMatch',
+            'VirtualHost'
         )
     ),
     'SYMBOLS' => array(
@@ -177,7 +176,8 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => ''
+        2 => '',
+        3 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -194,6 +194,12 @@ $language_data = array (
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER
         ),
+        'KEYWORDS' => array(
+            3 => array(
+                'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
+                'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+            )
+        )
     )
 );
 

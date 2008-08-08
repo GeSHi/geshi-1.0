@@ -4,7 +4,7 @@
  * -----------
  * Author: Florian Knorn (floz@gmx.de)
  * Copyright: (c) 2004 Florian Knorn (http://www.florian-knorn.com)
- * Release Version: 1.0.7.22
+ * Release Version: 1\.0\.8
  * Date Started: 2005/02/09
  *
  * Matlab M-file language file for GeSHi.
@@ -53,7 +53,7 @@ $language_data = array (
         1 => array(
             'break', 'case', 'catch', 'continue', 'elseif', 'else', 'end', 'for',
             'function', 'global', 'if', 'otherwise', 'persistent', 'return',
-            'switch', 'try', 'while','...'
+            'switch', 'try', 'while'
             ),
         2 => array(
             'all','any','exist','find','is','isa','logical','mislocked',
