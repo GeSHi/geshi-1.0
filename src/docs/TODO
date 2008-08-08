@@ -10,11 +10,8 @@ Or to the feature request tracker:
 http://sourceforge.net/tracker/?group_id=114997&atid=670234
 
 
-  TODO for version 1.0.8
+  TODO for version 1.0.8.x
 
-- Rewrite parse_code method and parse_non_string_part method to use build
-  rather than replace method of highlighting. This should speed things up
-  while making highlighting much "safer"
 - Rework the load_from_file method and the one for getting a file extension,
   as documented in the source.
 - use analogous vars to $next_comment_regexp_pos for more GeSHi structures,
@@ -24,7 +21,13 @@ http://sourceforge.net/tracker/?group_id=114997&atid=670234
 - Get better coverage in our coderepo
 - README / INSTALL / ... file for phpdoc integration => take geshi-doc.*?
 - rework HARDQUOTE + styles, currently this is a bit of a mess imo (milian)
-  
+- Allow per-keywordgroup AutoCaps/NoCaps
+- Complete API to support latest features
+    set_number_style ($key missing)
+    set_string_style ($key missing)
+    set_case_keywords (support for per_keywordgroup AutoCaps)
+
+
   TODO for version 1.2.0
 
 - Rewrite engine to use remove/replace method (will hopefully almost
