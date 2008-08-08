@@ -4,14 +4,14 @@
  * -------
  * Author: Phil Mattison (mattison@ohmikron.com)
  * Copyright: (c) 2008 Ohmikron Corp. (http://www.ohmikron.com/)
- * Release Version: 1.0
+ * Release Version: 1.0.8
  * Date Started: 2008/07/30
  *
  * PIC16 Assembler language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2008/07/30 (1.0.0)
+ * 2008/07/30 (1.0.8)
  *   -  First Release
  *
  * TODO (updated 2008/07/30)
