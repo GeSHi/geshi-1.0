@@ -2505,8 +2505,13 @@ class GeSHi {
                             foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
                                 $match_i = false;
                                 if (isset($comment_regexp_cache_per_key[$comment_key]) &&
-                                    $comment_regexp_cache_per_key[$comment_key] >= $i) {
+                                    ($comment_regexp_cache_per_key[$comment_key] >= $i ||
+                                     $comment_regexp_cache_per_key[$comment_key] === false)) {
                                     // we have already matched something
+                                    if ($comment_regexp_cache_per_key[$comment_key] === false) {
+                                        // this comment is never matched
+                                        continue;
+                                    }
                                     $match_i = $comment_regexp_cache_per_key[$comment_key];
                                 } else if (
                                     //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
@@ -2578,8 +2583,13 @@ class GeSHi {
                                 foreach ($this->language_data['COMMENT_MULTI'] as $open => $close) {
                                     $match_i = false;
                                     if (isset($comment_multi_cache_per_key[$open]) &&
-                                        $comment_multi_cache_per_key[$open] >= $i) {
+                                        ($comment_multi_cache_per_key[$open] >= $i ||
+                                         $comment_multi_cache_per_key[$open] === false)) {
                                         // we have already matched something
+                                        if ($comment_multi_cache_per_key[$open] === false) {
+                                            // this comment is never matched
+                                            continue;
+                                        }
                                         $match_i = $comment_multi_cache_per_key[$open];
                                     } else if (($match_i = stripos($part, $open, $i)) !== false) {
                                         $comment_multi_cache_per_key[$open] = $match_i;
@@ -2670,8 +2680,13 @@ class GeSHi {
                                 foreach ($this->language_data['COMMENT_SINGLE'] as $comment_key => $comment_mark) {
                                     $match_i = false;
                                     if (isset($comment_single_cache_per_key[$comment_key]) &&
-                                        $comment_single_cache_per_key[$comment_key] >= $i) {
+                                        ($comment_single_cache_per_key[$comment_key] >= $i ||
+                                         $comment_single_cache_per_key[$comment_key] === false)) {
                                         // we have already matched something
+                                        if ($comment_single_cache_per_key[$comment_key] === false) {
+                                            // this comment is never matched
+                                            continue;
+                                        }
                                         $match_i = $comment_single_cache_per_key[$comment_key];
                                     } else if (
                                         // case sensitive comments
