@@ -2395,8 +2395,8 @@ class GeSHi {
                         substr($part, $i, $hq_strlen) == $hq) {
                         // The start of a hard quoted string
                         if (!$this->use_classes) {
-                            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS']['HARDQUOTE'] . '"';
-                            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR']['HARDESCAPE'] . '"';
+                            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS']['HARD'] . '"';
+                            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR']['HARD'] . '"';
                         } else {
                             $string_attributes = ' class="st_h"';
                             $escape_char_attributes = ' class="es_h"';
