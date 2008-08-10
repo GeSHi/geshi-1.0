@@ -58,8 +58,9 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'HARDQUOTE' => array("'", "'"),
     'HARDESCAPE' => array("\'"),
-    'NUMBERS' => GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
-                 GESHI_NUMBER_FLT_SCI_ZERO,
+    'NUMBERS' =>
+        GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
+        GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             'include', 'require', 'include_once', 'require_once',

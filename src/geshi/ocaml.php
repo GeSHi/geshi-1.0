@@ -47,7 +47,7 @@ $language_data = array (
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => "",
     'KEYWORDS' => array(
-       /* main OCaml keywords */
+        /* main OCaml keywords */
         1 => array(
             'and', 'as', 'asr', 'begin', 'class', 'closed', 'constraint', 'do', 'done', 'downto', 'else',
             'end', 'exception', 'external', 'failwith', 'false', 'flush', 'for', 'fun', 'function', 'functor',

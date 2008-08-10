@@ -153,7 +153,8 @@ $language_data = array (
         4 => 'http://smarty.php.net/{FNAMEL}',
         5 => 'http://smarty.php.net/{FNAMEL}',
         6 => '',
-        7 => 'http://smarty.php.net/{FNAMEL}'
+        7 => 'http://smarty.php.net/{FNAMEL}',
+        8 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
