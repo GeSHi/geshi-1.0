@@ -706,7 +706,7 @@ class GeSHi {
                 return;
             }
         }
-        if(preg_match('#[^/a-zA-Z0-9_\.\-\\:]#', $path)) {
+        if(preg_match('#[^/a-zA-Z0-9_\.\-\\\s:]#', $path)) {
             //Security Fix to prevent external directories using fopen wrappers.
             return;
         }
