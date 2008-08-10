@@ -3504,9 +3504,6 @@ class GeSHi {
                     $this->merge_arrays($this->language_data['STYLES'], $style_data);
             }
         }
-
-        // Set default class for CSS
-        $this->overall_class = $this->language;
     }
 
     /**
