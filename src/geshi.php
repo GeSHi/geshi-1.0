@@ -52,6 +52,11 @@ if (!defined('GESHI_ROOT')) {
     @access private */
 define('GESHI_LANG_ROOT', GESHI_ROOT . 'geshi' . DIRECTORY_SEPARATOR);
 
+// Define if GeSHi should be paranoid about security
+if (!defined('GESHI_SECURITY_PARANOID')) {
+    /** Tells GeSHi to be paranoid about security settings */
+    define('GESHI_SECURITY_PARANOID', false);
+}
 
 // Line numbers - use with enable_line_numbers()
 /** Use no line numbers when building the result */
@@ -691,9 +696,31 @@ class GeSHi {
      *             so this method will disappear in 1.2.0.
      */
     function set_language_path($path) {
+        if(strpos($path,':')) {
+            //Security Fix to prevent external directories using fopen wrappers.
+            if(DIRECTORY_SEPARATOR == "\\") {
+                if(!preg_match('#^[a-zA-Z]:#', $path) || false !== strpos($path, ':', 2)) {
+                    return;
+                }
+            } else {
+                return;
+            }
+        }
+        if(preg_match('#[^/a-zA-Z0-9_\.\-\\:]#', $path)) {
+            //Security Fix to prevent external directories using fopen wrappers.
+            return;
+        }
+        if(GESHI_SECURITY_PARANOID && false !== strpos($path, '/.')) {
+            //Security Fix to prevent external directories using fopen wrappers.
+            return;
+        }
+        if(GESHI_SECURITY_PARANOID && false !== strpos($path, '..')) {
+            //Security Fix to prevent external directories using fopen wrappers.
+            return;
+        }
         if ($path) {
             $this->language_path = ('/' == $path[strlen($path) - 1]) ? $path : $path . '/';
-            $this->set_language($this->language);        // otherwise set_language_path has no effect
+            $this->set_language($this->language); // otherwise set_language_path has no effect
         }
     }
 
