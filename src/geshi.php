@@ -3678,8 +3678,8 @@ class GeSHi {
                     // get linenumbers
                     // we don't merge it with the for below, since it should be better for
                     // memory consumption this way
-                    for ($i = 1; $i <= $n; ++$i) {
-                        $parsed_code .= $i;
+                    for ($i = 0; $i < $n; ++$i) {
+                        $parsed_code .= $this->line_numbers_start + $i;
                         if ($i != $n) {
                             $parsed_code .= "\n";
                         }
