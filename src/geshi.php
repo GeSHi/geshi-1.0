@@ -3709,7 +3709,7 @@ class GeSHi {
             } else {
                 $attributes = ' style="'. $this->code_style .'"';
             }
-            if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->header_type == GESHI_HEADER_PRE_VALID || $this->header_type == GESHI_HEADER_PRE_TABLE) {
                 $parsed_code .= '<pre'. $attributes .'>';
             }
             // No line numbers, but still need to handle highlighting lines extra.
@@ -3762,7 +3762,7 @@ class GeSHi {
                 unset($code[$i]);
             }
 
-            if ($this->header_type == GESHI_HEADER_PRE_VALID) {
+            if ($this->header_type == GESHI_HEADER_PRE_VALID || $this->header_type == GESHI_HEADER_PRE_TABLE) {
                 $parsed_code .= '</pre>';
             }
         }
