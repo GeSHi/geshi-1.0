@@ -13,6 +13,8 @@ Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8.1
+  -  Fixed borken highlight of bash commands like `dbus-send --dest=org.....`,
+     i.e. the dest was highlighted as variable declaration (milian)
   -  Fixed broken Escape chars if classes were disabled
   -  start_line_numbers_at() was ignored when GESHI_HEADER_PRE_TABLE was set (revulo)
   -  Fixed a problem allowing Remote Code Inclusion under certain circumstances (BenBE)
@@ -20,6 +22,8 @@ Version 1.0.8.1
      some fonts had different heights when boldened. The new markup with a wrapping table
      which includes two more tables, one for linenumbers and one for the code, should work
      even there... (milian)
+  -  Minor style changes to the following languages:
+     * cpp-qt (milian)
   -  Improvements to language files (BenBE, milian)
      * Added MinSpareThread\MaxSpareThreads to Apache highlighter (BenBE)
      * Added new Keyword group for APT sources.list highlighter (BenBE)

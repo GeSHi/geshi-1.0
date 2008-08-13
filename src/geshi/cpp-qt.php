@@ -219,7 +219,7 @@ $language_data = array (
             2 => 'color: #0000ff;',
             3 => 'color: #0000dd;',
             4 => 'color: #0000ff;',
-            5 => 'color: #0000ee;'
+            5 => 'color: #3D87DB;'
             ),
         'COMMENTS' => array(
             1 => 'color: #ff0000;',
@@ -230,7 +230,7 @@ $language_data = array (
             0 => 'color: #666666; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #008000;'
             ),
         'STRINGS' => array(
             0 => 'color: #666666;'
