@@ -2,8 +2,8 @@
 /*************************************************************************************
  * latex.php
  * -----
- * Author: efi, Matthias Pospiech (mail@matthiaspospiech.de)
- * Copyright: (c) 2006 efi, Matthias Pospiech (mail@matthiaspospiech.de), Nigel McNie (http://qbnz.com/highlighter)
+ * Author: efi, Matthias Pospiech (matthias@pospiech.eu)
+ * Copyright: (c) 2006 efi, Matthias Pospiech (matthias@pospiech.eu), Nigel McNie (http://qbnz.com/highlighter)
  * Release Version: 1.0.8
  * Date Started: 2006/09/23
  *
@@ -11,6 +11,18 @@
  *
  * CHANGES
  * -------
+ * 2008/08/18 (1.0.8.1)
+ *  - Changes in color and some additional command recognition
+ *  - No special Color for Brackets, it is only distracting
+ *    if color should be reintroduced it should be less bright
+ *  - Math color changed from green to violett, since green is now used for comments
+ *  - Comments are now colored and the only green. The reason for coloring the comments
+ *    is that often important information is in the comments und was merely unvisible before.
+ *  - New Color for [Options]
+ *  - color for labels not specialised anymore. It makes sence in large documents but less in
+ *    small web examples.
+ *  - \@keyword introduced
+ *  - Fixed \& escaped ampersand
  * 2006/09/23 (1.0.0)
  *  -  First Release
  *
@@ -59,7 +71,7 @@ $language_data = array (
         'KEYWORDS' => array(
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080; font-style: italic;'
+            1 => 'color: #2C922C; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 =>  'color: #000000; font-weight: bold;'
@@ -74,19 +86,21 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            0 =>  'color: #00A000; font-weight: bold;'
+            0 =>  'color: #E02020; '
             ),
         'REGEXPS' => array(
-            1 => 'color: #00A000; font-weight: bold;',  // Math inner
-            2 => 'color: #2222D0; font-weight: normal;', // [Option]
-            3 => 'color: #00A000; font-weight: normal;', // Mathe #CCF020
-            4 => 'color: #F00000; font-weight: normal;', // Structure: Labels
-            5 => 'color: #0000D0; font-weight: bold;',  // Environment \end or \begin
-            6 => 'color: #F00000; font-weight: normal;', // Structure \end or \begin
-            7 => 'color: #2222D0; font-weight: normal;', // {...}
-            8 => 'color: #800000; font-weight: normal;', // \keyword #202020
-            9 => 'color: #800000; font-weight: normal;', // Escaped char
-            //10 => 'color: #F00000; font-weight: normal;',  // Structure
+            1 => 'color: #8020E0; font-weight: normal;',  // Math inner
+            2 => 'color: #C08020; font-weight: normal;', // [Option]
+            3 => 'color: #8020E0; font-weight: normal;', // Maths
+            4 => 'color: #800000; font-weight: normal;', // Structure: Labels
+            5 => 'color: #00008B; font-weight: bold;',  // Structure (\section{->x<-})
+            6 => 'color: #800000; font-weight: normal;', // Structure (\section)
+            7 => 'color: #0000D0; font-weight: normal;', // Environment \end or \begin{->x<-} (brighter blue)
+            8 => 'color: #C00000; font-weight: normal;', // Structure \end or \begin
+            9 => 'color: #2020C0; font-weight: normal;', // {...}
+            10 => 'color: #800000; font-weight: normal;', // \%, \& etc.
+            11 => 'color: #E00000; font-weight: normal;', // \@keyword
+            12 => 'color: #800000; font-weight: normal;', // \keyword
         ),
         'SCRIPT' => array(
             )
@@ -129,8 +143,24 @@ $language_data = array (
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
-        // environment \begin{} and \end{} (i.e. the things inside the {})
+        // Structure: sections
         5 => array(
+            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])(\\{)(.*)(\\})",
+            GESHI_REPLACE => '\\4',
+            GESHI_MODIFIERS => 'U',
+            GESHI_BEFORE => '\\1\\2\\3',
+            GESHI_AFTER => '\\5'
+            ),
+        // Structure: sections
+        6 => array(
+            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])",
+            GESHI_REPLACE => '\\1\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => '\\3'
+            ),
+        // environment \begin{} and \end{} (i.e. the things inside the {})
+        7 => array(
             GESHI_SEARCH => "(\\\\(?:begin|end)\\{)(.*)(?=\\})",
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'U',
@@ -138,7 +168,7 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // Structure \begin and \end
-        6 => array(
+        8 => array(
             GESHI_SEARCH => "(\\\\(end|begin))(?=[^a-zA-Z])",
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
@@ -146,37 +176,37 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // {parameters}
-        7 => array(
+        9 => array(
             GESHI_SEARCH => "(\\{)(?!<\|!REG3XP5!>)(.*)(\\})",
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
             ),
+        // \%, \& usw.
+        10 => array(
+            GESHI_SEARCH => "(\\\\(?:[_$%]|&amp;))",
+            GESHI_REPLACE => '\\1',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
+        //  \@keywords
+        11 => array(
+            GESHI_SEARCH => "(\\\\)([a-zA-Z@]+)",
+            GESHI_REPLACE => '\\1\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
         // \keywords
-        8 => array(
+        12 => array(
             GESHI_SEARCH => "(?<!<\|!REG3XP[46]!>)(\\\\)([a-zA-Z]+)",
             GESHI_REPLACE => '\1\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
-        // environment end
-        9 => array(
-            GESHI_SEARCH => "(\\\\[_$%])",
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            )
-        // Structure: sections
-        /*10 => array(
-            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\1\\2',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => '\\3'
-            ),*/
 
 // ---------------------------------------------
         ),
