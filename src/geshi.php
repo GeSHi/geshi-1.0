@@ -2422,7 +2422,7 @@ class GeSHi {
                                     GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
 
                                 //Get the byte AFTER the ESCAPE_CHAR we just found
-                                $es_char = $string[$es_pos + 1];
+                                $es_char = $part[$es_pos + 1];
                                 if ($es_char == "\n") {
                                     // don't put a newline around newlines
                                     $string .= "</span>\n";
