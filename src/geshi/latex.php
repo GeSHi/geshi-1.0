@@ -50,7 +50,7 @@ $language_data = array (
     'KEYWORDS' => array(
         ),
     'SYMBOLS' => array(
-        '.', ',','\\',"~", "{", "}", "[", "]", "$"
+        "&", "\\", "{", "}", "[", "]"
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -74,7 +74,7 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            1 =>  'color: #800000; font-weight: bold;'
+            0 =>  'color: #00A000; font-weight: bold;'
             ),
         'REGEXPS' => array(
             1 => 'color: #00A000; font-weight: bold;',  // Math inner
@@ -191,7 +191,7 @@ $language_data = array (
         ),
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER,
-            'SYMBOLS' => GESHI_NEVER,
+            'BRACKETS' => GESHI_NEVER
         )
     )
 );
