@@ -2327,7 +2327,7 @@ class GeSHi {
                         }
 
                         // now handle the string
-                        $string = "<span $string_attributes>" . GeSHi::hsc($char);
+                        $string = "<span$string_attributes>" . GeSHi::hsc($char);
                         $start = $i + $char_len;
                         $string_open = true;
 
@@ -2418,7 +2418,7 @@ class GeSHi {
                                 }
 
                                 //Add the style for the escape char ...
-                                $string .= "<span $escape_char_attributes>" .
+                                $string .= "<span$escape_char_attributes>" .
                                     GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
 
                                 //Get the byte AFTER the ESCAPE_CHAR we just found
@@ -2474,7 +2474,7 @@ class GeSHi {
                                 }
 
                                 //Add the style for the escape char ...
-                                $string .= "<span $escape_char_attributes>" .
+                                $string .= "<span$escape_char_attributes>" .
                                     $this->hsc($escape_str) . '</span>';
 
                                 $start = $es_pos + $escape['length'];
