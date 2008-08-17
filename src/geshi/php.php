@@ -64,7 +64,19 @@ $language_data = array (
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
-    'ESCAPE_CHAR' => '\\',
+    'ESCAPE_CHAR' => '',
+    'ESCAPE_REGEXP' => array(
+        //Simple Single Char Escapes
+        1 => "#\\\\[nfrtv\\$\\\"\n]#i",
+        //Hexadecimal Char Specs
+        2 => "#\\\\x[\da-fA-F]{1,2}#i",
+        //Octal Char Specs
+        3 => "#\\\\[0-7]{1,3}#",
+        //String Parsing of Variable Names
+        4 => "#\\$[a-z0-9_]+(?:\\[[a-z0-9_]+\\]|->[a-z0-9_]+)?|(?:\\{\\$|\\$\\{)[a-z0-9_]+(?:\\[('?)[a-z0-9_]*\\1\\]|->[a-z0-9_]+)*\\}#i",
+        //Experimental extension supporting cascaded {${$var}} syntax
+        //5 => "#\$[a-z0-9_]+(?:\[[a-z0-9_]+\]|->[a-z0-9_]+)?|(?:\{\$|\$\{)[a-z0-9_]+(?:\[('?)[a-z0-9_]*\\1\]|->[a-z0-9_]+)*\}|\{\$(?R)\}#i"
+        ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
         GESHI_NUMBER_FLT_SCI_ZERO,
@@ -499,6 +511,11 @@ $language_data = array (
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
+            1 => 'color: #000099; font-weight: bold;',
+            2 => 'color: #660099; font-weight: bold;',
+            3 => 'color: #660099; font-weight: bold;',
+            4 => 'color: #006699; font-weight: bold;',
+            5 => 'color: #006699; font-weight: bold; font-style: italic;',
             'HARD' => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
