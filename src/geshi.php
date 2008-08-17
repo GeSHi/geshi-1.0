@@ -4241,7 +4241,7 @@ class GeSHi {
         foreach ($this->language_data['STYLES']['ESCAPE_CHAR'] as $group => $styles) {
             if ($styles != '' && (!$economy_mode || $this->lexic_permissions['ESCAPE_CHAR'])) {
                 // NEW: since 1.0.8 we have to handle hardescapes
-                if ($group == 'HARD') {
+                if ($group === 'HARD') {
                     $group = '_h';
                 }
                 $stylesheet .= "$selector.es$group {{$styles}}\n";
