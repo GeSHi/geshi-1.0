@@ -2331,6 +2331,10 @@ class GeSHi {
                         $start = $i + $char_len;
                         $string_open = true;
 
+                        if(empty($this->language_data['ESCAPE_REGEXP'])) {
+                            $next_escape_regexp_pos = $length;
+                        }
+
                         do {
                             //Get the regular ending pos ...
                             $close_pos = strpos($part, $char, $start);
