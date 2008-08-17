@@ -50,7 +50,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            'not','defun','princ',
+            'not','defun','princ','when',
             'eval','apply','funcall','quote','identity','function',
             'complement','backquote','lambda','set','setq','setf',
             'defmacro','gensym','make','symbol','intern',
@@ -73,11 +73,16 @@ $language_data = array (
             'rem','min','max','abs','sin','cos','tan','expt','exp','sqrt',
             'random','logand','logior','logxor','lognot','bignums','logeqv',
             'lognand','lognor','logorc2','logtest','logbitp','logcount',
-            'integer','nil'
+            'integer','nil','parse-integer'
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '{', '}', '[', ']', '!', '%', '^', '&', '/','+','-','*','=','<','>',';','|'
+        '(', ')', '{', '}', '[', ']',
+        '!', '%', '^', '&',
+        ' + ',' - ',' * ',' / ',
+        '=','<','>',
+        '.',':',',',';',
+        '|'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
