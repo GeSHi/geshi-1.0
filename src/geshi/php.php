@@ -506,7 +506,7 @@ $language_data = array (
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #666666; font-style: italic;',
             3 => 'color: #0000cc; font-style: italic;',
-            4 => 'color: #0000ff; font-style: italic;',
+            4 => 'color: #009933; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -578,8 +578,8 @@ $language_data = array (
         3 => array(
             '<script language="php">' => '</script>'
             ),
-        4 => "/(<\?(?:php)?)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(\?>|\Z)/sm",
-        5 => "/(<%)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(%>|\Z)/sm"
+        4 => "/(<\?(?:php)?)(?:'(?:[^'\\\\]|\\\\.)*?'|\"(?:[^\"\\\\]|\\\\.)*?\"|\/\*(?!\*\/).*?\*\/|.)*?(\?>|\Z)/sm",
+        5 => "/(<%)(?:'(?:[^'\\\\]|\\\\.)*?'|\"(?:[^\"\\\\]|\\\\.)*?\"|\/\*(?!\*\/).*?\*\/|.)*?(%>|\Z)/sm"
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
