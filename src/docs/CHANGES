@@ -27,6 +27,8 @@ Version 1.0.8.1
   -  Improvements to language files (BenBE, milian)
      * Added MinSpareThread\MaxSpareThreads to Apache highlighter (BenBE)
      * Added new Keyword group for APT sources.list highlighter (BenBE)
+     * Fixed highlighting in LaTeX for \begin{} and \end{}, i.e. the stuff inside the
+       curly braces. (milian, thanks for the report go to Matthias Pospiech)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)

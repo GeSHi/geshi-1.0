@@ -78,17 +78,15 @@ $language_data = array (
             ),
         'REGEXPS' => array(
             1 => 'color: #00A000; font-weight: bold;',  // Math inner
-            2 => 'color: #800000; font-weight: normal;', // \keyword #202020
-            3 => 'color: #2222D0; font-weight: normal;', // {...}
-            4 => 'color: #2222D0; font-weight: normal;', // [Option]
-            5 => 'color: #00A000; font-weight: normal;', // Mathe #CCF020
-            6 => 'color: #F00000; font-weight: normal;', // Structure \begin
-            7 => 'color: #F00000; font-weight: normal;', // Structure \end
-            8 => 'color: #F00000; font-weight: normal;', // Structure: Labels
-            //9 => 'color: #F00000; font-weight: normal;',  // Structure
-            10 => 'color: #0000D0; font-weight: bold;',  // Environment
-            11 => 'color: #0000D0; font-weight: bold;',  // Environment
-            12 => 'color: #800000; font-weight: normal;', // Escaped char
+            2 => 'color: #2222D0; font-weight: normal;', // [Option]
+            3 => 'color: #00A000; font-weight: normal;', // Mathe #CCF020
+            4 => 'color: #F00000; font-weight: normal;', // Structure: Labels
+            5 => 'color: #0000D0; font-weight: bold;',  // Environment \end or \begin
+            6 => 'color: #F00000; font-weight: normal;', // Structure \end or \begin
+            7 => 'color: #2222D0; font-weight: normal;', // {...}
+            8 => 'color: #800000; font-weight: normal;', // \keyword #202020
+            9 => 'color: #800000; font-weight: normal;', // Escaped char
+            //10 => 'color: #F00000; font-weight: normal;',  // Structure
         ),
         'SCRIPT' => array(
             )
@@ -107,24 +105,8 @@ $language_data = array (
             GESHI_BEFORE => '\1\2\3',
             GESHI_AFTER => '\5\6\7'
             ),
-        // \keywords
-        2 => array(
-            GESHI_SEARCH => "(\\\\)([a-zA-Z]+)",
-            GESHI_REPLACE => '\1\2',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-        // {parameters}
-        3 => array(
-            GESHI_SEARCH => "(\\{)(.*)(\\})",
-            GESHI_REPLACE => '\2',
-            GESHI_MODIFIERS => 'Us',
-            GESHI_BEFORE => '\1',
-            GESHI_AFTER => '\3'
-            ),
         // [options]
-        4 => array(
+        2 => array(
             GESHI_SEARCH => "(\[)(.+)(\])",
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => 'Us',
@@ -132,71 +114,69 @@ $language_data = array (
             GESHI_AFTER => '\3'
             ),
         // Math mode with $ ... $
-        5 => array(
+        3 => array(
             GESHI_SEARCH => "(\\$)(.+)(\\$)",
             GESHI_REPLACE => '\1\2\3',
             GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
-        // Structure begin
-        6 => array(
-            GESHI_SEARCH => "(\\\\begin)(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-        // Structure end
-        7 => array(
-            GESHI_SEARCH => "(\\\\end)(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
         // Structure: Label
-        8 => array(
+        4 => array(
             GESHI_SEARCH => "(\\\\)(label|pageref|ref|cite)(?=[^a-zA-Z])",
             GESHI_REPLACE => '\\1\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
-        // Structure: sections
-        /*9 => array(
-            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\1\\2',
+        // environment \begin{} and \end{} (i.e. the things inside the {})
+        5 => array(
+            GESHI_SEARCH => "(\\\\(?:begin|end)\\{)(.*)(?=\\})",
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => 'U',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => ''
+            ),
+        // Structure \begin and \end
+        6 => array(
+            GESHI_SEARCH => "(\\\\(end|begin))(?=[^a-zA-Z])",
+            GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\3'
-            ),*/
-
-        // environment begin
-        10 => array(
-            GESHI_SEARCH => "(\\\\begin)(\\{)(.*)(\\})",
-            GESHI_REPLACE => '\\3',
-            GESHI_MODIFIERS => 'U',
+            GESHI_AFTER => ''
+            ),
+        // {parameters}
+        7 => array(
+            GESHI_SEARCH => "(\\{)(?!<\|!REG3XP5!>)(.*)(\\})",
+            GESHI_REPLACE => '\2',
+            GESHI_MODIFIERS => 'Us',
+            GESHI_BEFORE => '\1',
+            GESHI_AFTER => '\3'
+            ),
+        // \keywords
+        8 => array(
+            GESHI_SEARCH => "(?<!<\|!REG3XP[46]!>)(\\\\)([a-zA-Z]+)",
+            GESHI_REPLACE => '\1\2',
+            GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
         // environment end
-        11 => array(
-            GESHI_SEARCH => "(\\\\end)(\\{)(.*)(\\})",
-            GESHI_REPLACE => '\\3',
-            GESHI_MODIFIERS => 'U',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
-
-        // environment end
-        12 => array(
+        9 => array(
             GESHI_SEARCH => "(\\\\[_$%])",
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             )
+        // Structure: sections
+        /*10 => array(
+            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])",
+            GESHI_REPLACE => '\1\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => '\\3'
+            ),*/
 
 // ---------------------------------------------
         ),
