@@ -2269,6 +2269,9 @@ class GeSHi {
                 $comment_single_cache_per_key = array();
                 $next_open_comment_multi = '';
                 $next_comment_single_key = '';
+                $escape_regexp_cache = array();
+                $escape_regexp_cache_per_key = array();
+                $next_escape_regexp_pos = -1;
 
                 $length = strlen($part);
                 for ($i = 0; $i < $length; ++$i) {
@@ -2313,70 +2316,119 @@ class GeSHi {
                             $string_key = 0;
                         }
 
-                        if (!$this->use_classes) {
-                            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][$string_key] . '"';
-                            $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][$string_key] . '"';
-                        } else {
-                            $string_attributes = ' class="st'.$string_key.'"';
-                            $escape_char_attributes = ' class="es'.$string_key.'"';
-                        }
-
                         // parse the stuff before this
                         $result .= $this->parse_non_string_part($stuff_to_parse);
                         $stuff_to_parse = '';
 
-                        // now handle the string
-                        $string = '';
+                        if (!$this->use_classes) {
+                            $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS'][$string_key] . '"';
+                        } else {
+                            $string_attributes = ' class="st'.$string_key.'"';
+                        }
 
-                        // look for closing quote
-                        $start = $i;
-                        while ($close_pos = strpos($part, $char, $start + $char_len)) {
-                            $start = $close_pos;
-                            if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
-                                // check wether this quote is escaped or if it is something like '\\'
-                                $escape_char_pos = $close_pos - 1;
-                                while ($escape_char_pos > 0 &&
-                                        $part[$escape_char_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
-                                    --$escape_char_pos;
-                                }
-                                if (($close_pos - $escape_char_pos) & 1) {
-                                    // uneven number of escape chars => this quote is escaped
-                                    continue;
-                                }
+                        // now handle the string
+                        $string = "<span $string_attributes>" . GeSHi::hsc($char);
+                        $start = $i + $char_len;
+                        $string_open = true;
+
+                        do {
+                            //Get the regular ending pos ...
+                            $close_pos = strpos($part, $char, $start);
+                            if(false === $close_pos) {
+                                $close_pos = $length;
                             }
 
-                            // found closing quote
-                            break;
-                        }
+                            if($this->lexic_permissions['ESCAPE_CHAR']) {
+                                // update escape regexp cache if needed
+                                if (isset($this->language_data['ESCAPE_REGEXP']) && $next_escape_regexp_pos < $start) {
+                                    $next_escape_regexp_pos = $length;
+                                    foreach ($this->language_data['ESCAPE_REGEXP'] as $escape_key => $regexp) {
+                                        $match_i = false;
+                                        if (isset($escape_regexp_cache_per_key[$escape_key]) &&
+                                            ($escape_regexp_cache_per_key[$escape_key] >= $start ||
+                                             $escape_regexp_cache_per_key[$escape_key] === false)) {
+                                            // we have already matched something
+                                            if ($escape_regexp_cache_per_key[$escape_key] === false) {
+                                                // this comment is never matched
+                                                continue;
+                                            }
+                                            $match_i = $escape_regexp_cache_per_key[$escape_key];
+                                        } else if (
+                                            //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
+                                            (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $start), $match, PREG_OFFSET_CAPTURE)) ||
+                                            (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $start))
+                                            ) {
+                                            $match_i = $match[0][1];
+                                            if (GESHI_PHP_PRE_433) {
+                                                $match_i += $start;
+                                            }
 
-                        //Found the closing delimiter?
-                        if (!$close_pos) {
-                            // span till the end of this $part when no closing delimiter is found
-                            $close_pos = $length;
-                        }
+                                            $escape_regexp_cache[$match_i] = array(
+                                                'key' => $escape_key,
+                                                'length' => strlen($match[0][0]),
+                                            );
 
-                        //Get the actual string
-                        $string = substr($part, $i, $close_pos - $i + $char_len);
-                        $i = $close_pos + $char_len - 1;
+                                            $escape_regexp_cache_per_key[$escape_key] = $match_i;
+                                        } else {
+                                            $escape_regexp_cache_per_key[$escape_key] = false;
+                                            continue;
+                                        }
 
-                        // handle escape chars and encode html chars
-                        // (special because when we have escape chars within our string they may not be escaped)
-                        if ($this->lexic_permissions['ESCAPE_CHAR'] && $this->language_data['ESCAPE_CHAR']) {
-                            $start = 0;
-                            $new_string = '';
-                            while ($es_pos = strpos($string, $this->language_data['ESCAPE_CHAR'], $start)) {
-                                $new_string .= $this->hsc(substr($string, $start, $es_pos - $start))
-                                              . "<span$escape_char_attributes>" . $escaped_escape_char;
+                                        if ($match_i !== false && $match_i < $next_escape_regexp_pos) {
+                                            $next_escape_regexp_pos = $match_i;
+                                            if ($match_i === $start) {
+                                                break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Find the next simple escape position
+                                if('' != $this->language_data['ESCAPE_CHAR']) {
+                                    $simple_escape = strpos($part, $this->language_data['ESCAPE_CHAR'], $start);
+                                    if(false === $simple_escape) {
+                                        $simple_escape = $length;
+                                    }
+                                } else {
+                                    $simple_escape = $length;
+                                }
+                            } else {
+                                $next_escape_regexp_pos = $length;
+                                $simple_escape = $length;
+                            }
+
+                            if($simple_escape < $next_escape_regexp_pos &&
+                                $simple_escape < $length &&
+                                $simple_escape < $close_pos) {
+                                //The nexxt escape sequence is a simple one ...
+                                $es_pos = $simple_escape;
+
+                                //Add the stuff not in the string yet ...
+                                $string .= $this->hsc(substr($part, $start, $es_pos - $start));
+
+                                //Get the style for this escaped char ...
+                                if (!$this->use_classes) {
+                                    $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][0] . '"';
+                                } else {
+                                    $escape_char_attributes = ' class="es0"';
+                                }
+
+                                //Add the style for the escape char ...
+                                $string .= "<span $escape_char_attributes>" .
+                                    GeSHi::hsc($this->language_data['ESCAPE_CHAR']);
+
+                                //Get the byte AFTER the ESCAPE_CHAR we just found
                                 $es_char = $string[$es_pos + 1];
                                 if ($es_char == "\n") {
                                     // don't put a newline around newlines
-                                    $new_string .= "</span>\n";
+                                    $string .= "</span>\n";
+                                    $start = $es_pos + 2;
                                 } else if (ord($es_char) >= 128) {
                                     //This is an non-ASCII char (UTF8 or single byte)
                                     //This code tries to work around SF#2037598 ...
                                     if(function_exists('mb_substr')) {
-                                        $es_char_m = mb_substr(substr($string, $es_pos+1, 16), 0, 1, $this->encoding);
-                                        $new_string .= $es_char_m . '</span>';
+                                        $es_char_m = mb_substr(substr($part, $es_pos+1, 16), 0, 1, $this->encoding);
+                                        $string .= $es_char_m . '</span>';
                                     } else if (!GESHI_PHP_PRE_433 && 'utf-8' == $this->encoding) {
                                         if(preg_match("/[\xC2-\xDF][\x80-\xBF]".
                                             "|\xE0[\xA0-\xBF][\x80-\xBF]".
@@ -2385,26 +2437,50 @@ class GeSHi {
                                             "|\xF0[\x90-\xBF][\x80-\xBF]{2}".
                                             "|[\xF1-\xF3][\x80-\xBF]{3}".
                                             "|\xF4[\x80-\x8F][\x80-\xBF]{2}/s",
-                                            $string, $es_char_m, null, $es_pos + 1)) {
+                                            $part, $es_char_m, null, $es_pos + 1)) {
                                             $es_char_m = $es_char_m[0];
                                         } else {
                                             $es_char_m = $es_char;
                                         }
-                                        $new_string .= $this->hsc($es_char_m) . '</span>';
+                                        $string .= $this->hsc($es_char_m) . '</span>';
                                     } else {
                                         $es_char_m = $this->hsc($es_char);
                                     }
-                                    $es_pos += strlen($es_char_m) - 1;
+                                    $start = $es_pos + strlen($es_char_m) + 1;
                                 } else {
-                                    $new_string .= $this->hsc($es_char) . '</span>';
+                                    $string .= $this->hsc($es_char) . '</span>';
+                                    $start = $es_pos + 2;
                                 }
-                                $start = $es_pos + 2;
+                            } else if ($next_escape_regexp_pos < $length &&
+                                $next_escape_regexp_pos < $close_pos) {
+                                $es_pos = $next_escape_regexp_pos;
+                                //Add the stuff not in the string yet ...
+                                $string .= $this->hsc(substr($part, $start, $es_pos - $start));
+
+                                //Get the key and length of this match ...
+                                $escape = $escape_regexp_cache[$es_pos];
+                                $escape_str = substr($part, $es_pos, $escape['length']);
+                                $escape_key = $escape['key'];
+
+                                //Get the style for this escaped char ...
+                                if (!$this->use_classes) {
+                                    $escape_char_attributes = ' style="' . $this->language_data['STYLES']['ESCAPE_CHAR'][$escape_key] . '"';
+                                } else {
+                                    $escape_char_attributes = ' class="es' . $escape_key . '"';
+                                }
+
+                                //Add the style for the escape char ...
+                                $string .= "<span $escape_char_attributes>" .
+                                    $this->hsc($escape_str) . '</span>';
+
+                                $start = $es_pos + $escape['length'];
+                            } else {
+                                //Copy the remainder of the string ...
+                                $string .= $this->hsc(substr($part, $start, $close_pos - $start + $char_len)) . '</span>';
+                                $start = $close_pos + $char_len;
+                                $string_open = false;
                             }
-                            $string = $new_string . $this->hsc(substr($string, $start));
-                            $new_string = '';
-                        } else {
-                            $string = $this->hsc($string);
-                        }
+                        } while($string_open);
 
                         if ($check_linenumbers) {
                             // Are line numbers used? If, we should end the string before
@@ -2415,8 +2491,9 @@ class GeSHi {
                             $string = str_replace("\n", "</span>\n<span$string_attributes>", $string);
                         }
 
-                        $result .= "<span$string_attributes>" . $string . '</span>';
+                        $result .= $string;
                         $string = '';
+                        $i = $start - 1;
                         continue;
                     } else if ($this->lexic_permissions['STRINGS'] && $hq && $hq[0] == $char &&
                         substr($part, $i, $hq_strlen) == $hq) {
