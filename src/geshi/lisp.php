@@ -133,6 +133,11 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'OOLANG' => array(
+            'MATCH_AFTER' => '[a-zA-Z][a-zA-Z0-9_\-]*'
+            )
         )
 );
 
