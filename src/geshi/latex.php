@@ -193,7 +193,7 @@ $language_data = array (
             ),
         //  \@keywords
         11 => array(
-            GESHI_SEARCH => "(\\\\)([a-zA-Z@]+)",
+            GESHI_SEARCH => "(?<!<\|!REG3XP[8]!>)(\\\\@)([a-zA-Z]+)",
             GESHI_REPLACE => '\\1\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
@@ -201,7 +201,7 @@ $language_data = array (
             ),
         // \keywords
         12 => array(
-            GESHI_SEARCH => "(?<!<\|!REG3XP[46]!>)(\\\\)([a-zA-Z]+)",
+            GESHI_SEARCH => "(?<!<\|!REG3XP[468]!>)(\\\\)([a-zA-Z]+)",
             GESHI_REPLACE => '\1\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
