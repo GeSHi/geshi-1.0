@@ -113,11 +113,11 @@ $language_data = array (
     'REGEXPS' => array(
         // Math inner
         1 => array(
-            GESHI_SEARCH => "(\\\\begin\\{)(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)(\\})(.*)(\\\\end\\{)(\\2)(\\})",
-            GESHI_REPLACE => '\4',
+            GESHI_SEARCH => "(\\\\begin\\{(?:equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)\\})(.*)(\\\\end\\{\\2\\})",
+            GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => 'Us',
-            GESHI_BEFORE => '\1\2\3',
-            GESHI_AFTER => '\5\6\7'
+            GESHI_BEFORE => '\1',
+            GESHI_AFTER => '\3'
             ),
         // [options]
         2 => array(
@@ -157,7 +157,7 @@ $language_data = array (
             GESHI_REPLACE => '\\1\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
-            GESHI_AFTER => '\\3'
+            GESHI_AFTER => ''
             ),
         // environment \begin{} and \end{} (i.e. the things inside the {})
         7 => array(
