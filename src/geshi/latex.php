@@ -113,11 +113,11 @@ $language_data = array (
     'REGEXPS' => array(
         // Math inner
         1 => array(
-            GESHI_SEARCH => "(\\\\begin\\{(?:equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)\\})(.*)(\\\\end\\{\\2\\})",
-            GESHI_REPLACE => '\2',
+            GESHI_SEARCH => "(\\\\begin\\{(equation|displaymath|eqnarray|subeqnarray|math|multline|gather|align|alignat|flalign)\\})(.*)(\\\\end\\{\\2\\})",
+            GESHI_REPLACE => '\3',
             GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '\1',
-            GESHI_AFTER => '\3'
+            GESHI_AFTER => '\4'
             ),
         // [options]
         2 => array(
@@ -145,7 +145,7 @@ $language_data = array (
             ),
         // Structure: sections
         5 => array(
-            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])(\\{)(.*)(\\})",
+            GESHI_SEARCH => "(\\\\)(part|chapter|(?:sub){0,2}section\*?|(?:sub)?paragraph)(?=[^a-zA-Z])(\\{)(.*)(\\})",
             GESHI_REPLACE => '\\4',
             GESHI_MODIFIERS => 'U',
             GESHI_BEFORE => '\\1\\2\\3',
@@ -153,7 +153,7 @@ $language_data = array (
             ),
         // Structure: sections
         6 => array(
-            GESHI_SEARCH => "(\\\\)(part|chapter|section|subsection|subsubsection|paragraph|subparagraph)(?=[^a-zA-Z])",
+            GESHI_SEARCH => "(\\\\)(part|chapter|(?:sub){0,2}section\*?|(?:sub)?paragraph)(?=[^a-zA-Z])",
             GESHI_REPLACE => '\\1\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
