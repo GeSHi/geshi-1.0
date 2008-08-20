@@ -136,13 +136,7 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // Structure: Label
-        4 => array(
-            GESHI_SEARCH => "\\\\(?:label|pageref|ref|cite)(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\\0',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
+        4 => "\\\\(?:label|pageref|ref|cite)(?=[^a-zA-Z])",
         // Structure: sections
         5 => array(
             GESHI_SEARCH => "(\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?\\{)(.*)(?=\\})",
@@ -152,13 +146,7 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // Structure: sections
-        6 => array(
-            GESHI_SEARCH => "\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\\0',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
+        6 => "\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?(?=[^a-zA-Z])",
         // environment \begin{} and \end{} (i.e. the things inside the {})
         7 => array(
             GESHI_SEARCH => "(\\\\(?:begin|end)\\{)(.*)(?=\\})",
@@ -168,13 +156,7 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // Structure \begin and \end
-        8 => array(
-            GESHI_SEARCH => "\\\\(?:end|begin)(?=[^a-zA-Z])",
-            GESHI_REPLACE => '\\0',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
+        8 => "\\\\(?:end|begin)(?=[^a-zA-Z])",
         // {parameters}
         9 => array(
             GESHI_SEARCH => "(?<=\\{)(?!<\|!REG3XP5!>).*(?=\\})",
@@ -184,29 +166,11 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // \%, \& usw.
-        10 => array(
-            GESHI_SEARCH => "\\\\(?:[_$%]|&amp;)",
-            GESHI_REPLACE => '\\0',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
+        10 => "\\\\(?:[_$%]|&amp;)",
         //  \@keywords
-        11 => array(
-            GESHI_SEARCH => "(?<!<\|!REG3XP[8]!>)\\\\@[a-zA-Z]+\*?",
-            GESHI_REPLACE => '\\0',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
+        11 => "(?<!<\|!REG3XP[8]!>)\\\\@[a-zA-Z]+\*?",
         // \keywords
-        12 => array(
-            GESHI_SEARCH => "(?<!<\|!REG3XP[468]!>)\\\\[a-zA-Z]+\*?",
-            GESHI_REPLACE => '\\0',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => ''
-            ),
+        12 => "(?<!<\|!REG3XP[468]!>)\\\\[a-zA-Z]+\*?",
 
 // ---------------------------------------------
         ),
