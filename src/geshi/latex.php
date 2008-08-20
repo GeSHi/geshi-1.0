@@ -86,7 +86,7 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            0 =>  'color: #E02020; '
+            0 =>  'color: #0000D0; '
             ),
         'REGEXPS' => array(
             1 => 'color: #8020E0; font-weight: normal;',  // Math inner
@@ -145,7 +145,7 @@ $language_data = array (
             ),
         // Structure: sections
         5 => array(
-            GESHI_SEARCH => "(\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph)\*?\\{)(.*)(?=\\})",
+            GESHI_SEARCH => "(\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?\\{)(.*)(?=\\})",
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'U',
             GESHI_BEFORE => '\\1',
@@ -153,7 +153,7 @@ $language_data = array (
             ),
         // Structure: sections
         6 => array(
-            GESHI_SEARCH => "\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph)\*?(?=[^a-zA-Z])",
+            GESHI_SEARCH => "\\\\(?:part|chapter|(?:sub){0,2}section|(?:sub)?paragraph|addpart|addchap|addsec)\*?(?=[^a-zA-Z])",
             GESHI_REPLACE => '\\0',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
