@@ -44,11 +44,21 @@
 
 $language_data = array (
     'LANG_NAME' => 'D',
-    'COMMENT_SINGLE' => array(1 => '//'),
+    'COMMENT_SINGLE' => array(2 => '///', 1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(
+        // doxygen comments
+        3 => '#/\*\*(?!\*).*\*/#sU',
+        // raw strings
+        4 => '#r"[^"]*"#s',
+        // Script Style interpreter comment
+        5 => "/\A#!(?=\\/).*?$/m"
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"', "'", '`'),
+    'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
+    'HARDQUOTE' => array('`', '`'),
+    'HARDESCAPE' => array(),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
         GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
@@ -135,17 +145,23 @@ $language_data = array (
             4 => 'color: #993333;'
             ),
         'COMMENTS' => array(
-            1=> 'color: #808080; font-style: italic;',
+            1 => 'color: #808080; font-style: italic;',
+            2 => 'color: #009933; font-style: italic;',
+            3 => 'color: #009933; font-style: italic;',
+            4 => 'color: #ff0000;',
+            5 => 'color: #0040ff;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #000099; font-weight: bold;'
+            0 => 'color: #000099; font-weight: bold;',
+            'HARD' => '',
             ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;'
+            0 => 'color: #ff0000;',
+            'HARD' => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
