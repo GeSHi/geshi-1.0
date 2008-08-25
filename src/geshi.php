@@ -1360,6 +1360,7 @@ class GeSHi {
                 'python' => array('py'),
                 'qbasic' => array('bi'),
                 'sas' => array('sas'),
+                'scilab' => array('sci'),
                 'smarty' => array(),
                 'vb' => array('bas'),
                 'vbnet' => array(),
