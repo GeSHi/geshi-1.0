@@ -75,7 +75,9 @@ $language_data = array (
         //String Parsing of Variable Names
         4 => "#\\$[a-z0-9_]+(?:\\[[a-z0-9_]+\\]|->[a-z0-9_]+)?|(?:\\{\\$|\\$\\{)[a-z0-9_]+(?:\\[('?)[a-z0-9_]*\\1\\]|->[a-z0-9_]+)*\\}#i",
         //Experimental extension supporting cascaded {${$var}} syntax
-        //5 => "#\$[a-z0-9_]+(?:\[[a-z0-9_]+\]|->[a-z0-9_]+)?|(?:\{\$|\$\{)[a-z0-9_]+(?:\[('?)[a-z0-9_]*\\1\]|->[a-z0-9_]+)*\}|\{\$(?R)\}#i"
+        5 => "#\$[a-z0-9_]+(?:\[[a-z0-9_]+\]|->[a-z0-9_]+)?|(?:\{\$|\$\{)[a-z0-9_]+(?:\[('?)[a-z0-9_]*\\1\]|->[a-z0-9_]+)*\}|\{\$(?R)\}#i",
+        //Format String support in ""-Strings
+        6 => "#%(?:%|(?:\d+\\\\\\\$)?\\+?(?:\x20|0|'.)?-?(?:\d+|\\*)?(?:\.\d+)?[bcdefFosuxX])#"
         ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
@@ -516,6 +518,7 @@ $language_data = array (
             3 => 'color: #660099; font-weight: bold;',
             4 => 'color: #006699; font-weight: bold;',
             5 => 'color: #006699; font-weight: bold; font-style: italic;',
+            6 => 'color: #009933; font-weight: bold;',
             'HARD' => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
