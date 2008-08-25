@@ -69,7 +69,7 @@ $language_data = array (
         //Octal Char Specs
         5 => "#\\\\[0-7]{1,3}#",
         //Named entity escapes
-        6 => "#\\\\&(?:quot|amp|lt|gt|OElig|oelig|Scaron|scaron|Yuml|circ|tilde|".
+        /*6 => "#\\\\&(?:quot|amp|lt|gt|OElig|oelig|Scaron|scaron|Yuml|circ|tilde|".
             "ensp|emsp|thinsp|zwnj|zwj|lrm|rlm|ndash|mdash|lsquo|rsquo|sbquo|".
             "ldquo|rdquo|bdquo|dagger|Dagger|permil|lsaquo|rsaquo|euro|nbsp|".
             "iexcl|cent|pound|curren|yen|brvbar|sect|uml|copy|ordf|laquo|not|".
@@ -91,7 +91,9 @@ $language_data = array (
             "nabla|isin|notin|ni|prod|sum|minus|lowast|radic|prop|infin|ang|".
             "and|or|cap|cup|int|there4|sim|cong|asymp|ne|equiv|le|ge|sub|sup|".
             "nsub|sube|supe|oplus|otimes|perp|sdot|lceil|rceil|lfloor|rfloor|".
-            "lang|rang|loz|spades|clubs|hearts|diams);#",
+            "lang|rang|loz|spades|clubs|hearts|diams);#",*/
+        // optimized:
+        6 => "#\\\\&(?:A(?:Elig|acute|circ|grave|lpha|ring|tilde|uml)|Beta|C(?:cedil|hi)|D(?:agger|elta)|E(?:TH|acute|circ|grave|psilon|ta|uml)|Gamma|I(?:acute|circ|grave|ota|uml)|Kappa|Lambda|Mu|N(?:tilde|u)|O(?:Elig|acute|circ|grave|m(?:ega|icron)|slash|tilde|uml)|P(?:hi|i|rime|si)|Rho|S(?:caron|igma)|T(?:HORN|au|heta)|U(?:acute|circ|grave|psilon|uml)|Xi|Y(?:acute|uml)|Zeta|a(?:acute|c(?:irc|ute)|elig|grave|l(?:efsym|pha)|mp|n[dg]|ring|symp|tilde|uml)|b(?:dquo|eta|rvbar|ull)|c(?:ap|cedil|e(?:dil|nt)|hi|irc|lubs|o(?:ng|py)|rarr|u(?:p|rren))|d(?:Arr|a(?:gger|rr)|e(?:g|lta)|i(?:ams|vide))|e(?:acute|circ|grave|m(?:pty|sp)|nsp|psilon|quiv|t[ah]|u(?:ml|ro)|xist)|f(?:nof|orall|ra(?:c(?:1[24]|34)|sl))|g(?:amma|e|t)|h(?:Arr|arr|e(?:arts|llip))|i(?:acute|circ|excl|grave|mage|n(?:fin|t)|ota|quest|sin|uml)|kappa|l(?:Arr|a(?:mbda|ng|quo|rr)|ceil|dquo|e|floor|o(?:wast|z)|rm|s(?:aquo|quo)|t)|m(?:acr|dash|i(?:cro|ddot|nus)|u)|n(?:abla|bsp|dash|e|i|ot(?:in)?|sub|tilde|u)|o(?:acute|circ|elig|grave|line|m(?:ega|icron)|plus|r(?:d[fm])?|slash|ti(?:lde|mes)|uml)|p(?:ar[at]|er(?:mil|p)|hi|iv?|lusmn|ound|r(?:ime|o[dp])|si)|quot|r(?:Arr|a(?:dic|ng|quo|rr)|ceil|dquo|e(?:al|g)|floor|ho|lm|s(?:aquo|quo))|s(?:bquo|caron|dot|ect|hy|i(?:gmaf?|m)|pades|u(?:be?|m|p[123e]?)|zlig)|t(?:au|h(?:e(?:re4|ta(?:sym)?)|insp|orn)|i(?:lde|mes)|rade)|u(?:Arr|a(?:cute|rr)|circ|grave|ml|psi(?:h|lon)|uml)|weierp|xi|y(?:acute|en|uml)|z(?:eta|w(?:j|nj)));#",
         ),
     'HARDQUOTE' => array('`', '`'),
     'HARDESCAPE' => array(),
