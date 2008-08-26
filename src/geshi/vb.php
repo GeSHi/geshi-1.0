@@ -41,8 +41,12 @@
 
 $language_data = array (
     'LANG_NAME' => 'Visual Basic',
-    'COMMENT_SINGLE' => array(1 => "'"),
+    'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
+    'COMMENT_REGEXP' => array(
+        // Comments (either single or multiline with _
+        1 => '/\'.*[^_]\n/sU',
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
