@@ -2284,10 +2284,16 @@ class GeSHi {
 
                     if (isset($is_string_starter[$char])) {
                         // Possibly the start of a new string ...
-
+                        // Fix for SF#2077453: some languages even allow the escaping of
+                        // string starters, Bash would be an example.
+                        // @todo: we might handle RegExp escape chars or escaped
+                        //        hardquote starters as well
+                        if (substr($stuff_to_parse, -1) == $this->language_data['ESCAPE_CHAR']) {
+                          $string_started = false;
+                        }
                         //Check which starter it was ...
                         //Fix for SF#1932083: Multichar Quotemarks unsupported
-                        if (is_array($is_string_starter[$char])) {
+                        else if (is_array($is_string_starter[$char])) {
                             $char_new = '';
                             foreach ($is_string_starter[$char] as $testchar) {
                                 if ($testchar === substr($part, $i, strlen($testchar)) &&
