@@ -1349,6 +1349,7 @@ class GeSHi {
                 'klonecpp' => array('klx'),
                 'lisp' => array('lisp'),
                 'lua' => array('lua'),
+                'matlab' => array('m'),
                 'mpasm' => array(),
                 'nsis' => array(),
                 'objc' => array(),
