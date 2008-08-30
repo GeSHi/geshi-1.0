@@ -3362,8 +3362,13 @@ class GeSHi {
                 if (strpos($symbol_match, '<') !== false || strpos($symbol_match, '>') !== false) {
                     // already highlighted blocks _must_ include either < or >
                     // so if this conditional applies, we have to skip this match
-                    continue;
+                    // BenBE: UNLESS the block contains <SEMI> or <PIPE>
+                    if(strpos($symbol_match, '<SEMI>') === false &&
+                        strpos($symbol_match, '<PIPE>') === false) {
+                        continue;
+                    }
                 }
+
                 // if we reach this point, we have a valid match which needs to be highlighted
 
                 $symbol_length = strlen($symbol_match);
@@ -3408,7 +3413,6 @@ class GeSHi {
                     }
                     $symbol_hl .= $symbol_match . '|>';
                 }
-
 
                 $stuff_to_parse = substr_replace($stuff_to_parse, $symbol_hl, $symbol_offset + $global_offset, $symbol_length);
 
