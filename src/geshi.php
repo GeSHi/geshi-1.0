@@ -2262,7 +2262,7 @@ class GeSHi {
                 // parse_non_string_part).
 
                 // cache comment regexps incrementally
-                $comment_regexp_cache = array();
+                $next_comment_regexp_key = '';
                 $next_comment_regexp_pos = -1;
                 $next_comment_multi_pos = -1;
                 $next_comment_single_pos = -1;
@@ -2271,8 +2271,8 @@ class GeSHi {
                 $comment_single_cache_per_key = array();
                 $next_open_comment_multi = '';
                 $next_comment_single_key = '';
-                $escape_regexp_cache = array();
                 $escape_regexp_cache_per_key = array();
+                $next_escape_regexp_key = '';
                 $next_escape_regexp_pos = -1;
 
                 $length = strlen($part);
@@ -2351,14 +2351,14 @@ class GeSHi {
                                     foreach ($this->language_data['ESCAPE_REGEXP'] as $escape_key => $regexp) {
                                         $match_i = false;
                                         if (isset($escape_regexp_cache_per_key[$escape_key]) &&
-                                            ($escape_regexp_cache_per_key[$escape_key] >= $start ||
-                                             $escape_regexp_cache_per_key[$escape_key] === false)) {
+                                            ($escape_regexp_cache_per_key[$escape_key]['pos'] >= $start ||
+                                             $escape_regexp_cache_per_key[$escape_key]['pos'] === false)) {
                                             // we have already matched something
-                                            if ($escape_regexp_cache_per_key[$escape_key] === false) {
+                                            if ($escape_regexp_cache_per_key[$escape_key]['pos'] === false) {
                                                 // this comment is never matched
                                                 continue;
                                             }
-                                            $match_i = $escape_regexp_cache_per_key[$escape_key];
+                                            $match_i = $escape_regexp_cache_per_key[$escape_key]['pos'];
                                         } else if (
                                             //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
                                             (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $start), $match, PREG_OFFSET_CAPTURE)) ||
@@ -2369,19 +2369,19 @@ class GeSHi {
                                                 $match_i += $start;
                                             }
 
-                                            $escape_regexp_cache[$match_i] = array(
+                                            $escape_regexp_cache_per_key[$escape_key] = array(
                                                 'key' => $escape_key,
                                                 'length' => strlen($match[0][0]),
+                                                'pos' => $match_i
                                             );
-
-                                            $escape_regexp_cache_per_key[$escape_key] = $match_i;
                                         } else {
-                                            $escape_regexp_cache_per_key[$escape_key] = false;
+                                            $escape_regexp_cache_per_key[$escape_key]['pos'] = false;
                                             continue;
                                         }
 
                                         if ($match_i !== false && $match_i < $next_escape_regexp_pos) {
                                             $next_escape_regexp_pos = $match_i;
+                                            $next_escape_regexp_key = $escape_key;
                                             if ($match_i === $start) {
                                                 break;
                                             }
@@ -2464,7 +2464,7 @@ class GeSHi {
                                 $string .= $this->hsc(substr($part, $start, $es_pos - $start));
 
                                 //Get the key and length of this match ...
-                                $escape = $escape_regexp_cache[$es_pos];
+                                $escape = $escape_regexp_cache_per_key[$next_escape_regexp_key];
                                 $escape_str = substr($part, $es_pos, $escape['length']);
                                 $escape_key = $escape['key'];
 
@@ -2615,14 +2615,14 @@ class GeSHi {
                             foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
                                 $match_i = false;
                                 if (isset($comment_regexp_cache_per_key[$comment_key]) &&
-                                    ($comment_regexp_cache_per_key[$comment_key] >= $i ||
-                                     $comment_regexp_cache_per_key[$comment_key] === false)) {
+                                    ($comment_regexp_cache_per_key[$comment_key]['pos'] >= $i ||
+                                     $comment_regexp_cache_per_key[$comment_key]['pos'] === false)) {
                                     // we have already matched something
-                                    if ($comment_regexp_cache_per_key[$comment_key] === false) {
+                                    if ($comment_regexp_cache_per_key[$comment_key]['pos'] === false) {
                                         // this comment is never matched
                                         continue;
                                     }
-                                    $match_i = $comment_regexp_cache_per_key[$comment_key];
+                                    $match_i = $comment_regexp_cache_per_key[$comment_key]['pos'];
                                 } else if (
                                     //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
                                     (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
@@ -2633,19 +2633,19 @@ class GeSHi {
                                         $match_i += $i;
                                     }
 
-                                    $comment_regexp_cache[$match_i] = array(
+                                    $comment_regexp_cache_per_key[$comment_key] = array(
                                         'key' => $comment_key,
                                         'length' => strlen($match[0][0]),
+                                        'pos' => $match_i
                                     );
-
-                                    $comment_regexp_cache_per_key[$comment_key] = $match_i;
                                 } else {
-                                    $comment_regexp_cache_per_key[$comment_key] = false;
+                                    $comment_regexp_cache_per_key[$comment_key]['pos'] = false;
                                     continue;
                                 }
 
                                 if ($match_i !== false && $match_i < $next_comment_regexp_pos) {
                                     $next_comment_regexp_pos = $match_i;
+                                    $next_comment_regexp_key = $comment_key;
                                     if ($match_i === $i) {
                                         break;
                                     }
@@ -2655,7 +2655,7 @@ class GeSHi {
                         //Have a look for regexp comments
                         if ($i == $next_comment_regexp_pos) {
                             $COMMENT_MATCHED = true;
-                            $comment = $comment_regexp_cache[$next_comment_regexp_pos];
+                            $comment = $comment_regexp_cache_per_key[$next_comment_regexp_key];
                             $test_str = $this->hsc(substr($part, $i, $comment['length']));
 
                             //@todo If remove important do remove here
