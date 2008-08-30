@@ -4,7 +4,7 @@
  * --------
  * Author: Marcus Griep (neoeinstein+GeSHi@gmail.com)
  * Copyright: (c) 2007 Marcus Griep (http://www.xpdm.us)
- * Release Version: 1.0.8
+ * Release Version: 1.0.8.1
  * Date Started: 2007/09/10
  *
  * Boo language file for GeSHi.
@@ -105,7 +105,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-         '[|', '|]', '${', '(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>', '+', '-', ';'
+        '[|', '|]', '${', '(', ')', '[', ']', '{', '}', '!', '@', '%', '&', '*', '|', '/', '<', '>', '+', '-', ';'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -200,8 +200,8 @@ $language_data = array (
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
-            0 => '.',
-            1 => '::'
+        0 => '.',
+        1 => '::'
         ),
     'REGEXPS' => array(
         #0 => '%(@)?\/(?:(?(1)[^\/\\\\\r\n]+|[^\/\\\\\r\n \t]+)|\\\\[\/\\\\\w+()|.*?$^[\]{}\d])+\/%'

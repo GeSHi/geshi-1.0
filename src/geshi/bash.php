@@ -4,7 +4,7 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1\.0\.8
+ * Release Version: 1.0.8.1
  * Date Started: 2004/08/20
  *
  * BASH language file for GeSHi.
@@ -63,7 +63,9 @@ $language_data = array (
         //Variables
         1 => "/\\$\\{[^\\n\\}]*?\\}/i",
         //BASH-style Heredoc
-        2 => '/<<-?\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU'
+        2 => '/<<-?\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
+        //Escaped String Starters
+        3 => "/\\\\['\"]/siU"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -190,7 +192,8 @@ $language_data = array (
         'COMMENTS' => array(
             0 => 'color: #666666; font-style: italic;',
             1 => 'color: #800000;',
-            2 => 'color: #cc0000; font-style: italic;'
+            2 => 'color: #cc0000; font-style: italic;',
+            3 => 'color: #000000; font-weight: bold;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
@@ -233,11 +236,11 @@ $language_data = array (
         //Variables without braces
         1 => "\\$[a-zA-Z_][a-zA-Z0-9_]*",
         //Variable assignment
-        2 => "(?<![\.a-zA-Z_])([a-zA-Z_][a-zA-Z0-9_]*?)(?==)",
+        2 => "(?<![\.a-zA-Z_\-])([a-zA-Z_][a-zA-Z0-9_]*?)(?==)",
         //Shorthand shell variables
         4 => "\\$[*#\$\\-\\?!]",
         //Parameters of commands
-        5 => "(?<=\s)-[0-9a-zA-Z\-]+(?=[\s=]|$)"
+        5 => "(?<=\s)--?[0-9a-zA-Z\-]+(?=[\s=]|$)"
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(

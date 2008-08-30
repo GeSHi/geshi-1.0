@@ -4,7 +4,7 @@
  * ---------
  * Author: M. Uli Kusterer (witness.of.teachtext@gmx.net)
  * Copyright: (c) 2004 M. Uli Kusterer, Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1\.0\.8
+ * Release Version: 1.0.8.1
  * Date Started: 2004/06/04
  *
  * C for Macs language file for GeSHi.
@@ -48,9 +48,10 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
-    'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
-                 GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
-                 GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+    'NUMBERS' =>
+        GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
+        GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
+        GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             'if', 'return', 'while', 'case', 'continue', 'default',

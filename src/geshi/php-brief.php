@@ -4,7 +4,7 @@
  * -------------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1\.0\.8
+ * Release Version: 1.0.8.1
  * Date Started: 2004/06/02
  *
  * PHP (brief version) language file for GeSHi.
@@ -58,8 +58,9 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'HARDQUOTE' => array("'", "'"),
     'HARDESCAPE' => array("\'"),
-    'NUMBERS' => GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
-                 GESHI_NUMBER_FLT_SCI_ZERO,
+    'NUMBERS' =>
+        GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
+        GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             'include', 'require', 'include_once', 'require_once',
@@ -178,8 +179,8 @@ $language_data = array (
         3 => array(
             '<script language="php">' => '</script>'
             ),
-        4 => "/(<\?(?:php)?)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(\?>|\Z)/sm",
-        5 => "/(<%)(?:'[^']*?'|\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(%>|\Z)/sm"
+        4 => "/(<\?(?:php)?)(?:'(?:[^'\\\\]|\\\\.)*?'|\"(?:[^\"\\\\]|\\\\.)*?\"|\/\*(?!\*\/).*?\*\/|.)*?(\?>|\Z)/sm",
+        5 => "/(<%)(?:'(?:[^'\\\\]|\\\\.)*?'|\"(?:[^\"\\\\]|\\\\.)*?\"|\/\*(?!\*\/).*?\*\/|.)*?(%>|\Z)/sm"
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,

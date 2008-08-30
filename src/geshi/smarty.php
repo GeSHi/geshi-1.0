@@ -4,7 +4,7 @@
  * ----------
  * Author: Alan Juden (alan@judenware.org)
  * Copyright: (c) 2004 Alan Juden, Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1\.0\.8
+ * Release Version: 1.0.8.1
  * Date Started: 2004/07/10
  *
  * Smarty template language file for GeSHi.
@@ -153,7 +153,8 @@ $language_data = array (
         4 => 'http://smarty.php.net/{FNAMEL}',
         5 => 'http://smarty.php.net/{FNAMEL}',
         6 => '',
-        7 => 'http://smarty.php.net/{FNAMEL}'
+        7 => 'http://smarty.php.net/{FNAMEL}',
+        8 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(

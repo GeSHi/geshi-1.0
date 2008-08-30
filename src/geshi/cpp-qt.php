@@ -4,7 +4,7 @@
  * -------
  * Author: Iulian M
  * Copyright: (c) 2006 Iulian M
- * Release Version: 1\.0\.8
+ * Release Version: 1.0.8.1
  * Date Started: 2004/09/27
  *
  * C++ (with QT extensions) language file for GeSHi.
@@ -46,9 +46,10 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
-    'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
-                 GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
-                 GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+    'NUMBERS' =>
+        GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
+        GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
+        GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             'case', 'continue', 'default', 'do', 'else', 'for', 'goto', 'if', 'return',
@@ -218,7 +219,7 @@ $language_data = array (
             2 => 'color: #0000ff;',
             3 => 'color: #0000dd;',
             4 => 'color: #0000ff;',
-            5 => 'color: #0000ee;'
+            5 => 'color: #3D87DB;'
             ),
         'COMMENTS' => array(
             1 => 'color: #ff0000;',
@@ -229,7 +230,7 @@ $language_data = array (
             0 => 'color: #666666; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #008000;'
             ),
         'STRINGS' => array(
             0 => 'color: #666666;'
