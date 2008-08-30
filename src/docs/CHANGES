@@ -19,23 +19,27 @@ Version 1.0.8.1
      * Implemented C-style Escapes in PHP (BenBE)
      * Introduced support for \xAB and \007 style Char Escapes in PHP (BenBE)
      * Implemented Variable Highlighting in PHP (BenBE)
-  -  Fixed broken highlight of bash commands like `dbus-send --dest=org.....`,
+  -  Fixed broken highlighting of bash commands like `dbus-send --dest=org.....`,
      i.e. the dest was highlighted as variable declaration (milian)
+  -  Fixed broken highlighting of some symbols in their escaped form (BenBE)
+     (<SEMI> and <PIPE> were accidentially filtered even though they are valid)
   -  Fixed broken Escape chars if classes were disabled
   -  start_line_numbers_at() was ignored when GESHI_HEADER_PRE_TABLE was set (revulo)
   -  Fixed a problem allowing Remote Code Inclusion under certain circumstances (BenBE)
-  -  Changed the markup for the (in 1.0.8) new GESHI_HEADER_PRE_TABLE, because on Windows
-     some fonts had different heights when boldened. The new markup with a wrapping table
-     which includes two more tables, one for linenumbers and one for the code, should work
-     even there... (milian)
+  -  Changed the markup for the (in 1.0.8) new GESHI_HEADER_PRE_TABLE, because
+     on Windows some fonts had different heights when boldened. The new markup
+     with a wrapping table which includes two more tables, one for linenumbers
+     and one for the code, should work even there... (milian)
   -  Minor style changes to the following languages:
      * cpp-qt (milian)
      * PHP (BenBE)
   -  Improvements to language files (BenBE, milian)
      * Added MinSpareThread\MaxSpareThreads to Apache highlighter (BenBE)
      * Added new Keyword group for APT sources.list highlighter (BenBE)
-     * Fixed highlighting in LaTeX for \begin{} and \end{}, i.e. the stuff inside the
-       curly braces. (milian, thanks for the report go to Matthias Pospiech)
+     * Fixed highlighting in LaTeX for \begin{} and \end{}, i.e. the stuff inside
+       the curly braces. (milian, thanks for the report go to Matthias Pospiech)
+     * Improved String support for D (BenBE)
+     * MySQL was seriously broken (BenBE)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
