@@ -130,6 +130,7 @@ $language_data = array (
         '~',
         '!',
         '(', ')',
+        ',', ';'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,

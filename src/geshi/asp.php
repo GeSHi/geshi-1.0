@@ -53,7 +53,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'include', 'file', 'Dim', 'Option', 'Explicit', 'Implicit', 'Set', 'Select', 'ReDim', 'Preserve',
+            'include', 'file', 'Const', 'Dim', 'Option', 'Explicit', 'Implicit', 'Set', 'Select', 'ReDim', 'Preserve',
             'ByVal', 'ByRef', 'End', 'Private', 'Public', 'If', 'Then', 'Else', 'ElseIf', 'Case', 'With', 'NOT',
             'While', 'Wend', 'For', 'Loop', 'Do', 'Request', 'Response', 'Server', 'ADODB', 'Session', 'Application',
             'Each', 'In', 'Get', 'Next', 'INT', 'CINT', 'CBOOL', 'CDATE', 'CBYTE', 'CCUR', 'CDBL', 'CLNG', 'CSNG',
