@@ -4,14 +4,14 @@
  * --------
  * Author: Christophe David (geshi@christophedavid.org)
  * Copyright: (c) 2008 Christophe David (geshi@christophedavid.org)
- * Release Version: 0.0.0.2
+ * Release Version: 1.0.8.1
  * Date Started: 2008/08/04
  *
  * SciLab language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2008/08/25 (0.0.0.2)
+ * 2008/08/25 (1.0.8.1)
  *   - Corrected with the help of Benny Baumann (BenBE@geshi.org)
  * 2008/08/04 (0.0.0.1)
  *   - First beta Release - known problem with ' used to transpose matrices considered as start of strings
