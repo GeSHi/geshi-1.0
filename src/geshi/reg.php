@@ -91,8 +91,8 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-//            1 => 'color: #00CCFF;',
-//            2 => 'color: #0000FF;',
+            1 => 'color: #00CCFF;',
+            2 => 'color: #0000FF;',
             3 => 'color: #800000;'
             ),
         'COMMENTS' => array(
@@ -192,7 +192,7 @@ $language_data = array (
             ),
         // Highlight Hexadecimal Values (Single-Line and Multi-Line)
         6 => array(
-            GESHI_SEARCH => '(^\s*)(hex:[0-9a-fA-F]{2}(,(\\\s*\n\s*)?[0-9a-fA-F]{2})*)',
+            GESHI_SEARCH => '(=\s*\n?\s*)(hex:[0-9a-fA-F]{2}(,(\\\s*\n\s*)?[0-9a-fA-F]{2})*)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
