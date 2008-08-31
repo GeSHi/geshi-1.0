@@ -1841,11 +1841,13 @@ class GeSHi {
             //
             //Now we need to rewrite our array to get a search string that
             $symbol_preg = array();
-            if (!empty($symbol_preg_single)) {
-                $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
-            }
             if (!empty($symbol_preg_multi)) {
+                rsort($symbol_preg_multi);
                 $symbol_preg[] = implode('|', $symbol_preg_multi);
+            }
+            if (!empty($symbol_preg_single)) {
+                rsort($symbol_preg_single);
+                $symbol_preg[] = '[' . implode('', $symbol_preg_single) . ']';
             }
             $this->language_data['SYMBOL_SEARCH'] = implode("|", $symbol_preg);
         }
