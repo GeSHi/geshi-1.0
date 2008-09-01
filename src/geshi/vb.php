@@ -53,7 +53,7 @@ $language_data = array (
         1 => '/\'.*(?<! _)\n/sU',
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array('"'),
+    'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
@@ -77,7 +77,6 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -85,28 +84,22 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #b1b100;'
+            1 => 'color: #000080;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080;'
+            1 => 'color: #008000;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
             ),
         'METHODS' => array(
-            1 => 'color: #66cc66;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #000099;'
             ),
         'SCRIPT' => array(
             ),
@@ -116,9 +109,8 @@ $language_data = array (
     'URLS' => array(
         1 => ''
         ),
-    'OOLANG' => true,
+    'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
-        1 => '.'
         ),
     'REGEXPS' => array(
         ),
@@ -126,6 +118,14 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'ENABLE_FLAGS' => array(
+            'STRINGS' => GESHI_NEVER,
+            'BRACKETS' => GESHI_NEVER,
+            'SYMBOLS' => GESHI_NEVER,
+            'NUMBERS' => GESHI_NEVER
+            )
         )
 );
 
