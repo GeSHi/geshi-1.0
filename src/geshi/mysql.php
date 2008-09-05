@@ -48,7 +48,7 @@ $language_data = array (
             'FORCE','FOREIGN','FROM','FULLTEXT','FUNCTION','GEOMETRY','GRANT',
             'GROUP','HANDLER','HASH','HAVING','HELP','HIGH_PRIORITY','IGNORE',
             'INDEX','INFILE','INNER','INNODB','INSERT','INTERVAL','INTO','JOIN',
-            'KEY','KEYS','KILL','LINES','LOAD','LOCK','LOW_PRIORITY',
+            'KEY','KEYS','KILL','LIMIT','LINES','LOAD','LOCK','LOW_PRIORITY',
             'MASTER_SERVER_ID','MATCH','MIDDLEINT','MODIFY','MRG_MYISAM',
             'NATURAL','ON','OPTIMIZE','OPTION','OPTIONALLY','ORDER','OUTER',
             'OUTFILE','PRIMARY','PRIVILEGES','PROCEDURE','PURGE','READ',
@@ -63,34 +63,6 @@ $language_data = array (
 
             /* Control Flow Functions */
             'CASE','THEN',
-
-            /* String Functions */
-            'BIN','BIT_LENGTH','CHAR_LENGTH','CHARACTER_LENGTH','COMPRESS',
-            'CONCAT','CONCAT_WS','CONV','ELT','EXPORT_SET','FIELD',
-            'FIND_IN_SET','FORMAT','HEX','INSTR','LCASE','LEFT','LENGTH',
-            'LOAD_FILE','LOCATE','LOWER','LPAD','LTRIM','MAKE_SET','MD5','MID',
-            'OCT','OCTET_LENGTH','ORD','POSITION','QUOTE','REPEAT','REVERSE',
-            'RIGHT','RPAD','RTRIM','SHA1','SOUNDEX','SPACE','SUBSTRING',
-            'SUBSTRING_INDEX','TRIM','UCASE','UNCOMPRESS','UNCOMPRESSD_LENGTH',
-            'UNHEX','UPPER',
-
-            /* Numeric Functions */
-            'ABS','ACOS','ASIN','ATAN','ATAN2','CEILING','CEIL','COS','COT',
-            'CRC32','DEGREES','EXP','FLOOR','LN','LOG','LOG2','LOG10','PI',
-            'POW','POWER','RADIANS','RAND','ROUND','SIGN','SIN','SQRT','TAN',
-
-            /* Date and Time Functions */
-            'ADDDATE','ADDTIME','CONVERT_TZ','CURDATE','CURRENT_DATE',
-            'CURRENT_TIME','CURRENT_TIMESTAMP','CURTIME','DATE_ADD',
-            'DATE_FORMAT','DATE_SUB','DATEDIFF','DAY','DAYNAME','DAYOFMONTH',
-            'DAYOFWEEK','DAYOFYEAR','EXTRACT','FROM_DAYS','FROM_UNIXTIME',
-            'GET_FORMAT','LAST_DAY','LOCALTIME','LOCALTIMESTAMP','MAKEDATE',
-            'MAKETIME','MICROSECOND','MONTHNAME','NOW','PERIOD_ADD',
-            'PERIOD_DIFF','QUARTER','SEC_TO_TIME','SECOND','STR_TO_DATE',
-            'SUBDATE','SUBTIME','SYSDATE','TIME','TIME_FORMAT','TIME_TO_SEC',
-            'TIMEDIFF','TIMESTAMP','TIMESTAMPADD','TIMESTAMPDIFF','TO_DAYS',
-            'UNIX_TIMESTAMP','UTC_DATE','UTC_TIME','UTC_TIMESTAMP','WEEKDAY',
-            'WEEKOFYEAR','YEARWEEK',
             ),
         2 => array(
             'BIGINT','BINARY','BIT','BLOB','CHAR','CHARACTER VARYING','DATE',
@@ -112,8 +84,39 @@ $language_data = array (
             'SECOND','SECOND_MICROSECOND','WEEK','YEAR','YEAR_MONTH'
             ),
         5 => array(
-            'AND','BETWEEN','BINARY','COLLATE','DIV','IN','IS','LIKE','LIMIT',
+            'AND','BETWEEN','BINARY','COLLATE','DIV','IN','IS','LIKE',
             'MOD','NOT','OFFSET','OR','REGEXP','XOR'
+            ),
+        6 => array(
+            /* String Functions */
+            'BIN','BIT_LENGTH','CHAR_LENGTH','CHARACTER_LENGTH','COMPRESS',
+            'CONCAT','CONCAT_WS','CONV','ELT','EXPORT_SET','FIELD',
+            'FIND_IN_SET','FORMAT','HEX','INSTR','LCASE','LEFT','LENGTH',
+            'LOAD_FILE','LOCATE','LOWER','LPAD','LTRIM','MAKE_SET','MD5','MID',
+            'OCT','OCTET_LENGTH','ORD','POSITION','QUOTE','REPEAT','REVERSE',
+            'RIGHT','RPAD','RTRIM','SHA1','SOUNDEX','SPACE','SUBSTRING',
+            'SUBSTRING_INDEX','TRIM','UCASE','UNCOMPRESS','UNCOMPRESSD_LENGTH',
+            'UNHEX','UPPER',
+            ),
+        7 => array(
+            /* Numeric Functions */
+            'ABS','ACOS','ASIN','ATAN','ATAN2','CEILING','CEIL','COS','COT',
+            'CRC32','DEGREES','EXP','FLOOR','LN','LOG','LOG2','LOG10','PI',
+            'POW','POWER','RADIANS','RAND','ROUND','SIGN','SIN','SQRT','TAN',
+            ),
+        8 => array(
+            /* Date and Time Functions */
+            'ADDDATE','ADDTIME','CONVERT_TZ','CURDATE','CURRENT_DATE',
+            'CURRENT_TIME','CURRENT_TIMESTAMP','CURTIME','DATE_ADD',
+            'DATE_FORMAT','DATE_SUB','DATEDIFF','DAY','DAYNAME','DAYOFMONTH',
+            'DAYOFWEEK','DAYOFYEAR','EXTRACT','FROM_DAYS','FROM_UNIXTIME',
+            'GET_FORMAT','LAST_DAY','LOCALTIME','LOCALTIMESTAMP','MAKEDATE',
+            'MAKETIME','MICROSECOND','MONTHNAME','NOW','PERIOD_ADD',
+            'PERIOD_DIFF','QUARTER','SEC_TO_TIME','SECOND','STR_TO_DATE',
+            'SUBDATE','SUBTIME','SYSDATE','TIME','TIME_FORMAT','TIME_TO_SEC',
+            'TIMEDIFF','TIMESTAMP','TIMESTAMPADD','TIMESTAMPDIFF','TO_DAYS',
+            'UNIX_TIMESTAMP','UTC_DATE','UTC_TIME','UTC_TIMESTAMP','WEEKDAY',
+            'WEEKOFYEAR','YEARWEEK',
             ),
         ),
     'SYMBOLS' => array(
@@ -138,7 +141,10 @@ $language_data = array (
         2 => false,
         3 => false,
         4 => false,
-        5 => false
+        5 => false,
+        6 => false,
+        7 => false,
+        8 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -146,7 +152,10 @@ $language_data = array (
             2 => 'color: #FF9900; font-weight: bold;',
             3 => 'color: #9900FF; font-weight: bold;',
             4 => 'color: #990099; font-weight: bold;',
-            5 => 'color: #CC0099; font-weight: bold;'
+            5 => 'color: #CC0099; font-weight: bold;',
+            6 => 'color: #000099; font-weight: bold;',
+            7 => 'color: #000099; font-weight: bold;',
+            8 => 'color: #000099; font-weight: bold;'
             ),
         'COMMENTS' => array(
             'MULTI' => 'color: #808000; font-style: italic;',
@@ -180,7 +189,10 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => ''
+        5 => '',
+        6 => '',
+        7 => '',
+        8 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

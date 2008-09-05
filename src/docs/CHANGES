@@ -33,6 +33,7 @@ Version 1.0.8.1
      even on Windows / Mac systems with strange fonts (milian, revulo, ^RT)
   -  Minor style changes to the following languages:
      * cpp-qt (milian)
+     * MySQL (BenBE)
      * PHP (BenBE)
   -  Improvements to language files (BenBE, milian)
      * Added MinSpareThread\MaxSpareThreads to Apache highlighter (BenBE)
@@ -41,6 +42,7 @@ Version 1.0.8.1
        the curly braces. (milian, thanks for the report go to Matthias Pospiech)
      * Improved String support for D (BenBE)
      * MySQL was seriously broken (BenBE)
+     * Reworked Keyword groups for MySQL to allow for more configuration (BenBE)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
