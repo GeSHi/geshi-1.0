@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.8.1
   -  Added language files
      * SciLab (Christophe David)
+     * GNU Make (Neil Bird)
   -  Added support for Escape Regular Expressions (BenBE)
      * Implemented C-style Escapes in PHP (BenBE)
      * Introduced support for \xAB and \007 style Char Escapes in PHP (BenBE)
