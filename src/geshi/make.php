@@ -124,7 +124,7 @@ $language_data = array (
     'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         //Simple variables
-        0 => "\\$[^{(]",
+        0 => "\\$(?:[^{(&]|&(?:amp|lt|gt);)",
         //Complex variables/functions [built-ins]
     1 => array(
             GESHI_SEARCH => '(\\$[({])(subst|addprefix|addsuffix|basename|call|dir|error|eval|filter-out|filter,|findstring|firstword|foreach|if|join|notdir|origin|patsubst|shell|sort|strip,|suffix|warning|wildcard|word|wordlist|words)([ })])',
