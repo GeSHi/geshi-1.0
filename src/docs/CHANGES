@@ -24,13 +24,12 @@ Version 1.0.8.1
      i.e. the dest was highlighted as variable declaration (milian)
   -  Fixed broken highlighting of some symbols in their escaped form (BenBE)
      (<SEMI> and <PIPE> were accidentially filtered even though they are valid)
+  -  Fixed a "memory leak" in the *_regexp_caches (milian)
   -  Fixed broken Escape chars if classes were disabled
   -  start_line_numbers_at() was ignored when GESHI_HEADER_PRE_TABLE was set (revulo)
   -  Fixed a problem allowing Remote Code Inclusion under certain circumstances (BenBE)
-  -  Changed the markup for the (in 1.0.8) new GESHI_HEADER_PRE_TABLE, because
-     on Windows some fonts had different heights when boldened. The new markup
-     with a wrapping table which includes two more tables, one for linenumbers
-     and one for the code, should work even there... (milian)
+  -  Changes to default CSS in order to make the GESHI_HEADER_PRE_TABLE align properly,
+     even on Windows / Mac systems with strange fonts (milian, revulo, ^RT)
   -  Minor style changes to the following languages:
      * cpp-qt (milian)
      * PHP (BenBE)
