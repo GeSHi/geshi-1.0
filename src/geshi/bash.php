@@ -68,8 +68,22 @@ $language_data = array (
         3 => "/\\\\['\"]/siU"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array("'", '"'),
-    'ESCAPE_CHAR' => '\\',
+    'QUOTEMARKS' => array('"'),
+    'HARDQUOTE' => array("'", "'"),
+    'HARDESCAPE' => array("\'"),
+    'ESCAPE_CHAR' => '',
+    'ESCAPE_REGEXP' => array(
+        //Simple Single Char Escapes
+        1 => "#\\\\[nfrtv\\$\\\"\n]#i",
+        // $var
+        2 => "#\\$[a-z_][a-z0-9_]*#i",
+        // ${...}
+        3 => "/\\$\\{[^\\n\\}]*?\\}/i",
+        // $(...)
+        4 => "/\\$\\([^\\n\\)]*?\\)/i",
+        // `...`
+        5 => "/`[^`]*`/"
+        ),
     'KEYWORDS' => array(
         1 => array(
             'case', 'do', 'done', 'elif', 'else', 'esac', 'fi', 'for', 'function',
@@ -196,13 +210,19 @@ $language_data = array (
             3 => 'color: #000000; font-weight: bold;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #000099; font-weight: bold;'
+            1 => 'color: #000099; font-weight: bold;',
+            2 => 'color: #007800;',
+            3 => 'color: #007800;',
+            4 => 'color: #007800;',
+            5 => 'color: #780078;',
+            'HARD' => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
             0 => 'color: #7a0874; font-weight: bold;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;'
+            0 => 'color: #ff0000;',
+            'HARD' => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
             0 => 'color: #000000;'
