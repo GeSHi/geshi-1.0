@@ -126,21 +126,21 @@ $language_data = array (
         //Simple variables
         0 => "\\$(?:[^{(&]|&(?:amp|lt|gt);)",
         //Complex variables/functions [built-ins]
-    1 => array(
+        1 => array(
             GESHI_SEARCH => '(\\$[({])(subst|addprefix|addsuffix|basename|call|dir|error|eval|filter-out|filter,|findstring|firstword|foreach|if|join|notdir|origin|patsubst|shell|sort|strip,|suffix|warning|wildcard|word|wordlist|words)([ })])',
-        GESHI_REPLACE => '\\2',
-        GESHI_MODIFIERS => '',
-        GESHI_BEFORE => '\\1',
-        GESHI_AFTER => '\\3'
-        ),
-        //Complex variables/functions [others]
-    2 => array(
-        GESHI_SEARCH => '(\\$[({])([A-Za-z_][A-Za-z_0-9]*)([ })])',
-        GESHI_REPLACE => '\\2',
-        GESHI_MODIFIERS => '',
-        GESHI_BEFORE => '\\1',
-        GESHI_AFTER => '\\3'
-        ),
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
+            //Complex variables/functions [others]
+        2 => array(
+            GESHI_SEARCH => '(\\$[({])([A-Za-z_][A-Za-z_0-9]*)([ })])',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
