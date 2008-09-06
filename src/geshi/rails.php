@@ -254,12 +254,12 @@ $language_data = array (
                 'ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods',
                 'ActiveSupport::CoreExtensions::Time::Conversions',
                 'ActiveSupport::Multibyte::Chars',
-                'ActiveSupport::Multibyte::Handlers::UTF8Handler', 'Binding',
+                'ActiveSupport::Multibyte::Handlers::UTF8Handler',
                 'Breakpoint', 'Builder::BlankSlate', 'Builder::XmlMarkup',
-                'Enumerable', 'Fixtures',
+                'Fixtures',
                 'HTML::Selector', 'HashWithIndifferentAccess', 'Inflector',
                 'Inflector::Inflections', 'Mime', 'Mime::Type',
-                'OCI8AutoRecover', 'Symbol', 'TimeZone', 'XmlSimple'
+                'OCI8AutoRecover', 'TimeZone', 'XmlSimple'
             ),
         5 => array(
             'image_tag', 'link_to', 'link_to_remote', 'javascript_include_tag',
@@ -271,10 +271,10 @@ $language_data = array (
             'layout', 'flash', 'auto_complete_for', 'in_place_editor_for',
             'respond_to', 'paginate', 'current_page', 'each', 'first',
             'first_page', 'last_page', 'last', 'length', 'new', 'page_count',
-            'previous', 'next', 'scaffold', 'session', 'send_data',
+            'previous', 'scaffold', 'send_data',
             'send_file', 'deliver', 'receive', 'error_messages_for',
             'error_message_on', 'form', 'input', 'stylesheet_link_tag',
-            'stylesheet_path', 'content_for', 'select_date', 'select', 'ago',
+            'stylesheet_path', 'content_for', 'select_date', 'ago',
             'month', 'day', 'check_box', 'fields_for', 'file_field',
             'form_for', 'hidden_field', 'text_area', 'password_field',
             'collection_select', 'options_for_select',
@@ -282,7 +282,7 @@ $language_data = array (
             'form_for_tag', 'hidden_field_tag', 'text_area_tag',
             'password_field_tag', 'link_to_function', 'javascript_tag',
             'human_size', 'number_to_currency', 'pagination_links',
-            'form_remote_tag', 'form_remote_for', 'link_to_remote',
+            'form_remote_tag', 'form_remote_for',
             'submit_to_remote', 'remote_function', 'observe_form',
             'observe_field', 'remote_form_for', 'options_for_ajax', 'alert',
             'call', 'assign', 'show', 'hide', 'insert_html', 'sortable',
@@ -297,10 +297,10 @@ $language_data = array (
             'update', 'table_name', 'primary_key', 'sum', 'maximun', 'minimum',
             'count', 'size', 'after_save', 'after_create', 'before_save',
             'before_create', 'add_to_base', 'errors', 'add', 'validate',
-            'validate', 'validates_presence_of', 'validates_format_of',
-            'validates_numericality_of', 'validates_uniqueness_of',
-            'validates_length_of', 'validates_format_of', 'validates_size_of',
-            'to_a', 'to_s', 'to_xml', 'to_i'
+            'validates_presence_of', 'validates_numericality_of',
+            'validates_uniqueness_of', 'validates_length_of',
+            'validates_format_of', 'validates_size_of', 'to_a', 'to_s',
+            'to_xml', 'to_i'
             )
         ),
     'SYMBOLS' => array(
