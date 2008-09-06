@@ -43,6 +43,11 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
+    'NUMBERS' =>
+        GESHI_NUMBER_INT_BASIC |
+        GESHI_NUMBER_FLT_NONSCI |
+        GESHI_NUMBER_FLT_SCI_SHORT |
+        GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array( //Compiler Directives
             "ANSI", "BLANK", "NOBLANK", "CALL-SHARED", "CANCEL", "NOCANCEL",
