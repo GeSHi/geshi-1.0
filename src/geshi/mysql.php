@@ -37,24 +37,32 @@ $language_data = array (
     'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
     'QUOTEMARKS' => array("'", '"', '`'),
     'ESCAPE_CHAR' => '\\',
+    'NUMBERS' =>
+        GESHI_NUMBER_INT_BASIC |
+        GESHI_NUMBER_OCT_PREFIX |
+        GESHI_NUMBER_HEX_PREFIX |
+        GESHI_NUMBER_FLT_NONSCI |
+        GESHI_NUMBER_FLT_SCI_SHORT |
+        GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
             /* Mix */
-            'ADD','ALTER','ANALYZE','BDB','BEGIN','BERKELEYDB','BTREE','BY',
-            'CALL','CASCADE','CHECK','COLUMN','COLUMNS','COMMIT','CONSTRAINT',
-            'CREATE','CROSS','DATA','DATABASE','DATABASES','DECLARE','DELAYED',
-            'DELETE','DESCRIBE','DISTINCT','DISTINCTROW','DO','DROP','ENCLOSED',
-            'END','ELSE','ERRORS','ESCAPED','EXISTS','EXPLAIN','FALSE','FIELDS',
-            'FORCE','FOREIGN','FROM','FULLTEXT','FUNCTION','GEOMETRY','GRANT',
-            'GROUP','HANDLER','HASH','HAVING','HELP','HIGH_PRIORITY','IGNORE',
-            'INDEX','INFILE','INNER','INNODB','INSERT','INTERVAL','INTO','JOIN',
-            'KEY','KEYS','KILL','LIMIT','LINES','LOAD','LOCK','LOW_PRIORITY',
+            'ACTION','ADD','ALTER','ANALYZE','ASC','BDB','BEGIN','BERKELEYDB',
+            'BTREE','BY','CALL','CASCADE','CHECK','COLUMN','COLUMNS','COMMIT',
+            'CONSTRAINT','CREATE','CROSS','DATA','DATABASE','DATABASES',
+            'DECLARE','DELAYED','DELETE','DESC','DESCRIBE','DISTINCT',
+            'DISTINCTROW','DO','DROP','ENCLOSED','END','ENGINE','ELSE','ERRORS',
+            'ESCAPED','EXISTS','EXPLAIN','FALSE','FIELDS','FORCE','FOREIGN',
+            'FROM','FULLTEXT','FUNCTION','GEOMETRY','GRANT','GROUP','HANDLER',
+            'HASH','HAVING','HELP','HIGH_PRIORITY','IGNORE','INDEX','INFILE',
+            'INNER','INNODB','INSERT','INTERVAL','INTO','JOIN','KEY','KEYS',
+            'KILL','LIMIT','LINES','LOAD','LOCK','LOW_PRIORITY',
             'MASTER_SERVER_ID','MATCH','MIDDLEINT','MODIFY','MRG_MYISAM',
-            'NATURAL','ON','OPTIMIZE','OPTION','OPTIONALLY','ORDER','OUTER',
-            'OUTFILE','PRIMARY','PRIVILEGES','PROCEDURE','PURGE','READ',
+            'NATURAL','NO','ON','OPTIMIZE','OPTION','OPTIONALLY','ORDER',
+            'OUTER','OUTFILE','PRIMARY','PRIVILEGES','PROCEDURE','PURGE','READ',
             'REFERENCES','RENAME','REPLACE','REQUIRE','RESTRICT','RETURNS',
-            'REVOKE','RLIKE','ROLLBACK','ROUTINE','RTREE','SAVEPOINT','SELECT',
-            'SET','SHOW','SOME','SONAME','SPATIAL','SQL_BIG_RESULT',
+            'REVOKE','RLIKE','ROLLBACK','ROUTINE','RTREE','SAVEPOINT','SCHEMA',
+            'SELECT','SET','SHOW','SOME','SONAME','SPATIAL','SQL_BIG_RESULT',
             'SQL_CALC_FOUND_ROWS','SQL_SMALL_RESULT','SSL','START','STARTING',
             'STATUS','STRAIGHT_JOIN','STRIPED','TABLE','TABLES','TERMINATED',
             'TO','TRANSACTIONS','TRANSACTION','TRUE','TRUNCATE','TYPES','UNION',
@@ -62,19 +70,19 @@ $language_data = array (
             'VALUES','VARCHARACTER','WARNINGS','WHEN','WHERE','WRITE',
 
             /* Control Flow Functions */
-            'CASE','THEN',
+            'CASE','IF','THEN',
             ),
         2 => array(
-            'BIGINT','BINARY','BIT','BLOB','CHAR','CHARACTER VARYING','DATE',
-            'DATETIME','DEC','DECIMAL','DOUBLE','ENUM','FIXED','FLOAT','INT',
-            'INTEGER','LONGBLOB','LONGTEXT','MEDIUMBLOB','MEDIUMINT',
+            'BIGINT','BINARY','BIT','BLOB','BOOLEAN','CHAR','CHARACTER VARYING',
+            'DATE','DATETIME','DEC','DECIMAL','DOUBLE','ENUM','FIXED','FLOAT',
+            'INT','INTEGER','LONGBLOB','LONGTEXT','MEDIUMBLOB','MEDIUMINT',
             'MEDIUMTEXT','NUMERIC','PRECISION','REAL','SERIAL DEFAULT VALUE',
             'SERIAL','SET','SMALLINT','TEXT','TIME','TIMESTAMP','TINYBLOB',
             'TINYINT','TINYTEXT','VARBINARY','VARCHAR'
             ),
         3 => array(
             'ASCII','AUTO_INCREMENT','BOTH','CHARACTER','CHARSET','DEFAULT',
-            'LEADING','NATIONAL','NULL','SET','TRAILING','UNICODE','UNIQUE',
+            'LEADING','NATIONAL','NULL','TRAILING','UNICODE','UNIQUE',
             'UNSIGNED','ZEROFILL'
             ),
         4 => array(
@@ -100,9 +108,10 @@ $language_data = array (
             ),
         7 => array(
             /* Numeric Functions */
-            'ABS','ACOS','ASIN','ATAN','ATAN2','CEILING','CEIL','COS','COT',
-            'CRC32','DEGREES','EXP','FLOOR','LN','LOG','LOG2','LOG10','PI',
-            'POW','POWER','RADIANS','RAND','ROUND','SIGN','SIN','SQRT','TAN',
+            'ABS','ACOS','ASIN','ATAN','ATAN2','AVG','CEILING','CEIL','COS',
+            'COT','CRC32','DEGREES','EXP','FLOOR','LN','LOG','LOG2','LOG10',
+            'MIN','MAX','PI','POW','POWER','RADIANS','RAND','ROUND','SIGN',
+            'SIN','SQRT','SUM','TAN',
             ),
         8 => array(
             /* Date and Time Functions */
