@@ -100,7 +100,7 @@ $language_data = array (
         0 => '\[.+\]',
         //Entry names
         1 => array(
-            GESHI_SEARCH => '^(\s*)([a-zA-Z0-9_]+)(\s*=)',
+            GESHI_SEARCH => '^(\s*)([a-zA-Z0-9_\-]+)(\s*=)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
