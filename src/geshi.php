@@ -1343,6 +1343,7 @@ class GeSHi {
                 'dos' => array('bat', 'cmd'),
                 'gettext' => array('po', 'pot'),
                 'html4strict' => array('html', 'htm'),
+                'ini' => array('ini', 'desktop'),
                 'java' => array('java'),
                 'javascript' => array('js'),
                 'klonec' => array('kl1'),
