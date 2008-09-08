@@ -45,7 +45,9 @@ $language_data = array (
     'COMMENT_SINGLE' => array(1 => '%'),
     'COMMENT_MULTI' => array(),
     //Matlab Strings
-    'COMMENT_REGEXP' => array(2 => "/(?<!\\w)('[^\\n\\r']*?')/"),
+    'COMMENT_REGEXP' => array(
+        2 => "/(?<![\\w\\)\\]\\}])('[^\\n\\r']*?')/"
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',

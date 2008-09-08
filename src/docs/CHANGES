@@ -46,6 +46,7 @@ Version 1.0.8.1
      * Reworked Keyword groups for MySQL to allow for more configuration (BenBE)
      * Improved Mirc script language file (milian)
      * Improved C++ Qt language file (milian)
+     * Minor bug with Transpose Operator in Matlab (BenBE, Daniele de Rigo)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)

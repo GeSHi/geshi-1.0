@@ -74,7 +74,7 @@ $language_data = array (
             "DELETE", "DISPLAY", "DIVIDE", "INTO", "REMAINDER", "ENTER",
             "COBOL", "EVALUATE", "EXIT", "GO", "IF", "INITIALIZE", "INSPECT",
             "TALLYING", "REPLACING", "CONVERTING", "LOCKFILE", "MERGE", "MOVE",
-            "CORRESPONDING", "MULTIPLY", "BY", "OPEN", "PERFORM", "TIMES",
+            "MULTIPLY", "BY", "OPEN", "PERFORM", "TIMES",
             "UNTIL", "VARYING", "READ", "RELEASE", "REPLACE", "RETURN",
             "REWRITE", "SEARCH", "SET", "UP", "DOWN", "SORT", "START",
             "STARTBACKUP", "STOP", "STRING", "SUBTRACT", "FROM", "UNLOCKFILE",
