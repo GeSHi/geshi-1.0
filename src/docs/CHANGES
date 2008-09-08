@@ -44,6 +44,8 @@ Version 1.0.8.1
      * Improved String support for D (BenBE)
      * MySQL was seriously broken (BenBE)
      * Reworked Keyword groups for MySQL to allow for more configuration (BenBE)
+     * Improved Mirc script language file (milian)
+     * Improved C++ Qt language file (milian)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
