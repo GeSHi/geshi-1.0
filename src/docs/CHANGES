@@ -47,6 +47,7 @@ Version 1.0.8.1
      * Improved Mirc script language file (milian)
      * Improved C++ Qt language file (milian)
      * Minor bug with Transpose Operator in Matlab (BenBE, Daniele de Rigo)
+     * Highlighting of Batch Files for Windows (BenBE)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
