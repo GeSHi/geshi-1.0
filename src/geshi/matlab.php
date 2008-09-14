@@ -46,7 +46,7 @@ $language_data = array (
     'COMMENT_MULTI' => array(),
     //Matlab Strings
     'COMMENT_REGEXP' => array(
-        2 => "/(?<![\\w\\)\\]\\}])('[^\\n\\r']*?')/"
+        2 => "/(?<![\\w\\)\\]\\}\\.])('[^\\n']*?')/"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
@@ -198,6 +198,7 @@ $language_data = array (
             0 => 'color: #080;'
             ),
         'REGEXPS' => array(
+            0 => 'color: #33f;'
             ),
         'SCRIPT' => array(
             0 => ''
@@ -213,6 +214,8 @@ $language_data = array (
         2 => '::'
         ),
     'REGEXPS' => array(
+        //Complex numbers
+        0 => '(?<![\\w])[+-]?[\\d]*([\\d]\\.|\\.[\\d])?[\\d]*[ij](?![\\w])'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
