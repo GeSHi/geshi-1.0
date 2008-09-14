@@ -91,8 +91,8 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #00CCFF;',
-            2 => 'color: #0000FF;',
+//            1 => 'color: #00CCFF;',
+//            2 => 'color: #0000FF;',
             3 => 'color: #800000;'
             ),
         'COMMENTS' => array(
@@ -116,10 +116,10 @@ $language_data = array (
         'SCRIPT' => array(
             ),
         'REGEXPS' => array(
-            0 => '',
+            0 => 'color: #00CCFF;',
             1 => 'color: #0000FF;',
             2 => '',
-            3 => '',
+            3 => 'color: #0000FF;',
             4 => 'color: #0000FF;',
             5 => '',
             6 => '',
@@ -142,8 +142,8 @@ $language_data = array (
             GESHI_REPLACE => '\\3',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
-            GESHI_AFTER => '\\5',
-            GESHI_CLASS => 'kw1'
+            GESHI_AFTER => '\\5'
+//            GESHI_CLASS => 'kw1'
             ),
         // Highlight File Format Header Version 5
         1 => array(
@@ -169,8 +169,8 @@ $language_data = array (
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
-            GESHI_AFTER => '\\3',
-            GESHI_CLASS => 'kw2'
+            GESHI_AFTER => '\\3'
+//            GESHI_CLASS => 'kw2'
             ),
         // Highlight variable names
         4 => array(
