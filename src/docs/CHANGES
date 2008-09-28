@@ -17,6 +17,7 @@ Version 1.0.8.1
      * SciLab (Christophe David)
      * GNU Make (Neil Bird)
      * Oracle 11i support (Simon Redhead)
+     * TeraTerm macro language (Boris Maisuradze)
   -  Added support for Escape Regular Expressions (BenBE)
      * Implemented C-style Escapes in PHP (BenBE)
      * Introduced support for \xAB and \007 style Char Escapes in PHP (BenBE)
