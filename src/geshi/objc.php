@@ -122,7 +122,7 @@ $language_data = array (
         // Data types (C, Objective-C, Cocoa)
         4 => array(
             'volatile', 'void', 'va_list', 'unsigned', 'union', 'typedef', 'tm',
-            'time_t', 'struct', 'string', 'static', 'size_t', 'sizeof',
+            'time_t', 'struct', 'string', 'static', 'size_t',
             'signed', 'signal', 'short', 'SEL', 'register', 'raise',
             'ptrdiff_t', 'NSZone', 'NSRect', 'NSRange', 'NSPoint', 'long',
             'ldiv_t', 'jmp_buf', 'int', 'IMP', 'id', 'fpos_t', 'float', 'FILE',
@@ -190,7 +190,7 @@ $language_data = array (
             'NSURLProtocolClient', 'NSURLHandleClient', 'NSURLClient',
             'NSURLAuthenticationChallengeSender', 'NSScriptObjectSpecifiers',
             'NSScriptKeyValueCoding', 'NSScriptingComparisonMethods',
-            'NSObject', 'NSObjCTypeSerializationCallBack', 'NSMutableCopying',
+            'NSObjCTypeSerializationCallBack', 'NSMutableCopying',
             'NSLocking', 'NSKeyValueObserving', 'NSKeyValueCoding',
             'NSFastEnumeration', 'NSErrorRecoveryAttempting',
             'NSDecimalNumberBehaviors', 'NSCopying', 'NSComparisonMethods',
@@ -249,7 +249,7 @@ $language_data = array (
         8 => array(
             'NSWindowScripting', 'NSValidatedUserInterfaceItem',
             'NSUserInterfaceValidations', 'NSToolTipOwner',
-            'NSToolbarItemValidation', 'NSTextInput', 'NSTextAttachmentCell',
+            'NSToolbarItemValidation', 'NSTextInput',
             'NSTableDataSource', 'NSServicesRequests',
             'NSPrintPanelAccessorizing', 'NSPlaceholders',
             'NSPathControlDelegate', 'NSPathCellDelegate',
