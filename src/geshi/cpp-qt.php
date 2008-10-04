@@ -53,7 +53,7 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'case', 'continue', 'default', 'do', 'else', 'for', 'goto', 'if', 'return',
-            'switch', 'while'
+            'switch', 'while', 'delete', 'new', 'this'
             ),
         2 => array(
             'NULL', 'false', 'break', 'true', 'enum', 'errno', 'EDOM',
@@ -74,7 +74,7 @@ $language_data = array (
             'foreach','connect', 'Q_OBJECT' , 'slots' , 'signals'
             ),
         3 => array(
-            'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
+            'cin', 'cerr', 'clog', 'cout',
             'printf', 'fprintf', 'snprintf', 'sprintf', 'assert',
             'isalnum', 'isalpha', 'isdigit', 'iscntrl', 'isgraph', 'islower', 'isprint',
             'ispunct', 'isspace', 'isupper', 'isxdigit', 'tolower', 'toupper',
@@ -203,7 +203,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':'
+        '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':', ',', ';', '|', '<', '>'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -215,28 +215,28 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #0000ff;',
-            2 => 'color: #0000ff;',
-            3 => 'color: #0000dd;',
-            4 => 'color: #0000ff;',
-            5 => 'color: #3D87DB;'
+            1 => 'color: #000000; font-weight:bold;',
+            2 => 'color: #0057AE;',
+            3 => 'color: #2B74C7;',
+            4 => 'color: #0057AE;',
+            5 => 'color: #22aadd;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #ff0000;',
-            2 => 'color: #339900;',
-            'MULTI' => 'color: #ff0000; font-style: italic;'
+            1 => 'color: #888888;',
+            2 => 'color: #006E28;',
+            'MULTI' => 'color: #888888; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #666666; font-weight: bold;'
+            0 => 'color: #FF80E0; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #008000;'
+            0 => 'color: #006E28;'
             ),
         'STRINGS' => array(
-            0 => 'color: #666666;'
+            0 => 'color: #BF0303;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #0000dd;',
+            0 => 'color: #B08000;',
             GESHI_NUMBER_BIN_PREFIX_0B => 'color: #208080;',
             GESHI_NUMBER_OCT_PREFIX => 'color: #208080;',
             GESHI_NUMBER_HEX_PREFIX => 'color: #208080;',
@@ -246,11 +246,12 @@ $language_data = array (
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
             ),
         'METHODS' => array(
-            1 => 'color: #007788;',
-            2 => 'color: #007788;'
+            1 => 'color: #2B74C7;',
+            2 => 'color: #2B74C7;',
+            3 => 'color: #2B74C7;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #006E28;'
             ),
         'REGEXPS' => array(
             ),
@@ -267,7 +268,8 @@ $language_data = array (
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.',
-        2 => '::'
+        2 => '::',
+        3 => '-&gt;',
         ),
     'REGEXPS' => array(
         ),
@@ -281,6 +283,9 @@ $language_data = array (
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#>|^])",
             'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_<\|%\\-])"
+        ),
+        'OOLANG' => array(
+            'MATCH_AFTER' => '~?[a-zA-Z][a-zA-Z0-9_]*',
         )
     )
 );

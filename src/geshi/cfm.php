@@ -61,11 +61,11 @@ $language_data = array (
             'cflog', 'cflogin', 'cfloginuser', 'cflogout', 'cfloop', 'cfmail',
             'cfmailparam', 'cfmailpart', 'cfmodule', 'cfNTauthenticate',
             'cfobject', 'cfobjectcache', 'cfoutput', 'cfparam', 'cfpop',
-            'cfprocessingdirective', 'cfprocessingdirective', 'cfprocparam',
+            'cfprocessingdirective', 'cfprocparam',
             'cfprocresult', 'cfproperty', 'cfquery', 'cfqueryparam',
             'cfregistry', 'cfreport', 'cfreportparam', 'cfrethrow', 'cfreturn',
             'cfsavecontent', 'cfschedule', 'cfscript', 'cfsearch', 'cfselect',
-            'cfset', 'cfsetting', 'cfsilent', 'cfsilent', 'cfstoredproc',
+            'cfset', 'cfsetting', 'cfsilent', 'cfstoredproc',
             'cfswitch', 'cftable', 'cftextarea', 'cfthrow', 'cftimer',
             'cftrace', 'cftransaction', 'cftree', 'cftreeitem', 'cftry',
             'cfupdate', 'cfwddx'
