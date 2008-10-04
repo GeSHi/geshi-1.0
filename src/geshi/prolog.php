@@ -50,9 +50,21 @@ $language_data = array (
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
-            'consult',
-            'listing',
-            'write'
+            'abolish','abs','arg','asserta','assertz','at_end_of_stream','atan',
+            'atom','atom_chars','atom_codes','atom_concat','atom_length',
+            'atomic','bagof','catch','ceiling','char_code','char_conversion',
+            'clause','close','compound','consult','copy_term','cos',
+            'current_char_conversion','current_input','current_op',
+            'current_output','current_predicate','current_prolog_flag','exp',
+            'findall','float','float','float_fractional_part',
+            'float_integer_part','floor','flush_output','functor','get_byte',
+            'get_char','get_code','halt','integer','is','listing','log','mod',
+            'nl','nonvar','number','number_chars','number_codes','once','op',
+            'open','peek_byte','peek_char','peek_code','put_byte','put_char',
+            'put_code','read','read','read_term','read_term','rem','repeat',
+            'retract','round','set_input','set_output','set_stream_position',
+            'setof','sign','sin','sqrt','stream_property','sub_atom','throw',
+            'truncate','unify_with_occurs_check','univ','var','write'
             )
         ),
     'SYMBOLS' => array(
