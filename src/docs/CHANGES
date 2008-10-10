@@ -14,10 +14,11 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8.1
   -  Added language files
-     * SciLab (Christophe David)
+     * AviSynth (Ryan Jones)
      * GNU Make (Neil Bird)
      * Oracle 11i support (Simon Redhead)
      * Prolog (Benny Baumann)
+     * SciLab (Christophe David)
      * TeraTerm macro language (Boris Maisuradze)
   -  Added support for Escape Regular Expressions (BenBE)
      * Implemented C-style Escapes in PHP (BenBE)
