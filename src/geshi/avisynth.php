@@ -175,7 +175,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => '',
+        3 => 'http://avisynth.org/mediawiki/{FNAME}',
         4 => ''
         ),
     'REGEXPS' => array(
