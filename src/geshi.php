@@ -185,9 +185,12 @@ if (!function_exists('stripos')) {
 /** some old PHP / PCRE subpatterns only support up to xxx subpatterns in
     regular expressions. Set this to false if your PCRE lib is up to date
     @see GeSHi->optimize_regexp_list()
-    TODO: are really the subpatterns the culprit or the overall length of the pattern?
     **/
 define('GESHI_MAX_PCRE_SUBPATTERNS', 500);
+/** it's also important not to generate too long regular expressions
+    be generous here...
+    **/
+define('GESHI_MAX_PCRE_LENGTH', 30000);
 
 //Number format specification
 /** Basic number format for integers */
@@ -4383,7 +4386,15 @@ class GeSHi {
         $tokens = array();
         $prev_keys = array();
         // go through all entries of the list and generate the token list
+        $cur_len = 0;
         for ($i = 0, $i_max = count($list); $i < $i_max; ++$i) {
+            if ($cur_len > GESHI_MAX_PCRE_LENGTH) {
+                // seems like the length of this pcre is growing exorbitantly
+                $regexp_list[++$list_key] = $this->_optimize_regexp_list_tokens_to_string($tokens);
+                $num_subpatterns = substr_count($regexp_list[$list_key], '(?:');
+                $tokens = array();
+                $cur_len = 0;
+            }
             $level = 0;
             $entry = preg_quote((string) $list[$i], $regexp_delimiter);
             $pointer = &$tokens;
@@ -4410,11 +4421,13 @@ class GeSHi {
                             // only part of the keys match
                             $new_key_part1 = substr($prev_keys[$level], 0, $char);
                             $new_key_part2 = substr($prev_keys[$level], $char);
+                            
                             if (in_array($new_key_part1[0], $regex_chars)
                                 || in_array($new_key_part2[0], $regex_chars)) {
                                 // this is bad, a regex char as first character
                                 $pointer[$entry] = array('' => true);
                                 array_splice($prev_keys, $level, count($prev_keys), $entry);
+                                $cur_len += strlen($entry);
                                 continue;
                             } else {
                                 // relocate previous tokens
@@ -4423,6 +4436,7 @@ class GeSHi {
                                 $pointer = &$pointer[$new_key_part1];
                                 // recreate key index
                                 array_splice($prev_keys, $level, count($prev_keys), array($new_key_part1, $new_key_part2));
+                                $cur_len += strlen($new_key_part2);
                             }
                         }
                         ++$level;
@@ -4446,10 +4460,13 @@ class GeSHi {
                         $num_subpatterns += $new_subpatterns;
                     }
                     $tokens = array();
+                    $cur_len = 0;
                 }
                 // no further common denominator found
                 $pointer[$entry] = array('' => true);
                 array_splice($prev_keys, $level, count($prev_keys), $entry);
+                
+                $cur_len += strlen($entry);
                 break;
             }
             unset($list[$i]);
