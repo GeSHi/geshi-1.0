@@ -25,6 +25,9 @@ Version 1.0.8.1
      * Introduced support for \xAB and \007 style Char Escapes in PHP (BenBE)
      * Implemented Variable Highlighting in PHP (BenBE)
      * Implemented Variable Highlighting in Bash (milian)
+  -  Fixed a problem with PCRE patterns for Keyword matching sometimes producing
+     very large strings, that could not be handled by some versions of PCRE lib,
+     causing broken highlighting an Regexp Compile errors (BenBE, milian)
   -  Fixed broken highlighting of bash commands like `dbus-send --dest=org.....`,
      i.e. the dest was highlighted as variable declaration (milian)
   -  Fixed broken highlighting of some symbols in their escaped form (BenBE)
