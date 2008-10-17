@@ -188,9 +188,11 @@ if (!function_exists('stripos')) {
     **/
 define('GESHI_MAX_PCRE_SUBPATTERNS', 500);
 /** it's also important not to generate too long regular expressions
-    be generous here...
+    be generous here... but keep in mind, that when reaching this limit we
+    still have to close open patterns. 12k should do just fine on a 16k limit.
+    @see GeSHi->optimize_regexp_list()
     **/
-define('GESHI_MAX_PCRE_LENGTH', 30000);
+define('GESHI_MAX_PCRE_LENGTH', 12288);
 
 //Number format specification
 /** Basic number format for integers */
@@ -3662,7 +3664,7 @@ class GeSHi {
         /** NOTE: memorypeak #2 */
         $code = explode("\n", $parsed_code);
         $parsed_code = $this->header();
-        
+
         // If we're using line numbers, we insert <li>s and appropriate
         // markup to style them (otherwise we don't need to do anything)
         if ($this->line_numbers != GESHI_NO_LINE_NUMBERS && $this->header_type != GESHI_HEADER_PRE_TABLE) {
@@ -3871,7 +3873,7 @@ class GeSHi {
                 $parsed_code .= '</td>';
             }
         }
-        
+
         $parsed_code .= $this->footer();
     }
 
@@ -4421,7 +4423,7 @@ class GeSHi {
                             // only part of the keys match
                             $new_key_part1 = substr($prev_keys[$level], 0, $char);
                             $new_key_part2 = substr($prev_keys[$level], $char);
-                            
+
                             if (in_array($new_key_part1[0], $regex_chars)
                                 || in_array($new_key_part2[0], $regex_chars)) {
                                 // this is bad, a regex char as first character
@@ -4465,7 +4467,7 @@ class GeSHi {
                 // no further common denominator found
                 $pointer[$entry] = array('' => true);
                 array_splice($prev_keys, $level, count($prev_keys), $entry);
-                
+
                 $cur_len += strlen($entry);
                 break;
             }
