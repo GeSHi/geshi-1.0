@@ -60,9 +60,10 @@ $language_data = array (
             'default', 'do', 'else', 'event', 'explicit', 'extern', 'false',
             'finally', 'fixed', 'for', 'foreach', 'goto', 'if', 'implicit',
             'in', 'internal', 'lock', 'namespace', 'null', 'operator', 'out',
-            'override', 'params', 'private', 'protected', 'public', 'readonly',
-            'ref', 'return', 'sealed', 'stackalloc', 'static', 'switch', 'this',
-            'throw', 'true', 'try', 'unsafe', 'using', 'virtual', 'void', 'while'
+            'override', 'params', 'partial', 'private', 'protected', 'public',
+            'readonly', 'ref', 'return', 'sealed', 'stackalloc', 'static',
+            'switch', 'this', 'throw', 'true', 'try', 'unsafe', 'using',
+            'virtual', 'void', 'while'
             ),
         2 => array(
             '#elif', '#endif', '#endregion', '#else', '#error', '#define', '#if',
