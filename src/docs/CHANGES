@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)
+     * eMail \ mbox (Benny Baumann)
      * GNU Make (Neil Bird)
      * Oracle 11i support (Simon Redhead)
      * Prolog (Benny Baumann)
