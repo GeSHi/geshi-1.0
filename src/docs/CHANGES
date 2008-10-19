@@ -57,6 +57,7 @@ Version 1.0.8.1
      * Highlighting of Batch Files for Windows (BenBE)
      * Updated AutoIt to include latest changes for AutoIt v3.2.12.1 (BenBE, Thierry)
      * Fixed duplicate keyword warnings for Perl, Tcl and Typoscript (BenBE)
+     * Fixed Doc-URL getting reparsed by highlighted keywords of other groups (BenBE, Jordi Boggiano)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
