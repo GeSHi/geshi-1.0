@@ -156,9 +156,15 @@ $language_data = array (
             3 => array(
                 'DISALLOWED_BEFORE' => '(?<![:=])',
                 'DISALLOWED_AFTER' => '(?=\s*:)',
+            ),
+            4 => array(
+                'DISALLOWED_BEFORE' => '(?<=\s)',
+                'DISALLOWED_AFTER' => '(?=\s|\b)',
             )
         ),
         'ENABLE_FLAGS' => array(
+            'BRACKETS' => GESHI_NEVER,
+            'COMMENTS' => GESHI_NEVER,
             'NUMBERS' => GESHI_NEVER
         )
     )
