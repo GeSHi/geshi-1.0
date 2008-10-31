@@ -14,16 +14,21 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8.1
   -  Added language files
-     * SciLab (Christophe David)
+     * AviSynth (Ryan Jones)
+     * eMail \ mbox (Benny Baumann)
      * GNU Make (Neil Bird)
      * Oracle 11i support (Simon Redhead)
      * Prolog (Benny Baumann)
+     * SciLab (Christophe David)
      * TeraTerm macro language (Boris Maisuradze)
   -  Added support for Escape Regular Expressions (BenBE)
      * Implemented C-style Escapes in PHP (BenBE)
      * Introduced support for \xAB and \007 style Char Escapes in PHP (BenBE)
      * Implemented Variable Highlighting in PHP (BenBE)
      * Implemented Variable Highlighting in Bash (milian)
+  -  Fixed a problem with PCRE patterns for Keyword matching sometimes producing
+     very large strings, that could not be handled by some versions of PCRE lib,
+     causing broken highlighting an Regexp Compile errors (BenBE, milian)
   -  Fixed broken highlighting of bash commands like `dbus-send --dest=org.....`,
      i.e. the dest was highlighted as variable declaration (milian)
   -  Fixed broken highlighting of some symbols in their escaped form (BenBE)
@@ -52,6 +57,7 @@ Version 1.0.8.1
      * Highlighting of Batch Files for Windows (BenBE)
      * Updated AutoIt to include latest changes for AutoIt v3.2.12.1 (BenBE, Thierry)
      * Fixed duplicate keyword warnings for Perl, Tcl and Typoscript (BenBE)
+     * Fixed Doc-URL getting reparsed by highlighted keywords of other groups (BenBE, Jordi Boggiano)
 Version 1.0.8
   -  Added language files
      * APT sources.list (milian)
