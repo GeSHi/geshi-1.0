@@ -134,7 +134,7 @@ $language_data = array (
                 'extern', 'false', 'finally', 'function',
                 'import', 'in', 'inout', 'interface',
                 'invariant', 'is', 'mixin', 'module', 'new',
-                'null', 'out', 'pragma', 'super', 'this',
+                'null', 'out', 'pragma', 'ref', 'super', 'this',
                 'throw', 'true', 'try', 'typedef', 'typeid',
                 'typeof', 'union', 'with'
             ),
