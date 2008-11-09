@@ -2289,6 +2289,50 @@ class GeSHi {
                     $char = $part[$i];
                     $char_len = 1;
 
+                    // update regexp comment cache if needed
+                    if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
+                        $next_comment_regexp_pos = $length;
+                        foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
+                            $match_i = false;
+                            if (isset($comment_regexp_cache_per_key[$comment_key]) &&
+                                ($comment_regexp_cache_per_key[$comment_key]['pos'] >= $i ||
+                                 $comment_regexp_cache_per_key[$comment_key]['pos'] === false)) {
+                                // we have already matched something
+                                if ($comment_regexp_cache_per_key[$comment_key]['pos'] === false) {
+                                    // this comment is never matched
+                                    continue;
+                                }
+                                $match_i = $comment_regexp_cache_per_key[$comment_key]['pos'];
+                            } else if (
+                                //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
+                                (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
+                                (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i))
+                                ) {
+                                $match_i = $match[0][1];
+                                if (GESHI_PHP_PRE_433) {
+                                    $match_i += $i;
+                                }
+
+                                $comment_regexp_cache_per_key[$comment_key] = array(
+                                    'key' => $comment_key,
+                                    'length' => strlen($match[0][0]),
+                                    'pos' => $match_i
+                                );
+                            } else {
+                                $comment_regexp_cache_per_key[$comment_key]['pos'] = false;
+                                continue;
+                            }
+
+                            if ($match_i !== false && $match_i < $next_comment_regexp_pos) {
+                                $next_comment_regexp_pos = $match_i;
+                                $next_comment_regexp_key = $comment_key;
+                                if ($match_i === $i) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
                     $string_started = false;
 
                     if (isset($is_string_starter[$char])) {
@@ -2318,7 +2362,7 @@ class GeSHi {
                         $char_len = strlen($char);
                     }
 
-                    if ($string_started) {
+                    if ($string_started && $i != $next_comment_regexp_pos) {
                         // Hand out the correct style information for this string
                         $string_key = array_search($char, $this->language_data['QUOTEMARKS']);
                         if (!isset($this->language_data['STYLES']['STRINGS'][$string_key]) ||
@@ -2617,49 +2661,6 @@ class GeSHi {
                         $string = '';
                         continue;
                     } else {
-                        // update regexp comment cache if needed
-                        if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
-                            $next_comment_regexp_pos = $length;
-                            foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
-                                $match_i = false;
-                                if (isset($comment_regexp_cache_per_key[$comment_key]) &&
-                                    ($comment_regexp_cache_per_key[$comment_key]['pos'] >= $i ||
-                                     $comment_regexp_cache_per_key[$comment_key]['pos'] === false)) {
-                                    // we have already matched something
-                                    if ($comment_regexp_cache_per_key[$comment_key]['pos'] === false) {
-                                        // this comment is never matched
-                                        continue;
-                                    }
-                                    $match_i = $comment_regexp_cache_per_key[$comment_key]['pos'];
-                                } else if (
-                                    //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
-                                    (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
-                                    (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i))
-                                    ) {
-                                    $match_i = $match[0][1];
-                                    if (GESHI_PHP_PRE_433) {
-                                        $match_i += $i;
-                                    }
-
-                                    $comment_regexp_cache_per_key[$comment_key] = array(
-                                        'key' => $comment_key,
-                                        'length' => strlen($match[0][0]),
-                                        'pos' => $match_i
-                                    );
-                                } else {
-                                    $comment_regexp_cache_per_key[$comment_key]['pos'] = false;
-                                    continue;
-                                }
-
-                                if ($match_i !== false && $match_i < $next_comment_regexp_pos) {
-                                    $next_comment_regexp_pos = $match_i;
-                                    $next_comment_regexp_key = $comment_key;
-                                    if ($match_i === $i) {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
                         //Have a look for regexp comments
                         if ($i == $next_comment_regexp_pos) {
                             $COMMENT_MATCHED = true;
