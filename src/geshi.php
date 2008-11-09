@@ -3082,9 +3082,16 @@ class GeSHi {
 
                 $before = '<|UR1|"' .
                     str_replace(
-                        array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
-                        array($this->hsc($word), $this->hsc(strtolower($word)),
-                            $this->hsc(strtoupper($word)), '<DOT>'),
+                        array(
+                            '{FNAME}',
+                            '{FNAMEL}',
+                            '{FNAMEU}',
+                            '.'),
+                        array(
+                            str_replace('+', '%20', urlencode($this->hsc($word))),
+                            str_replace('+', '%20', urlencode($this->hsc(strtolower($word)))),
+                            str_replace('+', '%20', urlencode($this->hsc(strtoupper($word)))),
+                            '<DOT>'),
                         $this->language_data['URLS'][$k]
                     ) . '">';
                 $after = '</a>';
