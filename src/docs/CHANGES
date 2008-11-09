@@ -12,6 +12,23 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8.2
+  -  Added language files
+     * Brainfuck \ Brainfork (Benny Baumann)
+     * HQ9+ (Benny Baumann)
+     * INTERCAL (Benny Baumann)
+     * LOLcode (Benny Baumann)
+     * VIM Script (Swaroop C H)
+     * Whitespace (Benny Baumann)
+  -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)
+  -  Fixed correct escaping of spaces inside of URLs (BenBE)
+  -  Improvements to language files (BenBE)
+     * eMail Header highlighting now uses the correct delimiters for keywords (BenBE)
+     * eMail (RFC822\mbox) highlighting now highlights IPs, MIME types and
+       subfield assignments correctly (BenBE)
+     * Minor style changes in COBOL to improve loading performance (BenBE)
+     * Added some missing keywords for D (BenBE)
+     * Removed duplicate keywords from Progres, SAS and TSQL (BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)
