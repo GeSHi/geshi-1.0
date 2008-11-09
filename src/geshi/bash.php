@@ -63,7 +63,7 @@ $language_data = array (
         //Variables
         1 => "/\\$\\{[^\\n\\}]*?\\}/i",
         //BASH-style Heredoc
-        2 => '/<<-?\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
+        2 => '/<<-?\s*?(\'?)([a-zA-Z0-9]+)\1\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
         //Escaped String Starters
         3 => "/\\\\['\"]/siU"
         ),

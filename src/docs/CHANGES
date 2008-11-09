@@ -23,6 +23,7 @@ Version 1.0.8.2
      * Whitespace (Benny Baumann)
   -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)
   -  Fixed correct escaping of spaces inside of URLs (BenBE)
+  -  Updated the list of common file extensions (BenBE)
   -  Improvements to language files (BenBE)
      * eMail Header highlighting now uses the correct delimiters for keywords (BenBE)
      * eMail (RFC822\mbox) highlighting now highlights IPs, MIME types and
@@ -30,6 +31,7 @@ Version 1.0.8.2
      * Minor style changes in COBOL to improve loading performance (BenBE)
      * Added some missing keywords for D (BenBE)
      * Removed duplicate keywords from Progres, SAS and TSQL (BenBE)
+     * Fixed Heredoc Syntax for Bash (SF#2185319, BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)

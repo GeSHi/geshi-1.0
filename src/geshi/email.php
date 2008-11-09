@@ -57,7 +57,7 @@ $language_data = array (
             'Resend-From','Resend-To','Return-Path'
             ),
         3 => array(
-            'date','from','subject','to',
+            'Date','From','Subject','To',
             ),
         4 => array(
             'by', 'for', 'from', 'id', 'with'
