@@ -18,6 +18,7 @@ Version 1.0.8.2
      * HQ9+ (Benny Baumann)
      * INTERCAL (Benny Baumann)
      * LOLcode (Benny Baumann)
+     * ProvideX (Jeff Wilder)
      * VIM Script (Swaroop C H)
      * Whitespace (Benny Baumann)
   -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)

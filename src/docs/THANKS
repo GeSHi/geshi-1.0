@@ -61,6 +61,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - BlitzBasic             P�draig O`Connel
 - BNF                    Rowan Rodrik van der Molen
 - Boo                    Marcus Griep
+- Brainfuck \ Brainfork  Benny Baumann
 - C++                    Dennis Bayer, M. Uli Kusterer
 - C++/QT                 Iulian M
 - C#                     Alan Juden
@@ -86,8 +87,10 @@ PEOPE WHO MADE LANGUAGE FILES
 - GML                    José Jorge Enríquez Rodríguez
 - Groovy                 Ivan F. Villanueva B.
 - Haskell                Dagit
+- HQ9+                   Benny Baumann
 - Ini                    Deguix
 - Inno                   Thomas Klinger
+- INTERCAL               Benny Baumann
 - Java 5                 Clemens Bruckmann
 - Javascript             Ben Keen
 - KiXtart                Riley McArdle
@@ -95,6 +98,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - KLone C++              Mickael Auger
 - LaTeX                  Matthais Pospiech
 - Lisp                   Roberto Rossi
+- LOLcode                Benny Baumann
 - Lua                    Roberto Rossi
 - m86k                   Benny Baumann
 - mIRC                   Alberto de Areba Sánchez
@@ -116,6 +120,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - PowerShell             Frode Aarebrot
 - Progress               Marco Aurelio de Pasqual
 - Prolog                 Benny Baumann
+- ProvideX               Jeff Wilder
 - Python                 Roberto Rossi
 - Rails                  Moises Deniz
 - Reg                    SmokingRope
@@ -137,7 +142,9 @@ PEOPE WHO MADE LANGUAGE FILES
 - VB                     Roberto Rossi
 - VB.NET                 Alan Juden
 - Verilog                Günter Dannoritzer
+- VIM Script             Swaroop C H
 - VisualFoxPro           Roberto Armellin
+- Whitespace             Benny Baumann
 - Winbatch               Craig Storey
 - X++                    Simon Butcher
 - Xorg config            Milian Wolff
