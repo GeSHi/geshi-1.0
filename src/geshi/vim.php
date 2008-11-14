@@ -57,8 +57,8 @@ $language_data = array(
         1 => array(
             'brea', 'break', 'call', 'cat', 'catc',
             'catch', 'con', 'cont', 'conti',
-            'contin', 'continu', 'continue', 'ec', 'ech',
-            'echo', 'echoe', 'echoer', 'echoerr', 'echoh',
+            'contin', 'continu', 'continue', 'ec', 'echo',
+            'echoe', 'echoer', 'echoerr', 'echoh',
             'echohl', 'echom', 'echoms', 'echomsg', 'echon',
             'el', 'els', 'else', 'elsei', 'elseif',
             'en', 'end', 'endi', 'endif', 'endfo',
