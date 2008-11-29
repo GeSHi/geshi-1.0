@@ -37,6 +37,7 @@ Version 1.0.8.2
      * Fixed Heredoc Syntax for Bash (SF#2185319, BenBE)
      * Moved symbol-lookalike sequences from keyword groups to separate symbol group
        for languages asp, klonec, klonecpp, php, php-brief (BenBE)
+     * Fixed a lot of duplicate keyword warnings (BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)

@@ -46,7 +46,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(//mots-cles C
-            'if', 'return', 'while', 'case', 'continue', 'default',
+            'if', 'return', 'while', 'case', 'class', 'continue', 'default',
             'do', 'else', 'for', 'switch', 'goto',
             'null', 'break', 'true', 'enum', 'extern', 'inline', 'false'
             ),
@@ -271,6 +271,9 @@ $language_data = array (
             6 => array(
                 'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
                 'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+            ),
+            7 => array(
+                'DISALLOWED_AFTER' => '(?=\s*=)',
             )
         )
     )

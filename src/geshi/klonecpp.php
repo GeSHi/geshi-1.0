@@ -299,6 +299,9 @@ $language_data = array (
             6 => array(
                 'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
                 'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+            ),
+            7 => array(
+                'DISALLOWED_AFTER' => '(?=\s*=)',
             )
         )
     )
