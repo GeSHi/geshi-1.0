@@ -473,6 +473,10 @@ if(!$error_abort) {
                     }
                 }
             }
+
+            $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^&";
+            $disallowed_after = "(?![a-zA-Z0-9_\|%\\-&;";
+
             foreach($language_data['KEYWORDS'] as $key => $keywords) {
                 foreach($language_data['KEYWORDS'] as $key2 => $keywords2) {
                     if($key2 <= $key) {
@@ -480,6 +484,39 @@ if(!$error_abort) {
                     }
                     $kw_diffs = array_intersect($keywords, $keywords2);
                     foreach($kw_diffs as $kw) {
+                        if(isset($language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                            //Check the precondition\post-cindition for the involved keyword groups
+                            $g1_pre = $disallowed_before;
+                            $g2_pre = $disallowed_before;
+                            $g1_post = $disallowed_after;
+                            $g2_post = $disallowed_after;
+                            if(isset($language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'])) {
+                                $g1_pre = $language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                                $g2_pre = $language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_BEFORE'];
+                            }
+                            if(isset($language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'])) {
+                                $g1_post = $language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                                $g2_post = $language_data['PARSER_CONTROL']['KEYWORDS']['DISALLOWED_AFTER'];
+                            }
+
+                            if(isset($language_data['PARSER_CONTROL']['KEYWORDS'][$key]['DISALLOWED_BEFORE'])) {
+                                $g1_pre = $language_data['PARSER_CONTROL']['KEYWORDS'][$key]['DISALLOWED_BEFORE'];
+                            }
+                            if(isset($language_data['PARSER_CONTROL']['KEYWORDS'][$key]['DISALLOWED_AFTER'])) {
+                                $g1_post = $language_data['PARSER_CONTROL']['KEYWORDS'][$key]['DISALLOWED_AFTER'];
+                            }
+
+                            if(isset($language_data['PARSER_CONTROL']['KEYWORDS'][$key2]['DISALLOWED_BEFORE'])) {
+                                $g2_pre = $language_data['PARSER_CONTROL']['KEYWORDS'][$key2]['DISALLOWED_BEFORE'];
+                            }
+                            if(isset($language_data['PARSER_CONTROL']['KEYWORDS'][$key2]['DISALLOWED_AFTER'])) {
+                                $g2_post = $language_data['PARSER_CONTROL']['KEYWORDS'][$key2]['DISALLOWED_AFTER'];
+                            }
+
+                            if($g1_pre != $g2_pre || $g1_post != $g2_post) {
+                                continue;
+                            }
+                        }
                         report_error(TYPE_WARNING, "Language file contains cross-group duplicate keyword '$kw' in \$language_data['KEYWORDS'][$key] and \$language_data['KEYWORDS'][$key2]!");
                     }
                 }

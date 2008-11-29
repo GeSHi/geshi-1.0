@@ -26,6 +26,7 @@ Version 1.0.8.2
   -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)
   -  Fixed correct escaping of spaces inside of URLs (BenBE)
   -  Updated the list of common file extensions (BenBE)
+  -  Updated the language file check script in contrib/ (BenBE)
   -  Improvements to language files (BenBE)
      * eMail Header highlighting now uses the correct delimiters for keywords (BenBE)
      * eMail (RFC822\mbox) highlighting now highlights IPs, MIME types and
