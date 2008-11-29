@@ -21,6 +21,7 @@ Version 1.0.8.2
      * Pixel Bender (Richard Olsson)
      * ProvideX (Jeff Wilder)
      * VIM Script (Swaroop C H)
+     * Visual Prolog (Thomas Linder Puls)
      * Whitespace (Benny Baumann)
   -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)
   -  Fixed correct escaping of spaces inside of URLs (BenBE)
