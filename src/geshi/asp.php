@@ -62,9 +62,8 @@ $language_data = array (
             ),
         2 => array(
             'Null', 'Nothing', 'And',
-            'False', '&lt;%', '%&gt;',
-            '&lt;script language=', '&lt;/script&gt;',
-            'True', 'var', 'Or', 'BOF', 'EOF',
+            'False',
+            'True', 'var', 'Or', 'BOF', 'EOF', 'xor',
             'Function', 'Class', 'New', 'Sub'
             ),
         3 => array(
@@ -78,8 +77,12 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>',
-        ';', ':', '?', '='
+        1 => array(
+            '<%', '%>'
+            ),
+        0 => array(
+            '(', ')', '[', ']', '!', '@', '%', '&', '*', '|', '/', '<', '>',
+            ';', ':', '?', '='),
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -102,7 +105,7 @@ $language_data = array (
             0 => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #006600; font-weight:bold'
+            0 => 'color: #006600; font-weight:bold;'
             ),
         'STRINGS' => array(
             0 => 'color: #cc0000;'
@@ -114,7 +117,8 @@ $language_data = array (
             1 => 'color: #9900cc;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #006600; font-weight: bold'
+            0 => 'color: #006600; font-weight: bold;',
+            1 => 'color: #000000; font-weight: bold;'
             ),
         'REGEXPS' => array(
             ),

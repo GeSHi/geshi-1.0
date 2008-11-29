@@ -69,7 +69,7 @@ $language_data = array (
             ),
         2 => array(
             'null', '__LINE__', '__FILE__',
-            'false', '&lt;?php', '&lt;?', '&lt;?=', '?&gt;', '&lt;%', '&lt;%=', '%&gt;',
+            'false', '&lt;?php',
             'true', 'var', 'default',
             'function', 'class', 'new', '&amp;new', 'public', 'private', 'interface', 'extends',
             'const', 'self'
@@ -91,11 +91,16 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}',
-        '!', '@', '%', '&', '|', '/',
-        '<', '>',
-        '=', '-', '+', '*',
-        '.', ':', ',', ';'
+        1 => array(
+            '<%', '<%=', '%>', '<?', '<?=', '?>'
+            ),
+        0 => array(
+            '(', ')', '[', ']', '{', '}',
+            '!', '@', '%', '&', '|', '/',
+            '<', '>',
+            '=', '-', '+', '*',
+            '.', ':', ',', ';'
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -137,7 +142,8 @@ $language_data = array (
             2 => 'color: #004000;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #339933;'
+            0 => 'color: #339933;',
+            1 => 'color: #000000; font-weight: bold;'
             ),
         'REGEXPS' => array(
             0 => 'color: #0000ff;'

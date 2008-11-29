@@ -66,7 +66,7 @@ $language_data = array (
             'EXIT_FAILURE', 'EXIT_SUCCESS', 'RAND_MAX', 'CLOCKS_PER_SEC'
             ),
         2 => array(//mots-cles KLone
-            '&lt;%=', '&lt;%!', '&lt;%', '%&gt;', 'out', 'request', 'response',
+            'out', 'request', 'response',
             ),
         3 => array(//fonctions C++ usuelles
             'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
@@ -180,11 +180,16 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}',
-        '!', '%', '&', '|', '/',
-        '<', '>',
-        '=', '-', '+', '*',
-        '.', ':', ',', ';', '^'
+        1 => array(
+            '<%=', '<%!', '<%', '%>'
+            ),
+        0 => array(
+            '(', ')', '[', ']', '{', '}',
+            '!', '%', '&', '|', '/',
+            '<', '>',
+            '=', '-', '+', '*',
+            '.', ':', ',', ';', '^'
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -228,7 +233,8 @@ $language_data = array (
             2 => 'color: #006600;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #000000;',
+            1 => 'color: #000000; font-weight: bold;'
             ),
         'REGEXPS' => array(),
         'SCRIPT' => array(

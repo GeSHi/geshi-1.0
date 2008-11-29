@@ -33,6 +33,8 @@ Version 1.0.8.2
      * Added some missing keywords for D (BenBE)
      * Removed duplicate keywords from Progres, SAS and TSQL (BenBE)
      * Fixed Heredoc Syntax for Bash (SF#2185319, BenBE)
+     * Moved symbol-lookalike sequences from keyword groups to separate symbol group
+       for languages asp, klonec, klonecpp, php, php-brief (BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)

@@ -90,9 +90,8 @@ $language_data = array (
             'return', 'break', 'continue'
             ),
         2 => array(
-            '%&gt;', '&amp;new', '&lt;%', '&lt;%=',
-            '&lt;/script&gt;', '&lt;?', '&lt;?=', '&lt;?php',
-            '&lt;script language', '?&gt;', 'class', 'const',
+            '&amp;new', '&lt;/script&gt;', '&lt;?php',
+            '&lt;script language', 'class', 'const',
             'default', 'DEFAULT_INCLUDE_PATH', 'extends',
             'E_ALL', 'E_COMPILE_ERROR', 'E_COMPILE_WARNING',
             'E_CORE_ERROR', 'E_CORE_WARNING', 'E_ERROR',
@@ -486,11 +485,16 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}',
-        '!', '@', '%', '&', '|', '/',
-        '<', '>',
-        '=', '-', '+', '*',
-        '.', ':', ',', ';'
+        1 => array(
+            '<%', '<%=', '%>', '<?', '<?=', '?>'
+            ),
+        0 => array(
+            '(', ')', '[', ']', '{', '}',
+            '!', '@', '%', '&', '|', '/',
+            '<', '>',
+            '=', '-', '+', '*',
+            '.', ':', ',', ';'
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -539,7 +543,8 @@ $language_data = array (
             2 => 'color: #004000;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #339933;'
+            0 => 'color: #339933;',
+            1 => 'color: #000000; font-weight: bold;'
             ),
         'REGEXPS' => array(
             0 => 'color: #000088;'

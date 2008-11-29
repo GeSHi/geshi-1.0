@@ -51,7 +51,7 @@ $language_data = array (
             'null', 'break', 'true', 'enum', 'extern', 'inline', 'false'
             ),
         2 => array(//mots-cles KLone
-            '&lt;%=', '&lt;%!', '&lt;%', '%&gt;', 'out', 'request', 'response',
+            'out', 'request', 'response',
             ),
         3 => array(//fonctions C usuelles
             'printf', 'malloc', 'fopen', 'fclose', 'free', 'fputs', 'fgets', 'feof', 'fwrite',
@@ -152,11 +152,16 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}',
-        '!', '%', '&', '|', '/',
-        '<', '>',
-        '=', '-', '+', '*',
-        '.', ':', ',', ';', '^'
+        1 => array(
+            '<%=', '<%!', '<%', '%>'
+            ),
+        0 => array(
+            '(', ')', '[', ']', '{', '}',
+            '!', '%', '&', '|', '/',
+            '<', '>',
+            '=', '-', '+', '*',
+            '.', ':', ',', ';', '^'
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -200,7 +205,8 @@ $language_data = array (
             2 => 'color: #006600;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #000000;',
+            1 => 'color: #000000; font-weight: bold;'
             ),
         'REGEXPS' => array(),
         'SCRIPT' => array(
