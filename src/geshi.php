@@ -1617,7 +1617,7 @@ class GeSHi {
         if (!$target) {
             $this->link_target = '';
         } else {
-            $this->link_target = ' target="' . $target . '" ';
+            $this->link_target = ' target="' . $target . '"';
         }
     }
 
