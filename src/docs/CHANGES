@@ -43,6 +43,7 @@ Version 1.0.8.2
      * Added missing keywords to the Python language file,
        introducing support for Python 3.0. (SF#2441839, milian)
      * Updated documentation links for TypoScript (SF#2014276, BenBE)
+     * Fixed a problem with tag and attribute names in XML highlighting (SF#2276119, BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)

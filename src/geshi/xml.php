@@ -100,14 +100,14 @@ $language_data = array (
         ),
     'REGEXPS' => array(
         0 => array(//attribute names
-            GESHI_SEARCH => '([a-z0-9_\-:]+)(=)',
+            GESHI_SEARCH => '([a-z_:][\w\-\.:]*)(=)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\\2'
             ),
         1 => array(//Initial header line
-            GESHI_SEARCH => '(&lt;[\/?|(\?xml)]?[a-z0-9_\-:]*(\??&gt;)?)',
+            GESHI_SEARCH => '(&lt;[\/?|(\?xml)]?[a-z_:][\w\-\.:]*(\??&gt;)?)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'i',
             GESHI_BEFORE => '',
