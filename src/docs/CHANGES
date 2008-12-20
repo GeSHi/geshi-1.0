@@ -25,8 +25,6 @@ Version 1.0.8.2
      * Visual Prolog (Thomas Linder Puls)
      * Whitespace (Benny Baumann)
   -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)
-  -  Added missing keywords to the Python language file, introducing support
-     for Python 3.0. See SF#2441839
   -  Fixed correct escaping of spaces inside of URLs (BenBE)
   -  Updated the list of common file extensions (BenBE)
   -  Updated the language file check script in contrib/ (BenBE)
@@ -41,6 +39,9 @@ Version 1.0.8.2
      * Moved symbol-lookalike sequences from keyword groups to separate symbol group
        for languages asp, klonec, klonecpp, php, php-brief (BenBE)
      * Fixed a lot of duplicate keyword warnings (BenBE)
+     * Added missing keywords to the Python language file,
+       introducing support for Python 3.0. (SF#2441839, milian)
+     * Updated documentation links for TypoScript (SF#2014276, BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)
