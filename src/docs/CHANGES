@@ -25,6 +25,8 @@ Version 1.0.8.2
      * Visual Prolog (Thomas Linder Puls)
      * Whitespace (Benny Baumann)
   -  Changed priority for COMMENT_REGEXP compared to String highlighting (BenBE)
+  -  Added missing keywords to the Python language file, introducing support
+     for Python 3.0. See SF#2441839
   -  Fixed correct escaping of spaces inside of URLs (BenBE)
   -  Updated the list of common file extensions (BenBE)
   -  Updated the language file check script in contrib/ (BenBE)
