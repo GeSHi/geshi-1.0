@@ -329,7 +329,7 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #7F7F7F;',
-			'MULTI' => 'color: #7F7F7F;'
+            'MULTI' => 'color: #7F7F7F;'
             ),
         'BRACKETS' => array(
             0 => 'color: #0040A0;'
