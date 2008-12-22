@@ -81,7 +81,7 @@ $language_data = array (
             'FIRST','FOR EACH ROW','FORCE','FOREIGN KEY','FROM','FULL',
             'FUNCTION','GLOBAL','GRANT','GROUP BY','HANDLER','HASH','HAVING',
             'HELP','HIGH_PRIORITY','IF NOT EXISTS','IGNORE','IMPORT','INDEX',
-            'INFILE','INNER','INNODB','INOUT','INTO','INVOKER','IN',
+            'INFILE','INNER','INNODB','INOUT','INTO','INVOKER',
             'ISOLATION LEVEL','JOIN','KEYS','KEY','KILL','LANGUAGE SQL','LAST',
             'LIMIT','LINES','LOAD','LOCAL','LOCK','LOW_PRIORITY',
             'MASTER_SERVER_ID','MATCH','MERGE','MIDDLEINT','MODIFIES SQL DATA',
@@ -89,8 +89,8 @@ $language_data = array (
             'OPTIMIZE','OPTIONALLY','OPTION','ORDER BY','OUTER','OUTFILE','OUT',
             'PARTIAL','PREV','PRIMARY KEY','PRIVILEGES','PROCEDURE','PURGE',
             'QUICK','READS SQL DATA','READ','REFERENCES','RELEASE','RENAME',
-            'REPEATABLE','REPLACE','REQUIRE','RESTRICT','RETURNS','REVOKE',
-            'ROLLBACK','ROUTINE','RTREE','SAVEPOINT','SCHEMA','SELECT',
+            'REPEATABLE','REQUIRE','RESTRICT','RETURNS','REVOKE',
+            'ROLLBACK','ROUTINE','RTREE','SAVEPOINT','SELECT',
             'SERIALIZABLE','SESSION','SET','SHARE MODE','SHOW','SIMPLE',
             'SNAPSHOT','SOME','SONAME','SQL SECURITY','SQL_BIG_RESULT',
             'SQL_BUFFER_RESULT','SQL_CACHE','SQL_CALC_FOUND_ROWS',
@@ -120,12 +120,12 @@ $language_data = array (
             'MULTIPOLYGON','NATIONAL CHARACTER','NATIONAL CHARACTER VARYING',
             'NATIONAL CHAR VARYING','NATIONAL VARCHAR','NCHAR VARCHAR','NCHAR',
             'NUMERIC','POINT','POLYGON','REAL','SERIAL',
-            'SMALLINT','TEXT','TIME','TIMESTAMP','TINYBLOB','TINYINT',
+            'SMALLINT','TEXT','TIMESTAMP','TINYBLOB','TINYINT',
             'TINYTEXT','VARBINARY','VARCHARACTER','VARCHAR',
             ),
         5 => array(     //No ( must follow
             // Column data types distinguished from functions by the same name
-            "CHAR", "DATE"
+            "CHAR", "DATE", "TIME"
             ),
         6 => array(
             // Table, Column & Index Attributes
@@ -142,13 +142,13 @@ $language_data = array (
         8 => array(
             // Date and Time Unit Specifiers
             'DAY_HOUR','DAY_MICROSECOND','DAY_MINUTE','DAY_SECOND',
-            'HOUR_MICROSECOND','HOUR_MINUTE','HOUR_SECOND','MICROSECOND',
+            'HOUR_MICROSECOND','HOUR_MINUTE','HOUR_SECOND',
             'MINUTE_MICROSECOND','MINUTE_SECOND',
             'SECOND_MICROSECOND','YEAR_MONTH'
             ),
         9 => array(     //No ( must follow
             // Date-time unit specifiers distinguished from functions by the same name
-            "DAY", "HOUR", "MINUTE", "MONTH", "QUARTER", "SECOND", "WEEK", "YEAR"
+            "DAY", "HOUR", "MICROSECOND", "MINUTE", "MONTH", "QUARTER", "SECOND", "WEEK", "YEAR"
             ),
         10 => array(
             // Operators (see also Symbols)
@@ -193,7 +193,7 @@ $language_data = array (
             // Date and Time Functions
             'ADDDATE','ADDTIME','CONVERT_TZ','CURDATE','CURRENT_DATE',
             'CURRENT_TIME','CURRENT_TIMESTAMP','CURTIME','DATE_ADD',
-            'DATE_FORMAT','DATE_SUB','DATEDIFF','DAY','DAYNAME','DAYOFMONTH',
+            'DATE_FORMAT','DATE_SUB','DATEDIFF','DAYNAME','DAYOFMONTH',
             'DAYOFWEEK','DAYOFYEAR','EXTRACT','FROM_DAYS','FROM_UNIXTIME',
             'GET_FORMAT','LAST_DAY','LOCALTIME','LOCALTIMESTAMP','MAKEDATE',
             'MAKETIME','MONTHNAME','NOW','PERIOD_ADD',
@@ -469,7 +469,7 @@ $language_data = array (
                 ),
             26 => array(
                 'DISALLOWED_AFTER' => '(?=\()'
-                ),
+                )
             )
         )
 );
