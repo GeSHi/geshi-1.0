@@ -315,7 +315,7 @@ if(!$error_abort) {
                     if(!is_integer($kw_key)) {
                         report_error(TYPE_WARNING, "Language file contains an key '$kw_key' in \$language_data['KEYWORDS'] that is not integer!");
                     } else if (!is_array($kw_value)) {
-                        report_error(TYPE_ERROR, "Language file contains a \$language_data['CASE_SENSITIVE']['$cs_value'] structure which is not an array!");
+                        report_error(TYPE_ERROR, "Language file contains a \$language_data['CASE_SENSITIVE']['$kw_value'] structure which is not an array!");
                     }
                 }
             }
