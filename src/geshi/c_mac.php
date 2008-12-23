@@ -47,7 +47,19 @@ $language_data = array (
     'COMMENT_REGEXP' => array(1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
-    'ESCAPE_CHAR' => '\\',
+    'ESCAPE_CHAR' => '',
+    'ESCAPE_REGEXP' => array(
+        //Simple Single Char Escapes
+        1 => "#\\\\[abfnrtv\\'\"?\n]#i",
+        //Hexadecimal Char Specs
+        2 => "#\\\\x[\da-fA-F]{2}#",
+        //Hexadecimal Char Specs
+        3 => "#\\\\u[\da-fA-F]{4}#",
+        //Hexadecimal Char Specs
+        4 => "#\\\\U[\da-fA-F]{8}#",
+        //Octal Char Specs
+        5 => "#\\\\[0-7]{1,3}#"
+        ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
         GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
@@ -136,7 +148,13 @@ $language_data = array (
             'MULTI' => 'color: #ff0000; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #666666; font-weight: bold;'
+            0 => 'color: #000099; font-weight: bold;',
+            1 => 'color: #000099; font-weight: bold;',
+            2 => 'color: #660099; font-weight: bold;',
+            3 => 'color: #660099; font-weight: bold;',
+            4 => 'color: #660099; font-weight: bold;',
+            5 => 'color: #006699; font-weight: bold;',
+            'HARD' => '',
             ),
         'BRACKETS' => array(
             0 => 'color: #000000;'
