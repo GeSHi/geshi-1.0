@@ -46,6 +46,7 @@ Version 1.0.8.2
      * Updated documentation links for TypoScript (SF#2014276, BenBE)
      * Fixed a problem with tag and attribute names in XML highlighting (SF#2276119, BenBE)
      * Improved MySQL language file (BenBE, JavaWoman)
+     * Some commentss accidentially mistaken for DocComments (SF#2454897, BenBE)
 Version 1.0.8.1
   -  Added language files
      * AviSynth (Ryan Jones)

@@ -59,7 +59,7 @@ $language_data = array (
         //Import and Package directives (Basic Support only)
         2 => '/(?:(?<=import[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
         // javadoc comments
-        3 => '#/\*\*(?!\*).*\*/#sU'
+        3 => '#/\*\*(?![\*\/]).*\*/#sU'
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -934,7 +934,7 @@ $language_data = array (
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #006699;',
             3 => 'color: #008000; font-style: italic; font-weight: bold;',
-            3  => 'color: #008000; font-style: italic; font-weight: bold;',
+            3 => 'color: #008000; font-style: italic; font-weight: bold;',
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(

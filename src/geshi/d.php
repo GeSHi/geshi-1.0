@@ -48,7 +48,7 @@ $language_data = array (
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         // doxygen comments
-        3 => '#/\*\*(?!\*).*\*/#sU',
+        3 => '#/\*\*(?![\*\/]).*\*/#sU',
         // raw strings
         4 => '#r"[^"]*"#s',
         // Script Style interpreter comment
