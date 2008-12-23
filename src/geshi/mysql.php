@@ -48,7 +48,7 @@ $language_data = array (
     'LANG_NAME' => 'MySQL',
     //'COMMENT_SINGLE' => array(1 =>'--', 2 => '#'),    // '--' MUST be folowed by whitespace,not necessarily a space
     'COMMENT_SINGLE' => array(
-        1 => '-- ',
+        1 =>'-- ',
         2 => '#'
         ),
     'COMMENT_REGEXP' => array(
@@ -57,7 +57,10 @@ $language_data = array (
     'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,            // @@@ would be nice if this could be defined per group!
     'QUOTEMARKS' => array("'", '"', '`'),
-    'ESCAPE_CHAR' => '\\',                              // default only, can be specified
+    'ESCAPE_CHAR' => '\\',                              // by default only, can be specified
+    'ESCAPE_REGEXP' => array(
+        1 => "/[_%]/",                                  // search wildcards
+        ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC |
         GESHI_NUMBER_OCT_PREFIX |
@@ -104,7 +107,7 @@ $language_data = array (
             ),
         2 => array(     //No ( must follow
             // Mix: statement keywords distinguished from functions by the same name
-            "DATABASE", "IN", "INSERT", "DEFAULT", "REPLACE", "SCHEMA", "TRUNCATE"
+            "CURRENT_USER", "DATABASE", "IN", "INSERT", "DEFAULT", "REPLACE", "SCHEMA", "TRUNCATE"
             ),
         3 => array(
             // Values (Constants)
@@ -130,10 +133,10 @@ $language_data = array (
         6 => array(
             // Table, Column & Index Attributes
             'AUTO_INCREMENT','AVG_ROW_LENGTH','BOTH','CHECKSUM','CONNECTION',
-            'DATA DIRECTORY','DELAY_KEY_WRITE','FULLTEXT','INDEX DIRECTORY','INSERT_METHOD',
-            'LEADING','MAX_ROWS','MIN_ROWS','NOT NULL','PACK_KEYS','ROW_FORMAT',
-            'SERIAL DEFAULT VALUE','SIGNED','SPATIAL','TRAILING',
-            'UNIQUE','UNSIGNED','ZEROFILL'
+            'DATA DIRECTORY','DEFAULT NULL','DELAY_KEY_WRITE','FULLTEXT',
+            'INDEX DIRECTORY','INSERT_METHOD','LEADING','MAX_ROWS','MIN_ROWS',
+            'NOT NULL','PACK_KEYS','ROW_FORMAT','SERIAL DEFAULT VALUE','SIGNED',
+            'SPATIAL','TRAILING','UNIQUE','UNSIGNED','ZEROFILL'
             ),
         7 => array(     //No ( must follow
             // Column attribute distinguished from function by the same name
@@ -231,12 +234,12 @@ $language_data = array (
         23 => array(
             // Information Functions
             'BENCHMARK','COERCIBILITY','COLLATION','CONNECTION_ID',
-            'CURRENT_USER','FOUND_ROWS','LAST_INSERT_ID','ROW_COUNT',
+            'FOUND_ROWS','LAST_INSERT_ID','ROW_COUNT',
             'SESSION_USER','SYSTEM_USER','USER','VERSION',
             ),
         24 => array(     //A ( must follow
             // Information functions distinguished from other keywords by the same name
-            "DATABASE", "SCHEMA", "CHARSET"
+            "CURRENT_USER", "DATABASE", "SCHEMA", "CHARSET"
             ),
         25 => array(
             // Miscellaneous Functions
@@ -289,12 +292,7 @@ $language_data = array (
             '|', '&', '^', '~', '<<', '>>',                 // bitwise operators
             '-', '+', '*', '/', '%',                        // numerical operators
             ),
-//Special meaning only within strings, Thus esc chars
-//        2 => array(
-//            /* Wildcard symbols */
-//            '_', '%',                 // @@@ would these conflict with keywords?
-//            ),
-        3 => array(
+        2 => array(
             /* Other syntactical symbols */
             '(', ')',
             ',', ';',
@@ -333,35 +331,35 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #990099; font-weight: bold;',  // mix
-            2 => 'color: #990099; font-weight: bold;',  // mix
-            3 => 'color: #9900FF; font-weight: bold;',  // constants
-            4 => 'color: #999900; font-weight: bold;',  // column data types
-            5 => 'color: #999900; font-weight: bold;',  // column data types
-            6 => 'color: #FF9900; font-weight: bold;',  // attributes
-            7 => 'color: #FF9900; font-weight: bold;',  // attributes
-            8 => 'color: #9900FF; font-weight: bold;',  // date-time units
-            9 => 'color: #9900FF; font-weight: bold;',  // date-time units
+            1 => 'color: #990099; font-weight: bold;',      // mix
+            2 => 'color: #990099; font-weight: bold;',      // mix
+            3 => 'color: #9900FF; font-weight: bold;',      // constants
+            4 => 'color: #999900; font-weight: bold;',      // column data types
+            5 => 'color: #999900; font-weight: bold;',      // column data types
+            6 => 'color: #FF9900; font-weight: bold;',      // attributes
+            7 => 'color: #FF9900; font-weight: bold;',      // attributes
+            8 => 'color: #9900FF; font-weight: bold;',      // date-time units
+            9 => 'color: #9900FF; font-weight: bold;',      // date-time units
 
-            10 => 'color: #CC0099; font-weight: bold;', // operators
-            11 => 'color: #CC0099; font-weight: bold;', // operators
+            10 => 'color: #CC0099; font-weight: bold;',      // operators
+            11 => 'color: #CC0099; font-weight: bold;',      // operators
 
-            12 => 'color: #009900;',                    // control flow (functions)
-            13 => 'color: #000099;',                    // string functions
-            14 => 'color: #000099;',                    // string functions
-            15 => 'color: #000099;',                    // numeric functions
-            16 => 'color: #000099;',                    // numeric functions
-            17 => 'color: #000099;',                    // date-time functions
-            18 => 'color: #000099;',                    // date-time functions
-            19 => 'color: #000099;',                    // comparison functions
-            20 => 'color: #000099;',                    // comparison functions
-            21 => 'color: #000099;',                    // encryption functions
-            22 => 'color: #000099;',                    // aggregate functions
-            23 => 'color: #000099;',                    // information functions
-            24 => 'color: #000099;',                    // information functions
-            25 => 'color: #000099;',                    // miscellaneous functions
-            26 => 'color: #000099;',                    // miscellaneous functions
-            27 => 'color: #00CC00;',                    // geometry functions
+            12 => 'color: #009900;',     // control flow (functions)
+            13 => 'color: #000099;',     // string functions
+            14 => 'color: #000099;',     // string functions
+            15 => 'color: #000099;',     // numeric functions
+            16 => 'color: #000099;',     // numeric functions
+            17 => 'color: #000099;',     // date-time functions
+            18 => 'color: #000099;',     // date-time functions
+            19 => 'color: #000099;',     // comparison functions
+            20 => 'color: #000099;',     // comparison functions
+            21 => 'color: #000099;',     // encryption functions
+            22 => 'color: #000099;',     // aggregate functions
+            23 => 'color: #000099;',     // information functions
+            24 => 'color: #000099;',     // information functions
+            25 => 'color: #000099;',     // miscellaneous functions
+            26 => 'color: #000099;',     // miscellaneous functions
+            27 => 'color: #00CC00;',     // geometry functions
             ),
         'COMMENTS' => array(
             'MULTI' => 'color: #808000; font-style: italic;',
@@ -369,7 +367,8 @@ $language_data = array (
             2 => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #004000; font-weight: bold;'
+            0 => 'color: #004000; font-weight: bold;',
+            1 => 'color: #008080; font-weight: bold;'       // search wildcards
             ),
         'BRACKETS' => array(
             0 => 'color: #FF00FF;'
@@ -384,8 +383,7 @@ $language_data = array (
             ),
         'SYMBOLS' => array(
             1 => 'color: #CC0099;',         // operators
-//            2 => 'color: #FF0000;',         // wildcards
-            3 => 'color: #000033;',         // syntax
+            2 => 'color: #000033;',         // syntax
             ),
         'SCRIPT' => array(
             ),
