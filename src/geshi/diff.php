@@ -54,20 +54,20 @@ $language_data = array (
             1 => array(
                 '\ No newline at end of file'
             ),
-            2 => array(
-                '***************' /* This only seems to works in some cases? */
-            ),
+//            2 => array(
+//                '***************' /* This only seems to works in some cases? */
+//            ),
         ),
     'SYMBOLS' => array(
         ),
     'CASE_SENSITIVE' => array(
         1 => false,
-        2 => false
+//        2 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #aaaaaa; font-style: italic;',
-            2 => 'color: #dd6611;',
+//            2 => 'color: #dd6611;',
             ),
         'COMMENTS' => array(
             ),
@@ -107,7 +107,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => ''
+//        2 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(),
