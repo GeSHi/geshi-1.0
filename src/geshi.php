@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.8.1');
+define('GESHI_VERSION', '1.0.8.2');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -1332,47 +1332,68 @@ class GeSHi {
                 'actionscript' => array('as'),
                 'ada' => array('a', 'ada', 'adb', 'ads'),
                 'apache' => array('conf'),
-                'asm' => array('ash', 'asm'),
+                'asm' => array('ash', 'asm', 'inc'),
                 'asp' => array('asp'),
                 'bash' => array('sh'),
+                'bf' => array('bf'),
                 'c' => array('c', 'h'),
                 'c_mac' => array('c', 'h'),
                 'caddcl' => array(),
                 'cadlisp' => array(),
                 'cdfg' => array('cdfg'),
                 'cobol' => array('cbl'),
-                'cpp' => array('cpp', 'h', 'hpp'),
-                'csharp' => array(),
+                'cpp' => array('cpp', 'hpp', 'C', 'H', 'CPP', 'HPP'),
+                'csharp' => array('cs'),
                 'css' => array('css'),
+                'd' => array('d'),
                 'delphi' => array('dpk', 'dpr', 'pp', 'pas'),
+                'diff' => array('diff', 'patch'),
                 'dos' => array('bat', 'cmd'),
                 'gettext' => array('po', 'pot'),
+                'gml' => array('gml'),
+                'gnuplot' => array('plt'),
+                'groovy' => array('groovy'),
+                'haskell' => array('hs'),
                 'html4strict' => array('html', 'htm'),
                 'ini' => array('ini', 'desktop'),
                 'java' => array('java'),
                 'javascript' => array('js'),
                 'klonec' => array('kl1'),
                 'klonecpp' => array('klx'),
+                'latex' => array('tex'),
                 'lisp' => array('lisp'),
                 'lua' => array('lua'),
                 'matlab' => array('m'),
                 'mpasm' => array(),
+                'mysql' => array('sql'),
                 'nsis' => array(),
                 'objc' => array(),
                 'oobas' => array(),
                 'oracle8' => array(),
-                'pascal' => array(),
+                'oracle10' => array(),
+                'pascal' => array('pas'),
                 'perl' => array('pl', 'pm'),
                 'php' => array('php', 'php5', 'phtml', 'phps'),
+                'povray' => array('pov'),
+                'providex' => array('pvc', 'pvx'),
+                'prolog' => array('pl'),
                 'python' => array('py'),
                 'qbasic' => array('bi'),
+                'reg' => array('reg'),
+                'ruby' => array('rb'),
                 'sas' => array('sas'),
+                'scala' => array('scala'),
+                'scheme' => array('scm'),
                 'scilab' => array('sci'),
+                'smalltalk' => array('st'),
                 'smarty' => array(),
+                'tcl' => array('tcl'),
                 'vb' => array('bas'),
                 'vbnet' => array(),
                 'visualfoxpro' => array(),
-                'xml' => array('xml')
+                'whitespace' => array('ws'),
+                'xml' => array('xml', 'svg'),
+                'z80' => array('z80', 'asm', 'inc')
             );
         }
 
@@ -1596,7 +1617,7 @@ class GeSHi {
         if (!$target) {
             $this->link_target = '';
         } else {
-            $this->link_target = ' target="' . $target . '" ';
+            $this->link_target = ' target="' . $target . '"';
         }
     }
 
@@ -2289,6 +2310,50 @@ class GeSHi {
                     $char = $part[$i];
                     $char_len = 1;
 
+                    // update regexp comment cache if needed
+                    if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
+                        $next_comment_regexp_pos = $length;
+                        foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
+                            $match_i = false;
+                            if (isset($comment_regexp_cache_per_key[$comment_key]) &&
+                                ($comment_regexp_cache_per_key[$comment_key]['pos'] >= $i ||
+                                 $comment_regexp_cache_per_key[$comment_key]['pos'] === false)) {
+                                // we have already matched something
+                                if ($comment_regexp_cache_per_key[$comment_key]['pos'] === false) {
+                                    // this comment is never matched
+                                    continue;
+                                }
+                                $match_i = $comment_regexp_cache_per_key[$comment_key]['pos'];
+                            } else if (
+                                //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
+                                (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
+                                (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i))
+                                ) {
+                                $match_i = $match[0][1];
+                                if (GESHI_PHP_PRE_433) {
+                                    $match_i += $i;
+                                }
+
+                                $comment_regexp_cache_per_key[$comment_key] = array(
+                                    'key' => $comment_key,
+                                    'length' => strlen($match[0][0]),
+                                    'pos' => $match_i
+                                );
+                            } else {
+                                $comment_regexp_cache_per_key[$comment_key]['pos'] = false;
+                                continue;
+                            }
+
+                            if ($match_i !== false && $match_i < $next_comment_regexp_pos) {
+                                $next_comment_regexp_pos = $match_i;
+                                $next_comment_regexp_key = $comment_key;
+                                if ($match_i === $i) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
                     $string_started = false;
 
                     if (isset($is_string_starter[$char])) {
@@ -2318,7 +2383,7 @@ class GeSHi {
                         $char_len = strlen($char);
                     }
 
-                    if ($string_started) {
+                    if ($string_started && $i != $next_comment_regexp_pos) {
                         // Hand out the correct style information for this string
                         $string_key = array_search($char, $this->language_data['QUOTEMARKS']);
                         if (!isset($this->language_data['STYLES']['STRINGS'][$string_key]) ||
@@ -2617,49 +2682,6 @@ class GeSHi {
                         $string = '';
                         continue;
                     } else {
-                        // update regexp comment cache if needed
-                        if (isset($this->language_data['COMMENT_REGEXP']) && $next_comment_regexp_pos < $i) {
-                            $next_comment_regexp_pos = $length;
-                            foreach ($this->language_data['COMMENT_REGEXP'] as $comment_key => $regexp) {
-                                $match_i = false;
-                                if (isset($comment_regexp_cache_per_key[$comment_key]) &&
-                                    ($comment_regexp_cache_per_key[$comment_key]['pos'] >= $i ||
-                                     $comment_regexp_cache_per_key[$comment_key]['pos'] === false)) {
-                                    // we have already matched something
-                                    if ($comment_regexp_cache_per_key[$comment_key]['pos'] === false) {
-                                        // this comment is never matched
-                                        continue;
-                                    }
-                                    $match_i = $comment_regexp_cache_per_key[$comment_key]['pos'];
-                                } else if (
-                                    //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
-                                    (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
-                                    (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i))
-                                    ) {
-                                    $match_i = $match[0][1];
-                                    if (GESHI_PHP_PRE_433) {
-                                        $match_i += $i;
-                                    }
-
-                                    $comment_regexp_cache_per_key[$comment_key] = array(
-                                        'key' => $comment_key,
-                                        'length' => strlen($match[0][0]),
-                                        'pos' => $match_i
-                                    );
-                                } else {
-                                    $comment_regexp_cache_per_key[$comment_key]['pos'] = false;
-                                    continue;
-                                }
-
-                                if ($match_i !== false && $match_i < $next_comment_regexp_pos) {
-                                    $next_comment_regexp_pos = $match_i;
-                                    $next_comment_regexp_key = $comment_key;
-                                    if ($match_i === $i) {
-                                        break;
-                                    }
-                                }
-                            }
-                        }
                         //Have a look for regexp comments
                         if ($i == $next_comment_regexp_pos) {
                             $COMMENT_MATCHED = true;
@@ -3081,9 +3103,16 @@ class GeSHi {
 
                 $before = '<|UR1|"' .
                     str_replace(
-                        array('{FNAME}', '{FNAMEL}', '{FNAMEU}', '.'),
-                        array($this->hsc($word), $this->hsc(strtolower($word)),
-                            $this->hsc(strtoupper($word)), '<DOT>'),
+                        array(
+                            '{FNAME}',
+                            '{FNAMEL}',
+                            '{FNAMEU}',
+                            '.'),
+                        array(
+                            str_replace('+', '%20', urlencode($this->hsc($word))),
+                            str_replace('+', '%20', urlencode($this->hsc(strtolower($word)))),
+                            str_replace('+', '%20', urlencode($this->hsc(strtoupper($word)))),
+                            '<DOT>'),
                         $this->language_data['URLS'][$k]
                     ) . '">';
                 $after = '</a>';

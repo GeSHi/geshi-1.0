@@ -4,7 +4,7 @@
  * --------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.1
+ * Release Version: 1.0.8.2
  * Date Started: 2004/06/20
  *
  * PHP language file for GeSHi.
@@ -60,7 +60,7 @@ $language_data = array (
         //Heredoc and Nowdoc syntax
         3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+?)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
         // phpdoc comments
-        4 => '#/\*\*(?!\*).*\*/#sU'
+        4 => '#/\*\*(?![\*\/]).*\*/#sU'
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
@@ -90,9 +90,8 @@ $language_data = array (
             'return', 'break', 'continue'
             ),
         2 => array(
-            '%&gt;', '&amp;new', '&lt;%', '&lt;%=',
-            '&lt;/script&gt;', '&lt;?', '&lt;?=', '&lt;?php',
-            '&lt;script language', '?&gt;', 'class', 'const',
+            '&amp;new', '&lt;/script&gt;', '&lt;?php',
+            '&lt;script language', 'class', 'const',
             'default', 'DEFAULT_INCLUDE_PATH', 'extends',
             'E_ALL', 'E_COMPILE_ERROR', 'E_COMPILE_WARNING',
             'E_CORE_ERROR', 'E_CORE_WARNING', 'E_ERROR',
@@ -486,11 +485,16 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '{', '}',
-        '!', '@', '%', '&', '|', '/',
-        '<', '>',
-        '=', '-', '+', '*',
-        '.', ':', ',', ';'
+        1 => array(
+            '<%', '<%=', '%>', '<?', '<?=', '?>'
+            ),
+        0 => array(
+            '(', ')', '[', ']', '{', '}',
+            '!', '@', '%', '&', '|', '/',
+            '<', '>',
+            '=', '-', '+', '*',
+            '.', ':', ',', ';'
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -539,7 +543,8 @@ $language_data = array (
             2 => 'color: #004000;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #339933;'
+            0 => 'color: #339933;',
+            1 => 'color: #000000; font-weight: bold;'
             ),
         'REGEXPS' => array(
             0 => 'color: #000088;'

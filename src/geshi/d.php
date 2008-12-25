@@ -4,7 +4,7 @@
  * -----
  * Author: Thomas Kuehne (thomas@kuehne.cn)
  * Copyright: (c) 2005 Thomas Kuehne (http://thomas.kuehne.cn/)
- * Release Version: 1.0.8.1
+ * Release Version: 1.0.8.2
  * Date Started: 2005/04/22
  *
  * D language file for GeSHi.
@@ -48,7 +48,7 @@ $language_data = array (
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         // doxygen comments
-        3 => '#/\*\*(?!\*).*\*/#sU',
+        3 => '#/\*\*(?![\*\/]).*\*/#sU',
         // raw strings
         4 => '#r"[^"]*"#s',
         // Script Style interpreter comment
@@ -134,7 +134,7 @@ $language_data = array (
                 'extern', 'false', 'finally', 'function',
                 'import', 'in', 'inout', 'interface',
                 'invariant', 'is', 'mixin', 'module', 'new',
-                'null', 'out', 'pragma', 'super', 'this',
+                'null', 'out', 'pragma', 'ref', 'super', 'this',
                 'throw', 'true', 'try', 'typedef', 'typeid',
                 'typeof', 'union', 'with'
             ),

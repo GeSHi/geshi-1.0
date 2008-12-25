@@ -4,7 +4,7 @@
  * --------
  * Author: Andreas Gohr (andi@splitbrain.org)
  * Copyright: (c) 2004 Andreas Gohr, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.1
+ * Release Version: 1.0.8.2
  * Date Started: 2004/08/20
  *
  * BASH language file for GeSHi.
@@ -63,7 +63,7 @@ $language_data = array (
         //Variables
         1 => "/\\$\\{[^\\n\\}]*?\\}/i",
         //BASH-style Heredoc
-        2 => '/<<-?\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
+        2 => '/<<-?\s*?(\'?)([a-zA-Z0-9]+)\1\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
         //Escaped String Starters
         3 => "/\\\\['\"]/siU"
         ),
