@@ -72,7 +72,7 @@ $language_data = array (
         //Heredoc
         4 => '/<<\s*?([\'"]?)([a-zA-Z0-9]+)\1;[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
         //Predefined variables
-        5 => '/\$(\^[a-zA-Z]?|[\$`\'&_\.,+\-~:\\\\\/"\|%=\?!@<>\(\)\[\]])|@_/',
+        5 => '/\$(\^[a-zA-Z]?|[\*\$`\'&_\.,+\-~:;\\\\\/"\|%=\?!@<>\(\)\[\]])|@_/',
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"','`'),
@@ -86,8 +86,8 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'case', 'do', 'else', 'elsif', 'for', 'if', 'then', 'until', 'while', 'foreach', 'my',
-            'or', 'and', 'unless', 'next', 'last', 'redo', 'not', 'our',
-            'reset', 'continue', 'cmp', 'ne'
+            'xor', 'or', 'and', 'unless', 'next', 'last', 'redo', 'not', 'our',
+            'reset', 'continue', 'cmp', 'ne', 'eq', 'lt', 'gt', 'le', 'ge',
             ),
         2 => array(
             'use', 'sub', 'new', '__END__', '__DATA__', '__DIE__', '__WARN__', 'BEGIN',
@@ -130,9 +130,9 @@ $language_data = array (
         ),
     'SYMBOLS' => array(
         '<', '>', '=',
-        '!', '@', '~', '&', '|',
+        '!', '@', '~', '&', '|', '^',
         '+','-', '*', '/', '%',
-        ',', ';', '?', ':'
+        ',', ';', '?', '.', ':'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -194,7 +194,7 @@ $language_data = array (
         ),
     'REGEXPS' => array(
         //Variable
-        0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
+        0 => '(?:\\\\(?:[$@%*&]?|\\\\+$)|$[$#]?|%[$]?|@[$]?|\*[$]?|&[$]?)[a-zA-Z_][a-zA-Z0-9_]*',
         //File Descriptor
         4 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
         ),
