@@ -91,7 +91,7 @@ $language_data = array (
             ),
         2 => array(
             'use', 'sub', 'new', '__END__', '__DATA__', '__DIE__', '__WARN__', 'BEGIN',
-            'STDIN', 'STDOUT', 'STDERR'
+            'STDIN', 'STDOUT', 'STDERR', 'ARGV', 'ARGVOUT'
             ),
         3 => array(
             'abs', 'accept', 'alarm', 'atan2', 'bind', 'binmode', 'bless',
