@@ -67,7 +67,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
         //Simple Single Char Escapes
-        1 => "#\\\\[nfrtv\\$\\\"\n]#i",
+        1 => "#\\\\[nfrtv\$\"\n\\\\]#i",
         //Hexadecimal Char Specs
         2 => "#\\\\x[\da-fA-F]{1,2}#i",
         //Octal Char Specs
