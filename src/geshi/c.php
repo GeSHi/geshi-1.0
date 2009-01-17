@@ -53,10 +53,14 @@
 
 $language_data = array (
     'LANG_NAME' => 'C',
-    'COMMENT_SINGLE' => array(2 => '#'),
+    'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    //Multiline-continued single-line comments
-    'COMMENT_REGEXP' => array(1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m'),
+    'COMMENT_REGEXP' => array(
+		//Multiline-continued single-line comments
+		1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
+		//Multiline-continued preprocessor define
+		2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+		),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',

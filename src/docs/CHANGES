@@ -16,6 +16,8 @@ Version 1.0.8.3
   -  Improvements to language files (BenBE)
      * Added some missing Perl keywords and obscure default variables (BenBE)
 	 * Allow for escaped colons to appear in CSS names (BenBE, simon)
+     * Added multiline continuation suppoert of preprocessor defines for
+       C, C for Mac, C++ and CC++ with Qt support (BenBE)
 Version 1.0.8.2
   -  Added language files
      * Brainfuck \ Brainfork (Benny Baumann)
