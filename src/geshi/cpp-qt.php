@@ -41,13 +41,13 @@ $language_data = array (
     'LANG_NAME' => 'C++ (QT)',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-	'COMMENT_REGEXP' => array(
-		//Multiline-continued single-line comments
-		1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
-		//Multiline-continued preprocessor define
-		2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
-		),
-	'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
+    'COMMENT_REGEXP' => array(
+        //Multiline-continued single-line comments
+        1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        //Multiline-continued preprocessor define
+        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+        ),
+    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
