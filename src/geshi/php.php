@@ -84,7 +84,7 @@ $language_data = array(
         GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
-            'as','break','case','continue','declare','do','else','elseif',
+            'as','break','case','continue','default','do','else','elseif',
             'endfor','endforeach','endif','endswitch','endwhile','for',
             'foreach','if','include','include_once','require','require_once',
             'return','switch','while',
@@ -92,11 +92,9 @@ $language_data = array(
             'echo','print'
             ),
         2 => array(
-            '&amp;new', '&lt;/script&gt;', '&lt;?php',
-            '&lt;script language', 'class', 'const',
-            'default', 'extends',
-            'function', 'global', 'interface', 'namespace', 'new',
-            'private', 'public', 'self', 'var'
+            '&amp;new','&lt;/script&gt;','&lt;?php','&lt;script language',
+            'class','const','declare','extends','function','global','interface',
+            'namespace','new','private','public','self','var'
             ),
         3 => array(
             'abs','acos','acosh','addcslashes','addslashes','aggregate',
