@@ -2595,14 +2595,14 @@ class GeSHi {
                         $start = $i + $hq_strlen;
                         while ($close_pos = strpos($part, $this->language_data['HARDQUOTE'][1], $start)) {
                             $start = $close_pos + 1;
-                            if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
+                            if ($this->lexic_permissions['ESCAPE_CHAR'] && $part[$close_pos - 1] == $this->language_data['HARDCHAR']) {
                                 // make sure this quote is not escaped
                                 foreach ($this->language_data['HARDESCAPE'] as $hardescape) {
                                     if (substr($part, $close_pos - 1, strlen($hardescape)) == $hardescape) {
                                         // check wether this quote is escaped or if it is something like '\\'
                                         $escape_char_pos = $close_pos - 1;
                                         while ($escape_char_pos > 0
-                                                && $part[$escape_char_pos - 1] == $this->language_data['ESCAPE_CHAR']) {
+                                                && $part[$escape_char_pos - 1] == $this->language_data['HARDCHAR']) {
                                             --$escape_char_pos;
                                         }
                                         if (($close_pos - $escape_char_pos) & 1) {
@@ -3636,6 +3636,12 @@ class GeSHi {
                 }
             }
             unset($this->language_data['PARSER_CONTROL']['ENABLE_FLAGS']);
+        }
+
+        //Fix: Problem where hardescapes weren't handled if no ESCAPE_CHAR was given
+        //You need to set one for HARDESCAPES only in this case.
+        if(!isset($this->language_data['HARDCHAR'])) {
+            $this->language_data['HARDCHAR'] = $this->language_data['ESCAPE_CHAR'];
         }
 
         //NEW in 1.0.8: Allow styles to be loaded from a separate file to override defaults

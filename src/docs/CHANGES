@@ -17,6 +17,7 @@ Version 1.0.8.3
      * DCS (Stelio Passaris)
      * Modula-3 (Martin Bishop)
      * Rebol (Lecanu Guillaume)
+  -  Fixed a problem where HardEscapes weren't working when no escape char was given (BenBE)
   -  Improvements to language files (BenBE)
      * Added some missing Perl keywords and obscure default variables (BenBE)
      * Allow for escaped colons to appear in CSS names (BenBE, simon)
