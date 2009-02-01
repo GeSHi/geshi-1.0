@@ -26,6 +26,7 @@ Version 1.0.8.3
      * Broken AutoIt highlighting (BenBE)
      * Problem with escaped backslash in PHP (BenBE)
      * Added some more functions for PHP (BenBE)
+     * Some changes for AppleScript (Stefan Kleme)
 Version 1.0.8.2
   -  Added language files
      * Brainfuck \ Brainfork (Benny Baumann)

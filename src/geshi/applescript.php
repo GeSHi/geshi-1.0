@@ -63,16 +63,16 @@ $language_data = array (
             'days','weeks', 'folder', 'folders', 'file', 'files', 'window', 'eject', 'disk', 'reveal', 'sleep',
             'shut down', 'restart', 'display dialog', 'buttons', 'invisibles', 'item', 'items', 'text item delimiters',
             'AppleScript\'s text item delimiters', 'choose file', 'choose folder', 'choose from list', 'beep',
-            'contents', 'do shell script', 'paragraph', 'paragraphs', 'missing value', 'quoted form', 'path to', 'desktop',
-            'text', 'POSIX path', 'POSIX file'
+            'contents', 'do shell script', 'paragraph', 'paragraphs', 'missing value', 'quoted form', 'desktop',
+            'POSIX path', 'POSIX file'
             ),
-         2 => array(
+        2 => array(
             'each','some','every','whose','where','index','first','second','third','fourth',
             'fifth','sixth','seventh','eighth','ninth','tenth','last','front','back','st','nd',
             'rd','th','middle','named','through','thru','before','after','beginning','the', 'as',
             'div','mod','and','not','or','contains','equal','equals','isnt', 'less', 'greater'
             ),
-         3 => array(
+        3 => array(
             'script','property','prop','end','to','set','global','local','on','of',
             'in','given','with','without','return','continue','tell','if','then','else','repeat',
             'times','while','until','from','exit','try','error','considering','ignoring','timeout',
