@@ -185,7 +185,7 @@ $language_data = array (
         'REGEXPS' => array(
             ),
         'SYMBOLS' => array(
-            0 => 'color:  #000000; font-weight: bold;',
+            0 => 'color: #000000; font-weight: bold;',
             ),
         'SCRIPT' => array(
             )

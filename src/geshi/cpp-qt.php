@@ -41,8 +41,12 @@ $language_data = array (
     'LANG_NAME' => 'C++ (QT)',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    //Multiline-continued Singleline comments
-    'COMMENT_REGEXP' => array(1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m'),
+    'COMMENT_REGEXP' => array(
+        //Multiline-continued single-line comments
+        1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        //Multiline-continued preprocessor define
+        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
@@ -219,10 +223,10 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
-        2 => false,
-        3 => false,
-        4 => false,
+        1 => true,
+        2 => true,
+        3 => true,
+        4 => true,
         5 => true,
         ),
     'STYLES' => array(

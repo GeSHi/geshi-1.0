@@ -68,8 +68,8 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #000080;',
-            2 => 'color: #000080; font-width: bold;'
+            1 => 'color: #000080; font-weight: bold;',
+            2 => 'color: #000080; font-weight: bold;'
             ),
         'COMMENTS' => array(
             ),

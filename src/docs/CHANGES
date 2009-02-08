@@ -12,6 +12,26 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8.3
+  -  Added language files
+     * DCS (Stelio Passaris)
+     * Modula-3 (Martin Bishop)
+     * Rebol (Lecanu Guillaume)
+  -  Fixed a problem where HardEscapes weren't working when no escape char was given (BenBE)
+  -  Added a PARSER_CONTROL setting to treat whitespace inside of keywords in
+     the language file as "any whitespace" in the source (i.e. "CREATE TABLE"
+     in SQL will match "CREATE\s+TABLE" instead of literally matching) (BenBE)
+  -  Improvements to language files (BenBE)
+     * Added some missing Perl keywords and obscure default variables (BenBE)
+     * Allow for escaped colons to appear in CSS names (BenBE, simon)
+     * Added multiline continuation suppoert of preprocessor defines for
+       C, C for Mac, C++ and CC++ with Qt support (BenBE)
+     * keywords for C-based languages are case-sensitive (BenBE)
+     * Broken AutoIt highlighting (BenBE)
+     * Problem with escaped backslash in PHP and D (BenBE)
+     * Added some more functions for PHP (BenBE)
+     * Some changes for AppleScript (Stefan Kleme)
+     * Forbid highlighting keywords followed by / in bash (BenBE)
 Version 1.0.8.2
   -  Added language files
      * Brainfuck \ Brainfork (Benny Baumann)
@@ -653,4 +673,3 @@ Version 1.0.1
      * Pascal (Tux)
 Version 1.0.0
   -  Initial Release
-

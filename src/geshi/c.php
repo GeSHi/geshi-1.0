@@ -5,14 +5,17 @@
  * Author: Nigel McNie (nigel@geshi.org)
  * Contributors:
  *  - Jack Lloyd (lloyd@randombit.net)
+ *  - Michael Mol (mikemol@gmail.com)
  * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 2004/06/04
  *
  * C language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2009/01/22 (1.0.8.3)
+ *   -  Made keywords case-sensitive.
  * 2008/05/23 (1.0.7.22)
  *   -  Added description of extra language features (SF#1970248)
  * 2004/XX/XX (1.0.4)
@@ -26,7 +29,7 @@
  * 2004/07/14 (1.0.0)
  *   -  First Release
  *
- * TODO (updated 2004/11/27)
+ * TODO (updated 2009/02/08)
  * -------------------------
  *  -  Get a list of inbuilt functions to add (and explore C more
  *     to complete this rather bare language file
@@ -53,10 +56,14 @@
 
 $language_data = array (
     'LANG_NAME' => 'C',
-    'COMMENT_SINGLE' => array(2 => '#'),
+    'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    //Multiline-continued single-line comments
-    'COMMENT_REGEXP' => array(1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m'),
+    'COMMENT_REGEXP' => array(
+        //Multiline-continued single-line comments
+        1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
+        //Multiline-continued preprocessor define
+        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
@@ -103,10 +110,10 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
-        2 => false,
-        3 => false,
-        4 => false,
+        1 => true,
+        2 => true,
+        3 => true,
+        4 => true,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
