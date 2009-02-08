@@ -1529,6 +1529,25 @@ class GeSHi {
     function optimize_keyword_group($key) {
         $this->language_data['CACHED_KEYWORD_LISTS'][$key] =
             $this->optimize_regexp_list($this->language_data['KEYWORDS'][$key]);
+        $space_as_whitespace = false;
+        if(isset($this->language_data['PARSER_CONTROL'])) {
+            if(isset($this->language_data['PARSER_CONTROL']['KEYWORDS'])) {
+                if(isset($this->language_data['PARSER_CONTROL']['KEYWORDS']['SPACE_AS_WHITESPACE'])) {
+                    $space_as_whitespace = $this->language_data['PARSER_CONTROL']['KEYWORDS']['SPACE_AS_WHITESPACE'];
+                }
+                if(isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$key]['SPACE_AS_WHITESPACE'])) {
+                    if(isset($this->language_data['PARSER_CONTROL']['KEYWORDS'][$key]['SPACE_AS_WHITESPACE'])) {
+                        $space_as_whitespace = $this->language_data['PARSER_CONTROL']['KEYWORDS'][$key]['SPACE_AS_WHITESPACE'];
+                    }
+                }
+            }
+        }
+        if($space_as_whitespace) {
+            foreach($this->language_data['CACHED_KEYWORD_LISTS'][$key] as $rxk => $rxv) {
+                $this->language_data['CACHED_KEYWORD_LISTS'][$key][$rxk] =
+                    str_replace(" ", "\\s+", $rxv);
+            }
+        }
     }
 
     /**
