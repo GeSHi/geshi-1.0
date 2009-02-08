@@ -23,6 +23,7 @@ Version 1.0.8.3
      * Allow for escaped colons to appear in CSS names (BenBE, simon)
      * Added multiline continuation suppoert of preprocessor defines for
        C, C for Mac, C++ and CC++ with Qt support (BenBE)
+     * C keywords are case-sensitive (BenBE)
      * Broken AutoIt highlighting (BenBE)
      * Problem with escaped backslash in PHP (BenBE)
      * Added some more functions for PHP (BenBE)
