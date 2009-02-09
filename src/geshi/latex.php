@@ -4,7 +4,7 @@
  * -----
  * Author: efi, Matthias Pospiech (matthias@pospiech.eu)
  * Copyright: (c) 2006 efi, Matthias Pospiech (matthias@pospiech.eu), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 2006/09/23
  *
  * LaTeX language file for GeSHi.
@@ -60,15 +60,26 @@ $language_data = array (
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
+        1 => array(
+            'appendix','backmatter','caption','captionabove','captionbelow',
+            'def','documentclass','edef','equation','flushleft','flushright',
+            'footnote','frontmatter','hline','include','input','item','label',
+            'let','listfiles','listoffigures','listoftables','mainmatter',
+            'makeatletter','makeatother','makebox','mbox','par','raggedleft',
+            'raggedright','raisebox','ref','rule','table','tableofcontents',
+            'textbf','textit','texttt','today'
+            )
         ),
     'SYMBOLS' => array(
         "&", "\\", "{", "}", "[", "]"
         ),
     'CASE_SENSITIVE' => array(
+        1 => true,
         GESHI_COMMENTS => false,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
+            1 => 'color: #800000; font-weight: bold;',
             ),
         'COMMENTS' => array(
             1 => 'color: #2C922C; font-style: italic;'
@@ -86,7 +97,7 @@ $language_data = array (
         'METHODS' => array(
             ),
         'SYMBOLS' => array(
-            0 =>  'color: #0000D0; '
+            0 =>  'color: #E02020; '
             ),
         'REGEXPS' => array(
             1 => 'color: #8020E0; font-weight: normal;',  // Math inner
@@ -106,6 +117,7 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        1 => 'http://www.golatex.de/wiki/index.php?title=\\{FNAME}',
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -182,6 +194,10 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
             'DISALLOWED_BEFORE' => '\\'
+        ),
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "(?<=\\\\)",
+            'DISALLOWED_AFTER' => "(?=\b)(?!\w)"
         ),
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER,

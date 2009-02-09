@@ -34,6 +34,7 @@ Version 1.0.8.3
      * Added some more functions for PHP (BenBE)
      * Some changes for AppleScript (Stefan Kleme)
      * Forbid highlighting keywords followed by / in bash (BenBE)
+     * Updated the LaTeX file to link some keywords (BenBE)
 Version 1.0.8.2
   -  Added language files
      * Brainfuck \ Brainfork (Benny Baumann)
