@@ -22,6 +22,7 @@ Version 1.0.8.3
   -  Added a PARSER_CONTROL setting to treat whitespace inside of keywords in
      the language file as "any whitespace" in the source (i.e. "CREATE TABLE"
      in SQL will match "CREATE\s+TABLE" instead of literally matching) (BenBE)
+  -  Added a possibility to allow setting the style for escape characters (BenBE)
   -  Improvements to language files (BenBE)
      * Added some missing Perl keywords and obscure default variables (BenBE)
      * Allow for escaped colons to appear in CSS names (BenBE, simon)
