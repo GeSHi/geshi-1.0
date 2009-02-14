@@ -17,6 +17,7 @@ Version 1.0.8.3
      * DCS (Stelio Passaris)
      * LSL2 (Linden Scripting Language) (William Fry)
      * Modula-3 (Martin Bishop)
+     * Oberon-2 (Mike Mol)
      * Rebol (Lecanu Guillaume)
   -  Fixed a problem where HardEscapes weren't working when no escape char was given (BenBE)
   -  Added a PARSER_CONTROL setting to treat whitespace inside of keywords in
