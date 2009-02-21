@@ -4031,7 +4031,7 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->footer_content_style}\"";
             }
-            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->linenumbers != GESHI_NO_LINE_NUMBERS) {
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 $footer = "<tfoot><tr><td colspan=\"2\">$footer</td></tr></tfoot>";
             } else {
                 $footer = "<div$attr>$footer</div>";
