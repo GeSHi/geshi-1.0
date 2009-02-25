@@ -53,7 +53,7 @@ $language_data = array (
         1 => '/\'.*(?<! _)\n/sU',
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array(),
+    'QUOTEMARKS' => array('"', '"'),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
