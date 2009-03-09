@@ -141,6 +141,11 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'SPACE_AS_WHITESPACE' => true
+            )
+        ),
     'TAB_WIDTH' => 4
 );
 
