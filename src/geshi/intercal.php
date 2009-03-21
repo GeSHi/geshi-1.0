@@ -47,11 +47,11 @@ $language_data = array (
     'KEYWORDS' => array(
         //Politeness
         1 => array(
-            'DO', 'DONT', 'NOT', 'PLEASE', 'PLEASENT', 'MAYBE'
+            'DO', 'DOES', 'DONT', 'DON\'T', 'NOT', 'PLEASE', 'PLEASENT', 'PLEASEN\'T', 'MAYBE'
             ),
         //Statements
         2 => array(
-            'STASH', 'RETRIEVE', 'NEXT', 'RESUME', 'FORGET', 'ABSTAIN',
+            'STASH', 'RETRIEVE', 'NEXT', 'RESUME', 'FORGET', 'ABSTAIN', 'ABSTAINING',
             'COME', 'FROM', 'CALCULATING', 'REINSTATE', 'IGNORE', 'REMEMBER',
             'WRITE', 'IN', 'READ', 'OUT', 'GIVE', 'UP'
             )
