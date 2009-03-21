@@ -33,11 +33,11 @@ Version 1.0.8.3
      * Broken AutoIt highlighting (BenBE)
      * Problem with escaped backslash in PHP and D (BenBE)
      * Added some more functions for PHP (BenBE)
-     * Some changes for AppleScript (Stefan Kleme)
+     * Some changes for AppleScript (Stefan Klieme)
      * Forbid highlighting keywords followed by / in bash (BenBE)
      * Updated the LaTeX file to link some keywords (BenBE)
      * Additional text rendered when matching special variables for PowerShell (BenBE)
-     * Added some more keywords for AppleScript (Stefan Klieme)
+     * Added some more keywords for ABAP (BenBE, Sandra Rossi, Jacob Laursen)
 Version 1.0.8.2
   -  Added language files
      * Brainfuck \ Brainfork (Benny Baumann)
