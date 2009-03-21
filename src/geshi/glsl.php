@@ -60,7 +60,7 @@ $language_data = array (
             'const', 'uniform', 'attribute', 'centroid', 'varying', 'invariant',
             'in', 'out', 'inout', 'input', 'output', 'typedef', 'volatile',
             'public', 'static', 'extern', 'external', 'packed',
-            'inline', 'noinline', 'noperspective', 'flat', 'centroid'
+            'inline', 'noinline', 'noperspective', 'flat'
             ),
         3 => array(
             'void', 'bool', 'int', 'long', 'short', 'float', 'half', 'fixed',
