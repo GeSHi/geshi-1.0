@@ -58,13 +58,14 @@ $language_data = array (
             'shadow','strikethrough','subscript','superscript','underline','ask','no','yes','false', 'id',
             'true','weekday','monday','mon','tuesday','tue','wednesday','wed','thursday','thu','friday',
             'fri','saturday','sat','sunday','sun','month','january','jan','february','feb','march',
-            'mar','april','apr','may','june','jun','july','jul','august','aug','september',
+            'mar','april','apr','may','june','jun','july','jul','august','aug','september', 'quote', 'do JavaScript',
             'sep','october','oct','november','nov','december','dec','minutes','hours', 'name', 'default answer',
             'days','weeks', 'folder', 'folders', 'file', 'files', 'window', 'eject', 'disk', 'reveal', 'sleep',
-            'shut down', 'restart', 'display dialog', 'buttons', 'invisibles', 'item', 'items', 'text item delimiters',
-            'AppleScript\'s text item delimiters', 'choose file', 'choose folder', 'choose from list', 'beep',
-            'contents', 'do shell script', 'paragraph', 'paragraphs', 'missing value', 'quoted form', 'desktop',
-            'POSIX path', 'POSIX file'
+            'shut down', 'restart', 'display dialog', 'buttons', 'invisibles', 'item', 'items', 'delimiters', 'offset of',
+            'AppleScript\'s', 'choose file', 'choose folder', 'choose from list', 'beep', 'contents', 'do shell script',
+            'paragraph', 'paragraphs', 'missing value', 'quoted form', 'desktop', 'POSIX path', 'POSIX file',
+            'activate', 'document', 'adding', 'receiving', 'content', 'new', 'properties', 'info for', 'bounds',
+            'selection', 'extension', 'into', 'onto', 'by', 'between', 'against', 'set the clipboard to', 'the clipboard'
             ),
         2 => array(
             'each','some','every','whose','where','index','first','second','third','fourth',
@@ -76,7 +77,7 @@ $language_data = array (
             'script','property','prop','end','to','set','global','local','on','of',
             'in','given','with','without','return','continue','tell','if','then','else','repeat',
             'times','while','until','from','exit','try','error','considering','ignoring','timeout',
-            'transaction','my','get','put','into','is', 'copy'
+            'transaction','my','get','put','is', 'copy'
             )
         ),
     'SYMBOLS' => array(
@@ -145,6 +146,11 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'SPACE_AS_WHITESPACE' => true
+            )
         )
 );
 
