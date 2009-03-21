@@ -5,8 +5,9 @@
  * Author: Andres Picazo (andres@andrespicazo.com)
  * Contributors:
  *  - Sandra Rossi (sandra.rossi@gmail.com)
+ *  - Jacob Laursen (jlu@kmd.dk)
  * Copyright: (c) 2007 Andres Picazo
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 2004/06/04
  *
  * ABAP language file for GeSHi.
@@ -33,7 +34,9 @@
  *
  * CHANGES
  * -------
- * 2009/01/04 (2.0.0)
+ * 2009/02/25 (1.0.8.3)
+ *   -  Some more rework of the language file
+ * 2009/01/04 (1.0.8.2)
  *   -  Major Release, more than 1000 statements and keywords added = whole abap 7.1 (Sandra Rossi)
  * 2007/06/27 (1.0.0)
  *   -  First Release
@@ -65,6 +68,7 @@
  *       $html = $geshi->parse_code();
  *       $html = preg_replace_callback( "£(zzz:(control|statement|data);\">)(.+?)(</span>)£s", "add_urls_to_multi_tokens", $html );
  *       echo $html;
+ *   - Numbers followed by a dot terminating the statement are not properly recognized
  *
  *************************************************************************************
  *
@@ -86,21 +90,23 @@
  *
  ************************************************************************************/
 
-$data_style = 'color: #cc4050; text-transform: uppercase; font-weight: bold; zzz:data;';
-$control_style = 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;';
-$statement_style = 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;';
-$keyword_style = 'color: #500066; text-transform: uppercase; font-weight: bold; zzz:keyword;';
-
 $language_data = array(
     'LANG_NAME' => 'ABAP',
-    'COMMENT_SINGLE' => array(1 => '"'),
+    'COMMENT_SINGLE' => array(
+        1 => '"'
+        ),
     'COMMENT_MULTI' => array(),
-    // lines beginning with star at 1st position are comments
-    // (star anywhere else is not a comment, especially be careful with
-    // "assign dref->* to <fs>" statement)
-    'COMMENT_REGEXP' => array(2 => '/^\*.*?$/m'),
+    'COMMENT_REGEXP' => array(
+        // lines beginning with star at 1st position are comments
+        // (star anywhere else is not a comment, especially be careful with
+        // "assign dref->* to <fs>" statement)
+        2 => '/^\*.*?$/m'
+        ),
     'CASE_KEYWORDS' => 0,
-    'QUOTEMARKS' => array(1 => "'", 2 => "`"),
+    'QUOTEMARKS' => array(
+        1 => "'",
+        2 => "`"
+        ),
     'ESCAPE_CHAR' => '',
 
     'KEYWORDS' => array(
@@ -1310,7 +1316,12 @@ $language_data = array(
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[]', '=', '+', '-', '*', '**', '/', '&', ':', '->*', '->', '=>', '?=', '>=', '<=', '<>', '=<', '><', '~', '#EC', '?TO'
+        0 => array(
+            '='
+            ),
+        1 => array(
+            '(', ')', '{', '}', '[', ']', '+', '-', '*', '/', '!', '%', '^', '&', ':'
+            )
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -1326,15 +1337,15 @@ $language_data = array(
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => $control_style, //control statements
-            2 => $data_style, //data statements
-            3 => $statement_style, //first token of other statements
-            4 => $keyword_style, // next tokens of other statements ("keywords")
-            5 => $statement_style,
-            6 => $control_style,
-            7 => $control_style,
-            8 => $statement_style,
-            9 => $keyword_style
+            1 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;', //control statements
+            2 => 'color: #cc4050; text-transform: uppercase; font-weight: bold; zzz:data;', //data statements
+            3 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;', //first token of other statements
+            4 => 'color: #500066; text-transform: uppercase; font-weight: bold; zzz:keyword;', // next tokens of other statements ("keywords")
+            5 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;',
+            6 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;',
+            7 => 'color: #000066; text-transform: uppercase; font-weight: bold; zzz:control;',
+            8 => 'color: #005066; text-transform: uppercase; font-weight: bold; zzz:statement;',
+            9 => 'color: #500066; text-transform: uppercase; font-weight: bold; zzz:keyword;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
@@ -1345,20 +1356,21 @@ $language_data = array(
             0 => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #808080;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;'
+            0 => 'color: #4da619;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
+            0 => 'color: #3399ff;'
             ),
         'METHODS' => array(
-            1 => 'color: #8040c0;', // instance methods
-            2 => 'color: #8040c0;' // class methods
+            1 => 'color: #202020;',
+            2 => 'color: #202020;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #008000;'
+            0 => 'color: #800080;',
+            1 => 'color: #808080;'
             ),
         'REGEXPS' => array(
             ),
@@ -1382,7 +1394,6 @@ $language_data = array(
         2 => '=&gt;'
         ),
     'REGEXPS' => array(
-        // see section 2 below
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
