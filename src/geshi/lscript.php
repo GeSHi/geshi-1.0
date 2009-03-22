@@ -4,7 +4,7 @@
  * ---------
  * Author: Arendedwinter (admin@arendedwinter.com)
  * Copyright: (c) 2008 Beau McGuigan (http://www.arendedwinter.com)
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 15/11/2008
  *
  * Lightwave Script language file for GeSHi.

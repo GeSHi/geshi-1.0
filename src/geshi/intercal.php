@@ -4,7 +4,7 @@
  * ----------
  * Author: Benny Baumann (BenBE@geshi.org)
  * Copyright: (c) 2008 Benny Baumann (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 2009/10/31
  *
  * INTERCAL language file for GeSHi.
@@ -47,11 +47,11 @@ $language_data = array (
     'KEYWORDS' => array(
         //Politeness
         1 => array(
-            'DO', 'DONT', 'NOT', 'PLEASE', 'PLEASENT', 'MAYBE'
+            'DO', 'DOES', 'DONT', 'DON\'T', 'NOT', 'PLEASE', 'PLEASENT', 'PLEASEN\'T', 'MAYBE'
             ),
         //Statements
         2 => array(
-            'STASH', 'RETRIEVE', 'NEXT', 'RESUME', 'FORGET', 'ABSTAIN',
+            'STASH', 'RETRIEVE', 'NEXT', 'RESUME', 'FORGET', 'ABSTAIN', 'ABSTAINING',
             'COME', 'FROM', 'CALCULATING', 'REINSTATE', 'IGNORE', 'REMEMBER',
             'WRITE', 'IN', 'READ', 'OUT', 'GIVE', 'UP'
             )

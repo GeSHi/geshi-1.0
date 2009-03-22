@@ -1,26 +1,18 @@
 <?php
 /*************************************************************************************
- * ada.php
- * -------
- * Author: Tux (tux@inmail.cz)
- * Copyright: (c) 2004 Tux (http://tux.a4.cz/), Nigel McNie (http://qbnz.com/highlighter)
+ * oberon2.php
+ * ----------
+ * Author: mbishop (mbishop@esoteriq.org)
+ * Copyright: (c) 2009 mbishop (mbishop@esoteriq.org)
  * Release Version: 1.0.8.3
- * Date Started: 2004/07/29
+ * Date Started: 2009/02/10
  *
- * Ada language file for GeSHi.
- * Words are from SciTe configuration file
+ * Oberon-2 language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2004/11/27 (1.0.2)
- *  -  Added support for multiple object splitters
- * 2004/10/27 (1.0.1)
- *   -  Removed apostrophe as string delimiter
- *   -  Added URL support
- * 2004/08/05 (1.0.0)
- *   -  First Release
  *
- * TODO (updated 2004/11/27)
+ * TODO
  * -------------------------
  *
  *************************************************************************************
@@ -44,68 +36,76 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'Ada',
-    'COMMENT_SINGLE' => array(1 => '--'),
-    'COMMENT_MULTI' => array('/*' => '*/'),
+    'LANG_NAME' => 'Oberon-2',
+    'COMMENT_SINGLE' => array(),
+    'COMMENT_MULTI' => array('(*' => '*)'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
+    'HARDQUOTE' => array("'", "'"),
+    'HARDESCAPE' => array("''"),
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            'begin', 'declare', 'do', 'else', 'elsif', 'exception', 'for', 'if',
-            'is', 'loop', 'while', 'then', 'end', 'select', 'case', 'until',
-            'goto', 'return'
+            'ARRAY', 'BEGIN', 'BY', 'CASE',
+            'CONST', 'DIV', 'DO', 'ELSE', 'ELSIF', 'END',
+            'EXIT', 'FOR', 'IF', 'IMPORT', 'IN', 'IS',
+            'LOOP', 'MOD', 'MODULE', 'OF',
+            'OR', 'POINTER', 'PROCEDURE', 'RECORD',
+            'REPEAT', 'RETURN', 'THEN', 'TO',
+            'TYPE', 'UNTIL', 'VAR', 'WHILE', 'WITH'
             ),
         2 => array(
-            'abs', 'and', 'mod', 'not', 'or', 'rem', 'xor'
+            'NIL', 'FALSE', 'TRUE',
             ),
         3 => array(
-            'abort', 'abstract', 'accept', 'access', 'aliased', 'all', 'array', 'at', 'body',
-            'constant', 'delay', 'delta', 'digits', 'entry', 'exit',
-            'function', 'generic', 'in', 'limited', 'new', 'null', 'of', 'others', 'out', 'package', 'pragma',
-            'private', 'procedure', 'protected', 'raise', 'range', 'record', 'renames', 'requeue', 'reverse',
-            'separate', 'subtype', 'tagged', 'task', 'terminate', 'type', 'use', 'when', 'with'
-            )
+            'ABS', 'ASH', 'ASSERT', 'CAP', 'CHR', 'COPY', 'DEC',
+            'ENTIER', 'EXCL', 'HALT', 'INC', 'INCL', 'LEN',
+            'LONG', 'MAX', 'MIN', 'NEW', 'ODD', 'ORD', 'SHORT', 'SIZE'
+            ),
+        4 => array(
+            'BOOLEAN', 'CHAR', 'SHORTINT', 'LONGINT',
+            'INTEGER', 'LONGREAL', 'REAL', 'SET', 'PTR'
+            ),
         ),
     'SYMBOLS' => array(
-        '(', ')'
+        ',', ':', '=', '+', '-', '*', '/', '#', '~'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false,
-        2 => false,
-        3 => false,
+        1 => true,
+        2 => true,
+        3 => true,
+        4 => true,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #00007f;',
-            2 => 'color: #0000ff;',
-            3 => 'color: #46aa03; font-weight:bold;',
-            ),
-        'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            1 => 'color: #000000; font-weight: bold;',
+            2 => 'color: #000000; font-weight: bold;',
+            3 => 'color: #000066;',
+            4 => 'color: #000066; font-weight: bold;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #adadad; font-style: italic;',
-            'MULTI' => 'color: #808080; font-style: italic;'
+            'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #000099; font-weight: bold;'
+            0 => 'color: #000099; font-weight: bold;',
+            'HARD' => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #009900;'
             ),
         'STRINGS' => array(
-            0 => 'color: #7f007f;'
+            0 => 'color: #ff0000;',
+            'HARD' => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #ff0000;'
+            0 => 'color: #cc66cc;'
             ),
         'METHODS' => array(
-            1 => 'color: #202020;'
+            1 => 'color: #0066ee;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #339933;'
             ),
         'REGEXPS' => array(
             ),
@@ -115,7 +115,8 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => ''
+        3 => '',
+        4 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
@@ -127,7 +128,8 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+        ),
+    'TAB_WIDTH' => 4
 );
 
 ?>

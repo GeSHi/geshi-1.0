@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.8.2');
+define('GESHI_VERSION', '1.0.8.3');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -983,11 +983,11 @@ class GeSHi {
      *                to overwrite them
      * @since 1.0.0
      */
-    function set_escape_characters_style($style, $preserve_defaults = false) {
+    function set_escape_characters_style($style, $preserve_defaults = false, $group = 0) {
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['ESCAPE_CHAR'][0] = $style;
+            $this->language_data['STYLES']['ESCAPE_CHAR'][$group] = $style;
         } else {
-            $this->language_data['STYLES']['ESCAPE_CHAR'][0] .= $style;
+            $this->language_data['STYLES']['ESCAPE_CHAR'][$group] .= $style;
         }
     }
 
@@ -4031,7 +4031,7 @@ class GeSHi {
             } else {
                 $attr = " style=\"{$this->footer_content_style}\"";
             }
-            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->linenumbers != GESHI_NO_LINE_NUMBERS) {
+            if ($this->header_type == GESHI_HEADER_PRE_TABLE && $this->line_numbers != GESHI_NO_LINE_NUMBERS) {
                 $footer = "<tfoot><tr><td colspan=\"2\">$footer</td></tr></tfoot>";
             } else {
                 $footer = "<div$attr>$footer</div>";

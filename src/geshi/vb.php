@@ -5,7 +5,7 @@
  * Author: Roberto Rossi (rsoftware@altervista.org)
  * Copyright: (c) 2004 Roberto Rossi (http://rsoftware.altervista.org),
  *                     Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 2004/08/30
  *
  * Visual Basic language file for GeSHi.
@@ -53,7 +53,7 @@ $language_data = array (
         1 => '/\'.*(?<! _)\n/sU',
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array(),
+    'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
@@ -92,6 +92,7 @@ $language_data = array (
         'BRACKETS' => array(
             ),
         'STRINGS' => array(
+            0 => 'color: #800000;'
             ),
         'NUMBERS' => array(
             ),
@@ -100,6 +101,7 @@ $language_data = array (
         'SYMBOLS' => array(
             ),
         'ESCAPE_CHAR' => array(
+            0 => 'color: #800000; font-weight: bold;'
             ),
         'SCRIPT' => array(
             ),
@@ -121,7 +123,6 @@ $language_data = array (
         ),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
-            'STRINGS' => GESHI_NEVER,
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER,
             'NUMBERS' => GESHI_NEVER
