@@ -4,7 +4,7 @@
  * -----
  * Author: Benny Baumann (BenBE@omorphia.de)
  * Copyright: (c) 2008 Benny Baumann (BenBE@omorphia.de)
- * Release Version: 1.0.8.2
+ * Release Version: 1.0.8.3
  * Date Started: 2008/03/20
  *
  * glSlang language file for GeSHi.
