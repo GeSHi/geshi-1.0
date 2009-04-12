@@ -1329,6 +1329,7 @@ class GeSHi {
     function get_language_name_from_extension( $extension, $lookup = array() ) {
         if ( !is_array($lookup) || empty($lookup)) {
             $lookup = array(
+                'abap' => array('abap'),
                 'actionscript' => array('as'),
                 'ada' => array('a', 'ada', 'adb', 'ads'),
                 'apache' => array('conf'),
