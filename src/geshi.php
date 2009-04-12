@@ -3203,6 +3203,18 @@ class GeSHi {
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . $this->hsc($stuff_to_parse);
 
+        // Highlight numbers. As of 1.0.8 we support different types of numbers
+        $numbers_found = false;
+        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
+            $numbers_found = true;
+
+            //For each of the formats ...
+            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
+                //Check if it should be highlighted ...
+                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
+            }
+        }
+
         // Highlight keywords
         $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^&";
         $disallowed_after = "(?![a-zA-Z0-9_\|%\\-&;";
@@ -3229,14 +3241,6 @@ class GeSHi {
                 $parser_control_pergroup = (count($this->language_data['PARSER_CONTROL']['KEYWORDS']) - $x) > 0;
             }
         }
-
-        // if this is changed, don't forget to change it below
-        //        if (!empty($disallowed_before)) {
-        //            $disallowed_before = "(?<![$disallowed_before])";
-        //        }
-        //        if (!empty($disallowed_after)) {
-        //            $disallowed_after = "(?![$disallowed_after])";
-        //        }
 
         foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
             if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
@@ -3329,34 +3333,22 @@ class GeSHi {
             $stuff_to_parse = str_replace("<|/$k/>", "<|$attributes>", $stuff_to_parse);
         }
 
-        // Highlight numbers. As of 1.0.8 we support different types of numbers
-        $numbers_found = false;
-        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
-            $numbers_found = true;
-
-            //For each of the formats ...
-            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
-                //Check if it should be highlighted ...
-                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
-            }
-        }
-
         if ($numbers_found) {
             // Put number styles in
             foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
-//Commented out for now, as this needs some review ...
-//                if ($numbers_permissions & $id) {
-                    //Get the appropriate style ...
-                        //Checking for unset styles is done by the style cache builder ...
-                    if (!$this->use_classes) {
-                        $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
-                    } else {
-                        $attributes = ' class="nu'.$id.'"';
-                    }
+                //Commented out for now, as this needs some review ...
+                //                if ($numbers_permissions & $id) {
+                //Get the appropriate style ...
+                //Checking for unset styles is done by the style cache builder ...
+                if (!$this->use_classes) {
+                    $attributes = ' style="' . $this->language_data['STYLES']['NUMBERS'][$id] . '"';
+                } else {
+                    $attributes = ' class="nu'.$id.'"';
+                }
 
-                    //Set in the correct styles ...
-                    $stuff_to_parse = str_replace("/NUM!$id/", $attributes, $stuff_to_parse);
-//                }
+                //Set in the correct styles ...
+                $stuff_to_parse = str_replace("/NUM!$id/", $attributes, $stuff_to_parse);
+                //                }
             }
         }
 
