@@ -25,6 +25,9 @@ Version 1.0.8.4
      * Removed duplicate keywords for Progress (BenBE)
      * Removed duplicate keywords for T-SQL (BenBE)
      * Linking for PowerShell special variables revised (BenBE)
+     * Fixed linking in ColdFusion (BenBE)
+     * Fixed linking in LaTeX (BenBE)
+     * Fixed linking in mIRC Scripting language (BenBE)
 Version 1.0.8.3
   -  Added language files
      * DCS (Stelio Passaris)
