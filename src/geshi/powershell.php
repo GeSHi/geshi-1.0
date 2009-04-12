@@ -187,7 +187,7 @@ $language_data = array (
             0 => 'color: #800000;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #804000;'
             ),
         'METHODS' => array(
             0 => 'color: pink;'
@@ -211,7 +211,7 @@ $language_data = array (
         3 => '',
         4 => '',
         5 => '',
-        6 => '',
+        6 => 'about:blank',
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -254,13 +254,7 @@ $language_data = array (
         //BenBE: Please note that changes here and in Keyword group 6 have to be synchronized in order to work properly.
         //This Regexp must only match, if keyword group 6 doesn't. If this assumption fails
         //Highlighting of the keywords will be incomplete or incorrect!
-        0 => "(?<!\\\$|>)[\\\$](?!(?:DebugPreference|Error(?:ActionPreference)?|".
-            "Ho(?:me|st)|Input|LASTEXITCODE|Maximum(?:AliasCount|DriveCount|".
-            "FunctionCount|HistoryCount|VariableCount)|OFS|P(?:WD|sHome)|".
-            "ReportErrorShow(?:ExceptionClass|InnerException|S(?:ource|".
-            "tackTrace))|S(?:houldProcess(?:Preference|ReturnPreference)|".
-            "tackTrace)|VerbosePreference|WarningPreference|_|args|foreach)\W)".
-            "(\w+)(?=[^|\w])",
+        0 => "(?<!\\\$|>)[\\\$](\w+)(?=[^|\w])",
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
@@ -270,7 +264,7 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             6 => array(
-                'DISALLOWED_BEFORE' => '(?<!\$)\$'
+                'DISALLOWED_BEFORE' => '(?<!\$>)\$'
                 )
             )
         )

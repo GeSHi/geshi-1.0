@@ -3203,55 +3203,6 @@ class GeSHi {
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . $this->hsc($stuff_to_parse);
 
-        // Regular expressions
-        foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
-            if ($this->lexic_permissions['REGEXPS'][$key]) {
-                if (is_array($regexp)) {
-                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                        // produce valid HTML when we match multiple lines
-                        $this->_hmr_replace = $regexp[GESHI_REPLACE];
-                        $this->_hmr_before = $regexp[GESHI_BEFORE];
-                        $this->_hmr_key = $key;
-                        $this->_hmr_after = $regexp[GESHI_AFTER];
-                        $stuff_to_parse = preg_replace_callback(
-                            "/" . $regexp[GESHI_SEARCH] . "/{$regexp[GESHI_MODIFIERS]}",
-                            array($this, 'handle_multiline_regexps'),
-                            $stuff_to_parse);
-                        $this->_hmr_replace = false;
-                        $this->_hmr_before = '';
-                        $this->_hmr_after = '';
-                    } else {
-                        $stuff_to_parse = preg_replace(
-                            '/' . $regexp[GESHI_SEARCH] . '/' . $regexp[GESHI_MODIFIERS],
-                            $regexp[GESHI_BEFORE] . '<|!REG3XP'. $key .'!>' . $regexp[GESHI_REPLACE] . '|>' . $regexp[GESHI_AFTER],
-                            $stuff_to_parse);
-                    }
-                } else {
-                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
-                        // produce valid HTML when we match multiple lines
-                        $this->_hmr_key = $key;
-                        $stuff_to_parse = preg_replace_callback( "/(" . $regexp . ")/",
-                                              array($this, 'handle_multiline_regexps'), $stuff_to_parse);
-                        $this->_hmr_key = '';
-                    } else {
-                        $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
-                    }
-                }
-            }
-        }
-
-        // Highlight numbers. As of 1.0.8 we support diffent types of numbers
-        $numbers_found = false;
-        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
-            $numbers_found = true;
-
-            //For each of the formats ...
-            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
-                //Check if it should be highlighted ...
-                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
-            }
-        }
-
         // Highlight keywords
         $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^&";
         $disallowed_after = "(?![a-zA-Z0-9_\|%\\-&;";
@@ -3280,16 +3231,16 @@ class GeSHi {
         }
 
         // if this is changed, don't forget to change it below
-//        if (!empty($disallowed_before)) {
-//            $disallowed_before = "(?<![$disallowed_before])";
-//        }
-//        if (!empty($disallowed_after)) {
-//            $disallowed_after = "(?![$disallowed_after])";
-//        }
+        //        if (!empty($disallowed_before)) {
+        //            $disallowed_before = "(?<![$disallowed_before])";
+        //        }
+        //        if (!empty($disallowed_after)) {
+        //            $disallowed_after = "(?![$disallowed_after])";
+        //        }
 
         foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
             if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
-                $this->lexic_permissions['KEYWORDS'][$k]) {
+            $this->lexic_permissions['KEYWORDS'][$k]) {
 
                 $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
                 $modifiers = $case_sensitive ? '' : 'i';
@@ -3327,6 +3278,43 @@ class GeSHi {
             }
         }
 
+        // Regular expressions
+        foreach ($this->language_data['REGEXPS'] as $key => $regexp) {
+            if ($this->lexic_permissions['REGEXPS'][$key]) {
+                if (is_array($regexp)) {
+                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        // produce valid HTML when we match multiple lines
+                        $this->_hmr_replace = $regexp[GESHI_REPLACE];
+                        $this->_hmr_before = $regexp[GESHI_BEFORE];
+                        $this->_hmr_key = $key;
+                        $this->_hmr_after = $regexp[GESHI_AFTER];
+                        $stuff_to_parse = preg_replace_callback(
+                            "/" . $regexp[GESHI_SEARCH] . "/{$regexp[GESHI_MODIFIERS]}",
+                            array($this, 'handle_multiline_regexps'),
+                            $stuff_to_parse);
+                        $this->_hmr_replace = false;
+                        $this->_hmr_before = '';
+                        $this->_hmr_after = '';
+                    } else {
+                        $stuff_to_parse = preg_replace(
+                            '/' . $regexp[GESHI_SEARCH] . '/' . $regexp[GESHI_MODIFIERS],
+                            $regexp[GESHI_BEFORE] . '<|!REG3XP'. $key .'!>' . $regexp[GESHI_REPLACE] . '|>' . $regexp[GESHI_AFTER],
+                            $stuff_to_parse);
+                    }
+                } else {
+                    if ($this->line_numbers != GESHI_NO_LINE_NUMBERS) {
+                        // produce valid HTML when we match multiple lines
+                        $this->_hmr_key = $key;
+                        $stuff_to_parse = preg_replace_callback( "/(" . $regexp . ")/",
+                                              array($this, 'handle_multiline_regexps'), $stuff_to_parse);
+                        $this->_hmr_key = '';
+                    } else {
+                        $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
+                    }
+                }
+            }
+        }
+
         //
         // Now that's all done, replace /[number]/ with the correct styles
         //
@@ -3339,6 +3327,18 @@ class GeSHi {
                 $attributes = ' class="kw' . $k . '"';
             }
             $stuff_to_parse = str_replace("<|/$k/>", "<|$attributes>", $stuff_to_parse);
+        }
+
+        // Highlight numbers. As of 1.0.8 we support different types of numbers
+        $numbers_found = false;
+        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
+            $numbers_found = true;
+
+            //For each of the formats ...
+            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
+                //Check if it should be highlighted ...
+                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
+            }
         }
 
         if ($numbers_found) {
