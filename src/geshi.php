@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.8.3');
+define('GESHI_VERSION', '1.0.8.4');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -1118,9 +1118,9 @@ class GeSHi {
     function set_script_style($style, $preserve_defaults = false, $group = 0) {
         // Update the style of symbols
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['STRICT'][$group] = $style;
+            $this->language_data['STYLES']['SCRIPT'][$group] = $style;
         } else {
-            $this->language_data['STYLES']['STRICT'][$group] .= $style;
+            $this->language_data['STYLES']['SCRIPT'][$group] .= $style;
         }
     }
 
