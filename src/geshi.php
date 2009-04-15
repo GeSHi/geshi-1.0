@@ -1105,6 +1105,26 @@ class GeSHi {
     }
 
     /**
+     * Sets the styles for strict code blocks. If $preserve_defaults is
+     * true, then styles are merged with the default styles, with the
+     * user defined styles having priority
+     *
+     * @param string  The style to make the script blocks
+     * @param boolean Whether to merge the new styles with the old or just
+     *                to overwrite them
+     * @param int     Tells the group of script blocks for which style should be set.
+     * @since 1.0.8.4
+     */
+    function set_script_style($style, $preserve_defaults = false, $group = 0) {
+        // Update the style of symbols
+        if (!$preserve_defaults) {
+            $this->language_data['STYLES']['STRICT'][$group] = $style;
+        } else {
+            $this->language_data['STYLES']['STRICT'][$group] .= $style;
+        }
+    }
+
+    /**
      * Sets the styles for numbers. If $preserve_defaults is
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority

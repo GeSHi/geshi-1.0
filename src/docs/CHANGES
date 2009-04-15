@@ -20,6 +20,7 @@ Version 1.0.8.4
      * Whois (RPSL format) entries (Benny Baumann)
   -  Changed INT_BASIC number format to allow numbers followed . at EOL (BenBE)
   -  Higher prority for keywords over regexps (BenBE)
+  -  Added missing set_script_style API function (BenBE)
   -  Improvements to language files (BenBE)
      * Removed some superfluous keywords from ABAP (BenBE)
      * Removed duplicate keywords for Progress (BenBE)
