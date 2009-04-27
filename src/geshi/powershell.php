@@ -47,7 +47,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'posh',
+    'LANG_NAME' => 'PowerShell',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
