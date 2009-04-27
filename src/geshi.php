@@ -2423,7 +2423,7 @@ class GeSHi {
                         $char_len = strlen($char);
                     }
 
-                    if ($string_started && $i != $next_comment_regexp_pos) {
+                    if ($string_started && ($i != $next_comment_regexp_pos)) {
                         // Hand out the correct style information for this string
                         $string_key = array_search($char, $this->language_data['QUOTEMARKS']);
                         if (!isset($this->language_data['STYLES']['STRINGS'][$string_key]) ||
@@ -2615,7 +2615,7 @@ class GeSHi {
                         $i = $start - 1;
                         continue;
                     } else if ($this->lexic_permissions['STRINGS'] && $hq && $hq[0] == $char &&
-                        substr($part, $i, $hq_strlen) == $hq) {
+                        substr($part, $i, $hq_strlen) == $hq && ($i != $next_comment_regexp_pos)) {
                         // The start of a hard quoted string
                         if (!$this->use_classes) {
                             $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS']['HARD'] . '"';

@@ -21,6 +21,7 @@ Version 1.0.8.4
   -  Changed INT_BASIC number format to allow numbers followed . at EOL (BenBE)
   -  Higher prority for keywords over regexps (BenBE)
   -  Added missing set_script_style API function (BenBE)
+  -  Fixed missing check for comment_regexp preference in HardQuotes (BenBE)
   -  Improvements to language files (BenBE)
      * Removed some superfluous keywords from ABAP (BenBE)
      * Removed duplicate keywords for Progress (BenBE)
