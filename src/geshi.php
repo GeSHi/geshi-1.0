@@ -2012,7 +2012,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
+                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
             }
         }
 
@@ -3223,18 +3223,6 @@ class GeSHi {
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . $this->hsc($stuff_to_parse);
 
-        // Highlight numbers. As of 1.0.8 we support different types of numbers
-        $numbers_found = false;
-        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
-            $numbers_found = true;
-
-            //For each of the formats ...
-            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
-                //Check if it should be highlighted ...
-                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
-            }
-        }
-
         // Highlight keywords
         $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^&";
         $disallowed_after = "(?![a-zA-Z0-9_\|%\\-&;";
@@ -3336,6 +3324,18 @@ class GeSHi {
                         $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
                     }
                 }
+            }
+        }
+
+        // Highlight numbers. As of 1.0.8 we support different types of numbers
+        $numbers_found = false;
+        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
+            $numbers_found = true;
+
+            //For each of the formats ...
+            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
+                //Check if it should be highlighted ...
+                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
             }
         }
 
