@@ -54,9 +54,6 @@ $language_data = array(
     'LANG_NAME' => 'PHP',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'HARDQUOTE' => array("'", "'"),
-    'HARDESCAPE' => array("'", "\\"),
-    'HARDCHAR' => "\\",
     'COMMENT_REGEXP' => array(
         //Heredoc and Nowdoc syntax
         3 => '/<<<\s*?(\'?)([a-zA-Z0-9]+?)\1[^\n]*?\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
@@ -82,8 +79,11 @@ $language_data = array(
         //Format String support in ""-Strings
         6 => "#%(?:%|(?:\d+\\\\\\\$)?\\+?(?:\x20|0|'.)?-?(?:\d+|\\*)?(?:\.\d+)?[bcdefFosuxX])#"
         ),
+    'HARDQUOTE' => array("'", "'"),
+    'HARDESCAPE' => array("'", "\\"),
+    'HARDCHAR' => "\\",
     'NUMBERS' =>
-        GESHI_NUMBER_INT_BASIC |  GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
+        GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX |
         GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(

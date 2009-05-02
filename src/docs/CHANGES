@@ -31,6 +31,8 @@ Version 1.0.8.4
      * Fixed linking in ColdFusion (BenBE)
      * Fixed linking in LaTeX (BenBE)
      * Fixed linking in mIRC Scripting language (BenBE)
+     * Changed allowed chars around Powershell operators (BenBE)
+     * Minor reordering inside of PHP language file (BenBE)
 Version 1.0.8.3
   -  Added language files
      * DCS (Stelio Passaris)
