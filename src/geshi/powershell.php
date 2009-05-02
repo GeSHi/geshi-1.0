@@ -264,7 +264,7 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             4 => array(
-                'DISALLOWED_AFTER' => '(?![a-zA-Z])'
+                'DISALLOWED_AFTER' => '(?![a-zA-Z])',
                 'DISALLOWED_BEFORE' => ''
                 ),
             6 => array(
