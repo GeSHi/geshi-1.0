@@ -16,6 +16,7 @@ Version 1.0.8.4
   -  Added language files
      * BibTeX (Quinn Taylor)
      * CMake (Daniel Nelson)
+     * Erlang (Benny Baumann, Dan Forest-Barbier, Uwe Dauernheim)
      * FO (abas-ERP) (Tan-Vinh Nguyen)
      * Property Files (Edy Hinzen)
      * Whois (RPSL format) entries (Benny Baumann)
