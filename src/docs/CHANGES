@@ -24,6 +24,7 @@ Version 1.0.8.4
   -  Added missing set_script_style API function (BenBE)
   -  Fixed missing check for comment_regexp preference in HardQuotes (BenBE)
   -  Improvements to language files (BenBE)
+     * Added PCRE regexp support for Action script (SF#2655644, BenBE)
      * Removed some superfluous keywords from ABAP (BenBE)
      * Removed duplicate keywords for Progress (BenBE)
      * Removed duplicate keywords for T-SQL (BenBE)
