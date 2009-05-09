@@ -34,6 +34,7 @@ Version 1.0.8.4
      * Fixed linking in LaTeX (BenBE)
      * Fixed linking in mIRC Scripting language (BenBE)
      * Fixed escape char regexp for C-style languages (BenBE)
+     * Fixed @""-string handling for C# (SF#2789371, BenBE)
      * Changed allowed chars around Powershell operators (SF#2688863, BenBE)
      * Minor reordering inside of PHP language file (BenBE)
 Version 1.0.8.3
