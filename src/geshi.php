@@ -1118,9 +1118,9 @@ class GeSHi {
     function set_script_style($style, $preserve_defaults = false, $group = 0) {
         // Update the style of symbols
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['STRICT'][$group] = $style;
+            $this->language_data['STYLES']['SCRIPT'][$group] = $style;
         } else {
-            $this->language_data['STYLES']['STRICT'][$group] .= $style;
+            $this->language_data['STYLES']['SCRIPT'][$group] .= $style;
         }
     }
 
@@ -2012,7 +2012,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
+                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
             }
         }
 
@@ -2423,7 +2423,7 @@ class GeSHi {
                         $char_len = strlen($char);
                     }
 
-                    if ($string_started && $i != $next_comment_regexp_pos) {
+                    if ($string_started && ($i != $next_comment_regexp_pos)) {
                         // Hand out the correct style information for this string
                         $string_key = array_search($char, $this->language_data['QUOTEMARKS']);
                         if (!isset($this->language_data['STYLES']['STRINGS'][$string_key]) ||
@@ -2615,7 +2615,7 @@ class GeSHi {
                         $i = $start - 1;
                         continue;
                     } else if ($this->lexic_permissions['STRINGS'] && $hq && $hq[0] == $char &&
-                        substr($part, $i, $hq_strlen) == $hq) {
+                        substr($part, $i, $hq_strlen) == $hq && ($i != $next_comment_regexp_pos)) {
                         // The start of a hard quoted string
                         if (!$this->use_classes) {
                             $string_attributes = ' style="' . $this->language_data['STYLES']['STRINGS']['HARD'] . '"';
@@ -3223,18 +3223,6 @@ class GeSHi {
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . $this->hsc($stuff_to_parse);
 
-        // Highlight numbers. As of 1.0.8 we support different types of numbers
-        $numbers_found = false;
-        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
-            $numbers_found = true;
-
-            //For each of the formats ...
-            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
-                //Check if it should be highlighted ...
-                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
-            }
-        }
-
         // Highlight keywords
         $disallowed_before = "(?<![a-zA-Z0-9\$_\|\#;>|^&";
         $disallowed_after = "(?![a-zA-Z0-9_\|%\\-&;";
@@ -3336,6 +3324,18 @@ class GeSHi {
                         $stuff_to_parse = preg_replace( "/(" . $regexp . ")/", "<|!REG3XP$key!>\\1|>", $stuff_to_parse);
                     }
                 }
+            }
+        }
+
+        // Highlight numbers. As of 1.0.8 we support different types of numbers
+        $numbers_found = false;
+        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
+            $numbers_found = true;
+
+            //For each of the formats ...
+            foreach($this->language_data['NUMBERS_RXCACHE'] as $id => $regexp) {
+                //Check if it should be highlighted ...
+                $stuff_to_parse = preg_replace($regexp, "<|/NUM!$id/>\\1|>", $stuff_to_parse);
             }
         }
 

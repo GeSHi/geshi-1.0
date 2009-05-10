@@ -47,7 +47,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'posh',
+    'LANG_NAME' => 'PowerShell',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -263,6 +263,10 @@ $language_data = array (
         ),
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
+            4 => array(
+                'DISALLOWED_AFTER' => '(?![a-zA-Z])',
+                'DISALLOWED_BEFORE' => ''
+                ),
             6 => array(
                 'DISALLOWED_BEFORE' => '(?<!\$>)\$'
                 )
