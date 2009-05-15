@@ -2012,7 +2012,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)/i";
+                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)(?![^\"\|\>\<]+<)/i";
             }
         }
 
