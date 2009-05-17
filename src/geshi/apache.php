@@ -109,11 +109,30 @@ $language_data = array (
             'transferlog','typesconfig','unsetenv','usecanonicalname',
             'user','userdir','virtualhost','virtualdocumentroot',
             'virtualdocumentrootip','virtualscriptalias','virtualscriptaliasip',
-            'xbithack','from','all'
+            'xbithack','from',
+            'GnuTLSCache','GnuTLSCacheTimeout','GnuTLSCertificateFile',
+            'GnuTLSKeyFile','GnuTLSPGPCertificateFile','GnuTLSPGPKeyFile',
+            'GnuTLSClientVerify','GnuTLSClientCAFile','GnuTLSPGPKeyringFile',
+            'GnuTLSEnable','GnuTLSDHFile','GnuTLSRSAFile','GnuTLSSRPPasswdFile',
+            'GnuTLSSRPPasswdConfFile','GnuTLSPriorities',
+            'GnuTLSExportCertificates',
+            'SSLCACertificateFile','SSLCACertificatePath','SSLCADNRequestFile',
+            'SSLCADNRequestPath','SSLCARevocationFile','SSLCARevocationPath',
+            'SSLCertificateChainFile','SSLCertificateFile',
+            'SSLCertificateKeyFile','SSLCipherSuite','SSLCryptoDevice',
+            'SSLEngine','SSLHonorCipherOrder','SSLMutex','SSLOptions',
+            'SSLPassPhraseDialog','SSLProtocol','SSLProxyCACertificateFile',
+            'SSLProxyCACertificatePath','SSLProxyCARevocationFile',
+            'SSLProxyCARevocationPath','SSLProxyCipherSuite','SSLProxyEngine',
+            'SSLProxyMachineCertificateFile','SSLProxyMachineCertificatePath',
+            'SSLProxyProtocol','SSLProxyVerify','SSLProxyVerifyDepth',
+            'SSLRandomSeed','SSLRenegBufferSize','SSLRequire','SSLRequireSSL',
+            'SSLSessionCache','SSLSessionCacheTimeout','SSLUserName',
+            'SSLVerifyClient','SSLVerifyDepth'
             ),
         /*keywords 2*/
         2 => array(
-            'on','off','standalone','inetd','indexes',
+            'all','on','off','standalone','inetd','indexes',
             'force-response-1.0','downgrade-1.0','nokeepalive',
             'ndexes','includes','followsymlinks','none',
             'x-compress','x-gzip'
