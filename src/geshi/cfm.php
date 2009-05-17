@@ -237,7 +237,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => 'http://december.com/html/%34/element/{FNAMEL}.html',
+        2 => 'http://december.com/html/4/element/{FNAMEL}.html',
         3 => '',
         4 => '',
         5 => '',

@@ -71,7 +71,8 @@ $language_data = array (
             'throw', 'this', 'switch', 'super', 'set', 'return', 'public', 'protected',
             'private', 'null', 'new', 'is', 'internal', 'instanceof', 'in',
             'import', 'if', 'get', 'for', 'false', 'else', 'each', 'do',
-            'delete', 'default', 'continue', 'catch', 'case', 'break', 'as'
+            'delete', 'default', 'continue', 'catch', 'case', 'break', 'as',
+            'extends'
             ),
         2 => array(
             'var'
@@ -451,7 +452,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://www.google.com/search?q={FNAMEL}%20inurl:http://livedocs.adobe.com/flex/%32%30%31/langref/%20inurl:{FNAMEL}.html',
+        5 => 'http://www.google.com/search?q={FNAMEL}%20inurl:http://livedocs.adobe.com/flex/201/langref/%20inurl:{FNAMEL}.html',
         6 => '',
         7 => '',
         8 => ''

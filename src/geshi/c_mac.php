@@ -191,7 +191,7 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.opengroup.org/onlinepubs/%30%30%39%36%39%35%33%39%39/functions/{FNAMEL}.html',
+        3 => 'http://www.opengroup.org/onlinepubs/009695399/functions/{FNAMEL}.html',
         4 => ''
         ),
     'OOLANG' => true,
