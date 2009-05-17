@@ -61,13 +61,16 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'appendix','backmatter','caption','captionabove','captionbelow',
-            'def','documentclass','edef','equation','flushleft','flushright',
-            'footnote','frontmatter','hline','include','input','item','label',
-            'let','listfiles','listoffigures','listoftables','mainmatter',
-            'makeatletter','makeatother','makebox','mbox','par','raggedleft',
-            'raggedright','raisebox','ref','rule','table','tableofcontents',
-            'textbf','textit','texttt','today'
+            'addlinespace','appendix','backmatter','blindtext','caption',
+            'captionabove','captionbelow','cite','def','documentclass','edef',
+            'flushleft','flushright','footnote','frontmatter','hline','hspace',
+            'include','input','input','item','label','let','listfiles',
+            'listoffigures','listoftables','mainmatter','makeatletter',
+            'makeatother','makebox','mbox','newcommand','newenvironment',
+            'nocite','par','parident','parskip','raggedleft','raggedright',
+            'raisebox','ref','renewcommand','renewenvironment','rule',
+            'setlength','table','tableofcontents','textbf','textit','texttt',
+            'today','usepackage','vspace'
             )
         ),
     'SYMBOLS' => array(
