@@ -61,16 +61,22 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'addlinespace','appendix','backmatter','blindtext','caption',
-            'captionabove','captionbelow','cite','def','documentclass','edef',
-            'flushleft','flushright','footnote','frontmatter','hline','hspace',
-            'include','input','input','item','label','let','listfiles',
-            'listoffigures','listoftables','mainmatter','makeatletter',
-            'makeatother','makebox','mbox','newcommand','newenvironment',
-            'nocite','par','parident','parskip','raggedleft','raggedright',
-            'raisebox','ref','renewcommand','renewenvironment','rule',
-            'setlength','table','tableofcontents','textbf','textit','texttt',
-            'today','usepackage','vspace'
+            'addlinespace','address','appendix','author','backmatter',
+            'bfseries','bibitem','bigskip','blindtext','caption','captionabove',
+            'captionbelow','cdot','centering','cite','color','colorbox','date',
+            'def','definecolor','documentclass','edef','else','email','fbox',
+            'fi','flushleft','flushright','footnote','frontmatter','hfill',
+            'hline','hspace','huge','include','includegraphics','input','ifx',
+            'item','label','LaTeX','let','listfiles','listoffigures',
+            'listoftables','mainmatter','makeatletter','makeatother','makebox',
+            'makeindex','maketitle','mbox','mediumskip','newcommand',
+            'newenvironment','newpage','nocite','pagestyle','par','parbox',
+            'parident','parskip','raggedleft','raggedright','raisebox','ref',
+            'renewcommand','renewenvironment','rule','section','setlength',
+            'sffamily','subparagraph','subsection','subsubsection','table',
+            'tableofcontents','textbf','textcolor','textit','textnormal',
+            'textsuperscript','texttt','title','today','ttfamily','urlstyle',
+            'usepackage','vspace'
             )
         ),
     'SYMBOLS' => array(
@@ -82,7 +88,7 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #800000; font-weight: bold;',
+            1 => 'color: #800000;',
             ),
         'COMMENTS' => array(
             1 => 'color: #2C922C; font-style: italic;'
