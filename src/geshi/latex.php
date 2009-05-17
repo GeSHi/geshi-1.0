@@ -64,16 +64,16 @@ $language_data = array (
             'addlinespace','address','appendix','author','backmatter',
             'bfseries','bibitem','bigskip','blindtext','caption','captionabove',
             'captionbelow','cdot','centering','cite','color','colorbox','date',
-            'def','definecolor','documentclass','edef','else','email','fbox',
-            'fi','flushleft','flushright','footnote','frontmatter','hfill',
-            'hline','hspace','huge','include','includegraphics','input','ifx',
-            'item','label','LaTeX','let','listfiles','listoffigures',
+            'def','definecolor','documentclass','edef','eqref','else','email','emph','fbox',
+            'fi','flushleft','flushright','footnote','frac','frontmatter','graphicspath','hfill',
+            'hline','hspace','huge','include','includegraphics','infty','input','int','ifx',
+            'item','label','LaTeX','left','let','limits','listfiles','listoffigures',
             'listoftables','mainmatter','makeatletter','makeatother','makebox',
             'makeindex','maketitle','mbox','mediumskip','newcommand',
-            'newenvironment','newpage','nocite','pagestyle','par','parbox',
-            'parident','parskip','raggedleft','raggedright','raisebox','ref',
-            'renewcommand','renewenvironment','rule','section','setlength',
-            'sffamily','subparagraph','subsection','subsubsection','table',
+            'newenvironment','newpage','nocite','nonumber','pagestyle','par','paragraph','parbox',
+            'parident','parskip','partial','raggedleft','raggedright','raisebox','ref',
+            'renewcommand','renewenvironment','right','rule','section','setlength',
+            'sffamily','subparagraph','subsection','subsubsection','sum','table',
             'tableofcontents','textbf','textcolor','textit','textnormal',
             'textsuperscript','texttt','title','today','ttfamily','urlstyle',
             'usepackage','vspace'
@@ -206,7 +206,7 @@ $language_data = array (
         ),
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "(?<=\\\\)",
-            'DISALLOWED_AFTER' => "(?=\b)(?!\w)"
+            'DISALLOWED_AFTER' => "(?![A-Za-z0-9])"
         ),
         'ENABLE_FLAGS' => array(
             'NUMBERS' => GESHI_NEVER,
