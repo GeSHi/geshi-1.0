@@ -59,6 +59,10 @@ function report_error($type, $message) {
     }
 }
 
+function dupfind_strtolower(&$value){
+    $value = strtolower($value);
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -463,6 +467,9 @@ if(!$error_abort) {
                     } else if (preg_match('/^([\(\)\{\}\[\]\^=.,:;\-+\*\/%\$\"\'\?]|&[\w#]\w*;)+$/i', $kw)) {
                         report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') at \$language_data['KEYWORDS'][$key][$id] which seems to be better suited for the symbols section!");
                     }
+                }
+                if(!$language_data['CASE_SENSITIVE'][$key]) {
+                    array_walk($keywords, 'dupfind_strtolower');
                 }
                 if(count($keywords) != count(array_unique($keywords))) {
                     $kw_diffs = array_count_values($keywords);
