@@ -24,6 +24,8 @@ Version 1.0.8.4
   -  Higher prority for keywords over regexps (BenBE)
   -  Added missing set_script_style API function (BenBE)
   -  Fixed missing check for comment_regexp preference in HardQuotes (BenBE)
+  -  Fixed a problem with Strict Block Detection if the Strict Block Regexp
+     requires matching groups for itself (BenBE)
   -  Improvements to language files (BenBE)
      * Added PCRE regexp support for Action script (SF#2655644, BenBE)
      * Removed some superfluous keywords from ABAP (BenBE)
@@ -38,6 +40,8 @@ Version 1.0.8.4
      * Fixed Strict Block Detection for PHP blocks (BenBE)
      * Changed allowed chars around Powershell operators (SF#2688863, BenBE)
      * Minor reordering inside of PHP language file (BenBE)
+     * Added missing keywords for ActionScript3 language file (SF#2795005, BenBE)
+     * Added .xrc file extension for XML highlighting (BenBE)
 Version 1.0.8.3
   -  Added language files
      * DCS (Stelio Passaris)
