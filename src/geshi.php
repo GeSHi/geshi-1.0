@@ -2131,13 +2131,24 @@ class GeSHi {
                         if(!GESHI_PHP_PRE_433 && //Needs proper rewrite to work with PHP >=4.3.0; 4.3.3 is guaranteed to work.
                             preg_match($delimiters, $code, $matches_rx, PREG_OFFSET_CAPTURE, $i)) {
                             //We got a match ...
-                            $matches[$dk] = array(
-                                'next_match' => $matches_rx[1][1],
-                                'dk' => $dk,
+                            if(isset($matches_rx['start']) && isset($matches_rx['end']))
+                            {
+                                $matches[$dk] = array(
+                                    'next_match' => $matches_rx['start'][1],
+                                    'dk' => $dk,
 
-                                'close_strlen' => strlen($matches_rx[2][0]),
-                                'close_pos' => $matches_rx[2][1],
-                                );
+                                    'close_strlen' => strlen($matches_rx['end'][0]),
+                                    'close_pos' => $matches_rx['end'][1],
+                                    );
+                            } else {
+                                $matches[$dk] = array(
+                                    'next_match' => $matches_rx[1][1],
+                                    'dk' => $dk,
+
+                                    'close_strlen' => strlen($matches_rx[2][0]),
+                                    'close_pos' => $matches_rx[2][1],
+                                    );
+                            }
                         } else {
                             // no match for this delimiter ever
                             unset($delim_copy[$dk]);
@@ -2150,6 +2161,7 @@ class GeSHi {
                         }
                     }
                 }
+
                 // non-highlightable text
                 $parts[$k] = array(
                     1 => substr($code, $i, $next_match_pos - $i)
