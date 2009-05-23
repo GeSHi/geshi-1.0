@@ -974,7 +974,7 @@ $language_data = array(
         ),
     'SYMBOLS' => array(
         1 => array(
-            '<%', '<%=', '%>', '<?', '<?=', '?>'
+            '<'.'%', '<'.'%=', '%'.'>', '<'.'?', '<'.'?=', '?'.'>'
             ),
         0 => array(
             '(', ')', '[', ']', '{', '}',
@@ -1065,14 +1065,14 @@ $language_data = array(
         ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
-/*        0 => array(
-            '<?php' => '?>'
+        0 => array(
+            '<'.'?php' => '?'.'>'
             ),
         1 => array(
-            '<?' => '?>'
-            ),*/
+            '<'.'?' => '?'.'>'
+            ),
         2 => array(
-            '<%' => '%>'
+            '<'.'%' => '%'.'>'
             ),
         3 => array(
             '<script language="php">' => '</script>'
