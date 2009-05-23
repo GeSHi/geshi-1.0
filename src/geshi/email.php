@@ -177,7 +177,7 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
-        0 => "/(^)[A-Z][a-zA-Z0-9\-]*\s*:\s*(?:.|(?=\n\s)\n)*($)/m"
+        0 => "/(?<start>^)[A-Z][a-zA-Z0-9\-]*\s*:\s*(?:.|(?=\n\s)\n)*(?<end>$)/m"
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
