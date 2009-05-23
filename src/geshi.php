@@ -1413,7 +1413,7 @@ class GeSHi {
                 'vbnet' => array(),
                 'visualfoxpro' => array(),
                 'whitespace' => array('ws'),
-                'xml' => array('xml', 'svg'),
+                'xml' => array('xml', 'svg', 'xrc'),
                 'z80' => array('z80', 'asm', 'inc')
             );
         }
