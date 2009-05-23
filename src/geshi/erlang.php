@@ -7,19 +7,25 @@
  * - Uwe Dauernheim (uwe@dauernheim.net)
  * - Dan Forest-Barbier (dan@twisted.in)
  * Copyright: (c) 2008 Uwe Dauernheim (http://www.kreisquadratur.de/)
- * Release Version: 1\.0\.0
+ * Release Version: 1.0.8.4
  * Date Started: 2008-09-27
  *
  * Erlang language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2008-09-27 (1.0.0)
- *   [ ] First Release
+ * 2009/05/02 (1.0.8.3)
+ *  -  Now using 'PARSER_CONTROL' instead of huge rexgexps, better and cleaner
+ *
+ * 2009/04/26 (1.0.8.3)
+ *  -  Only link to existing docs / Fixes
  *
  * 2008-09-28 (1.0.0.1)
  *   [!] Bug fixed with keyword module.
  *   [+] Added more function names
+ *
+ * 2008-09-27 (1.0.0)
+ *   [ ] First Release
  *
  * TODO (updated 2008-09-27)
  * -------------------------
@@ -45,7 +51,7 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Erlang',
     'COMMENT_SINGLE' => array(1 => '%'),
     'COMMENT_MULTI' => array(),
@@ -57,46 +63,43 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'NUMBERS' => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
+        //Control flow keywrods
         1 => array(
-            'module', 'export', 'import', 'author', 'behaviour'
-            ),
-        2 => array(
-            // erlang
-            'set_cookie', 'get_cookie',
-            // io
-            'format', 'fwrite', 'fread',
-            // gen_tcp
-            'listen', 'accept', 'close',
-            // gen_server
-            'call', 'start_link'
-            ),
-        3 => array(
             'after', 'andalso', 'begin', 'case', 'catch', 'end', 'fun', 'if',
             'of', 'orelse', 'receive', 'try', 'when', 'query'
             ),
+        //Binary operators
+        2 => array(
+            'and', 'band', 'bnot', 'bor', 'bsl', 'bsr', 'bxor', 'div', 'not',
+            'or', 'rem', 'xor'
+            ),
+        3 => array(
+            'abs', 'alive', 'apply', 'atom_to_list', 'binary_to_list',
+            'binary_to_term', 'concat_binary', 'date', 'disconnect_node',
+            'element', 'erase', 'exit', 'float', 'float_to_list', 'get',
+            'get_keys', 'group_leader', 'halt', 'hd', 'integer_to_list',
+            'is_alive', 'length', 'link', 'list_to_atom', 'list_to_binary',
+            'list_to_float', 'list_to_integer', 'list_to_pid', 'list_to_tuple',
+            'load_module', 'make_ref', 'monitor_node', 'node', 'nodes', 'now',
+            'open_port', 'pid_to_list', 'process_flag', 'process_info',
+            'process', 'put', 'register', 'registered', 'round', 'self',
+            'setelement', 'size', 'spawn', 'spawn_link', 'split_binary',
+            'statistics', 'term_to_binary', 'throw', 'time', 'tl', 'trunc',
+            'tuple_to_list', 'unlink', 'unregister', 'whereis'
+            ),
         // Built-In Functions
         4 => array(
-            'abs', 'alive', 'apply', 'atom', 'atom_to_list', 'binary',
-            'binary_to_list', 'binary_to_term', 'concat_binary', 'constant',
-            'date', 'disconnect_node', 'element', 'erase', 'exit', 'float',
-            'float_to_list', 'function', 'get', 'get_keys', 'group_leader',
-            'halt', 'hhd', 'integer', 'integer_to_list', 'is_alive', 'length',
-            'link', 'list', 'list_to_atom', 'list_to_binary', 'list_to_float',
-            'list_to_integer', 'list_to_pid', 'list_to_tuple', 'load_module',
-            'make_ref', 'monitor_node', 'nodes', 'node', 'now', 'number',
-            'open_port', 'pid_to_list', 'pid', 'ports', 'port_close',
-            'port_info', 'process_flag', 'process_info', 'process', 'put',
-            'reference', 'register', 'registered', 'round', 'self',
-            'setelement', 'size', 'sspawn', 'sspawn_link', 'split_binary',
-            'statistics', 'term_to_binary', 'throw', 'time', 'trunc',
-            'tuple_to_list', 'unlink', 'unregister', 'whereis'
+            'atom', 'binary', 'constant', 'function', 'integer', 'is_atom',
+            'is_binary', 'is_constant', 'is_function', 'is_integer', 'is_list',
+            'is_number', 'is_pid', 'is_reference', 'is_record', 'list',
+            'number', 'pid', 'ports', 'port_close', 'port_info', 'reference'
             ),
         // Erlang/OTP internal modules (scary one)
         5 => array(
             'alarm_handler', 'any', 'app', 'application', 'appmon', 'appup',
             'array', 'asn1ct', 'asn1rt', 'auth', 'base64', 'beam_lib', 'c',
-            'calendar', 'code', 'common_test_app', 'compile', 'config', 'corba',
-            'corba_object', 'cosEventApp', 'CosEventChannelAdmin',
+            'calendar', 'code', 'common_test_app', 'compile', 'config',
+            'corba', 'corba_object', 'cosEventApp', 'CosEventChannelAdmin',
             'CosEventChannelAdmin_ConsumerAdmin',
             'CosEventChannelAdmin_EventChannel',
             'CosEventChannelAdmin_ProxyPullConsumer',
@@ -105,15 +108,16 @@ $language_data = array (
             'CosEventChannelAdmin_ProxyPushSupplier',
             'CosEventChannelAdmin_SupplierAdmin', 'CosEventDomainAdmin',
             'CosEventDomainAdmin_EventDomain',
-            'CosEventDomainAdmin_EventDomainFactory', 'cosEventDomainApp',
-            'CosFileTransfer_Directory', 'CosFileTransfer_File',
-            'CosFileTransfer_FileIterator',
+            'CosEventDomainAdmin_EventDomainFactory',
+            'cosEventDomainApp', 'CosFileTransfer_Directory',
+            'CosFileTransfer_File', 'CosFileTransfer_FileIterator',
             'CosFileTransfer_FileTransferSession',
-            'CosFileTransfer_VirtualFileSystem', 'cosFileTransferApp',
-            'CosNaming', 'CosNaming_BindingIterator', 'CosNaming_NamingContext',
-            'CosNaming_NamingContextExt', 'CosNotification',
-            'CosNotification_AdminPropertiesAdmin', 'CosNotification_QoSAdmin',
-            'cosNotificationApp', 'CosNotifyChannelAdmin_ConsumerAdmin',
+            'CosFileTransfer_VirtualFileSystem',
+            'cosFileTransferApp', 'CosNaming', 'CosNaming_BindingIterator',
+            'CosNaming_NamingContext', 'CosNaming_NamingContextExt',
+            'CosNotification', 'CosNotification_AdminPropertiesAdmin',
+            'CosNotification_QoSAdmin', 'cosNotificationApp',
+            'CosNotifyChannelAdmin_ConsumerAdmin',
             'CosNotifyChannelAdmin_EventChannel',
             'CosNotifyChannelAdmin_EventChannelFactory',
             'CosNotifyChannelAdmin_ProxyConsumer',
@@ -164,18 +168,19 @@ $language_data = array (
             'erl_set_memory_block', 'erl_syntax', 'erl_syntax_lib', 'erl_tar',
             'erl_tidy', 'erlang', 'erlang_mode', 'erlang_stub', 'erlc',
             'erlsrv', 'error_handler', 'error_logger', 'erts_alloc',
-            'erts_alloc_config', 'escript', 'et', 'et_collector', 'et_selector',
-            'et_viewer', 'etop', 'ets', 'eunit', 'file', 'file_sorter',
-            'filelib', 'filename', 'fixed', 'fprof', 'ftp', 'gb_sets',
-            'gb_trees', 'gen_event', 'gen_fsm', 'gen_sctp', 'gen_server',
-            'gen_tcp', 'gen_udp', 'gl', 'global', 'global_group', 'glu', 'gs',
-            'heart', 'http', 'httpd', 'httpd_conf', 'httpd_socket',
-            'httpd_util', 'i', 'ic', 'ic_c_protocol', 'ic_clib', 'igor', 'inet',
-            'inets', 'init', 'init_stub', 'instrument', 'int', 'interceptors',
-            'inviso', 'inviso_as_lib', 'inviso_lfm', 'inviso_lfm_tpfreader',
-            'inviso_rt', 'inviso_rt_meta', 'io', 'io_lib', 'kernel_app', 'lib',
-            'lists', 'lname', 'lname_component', 'log_mf_h', 'make', 'math',
-            'megaco', 'megaco_codec_meas', 'megaco_codec_transform',
+            'erts_alloc_config', 'escript', 'et', 'et_collector',
+            'et_selector', 'et_viewer', 'etop', 'ets', 'eunit', 'file',
+            'file_sorter', 'filelib', 'filename', 'fixed', 'fprof', 'ftp',
+            'gb_sets', 'gb_trees', 'gen_event', 'gen_fsm', 'gen_sctp',
+            'gen_server', 'gen_tcp', 'gen_udp', 'gl', 'global', 'global_group',
+            'glu', 'gs', 'heart', 'http', 'httpd', 'httpd_conf',
+            'httpd_socket', 'httpd_util', 'i', 'ic', 'ic_c_protocol',
+            'ic_clib', 'igor', 'inet', 'inets', 'init', 'init_stub',
+            'instrument', 'int', 'interceptors', 'inviso', 'inviso_as_lib',
+            'inviso_lfm', 'inviso_lfm_tpfreader', 'inviso_rt',
+            'inviso_rt_meta', 'io', 'io_lib', 'kernel_app', 'lib', 'lists',
+            'lname', 'lname_component', 'log_mf_h', 'make', 'math', 'megaco',
+            'megaco_codec_meas', 'megaco_codec_transform',
             'megaco_edist_compress', 'megaco_encoder', 'megaco_flex_scanner',
             'megaco_tcp', 'megaco_transport', 'megaco_udp', 'megaco_user',
             'memsup', 'mnesia', 'mnesia_frag_hash', 'mnesia_registry',
@@ -232,46 +237,50 @@ $language_data = array (
             'wxGridCellEditor', 'wxGridCellRenderer', 'wxGridEvent',
             'wxGridSizer', 'wxHelpEvent', 'wxHtmlEasyPrinting', 'wxIcon',
             'wxIconBundle', 'wxIconizeEvent', 'wxIdleEvent', 'wxImage',
-            'wxImageList', 'wxJoystickEvent', 'wxKeyEvent', 'wxLayoutAlgorithm',
-            'wxListBox', 'wxListCtrl', 'wxListEvent', 'wxListItem',
-            'wxListView', 'wxMask', 'wxMaximizeEvent', 'wxMDIChildFrame',
-            'wxMDIClientWindow', 'wxMDIParentFrame', 'wxMemoryDC', 'wxMenu',
-            'wxMenuBar', 'wxMenuEvent', 'wxMenuItem', 'wxMessageDialog',
-            'wxMiniFrame', 'wxMirrorDC', 'wxMouseCaptureChangedEvent',
-            'wxMouseEvent', 'wxMoveEvent', 'wxMultiChoiceDialog',
-            'wxNavigationKeyEvent', 'wxNcPaintEvent', 'wxNotebook',
-            'wxNotebookEvent', 'wxNotifyEvent', 'wxPageSetupDialog',
-            'wxPageSetupDialogData', 'wxPaintDC', 'wxPaintEvent', 'wxPalette',
-            'wxPaletteChangedEvent', 'wxPanel', 'wxPasswordEntryDialog',
-            'wxPen', 'wxPickerBase', 'wxPostScriptDC', 'wxPreviewCanvas',
-            'wxPreviewControlBar', 'wxPreviewFrame', 'wxPrintData',
-            'wxPrintDialog', 'wxPrintDialogData', 'wxPrinter', 'wxPrintout',
-            'wxPrintPreview', 'wxProgressDialog', 'wxQueryNewPaletteEvent',
-            'wxRadioBox', 'wxRadioButton', 'wxRegion', 'wxSashEvent',
-            'wxSashLayoutWindow', 'wxSashWindow', 'wxScreenDC', 'wxScrollBar',
-            'wxScrolledWindow', 'wxScrollEvent', 'wxScrollWinEvent',
-            'wxSetCursorEvent', 'wxShowEvent', 'wxSingleChoiceDialog',
-            'wxSizeEvent', 'wxSizer', 'wxSizerFlags', 'wxSizerItem', 'wxSlider',
-            'wxSpinButton', 'wxSpinCtrl', 'wxSpinEvent', 'wxSplashScreen',
-            'wxSplitterEvent', 'wxSplitterWindow', 'wxStaticBitmap',
-            'wxStaticBox', 'wxStaticBoxSizer', 'wxStaticLine', 'wxStaticText',
-            'wxStatusBar', 'wxStdDialogButtonSizer', 'wxStyledTextCtrl',
-            'wxStyledTextEvent', 'wxSysColourChangedEvent', 'wxTextAttr',
-            'wxTextCtrl', 'wxTextDataObject', 'wxTextEntryDialog',
-            'wxToggleButton', 'wxToolBar', 'wxToolTip', 'wxTopLevelWindow',
-            'wxTreeCtrl', 'wxTreeEvent', 'wxUpdateUIEvent', 'wxWindow',
-            'wxWindowCreateEvent', 'wxWindowDC', 'wxWindowDestroyEvent',
-            'wxXmlResource', 'xmerl', 'xmerl_eventp', 'xmerl_scan',
-            'xmerl_xpath', 'xmerl_xs', 'xmerl_xsd', 'xref', 'yecc', 'zip',
-            'zlib', 'zlib_stub'
+            'wxImageList', 'wxJoystickEvent', 'wxKeyEvent',
+            'wxLayoutAlgorithm', 'wxListBox', 'wxListCtrl', 'wxListEvent',
+            'wxListItem', 'wxListView', 'wxMask', 'wxMaximizeEvent',
+            'wxMDIChildFrame', 'wxMDIClientWindow', 'wxMDIParentFrame',
+            'wxMemoryDC', 'wxMenu', 'wxMenuBar', 'wxMenuEvent', 'wxMenuItem',
+            'wxMessageDialog', 'wxMiniFrame', 'wxMirrorDC',
+            'wxMouseCaptureChangedEvent', 'wxMouseEvent', 'wxMoveEvent',
+            'wxMultiChoiceDialog', 'wxNavigationKeyEvent', 'wxNcPaintEvent',
+            'wxNotebook', 'wxNotebookEvent', 'wxNotifyEvent',
+            'wxPageSetupDialog', 'wxPageSetupDialogData', 'wxPaintDC',
+            'wxPaintEvent', 'wxPalette', 'wxPaletteChangedEvent', 'wxPanel',
+            'wxPasswordEntryDialog', 'wxPen', 'wxPickerBase', 'wxPostScriptDC',
+            'wxPreviewCanvas', 'wxPreviewControlBar', 'wxPreviewFrame',
+            'wxPrintData', 'wxPrintDialog', 'wxPrintDialogData', 'wxPrinter',
+            'wxPrintout', 'wxPrintPreview', 'wxProgressDialog',
+            'wxQueryNewPaletteEvent', 'wxRadioBox', 'wxRadioButton',
+            'wxRegion', 'wxSashEvent', 'wxSashLayoutWindow', 'wxSashWindow',
+            'wxScreenDC', 'wxScrollBar', 'wxScrolledWindow', 'wxScrollEvent',
+            'wxScrollWinEvent', 'wxSetCursorEvent', 'wxShowEvent',
+            'wxSingleChoiceDialog', 'wxSizeEvent', 'wxSizer', 'wxSizerFlags',
+            'wxSizerItem', 'wxSlider', 'wxSpinButton', 'wxSpinCtrl',
+            'wxSpinEvent', 'wxSplashScreen', 'wxSplitterEvent',
+            'wxSplitterWindow', 'wxStaticBitmap', 'wxStaticBox',
+            'wxStaticBoxSizer', 'wxStaticLine', 'wxStaticText', 'wxStatusBar',
+            'wxStdDialogButtonSizer', 'wxStyledTextCtrl', 'wxStyledTextEvent',
+            'wxSysColourChangedEvent', 'wxTextAttr', 'wxTextCtrl',
+            'wxTextDataObject', 'wxTextEntryDialog', 'wxToggleButton',
+            'wxToolBar', 'wxToolTip', 'wxTopLevelWindow', 'wxTreeCtrl',
+            'wxTreeEvent', 'wxUpdateUIEvent', 'wxWindow', 'wxWindowCreateEvent',
+            'wxWindowDC', 'wxWindowDestroyEvent', 'wxXmlResource', 'xmerl',
+            'xmerl_eventp', 'xmerl_scan', 'xmerl_xpath', 'xmerl_xs',
+            'xmerl_xsd', 'xref', 'yecc', 'zip', 'zlib', 'zlib_stub'
             ),
         //Â Binary modifiers
         6 => array(
-            'big', 'binary', 'flaot', 'integer', 'little', 'signed', 'unit', 'unsigned'
+            'big', 'binary', 'float', 'integer', 'little', 'signed', 'unit', 'unsigned'
             )
         ),
     'SYMBOLS' => array(
-        '=', '!', '|', '->', ';', ',', ':', '.'
+        0 => array('(', ')', '[', ']', '{', '}'),
+        1 => array('->', ',', ';', '.'),
+        2 => array('<<', '>>'),
+        3 => array('=', '||', '-', '+', '*', '/', '++', '--', '!', '<', '>', '>=',
+                    '=<', '==', '/=', '=:=', '=/=')
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -284,9 +293,9 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #b1b100;',
-            2 => 'color: #000066;',
-            3 => 'color: #b1b100;',
+            1 => 'color: #186895;',
+            2 => 'color: #014ea4;',
+            3 => 'color: #fa6fff;',
             4 => 'color: #fa6fff;',
             5 => 'color: #ff4e18;',
             6 => 'color: #9d4f37;'
@@ -300,34 +309,34 @@ $language_data = array (
             'HARD' => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #009900;'
+            0 => 'color: #109ab8;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;',
-            'HARD' => 'color: #ff0000;'
+            0 => 'color: #ff7800;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
+            0 => 'color: #ff9600;'
             ),
         'METHODS' => array(
             1 => 'color: #006600;',
             2 => 'color: #006600;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #339933;'
+            0 => 'color: #004866;',
+            1 => 'color: #6bb810;',
+            2 => 'color: #ee3800;',
+            3 => 'color: #014ea4;'
             ),
         'REGEXPS' => array(
             0 => 'color: #6941fd;',
             1 => 'color: #d400ed;',
             2 => 'color: #5400b3;',
-            4 => 'color: #ff3c00;',
-            5 => 'color: #009999;',
-            6 => 'color: #ff4e18;',
-            7 => 'color: #6941fd;',
-            8 => 'color: #00b2de;',
-            9 => 'color: #ff9600;',
-            10 => 'color: #d400ed;',
-            11 => 'color: #ff9600;',
+            3 => 'color: #ff3c00;',
+            4 => 'color: #6941fd;',
+            5 => 'color: #45b3e6;',
+            6 => 'color: #ff9600;',
+            7 => 'color: #d400ed;',
+            8 => 'color: #ff9600;'
             ),
         'SCRIPT' => array(
             )
@@ -335,9 +344,9 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => 'http://www.erlang.org/doc/man/{FNAMEL}.html',
-        4 => 'http://www.erlang.org/doc/man/{FNAMEL}.html',
-        5 => 'http://www.erlang.org/doc/man/{FNAMEL}.html',
+        3 => '',
+        4 => '',
+        5 => 'http://erlang.org/doc/man/{FNAME}.html',
         6 => ''
         ),
     'OOLANG' => true,
@@ -346,9 +355,9 @@ $language_data = array (
         2 => ':'
         ),
     'REGEXPS' => array(
-        //Â Macro definitions
+        // Macro definitions
         0 => array(
-            GESHI_SEARCH => '(-define\()([a-zA-Z0-9_]+)(\(|,)',
+            GESHI_SEARCH => '(-define\s*\()([a-zA-Z0-9_]+)(\(|,)',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
@@ -356,7 +365,7 @@ $language_data = array (
             ),
         // Record definitions
         1 => array(
-            GESHI_SEARCH => '(-record\()([a-zA-Z0-9_]+)(,)',
+            GESHI_SEARCH => '(-record\s*\()([a-zA-Z0-9_]+)(,)',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
@@ -364,32 +373,22 @@ $language_data = array (
             ),
         // Precompiler directives
         2 => array(
-            GESHI_SEARCH => '(-)([a-z]+)(\()',
+            GESHI_SEARCH => '(-)([a-z][a-zA-Z0-9_]*)(\()',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => '\3'
             ),
         // Functions
-        4 => array(
-            GESHI_SEARCH => '([a-z][a-zA-Z0-9_]*|\'[a-zA-Z0-9_]*\')(\()',
-            GESHI_REPLACE => '\1',
-            GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '',
-            GESHI_AFTER => '\2'
-            ),
-        // File Descriptor
-        5 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
-        // Modules - With hack to avoid overwriting http: in links...
-        6 => array(
-            GESHI_SEARCH => '([a-z][a-zA-Z0-9_]*)(?<![^a-zA-Z0-9_]http)(:)',
+        3 => array(
+            GESHI_SEARCH => '([a-z][a-zA-Z0-9_]*|\'[a-zA-Z0-9_]*\')\s*(\()',
             GESHI_REPLACE => '\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\2'
             ),
         // Macros
-        7 => array(
+        4 => array(
             GESHI_SEARCH => '(\?)([a-zA-Z0-9_]+)',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
@@ -397,17 +396,17 @@ $language_data = array (
             GESHI_AFTER => ''
             ),
         // Variables - With hack to avoid interfering wish GeSHi internals
-        8 => array(
-            GESHI_SEARCH => '([\(\[\{,<+*-\/=\s]|&lt;)(?!(?:PIPE|SEMI|DOT)[^a-zA-Z0-9_])([A-Z_][a-zA-Z0-9_]*)\b',
+        5 => array(
+            GESHI_SEARCH => '([([{,<+*-\/=\s!]|&lt;)(?!(?:PIPE|SEMI|DOT|NUM|REG3XP\d*)[^a-zA-Z0-9_])([A-Z_][a-zA-Z0-9_]*)',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1',
             GESHI_AFTER => ''
             ),
-        // ASCIIÂ codes
-        9 => '(\$[a-zA-Z0-9_])',
+        // ASCII codes
+        6 => '(\$[a-zA-Z0-9_])',
         // Records
-        10 => array(
+        7 => array(
             GESHI_SEARCH => '(#)([a-z][a-zA-Z0-9_]*)(\.|\{)',
             GESHI_REPLACE => '\2',
             GESHI_MODIFIERS => '',
@@ -415,7 +414,7 @@ $language_data = array (
             GESHI_AFTER => '\3'
             ),
         // Numbers with a different radix
-        11 => '([0-9]{1,2}#[a-zA-Z0-9]*)'
+        8 => '(?<=>)(#[a-zA-Z0-9]*)'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
@@ -423,15 +422,20 @@ $language_data = array (
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
-            4 => array(),
+            3 => array(
+                'DISALLOWED_BEFORE' => '',
+                'DISALLOWED_AFTER' => '(?=\s*\()'
+            ),
             5 => array(
-                'DISALLOWED_AFTER' => '(?=:)'
-                ),
+                'DISALLOWED_BEFORE' => '(?<=\'|)',
+                'DISALLOWED_AFTER' => '(?=(\'|):)'
+            ),
             6 => array(
-                'DISALLOWED_BEFORE' => "(?<=\/|-)"
-                )
+                'DISALLOWED_BEFORE' => '(?<=\/|-)',
+                'DISALLOWED_AFTER' => ''
             )
         )
+    ),
 );
 
 ?>

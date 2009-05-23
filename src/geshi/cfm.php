@@ -4,7 +4,7 @@
  * -------
  * Author: Diego
  * Copyright: (c) 2006 Diego
- * Release Version: 1.0.8.3
+ * Release Version: 1.0.8.4
  * Date Started: 2006/02/25
  *
  * ColdFusion language file for GeSHi.
@@ -237,7 +237,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => 'http://december.com/html/%34/element/{FNAMEL}.html',
+        2 => 'http://december.com/html/4/element/{FNAMEL}.html',
         3 => '',
         4 => '',
         5 => '',
