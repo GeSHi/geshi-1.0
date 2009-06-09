@@ -68,7 +68,7 @@ $language_data = array (
             'Repeat', 'Requires', 'Resourcestring', 'Set', 'Shl', 'Shr', 'Then',
             'ThreadVar', 'To', 'Try', 'Type', 'Unit', 'Until', 'Uses', 'Var',
             'Virtual', 'While', 'With', 'Xor', 'assembler', 'far',
-            'near', 'pascal', 'register', 'cdecl', 'safecall', 'stdcall', 'varargs'
+            'near', 'pascal', 'cdecl', 'safecall', 'stdcall', 'varargs'
             ),
         2 => array(
             'nil', 'false', 'self', 'true', 'var', 'type', 'const'
