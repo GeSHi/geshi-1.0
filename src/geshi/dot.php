@@ -63,14 +63,14 @@ $language_data = array (
             'node', 'graph', 'digraph', 'strict', 'edge', 'subgraph'
             ),
         3 => array(
-            'Mcircle', 'Mdiamond', 'Mrecord', 'Msquare', 'TRUE', 'auto', 'back',
-            'bold', 'both', 'box', 'circle', 'compress', 'dashed', 'diamond', 'dot',
-            'dotted', 'doublecircle', 'doubleoctagon', 'egg', 'ellipse', 'epsf', 'false',
-            'fill', 'filled', 'forward', 'global', 'hexagon', 'house', 'inv', 'invdot',
-            'invhouse', 'invis', 'invodot', 'invtrapezium', 'invtriangle', 'local', 'max',
-            'min', 'none', 'normal', 'octagon', 'odot', 'out', 'parallelogram', 'plaintext',
-            'polygon', 'record', 'same', 'solid', 'trapezium', 'triangle', 'tripleoctagon',
-            'true'
+            'Mcircle', 'Mdiamond', 'Mrecord', 'Msquare', 'auto', 'back', 'bold',
+            'both', 'box', 'circle', 'compress', 'dashed', 'diamond', 'dot',
+            'dotted', 'doublecircle', 'doubleoctagon', 'egg', 'ellipse', 'epsf',
+            'false', 'fill', 'filled', 'forward', 'global', 'hexagon', 'house',
+            'inv', 'invdot', 'invhouse', 'invis', 'invodot', 'invtrapezium',
+            'invtriangle', 'local', 'max', 'min', 'none', 'normal', 'octagon',
+            'odot', 'out', 'parallelogram', 'plaintext', 'polygon', 'record',
+            'same', 'solid', 'trapezium', 'triangle', 'tripleoctagon', 'true'
             ),
         4 => array(
             'aliceblue', 'antiquewhite', 'aquamarine', 'azure', 'beige', 'bisque', 'black',
