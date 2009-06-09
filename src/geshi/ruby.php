@@ -50,7 +50,7 @@ $language_data = array (
                 'ensure', 'for', 'if', 'in', 'module', 'while',
                 'next', 'not', 'or', 'redo', 'rescue', 'yield',
                 'retry', 'super', 'then', 'undef', 'unless',
-                'until', 'when', 'BEGIN', 'END', 'include'
+                'until', 'when', 'include'
             ),
         2 => array(
                 '__FILE__', '__LINE__', 'false', 'nil', 'self', 'true',
