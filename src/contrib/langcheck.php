@@ -468,7 +468,7 @@ if(!$error_abort) {
                         report_error(TYPE_NOTICE, "Language file contains an keyword ('$kw') at \$language_data['KEYWORDS'][$key][$id] which seems to be better suited for the symbols section!");
                     }
                 }
-                if(!$language_data['CASE_SENSITIVE'][$key]) {
+                if(isset($language_data['CASE_SENSITIVE'][$key]) && !$language_data['CASE_SENSITIVE'][$key]) {
                     array_walk($keywords, 'dupfind_strtolower');
                 }
                 if(count($keywords) != count(array_unique($keywords))) {
