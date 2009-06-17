@@ -985,7 +985,7 @@ $language_data = array (
     'URLS' => array(
         1 => 'http://www.google.de/search?q=site%3Adocs.codehaus.org/%20{FNAMEL}',
         2 => 'http://www.google.de/search?q=site%3Adocs.codehaus.org/%20{FNAMEL}',
-        3 => 'http://www.google.de/search?as_q={FNAME}&amp;num=100&amp;hl=en&amp;as_occt=url&amp;as_sitesearch=java.sun.com%2Fj2se%2F1.5.0%2Fdocs%2Fapi%2F',
+        3 => 'http://www.google.de/search?as_q={FNAME}&amp;num=100&amp;hl=en&amp;as_occt=url&amp;as_sitesearch=java.sun.com%2Fj2se%2F1%2E5%2E0%2Fdocs%2Fapi%2F',
         4 => 'http://www.google.de/search?q=site%3Adocs.codehaus.org/%20{FNAME}',
         5 => 'http://www.google.de/search?q=site%3Adocs.codehaus.org/%20{FNAME}',
         6 => 'http://www.google.de/search?q=site%3Adocs.codehaus.org/%20{FNAME}',
