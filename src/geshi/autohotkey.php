@@ -49,52 +49,10 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'while','Pixel','Mouse','Screen','Relative','RGBLTrim',
-            'RTrim','JoinLow','BelowNormal','Normal','AboveNormal',
-            'High','Realtimeahk_id','ahk_pid','ahk_class','ahk_groupBetween',
-            'Contains','In','Is','Integer','Float',
-            'IntegerFast','FloatFast','Digit','Xdigit',
-            'Alpha','Upper','Lower','Alnum','Time',
-            'DateNot','Or','AndAlwaysOnTop','Topmost','Top',
-            'Bottom','Transparent','TransColor','Redraw','Region',
-            'ID','IDLast','ProcessName','MinMax','ControlList',
-            'Count','List','Capacity','StatusCD','Eject',
-            'SetLabel','Serial','Type','Statusstatic','global',
-            'local','ByRefSeconds','Minutes','Hours','DaysRead',
-            'ParseLogoff','Error','SingleTray','Add',
-            'Rename','Check','UnCheck','ToggleCheck','Enable',
-            'Disable','ToggleEnable','Default','NoDefault','Standard',
-            'NoIcon','Tip','Show','MainWindow',
-            'NoMainWindow','UseErrorLevelText','Picture','Pic','GroupBox',
-            'Button','Checkbox','Radio','DropDownList','DDL',
-            'ComboBox','ListBox','ListView','DateTime','MonthCal',
-            'UpDownIconSmall','Tile','Report','SortDesc','NoSort',
-            'NoSortHdr','Grid','Hdr','AutoSize','Rangexm',
-            'ym','ys','xs','xp','ypFont',
-            'Resize','Owner','Submit','NoHide','Minimize',
-            'Maximize','Restore','NoActivate','NA',
-            'Destroy','CenterMargin','MaxSize','MinSize','OwnDialogs',
-            'GuiEscape','GuiClose','GuiSize','GuiContextMenu','GuiDropFilesTabStop',
-            'AltSubmit','Wrap','HScroll','VScroll',
-            'First','ImageList','Lines','WantCtrlA','WantF2',
-            'Vis','VisFirst','Number','Uppercase','Lowercase',
-            'Limit','Password','Multi','WantReturn','Group',
-            'Background','bold','italic','strike','underline',
-            'norm','BackgroundTrans','Theme','Caption','Delimiter',
-            'MinimizeBox','MaximizeBox','SysMenu','ToolWindow','Flash',
-            'Style','ExStyle','Check3','Checked','CheckedGray',
-            'Center','NoTab','Section','Move','Focus',
-            'Hide','Choose','ChooseString','Text','Pos',
-            'Enabled','Disabled','Visible','LastFound','LastFoundExistAltTab',
-            'ShiftAltTab','AltTabMenu','AltTabAndMenu','AltTabMenuDismissNoTimers','Interrupt',
-            'Priority','WaitClose','Wait','Exist','Close',
-            'BitShiftLeft','BitShiftRightYes','No','Ok','Cancel',
-            'Abort','Retry','Ignore','TryAgainOn','Off',
-            'AllHKEY_LOCAL_MACHINE','HKEY_USERS','HKEY_CURRENT_USER','HKEY_CLASSES_ROOT','HKEY_CURRENT_CONFIG',
-            'HKLM','HKU','HKCU','HKCR','HKCCREG_SZ',
-            'REG_EXPAND_SZ','REG_MULTI_SZ','REG_DWORD','REG_BINARY'
+            'while','if','and','or','else','return'
             ),
         2 => array(
+            // built in variables
             'A_AhkPath','A_AhkVersion','A_AppData','A_AppDataCommon',
             'A_AutoTrim','A_BatchLines','A_CaretX','A_CaretY',
             'A_ComputerName','A_ControlDelay','A_Cursor','A_DD',
@@ -137,8 +95,8 @@ $language_data = array (
             'ControlGetFocus','ControlGetPos','ControlGetText',
             'ControlMove','ControlSend','ControlSendRaw',
             'ControlSetText','CoordMode','Critical',
-            'DetectHiddenText','DetectHiddenWindows','Drive',
-            'DriveGet','DriveSpaceFree','Edit',
+            'DetectHiddenText','DetectHiddenWindows','DllCall','Drive',
+            'DriveGet','DriveSpaceFree',
             'Else','EnvAdd','EnvDiv',
             'EnvGet','EnvMult','EnvSet',
             'EnvSub','EnvUpdate','Exit',
@@ -165,9 +123,10 @@ $language_data = array (
             'ListVars','Loop',
             'Menu','MouseClick','MouseClickDrag',
             'MouseGetPos','MouseMove','MsgBox',
-            'OnExit','OutputDebug',
+            'OnMessage','OnExit','OutputDebug',
             'PixelGetColor','PixelSearch','PostMessage',
             'Process','Progress','Random',
+            'RegExMatch','RegExReplace','RegisterCallback',
             'RegDelete','RegRead','RegWrite',
             'Reload','Repeat','Return',
             'Run','RunAs','RunWait',
@@ -190,6 +149,7 @@ $language_data = array (
             'StringUpper','Suspend','SysGet',
             'Thread','ToolTip','Transform',
             'TrayTip','URLDownloadToFile','While',
+            'VarSetCapacity',
             'WinActivate','WinActivateBottom','WinClose',
             'WinGet','WinGetActiveStats','WinGetActiveTitle',
             'WinGetClass','WinGetPos','WinGetText',
@@ -203,22 +163,23 @@ $language_data = array (
         4 => array(
             'Abs','ACos','Asc','ASin',
             'ATan','Ceil','Chr','Cos',
-            'DllCall','Exp','FileExist','Floor',
+            'Exp','FileExist','Floor',
             'GetKeyState','IL_Add','IL_Create','IL_Destroy',
             'InStr','IsFunc','IsLabel','Ln',
             'Log','LV_Add','LV_Delete','LV_DeleteCol',
             'LV_GetCount','LV_GetNext','LV_GetText','LV_Insert',
             'LV_InsertCol','LV_Modify','LV_ModifyCol','LV_SetImageList',
-            'Mod','NumGet','NumPut','OnMessage',
-            'RegExMatch','RegExReplace','RegisterCallback','Round',
+            'Mod','NumGet','NumPut',
+            'Round',
             'SB_SetIcon','SB_SetParts','SB_SetText','Sin',
             'Sqrt','StrLen','SubStr','Tan',
             'TV_Add','TV_Delete','TV_GetChild','TV_GetCount',
             'TV_GetNext','TV_Get','TV_GetParent','TV_GetPrev',
-            'TV_GetSelection','TV_GetText','TV_Modify','VarSetCapacity',
+            'TV_GetSelection','TV_GetText','TV_Modify',
             'WinActive','WinExist'
             ),
         5 => array(
+            // #Directives
             'AllowSameLineComments','ClipboardTimeout','CommentFlag',
             'ErrorStdOut','EscapeChar','HotkeyInterval',
             'HotkeyModifierTimeout','Hotstring','IfWinActive',
@@ -289,6 +250,22 @@ $language_data = array (
             'Media_Prev','Media_Stop','Media_Play_Pause',
             'Launch_Mail','Launch_Media','Launch_App1',
             'Launch_App2'
+            ),
+        7 => array(
+            // Gui commands
+            'Add',
+            'Show', 'Submit', 'Cancel', 'Destroy',
+            'Font', 'Color', 'Margin', 'Flash', 'Default',
+            'GuiEscape','GuiClose','GuiSize','GuiContextMenu','GuiDropFilesTabStop',
+            ),
+        8 => array(
+            // Gui Controls
+            'Button',
+            'Checkbox','Radio','DropDownList','DDL',
+            'ComboBox','ListBox','ListView',
+            'Text', 'Edit', 'UpDown', 'Picture',
+            'TreeView','DateTime', 'MonthCal',
+            'Slider'
             )
         ),
     'SYMBOLS' => array(
@@ -305,16 +282,20 @@ $language_data = array (
         3 => false,
         4 => false,
         5 => false,
-        6 => false
+        6 => false,
+        7 => false,
+        8 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #0000FF; font-weight: italic;',
-            2 => 'color: #600000; font-weight: italic;',
-            3 => 'color: #000080; font-style: italic; font-weight: italic;',
-            4 => 'color: #0080FF; font-style: italic; font-weight: italic;',
-            5 => 'color: #F000FF; font-style: italic;',
-            6 => 'color: #A00FF0; font-style: italic;'
+            1 => 'color: #AAAAFF; font-weight: bold;',       // reserved #blue
+            2 => 'color: #88FF88;',                         // BIV yellow
+            3 => 'color: #FF00FF; font-style: italic;',       // commands purple
+            4 => 'color: #888844; font-weight: bold;',       // functions #0080FF
+            5 => 'color: #000000; font-style: italic;',    // directives #black
+            6 => 'color: #FF0000; font-style: italic;',      // hotkeys #red
+            7 => 'color: #000000; font-style: italic;',    // gui commands #black
+            8 => 'color: #000000; font-style: italic;'      // gui controls
             ),
         'COMMENTS' => array(
             'MULTI' => 'font-style: italic; color: #669900;',
@@ -324,7 +305,7 @@ $language_data = array (
             0 => ''
             ),
         'BRACKETS' => array(
-            0 => 'color: #FF0000; font-weight: italic;'
+            0 => 'color: #00FF00; font-weight: bold;'
             ),
         'STRINGS' => array(
             0 => 'font-weight: bold; color: #008080;'
@@ -336,12 +317,13 @@ $language_data = array (
             1 => 'color: #0000FF; font-style: italic; font-weight: italic;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #FF0000; font-weight: italic;'
+            0 => 'color: #000000; font-weight: italic;'
             ),
         'REGEXPS' => array(
             0 => 'font-weight: italic; color: #A00A0;',
-            1 => 'color: #A00FF0; font-style: italic;',
-            2 => 'color: #A00FF0; font-style: italic;'
+            1 => 'color: #CC0000; font-style: italic;',
+            2 => 'color: #DD0000; font-style: italic;',
+            3 => 'color: #88FF88;'
             ),
         'SCRIPT' => array(
             )
@@ -354,17 +336,21 @@ $language_data = array (
         //Variables
         0 => '%[a-zA-Z_][a-zA-Z0-9_]*%',
         //hotstrings
-        1 => '::[a-zA-Z_][a-zA-Z0-9_]*::',
+        1 => '::[\w\d]+::',
         //labels
-        2 => '^[a-zA-Z_][^http]*[a-zA-Z0-9_]*:'  // not working
+        2 => '\w[\w\d]+:\s',
+        //Built-in Variables
+        3 => '\bA_\w+\b(?![^<]*>)'
         ),
     'URLS' => array(
         1 => '',
-        2 => '',
+        2 => 'http://www.autohotkey.com/docs/Variables.htm#{FNAME}',
         3 => 'http://www.autohotkey.com/docs/commands/{FNAME}.htm',
-        4 => '',
-        5 => '',
-        6 => ''
+        4 => 'http://www.autohotkey.com/docs/Functions.htm#BuiltIn',
+        5 => 'http://www.autohotkey.com/docs/commands/_{FNAME}.htm',
+        6 => '',
+        7 => 'http://www.autohotkey.com/docs/commands/Gui.htm#{FNAME}',
+        8 => 'http://www.autohotkey.com/docs/commands/GuiControls.htm#{FNAME}'
         ),
     'STRICT_MODE_APPLIES' => GESHI_MAYBE,
     'SCRIPT_DELIMITERS' => array(
