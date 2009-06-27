@@ -129,7 +129,7 @@ $language_data = array (
         //Hex numbers
         0 => '0[0-9a-fA-F]{1,32}[hH]',
         //Binary numbers
-        1 => '\%[01]{1,64}|[01]{1,64}[bB]?',
+        1 => '\%[01]{1,64}|[01]{1,64}[bB]?(?![^<]*>)',
         //Labels
         2 => '^[_a-zA-Z][_a-zA-Z0-9]?\:'
         ),
