@@ -3978,7 +3978,7 @@ class GeSHi {
         if ($this->overall_id != '') {
             $attributes .= " id=\"{$this->overall_id}\"";
         }
-        if ($this->overall_style != '') {
+        if ($this->overall_style != ''&& !$this->use_classes) {
             $attributes .= ' style="' . $this->overall_style . '"';
         }
 
