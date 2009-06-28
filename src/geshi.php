@@ -4555,7 +4555,10 @@ class GeSHi {
         // make sure the last tokens get converted as well
         $new_entry = $this->_optimize_regexp_list_tokens_to_string($tokens);
         if (GESHI_MAX_PCRE_SUBPATTERNS && $num_subpatterns + substr_count($new_entry, '(?:') > GESHI_MAX_PCRE_SUBPATTERNS) {
-            $regexp_list[++$list_key] = $new_entry;
+            if ( !empty($regexp_list[$list_key]) ) {
+              ++$list_key;
+            }
+            $regexp_list[$list_key] = $new_entry;
         } else {
             if (!empty($regexp_list[$list_key])) {
                 $new_entry = '|' . $new_entry;
