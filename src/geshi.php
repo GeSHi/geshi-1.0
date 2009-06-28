@@ -2013,7 +2013,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!\|>)(?![^\"\|\>\<]+<)/i";
+                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?![^<]+?>)(?!\|>)(?![^\"\|\>\<]+<)/i";
             }
         }
 
@@ -3431,7 +3431,7 @@ class GeSHi {
         //FIX for symbol highlighting ...
         if ($this->lexic_permissions['SYMBOLS'] && !empty($this->language_data['SYMBOLS'])) {
             //Get all matches and throw away those witin a block that is already highlighted... (i.e. matched by a regexp)
-            $n_symbols = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>|(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+/", $stuff_to_parse, $pot_symbols, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
+            $n_symbols = preg_match_all("/<\|(?:<DOT>|[^>])+>(?:(?!\|>).*?)\|>|<\/a>|(?:" . $this->language_data['SYMBOL_SEARCH'] . ")+(?![^<]+?>)/", $stuff_to_parse, $pot_symbols, PREG_OFFSET_CAPTURE | PREG_SET_ORDER);
             $global_offset = 0;
             for ($s_id = 0; $s_id < $n_symbols; ++$s_id) {
                 $symbol_match = $pot_symbols[$s_id][0][0];
