@@ -51,7 +51,7 @@
 
 $language_data = array (
     'LANG_NAME' => 'SQL',
-    'COMMENT_SINGLE' => array(1 =>'--', 2 => '#'),
+    'COMMENT_SINGLE' => array(1 =>'--'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'CASE_KEYWORDS' => 1,
     'QUOTEMARKS' => array("'", '"', '`'),
@@ -97,7 +97,7 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
-            2 => 'color: #808080; font-style: italic;',
+            //2 => 'color: #808080; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
