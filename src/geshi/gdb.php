@@ -48,11 +48,11 @@ $language_data = array (
         0 => array(
             'Application',
             'signal',
-          ),
+            ),
         1 => array(
             'Segmentation fault',
             '[KCrash Handler]',
-          ),
+            ),
         ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC,
@@ -99,6 +99,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
+        0 => '',
+        1 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -106,62 +108,62 @@ $language_data = array (
     'REGEXPS' => array(
         //[Current Thread...], [KCrash Handler] etc.
         0 => array(
-          GESHI_SEARCH => '^\[.+\]',
-          GESHI_REPLACE => '\\0',
-          GESHI_MODIFIERS => 'm',
-          GESHI_BEFORE => '',
-          GESHI_AFTER => ''
-          ),
+            GESHI_SEARCH => '^\[.+\]',
+            GESHI_REPLACE => '\\0',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
         //stack number
         1 => array(
-          GESHI_SEARCH => '^#\d+',
-          GESHI_REPLACE => '\\0',
-          GESHI_MODIFIERS => 'm',
-          GESHI_BEFORE => '',
-          GESHI_AFTER => ''
-          ),
+            GESHI_SEARCH => '^#\d+',
+            GESHI_REPLACE => '\\0',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
         //Thread X (Thread...)
         2 => array(
-          GESHI_SEARCH => '^Thread \d.+$',
-          GESHI_REPLACE => '\\0',
-          GESHI_MODIFIERS => 'm',
-          GESHI_BEFORE => '',
-          GESHI_AFTER => ''
-          ),
+            GESHI_SEARCH => '^Thread \d.+$',
+            GESHI_REPLACE => '\\0',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
         //Files with linenumbers
         3 => array(
-          GESHI_SEARCH => '(at )(.+)(:\d+\s*)$',
-          GESHI_REPLACE => '\\2',
-          GESHI_MODIFIERS => 'm',
-          GESHI_BEFORE => '\\1',
-          GESHI_AFTER => '\\3'
-          ),
+            GESHI_SEARCH => '(at )(.+)(:\d+\s*)$',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
         //Libs without linenumbers
         4 => array(
-          GESHI_SEARCH => '(from )(.+)(\s*)$',
-          GESHI_REPLACE => '\\2',
-          GESHI_MODIFIERS => 'm',
-          GESHI_BEFORE => '\\1',
-          GESHI_AFTER => '\\3'
-          ),
+            GESHI_SEARCH => '(from )(.+)(\s*)$',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
         //Hex mem address
         5 => '0x[a-f0-9]+',
         //Line numbers
         6 => array(
-          GESHI_SEARCH => '(:)(\d+)(\s*)$',
-          GESHI_REPLACE => '\\2',
-          GESHI_MODIFIERS => 'm',
-          GESHI_BEFORE => '\\1',
-          GESHI_AFTER => '\\3'
-          ),
+            GESHI_SEARCH => '(:)(\d+)(\s*)$',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => 'm',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
         //Location
         7 => array(
-          GESHI_SEARCH => '( in )([^ \(\)]+)( \()',
-          GESHI_REPLACE => '\\2',
-          GESHI_MODIFIERS => '',
-          GESHI_BEFORE => '\\1',
-          GESHI_AFTER => '\\3'
-          ),
+            GESHI_SEARCH => '( in )([^ \(\)]+)( \()',
+            GESHI_REPLACE => '\\2',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '\\1',
+            GESHI_AFTER => '\\3'
+            ),
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
