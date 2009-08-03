@@ -14,9 +14,39 @@ set_time_limit(0);
 error_reporting(E_ALL);
 $time_start = explode(' ', microtime());
 
+function colorize($level, $string) {
+    static $colors, $end;
+    if ( !isset($colors) ) {
+      if ( PHP_SAPI != 'cli' ) {
+          $end = '</span>';
+          $colors = array(
+              TYPE_NOTICE => '<span style="color:#080;font-weight:bold;">',
+              TYPE_WARNING => '<span style="color:#CC0; font-weight: bold;">',
+              TYPE_ERROR => '<span style="color:#F00; font-weight: bold;">',
+              TYPE_OK => '<span style="color: #080; font-weight: bold;">'
+          );
+      } else {
+          $end = chr(27).'[0m';
+          $colors = array(
+              TYPE_NOTICE => chr(27).'[1m',
+              TYPE_WARNING => chr(27).'[1;33m',
+              TYPE_ERROR => chr(27).'[1;31m',
+              TYPE_OK => chr(27).'[1;32m'
+          );
+      }
+    }
+
+    if ( !isset($colors[$level]) ) {
+        trigger_error("no colors for level $level", E_USER_ERROR);
+    }
+
+    return $colors[$level].$string.$end;
+}
+
 define ('TYPE_NOTICE', 0);
 define ('TYPE_WARNING', 1);
 define ('TYPE_ERROR', 2);
+define ('TYPE_OK', 3);
 
 $error_abort = false;
 $error_cache = array();
@@ -24,26 +54,48 @@ function output_error_cache(){
     global $error_cache, $error_abort;
 
     if(count($error_cache)) {
-        echo "<span style=\"color: #F00; font-weight: bold;\">Failed</span><br />";
-        echo "<ol>\n";
+        echo colorize(TYPE_ERROR, "Failed");
+        if ( PHP_SAPI == 'cli' ) {
+            echo "\n\n";
+        } else {
+            echo "<br /><ol>\n";
+        }
         foreach($error_cache as $error_msg) {
-            echo "<li>";
+            if ( PHP_SAPI == 'cli' ) {
+              echo "\n";
+            } else {
+              echo "<li>";
+            }
             switch($error_msg['t']) {
                 case TYPE_NOTICE:
-                    echo "<span style=\"color: #080; font-weight: bold;\">NOTICE:</span>";
+                    $msg = 'NOTICE';
                     break;
                 case TYPE_WARNING:
-                    echo "<span style=\"color: #CC0; font-weight: bold;\">WARNING:</span>";
+                    $msg = 'WARNING';
                     break;
                 case TYPE_ERROR:
-                    echo "<span style=\"color: #F00; font-weight: bold;\">ERROR:</span>";
+                    $msg = 'ERROR';
                     break;
             }
-            echo " " . $error_msg['m'] . "</li>";
+            echo colorize($error_msg['t'], $msg);
+            if ( PHP_SAPI == 'cli' ) {
+                echo "\t" . $error_msg['m'];
+            } else {
+                echo " " . $error_msg['m'] . "</li>";
+            }
         }
-        echo "</ol>\n";
+        if ( PHP_SAPI == 'cli' ) {
+            echo "\n";
+        } else {
+            echo "</ol>\n";
+        }
     } else {
-        echo "<span style=\"color: #080; font-weight: bold;\">OK</span><br />";
+        echo colorize(TYPE_OK, "OK");
+        if ( PHP_SAPI == 'cli' ) {
+            echo "\n";
+        } else {
+            echo "\n<br />";
+        }
     }
     echo "\n";
 
@@ -63,7 +115,7 @@ function dupfind_strtolower(&$value){
     $value = strtolower($value);
 }
 
-?>
+if ( PHP_SAPI != 'cli' ) { ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -129,7 +181,23 @@ finished you should see messages of what could cause trouble with GeSHi or where
 your language files can be improved. Please be patient, as this might take some time.</p>
 
 <ol>
-<li>Checking where to find GeSHi installation ... <?php
+<li>Checking where to find GeSHi installation ...<?php
+} else { ?>
+<?php echo colorize(TYPE_NOTICE, "#### GeSHi Language File Validation Script ####") ?>
+
+
+To use this script, make sure that <?php echo colorize(TYPE_NOTICE, "geshi.php"); ?> is in the
+parent directory or in your include_path, and that the language files are in a
+subdirectory of GeSHi's directory called <?php echo colorize(TYPE_NOTICE, "geshi/"); ?>.
+
+Everything else will be done by this script automatically. After the script
+finished you should see messages of what could cause trouble with GeSHi or where
+your language files can be improved. Please be patient, as this might take some time.
+
+
+Checking where to find GeSHi installation ...<?php echo "\t";
+}
+
 // Rudimentary checking of where GeSHi is. In a default install it will be in ../, but
 // it could be in the current directory if the include_path is set. There's nowhere else
 // we can reasonably guess.
@@ -162,7 +230,11 @@ if(!$error_abort) {
 output_error_cache();
 
 if(!$error_abort) {
-    echo "</li>\n<li>Listing available language files ... ";
+    if ( PHP_SAPI == 'cli' ) {
+        echo "Listing available language files ...\t\t";
+    } else {
+        echo "</li>\n<li>Listing available language files ... ";
+    }
 
     if (!($dir = @opendir(GESHI_LANG_ROOT))) {
         report_error(TYPE_ERROR, 'Error requesting listing for available language files!');
@@ -191,17 +263,28 @@ if(!$error_abort) {
     output_error_cache();
 }
 
-if (isset($_REQUEST['show']) && in_array($_REQUEST['show'], $languages)) {
-    $languages = array($_REQUEST['show']);
+if ( PHP_SAPI == 'cli' ) {
+    if (isset($_SERVER['argv'][1]) && in_array($_SERVER['argv'][1], $languages)) {
+        $languages = array($_SERVER['argv'][1]);
+    }
+} else {
+    if (isset($_REQUEST['show']) && in_array($_REQUEST['show'], $languages)) {
+        $languages = array($_REQUEST['show']);
+    }
 }
 
 if(!$error_abort) {
     foreach ($languages as $lang) {
-        echo "</li>\n<li>Validating language file for '$lang' ... ";
+
+        if ( PHP_SAPI == 'cli' ) {
+            echo "Validating language file for '$lang' ...\t\t";
+        } else {
+            echo "</li>\n<li>Validating language file for '$lang' ... ";
+        }
 
         $langfile = GESHI_LANG_ROOT . $lang . '.php';
 
-        unset($language_data);
+        $language_data = array();
 
         if(!is_file($langfile)) {
             report_error(TYPE_ERROR, 'The path "' .$langfile. '" does not ressemble a regular file!');
@@ -658,16 +741,24 @@ if(!$error_abort) {
         }
     }
 }
-?></li>
-</ol>
 
-<p>Validation process completed in <?
 $time_end = explode(' ', microtime());
 $time_diff = $time_end[0] + $time_end[1] - $time_start[0] - $time_start[1];
 
-echo sprintf("%.2f", $time_diff);
-?> seconds.</p>
+if ( PHP_SAPI != 'cli' ) {
+?></li>
+</ol>
+
+<p>Validation process completed in <? printf("%.2f", $time_diff); ?> seconds.</p>
 
 <div id="footer">GeSHi &copy; 2004-2007 Nigel McNie, 2007-2008 Benny Baumann, released under the GNU GPL</div>
 </body>
 </html>
+
+<?php } else { ?>
+
+Validation process completed in <? printf("%.2f", $time_diff); ?> seconds.
+
+GeSHi &copy; 2004-2007 Nigel McNie, 2007-2008 Benny Baumann, released under the GNU GPL
+
+<?php } ?>
