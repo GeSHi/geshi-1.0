@@ -57,14 +57,16 @@ $language_data = array (
             'goto', 'return'
             ),
         2 => array(
-            'abs', 'and', 'mod', 'not', 'or', 'rem', 'xor'
+            'abs', 'and', 'at', 'mod', 'not', 'or', 'rem', 'xor'
             ),
         3 => array(
-            'abort', 'abstract', 'accept', 'access', 'aliased', 'all', 'array', 'at', 'body',
-            'constant', 'delay', 'delta', 'digits', 'entry', 'exit',
-            'function', 'generic', 'in', 'limited', 'new', 'null', 'of', 'others', 'out', 'package', 'pragma',
-            'private', 'procedure', 'protected', 'raise', 'range', 'record', 'renames', 'requeue', 'reverse',
-            'separate', 'subtype', 'tagged', 'task', 'terminate', 'type', 'use', 'when', 'with'
+            'abort', 'abstract', 'accept', 'access', 'aliased', 'all', 'array',
+            'body', 'constant', 'delay', 'delta', 'digits', 'entry', 'exit',
+            'function', 'generic', 'in', 'interface', 'limited', 'new', 'null',
+            'of', 'others', 'out', 'overriding', 'package', 'pragma', 'private',
+            'procedure', 'protected', 'raise', 'range', 'record', 'renames',
+            'requeue', 'reverse', 'separate', 'subtype', 'synchronized',
+            'tagged', 'task', 'terminate', 'type', 'use', 'when', 'with'
             )
         ),
     'SYMBOLS' => array(
