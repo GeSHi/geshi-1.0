@@ -151,7 +151,7 @@ $language_data = array (
         2 => array(
             '<script language="javascript" runat="server">' => '</script>'
             ),
-        3 => "/(?<start><%=?)(?:\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(?<end>%>|\Z)/sm"
+        3 => "/(?P<start><%=?)(?:\"[^\"]*?\"|\/\*(?!\*\/).*?\*\/|.)*?(?P<end>%>|\Z)/sm"
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
