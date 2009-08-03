@@ -16,6 +16,7 @@ Version 1.0.8.5
   -  Added language files
      * AutoHotkey (Naveen Garg)
      * Awk (George Pollard)
+     * jQuery (Rob Loach)
      * PureBasic (Gustavo Julio Fiorenza)
      * R / S+ (Ron Fredericks, Benilton Carvalho)
   -  Improvements to language files (BenBE)
