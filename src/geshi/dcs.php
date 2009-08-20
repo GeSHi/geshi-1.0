@@ -59,9 +59,6 @@ $language_data = array (
         ),
     'COMMENT_MULTI' => array(
         ),
-    'HARDQUOTE' => array(
-        ),
-    'HARDESCAPE' => '',
     'COMMENT_REGEXP' => array(
         // Highlight embedded C code in a separate color:
         2 => '/\bINSERT_C_CODE\b.*?\bEND_C_CODE\b/ims'
