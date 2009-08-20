@@ -21,6 +21,8 @@ Version 1.0.8.5
      * R / S+ (Ron Fredericks, Benilton Carvalho)
   -  Improvements to language files (BenBE)
      * Fixed case-insensitively duplicate keywords (BenBE)
+     * Fixed legitimate numbers sometimes missing from highlighting (BenBE)
+     * Fixed a problem with URLs allowing to break highlighting (BenBE)
 Version 1.0.8.4
   -  Added language files
      * BibTeX (Quinn Taylor)
