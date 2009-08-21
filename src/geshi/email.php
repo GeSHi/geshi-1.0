@@ -160,7 +160,7 @@ $language_data = array (
             ),
         //Field-Assignments
         5 => array(
-            GESHI_SEARCH => "(?<=\s)[A-Z0-9\-\.]+(?==(?:$|[^\s]))",
+            GESHI_SEARCH => "(?<=\s)[A-Z0-9\-\.]+(?==(?:$|\s$|[^\s=]))",
             GESHI_REPLACE => "\\0",
             GESHI_MODIFIERS => "mi",
             GESHI_BEFORE => "",
