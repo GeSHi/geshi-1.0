@@ -51,10 +51,11 @@ $language_data = array (
             'HTTP', 'SMTP', 'ASMTP', 'ESMTP'
             ),
         2 => array(
-            'Content-Type','Content-Transfer-Encoding','Content-Disposition',
-            'Delivered-To','Dkim-Signature','Domainkey-Signature','In-Reply-To',
-            'Message-Id','MIME-Version','Received','Received-SPF','References',
-            'Resend-From','Resend-To','Return-Path'
+            'Authentication-Results','Content-Description','Content-Type',
+            'Content-Disposition','Content-Transfer-Encoding','Delivered-To',
+            'Dkim-Signature','Domainkey-Signature','In-Reply-To','Message-Id',
+            'MIME-Version','OpenPGP','Received','Received-SPF','References',
+            'Resend-From','Resend-To','Return-Path','User-Agent'
             ),
         3 => array(
             'Date','From','Subject','To',
@@ -131,7 +132,7 @@ $language_data = array (
             ),
         //Email-Adresses or Mail-IDs
         2 => array(
-            GESHI_SEARCH => "\b[\w\.]+@\w+(?:(?:\.\w+)*\.\w{2,4})?",
+            GESHI_SEARCH => "\b[\w\.\-]+@\w+(?:(?:\.\w+)*\.\w{2,4})?",
             GESHI_REPLACE => "\\0",
             GESHI_MODIFIERS => "mi",
             GESHI_BEFORE => "",
@@ -159,7 +160,7 @@ $language_data = array (
             ),
         //Field-Assignments
         5 => array(
-            GESHI_SEARCH => "(?<=\s)[A-Z0-9\-]+(?==(?!\s|$))",
+            GESHI_SEARCH => "(?<=\s)[A-Z0-9\-\.]+(?==(?:$|[^\s]))",
             GESHI_REPLACE => "\\0",
             GESHI_MODIFIERS => "mi",
             GESHI_BEFORE => "",
