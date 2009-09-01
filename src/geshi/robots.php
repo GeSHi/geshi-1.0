@@ -36,13 +36,14 @@ $language_data = array (
     'LANG_NAME' => 'robots.txt',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
+    'COMMENT_REGEXP' => array(1 => "/^Comment:.*?/m"),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'Allow', 'Crawl-delay', 'Disallow', 'Request-rate', 'Sitemap',
-            'User-agent', 'Visit-time'
+            'Allow', 'Crawl-delay', 'Disallow', 'Request-rate', 'Robot-version',
+            'Sitemap', 'User-agent', 'Visit-time'
             )
         ),
     'SYMBOLS' => array(
