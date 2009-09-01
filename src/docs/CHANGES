@@ -25,6 +25,7 @@ Version 1.0.8.5
      * Fixed case-insensitively duplicate keywords (BenBE)
      * DCS language file contained HARDQUOTE section but no hardquotes (BenBE)
      * Some additional headers for Email\mbox highlighting (BenBE)
+     * Added some more Keywords for robots.txt highlighting (BenBE)
 Version 1.0.8.4
   -  Added language files
      * BibTeX (Quinn Taylor)

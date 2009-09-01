@@ -41,7 +41,8 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'User-agent', 'Disallow'
+            'Allow', 'Crawl-delay', 'Disallow', 'Request-rate', 'Sitemap',
+            'User-agent', 'Visit-time'
             )
         ),
     'SYMBOLS' => array(
