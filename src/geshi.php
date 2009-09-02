@@ -1084,13 +1084,14 @@ class GeSHi {
      * @param string  The style to make the escape characters
      * @param boolean Whether to merge the new styles with the old or just
      *                to overwrite them
+     * @param int     Tells the group of strings for which style should be set.
      * @since 1.0.0
      */
-    function set_strings_style($style, $preserve_defaults = false) {
+    function set_strings_style($style, $preserve_defaults = false, $group = 0) {
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['STRINGS'][0] = $style;
+            $this->language_data['STYLES']['STRINGS'][$group] = $style;
         } else {
-            $this->language_data['STYLES']['STRINGS'][0] .= $style;
+            $this->language_data['STYLES']['STRINGS'][$group] .= $style;
         }
     }
 
@@ -1132,13 +1133,14 @@ class GeSHi {
      * @param string  The style to make the numbers
      * @param boolean Whether to merge the new styles with the old or just
      *                to overwrite them
+     * @param int     Tells the group of numbers for which style should be set.
      * @since 1.0.0
      */
-    function set_numbers_style($style, $preserve_defaults = false) {
+    function set_numbers_style($style, $preserve_defaults = false, $group = 0) {
         if (!$preserve_defaults) {
-            $this->language_data['STYLES']['NUMBERS'][0] = $style;
+            $this->language_data['STYLES']['NUMBERS'][$group] = $style;
         } else {
-            $this->language_data['STYLES']['NUMBERS'][0] .= $style;
+            $this->language_data['STYLES']['NUMBERS'][$group] .= $style;
         }
     }
 
