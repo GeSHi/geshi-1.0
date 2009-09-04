@@ -23,6 +23,7 @@ Version 1.0.8.5
   -  Fixed legitimate numbers sometimes missing from highlighting (BenBE)
   -  Fixed a problem with URLs allowing to break highlighting (BenBE)
   -  Allowed for String and Number Styles to be set by the API (BenBE)
+  -  Produce valid CSS when languages start with underscore (BenBE)
   -  Improvements to language files (BenBE)
      * Fixed case-insensitively duplicate keywords (BenBE)
      * DCS language file contained HARDQUOTE section but no hardquotes (BenBE)

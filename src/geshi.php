@@ -2036,6 +2036,10 @@ class GeSHi {
         // Start the timer
         $start_time = microtime();
 
+        // Replace all newlines to a common form.
+        $code = str_replace("\r\n", "\n", $this->source);
+        $code = str_replace("\r", "\n", $code);
+
         // Firstly, if there is an error, we won't highlight
         if ($this->error) {
             //Escape the source for output
@@ -2055,13 +2059,6 @@ class GeSHi {
         if (!$this->parse_cache_built) {
             $this->build_parse_cache();
         }
-
-        // Replace all newlines to a common form.
-        $code = str_replace("\r\n", "\n", $this->source);
-        $code = str_replace("\r", "\n", $code);
-
-        // Add spaces for regular expression matching and line numbers
-//        $code = "\n" . $code . "\n";
 
         // Initialise various stuff
         $length           = strlen($code);
@@ -3972,16 +3969,16 @@ class GeSHi {
          * @todo   Document behaviour change - class is outputted regardless of whether
          *         we're using classes or not. Same with style
          */
-        $attributes = ' class="' . $this->language;
+        $attributes = ' class="' . $this->_genCSSName($this->language);
         if ($this->overall_class != '') {
-            $attributes .= " ".$this->overall_class;
+            $attributes .= " ".$this->_genCSSName($this->overall_class);
         }
         $attributes .= '"';
 
         if ($this->overall_id != '') {
             $attributes .= " id=\"{$this->overall_id}\"";
         }
-        if ($this->overall_style != ''&& !$this->use_classes) {
+        if ($this->overall_style != '' && !$this->use_classes) {
             $attributes .= ' style="' . $this->overall_style . '"';
         }
 
@@ -4218,6 +4215,10 @@ class GeSHi {
         return strtr($string, $aTransSpecchar);
     }
 
+    function _genCSSName($name){
+        return (is_numeric($name[0]) ? '_' : '') . $name;
+    }
+
     /**
      * Returns a stylesheet for the highlighted code. If $economy mode
      * is true, we only return the stylesheet declarations that matter for
@@ -4245,11 +4246,11 @@ class GeSHi {
         // that should be used, the same for a class. Otherwise, a selector
         // of '' means that these styles will be applied anywhere
         if ($this->overall_id) {
-            $selector = '#' . $this->overall_id;
+            $selector = '#' . $this->_genCSSName($this->overall_id);
         } else {
-            $selector = '.' . $this->language;
+            $selector = '.' . $this->_genCSSName($this->language);
             if ($this->overall_class) {
-                $selector .= '.' . $this->overall_class;
+                $selector .= '.' . $this->_genCSSName($this->overall_class);
             }
         }
         $selector .= ' ';
