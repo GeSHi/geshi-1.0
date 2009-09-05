@@ -47,10 +47,10 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             // Datatypes
-            'bigint', 'int', 'smallint', 'tinyint', 'bit', 'decimal', 'numeric', 'money',
-            'smallmoney', 'float', 'real', 'datetime', 'smalldatetime', 'char', 'varchar',
-            'text', 'nchar', 'nvarchar', 'ntext', 'binary', 'varbinary', 'image', 'cursor',
-            'sql_variant', 'table', 'timestamp', 'uniqueidentifier',
+            'bigint', 'tinyint', 'money',
+            'smallmoney', 'datetime', 'smalldatetime',
+            'text', 'nvarchar', 'ntext', 'varbinary', 'image',
+            'sql_variant', 'uniqueidentifier',
 
             // Keywords
             'ABSOLUTE', 'ACTION', 'ADD', 'ADMIN', 'AFTER', 'AGGREGATE', 'ALIAS', 'ALLOCATE', 'ALTER', 'ARE', 'ARRAY', 'AS',
