@@ -31,6 +31,7 @@ Version 1.0.8.5
      * DCS language file contained HARDQUOTE section but no hardquotes (BenBE)
      * Some additional headers for Email\mbox highlighting (BenBE)
      * Added some more Keywords for robots.txt highlighting (BenBE)
+     * Added Git commands for bash, ifup/ifdown (BenBE)
 Version 1.0.8.4
   -  Added language files
      * BibTeX (Quinn Taylor)
