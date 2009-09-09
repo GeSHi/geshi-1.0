@@ -55,7 +55,9 @@ $language_data = array (
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         //Single-Line Comments using REM command
-        2 => "/\bREM.*?$/i"
+        2 => "/\bREM.*?$/i",
+        //Line numbers
+        3 => "/^\s*\d+/im"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_UPPER,
     'QUOTEMARKS' => array('"'),
@@ -107,7 +109,8 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
-            2 => 'color: #808080;'
+            2 => 'color: #808080;',
+            3 => 'color: #8080C0;'
             ),
         'BRACKETS' => array(
             0 => 'color: #66cc66;'
@@ -129,6 +132,8 @@ $language_data = array (
         'SCRIPT' => array(
             ),
         'REGEXPS' => array(
+            1 => 'color: #cc66cc;',
+            2 => 'color: #339933;'
             )
         ),
     'URLS' => array(
@@ -139,6 +144,8 @@ $language_data = array (
     'OBJECT_SPLITTERS' => array(
         ),
     'REGEXPS' => array(
+        1 => '&amp;(?:H[0-9a-fA-F]+|O[0-7]+)(?!\w)',
+        2 => '#[0-9]+(?!\w)'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
