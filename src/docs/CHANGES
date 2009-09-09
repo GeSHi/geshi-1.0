@@ -32,6 +32,7 @@ Version 1.0.8.5
      * Some additional headers for Email\mbox highlighting (BenBE)
      * Added some more Keywords for robots.txt highlighting (BenBE)
      * Added Git commands for bash, ifup/ifdown (BenBE)
+     * Added support for C# and VB.net delegates (SF#2832253, BenBE)
 Version 1.0.8.4
   -  Added language files
      * BibTeX (Quinn Taylor)

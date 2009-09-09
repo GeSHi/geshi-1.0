@@ -64,7 +64,7 @@ $language_data = array (
             'override', 'params', 'partial', 'private', 'protected', 'public',
             'readonly', 'ref', 'return', 'sealed', 'stackalloc', 'static',
             'switch', 'this', 'throw', 'true', 'try', 'unsafe', 'using',
-            'virtual', 'while'
+            'virtual', 'while', 'yield'
             ),
         2 => array(
             '#elif', '#endif', '#endregion', '#else', '#error', '#define', '#if',
