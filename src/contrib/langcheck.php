@@ -1,11 +1,13 @@
 <?php
 /**
- * GeSHi example script
+ * GeSHi language file validation script
  *
- * Just point your browser at this script (with geshi.php in the parent directory,
- * and the language files in subdirectory "../geshi/")
+ * Just point your browser at this script (with geshi.php in the parent directory)
+ * and the language files in subdirectory "../geshi/" are being validated
  *
- * @author  Nigel McNie
+ * CLI mode is supported
+ *
+ * @author  Benny Baumann
  * @version $Id$
  */
 header('Content-Type: text/html; charset=utf-8');
