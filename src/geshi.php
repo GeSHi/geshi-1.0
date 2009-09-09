@@ -3087,7 +3087,7 @@ class GeSHi {
         $result = preg_replace('/^ /m', '&nbsp;', $result);
         $result = str_replace('  ', ' &nbsp;', $result);
 
-        if ($this->line_numbers == GESHI_NO_LINE_NUMBERS) {
+        if ($this->line_numbers == GESHI_NO_LINE_NUMBERS && $this->header_type != GESHI_HEADER_PRE_TABLE) {
             if ($this->line_ending === null) {
                 $result = nl2br($result);
             } else {
