@@ -95,7 +95,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', ',', '+', '-', '*', '/', '=', '<', '>'
+        '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
