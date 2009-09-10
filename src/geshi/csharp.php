@@ -4,7 +4,7 @@
  * ----------
  * Author: Alan Juden (alan@judenware.org)
  * Copyright: (c) 2004 Alan Juden, Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.8.4
+ * Release Version: 1.0.8.5
  * Date Started: 2004/06/04
  *
  * C# language file for GeSHi.
@@ -64,7 +64,7 @@ $language_data = array (
             'override', 'params', 'partial', 'private', 'protected', 'public',
             'readonly', 'ref', 'return', 'sealed', 'stackalloc', 'static',
             'switch', 'this', 'throw', 'true', 'try', 'unsafe', 'using',
-            'virtual', 'void', 'while'
+            'virtual', 'while', 'yield'
             ),
         2 => array(
             '#elif', '#endif', '#endregion', '#else', '#error', '#define', '#if',
@@ -76,7 +76,7 @@ $language_data = array (
         4 => array(
             'bool', 'byte', 'char', 'class', 'decimal', 'delegate', 'double',
             'enum', 'float', 'int', 'interface', 'long', 'object', 'sbyte',
-            'short', 'string', 'struct', 'uint', 'ulong', 'ushort'
+            'short', 'string', 'struct', 'uint', 'ulong', 'ushort', 'void'
             ),
         5 => array(
             'Microsoft.Win32',
@@ -169,7 +169,7 @@ $language_data = array (
         ),
     'SYMBOLS' => array(
         '+', '-', '*', '?', '=', '/', '%', '&', '>', '<', '^', '!', ':', ';',
-        '(', ')', '{', '}', '[', ']', '|'
+        '(', ')', '{', '}', '[', ']', '|', '.'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -181,10 +181,10 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #0600FF;',
+            1 => 'color: #0600FF; font-weight: bold;',
             2 => 'color: #FF8000; font-weight: bold;',
             3 => 'color: #008000;',
-            4 => 'color: #FF0000;',
+            4 => 'color: #6666cc; font-weight: bold;',
             5 => 'color: #000000;'
             ),
         'COMMENTS' => array(
@@ -198,7 +198,7 @@ $language_data = array (
             'HARD' => 'color: #008080; font-weight: bold;'
             ),
         'BRACKETS' => array(
-            0 => 'color: #000000;'
+            0 => 'color: #008000;'
             ),
         'STRINGS' => array(
             0 => 'color: #666666;',
@@ -242,7 +242,7 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#>|^])",
-            'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_<\|%\\-])"
+            'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_%\\-])"
         )
     )
 );

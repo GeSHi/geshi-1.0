@@ -12,6 +12,28 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8.5
+  -  Added language files
+     * AutoHotkey (Naveen Garg)
+     * Awk (George Pollard)
+     * GADV 4CS (Jason Curl)
+     * jQuery (Rob Loach)
+     * PowerBuilder (Doug Porter)
+     * PureBasic (Gustavo Julio Fiorenza)
+     * R / S+ (Ron Fredericks, Benilton Carvalho)
+  -  Fixed legitimate numbers sometimes missing from highlighting (BenBE)
+  -  Fixed a problem with URLs allowing to break highlighting (BenBE)
+  -  Allowed for String and Number Styles to be set by the API (BenBE)
+  -  Produce valid CSS when languages start with underscore (BenBE)
+  -  Duplicate newlines with PRE_TABLE-Header but w/o linenumbers (SF#2838958, BenBE)
+  -  Improvements to language files (BenBE)
+     * Fixed case-insensitively duplicate keywords (BenBE)
+     * DCS language file contained HARDQUOTE section but no hardquotes (BenBE)
+     * Some additional headers for Email\mbox highlighting (BenBE)
+     * Added some more Keywords for robots.txt highlighting (BenBE)
+     * Added Git commands for bash, ifup/ifdown (BenBE)
+     * Added support for C# and VB.net delegates (SF#2832253, BenBE)
+     * Added support for line numbers, file handles and hex\octal numbers for QBasic (BenBE)
 Version 1.0.8.4
   -  Added language files
      * BibTeX (Quinn Taylor)

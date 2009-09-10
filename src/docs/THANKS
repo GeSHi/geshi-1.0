@@ -54,8 +54,10 @@ PEOPE WHO MADE LANGUAGE FILES
 - Apt sources.list       Milian Wolff
 - ASM                    Tux
 - ASP                    Amit Gupta
+- AutoHotkey             Naveen Garg
 - AutoIT                 mastrboy
 - AviSynth               Ryan Jones
+- Awk                    George Pollard
 - Bash                   Andreas Gohr
 - Basic4GL               Matthew Webb
 - BibTeX                 Quinn Taylor
@@ -85,6 +87,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - FreeBasic              Roberto Rossi
 - FO (abas-ERP)          Tan-Vinh Nguyen
 - Fortran                Cedric Arrabie
+- GADV 4CS               Jason Curl
 - glSlang                Benny Baumann
 - Gettext                Milian Wolff
 - GNU make               Neil Bird
@@ -98,6 +101,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - INTERCAL               Benny Baumann
 - Java 5                 Clemens Bruckmann
 - Javascript             Ben Keen
+- jQuery                 Rob Loach
 - KiXtart                Riley McArdle
 - KLone C                Mickael Auger
 - KLone C++              Mickael Auger
@@ -128,12 +132,15 @@ PEOPE WHO MADE LANGUAGE FILES
 - Pixel Bender           Richard Olsson
 - PL/SQL                 Victor Engmark
 - POV-Ray                Carl Fürstenberg
+- PowerBuilder           Doug Porter
 - PowerShell             Frode Aarebrot
 - Progress               Marco Aurelio de Pasqual
 - Prolog                 Benny Baumann
 - Property Files         Edy Hinzen
 - ProvideX               Jeff Wilder
+- PureBasic              Gustavo Julio Fiorenza
 - Python                 Roberto Rossi
+- R / S+                 Ron Fredericks
 - Rails                  Moises Deniz
 - Rebol                  Lecanu Guillaume
 - Reg                    SmokingRope
