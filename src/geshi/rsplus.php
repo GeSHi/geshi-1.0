@@ -55,7 +55,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'r',
+    'LANG_NAME' => 'R / S+',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -471,6 +471,12 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#;>|^&\\.])(?<!\/html\/)",
+            'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-&;\\.])"
+            )
         )
 );
 
