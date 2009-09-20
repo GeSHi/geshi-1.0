@@ -16,6 +16,7 @@ Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
      * F# (Julien Ortin)
+     * SystemVerilog (Sean O'Boyle)
   -  Improvements to language fiels (BenBE)
      * Fixed broken links in R/S+ language file (BenBE)
 Version 1.0.8.5
