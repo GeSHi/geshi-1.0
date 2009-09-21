@@ -79,7 +79,7 @@ $language_data = array (
             'right','rule','section','setlength','sffamily','subject',
             'subparagraph','subsection','subsubsection','subtitle','sum',
             'table','tableofcontents','textbf','textcolor','textit',
-            'textnormal','textsuperscript','texttt','thanks','title',
+            'textnormal','textsuperscript','texttt','textwidth','thanks','title',
             'titlehead','today','ttfamily','uppertitleback','urlstyle',
             'usepackage','vspace'
             )
