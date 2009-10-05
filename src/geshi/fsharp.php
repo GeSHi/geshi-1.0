@@ -11,6 +11,9 @@
  *
  * CHANGES
  * -------
+ * 2009/09/22 (1.0.1)
+ *  -  added rules for single char handling (generics ['a] vs char ['x'])
+ *  -  added symbols and keywords
  * 2009/09/20 (1.0.0)
  *  -  Initial release
  *

@@ -316,7 +316,7 @@ $language_data = array (
         ),
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#])",
-            'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%\\/])"
+            'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%=\\/])"
         )
     )
 );

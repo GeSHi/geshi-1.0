@@ -19,6 +19,7 @@ Version 1.0.8.6
      * SystemVerilog (Sean O'Boyle)
   -  Improvements to language fiels (BenBE)
      * Fixed broken links in R/S+ language file (BenBE)
+     * Fixed an issue with if= argument for dd command (BenBE)
 Version 1.0.8.5
   -  Added language files
      * AutoHotkey (Naveen Garg)
