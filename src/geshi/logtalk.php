@@ -12,7 +12,7 @@
  *
  * CHANGES
  * -------
- * 2009/10/27 (1.0.0)
+ * 2009/10/28 (1.0.0)
  *  -  First Release
  *
  *************************************************************************************
@@ -65,6 +65,8 @@ $language_data = array(
         1 => array(
             // file directives
             'encoding', 'ensure_loaded',
+            // flag directives
+            'set_logtalk_flag', 'set_prolog_flag',
             // entity opening directives
             'category', 'object', 'protocol',
             // predicate scope directives
@@ -87,9 +89,7 @@ $language_data = array(
             // entity closing directives
             'end_category', 'end_object', 'end_protocol',
             // conditional compilation directives
-            'else', 'endif',
-            // flag directives
-            'set_logtalk_flag', 'set_prolog_flag'
+            'else', 'endif'
             ),
         // Entity relations
         3 => array(
@@ -265,7 +265,7 @@ $language_data = array(
         'METHODS' => array(
             ),
         'REGEXPS' => array(
-            1 => 'color: #848484;'
+            0 => 'color: #848484;'
             ),
         'SCRIPT' => array()
         ),
@@ -283,10 +283,8 @@ $language_data = array(
         1 => '::'
         ),
     'REGEXPS' => array(
-        // numbers (binary, octal, hexadecimal, and decimal)
-//        0 => '(\b(0b[0-1]+|0o[0-7]+|0x[0-9a-fA-F]+|\d+(\.\d+((e|E)(\+|-)\d+)?)?))',
         // variables
-        1 => '\b(?!(?:PIPE|SEMI|REG3XP\d*)[^a-zA-Z0-9_])[A-Z_][a-zA-Z0-9_]*(?![a-zA-Z0-9_])'
+        0 => '\b(?!(?:PIPE|SEMI|REG3XP\d*)[^a-zA-Z0-9_])[A-Z_][a-zA-Z0-9_]*(?![a-zA-Z0-9_])'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
@@ -299,31 +297,31 @@ $language_data = array(
         'KEYWORDS' => array(
             1 => array(
                 'DISALLOWED_BEFORE' => '(?<=:-\s)',
-                'DISALLOWED_AFTER' => '(?=\s*?\()'
+                'DISALLOWED_AFTER' => '(?=\()'
             ),
             2 => array(
                 'DISALLOWED_BEFORE' => '(?<=:-\s)',
                 'DISALLOWED_AFTER' => '(?=\.)'
             ),
             3 => array(
-//                'DISALLOWED_BEFORE' => '(?<=[^a-z])',
-//                'DISALLOWED_AFTER' => '(?=\s*\()'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?=\()'
             ),
             4 => array(
-//                'DISALLOWED_BEFORE' => '(?<=[^a-z])',
-//                'DISALLOWED_AFTER' => '(?=\s*\()'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?=\()'
             ),
             5 => array(
-//                'DISALLOWED_BEFORE' => '(?<=[^a-z])',
-//                'DISALLOWED_AFTER' => '(?=[^a-z])'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\'"])'
             ),
             6 => array(
-//                'DISALLOWED_BEFORE' => '\b',
-                'DISALLOWED_AFTER' => '(?=\s*\()'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?=\()'
             ),
             7 => array(
-//                'DISALLOWED_BEFORE' => '(?<=[^a-z])',
-//                'DISALLOWED_AFTER' => '(?=[^a-z])'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\'"])'
             )
         )
     ),
