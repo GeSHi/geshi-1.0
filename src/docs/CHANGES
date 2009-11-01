@@ -18,6 +18,7 @@ Version 1.0.8.6
      * F# (Julien Ortin)
      * GAMBAS (Jesus Guardon)
      * Logtalk (Paulo Moura)
+     * MapBasic (Tomasz Berus)
      * NewLisp (cormullion)
      * SystemVerilog (Sean O'Boyle)
   -  Reworked parts of the number support (BenBE)
