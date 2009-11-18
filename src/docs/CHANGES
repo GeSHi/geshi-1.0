@@ -25,6 +25,8 @@ Version 1.0.8.6
   -  Improvements to language fiels (BenBE)
      * Fixed broken links in R/S+ language file (BenBE)
      * Fixed an issue with if= argument for dd command (BenBE)
+     * T-SQL should use GESHI_CAPS_NO_CHANGE for keywords (BenBE)
+     * Fixed missed shorthand arg references in Bash (BenBE)
 Version 1.0.8.5
   -  Added language files
      * AutoHotkey (Naveen Garg)
