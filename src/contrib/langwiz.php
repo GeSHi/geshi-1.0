@@ -695,16 +695,25 @@ function validate_lang(){
                     1 => array(
                         'start' => '//',
                         'style' => 'test'
-                        )
-                    ),
+                    )
+                ),
                 'rxc' => array(
                     1 => array(
                         'rx' => '/Hello/',
                         'style' => 'color: #00000'
-                        )
                     )
+                )
+            ),
+            'str' => array(
+                'qm' => array(),
+                'ec' => array(
+                    'char' => ''  
                 ),
-            );
+                'erx' => array()
+            ),
+            'kw' => array(),
+            'sy' => array()
+        );
     }
 
     return array('ai' => $ai, 'li' => $li, 'ld' => $ld);
