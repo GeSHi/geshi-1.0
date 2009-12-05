@@ -695,22 +695,29 @@ function validate_lang(){
                     1 => array(
                         'start' => '//',
                         'style' => 'test'
-                    )
-                ),
+                        )
+                    ),
+                'ml' => array(
+                    1 => array(
+                        'start' => '/*',
+                        'end' => '*/',
+                        'style' => 'font-style: italic; color: #666666;'
+                        )
+                    ),
                 'rxc' => array(
                     1 => array(
                         'rx' => '/Hello/',
                         'style' => 'color: #00000'
+                        )
                     )
-                )
-            ),
+                ),
             'str' => array(
                 'qm' => array(),
                 'ec' => array(
                     'char' => ''  
-                ),
+                    ),
                 'erx' => array()
-            ),
+                ),
             'kw' => array(),
             'sy' => array()
         );
@@ -790,6 +797,9 @@ GESHI_LANGFILE_HEAD;
     }
     $src .= $i[2] . "),\n";
     $src .= $i[1] . "'COMMENT_MULTI' => array(\n";
+    foreach($lang['ld']['cmt']['ml'] as $tmp_cmt_ml) {
+        $src .= $i[2] . str_to_phpstring($tmp_cmt_ml['start']). " => ". str_to_phpstring($tmp_cmt_ml['end']) . ",\n";
+    }
     $src .= $i[2] . "),\n";
     $src .= $i[1] . "'COMMENT_REGEXP' => array(\n";
     foreach($lang['ld']['cmt']['rxc'] as $idx_cmt_rxc => $tmp_cmt_rxc) {
@@ -902,7 +912,7 @@ GESHI_LANGFILE_HEAD;
     foreach($lang['ld']['cmt']['rxc'] as $idx_cmt_rxc => $tmp_cmt_rxc) {
         $src .= $i[3] . ((int)$idx_cmt_rxc) . " => " . str_to_phpstring($tmp_cmt_rxc['style']) . ",\n";
     }
-    //    'MULTI' => 'color: #666666; font-style: italic;'
+    $src .= $i[3] . "'MULTI' => " . str_to_phpstring($lang['ld']['cmt']['ml'][1]['style']) . "\n";
     $src .= $i[3] . "),\n";
     $src .= $i[2] . "'ESCAPE_CHAR' => array(\n";
     foreach($lang['ld']['str']['erx'] as $idx_str_erx => $tmp_str_erx) {
