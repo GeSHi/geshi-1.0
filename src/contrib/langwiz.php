@@ -564,11 +564,29 @@ echo "</pre>";
                 </table>
             </fieldset>
         </fieldset>
-
     </fieldset>
-
+ 
     <fieldset>
         <legend>Keywords</legend>
+
+        <fieldset>
+            <legend>Case of Keywords</legend>
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <label for="ld[kw_case]">Handling of keywords case:</label>
+                    </td>
+                    <td>
+                        <select name=ld[kw_case]" id="ld[kw_case]">
+                            <option value="GESHI_CAPS_NO_CHANGE">Don’t change the case of any keyword</option>
+                            <option value="GESHI_CAPS_UPPER">Convert the case of all keywords to upper case</option>
+                            <option value="GESHI_CAPS_LOWER">Convert the case of all keywords to lower case</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
 
         <fieldset>
             <legend>Quotemark Group 1</legend>
@@ -719,6 +737,7 @@ function validate_lang(){
                 'erx' => array()
                 ),
             'kw' => array(),
+            'kw_case' => 'GESHI_CAPS_NO_CHANGE',
             'sy' => array()
         );
     }
@@ -806,6 +825,9 @@ GESHI_LANGFILE_HEAD;
         $src .= $i[2] . ((int)$idx_cmt_rxc). " => ". str_to_phpstring($tmp_cmt_rxc['rx']) . ",\n";
     }
     $src .= $i[2] . "),\n";
+
+    //Case Keywords
+    $src .= $i[1] . "'CASE_KEYWORDS' => " . $lang['ld']['kw_case'] . ",\n";
 
     //Quotes \ Strings
     $src .= $i[1] . "'QUOTEMARKS' => array(\n";
