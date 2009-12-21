@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
+     * Cuesheet (Benny Baumann)
      * F# (Julien Ortin)
      * GAMBAS (Jesus Guardon)
      * Logtalk (Paulo Moura)
