@@ -118,8 +118,8 @@ $language_data = array (
     'OBJECT_SPLITTERS' => array(
         ),
     'REGEXPS' => array(
+        2 => '\b[A-Za-z0-9]{5}\d{7}\b',
         1 => '(?<=[\s:]|^)\d+(?=[\s:]|$)',
-        2 => '\b[A-Za-z]{5}\d{7}\b',
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
