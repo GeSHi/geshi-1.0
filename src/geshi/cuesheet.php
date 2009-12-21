@@ -39,7 +39,7 @@
 
 $language_data = array (
     'LANG_NAME' => 'Cuesheet',
-    'COMMENT_SINGLE' => array(),
+    'COMMENT_SINGLE' => array(1 => ';'),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         //Single-Line Comments using REM command
