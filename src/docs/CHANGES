@@ -31,6 +31,7 @@ Version 1.0.8.6
      * T-SQL should use GESHI_CAPS_NO_CHANGE for keywords (BenBE)
      * Fixed missed shorthand arg references in Bash (BenBE)
      * Fixed first line not getting highlighted in diff language (BenBE)
+     * Added some keywords for csharp (RC)
 Version 1.0.8.5
   -  Added language files
      * AutoHotkey (Naveen Garg)
