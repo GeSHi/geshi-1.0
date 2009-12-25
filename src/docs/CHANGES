@@ -21,6 +21,7 @@ Version 1.0.8.6
      * Logtalk (Paulo Moura)
      * MapBasic (Tomasz Berus)
      * NewLisp (cormullion)
+     * Perl 6 (Kodi Arfer)
      * Pike (Rick E.)
      * SystemVerilog (Sean O'Boyle)
   -  Reworked parts of the number support (BenBE)
