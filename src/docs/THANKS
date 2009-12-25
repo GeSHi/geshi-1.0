@@ -73,9 +73,11 @@ PEOPE WHO MADE LANGUAGE FILES
 - CadLisp                Roberto Rossi
 - CDFG                   John Horigan
 - CIL                    Marcus Griep
+- Clojure                Jess Johnson
 - CMake                  Daniel Nelson
 - COBOL                  Benny Baumann
 - ColdFusion             Diego
+- Cuesheet               Benny Baumann
 - D                      Thomas Kuehne
 - DCS                    Stelio Passaris
 - Delphi                 Járja Norbert, Benny Baumann
@@ -84,10 +86,12 @@ PEOPE WHO MADE LANGUAGE FILES
 - Eiffel                 Zoran Simic
 - eMail \ mbox           Benny Baumann
 - Erlang                 Benny Baumann, Dan Forest-Barbier, Uwe Dauernheim
+- F#                     Julien Ortin
 - FreeBasic              Roberto Rossi
 - FO (abas-ERP)          Tan-Vinh Nguyen
 - Fortran                Cedric Arrabie
 - GADV 4CS               Jason Curl
+- GAMBAS                 Jesus Guardon
 - glSlang                Benny Baumann
 - Gettext                Milian Wolff
 - GNU make               Neil Bird
@@ -108,16 +112,19 @@ PEOPE WHO MADE LANGUAGE FILES
 - LaTeX                  Matthais Pospiech
 - Lisp                   Roberto Rossi
 - Locomotive Basic       Nacho Cabanes
+- Logtalk                Paulo Moura
 - LOLcode                Benny Baumann
 - LScript                Beau McGuigan
 - LSL2                   William Fry
 - Lua                    Roberto Rossi
 - m86k                   Benny Baumann
+- MapBasic               Tomasz Berus
 - mIRC                   Alberto de Areba Sánchez
 - Modula-3               Martin Bishop
 - MPASM                  Bakalex
 - MXML                   David Spurr
 - MySQL                  Carl Fürstenberg, Marjolein Katsma
+- NewLisp                cormullion
 - NSIS                   Tux, Deguix
 - Oberon-2               Mike Mol
 - Objective C            M. Uli Kusterer
@@ -152,6 +159,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - SciLab                 Christophe David
 - Smalltalk              Bananeweizen
 - Smarty                 Alan Juden
+- SystemVerilog          Sean O'Boyle
 - T-SQL                  Duncan Lock
 - TeraTerm               Boris Maisuradze
 - Text                   SmokingRope
