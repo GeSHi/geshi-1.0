@@ -234,10 +234,110 @@ if(!$error_abort) {
 
 output_error_cache();
 
+// --- empty variables for values of $_POST - begin ---
+$li = array(
+    'file' => 'example',
+    'name' => 'Example'
+    );
+
+$ai = array(
+    'name' => 'Benny Baumann',
+    'email' => 'BenBE@geshi.org',
+    'web' => 'http://qbnz.com/highlighter/'
+    );
+
+$ld = array(
+    'cmt' => array(
+        'sl' => array(
+            1 => array(
+                'start' => '//',
+                'style' => 'font-style: italic; color: #666666;'
+                ),
+            2 => array(
+                'start' => '#',
+                'style' => 'font-style: italic; color: #666666;'
+                )
+            ),
+        'ml' => array(
+            1 => array(
+                'start' => '/*',
+                'end' => '*/',
+                'style' => 'font-style: italic; color: #666666;'
+                ),
+            2 => array(
+                'start' => '/**',
+                'end' => '*/',
+                'style' => 'font-style: italic; color: #006600;'
+                )
+            ),
+        'rxc' => array(
+            1 => array(
+                'rx' => '/Hello RegExp/',
+                'style' => 'font-style: italic; color: #666666;'
+                )
+            )
+        ),
+    'str' => array(
+        'qm' => array(
+            1 => array(
+                'delim' => "'",
+                'style' => 'color: #0000FF;'
+                )
+            ),
+        'ec' => array(
+            'char' => '\\',
+            'style' => 'font-weight: bold; color: #000080;'
+            ),
+        'erx' => array(
+            1 => array(
+                'rx' => '/\{\\\\$\w+\}/',
+                'style' => 'font-weight: bold; color: #008080;'
+                ),
+            2 => array(
+                'rx'=> '/\{\\\\$\w+\}/',
+                'style' => 'font-weight: bold; color: #008080;'
+                )
+            )
+        ),
+    'kw_case' => 'GESHI_CAPS_NO_CHANGE',
+    'kw' => array(
+          1 => array(
+              'list' => '',
+              'case' => '0',
+              'style' => 'color: #0000FF; font-weight: bold;',
+              'docs' => ''
+              )
+        )
+    );
+
+$kw_case_sel = array(
+    'GESHI_CAPS_NO_CHANGE' => '',
+    'GESHI_CAPS_UPPER' => '',
+    'GESHI_CAPS_LOWER' => ''
+    );
+
+$kw_cases_sel = array(
+    1 => array(
+        0 => '',
+        1 => ''
+        )
+    );
+// --- empty variables for values of $_POST - end ---
+
 echo "<pre>";
 //var_dump($languages);
 var_dump($_GET);
 var_dump($_POST);
+
+extract($_POST); // extract POST array to local variables...
+
+// determine the selected kw_case...
+$kw_case_sel[$ld['kw_case']] = ' selected="selected"';
+
+// determine the selected kw_cases...
+for($i = 1; $i <= count($kw_cases_sel); $i += 1) {
+  $kw_cases_sel[$i][(int) $ld['kw'][$i]['case']] = ' selected="selected"';
+}
 
 $lang = validate_lang();
 var_dump($lang);
@@ -255,7 +355,7 @@ echo "</pre>";
                     <label for="li[file]">Language File ID:</label>
                 </td>
                 <td>
-                    <input type="text" name="li[file]" id="li[file]" value="example" />
+                    <input type="text" name="li[file]" id="li[file]" value="<?=$li['file']; ?>" />
                 </td>
             </tr>
 
@@ -264,7 +364,7 @@ echo "</pre>";
                     <label for="li[name]">Language Name:</label>
                 </td>
                 <td>
-                    <input type="text" name="li[name]" id="li[name]" value="Example" />
+                    <input type="text" name="li[name]" id="li[name]" value="<?=$li['name']; ?>" />
                 </td>
             </tr>
 
@@ -280,7 +380,7 @@ echo "</pre>";
                     <label for="ai[name]">Full Name:</label>
                 </td>
                 <td>
-                    <input type="text" name="ai[name]" id="ai[name]" value="Benny Baumann" />
+                    <input type="text" name="ai[name]" id="ai[name]" value="<?=$ai['name']; ?>" />
                 </td>
             </tr>
 
@@ -289,7 +389,7 @@ echo "</pre>";
                     <label for="ai[email]">eMail address:</label>
                 </td>
                 <td>
-                    <input type="text" name="ai[email]" id="ai[email]" value="BenBE@geshi.org" />
+                    <input type="text" name="ai[email]" id="ai[email]" value="<?=$ai['email']; ?>" />
                 </td>
             </tr>
 
@@ -298,7 +398,7 @@ echo "</pre>";
                     <label for="ai[web]">Homepage:</label>
                 </td>
                 <td>
-                    <input type="text" name="ai[web]" id="ai[web]" value="http://qbnz.com/highlighter/" />
+                    <input type="text" name="ai[web]" id="ai[web]" value="<?=$ai['web']; ?>" />
                 </td>
             </tr>
         </table>
@@ -319,7 +419,7 @@ echo "</pre>";
                             <label for="ld[cmt][sl][1][start]">Comment Start:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][sl][1][start]" id="ld[cmt][sl][1][start]" value="//" />
+                            <input type="text" name="ld[cmt][sl][1][start]" id="ld[cmt][sl][1][start]" value="<?=$ld['cmt']['sl'][1]['start']; ?>" />
                         </td>
                     </tr>
 
@@ -328,7 +428,7 @@ echo "</pre>";
                             <label for="ld[cmt][sl][1][style]">Comment Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][sl][1][style]" id="ld[cmt][sl][1][style]" value="font-style: italic; color: #666666;" />
+                            <input type="text" name="ld[cmt][sl][1][style]" id="ld[cmt][sl][1][style]" value="<?=$ld['cmt']['sl'][1]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -343,7 +443,7 @@ echo "</pre>";
                             <label for="ld[cmt][sl][2][start]">Comment Start:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][sl][2][start]" id="ld[cmt][sl][2][start]" value="#" />
+                            <input type="text" name="ld[cmt][sl][2][start]" id="ld[cmt][sl][2][start]" value="<?=$ld['cmt']['sl'][2]['start']; ?>" />
                         </td>
                     </tr>
 
@@ -352,7 +452,7 @@ echo "</pre>";
                             <label for="ld[cmt][sl][2][style]">Comment Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][sl][2][style]" id="ld[cmt][sl][2][style]" value="font-style: italic; color: #666666;" />
+                            <input type="text" name="ld[cmt][sl][2][style]" id="ld[cmt][sl][2][style]" value="<?=$ld['cmt']['sl'][2]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -371,7 +471,7 @@ echo "</pre>";
                             <label for="ld[cmt][ml][1][start]">Comment Start:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][ml][1][start]" id="ld[cmt][ml][1][start]" value="/*" />
+                            <input type="text" name="ld[cmt][ml][1][start]" id="ld[cmt][ml][1][start]" value="<?=$ld['cmt']['ml'][1]['start']; ?>" />
                         </td>
                     </tr>
 
@@ -380,7 +480,7 @@ echo "</pre>";
                             <label for="ld[cmt][ml][1][end]">Comment End:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][ml][1][end]" id="ld[cmt][ml][1][end]" value="*/" />
+                            <input type="text" name="ld[cmt][ml][1][end]" id="ld[cmt][ml][1][end]" value="<?=$ld['cmt']['ml'][1]['end']; ?>" />
                         </td>
                     </tr>
 
@@ -389,7 +489,7 @@ echo "</pre>";
                             <label for="ld[cmt][ml][1][style]">Comment Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][ml][1][style]" id="ld[cmt][ml][1][style]" value="font-style: italic; color: #666666;" />
+                            <input type="text" name="ld[cmt][ml][1][style]" id="ld[cmt][ml][1][style]" value="<?=$ld['cmt']['ml'][1]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -404,7 +504,7 @@ echo "</pre>";
                             <label for="ld[cmt][ml][2][start]">Comment Start:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][ml][2][start]" id="ld[cmt][ml][2][start]" value="/**" />
+                            <input type="text" name="ld[cmt][ml][2][start]" id="ld[cmt][ml][2][start]" value="<?=$ld['cmt']['ml'][2]['start']; ?>" />
                         </td>
                     </tr>
 
@@ -413,7 +513,7 @@ echo "</pre>";
                             <label for="ld[cmt][ml][2][end]">Comment End:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][ml][2][end]" id="ld[cmt][ml][2][end]" value="*/" />
+                            <input type="text" name="ld[cmt][ml][2][end]" id="ld[cmt][ml][2][end]" value="<?=$ld['cmt']['ml'][2]['end']; ?>" />
                         </td>
                     </tr>
 
@@ -422,7 +522,7 @@ echo "</pre>";
                             <label for="ld[cmt][ml][2][style]">Comment Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][ml][2][style]" id="ld[cmt][ml][2][style]" value="font-style: italic; color: #006600;" />
+                            <input type="text" name="ld[cmt][ml][2][style]" id="ld[cmt][ml][2][style]" value="<?=$ld['cmt']['ml'][2]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -441,7 +541,7 @@ echo "</pre>";
                             <label for="ld[cmt][rxc][1][rx]">Comment RX:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][rxc][1][rx]" id="ld[cmt][rxc][1][rx]" value="/Hello RegExp/" />
+                            <input type="text" name="ld[cmt][rxc][1][rx]" id="ld[cmt][rxc][1][rx]" value="<?=$ld['cmt']['rxc'][1]['rx']; ?>" />
                         </td>
                     </tr>
 
@@ -450,7 +550,7 @@ echo "</pre>";
                             <label for="ld[cmt][rxc][1][style]">Comment Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[cmt][rxc][1][style]" id="ld[cmt][rxc][1][style]" value="font-style: italic; color: #666666;" />
+                            <input type="text" name="ld[cmt][rxc][1][style]" id="ld[cmt][rxc][1][style]" value="<?=$ld['cmt']['rxc'][1]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -473,7 +573,7 @@ echo "</pre>";
                             <label for="ld[str][qm][1][delim]">String Delimiter:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][qm][1][delim]" id="ld[str][qm][1][delim]" value="'" />
+                            <input type="text" name="ld[str][qm][1][delim]" id="ld[str][qm][1][delim]" value="<?=$ld['str']['qm'][1]['delim']; ?>" />
                         </td>
                     </tr>
 
@@ -482,7 +582,7 @@ echo "</pre>";
                             <label for="ld[str][qm][1][style]">String Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][qm][1][style]" id="ld[str][qm][1][style]" value="color: #0000FF;" />
+                            <input type="text" name="ld[str][qm][1][style]" id="ld[str][qm][1][style]" value="<?=$ld['str']['qm'][1]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -501,7 +601,7 @@ echo "</pre>";
                             <label for="ld[str][ec][char]">Escape Char:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][ec][char]" id="ld[str][ec][char]" value="\" />
+                            <input type="text" name="ld[str][ec][char]" id="ld[str][ec][char]" value="<?=$ld['str']['ec']['char']; ?>" />
                         </td>
                     </tr>
 
@@ -510,7 +610,7 @@ echo "</pre>";
                             <label for="ld[str][ec][style]">Escape Char Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][ec][style]" id="ld[str][ec][style]" value="font-weight: bold; color: #000080;" />
+                            <input type="text" name="ld[str][ec][style]" id="ld[str][ec][style]" value="<?=$ld['str']['ec']['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -525,7 +625,7 @@ echo "</pre>";
                             <label for="ld[str][erx][1][rx]">Escape Regexp:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][erx][1][rx]" id="ld[str][erx][1][rx]" value="/\{\\$\w+\}/" />
+                            <input type="text" name="ld[str][erx][1][rx]" id="ld[str][erx][1][rx]" value="<?=$ld['str']['erx'][1]['rx']; ?>" />
                         </td>
                     </tr>
 
@@ -534,7 +634,7 @@ echo "</pre>";
                             <label for="ld[str][erx][1][style]">Escape Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][erx][1][style]" id="ld[str][erx][1][style]" value="font-weight: bold; color: #008080;" />
+                            <input type="text" name="ld[str][erx][1][style]" id="ld[str][erx][1][style]" value="<?=$ld['str']['erx'][1]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -549,7 +649,7 @@ echo "</pre>";
                             <label for="ld[str][erx][2][rx]">Escape Regexp:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][erx][2][rx]" id="ld[str][erx][2][rx]" value="/\{\\$\w+\}/" />
+                            <input type="text" name="ld[str][erx][2][rx]" id="ld[str][erx][2][rx]" value="<?=$ld['str']['erx'][2]['rx']; ?>" />
                         </td>
                     </tr>
 
@@ -558,7 +658,7 @@ echo "</pre>";
                             <label for="ld[str][erx][2][style]">Escape Style:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][erx][2][style]" id="ld[str][erx][2][style]" value="font-weight: bold; color: #008080;" />
+                            <input type="text" name="ld[str][erx][2][style]" id="ld[str][erx][2][style]" value="<?=$ld['str']['erx'][2]['style']; ?>" />
                         </td>
                     </tr>
                 </table>
@@ -579,9 +679,9 @@ echo "</pre>";
                     </td>
                     <td>
                         <select name=ld[kw_case]" id="ld[kw_case]">
-                            <option value="GESHI_CAPS_NO_CHANGE">Don’t change the case of any keyword</option>
-                            <option value="GESHI_CAPS_UPPER">Convert the case of all keywords to upper case</option>
-                            <option value="GESHI_CAPS_LOWER">Convert the case of all keywords to lower case</option>
+                            <option value="GESHI_CAPS_NO_CHANGE"<?=$kw_case_sel['GESHI_CAPS_NO_CHANGE']; ?>>Don’t change the case of any keyword</option>
+                            <option value="GESHI_CAPS_UPPER"<?=$kw_case_sel['GESHI_CAPS_UPPER']; ?>>Convert the case of all keywords to upper case</option>
+                            <option value="GESHI_CAPS_LOWER"<?=$kw_case_sel['GESHI_CAPS_LOWER']; ?>>Convert the case of all keywords to lower case</option>
                         </select>
                     </td>
                 </tr>
@@ -597,7 +697,7 @@ echo "</pre>";
                         <label for="ld[kw][1][list]">Keyword List:</label>
                     </td>
                     <td>
-                        <textarea name="ld[kw][1][list]" id="ld[kw][1][list]" rows="10" cols="80"></textarea>
+                      <textarea name="ld[kw][1][list]" id="ld[kw][1][list]" rows="10" cols="80"><?=$ld['kw'][1]['list']; ?></textarea>
                     </td>
                 </tr>
 
@@ -607,8 +707,8 @@ echo "</pre>";
                     </td>
                     <td>
                         <select name="ld[kw][1][case]" id="ld[kw][1][case]">
-                            <option value="0">No</option>
-                            <option value="1">Yes</option>
+                            <option value="0"<?=$kw_cases_sel[1][0]; ?>>No</option>
+                            <option value="1"<?=$kw_cases_sel[1][1]; ?>>Yes</option>
                         </select>
                     </td>
                 </tr>
@@ -618,7 +718,7 @@ echo "</pre>";
                         <label for="ld[kw][1][style]">Keyword Style:</label>
                     </td>
                     <td>
-                        <input type="text" name="ld[kw][1][style]" id="ld[kw][1][style]" value="color: #0000FF; font-weight: bold;" />
+                        <input type="text" name="ld[kw][1][style]" id="ld[kw][1][style]" value="<?=$ld['kw'][1]['style']; ?>" />
                     </td>
                 </tr>
 
@@ -627,7 +727,7 @@ echo "</pre>";
                         <label for="ld[kw][1][docs]">Documentation URL:</label>
                     </td>
                     <td>
-                        <input type="text" name="ld[kw][1][docs]" id="ld[kw][1][docs]" value="" />
+                        <input type="text" name="ld[kw][1][docs]" id="ld[kw][1][docs]" value="<?=$ld['kw'][1]['docs']; ?>" />
                     </td>
                 </tr>
             </table>
@@ -739,8 +839,8 @@ function validate_lang(){
             'kw' => array(),
             'kw_case' => 'GESHI_CAPS_NO_CHANGE',
             'sy' => array()
-        );
-    }
+            );
+        }
 
     return array('ai' => $ai, 'li' => $li, 'ld' => $ld);
 }
