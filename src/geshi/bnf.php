@@ -45,17 +45,21 @@
 
 $language_data = array (
     'LANG_NAME' => 'bnf',
-    'COMMENT_SINGLE' => array(),
+    'COMMENT_SINGLE' => array(';'),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(),
     'SYMBOLS' => array(
-        '(', ')', '<', '>', '::=', '|'
+        0 => array('(', ')'),
+        1 => array('<', '>'),
+        2 => array('[', ']'),
+        3 => array('{', '}'),
+        4 => array('=', '*', '/', '|', ':'),
     ),
     'CASE_SENSITIVE' => array(
-        //GESHI_COMMENTS => false
+        GESHI_COMMENTS => false
     ),
     'STYLES' => array(
         'KEYWORDS' => array(),
@@ -78,8 +82,12 @@ $language_data = array (
             0 => ''
             ),
         'SYMBOLS' => array(
-            0 => 'color: #000066; font-weight: bold;', // Unused
-            ),
+            0 => 'color: #000066; font-weight: bold;', // Round brackets
+            1 => 'color: #000066; font-weight: bold;', // Angel Brackets
+            2 => 'color: #000066; font-weight: bold;', // Square Brackets
+            3 => 'color: #000066; font-weight: bold;', // BRaces
+            4 => 'color: #006600; font-weight: bold;', // Other operator symbols
+        ),
         'REGEXPS' => array(
             0 => 'color: #007;',
             ),
