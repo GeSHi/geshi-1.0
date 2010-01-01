@@ -130,7 +130,7 @@ $language_data = array (
         ),
     'REGEXPS' => array(
         //Variables
-        0 => "(?<![A-Z_])(?!(?:PIPE|SEMI)[^a-zA-Z0-9_])[A-Z_][a-zA-Z0-9_]*(?![a-zA-Z0-9_])"
+        0 => "(?<![A-Z_])(?!(?:PIPE|SEMI|DOT)[^a-zA-Z0-9_])[A-Z_][a-zA-Z0-9_]*(?![a-zA-Z0-9_])(?!\|)"
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
