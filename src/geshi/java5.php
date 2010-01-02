@@ -56,7 +56,7 @@ $language_data = array (
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         //Import and Package directives (Basic Support only)
-        2 => '/(?:(?<=import[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
+        2 => '/(?:(?<=import[\\n\\s](?!static))|(?<=import[\\n\\s]static[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
         // javadoc comments
         3 => '#/\*\*(?![\*\/]).*\*/#sU'
         ),
@@ -1025,6 +1025,11 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        ),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-;"\'])'
+            )
         )
 );
 
