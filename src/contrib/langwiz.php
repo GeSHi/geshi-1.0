@@ -33,6 +33,10 @@ if (get_magic_quotes_gpc()) {
     $_REQUEST = array_map('stripslashes_deep', $_REQUEST);
 }
 
+function htmlspecialchars_deep($value) {
+  return is_array($value) ? array_map('htmlspecialchars_deep', $value) : htmlspecialchars($value);
+}
+
 define ('TYPE_NOTICE', 0);
 define ('TYPE_WARNING', 1);
 define ('TYPE_ERROR', 2);
@@ -235,6 +239,8 @@ if(!$error_abort) {
 output_error_cache();
 
 // --- empty variables for values of $_POST - begin ---
+$post_var_names = array('li', 'ai', 'ld');
+
 $li = array(
     'file' => 'example',
     'name' => 'Example'
@@ -329,7 +335,11 @@ echo "<pre>";
 var_dump($_GET);
 var_dump($_POST);
 
-extract($_POST); // extract POST array to local variables...
+foreach($post_var_names as $varName) { // export wanted variables of $_POST array...
+  if(array_key_exists($varName, $_POST)) {
+    $$varName = htmlspecialchars_deep($_POST[$varName]);
+  }
+}
 
 // determine the selected kw_case...
 $kw_case_sel[$ld['kw_case']] = ' selected="selected"';
