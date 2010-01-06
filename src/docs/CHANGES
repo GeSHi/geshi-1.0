@@ -19,6 +19,9 @@ Version 1.0.8.7
      * Fixed keywords in generics expressions in Java5 (BenBE)
      * Added support for import static in Java5 (BenBE)
      * Added Standard Integer Types for C and c++ (BenBE)
+     * Fixed some regexp issues in Erlang (BenBE)
+     * Added some missing keywords for Clojure (BenBE)
+     * Added some missing keywords for Lisp (BenBE)
 Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
