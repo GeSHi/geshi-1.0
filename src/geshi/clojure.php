@@ -52,7 +52,7 @@ $language_data = array (
             'defstruct', 'def', 'defonce', 'let', 'letfn', 'do', 'cond', 'condp',
             'for', 'loop', 'recur', 'when', 'when-not', 'when-let', 'when-first',
             'if', 'if-let', 'if-not', 'doto', 'and', 'or','not','aget','aset',
-            'dosync', 'doseq', 'dotimes', 'dorun', 'doall','inc','dec',
+            'dosync', 'doseq', 'dotimes', 'dorun', 'doall',
             'load', 'import', 'unimport', 'ns', 'in-ns', 'refer', 'print',
             'try', 'catch', 'finally', 'throw', 'fn', 'update-in',
             'with-open', 'with-local-vars', 'binding',
@@ -72,7 +72,7 @@ $language_data = array (
             'line-seq', 'resultset-seq', 're-seq', 're-find', 'tree-seq', 'file-seq',
             'iterator-seq', 'enumeration-seq', 'declare',  'xml-seq',
             'symbol?', 'string?', 'vector', 'conj', 'str',
-            'pos?', 'neg?', 'zero?', 'nil?', 'inc', 'format',
+            'pos?', 'neg?', 'zero?', 'nil?', 'inc', 'dec', 'format',
             'alter', 'commute', 'ref-set', 'floor', 'assoc', 'send', 'send-off'
             )
         ),

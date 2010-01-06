@@ -89,7 +89,7 @@ $language_data = array (
             'EXIT_FAILURE', 'EXIT_SUCCESS', 'RAND_MAX', 'CLOCKS_PER_SEC',
             'virtual', 'public', 'private', 'protected', 'template', 'using', 'namespace',
             'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
-            'static_cast', 'explicit', 'friend', 'wchar_t', 'typename', 'typeid', 'class' ,
+            'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class' ,
             'foreach','connect', 'Q_OBJECT' , 'slots' , 'signals', 'Q_SIGNALS', 'Q_SLOTS',
             'Q_FOREACH', 'QCOMPARE', 'QVERIFY', 'qDebug', 'kDebug', 'QBENCHMARK'
             ),

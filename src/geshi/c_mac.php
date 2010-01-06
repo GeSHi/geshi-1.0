@@ -115,11 +115,7 @@ $language_data = array (
             'register', 'short', 'signed', 'static', 'struct',
             'typedef', 'union', 'unsigned', 'void', 'volatile', 'extern', 'jmp_buf',
             'signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t', 'FILE', 'fpos_t',
-            'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm',
-
-            'auto', 'char', 'const', 'double',  'float', 'int', 'long',
-            'register', 'short', 'signed', 'sizeof', 'static', 'struct',
-            'typedef', 'union', 'unsigned', 'void', 'volatile', 'wchar_t',
+            'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm', 'wchar_t',
 
             'int8', 'int16', 'int32', 'int64',
             'uint8', 'uint16', 'uint32', 'uint64',
@@ -133,7 +129,7 @@ $language_data = array (
             'int8_t', 'int16_t', 'int32_t', 'int64_t',
             'uint8_t', 'uint16_t', 'uint32_t', 'uint64_t',
 
-            'intmax_t', 'uintmax_t', 'intptr_t', 'uintptr_t'
+            'intmax_t', 'uintmax_t', 'intptr_t', 'uintptr_t',
 
             // Mac-specific types:
             'CFArrayRef', 'CFDictionaryRef', 'CFMutableDictionaryRef', 'CFBundleRef', 'CFSetRef', 'CFStringRef',
