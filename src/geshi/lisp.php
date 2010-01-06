@@ -73,7 +73,7 @@ $language_data = array (
             'rem','min','max','abs','sin','cos','tan','expt','exp','sqrt',
             'random','logand','logior','logxor','lognot','bignums','logeqv',
             'lognand','lognor','logorc2','logtest','logbitp','logcount',
-            'integer','nil','parse-integer'
+            'integer','nil','parse-integer','make-list','print','write'
             )
         ),
     'SYMBOLS' => array(
