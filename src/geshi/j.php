@@ -47,17 +47,21 @@ $language_data = array (
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
-        1 => '/(?<!\w)NB\..*?$/m',
-        2 => '/(?<=\bNote\b).*?\n\s*\)\s*\n/s'
+        1 => '/(?<!\w)NB\..*?$/m',                //NB.
+        2 => '/(?<=\bNote\b).*?\n\s*\)\s*\n/s',   //multiline comments in Note
+        3 => "/'[^']*?$/m"                        //incomplete strings/open quotes
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
-    'QUOTEMARKS' => array("'"),
+    'QUOTEMARKS' => array(),
     'ESCAPE_CHAR' => '',
     'HARDQUOTE' => array("'", "'"),
     'HARDESCAPE' => array("'"),
     'HARDCHAR' => "'",
     'NUMBERS' => array(
-        0 => '\b_?\d+(\.\d+)?(x|[bejprx]_?[\da-z]+(\.[\da-z]+)?)?(?!\w|\.)|\b__?\b'  // '\b_?\d+[\da-z\._]*'
+        //0 => '\b_?\d+[\da-z\._]*'
+        //0 => '\b_?\d+(\.\d+)?(x|[bejprx]_?[\da-z]+(\.[\da-z]+)?)?(?!\w|\.)'
+        0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?)(?!\w|\.)',
+        //0 => '_'
         ),
     'KEYWORDS' => array(
         //Control words
@@ -90,7 +94,7 @@ $language_data = array (
             ),
         // Nouns
         6 => array(
-            'a.', 'a:'
+            '_.', 'a.', 'a:'
             ),
         // Verbs
         7 => array(
@@ -124,18 +128,19 @@ $language_data = array (
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #666666; font-style: italic;',
+            3 => 'color: #660066; ',
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
+            'HARD' => 'font-weight: bold;',
             0 => '',
-            'HARD' => ''
             ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;',
             'HARD' => 'color: #ff0000;',
+            0 => 'color: #ff0000;',
             ),
         'NUMBERS' => array(
             0 => 'color: #009999; font-weight: bold;'
@@ -146,7 +151,8 @@ $language_data = array (
             0 => 'color: #009900; font-weight: bold;'
             ),
         'REGEXPS' => array(
-//            1 => 'color: #0000ff; font-weight: bold;'
+            //0 => 'color: #0000ff; font-weight: bold;'
+            1 => 'color: #009999; font-weight: bold;'
             ),
         'SCRIPT' => array(
             )
@@ -160,10 +166,12 @@ $language_data = array (
         ),
     'REGEXPS' => array(
         //for_myvar.  should be same format as keyword 1 (kw1)
-        //1 => "\bfor_\w+\.",
+        //0 => "\bfor_[a-zA-Z]\w+\.",
         //BenBE: Instead of highlighting the for construct I'd suggest
         //highlighting variables if there's a simple syntax to detect them.
         //Otherwise leave them alone and stick with highlighting known constructs.
+
+        1 => '\b__?(?![\w\.\:])'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
