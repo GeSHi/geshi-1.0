@@ -27,6 +27,7 @@ Version 1.0.8.7
      * Fixed some regexp issues in Erlang (BenBE)
      * Added some missing keywords for Clojure (BenBE)
      * Added some missing keywords for Lisp (BenBE)
+     * Fixed a problem with variable names in Prolog (BenBE)
 Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
