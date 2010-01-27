@@ -28,6 +28,8 @@ Version 1.0.8.7
      * Added some missing keywords for Clojure (BenBE)
      * Added some missing keywords for Lisp (BenBE)
      * Fixed a problem with variable names in Prolog (BenBE)
+     * Some color changes for AutoIt (BenBE)
+     * Added support for basic include directive processing for AutoIt (BenBE)
 Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
