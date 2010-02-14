@@ -37,6 +37,7 @@ Version 1.0.8.7
      * Added Nested Comments Support for Haskell (SF#2922317, BenBE)
      * Fixed Comments for VIM, added some keywords, proposed porting of
        Regular Expression markup from Perl (SF#2818047, psycojoker, BenBE)
+     * Fixed warnings for Language Check of Tcl (BenBE)
 Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
