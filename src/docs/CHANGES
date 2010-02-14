@@ -35,6 +35,8 @@ Version 1.0.8.7
      * Added support for ::-style labels as comments (SF#2947393, BenBE)
      * Removed backslash as Escape Char in T-SQL (SF#2939199, Bruno Braga)
      * Added Nested Comments Support for Haskell (SF#2922317, BenBE)
+     * Fixed Comments for VIM, added some keywords, proposed porting of
+       Regular Expression markup from Perl (SF#2818047, psycojoker, BenBE)
 Version 1.0.8.6
   -  Added language files
      * Clojure (Jess Johnson)
