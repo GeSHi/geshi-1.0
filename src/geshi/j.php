@@ -11,17 +11,24 @@
  *
  * CHANGES
  * -------
+ *  2010/02/14 (1.0.8.7)
+ *   - Add support for primitives
+ *  2010/01/12 (1.0.2)
+ *   - Use HARDQUOTE for strings
+ *   - Highlight open quotes/incomplete strings
+ *   - Highlight multi-line comments that use Note
+ *   - Refinements for NUMBERS and Argument keywords
+ *   - Highlight infinity and neg. infinity using REGEXPS
+ *   - Highlight "for_myvar." style Control keyword using REGEXPS
  *  2009/12/14 (1.0.1)
- *   -  Regex for NUMBERS, SYMBOLS for () and turn of BRACKETS
+ *   -  Regex for NUMBERS, SYMBOLS for () and turn off BRACKETS
  *  2009/11/12 (1.0.0)
  *   -  First Release
  *
  *
- * TODO (updated 2009/11/12)
+ * TODO (updated 2010/01/27)
  * -------------------------
- * * Handle "for_myvar." style control word
- * * Handle multi-line comments
- *
+ *  * combine keyword categories by using conditional regex statement in PARSER CONTROL?
  *************************************************************************************
  *
  *     This file is part of GeSHi.
@@ -47,7 +54,7 @@ $language_data = array (
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
-        1 => '/(?<!\w)NB\..*?$/m',                //NB.
+        1 => '/(?<!\w)NB\..*?$/m',                //singleline comments NB.
         2 => '/(?<=\bNote\b).*?\n\s*\)\s*\n/s',   //multiline comments in Note
         3 => "/'[^']*?$/m"                        //incomplete strings/open quotes
         ),
@@ -58,13 +65,23 @@ $language_data = array (
     'HARDESCAPE' => array("'"),
     'HARDCHAR' => "'",
     'NUMBERS' => array(
-        //0 => '\b_?\d+[\da-z\._]*'
-        //0 => '\b_?\d+(\.\d+)?(x|[bejprx]_?[\da-z]+(\.[\da-z]+)?)?(?!\w|\.)'
-        0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?)(?!\w|\.)',
-        //0 => '_'
+        //Some instances of infinity are not correctly handled by GeSHi NUMBERS currently
+        //There are three solutions labelled "infinity Method A", "infinity Method B", "infinity Method C"
+        //infinity Method C - requires following adjustment to line 3349 of geshi.php
+        //   preg_match('#\d#'  becomes  preg_match('#[\d_]#'
+        0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?)(?![\w\.\:])',       //infinity Methods A & B
+        //0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?|__?)(?![\w\.\:])', //infinity Method C
         ),
     'KEYWORDS' => array(
-        //Control words
+        //There are two potential methods for handling for_myname. and control words in general
+        //They are labelled "for_myname. Method A" and "for_myname. Method B" throughout the file.
+        /* //Control words : for_myname. Method A
+        1 => array(
+            'assert.', 'break.', 'case.', 'catch.', 'catcht.', 'continue.', 'do.',
+            'else.', 'elseif.', 'end.', 'fcase.', 'for.', 'goto.', 'if.', 'label.',
+            'return.', 'select.', 'throw.', 'trap.', 'try.', 'while.', 'whilst.'
+            ), */
+        //Control words : for_myname. Method B
         1 => array(
             'assert', 'break', 'case', 'catch', 'catcht', 'continue', 'do',
             'else', 'elseif', 'end', 'fcase', 'for', 'goto', 'if', 'label',
@@ -73,41 +90,45 @@ $language_data = array (
         //Arguments
         2 => array(
             'm', 'n', 'u', 'v', 'x', 'y'
-            )
-        /*  Below are all the primitives by type in case they are needed sometime
-        in the future.
-        Uncommenting them at the moment causes a number of the following errors:
-        PHP Notice:  Undefined offset:  0 in C:\MyPath\geshi.php on line 3460
-        // Adverbs   ! Backslashs probably need to be escaped?
+            ),
+        /* //Infinity : infinity Method B
         3 => array(
-            '~', '/', '\', '/.', '\.', '}', 'b.', 'f.', 'M.', 't.', 't:'
-            ),
-        // Conjunctions
-        4 => array(
-            '^:', '.', '..', '.:', ':', '', ':.', '::', ';.', '!.', '!:',
-            '"', '`', '`:', '@', '@.', '@:', '&', '&.', '&:', '&.:',
-            'd.', 'D.', 'D:', 'H.', 'L:', 'S:', 'T.'
-            ),
-        // Copula, local vs global assignment
-        5 => array(
-            '=.', '=:'
-            ),
-        // Nouns
+            '_', '__'
+            ) */
+/*
+Commented out for now due to conflicts with Lang Check
+        //primitives beginning with a symbol (except . or :)
         6 => array(
-            '_.', 'a.', 'a:'
+            '=', '&lt;', '&lt;.', '&lt;:',                  //verbs
+            '_:','&gt;', '&gt;.', '&gt;:',
+            '+', '+.', '+:', '*', '*.', '*:', '-', '-.', '-:', '%', '%.', '%:',
+            '^', '^.', '$', '$.', '$:', '~.', '~:', '\|', '|.', '|:',
+            ',', ',.', ',:', ';', ';:', '#', '#.', '#:', '!', '/:', '\:',
+            '[', '[:', ']', '{', '{.', '{:', '{::', '}.', '}:',
+            '&quot;.', '&quot;:', '?', '?.',
+            '~', '\/;', '\\', '/.', '\\.', '}',             //adverbs
+            '^:', ';.', '!.', '!:',                         //conj
+            '&quot;', '`', '`:', '@', '@.', '@:',
+            '&amp;', '&amp;.', '&amp;:', '&amp;.:',
+            '_.',                                           //nouns
+            '=.', '=:',                                     //other
             ),
-        // Verbs
+        //primitives beginning with a letter or digit
         7 => array(
-            '=', '&lt;', '&lt;.', '&lt;:', '&gt;', '&gt;.', '&gt;:', '_:', '+', '+.', '+:',
-            '*', '*.', '*:', '-', '-.', '-:', '%', '%.', '%:', '^', '^.',
-            '$', '$.', '$:', '~.', '~:', '|', '|.', '|:', ',', ',.', ',:',
-            ';', ';:', '#', '#.', '#:', '!', '/:', '\:', '[', '[:', ']',
-            '{', '{.', '{:', '{::', '}.', '}:', '".', '":', '?', '?.',
-            'A.', 'c.', 'C.', 'e.', 'E.', 'i.', 'i:', 'I.', 'j.', 'L.',
-            'o.', 'p.', 'p:', 'q:', 'r.', 's:', 'u:', 'x:', '_9:', '_8:',
-            '_7:', '_6:', '_5:', '_4:', '_3:', '_2:', '_1:', '0:', '1:',
-            '2:', '3:', '4:', '5:', '6:', '7:', '8:', '9:'
-            )            */
+            'A.', 'c.', 'C.', 'e.', 'E.',                   //verbs
+            'i.', 'i:', 'I.', 'j.', 'L.', 'o.',
+            'p.', 'p..', 'p:', 'q:', 'r.', 's:', 'u:', 'x:',
+            '_9:', '_8:', '_7:', '_6:', '_5:', '_4:', '_3:', '_2:', '_1:',
+            '0:', '1:', '2:', '3:', '4:', '5:', '6:', '7:', '8:', '9:',
+            'b.', 'f.', 'M.', 't.', 't:',                   //adverbs
+            'd.', 'D.', 'D:', 'H.', 'L:', 'S:', 'T.',       //conj
+            'a.', 'a:',                                     //nouns
+            ),
+        //primitives beginning with symbol . or :
+        8 => array(
+            '..', '.:', '.', ':.', '::', ':',               //conj
+            ),
+*/
         ),
     'SYMBOLS' => array(
         //Punctuation
@@ -118,17 +139,25 @@ $language_data = array (
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
-        2 => true
+        2 => true,
+        //3 => true    //infinity : Method B
+//        6 => true,
+//        7 => true,
+//        8 => true,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000ff; font-weight: bold;',
-            2 => 'color: #008800;'
+            2 => 'color: #0000cc; font-weight: bold;',
+            //3 => 'color: #3333cc; font-weight: bold;'   //infinity Method B
+//            6 => 'color: #000000; font-weight: bold;',
+//            7 => 'color: #000000; font-weight: bold;',
+//            8 => 'color: #000000; font-weight: bold;',
             ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
-            2 => 'color: #666666; font-style: italic;',
-            3 => 'color: #660066; ',
+            2 => 'color: #666666; font-style: italic; font-weight: bold;',
+            3 => 'color: #ff00ff; ',                      //open quote
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -151,27 +180,26 @@ $language_data = array (
             0 => 'color: #009900; font-weight: bold;'
             ),
         'REGEXPS' => array(
-            //0 => 'color: #0000ff; font-weight: bold;'
-            1 => 'color: #009999; font-weight: bold;'
+            //0 => 'color: #0000ff; font-weight: bold;',   //for_myname. Method A
+            1 => 'color: #009999; font-weight: bold;'      //infinity Method A
             ),
         'SCRIPT' => array(
             )
         ),
     'URLS' => array(
-        1 => '', //http://www.jsoftware.com/help/dictionary/ctrl.htm',
-        2 => ''
+        1 => '', //'http://www.jsoftware.com/help/dictionary/ctrl.htm',
+        2 => '',
+        //3 => '',                      //infinity Method B
+//        6 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+//        7 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+//        8 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),
     'REGEXPS' => array(
-        //for_myvar.  should be same format as keyword 1 (kw1)
-        //0 => "\bfor_[a-zA-Z]\w+\.",
-        //BenBE: Instead of highlighting the for construct I'd suggest
-        //highlighting variables if there's a simple syntax to detect them.
-        //Otherwise leave them alone and stick with highlighting known constructs.
-
-        1 => '\b__?(?![\w\.\:])'
+        //0 => '\bfor_[a-zA-Z]\w+\.',   //for_myname. Method A - should be kw1
+        1 => '\b__?(?![\w\.\:])'        //infinity Method A - should be nu0
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
@@ -183,13 +211,34 @@ $language_data = array (
             'BRACKETS' => GESHI_NEVER,
             ),
         'KEYWORDS' => array(
+            //for_myname. Method B
             1 => array(
                 'DISALLOWED_AFTER' => '(?=(?:(?<=\bfor)_[a-zA-Z]\w+)?\.)',
                 ),
             2 => array(
                 'DISALLOWED_BEFORE' => '(?<!\w)',
-                'DISALLOWED_AFTER' => '(?!\.|\w)',
-                )
+                'DISALLOWED_AFTER' => '(?![\w\.\:])',
+                ),
+            /* //infinity Method B
+            3 => array(
+                'DISALLOWED_BEFORE' => '(?<!\w)',
+                'DISALLOWED_AFTER' => '(?![\w\.\:])',
+                ), */
+            //primtives starting with a symbol (except . or :)
+            6 => array(
+                'DISALLOWED_BEFORE' => '(?!K)',    // effect should be to allow anything
+                'DISALLOWED_AFTER' => '(?=.*)',
+                ),
+            //primtives starting with a letter
+            7 => array(
+                'DISALLOWED_BEFORE' => '(?<!\w)',
+                'DISALLOWED_AFTER' => '(?=.*)',
+                ),
+            //primtives starting with symbol . or :
+            8 => array(
+                'DISALLOWED_BEFORE' => '(?<=\s)',
+                'DISALLOWED_AFTER' => '(?=.*)',
+                ),
             )
         )
 );
