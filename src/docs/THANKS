@@ -55,7 +55,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - ASM                    Tux
 - ASP                    Amit Gupta
 - AutoHotkey             Naveen Garg
-- AutoIT                 mastrboy
+- AutoIt                 mastrboy
+- Autoconf               Mihai Vasilian
 - AviSynth               Ryan Jones
 - Awk                    George Pollard
 - Bash                   Andreas Gohr
@@ -83,6 +84,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Delphi                 Járja Norbert, Benny Baumann
 - Div                    Gabriel Lorenzo
 - DOS                    Alessandro Staltari
+- ECMAScript             Michel Mariani
 - Eiffel                 Zoran Simic
 - eMail \ mbox           Benny Baumann
 - Erlang                 Benny Baumann, Dan Forest-Barbier, Uwe Dauernheim
@@ -103,6 +105,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Ini                    Deguix
 - Inno                   Thomas Klinger
 - INTERCAL               Benny Baumann
+- J                      Ric Sherlock
 - Java 5                 Clemens Bruckmann
 - Javascript             Ben Keen
 - jQuery                 Rob Loach
@@ -130,9 +133,11 @@ PEOPE WHO MADE LANGUAGE FILES
 - Objective C            M. Uli Kusterer
 - Ocaml                  Flaie
 - Ocaml-brief            Flaie
+- OpenBSD Packet Filter  David Berard
 - OpenOffice.org BASIC   Roberto Rossi
 - Oracle 8               Guy Wicks
 - Oracle 11i             Simon Redhead
+- Oxygene (Delphi Prism) Carlo Kok
 - Pascal                 Tux
 - Perl                   Andreas Gohr, Ben Keen
 - Perl6                  Kodi Arfer

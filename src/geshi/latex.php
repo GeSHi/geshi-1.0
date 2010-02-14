@@ -147,7 +147,7 @@ $language_data = array (
             ),
         // [options]
         2 => array(
-            GESHI_SEARCH => "(?<=\[).+(?=\])",
+            GESHI_SEARCH => "(?<=\[).*(?=\])",
             GESHI_REPLACE => '\0',
             GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '',

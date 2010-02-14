@@ -1,5 +1,4 @@
 <?php
-
 /*************************************************************************************
  * vim.php
  * ----------------
@@ -55,7 +54,9 @@ $language_data = array(
     'LANG_NAME' => 'Vim Script',
     'COMMENT_SINGLE' => array(),
     'COMMENT_REGEXP' => array(
-        1 => "/^\s*\"[^\"]*?$/m"
+        1 => "/\s*\"[^\"]*?$/m",
+        //Regular expressions (Ported from perl.php)
+//        2 => "/(?<=[\\s^])(s|tr|y)\\/(?:\\\\.|(?!\n)[^\\/\\\\])+\\/(?:\\\\.|(?!\n)[^\\/\\\\])*\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?:\\\\.|(?!\n)[^\\/\\\\])+\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU",
         ),
     'COMMENT_MULTI' => array(),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
@@ -138,7 +139,7 @@ $language_data = array(
             'diffopt', 'digraph', 'dip', 'dir', 'directory', 'display',
             'dlcomma', 'dy', 'ea', 'ead', 'eadirection',
             'eb', 'ed', 'edcompatible', 'ef', 'efm',
-            'ei', 'ek', 'enc', 'encoding', 'endofline',
+            'ei', 'ek', 'enc', 'encoding', 'endfun', 'endofline',
             'eol', 'ep', 'equalalways', 'equalprg', 'errorbells',
             'errorfile', 'errorformat', 'esckeys', 'et',
             'eventignore', 'ex', 'expandtab', 'exrc', 'fcl',
@@ -375,7 +376,8 @@ $language_data = array(
             0 => 'color: #000000;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #adadad; font-style: italic;'
+            1 => 'color: #adadad; font-style: italic;',
+//            2 => 'color: #009966; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => ''
