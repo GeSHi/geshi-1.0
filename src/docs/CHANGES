@@ -20,6 +20,7 @@ Version 1.0.8.7
   -  Minor change in INT_BASIC number regexp to support '..' range operator
      as to be found in most Pascal-like languages (BenBE)
   -  Fixed an issue with Hardquotes for empty strings (like '' in Delphi) (BenBE)
+  -  Introduced a fix for improved performance when matching numbers (BenBE)
   -  Improvements to language fiels (BenBE)
      * Fixed broken links in Prolog language file (BenBE)
      * Fixed keywords in generics expressions in Java5 (BenBE)
