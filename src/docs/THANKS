@@ -96,10 +96,11 @@ PEOPE WHO MADE LANGUAGE FILES
 - GAMBAS                 Jesus Guardon
 - glSlang                Benny Baumann
 - Gettext                Milian Wolff
+- GML                    José Jorge Enríquez Rodríguez
 - GNU make               Neil Bird
 - Gnuplot                Milian Wolff
-- GML                    José Jorge Enríquez Rodríguez
 - Groovy                 Ivan F. Villanueva B.
+- GwBasic                José Gabriel Moya Yangüela
 - Haskell                Dagit
 - HQ9+                   Benny Baumann
 - Ini                    Deguix
@@ -184,6 +185,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Whois \ RPSL format    Benny Baumann
 - Winbatch               Craig Storey
 - X++                    Simon Butcher
+- XBasic                 José Gabriel Moya Yangüela
 - Xorg config            Milian Wolff
 - Z80 Assembler          Benny Baumann
 
