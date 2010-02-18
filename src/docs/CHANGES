@@ -17,6 +17,8 @@ Version 1.0.8.8
      * GwBasic (José Gabriel Moya Yangüela)
      * MagikSF (Sjoerd van Leent)
      * XBasic (José Gabriel Moya Yangüela)
+  -  Improvements to language files (BenBE)
+     * Major reworks and improvements to OCaml language file (BenBE)
 Version 1.0.8.7
   -  Added language files
      * Autoconf (Mihai Vasilian)
@@ -28,7 +30,7 @@ Version 1.0.8.7
      as to be found in most Pascal-like languages (BenBE)
   -  Fixed an issue with Hardquotes for empty strings (like '' in Delphi) (BenBE)
   -  Introduced a fix for improved performance when matching numbers (BenBE)
-  -  Improvements to language fiels (BenBE)
+  -  Improvements to language files (BenBE)
      * Fixed broken links in Prolog language file (BenBE)
      * Fixed keywords in generics expressions in Java5 (BenBE)
      * Added support for import static in Java5 (BenBE)
@@ -58,7 +60,7 @@ Version 1.0.8.6
      * Pike (Rick E.)
      * SystemVerilog (Sean O'Boyle)
   -  Reworked parts of the number support (BenBE)
-  -  Improvements to language fiels (BenBE)
+  -  Improvements to language files (BenBE)
      * Fixed broken links in R/S+ language file (BenBE)
      * Fixed an issue with if= argument for dd command (BenBE)
      * T-SQL should use GESHI_CAPS_NO_CHANGE for keywords (BenBE)
