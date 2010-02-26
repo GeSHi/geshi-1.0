@@ -91,7 +91,7 @@ $language_data = array (
             ),
         2 => array(
             'aclocal', 'aconnect', 'aplay', 'apm', 'apmsleep', 'apropos',
-            'apt-cache', 'apt-get', 'apt-key', 'aptitude',
+            'apt-cache', 'apt-file', 'apt-get', 'apt-key', 'apt-src', 'aptitude',
             'ar', 'arch', 'arecord', 'as', 'as86', 'ash', 'autoconf',
             'autoheader', 'automake', 'awk',
 
@@ -104,7 +104,7 @@ $language_data = array (
             'chown', 'chroot', 'chsh', 'chvt', 'clear', 'cmp', 'comm', 'co',
             'col', 'cp', 'cpio', 'cpp', 'csh', 'cut', 'cvs', 'cvs-pserver',
 
-            'dash', 'date', 'dd', 'dc', 'dcop', 'deallocvt', 'df', 'dialog',
+            'dash', 'date', 'dch', 'dc', 'dcop', 'dd', 'deallocvt', 'df', 'dialog',
             'diff', 'diff3', 'dir', 'dircolors', 'directomatic', 'dirname',
             'dmesg', 'dnsdomainname', 'domainname', 'dpkg', 'dselect', 'du',
             'dumpkeys',
@@ -208,8 +208,10 @@ $language_data = array (
 
             'valgrind', 'vdir', 'vi', 'vim', 'vmstat',
 
-            'w', 'wall', 'wc', 'wget', 'whatis', 'whereis', 'which', 'whiptail',
-            'who', 'whoami', 'write',
+            'w', 'wait', 'wall', 'watch', 'wc', 'wget', 'whatis', 'whereis',
+            'which', 'whiptail', 'who', 'whoami', 'whois', 'wine', 'wineboot',
+            'winebuild', 'winecfg', 'wineconsole', 'winedbg', 'winedump',
+            'winefile', 'wodim', 'write',
 
             'xargs', 'xhost', 'xmodmap', 'xset',
 
