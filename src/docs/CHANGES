@@ -21,6 +21,7 @@ Version 1.0.8.8
      * XBasic (José Gabriel Moya Yangüela)
   -  Improvements to language files (BenBE)
      * Major reworks and improvements to OCaml language file (BenBE)
+     * Removed duplicate entries from keyword groups (Segaja)
 Version 1.0.8.7
   -  Added language files
      * Autoconf (Mihai Vasilian)
