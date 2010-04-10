@@ -104,10 +104,11 @@ $language_data = array (
             'chown', 'chroot', 'chsh', 'chvt', 'clear', 'cmp', 'comm', 'co',
             'col', 'cp', 'cpio', 'cpp', 'csh', 'cut', 'cvs', 'cvs-pserver',
 
-            'dash', 'date', 'dch', 'dc', 'dcop', 'dd', 'deallocvt', 'df', 'dialog',
-            'diff', 'diff3', 'dir', 'dircolors', 'directomatic', 'dirname',
-            'dmesg', 'dnsdomainname', 'domainname', 'dpkg', 'dselect', 'du',
-            'dumpkeys',
+            'dash', 'date', 'dc', 'dch', 'dcop', 'dd', 'ddate', 'ddd',
+            'deallocvt', 'debconf', 'defoma', 'depmod', 'df', 'dh',
+            'dialog', 'diff', 'diff3', 'dig', 'dir', 'dircolors', 'directomatic',
+            'dirname', 'dmesg', 'dnsdomainname', 'domainname', 'dpkg',
+            'dselect', 'du', 'dumpkeys',
 
             'ed', 'egrep', 'env', 'expr',
 
@@ -208,7 +209,7 @@ $language_data = array (
 
             'valgrind', 'vdir', 'vi', 'vim', 'vmstat',
 
-            'w', 'wait', 'wall', 'watch', 'wc', 'wget', 'whatis', 'whereis',
+            'w', 'wall', 'watch', 'wc', 'wget', 'whatis', 'whereis',
             'which', 'whiptail', 'who', 'whoami', 'whois', 'wine', 'wineboot',
             'winebuild', 'winecfg', 'wineconsole', 'winedbg', 'winedump',
             'winefile', 'wodim', 'write',
