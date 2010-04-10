@@ -5,12 +5,15 @@
  * Author: Sjoerd van Leent (svanleent@gmail.com)
  * Copyright: (c) 2010 Sjoerd van Leent
  * Release Version: 1.0.8.8
- * Date Started: 2010/02/17
+ * Date Started: 2010/02/15
  *
  * MagikSF language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2010/02/22 (1.0.0.2)
+ *   - Symbols also accept the ! and ? characters properly
+ *   - Labels (identifiers starting with !) are also coloured
  * 2010/02/17 (1.0.0.1)
  *   -  Parsing out symbols better
  *   -  Add package identifiers
@@ -129,9 +132,10 @@ $language_data = array (
             0 => 'color: #ff3f3f;'
             ),
         'REGEXPS' => array(
-            1 => 'color: #3f3fff',
+            1 => 'color: #3f3fff;',
             2 => 'color: #3f3fff;',
             3 => 'color: #cc66cc;',
+            4 => 'color: #7f3f7f; font-style: italic;',
             ),
         'SCRIPT' => array(
             )
@@ -150,26 +154,33 @@ $language_data = array (
         ),
     'REGEXPS' => array(
         1 => array(
-            GESHI_SEARCH => '([a-zA-Z0-9_]+:)', // package identifiers
-            GESHI_REPLACE => '\\1\\2',
+            GESHI_SEARCH => '\b[a-zA-Z0-9_]+:', // package identifiers
+            GESHI_REPLACE => '\\0',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
         2 => array(
-            GESHI_SEARCH => '(:([a-zA-Z0-9_]+|([<pipe>].*[<pipe>]))*)', //symbols
-            GESHI_REPLACE => '\\1',
+            GESHI_SEARCH => ':(?:[a-zA-Z0-9!?_]+|(?:[<pipe>].*?[<pipe>]))*', //symbols
+            GESHI_REPLACE => '\\0',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
         3 => array(
-            GESHI_SEARCH => '(%space|%tab|%newline|%.)', //characters
-            GESHI_REPLACE => '\\1',
+            GESHI_SEARCH => '%space|%tab|%newline|%.', //characters
+            GESHI_REPLACE => '\\0',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            )
+            ),
+        4 => array(
+            GESHI_SEARCH => '@(?:[a-zA-Z0-9!?_]+|(?:[<pipe>].*?[<pipe>]))*', //symbols
+            GESHI_REPLACE => '\\0',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => ''
+            ),
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
