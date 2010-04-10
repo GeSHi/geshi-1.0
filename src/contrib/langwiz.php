@@ -318,7 +318,7 @@ $ld = array(
             )
         ),
     'sy' => array(
-        1 => array(
+        0 => array(
             'list' => '',
             'style' => 'color: #0000FF; font-weight: bold;'
             )
@@ -789,19 +789,19 @@ echo "</pre>";
             <table width="100%">
                 <tr>
                     <td>
-                        <label for="ld[sy][1][list]">Symbols List:</label>
+                        <label for="ld[sy][0][list]">Symbols List:</label>
                     </td>
                     <td>
-                      <textarea name="ld[sy][1][list]" id="ld[sy][1][list]" rows="10" cols="80"><?=$ld['sy'][1]['list']; ?></textarea>
+                      <textarea name="ld[sy][0][list]" id="ld[sy][0][list]" rows="10" cols="80"><?=$ld['sy'][0]['list']; ?></textarea>
                     </td>
                 </tr>
 
                 <tr>
                     <td>
-                        <label for="ld[sy][1][style]">Symbols Style:</label>
+                        <label for="ld[sy][0][style]">Symbols Style:</label>
                     </td>
                     <td>
-                        <input type="text" name="ld[sy][1][style]" id="ld[sy][1][style]" value="<?=$ld['sy'][1]['style']; ?>" />
+                        <input type="text" name="ld[sy][0][style]" id="ld[sy][0][style]" value="<?=$ld['sy'][0]['style']; ?>" />
                     </td>
                 </tr>
             </table>
