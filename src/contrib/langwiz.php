@@ -7,7 +7,7 @@
  *
  *This script
  *
- * @author  Nigel McNie
+ * @author  Nigel McNie, Benny Baumann (BenBE@geshi.org), Andreas 'Segaja' Schleifer (webmaster at segaja dot de)
  * @version $Id$
  */
 header('Content-Type: text/html; charset=utf-8');
@@ -289,7 +289,7 @@ $ld = array(
                 'style' => 'color: #0000FF;'
                 ),
             2 => array(
-              'delim' => '"',
+              'delim' => "&quot;",
                 'style' => 'color: #0000FF;'
                 )
             ),
@@ -615,7 +615,7 @@ echo "</pre>";
                             <label for="ld[str][qm][1][delim]">String Delimiter:</label>
                         </td>
                         <td>
-                            <input type="text" name="ld[str][qm][2][delim]" id="ld[str][qm][2][delim]" value='<?=$ld['str']['qm'][2]['delim']; ?>' />
+                            <input type="text" name="ld[str][qm][2][delim]" id="ld[str][qm][2][delim]" value="<?=$ld['str']['qm'][2]['delim']; ?>" />
                         </td>
                     </tr>
 
@@ -1165,4 +1165,6 @@ GESHI_LANGFILE_FOOTER;
 
     return $src;
 }
+
+// vim: shiftwidth=4 softtabstop=4
 ?>
