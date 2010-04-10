@@ -45,7 +45,9 @@ $language_data = array (
     'COMMENT_SINGLE'            => array(1 => '//'),
     'COMMENT_MULTI'             => array(),
     'COMMENT_REGEXP'            => array(
-        2   => '/ \s\/.*/',         # This needs to get fixed up, since it won't catch some instances
+        2 => '/ \s\/.*/',         # This needs to get fixed up, since it won't catch some instances
+        # Multi line comments (Moved from REGEXPS)
+        3 => '/^\/\s*?\n.*?\n\\\s*?\n/smi'
         ),
     'CASE_KEYWORDS'             => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS'                => array('"'),
@@ -93,6 +95,7 @@ $language_data = array (
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #666666; font-style: italic;',
+            3 => 'color: #808080; font-style: italic;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -128,21 +131,12 @@ $language_data = array (
             0 => 'color: #339933;'
             ),
         'REGEXPS' => array(
-            1   => 'color: #808080; font-style: italic;',
             2   => 'color: #999900;',
             ),
         'SCRIPT' => array(
             )
         ),
     'REGEXPS' => array(
-        # Multi line comments
-        1 => array (
-            GESHI_SEARCH    => '^(\/\s*\n.*?\n\\\s*)\n',
-            GESHI_MODIFIERS => 'smi',
-            GESHI_REPLACE   => '\\1',
-            GESHI_BEFORE    => '',
-            GESHI_AFTER     => '',
-        ),
         # Symbols
         2 => '`[^\s"]*',
         ),
