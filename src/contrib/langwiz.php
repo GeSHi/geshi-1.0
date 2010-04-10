@@ -310,12 +310,18 @@ $ld = array(
         ),
     'kw_case' => 'GESHI_CAPS_NO_CHANGE',
     'kw' => array(
-          1 => array(
-              'list' => '',
-              'case' => '0',
-              'style' => 'color: #0000FF; font-weight: bold;',
-              'docs' => ''
-              )
+        1 => array(
+            'list' => '',
+            'case' => '0',
+            'style' => 'color: #0000FF; font-weight: bold;',
+            'docs' => ''
+            )
+        ),
+    'sy' => array(
+        1 => array(
+            'list' => '',
+            'style' => 'color: #0000FF; font-weight: bold;'
+            )
         )
     );
 
@@ -727,7 +733,7 @@ echo "</pre>";
         </fieldset>
 
         <fieldset>
-            <legend>Quotemark Group 1</legend>
+            <legend>Keyword Group 1</legend>
 
             <table width="100%">
                 <tr>
@@ -774,9 +780,34 @@ echo "</pre>";
     </fieldset>
 
 
+    <fieldset>
+        <legend>Symbols</legend>
 
-    <input type="hidden" name="ld[sy][0][list]" value="quo" />
-    <input type="hidden" name="ld[sy][0][style]" value="quo" />
+        <fieldset>
+            <legend>Symbols Group 1</legend>
+
+            <table width="100%">
+                <tr>
+                    <td>
+                        <label for="ld[sy][1][list]">Symbols List:</label>
+                    </td>
+                    <td>
+                      <textarea name="ld[sy][1][list]" id="ld[sy][1][list]" rows="10" cols="80"><?=$ld['sy'][1]['list']; ?></textarea>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <label for="ld[sy][1][style]">Symbols Style:</label>
+                    </td>
+                    <td>
+                        <input type="text" name="ld[sy][1][style]" id="ld[sy][1][style]" value="<?=$ld['sy'][1]['style']; ?>" />
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+
+    </fieldset>
 
 
     <div id="langfile">
