@@ -18,8 +18,7 @@ $time_start = explode(' ', microtime());
 
 //Handle crappy PHP magic:
 if (get_magic_quotes_gpc()) {
-    function stripslashes_deep($value)
-    {
+    function stripslashes_deep($value) {
         $value = is_array($value) ?
                     array_map('stripslashes_deep', $value) :
                     stripslashes($value);
@@ -34,7 +33,7 @@ if (get_magic_quotes_gpc()) {
 }
 
 function htmlspecialchars_deep($value) {
-  return is_array($value) ? array_map('htmlspecialchars_deep', $value) : htmlspecialchars($value);
+    return is_array($value) ? array_map('htmlspecialchars_deep', $value) : htmlspecialchars($value);
 }
 
 define ('TYPE_NOTICE', 0);
@@ -288,6 +287,10 @@ $ld = array(
             1 => array(
                 'delim' => "'",
                 'style' => 'color: #0000FF;'
+                ),
+            2 => array(
+              'delim' => '"',
+                'style' => 'color: #0000FF;'
                 )
             ),
         'ec' => array(
@@ -336,9 +339,9 @@ var_dump($_GET);
 var_dump($_POST);
 
 foreach($post_var_names as $varName) { // export wanted variables of $_POST array...
-  if(array_key_exists($varName, $_POST)) {
-    $$varName = htmlspecialchars_deep($_POST[$varName]);
-  }
+    if(array_key_exists($varName, $_POST)) {
+      $$varName = htmlspecialchars_deep($_POST[$varName]);
+    }
 }
 
 // determine the selected kw_case...
@@ -346,7 +349,7 @@ $kw_case_sel[$ld['kw_case']] = ' selected="selected"';
 
 // determine the selected kw_cases...
 for($i = 1; $i <= count($kw_cases_sel); $i += 1) {
-  $kw_cases_sel[$i][(int) $ld['kw'][$i]['case']] = ' selected="selected"';
+    $kw_cases_sel[$i][(int) $ld['kw'][$i]['case']] = ' selected="selected"';
 }
 
 $lang = validate_lang();
@@ -597,6 +600,31 @@ echo "</pre>";
                     </tr>
                 </table>
             </fieldset>
+            <fieldset>
+                <legend>Quotemark Group 2</legend>
+
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <label for="ld[str][qm][1][delim]">String Delimiter:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="ld[str][qm][2][delim]" id="ld[str][qm][2][delim]" value='<?=$ld['str']['qm'][2]['delim']; ?>' />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="ld[str][qm][1][style]">String Style:</label>
+                        </td>
+                        <td>
+                            <input type="text" name="ld[str][qm][2][style]" id="ld[str][qm][2][style]" value="<?=$ld['str']['qm'][2]['style']; ?>" />
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+
+
         </fieldset>
 
         <fieldset>
