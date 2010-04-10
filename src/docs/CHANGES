@@ -16,6 +16,7 @@ Version 1.0.8.8
   -  Added language files
      * GwBasic (José Gabriel Moya Yangüela)
      * MagikSF (Sjoerd van Leent)
+     * Oz (Wolfgang Meyer)
      * XBasic (José Gabriel Moya Yangüela)
   -  Improvements to language files (BenBE)
      * Major reworks and improvements to OCaml language file (BenBE)
