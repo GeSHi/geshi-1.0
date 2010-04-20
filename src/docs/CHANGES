@@ -23,6 +23,7 @@ Version 1.0.8.8
      * Major reworks and improvements to OCaml language file (BenBE)
      * Removed duplicate entries from keyword groups of VIM language file (Segaja)
      * Properly protect Regexps against GeSHi Black Magic in Matlab (BenBE)
+     * Added support for Block Comments in PowerShell (BenBE)
 Version 1.0.8.7
   -  Added language files
      * Autoconf (Mihai Vasilian)
