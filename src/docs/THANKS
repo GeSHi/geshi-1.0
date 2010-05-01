@@ -54,9 +54,9 @@ PEOPE WHO MADE LANGUAGE FILES
 - Apt sources.list       Milian Wolff
 - ASM                    Tux
 - ASP                    Amit Gupta
+- Autoconf               Mihai Vasilian
 - AutoHotkey             Naveen Garg
 - AutoIt                 mastrboy
-- Autoconf               Mihai Vasilian
 - AviSynth               Ryan Jones
 - Awk                    George Pollard
 - Bash                   Andreas Gohr
@@ -66,10 +66,10 @@ PEOPE WHO MADE LANGUAGE FILES
 - BNF                    Rowan Rodrik van der Molen
 - Boo                    Marcus Griep
 - Brainfuck \ Brainfork  Benny Baumann
+- C for Macs             M. Uli Kusterer
+- C#                     Alan Juden
 - C++                    Dennis Bayer, M. Uli Kusterer
 - C++/QT                 Iulian M
-- C#                     Alan Juden
-- C for Macs             M. Uli Kusterer
 - CADDCL                 Roberto Rossi
 - CadLisp                Roberto Rossi
 - CDFG                   John Horigan
@@ -89,14 +89,14 @@ PEOPE WHO MADE LANGUAGE FILES
 - eMail \ mbox           Benny Baumann
 - Erlang                 Benny Baumann, Dan Forest-Barbier, Uwe Dauernheim
 - F#                     Julien Ortin
-- FreeBasic              Roberto Rossi
 - FO (abas-ERP)          Tan-Vinh Nguyen
 - Fortran                Cedric Arrabie
+- FreeBasic              Roberto Rossi
 - GADV 4CS               Jason Curl
 - GAMBAS                 Jesus Guardon
-- glSlang                Benny Baumann
 - Genie                  Nicolas Joseph
 - Gettext                Milian Wolff
+- glSlang                Benny Baumann
 - GML                    José Jorge Enríquez Rodríguez
 - GNU make               Neil Bird
 - Gnuplot                Milian Wolff
@@ -169,17 +169,17 @@ PEOPE WHO MADE LANGUAGE FILES
 - RPM Specification File Paul Grinberg
 - Ruby                   Amit Gupta, Moises Deniz
 - SAS                    Galen Johnson
-- SDLBasic               Roberto Rossi
 - Scheme                 Jon Raphaelson
 - SciLab                 Christophe David
+- SDLBasic               Roberto Rossi
 - Smalltalk              Bananeweizen
 - Smarty                 Alan Juden
 - SystemVerilog          Sean O'Boyle
-- T-SQL                  Duncan Lock
+- TCL                    Reid van Melle
 - TeraTerm               Boris Maisuradze
 - Text                   SmokingRope
-- TCL                    Reid van Melle
 - thinBasic              Eros Olmi
+- T-SQL                  Duncan Lock
 - TypoScript             Jan-Philipp Halle
 - Unicon                 Matt Oates
 - Uno IDL                Cedric Bosdonnat
