@@ -54,18 +54,18 @@ $language_data = array(
             'invocable', 'link', 'method', 'next', 'not', 'of', 'package', 'procedure', 'record',
             'repeat', 'return', 'switch', 'suspend', 'then', 'to', 'until', 'while'),
         2 => array('global', 'local', 'static'),
-        3 => array('&amp;allocated', '&amp;ascii', '&amp;clock', '&amp;collections',
-            '&amp;column', '&amp;cset', '&amp;current', '&amp;date', '&amp;dateline', '&amp;digits',
-            '&amp;dump', '&amp;e', '&amp;error', '&amp;errornumber', '&amp;errortext',
-            '&amp;errorvalue', '&amp;errout', '&amp;eventcode', '&amp;eventsource', '&amp;eventvalue',
-            '&amp;fail', '&amp;features', '&amp;file', '&amp;host', '&amp;input', '&amp;lcase',
-            '&amp;letters', '&amp;level', '&amp;line', '&amp;main', '&amp;now', '&amp;null',
-            '&amp;output', '&amp;phi', '&amp;pi', '&amp;pos', '&amp;progname', '&amp;random',
-            '&amp;regions', '&amp;source', '&amp;storage', '&amp;subject', '&amp;syserr', '&amp;time',
-            '&amp;trace', '&amp;ucase', '&amp;version', '&amp;col', '&amp;control', '&amp;interval',
-            '&amp;ldrag', '&amp;lpress', '&amp;lrelease', '&amp;mdrag', '&amp;meta', '&amp;mpress',
-            '&amp;mrelease', '&amp;rdrag', '&amp;resize', '&amp;row', '&amp;rpress', '&amp;rrelease',
-            '&amp;shift', '&amp;window', '&amp;x', '&amp;y'),
+        3 => array('allocated', 'ascii', 'clock', 'collections',
+            'column', 'cset', 'current', 'date', 'dateline', 'digits',
+            'dump', 'e', 'error', 'errornumber', 'errortext',
+            'errorvalue', 'errout', 'eventcode', 'eventsource', 'eventvalue',
+            'fail', 'features', 'file', 'host', 'input', 'lcase',
+            'letters', 'level', 'line', 'main', 'now', 'null',
+            'output', 'phi', 'pi', 'pos', 'progname', 'random',
+            'regions', 'source', 'storage', 'subject', 'syserr', 'time',
+            'trace', 'ucase', 'version', 'col', 'control', 'interval',
+            'ldrag', 'lpress', 'lrelease', 'mdrag', 'meta', 'mpress',
+            'mrelease', 'rdrag', 'resize', 'row', 'rpress', 'rrelease',
+            'shift', 'window', 'x', 'y'),
         4 => array('abs', 'acos', 'any', 'args', 'asin', 'atan', 'bal', 'center', 'char',
             'chmod', 'close', 'cofail', 'collect', 'copy', 'cos', 'cset', 'ctime', 'dbcolumns',
             'dbdriver', 'dbkeys', 'dblimits', 'dbproduction', 'dbtables', 'delay', 'delete', 'detab',
@@ -151,7 +151,18 @@ $language_data = array(
     'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
-    'HIGHLIGHT_STRICT_BLOCK' => array()
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            3 => array(
+                'DISALLOWED_BEFORE' => '(?<=&amp;)'
+                ),
+            4 => array(
+                'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9_\"\'])",
+                'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\"\'])"
+                )
+            )
+        )
 );
 
 ?>
