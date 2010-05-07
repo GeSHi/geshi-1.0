@@ -77,7 +77,7 @@ $language_data = array(
             'open', 'opmask', 'ord', 'paramnames', 'parent', 'pipe', 'pop', 'pos', 'proc', 'pull',
             'push', 'put', 'read', 'reads', 'real', 'receive', 'remove', 'rename', 'repl', 'reverse',
             'right', 'rmdir', 'rtod', 'runerr', 'seek', 'select', 'send', 'seq', 'serial', 'set',
-            'setenv', 'sort', 'sortf', 'sql', 'sqrt', 'stat', 'stop', 'string', 'system', 'tab',
+            'setenv', 'sort', 'sortf', 'sql', 'sqrt', 'stat', 'staticnames', 'stop', 'string', 'system', 'tab',
             'table', 'tan', 'trap', 'trim', 'truncate', 'type', 'upto', 'utime', 'variable', 'where',
             'write', 'writes'),
         5 => array('Active', 'Alert', 'Bg', 'Clip', 'Clone', 'Color', 'ColorValue',
