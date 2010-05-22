@@ -86,8 +86,11 @@ $language_data = array (
         // One-Char Escapes
         13 => "/\\\\[abdefnrstvwzABDGSWXZ\\\\\\.\[\]\(\)\{\}\^\\\$\?\+\*]/",
 
+        // Byte sequence: Control-X sequence
+        14 => "/\\\\c./",
+
         // Quantifier
-        14 => "/\{(?:\d+,?|\d*,\d+)\}/"
+        15 => "/\{(?:\d+,?|\d*,\d+)\}/"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
@@ -121,7 +124,8 @@ $language_data = array (
             11 => 'color: #339966; font-style: italic;',
             12 => 'color: #339999; font-style: italic;',
             13 => 'color: #999933; font-style: italic;',
-            14 => 'color: #333399; font-style: italic;',
+            14 => 'color: #663399; font-style: italic;',
+            15 => 'color: #333399; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
