@@ -48,10 +48,10 @@ $language_data = array (
         ),
     'COMMENT_REGEXP' => array(
         // Non-matching groups
-        1 => "/(?<=\()\?:/",
+        1 => "/(?<=\()\?(?::|(?=\())/",
 
         // Modifier groups
-        2 => "/(?<=\()\?[cdegimopsuxUX\-]+:/",
+        2 => "/(?<=\()\?[cdegimopsuxUX\-]+(?::|(?=\)))/",
 
         // Look-Aheads
         3 => "/(?<=\()\?[!=]/",
@@ -66,13 +66,13 @@ $language_data = array (
         6 => "/(?<=\()\?R(?=\))/",
 
         // Named Subpattern
-        7 => "/(?<=\()\?P<\w+>/",
+        7 => "/(?<=\()\?(?:<\w+>|\d+(?=\))|P>\w+(?=\)))/",
 
         // Back Reference
         8 => "/\\\\[1-9]\d?/",
 
         // Byte sequence: Octal
-        9 => "/\\\\[0-7]{1,3}/",
+        9 => "/\\\\[0-7]{2,3}/",
 
         // Byte sequence: Hex
         10 => "/\\\\x[0-9a-fA-F]{2}/",
@@ -83,14 +83,20 @@ $language_data = array (
         // Byte sequence: Hex
         12 => "/\\\\U[0-9a-fA-F]{8}/",
 
+        // Byte sequence: Unicode
+        13 => "/\\\\[pP]\{[^}\n]+\}/",
+
         // One-Char Escapes
-        13 => "/\\\\[abdefnrstvwzABDGSWXZ\\\\\\.\[\]\(\)\{\}\^\\\$\?\+\*]/",
+        14 => "/\\\\[abdefnrstvwzABCDGSWXZ\\\\\\.\[\]\(\)\{\}\^\\\$\?\+\*]/",
 
         // Byte sequence: Control-X sequence
-        14 => "/\\\\c./",
+        15 => "/\\\\c./",
 
         // Quantifier
-        15 => "/\{(?:\d+,?|\d*,\d+)\}/"
+        16 => "/\{(?:\d+,?|\d*,\d+)\}/",
+
+        // Comment Subpattern
+        17 => "/(?<=\()\?#[^\)]*/",
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array(),
@@ -123,9 +129,11 @@ $language_data = array (
             10 => 'color: #339933; font-style: italic;',
             11 => 'color: #339966; font-style: italic;',
             12 => 'color: #339999; font-style: italic;',
-            13 => 'color: #999933; font-style: italic;',
-            14 => 'color: #663399; font-style: italic;',
-            15 => 'color: #333399; font-style: italic;',
+            13 => 'color: #663399; font-style: italic;',
+            14 => 'color: #999933; font-style: italic;',
+            15 => 'color: #993399; font-style: italic;',
+            16 => 'color: #333399; font-style: italic;',
+            17 => 'color: #666666; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
