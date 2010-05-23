@@ -23,6 +23,7 @@ Version 1.0.8.8
      * Modula 2 (Benjamin Kowarsch)
      * Oz (Wolfgang Meyer)
      * PCRE (BenBE)
+     * PostgreSQL (Christophe Chauvet)
      * q/kdb+ (Ian Roddis)
      * RPM Specification Files (Paul Grinberg)
      * Unicon (Matt Oates)
