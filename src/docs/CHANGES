@@ -12,6 +12,30 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8.8
+  -  Added language files
+     * ChaiScript (Jason Turner & Jonathan Turner)
+     * Genie (Nicolas Joseph)
+     * GwBasic (José Gabriel Moya Yangüela)
+     * HicEst (Georg Petrich)
+     * Icon (Matt Oates)
+     * MagikSF (Sjoerd van Leent)
+     * Modula 2 (Benjamin Kowarsch)
+     * Oz (Wolfgang Meyer)
+     * PCRE (BenBE)
+     * PostgreSQL (Christophe Chauvet)
+     * q/kdb+ (Ian Roddis)
+     * RPM Specification Files (Paul Grinberg)
+     * Unicon (Matt Oates)
+     * Vala (Nicolas Joseph)
+     * XBasic (José Gabriel Moya Yangüela)
+  -  Improvements to language files (BenBE)
+     * Major reworks and improvements to OCaml language file (BenBE)
+     * Removed duplicate entries from keyword groups of VIM language file (Segaja)
+     * Properly protect Regexps against GeSHi Black Magic in Matlab (BenBE)
+     * Added support for Block Comments in PowerShell (BenBE)
+     * Added some keywords for VB; split into multiple groups (leejkennedy, BenBE)
+     * Basic Heredoc Support for Ruby (BenBE)
 Version 1.0.8.7
   -  Added language files
      * Autoconf (Mihai Vasilian)
@@ -23,7 +47,7 @@ Version 1.0.8.7
      as to be found in most Pascal-like languages (BenBE)
   -  Fixed an issue with Hardquotes for empty strings (like '' in Delphi) (BenBE)
   -  Introduced a fix for improved performance when matching numbers (BenBE)
-  -  Improvements to language fiels (BenBE)
+  -  Improvements to language files (BenBE)
      * Fixed broken links in Prolog language file (BenBE)
      * Fixed keywords in generics expressions in Java5 (BenBE)
      * Added support for import static in Java5 (BenBE)
@@ -53,7 +77,7 @@ Version 1.0.8.6
      * Pike (Rick E.)
      * SystemVerilog (Sean O'Boyle)
   -  Reworked parts of the number support (BenBE)
-  -  Improvements to language fiels (BenBE)
+  -  Improvements to language files (BenBE)
      * Fixed broken links in R/S+ language file (BenBE)
      * Fixed an issue with if= argument for dd command (BenBE)
      * T-SQL should use GESHI_CAPS_NO_CHANGE for keywords (BenBE)
