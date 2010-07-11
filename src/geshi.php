@@ -2033,6 +2033,10 @@ class GeSHi {
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
                     "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!(?:<DOT>|(?>[^\<]))+>)(?![^<]*>)(?!\|>)(?!\/>)/i"; //
             }
+
+            if(!isset($this->language_data['PARSER_CONTROL']['NUMBERS']['PRECHECK_RX'])) {
+                $this->language_data['PARSER_CONTROL']['NUMBERS']['PRECHECK_RX'] = '#\d#';
+            }
         }
 
         $this->parse_cache_built = true;
@@ -3358,7 +3362,7 @@ class GeSHi {
 
         // Highlight numbers. As of 1.0.8 we support different types of numbers
         $numbers_found = false;
-        if ($this->lexic_permissions['NUMBERS'] && preg_match('#\d#', $stuff_to_parse )) {
+        if ($this->lexic_permissions['NUMBERS'] && preg_match($this->language_data['PARSER_CONTROL']['NUMBERS']['PRECHECK_RX'], $stuff_to_parse )) {
             $numbers_found = true;
 
             //For each of the formats ...
