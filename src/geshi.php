@@ -736,6 +736,88 @@ class GeSHi {
     }
 
     /**
+     * Get supported langs or an associative array lang=>full_name.
+     * @param boolean $longnames
+     * @return array
+     */
+    function get_supported_languages($full_names=false)
+    {
+        // return array
+        $back = array();
+
+        // we walk the lang root
+        $dir = dir($this->language_path);
+
+        // foreach entry
+        while (false !== ($entry = $dir->read()))
+        {
+            $full_path = $this->language_path.$entry;
+
+            // Skip all dirs
+            if (is_dir($full_path)) {
+                continue;
+            }
+
+            // we only want lang.php files
+            if (!preg_match('/^([^.]+)\.php$/', $entry, $matches)) {
+                continue;
+            }
+
+            // Raw lang name is here
+            $langname = $matches[1];
+
+            // We want the fullname too?
+            if ($full_names === true)
+            {
+                if (false !== ($fullname = $this->get_language_fullname($langname)))
+                {
+                    $back[$langname] = $fullname; // we go associative
+                }
+            }
+            else
+            {
+                // just store raw langname
+                $back[] = $langname;
+            }
+        }
+
+        $dir->close();
+
+        return $back;
+    }
+
+    /**
+     * Get full_name for a lang or false.
+     * @param string $language short langname (html4strict for example)
+     * @return mixed
+     */
+    function get_language_fullname($language)
+    {
+        //Clean up the language name to prevent malicious code injection
+        $language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
+
+        $language = strtolower($language);
+
+        // get fullpath-filename for a langname
+        $fullpath = $this->language_path.$language.'.php';
+
+        // we need to get contents :S
+        if (false === ($data = file_get_contents($fullpath))) {
+            $this->error = sprintf('Geshi::get_lang_fullname() Unknown Language: %s', $language);
+            return false;
+        }
+
+        // match the langname
+        if (!preg_match('/\'LANG_NAME\'\s*=>\s*\'((?:[^\']|\\\')+)\'/', $data, $matches)) {
+            $this->error = sprintf('Geshi::get_lang_fullname(%s): Regex can not detect language', $language);
+            return false;
+        }
+
+        // return fullname for langname
+        return stripcslashes($matches[1]);
+    }
+
+    /**
      * Sets the type of header to be used.
      *
      * If GESHI_HEADER_DIV is used, the code is surrounded in a "div".This

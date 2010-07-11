@@ -20,6 +20,8 @@ Version 1.0.8.9
   -  Added support for $-prefixed hex numbers and @-prefixed octal numbers
   -  Added Parser Control for languages to tell when numbers are present
      inside of non-string parts
+  -  Introduced querying supported/known languages directly
+  -  Introduced querying full language names without loading the language file
 Version 1.0.8.8
   -  Added language files
      * ChaiScript (Jason Turner & Jonathan Turner)
