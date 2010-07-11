@@ -17,6 +17,9 @@ Version 1.0.8.9
      * Algol68 (Neville Dempsey)
      * FormulaOne (Juro Bystricky)
      * Objeck Programming Language (Randy Hollines)
+  -  Added support for $-prefixed hex numbers and @-prefixed octal numbers
+  -  Added Parser Control for languages to tell when numbers are present
+     inside of non-string parts
 Version 1.0.8.8
   -  Added language files
      * ChaiScript (Jason Turner & Jonathan Turner)
