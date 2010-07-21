@@ -16,6 +16,7 @@ Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
      * FormulaOne (Juro Bystricky)
+     * Liberty BASIC (Chris Iverson)
      * Objeck Programming Language (Randy Hollines)
   -  Added support for $-prefixed hex numbers and @-prefixed octal numbers
   -  Added Parser Control for languages to tell when numbers are present
