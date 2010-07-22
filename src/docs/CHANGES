@@ -12,6 +12,24 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.8.9
+  -  Added language files
+     * Algol68 (Neville Dempsey)
+     * E (Kevin Reid)
+     * FormulaOne (Juro Bystricky)
+     * Go (Markus Jarderot)
+     * Liberty BASIC (Chris Iverson)
+     * MOS 6502/6510 Assemblers (Warren Willmey)
+     * Motorola 68k assembler (Warren Willmey)
+     * Objeck Programming Language (Randy Hollines)
+     * ZXBasic (Jose Rodriguez)
+  -  Added support for $-prefixed hex numbers and @-prefixed octal numbers
+  -  Added Parser Control for languages to tell when numbers are present
+     inside of non-string parts
+  -  Introduced querying supported/known languages directly
+  -  Introduced querying full language names without loading the language file
+  -  Improvements to language files (BenBE)
+     * Added loads of keywords for generic SQL highlighting (Jürgen Thomas)
 Version 1.0.8.8
   -  Added language files
      * ChaiScript (Jason Turner & Jonathan Turner)
