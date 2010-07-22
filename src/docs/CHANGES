@@ -22,6 +22,7 @@ Version 1.0.8.9
      * MOS 6502/6510 Assemblers (Warren Willmey)
      * Motorola 68k assembler (Warren Willmey)
      * Objeck Programming Language (Randy Hollines)
+     * ZXBasic (Jose Rodriguez)
   -  Added support for $-prefixed hex numbers and @-prefixed octal numbers
   -  Added Parser Control for languages to tell when numbers are present
      inside of non-string parts
