@@ -22,6 +22,7 @@ Version 1.0.8.10
      * Major rework of the ALGOL68 language file (Neville Dempsey)
      * LangCheck warnings from GO language file (BenBE)
      * Some additions to the Objeck language file (Randy Hollines)
+     * Properly highlight infinity as numbers for J (Ric Sherlock)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)

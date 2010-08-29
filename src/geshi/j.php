@@ -4,13 +4,15 @@
  * --------
  * Author: Ric Sherlock (tikkanz@gmail.com)
  * Copyright: (c) 2009 Ric Sherlock
- * Release Version: 1.0.8.9
+ * Release Version: 1.0.8.10
  * Date Started: 2009/11/10
  *
  * J language file for GeSHi.
  *
  * CHANGES
  * -------
+ *  2010/07/18 (1.0.8.10)
+     - Infinity and negative infinity recognized as numbers
  *  2010/03/01 (1.0.8.8)
  *   - Add support for label_xyz. and goto_xyz.
  *   - Fix highlighting of for_i.
@@ -69,12 +71,7 @@ $language_data = array (
     'HARDESCAPE' => array("'"),
     'HARDCHAR' => "'",
     'NUMBERS' => array(
-        //Some instances of infinity are not correctly handled by GeSHi NUMBERS currently
-        //There are two solutions labelled "infinity Method A" and "infinity Method B"
-        //infinity Method B - requires following adjustment to line 3349 of geshi.php
-        //   preg_match('#\d#'  becomes  preg_match('#[\d_]#'
-        0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?)(?![\w\.\:])',       //infinity Method A
-        //0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?|__?)(?![\w\.\:])', //infinity Method B
+        0 => '\b(?:_?\d+(?:\.\d+)?(?:x|[bejprx]_?[\da-z]+(?:\.[\da-z]+)?)?|__?)(?![\w\.\:])',
         ),
     'KEYWORDS' => array(
         //Control words
@@ -171,7 +168,6 @@ Commented out for now due to conflicts with Lang Check
             ),
         'REGEXPS' => array(
             0 => 'color: #0000ff; font-weight: bold;',   //for_xyz. - same as kw1
-            1 => 'color: #009999; font-weight: bold;'    //infinity - same as nu0
             ),
         'SCRIPT' => array(
             )
@@ -188,7 +184,6 @@ Commented out for now due to conflicts with Lang Check
         ),
     'REGEXPS' => array(
         0 => '\b(for|goto|label)_[a-zA-Z]\w*\.',   //for_xyz. - should be kw1
-        1 => '\b__?(?![\w\.\:])'                   //infinity - should be nu0
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
@@ -198,6 +193,9 @@ Commented out for now due to conflicts with Lang Check
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,
+            ),
+        'NUMBERS' => array(
+            'PRECHECK_RX' => '#[\d_]#',            // underscore is valid number
             ),
         'KEYWORDS' => array(
             //Control words
