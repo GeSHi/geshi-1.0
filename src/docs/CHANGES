@@ -16,6 +16,7 @@ Version 1.0.8.10
   -  Added language files
      * C: Loadrunner dialect (Stuart Moncrieff)
      * EPC (Thorsten Muehlfelder)
+     * Falcon (billykater)
   -  Small bugfix in LangCheck when looking for language files
   -  Improvements to language files (BenBE)
      * Major rework of the ALGOL68 language file (Neville Dempsey)
