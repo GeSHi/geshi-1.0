@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="GeSHi" default="pack" basedir=".">
+  <!--
+    GeSHi - Generic Syntax Highlighter - phing build file.
+    Works for 1.0.x
+    Packs up a new version of geshi, tags it in svn and releases it on
+    sourceforge.net
+  -->
+  <property file="build.properties" />
+
+  <property name="version"    value="1.0.8.9" />
+  <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
+  <property name="gzfile"     value="${phing.project.name}-${version}.tar.gz" />
+  <property name="bz2file"    value="${phing.project.name}-${version}.tar.bz2" />
+  <property name="fileprefix" value="geshi/" />
+  <property name="sfproject"  value="GeSHi" />
+  <property name="sffilepath" value="g/ge/geshi/" />
+  <property name="svnpath"    value="https://geshi.svn.sourceforge.net/svnroot/geshi/" />
+
+  <fileset dir="src" id="files">
+   <include name="**"/>
+   <exclude name="**/.gitignore/"/>
+   <exclude name="**/.svn/"/>
+  </fileset>
+
+
+
+  <target name="pack" depends=""
+   description="Create zip and tar files for release"
+   >
+    <mkdir dir="dist" />
+    <echo msg="Creating distribution files for ${phing.project.name} ${version}"/>
+
+    <delete file="dist/${zipfile}" failonerror="false"/>
+    <delete file="dist/${gzfile}" failonerror="false"/>
+    <delete file="dist/${bz2file}" failonerror="false"/>
+
+    <zip destfile="dist/${zipfile}" prefix="${fileprefix}">
+     <fileset refid="files" />
+    </zip>
+    <tar destfile="dist/${gzfile}" prefix="${fileprefix}" compression="gzip">
+     <fileset refid="files" />
+    </tar>
+    <tar destfile="dist/${bz2file}" prefix="${fileprefix}" compression="bzip2">
+     <fileset refid="files" />
+    </tar>
+  </target>
+
+
+
+  <target name="release" depends="check,pack,deploy-sf,svntag"
+   description="Release the version on sourceforge"
+   >
+   <!-- meta-target -->
+  </target>
+
+
+  <!--
+  https://sourceforge.net/apps/trac/sourceforge/wiki/Release%20files%20for%20download
+  -->
+  <target name="deploy-sf" depends="check,pack"
+   description="Upload release to sourceforge"
+   >
+    <delete dir="dist/deploy-sf" /><!-- make empty -->
+    <mkdir dir="dist/deploy-sf" />
+    <mkdir dir="dist/deploy-sf/geshi" />
+    <mkdir dir="dist/deploy-sf/geshi/GeSHi ${version}" />
+    <copy todir="dist/deploy-sf/geshi/GeSHi ${version}/">
+     <fileset dir="dist">
+      <include name="${zipfile}" />
+      <include name="${gzfile}" />
+      <include name="${bz2file}" />
+     </fileset>
+    </copy>
+    <!-- test
+    <exec command="rsync -av dist/deploy-sf/ /tmp/test/" escape="false" />
+    -->
+    <exec
+     command="rsync -av -e ssh dist/deploy-sf/ ${sfuser},${sfproject}@frs.sourceforge.net:/home/frs/project/${sffilepath}/${sfproject}/"
+     escape="false" checkreturn="false"
+     />
+
+    <!-- rsync always returns code 23 on sourceforge releases, so we
+         can't check return values -->
+  </target>
+
+
+  <target name="svntag"
+   description="create the svn tag for the current version"
+   >
+    <exec
+     command="svn cp ${svnpath}trunk/geshi-1.0.X ${svnpath}/tags/RELEASE_${version} -m 'Tagged release version ${version}'"
+     escape="false" checkreturn="true"
+     />
+  </target>
+
+
+  <target name="check"
+   description="Check variables"
+   >
+    <fail unless="version" message="Version not defined!" />
+    <fail unless="sfuser" message="Sourceforge username not defined!" />
+    <fail unless="sfproject" message="Sourceforge project name not defined!" />
+    <fail unless="sffilepath" message="Sourceforge project file path not defined!" />
+  </target>
+
+</project>
