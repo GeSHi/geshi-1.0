@@ -14,8 +14,11 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8.10
   -  Added language files
+  -  Small bugfix in LangCheck when looking for language files
   -  Improvements to language files (BenBE)
      * Major rework of the ALGOL68 language file (Neville Dempsey)
+     * LangCheck warnings from GO language file (BenBE)
+     * Some additions to the Objeck language file (Randy Hollines)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
