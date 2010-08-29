@@ -342,11 +342,11 @@ $language_data = array(
         'REGEXPS' => array(
             # If CSS classes are enabled, these would be highlighted as numbers (nu0)
             # integer literals (possibly imaginary)
-            0 => 'color: #cc66cc;',
+            //0 => 'color: #cc66cc;',
             # real floating point literals
-            1 => 'color: #cc66cc;',
+            //1 => 'color: #cc66cc;',
             # imaginary floating point literals
-            2 => 'color: #cc66cc;'
+            //2 => 'color: #cc66cc;'
             ),
         'SCRIPT' => array(
             )
