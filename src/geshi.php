@@ -4564,7 +4564,7 @@ class GeSHi {
     * @access private
     */
     function optimize_regexp_list($list, $regexp_delimiter = '/') {
-        $regex_chars = array('.', '\\', '+', '*', '?', '[', '^', ']', '$',
+        $regex_chars = array('.', '\\', '+', '-', '*', '?', '[', '^', ']', '$',
             '(', ')', '{', '}', '=', '!', '<', '>', '|', ':', $regexp_delimiter);
         sort($list);
         $regexp_list = array('');
