@@ -54,8 +54,7 @@ $language_data = array (
             '[KCrash Handler]',
             ),
         ),
-    'NUMBERS' =>
-        GESHI_NUMBER_INT_BASIC,
+    'NUMBERS' => false,
     'SYMBOLS' => array(
         ),
     'CASE_SENSITIVE' => array(
@@ -91,9 +90,8 @@ $language_data = array (
             2 => 'color: #000066;',
             3 => 'color: #0066FF; text-style:italic;',
             4 => 'color: #80B5FF; text-style:italic;',
-            5 => 'color: #A3007D;',
-            6 => 'color: #FF00BF;',
-            7 => 'font-weight: bold;'
+            5 => 'color: #FF00BF;',
+            6 => 'font-weight: bold;'
             ),
         'SCRIPT' => array(
             )
@@ -146,10 +144,8 @@ $language_data = array (
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
             ),
-        //Hex mem address
-        5 => '0x[a-f0-9]+',
         //Line numbers
-        6 => array(
+        5 => array(
             GESHI_SEARCH => '(:)(\d+)(\s*)$',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'm',
@@ -157,7 +153,7 @@ $language_data = array (
             GESHI_AFTER => '\\3'
             ),
         //Location
-        7 => array(
+        6 => array(
             GESHI_SEARCH => '(\s+in\s+|\s{2,})([^ ]+)([ \n]+\()',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
