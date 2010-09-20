@@ -94,6 +94,7 @@ $language_data = array (
             6 => 'font-weight: bold;',
             7 => 'color: #FF0000; font-weight:bold;',
             8 => 'color: #008800;',
+            9 => 'color: #555;',
             ),
         'SCRIPT' => array(
             )
@@ -178,6 +179,8 @@ $language_data = array (
             GESHI_BEFORE => '',
             GESHI_AFTER => '\\2'
             ),
+        // make ptr adresses uninteresting
+        9 => '\b0x[a-f0-9]{2,}\b'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
