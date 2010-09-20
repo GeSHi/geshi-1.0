@@ -132,7 +132,7 @@ $language_data = array (
             ),
         //Files with linenumbers
         3 => array(
-            GESHI_SEARCH => '(at )(.+)(:\d+\s*)$',
+            GESHI_SEARCH => '(at\s+)(.+)(:\d+\s*)$',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
@@ -140,7 +140,7 @@ $language_data = array (
             ),
         //Libs without linenumbers
         4 => array(
-            GESHI_SEARCH => '(from )(.+)(\s*)$',
+            GESHI_SEARCH => '(from\s+)(.+)(\s*)$',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '\\1',
@@ -158,7 +158,7 @@ $language_data = array (
             ),
         //Location
         7 => array(
-            GESHI_SEARCH => '( in )([^ \(\)]+)( \()',
+            GESHI_SEARCH => '(\s+in\s+|\s{2,})([^ ]+)([ \n]+\()',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
