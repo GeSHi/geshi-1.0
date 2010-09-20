@@ -91,7 +91,8 @@ $language_data = array (
             3 => 'color: #0066FF; text-style:italic;',
             4 => 'color: #80B5FF; text-style:italic;',
             5 => 'color: #FF00BF;',
-            6 => 'font-weight: bold;'
+            6 => 'font-weight: bold;',
+            7 => 'color: #FF0000; font-weight:bold;'
             ),
         'SCRIPT' => array(
             )
@@ -160,6 +161,14 @@ $language_data = array (
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => '\\3'
             ),
+        // interesting parts: abort, qFatal, assertions, null ptrs, ...
+        7 => array(
+            GESHI_SEARCH => '\b((?:\*__GI_)?(?:__assert_fail|abort)|qFatal|0x0)\b([^\.]|$)',
+            GESHI_REPLACE => '\\1',
+            GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => '\\2'
+            ),
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
@@ -167,5 +176,7 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         )
 );
+
+// kate: replace-tabs on; indent-width 4;
 
 ?>
