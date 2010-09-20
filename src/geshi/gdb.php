@@ -92,7 +92,8 @@ $language_data = array (
             4 => 'color: #80B5FF; text-style:italic;',
             5 => 'color: #FF00BF;',
             6 => 'font-weight: bold;',
-            7 => 'color: #FF0000; font-weight:bold;'
+            7 => 'color: #FF0000; font-weight:bold;',
+            8 => 'color: #008800;',
             ),
         'SCRIPT' => array(
             )
@@ -155,17 +156,25 @@ $language_data = array (
             ),
         //Location
         6 => array(
-            GESHI_SEARCH => '(\s+in\s+|\s{2,})([^ ]+)([ \n]+\()',
-            GESHI_REPLACE => '\\2',
+            GESHI_SEARCH => '(\s+)(in\s+)?([^ ]+)([ \n]+\()',
+            GESHI_REPLACE => '\\3',
             GESHI_MODIFIERS => '',
-            GESHI_BEFORE => '\\1',
-            GESHI_AFTER => '\\3'
+            GESHI_BEFORE => '\\1\\2',
+            GESHI_AFTER => '\\4'
             ),
         // interesting parts: abort, qFatal, assertions, null ptrs, ...
         7 => array(
             GESHI_SEARCH => '\b((?:\*__GI_)?(?:__assert_fail|abort)|qFatal|0x0)\b([^\.]|$)',
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => '',
+            GESHI_BEFORE => '',
+            GESHI_AFTER => '\\2'
+            ),
+        // Namespace / Classes
+        8 => array(
+            GESHI_SEARCH => '\b(\w+)(::)',
+            GESHI_REPLACE => '\\1',
+            GESHI_MODIFIERS => 'U',
             GESHI_BEFORE => '',
             GESHI_AFTER => '\\2'
             ),
