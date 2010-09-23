@@ -179,7 +179,7 @@ $language_data = array (
             GESHI_AFTER => '\\2'
             ),
         // make ptr adresses and <value optimized out> uninteresting
-        9 => '\b(0x[a-f0-9]{2,}|value\s+optimized\s+out)\b'
+        9 => '\b(?:0x[a-f0-9]{2,}|value\s+optimized\s+out)\b'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
