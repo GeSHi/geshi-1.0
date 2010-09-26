@@ -3,7 +3,7 @@
  * lb.php
  * --------
  * Author: Chris Iverson (cj.no.one@gmail.com)
- * Copyright: (c) 2010 Chris Iverson
+ * Copyright: (c) 2010 Chris Iverson 
  * Release Version: 1.0.8.9
  * Date Started: 2010/07/18
  *
@@ -14,10 +14,13 @@
  * 2010/07/22
  *  -  First Release
  *
- * TODO (updated 2010/07/22)
+ * 2010/08/23
+ *  -  Added missing default variables
+ *
+ * TODO (updated 2010/07/20)
  * -------------------------
  * Prevent highlighting numbers in handle names(constants beginning with #)
- * Allow number highlighting after a single period(e.g.  .9 = 0.9, should be
+ * Allow number highlighting after a single period(e.g.  .9 = 0.9, should be 
  *     highlighted
  * Prevent highlighting keywords within branch labels(within brackets)
  *
@@ -80,12 +83,13 @@ $language_data = array(
             'winstring', 'word$'
             ),
         3 => array(
-            'BackgroundColor$', 'ComboboxColor$', 'CommandLine$', 'DefaultDir$',
+            'BackgroundColor$', 'Com', 'ComboboxColor$', 'ComError', 'ComErrorNumber',
+            'CommandLine$', 'ComPortNumber', 'DefaultDir$',
             'DisplayHeight', 'DisplayWidth', 'Drives$', 'Err', 'Err$',
             'ForegroundColor$', 'Inkey$', 'Joy1x', 'Joy1y', 'Joy1z',
             'Joy1button1', 'Joy1button2', 'Joy2x', 'Joy2y', 'Joy2z',
-            'Joy2button1', 'Joy2button2', 'ListboxColor$', 'Platform$',
-            'PrintCollate', 'PrintCopies', 'PrinterFont$', 'PrinterName$',
+            'Joy2button1', 'Joy2button2', 'ListboxColor$', 'MouseX', 'MouseY', 'Platform$',
+            'PrintCollate', 'PrintCopies', 'PrinterFont$', 'PrinterName$', 'StartupDir$',
             'TextboxColor$', 'TexteditorColor$', 'Version$', 'WindowHeight',
             'WindowWidth', 'UpperLeftX', 'UpperLeftY'
             )
@@ -103,10 +107,10 @@ $language_data = array(
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #0000FF;',
-            2 => 'color: #AD0080;',
-            3 => 'color: #008080;'
-            ),
+			1 => 'color: #0000FF;',
+			2 => 'color: #AD0080;',
+			3 => 'color: #008080;'
+			), 
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
@@ -146,9 +150,9 @@ $language_data = array(
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             2 => array(
-                //In LB, the second keyword list is a list of built-in functions,
-                //and their names should not be highlighted unless being used
-                //as a function name.
+				//In LB, the second keyword list is a list of built-in functions,
+				//and their names should not be highlighted unless being used
+				//as a function name.
                 'DISALLOWED_AFTER' => '(?=\s*\()'
             )
         )
