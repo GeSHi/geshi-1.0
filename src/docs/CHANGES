@@ -18,14 +18,16 @@ Version 1.0.8.10
      * EPC (Thorsten Muehlfelder)
      * Falcon (billykater)
   -  Small bugfix in LangCheck when looking for language files
-  -  Improvements to language files (BenBE)
   -  Added '-' to list of RX chars that require explicit escaping (BenBE)
+  -  Improvements to language files (BenBE)
      * Major rework of the ALGOL68 language file (Neville Dempsey)
      * LangCheck warnings from GO language file (BenBE)
      * Some additions to the Objeck language file (Randy Hollines)
      * Properly highlight infinity as numbers for J (Ric Sherlock)
      * Improved GDB Backtrace language file (Milian Wolff)
      * Updated Liberty BASIC language file (Chris Iverson)
+	 * Fixed a small issue with detection of division vs. regular expressions
+	   for ActionScript 3 and JavaScript (Kevin Day)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
