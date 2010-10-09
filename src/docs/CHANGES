@@ -32,6 +32,7 @@ Version 1.0.8.10
        for ActionScript 3 and JavaScript (Kevin Day)
      * Fixed Escape handling for CSS (SF#3080513, yecril71pl, BenBE)
      * Additional comment styles for SAS (SF#3024708, ahnolds, BenBE)
+     * Updated keyword list for TeraTerm (Boris Maisuradze)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
