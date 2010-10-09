@@ -29,6 +29,7 @@ Version 1.0.8.10
      * Updated Liberty BASIC language file (Chris Iverson)
      * Fixed a small issue with detection of division vs. regular expressions
        for ActionScript 3 and JavaScript (Kevin Day)
+     * Fixed Escape handling for CSS (SF#3080513, yecril71pl, BenBE)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
