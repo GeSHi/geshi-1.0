@@ -44,7 +44,7 @@
 $language_data = array (
     'LANG_NAME' => 'SAS',
     'COMMENT_SINGLE' => array(),
-    'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_MULTI' => array('/*' => '*/', '*' => ';'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
