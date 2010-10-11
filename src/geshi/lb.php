@@ -3,7 +3,7 @@
  * lb.php
  * --------
  * Author: Chris Iverson (cj.no.one@gmail.com)
- * Copyright: (c) 2010 Chris Iverson 
+ * Copyright: (c) 2010 Chris Iverson
  * Release Version: 1.0.8.9
  * Date Started: 2010/07/18
  *
@@ -20,7 +20,7 @@
  * TODO (updated 2010/07/20)
  * -------------------------
  * Prevent highlighting numbers in handle names(constants beginning with #)
- * Allow number highlighting after a single period(e.g.  .9 = 0.9, should be 
+ * Allow number highlighting after a single period(e.g.  .9 = 0.9, should be
  *     highlighted
  * Prevent highlighting keywords within branch labels(within brackets)
  *
@@ -107,10 +107,10 @@ $language_data = array(
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-			1 => 'color: #0000FF;',
-			2 => 'color: #AD0080;',
-			3 => 'color: #008080;'
-			), 
+            1 => 'color: #0000FF;',
+            2 => 'color: #AD0080;',
+            3 => 'color: #008080;'
+            ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
@@ -150,13 +150,13 @@ $language_data = array(
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             2 => array(
-				//In LB, the second keyword list is a list of built-in functions,
-				//and their names should not be highlighted unless being used
-				//as a function name.
+                //In LB, the second keyword list is a list of built-in functions,
+                //and their names should not be highlighted unless being used
+                //as a function name.
                 'DISALLOWED_AFTER' => '(?=\s*\()'
+                )
             )
         )
-    )
 );
 
 ?>

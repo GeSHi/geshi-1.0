@@ -31,7 +31,6 @@
  *  2009/11/12 (1.0.0)
  *   -  First Release
  *
- *
  * TODO (updated 2010/01/27)
  * -------------------------
  *  * combine keyword categories by using conditional regex statement in PARSER CONTROL?
@@ -55,7 +54,7 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'J',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
@@ -84,40 +83,6 @@ $language_data = array (
         2 => array(
             'm', 'n', 'u', 'v', 'x', 'y'
             ),
-/*
-Commented out for now due to conflicts with Lang Check
-        //Primitives beginning with a symbol (except . or :)
-        6 => array(
-            '=', '&lt;', '&lt;.', '&lt;:',                  //verbs
-            '_:','&gt;', '&gt;.', '&gt;:',
-            '+', '+.', '+:', '*', '*.', '*:', '-', '-.', '-:', '%', '%.', '%:',
-            '^', '^.', '$', '$.', '$:', '~.', '~:', '\|', '|.', '|:',
-            ',', ',.', ',:', ';', ';:', '#', '#.', '#:', '!', '/:', '\:',
-            '[', '[:', ']', '{', '{.', '{:', '{::', '}.', '}:',
-            '&quot;.', '&quot;:', '?', '?.',
-            '~', '\/;', '\\', '/.', '\\.', '}',             //adverbs
-            '^:', ';.', '!.', '!:',                         //conj
-            '&quot;', '`', '`:', '@', '@.', '@:',
-            '&amp;', '&amp;.', '&amp;:', '&amp;.:',
-            '_.',                                           //nouns
-            '=.', '=:',                                     //other
-            ),
-        //Primitives beginning with a letter or number
-        7 => array(
-            'A.', 'c.', 'C.', 'e.', 'E.',                   //verbs
-            'i.', 'i:', 'I.', 'j.', 'L.', 'o.',
-            'p.', 'p..', 'p:', 'q:', 'r.', 's:', 'u:', 'x:',
-            '_9:', '_8:', '_7:', '_6:', '_5:', '_4:', '_3:', '_2:', '_1:',
-            '0:', '1:', '2:', '3:', '4:', '5:', '6:', '7:', '8:', '9:',
-            'b.', 'f.', 'M.', 't.', 't:',                   //adverbs
-            'd.', 'D.', 'D:', 'H.', 'L:', 'S:', 'T.',       //conj
-            'a.', 'a:',                                     //nouns
-            ),
-        //Primitives beginning with symbol . or :
-        8 => array(
-            '..', '.:', '.', ':.', '::', ':',               //conj
-            ),
-*/
         ),
     'SYMBOLS' => array(
         //Punctuation
@@ -129,17 +94,17 @@ Commented out for now due to conflicts with Lang Check
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
-//        6 => true,
-//        7 => true,
-//        8 => true,
+        //6 => true,
+        //7 => true,
+        //8 => true,
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #0000ff; font-weight: bold;',
             2 => 'color: #0000cc; font-weight: bold;',
-//            6 => 'color: #000000; font-weight: bold;',
-//            7 => 'color: #000000; font-weight: bold;',
-//            8 => 'color: #000000; font-weight: bold;',
+            //6 => 'color: #000000; font-weight: bold;',
+            //7 => 'color: #000000; font-weight: bold;',
+            //8 => 'color: #000000; font-weight: bold;',
             ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
@@ -175,9 +140,9 @@ Commented out for now due to conflicts with Lang Check
     'URLS' => array(
         1 => '', //'http://www.jsoftware.com/help/dictionary/ctrl.htm',
         2 => '',
-//        6 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
-//        7 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
-//        8 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+        //6 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+        //7 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
+        //8 => '', //'http://www.jsoftware.com/jwiki/Vocabulary',
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(

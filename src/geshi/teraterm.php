@@ -235,7 +235,7 @@ $language_data = array (
             'groupmatchstr9',
             'inputstr',
             'matchstr',
-            'mtimeout',        
+            'mtimeout',
             'param2',
             'param3',
             'param4',
@@ -259,7 +259,7 @@ $language_data = array (
             '$[8]',
             '$[9]',
             '$branch$',
-			'$computername$',
+            '$computername$',
             '$connection$',
             '$email$',
             '$logdir$',
@@ -284,20 +284,12 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-	'(', ')', '[', ']', '{', '}',
+        '(', ')', '[', ']', '{', '}',
         '+', '-', '*', '/', '%',
         '!', '&', '|', '^',
         '<', '>', '=',
         '?', ':', ';',
         ),
-	
-	
-      //  '(', ')', '>', '<', '[', ']',
-      //  '~', '!', '+', '-', '*', '/', '%',
-		
-       // '>>', '<<', '>>>', '&', '^', '|',
-       // '<', '>', '<=', '>=', '=', '==', '<>', '!=', '&&', '||'
-      //  ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
@@ -335,7 +327,7 @@ $language_data = array (
         'REGEXPS' => array(
             0 => 'color: #0000ff; font-weight: bold;'
             )
-    ),
+        ),
     'URLS' => array(
         1 => '',
         2 => '',
@@ -351,8 +343,8 @@ $language_data = array (
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-        )
-    ),
+            )
+        ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
     'HIGHLIGHT_STRICT_BLOCK' => array(),
