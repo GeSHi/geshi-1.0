@@ -12,7 +12,7 @@
  * CHANGES
  * -------
  *  2010/07/18 (1.0.8.10)
-     - Infinity and negative infinity recognized as numbers
+ *   - Infinity and negative infinity recognized as numbers
  *  2010/03/01 (1.0.8.8)
  *   - Add support for label_xyz. and goto_xyz.
  *   - Fix highlighting of for_i.
