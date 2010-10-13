@@ -265,7 +265,7 @@ $language_data = array (
 		10 => ''
 		),
 	'OOLANG' => true,
-	'OBJECT_SPLITTER' => '.',
+	'OBJECT_SPLITTERS' => array('.'),
 	'REGEXPS' => array(			//handle template-style variable definitions
 		0 => array(
 			GESHI_SEARCH => '(class\s*)<(\s*(\w+)\s*)>',
@@ -286,6 +286,13 @@ $language_data = array (
 	'SCRIPT_DELIMITERS' => array(
 		),
 	'HIGHLIGHT_STRICT_BLOCK' => array(
+		),
+	'PARSER_CONTROL' => array(
+		'KEYWORDS' => array(
+			10 => array(
+				'DISALLOWED_BEFORE' => '(?<!<)(?=DOT>)'
+				)
+			)
 		)
 );
 
