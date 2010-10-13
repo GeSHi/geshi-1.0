@@ -186,7 +186,7 @@ $language_data = array (
 			'Pickup', 'Ammo', 'UTAmmoPickup', 'ArmorPickup', 'KeyPickup', 'TournamentPickup',
 			'Projectile', 'Projector', 'DynamicProjector', 'ShadowProjector', 'xScorch',
 			'xEmitter', 'xPickupBase', 'xProcMesh', 'xWeatherEffect', 'PhysicsVolume', 'Volume'
-			)
+			),
 		10 => array(	//symbol-like operators
 			'dot','cross'
 			)
