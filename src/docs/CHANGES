@@ -18,6 +18,7 @@ Version 1.0.8.10
      * CoffeeScript (Trevor Burnham)
      * EPC (Thorsten Muehlfelder)
      * Falcon (billykater)
+     * UnrealScript (pospi)
   -  Small bugfix in LangCheck when looking for language files
   -  Added '-' to list of RX chars that require explicit escaping (SF#3056454, BenBE)
   -  Minor changes to boundary checks (SF#3077256, BenBE)
