@@ -43,7 +43,8 @@
 $language_data = array(
     'LANG_NAME' => 'F#',
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
-    'COMMENT_MULTI' => array('(*' => '*)', '/*' => '*/'),
+    'COMMENT_MULTI' => array('/*' => '*/'),
+    'COMMENT_REGEXP' => array(3 => '/\(\*(?!\)).*?\*\)/'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'HARDQUOTE' => array('@"', '"'),
@@ -153,7 +154,8 @@ $language_data = array(
         'COMMENTS' => array(
             'MULTI' => 'color: #5d478b; font-style: italic;', /* light purple */
             1 => 'color: #5d478b; font-style: italic;',
-            2 => 'color: #5d478b; font-style: italic;' /* light purple */
+            2 => 'color: #5d478b; font-style: italic;', /* light purple */
+            3 => 'color: #5d478b; font-style: italic;' /* light purple */
             ),
         'ESCAPE_CHAR' => array(
             ),
