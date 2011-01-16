@@ -14,12 +14,14 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8.10
   -  Added language files
+     * BASCOM AVR (Michal Goralczyk)
      * C: Loadrunner dialect (Stuart Moncrieff)
      * CoffeeScript (Trevor Burnham)
      * EPC (Thorsten Muehlfelder)
      * Falcon (billykater)
      * LLVM (Azriel Fasten)
      * UnrealScript (pospi)
+     * YAML (Josh Ventura)
   -  Small bugfix in LangCheck when looking for language files
   -  Added '-' to list of RX chars that require explicit escaping (SF#3056454, BenBE)
   -  Minor changes to boundary checks (SF#3077256, BenBE)
@@ -35,6 +37,10 @@ Version 1.0.8.10
      * Fixed Escape handling for CSS (SF#3080513, yecril71pl, BenBE)
      * Additional comment styles for SAS (SF#3024708, ahnolds, BenBE)
      * Updated keyword list for TeraTerm (Boris Maisuradze)
+     * Incorrect handling of /**/ comments in Javascript (BenBE)
+     * Support for mod_upload_progress in Apache Config files (BenBE)
+     * Prefix operator handling in F# was broken (BenBE)
+     * CDATA handling for html4strict (BenBE)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
