@@ -344,6 +344,9 @@ $language_data = array (
 
             //mod_unique_id.c
 
+            //mod_upload_progress
+            'ReportUploads', 'TrackUploads', 'UploadProgressSharedMemorySize',
+
             //mod_userdir.c
             'UserDir',
 
