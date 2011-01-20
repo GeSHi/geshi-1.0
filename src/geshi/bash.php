@@ -92,8 +92,8 @@ $language_data = array (
         2 => array(
             'aclocal', 'aconnect', 'aplay', 'apm', 'apmsleep', 'apropos',
             'apt-cache', 'apt-file', 'apt-get', 'apt-key', 'apt-src', 'aptitude',
-            'ar', 'arch', 'arecord', 'as', 'as86', 'ash', 'autoconf',
-            'autoheader', 'automake', 'awk',
+            'apxs', 'apxs2', 'ar', 'arch', 'arecord', 'as', 'as86', 'ash',
+            'autoconf', 'autoheader', 'automake', 'awk',
 
             'basename', 'bash', 'bc', 'bison', 'bunzip2', 'bzcat',
             'bzcmp', 'bzdiff', 'bzegrep', 'bzfgrep', 'bzgrep',
@@ -120,7 +120,47 @@ $language_data = array (
             'gimptool', 'gmake', 'gocr', 'grep', 'groups', 'gs', 'gunzip',
             'gzexe', 'gzip',
 
-            'git', 'gitaction', 'git-add', 'git-add--interactive', 'git-am',
+            'git', 'git add', 'git add--interactive', 'git am', 'git annotate',
+            'git apply', 'git archive', 'git bisect', 'git bisect--helper',
+            'git blame', 'git branch', 'git bundle', 'git cat-file',
+            'git check-attr', 'git checkout', 'git checkout-index',
+            'git check-ref-format', 'git cherry', 'git cherry-pick',
+            'git clean', 'git clone', 'git commit', 'git commit-tree',
+            'git config', 'git count-objects', 'git daemon', 'git describe',
+            'git diff', 'git diff-files', 'git diff-index', 'git difftool',
+            'git difftool--helper', 'git diff-tree', 'git fast-export',
+            'git fast-import', 'git fetch', 'git fetch-pack',
+            'git filter-branch', 'git fmt-merge-msg', 'git for-each-ref',
+            'git format-patch', 'git fsck', 'git fsck-objects', 'git gc',
+            'git get-tar-commit-id', 'git grep', 'git hash-object', 'git help',
+            'git http-backend', 'git http-fetch', 'git http-push',
+            'git imap-send', 'git index-pack', 'git init', 'git init-db',
+            'git instaweb', 'git log', 'git lost-found', 'git ls-files',
+            'git ls-remote', 'git ls-tree', 'git mailinfo', 'git mailsplit',
+            'git merge', 'git merge-base', 'git merge-file', 'git merge-index',
+            'git merge-octopus', 'git merge-one-file', 'git merge-ours',
+            'git merge-recursive', 'git merge-resolve', 'git merge-subtree',
+            'git mergetool', 'git merge-tree', 'git mktag', 'git mktree',
+            'git mv', 'git name-rev', 'git notes', 'git pack-objects',
+            'git pack-redundant', 'git pack-refs', 'git patch-id',
+            'git peek-remote', 'git prune', 'git prune-packed', 'git pull',
+            'git push', 'git quiltimport', 'git read-tree', 'git rebase',
+            'git rebase--interactive', 'git receive-pack', 'git reflog',
+            'git relink', 'git remote', 'git remote-ftp', 'git remote-ftps',
+            'git remote-http', 'git remote-https', 'git remote-testgit',
+            'git repack', 'git replace', 'git repo-config', 'git request-pull',
+            'git rerere', 'git reset', 'git revert', 'git rev-list',
+            'git rev-parse', 'git rm', 'git send-pack', 'git shell',
+            'git shortlog', 'git show', 'git show-branch', 'git show-index',
+            'git show-ref', 'git stage', 'git stash', 'git status',
+            'git stripspace', 'git submodule', 'git symbolic-ref', 'git tag',
+            'git tar-tree', 'git unpack-file', 'git unpack-objects',
+            'git update-index', 'git update-ref', 'git update-server-info',
+            'git upload-archive', 'git upload-pack', 'git var',
+            'git verify-pack', 'git verify-tag', 'git web--browse',
+            'git whatchanged', 'git write-tree',
+
+            'gitaction', 'git-add', 'git-add--interactive', 'git-am',
             'git-annotate', 'git-apply', 'git-archive', 'git-bisect',
             'git-bisect--helper', 'git-blame', 'git-branch', 'git-bundle',
             'git-cat-file', 'git-check-attr', 'git-checkout',
@@ -199,6 +239,20 @@ $language_data = array (
             'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'svn',
             'svnadmin', 'svndumpfilter', 'svnlook', 'svnmerge', 'svnmucc',
             'svnserve', 'svnshell', 'svnsync', 'svnversion', 'svnwrap', 'sync',
+
+            'svn add', 'svn ann', 'svn annotate', 'svn blame', 'svn cat',
+            'svn changelist', 'svn checkout', 'svn ci', 'svn cl', 'svn cleanup',
+            'svn co', 'svn commit', 'svn copy', 'svn cp', 'svn del',
+            'svn delete', 'svn di', 'svn diff', 'svn export', 'svn h',
+            'svn help', 'svn import', 'svn info', 'svn list', 'svn lock',
+            'svn log', 'svn ls', 'svn merge', 'svn mergeinfo', 'svn mkdir',
+            'svn move', 'svn mv', 'svn pd', 'svn pdel', 'svn pe', 'svn pedit',
+            'svn pg', 'svn pget', 'svn pl', 'svn plist', 'svn praise',
+            'svn propdel', 'svn propedit', 'svn propget', 'svn proplist',
+            'svn propset', 'svn ps', 'svn pset', 'svn remove', 'svn ren',
+            'svn rename', 'svn resolve', 'svn resolved', 'svn revert', 'svn rm',
+            'svn st', 'svn stat', 'svn status', 'svn sw', 'svn switch',
+            'svn unlock', 'svn up', 'svn update',
 
             'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'tree',
             'true',
@@ -319,9 +373,12 @@ $language_data = array (
         ),
         'KEYWORDS' => array(
             'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#])",
-            'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%=\\/])"
+            'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%=\\/])",
+            2 => array(
+                'SPACE_AS_WHITESPACE' => true
+                )
+            )
         )
-    )
 );
 
 ?>
