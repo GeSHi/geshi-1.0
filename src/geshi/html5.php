@@ -155,6 +155,7 @@ $language_data = array (
             0 => 'color: #66cc66;'
             ),
         'SCRIPT' => array(
+            -2 => 'color: #404040;', // CDATA
             -1 => 'color: #808080; font-style: italic;', // comments
             0 => 'color: #00bbdd;',
             1 => 'color: #ddbb00;',
@@ -174,6 +175,9 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
+        -2 => array(
+            '<![CDATA[' => ']]>'
+            ),
         -1 => array(
             '<!--' => '-->'
             ),
@@ -188,6 +192,7 @@ $language_data = array (
             )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
+        -2 => false,
         -1 => false,
         0 => false,
         1 => false,
