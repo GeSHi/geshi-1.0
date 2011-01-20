@@ -42,6 +42,7 @@ Version 1.0.8.10
      * Support for mod_upload_progress in Apache Config files (BenBE)
      * Prefix operator handling in F# was broken (BenBE)
      * CDATA handling for html4strict (BenBE)
+     * Common subcommands for Apache, APT, CVS, Git, SVN and YUM (BenBE)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
