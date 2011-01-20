@@ -90,13 +90,21 @@ $language_data = array (
             'if', 'in', 'select', 'set', 'then', 'until', 'while', 'time'
             ),
         2 => array(
-            'aclocal', 'aconnect', 'aplay', 'apm', 'apmsleep', 'apropos',
-            'apt-cache', 'apt-cdrom', 'apt-config', 'apt-file',
-            'apt-ftparchive', 'apt-get', 'apt-key', 'apt-listbugs',
+            'aclocal', 'aconnect', 'apachectl', 'apache2ctl', 'aplay', 'apm',
+            'apmsleep', 'apropos', 'apt-cache', 'apt-cdrom', 'apt-config',
+            'apt-file', 'apt-ftparchive', 'apt-get', 'apt-key', 'apt-listbugs',
             'apt-listchanges', 'apt-mark', 'apt-sortpkgs', 'apt-src',
             'apticron', 'aptitude', 'aptsh', 'apxs', 'apxs2', 'ar', 'arch',
             'arecord', 'as', 'as86', 'ash', 'autoconf', 'autoheader',
             'automake', 'awk',
+
+            'apachectl start', 'apachectl stop', 'apachectl restart',
+            'apachectl graceful', 'apachectl graceful-stop',
+            'apachectl configtest', 'apachectl status', 'apachectl fullstatus',
+            'apachectl help', 'apache2ctl start', 'apache2ctl stop',
+            'apache2ctl restart', 'apache2ctl graceful',
+            'apache2ctl graceful-stop', 'apache2ctl configtest',
+            'apache2ctl status', 'apache2ctl fullstatus', 'apache2ctl help',
 
             'apt-cache add', 'apt-cache depends', 'apt-cache dotty',
             'apt-cache dump', 'apt-cache dumpavail', 'apt-cache gencaches',
@@ -129,6 +137,14 @@ $language_data = array (
             'cdrdao', 'cd-read', 'cdrecord', 'chfn', 'chgrp', 'chmod',
             'chown', 'chroot', 'chsh', 'chvt', 'clear', 'cmp', 'comm', 'co',
             'col', 'cp', 'cpio', 'cpp', 'csh', 'cut', 'cvs', 'cvs-pserver',
+
+            'cvs add', 'cvs admin', 'cvs annotate', 'cvs checkout',
+            'cvs commit', 'cvs diff', 'cvs edit', 'cvs editors', 'cvs export',
+            'cvs history', 'cvs import', 'cvs init', 'cvs log', 'cvs login',
+            'cvs logout', 'cvs ls', 'cvs pserver', 'cvs rannotate',
+            'cvs rdiff', 'cvs release', 'cvs remove', 'cvs rlog', 'cvs rls',
+            'cvs rtag', 'cvs server', 'cvs status', 'cvs tag', 'cvs unedit',
+            'cvs update', 'cvs version', 'cvs watch', 'cvs watchers',
 
             'dash', 'date', 'dc', 'dch', 'dcop', 'dd', 'ddate', 'ddd',
             'deallocvt', 'debconf', 'defoma', 'depmod', 'df', 'dh',
@@ -405,7 +421,7 @@ $language_data = array (
             'DISALLOWED_BEFORE' => '$'
         ),
         'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#])",
+            'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#:])",
             'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%=\\/])",
             2 => array(
                 'SPACE_AS_WHITESPACE' => true
