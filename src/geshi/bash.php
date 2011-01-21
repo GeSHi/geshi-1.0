@@ -65,7 +65,9 @@ $language_data = array (
         //BASH-style Heredoc
         2 => '/<<-?\s*?(\'?)([a-zA-Z0-9]+)\1\\n.*\\n\\2(?![a-zA-Z0-9])/siU',
         //Escaped String Starters
-        3 => "/\\\\['\"]/siU"
+        3 => "/\\\\['\"]/siU",
+        // Single-Line Shell usage: Hide the prompt at the beginning
+        4 => "/\A(?!#!)\s*([\w:@\\/\\-\\._~]*[$#]\s?)?(?=[^\n]+\n?\Z)|^(?!#!)(\w+@)?[\w\\-\\.]+(:~?)[\w\\/\\-\\._]*[$#]\s?/ms"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
@@ -93,9 +95,9 @@ $language_data = array (
             'aclocal', 'aconnect', 'apachectl', 'apache2ctl', 'aplay', 'apm',
             'apmsleep', 'apropos', 'apt-cache', 'apt-cdrom', 'apt-config',
             'apt-file', 'apt-ftparchive', 'apt-get', 'apt-key', 'apt-listbugs',
-            'apt-listchanges', 'apt-mark', 'apt-sortpkgs', 'apt-src',
-            'apticron', 'aptitude', 'aptsh', 'apxs', 'apxs2', 'ar', 'arch',
-            'arecord', 'as', 'as86', 'ash', 'autoconf', 'autoheader',
+            'apt-listchanges', 'apt-mark', 'apt-mirror', 'apt-sortpkgs',
+            'apt-src', 'apticron', 'aptitude', 'aptsh', 'apxs', 'apxs2', 'ar',
+            'arch', 'arecord', 'as', 'as86', 'ash', 'autoconf', 'autoheader',
             'automake', 'awk',
 
             'apachectl start', 'apachectl stop', 'apachectl restart',
@@ -355,7 +357,8 @@ $language_data = array (
             0 => 'color: #666666; font-style: italic;',
             1 => 'color: #800000;',
             2 => 'color: #cc0000; font-style: italic;',
-            3 => 'color: #000000; font-weight: bold;'
+            3 => 'color: #000000; font-weight: bold;',
+            4 => 'color: #666666;'
             ),
         'ESCAPE_CHAR' => array(
             1 => 'color: #000099; font-weight: bold;',
