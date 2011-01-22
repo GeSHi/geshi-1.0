@@ -250,6 +250,9 @@ $language_data = array (
 
             'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install',
 
+            'ip', 'ip addr', 'ip addrlabel', 'ip link', 'ip maddr', 'ip mroute',
+            'ip neigh', 'ip route', 'ip rule', 'ip tunnel', 'ip xfrm',
+
             'join',
 
             'kbd_mode','kbdrate', 'kdialog', 'kfile', 'kill', 'killall',
