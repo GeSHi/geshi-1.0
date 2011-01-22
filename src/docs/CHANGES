@@ -45,6 +45,7 @@ Version 1.0.8.10
      * Common subcommands for Apache, APT, CVS, Git, SVN and YUM for Bash (BenBE)
      * Limited support for prompt detection in single line Bash snippets (BenBE)
      * Added functions of the C standard library (BenBE)
+     * Rework of Lua to use GeSHi's features better (BenBE)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
