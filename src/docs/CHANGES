@@ -44,6 +44,7 @@ Version 1.0.8.10
      * CDATA handling for html4strict (BenBE)
      * Common subcommands for Apache, APT, CVS, Git, SVN and YUM for Bash (BenBE)
      * Limited support for prompt detection in single line Bash snippets (BenBE)
+     * Added functions of the C standard library (BenBE)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
