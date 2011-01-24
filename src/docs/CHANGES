@@ -21,6 +21,7 @@ Version 1.0.8.10
      * Falcon (billykater)
      * HTML5 (Robert Lidberg)
      * LLVM (Azriel Fasten)
+     * PyCon (Benny Baumann)
      * UnrealScript (pospi)
      * YAML (Josh Ventura)
   -  Small bugfix in LangCheck when looking for language files
