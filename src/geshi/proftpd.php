@@ -78,7 +78,7 @@ $language_data = array (
             'Allow', 'AllowAll', 'AllowClass', 'AllowFilter',
             'AllowForeignAddress', 'AllowGroup', 'AllowOverride',
             'AllowRetrieveRestart', 'AllowStoreRestart', 'AllowUser',
-            'AnonymousGroup', 'AuthOrder', 'Bind', 'CDPath',
+            'AnonymousGroup', 'AuthOrder', 'Bind', 'CDPath', 'Class', 'Classes',
             'CommandBufferSize', 'DebugLevel', 'DefaultAddress',
             'DefaultServer', 'DefaultTransferMode', 'DeferWelcome', 'Define',
             'Deny', 'DenyAll', 'DenyClass', 'DenyFilter', 'DenyGroup',
