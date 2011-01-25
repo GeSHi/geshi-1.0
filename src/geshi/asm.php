@@ -99,7 +99,7 @@ $language_data = array (
         4 => array(
             '186','286','286c','286p','287','386','386c','386p','387','486','486p',
             '8086','8087','alpha','break','code','const','continue','cref','data','data?',
-            'dosseg','else','elseif','endif','endw','err','err1','err2','errb',
+            'dosseg','else','elseif','endif','endw','equ','err','err1','err2','errb',
             'errdef','errdif','errdifi','erre','erridn','erridni','errnb','errndef',
             'errnz','exit','fardata','fardata?','if','lall','lfcond','list','listall',
             'listif','listmacro','listmacroall',' model','no87','nocref','nolist',
