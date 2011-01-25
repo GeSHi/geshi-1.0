@@ -83,12 +83,12 @@ $language_data = array (
             'DefaultServer', 'DefaultTransferMode', 'DeferWelcome', 'Define',
             'Deny', 'DenyAll', 'DenyClass', 'DenyFilter', 'DenyGroup',
             'DenyUser', 'DisplayChdir', 'DisplayConnect', 'DisplayFirstChdir',
-            'DisplayGoAway', 'DisplayLogin', 'DisplayQuit', 'Group',
+            'DisplayGoAway', 'DisplayLogin', 'DisplayQuit', 'From', 'Group',
             'GroupOwner', 'HideFiles', 'HideGroup', 'HideNoAccess', 'HideUser',
             'IdentLookups', 'IgnoreHidden', 'Include', 'MasqueradeAddress',
             'MaxConnectionRate', 'MaxInstances', 'MultilineRFC2228', 'Order',
             'PassivePorts', 'PathAllowFilter', 'PathDenyFilter', 'PidFile',
-            'Port', 'RLimitCPU', 'RLimitMemory', 'RLimitOpenFiles',
+            'Port', 'RLimitCPU', 'RLimitMemory', 'RLimitOpenFiles', 'Satisfy',
             'ScoreboardFile', 'ServerAdmin', 'ServerIdent', 'ServerName',
             'ServerType', 'SetEnv', 'SocketBindTight', 'SocketOptions',
             'SyslogFacility', 'SyslogLevel', 'tcpBackLog', 'tcpNoDelay',
@@ -235,6 +235,7 @@ $language_data = array (
         3 => array(
             //mod_core
             'Anonymous',
+            'Class',
             'Directory',
             'IfDefine',
             'IfModule',
