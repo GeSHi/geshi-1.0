@@ -67,7 +67,8 @@ $language_data = array (
         //Escaped String Starters
         3 => "/\\\\['\"]/siU",
         // Single-Line Shell usage: Hide the prompt at the beginning
-        4 => "/\A(?!#!)\s*([\w:@\\/\\-\\._~]*[$#]\s?)?(?=[^\n]+\n?\Z)|^(?!#!)(\w+@)?[\w\\-\\.]+(:~?)[\w\\/\\-\\._]*[$#]\s?/ms"
+        /* 4 => "/\A(?!#!)\s*(?>[\w:@\\/\\-\\._~]*[$#]\s?)?(?=[^\n]+\n?\Z)|^(?!#!)(\w+@)?[\w\\-\\.]+(:~?)[\w\\/\\-\\._]*?[$#]\s?/ms" */
+        4 => "/\A(?!#!)(?:(?>[\w:@\\/\\-\\._~]*)[$#]\s?)(?=(?>[^\n]+)\n?\Z)|^(?!#!)(?:\w+@)?(?>[\w\\-\\.]+)(?>:~?[\w\\/\\-\\._]*?)?[$#]\s?/sm"
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
@@ -430,7 +431,7 @@ $language_data = array (
             'DISALLOWED_BEFORE' => "(?<![\.\-a-zA-Z0-9_\$\#:])",
             'DISALLOWED_AFTER' =>  "(?![\.\-a-zA-Z0-9_%=\\/:])",
             2 => array(
-                'SPACE_AS_WHITESPACE' => true
+                'SPACE_AS_WHITESPACE' => false
                 )
             )
         )
