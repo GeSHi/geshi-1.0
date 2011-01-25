@@ -78,7 +78,7 @@ $language_data = array (
             'Allow', 'AllowAll', 'AllowClass', 'AllowFilter',
             'AllowForeignAddress', 'AllowGroup', 'AllowOverride',
             'AllowRetrieveRestart', 'AllowStoreRestart', 'AllowUser',
-            'Anonymous', 'AnonymousGroup', 'AuthOrder', 'Bind', 'CDPath',
+            'AnonymousGroup', 'AuthOrder', 'Bind', 'CDPath',
             'CommandBufferSize', 'DebugLevel', 'DefaultAddress',
             'DefaultServer', 'DefaultTransferMode', 'DeferWelcome', 'Define',
             'Deny', 'DenyAll', 'DenyClass', 'DenyFilter', 'DenyGroup',
@@ -128,8 +128,11 @@ $language_data = array (
 
             //mod_log
             'AllowLogSymlinks', 'ExtendedLog', 'LogFormat', 'ServerLog',
-            'SystemLog', '//mod_lsDirFakeGroup', 'DirFakeMode', 'DirFakeUser',
-            'ListOptions', 'ShowSymlinks', 'UseGlobbing',
+            'SystemLog',
+
+            //mod_ls'
+            'DirFakeGroup', 'DirFakeMode', 'DirFakeUser', 'ListOptions',
+            'ShowSymlinks', 'UseGlobbing',
 
             //mod_quotatab
             'QuotaDirectoryTally', 'QuotaDisplayUnits', 'QuotaEngine',
@@ -225,14 +228,13 @@ $language_data = array (
             'MaxStoreFileSize', 'StoreUniquePrefix', 'TimeoutNoTransfer',
             'TimeoutStalled', 'TransferRate', 'UseSendfile',
 
-            ),
-        /*keywords 2*/
-        2 => array(
-            'all','on','off','standalone'
+            //unknown
+            'ScoreboardFile', 'ScoreboardPath', 'ScoreboardScrub'
             ),
         /*keywords 3*/
         3 => array(
             //mod_core
+            'Anonymous',
             'Directory',
             'IfDefine',
             'IfModule',
@@ -247,6 +249,26 @@ $language_data = array (
             ),
         /*permissions*/
         4 => array(
+            //mod_core
+            'ALL',
+            'CDUP',
+            'CMD',
+            'CWD',
+            'DELE',
+            'DIRS',
+            'LOGIN',
+            'MKD',
+            'READ',
+            'RETR',
+            'RMD',
+            'RNFR',
+            'RNTO',
+            'STOR',
+            'WRITE',
+            'XCWD',
+            'XMKD',
+            'XRMD',
+
             //mod_copy
             'SITE_CPFR', 'SITE_CPTO',
 
@@ -258,6 +280,14 @@ $language_data = array (
 
             //mod_site_misc
             'SITE_MKDIR', 'SITE_RMDIR', 'SITE_SYMLINK', 'SITE_UTIME',
+            ),
+        /*keywords 2*/
+        2 => array(
+            'all','on','off','yes','no',
+            'standalone', 'inetd',
+            'default', 'auth', 'write',
+            'internet', 'local', 'limit', 'ip',
+            'from'
             ),
         ),
     'SYMBOLS' => array(
@@ -303,9 +333,9 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:www.proftpd.org inurl:docs&amp;btnI=I%27m%20Feeling%20Lucky',
+        1 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:www.proftpd.org+inurl:docs&amp;btnI=I%27m%20Feeling%20Lucky',
         2 => '',
-        3 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:www.proftpd.org inurl:docs&amp;btnI=I%27m%20Feeling%20Lucky',
+        3 => 'http://www.google.com/search?hl=en&amp;q={FNAMEL}+site:www.proftpd.org+inurl:docs&amp;btnI=I%27m%20Feeling%20Lucky',
         4 => ''
         ),
     'OOLANG' => false,
@@ -324,9 +354,17 @@ $language_data = array (
             'SYMBOLS' => GESHI_NEVER
         ),
         'KEYWORDS' => array(
+            2 => array(
+                'DISALLOWED_BEFORE' => '(?<=\s)(?<!=)',
+                'DISALLOWED_AFTER' => '(?!\+)(?!\w)',
+            ),
             3 => array(
                 'DISALLOWED_BEFORE' => '(?<=&lt;|&lt;\/)',
                 'DISALLOWED_AFTER' => '(?=\s|\/|&gt;)',
+            ),
+            4 => array(
+                'DISALLOWED_BEFORE' => '(?<=\s)(?<!=)',
+                'DISALLOWED_AFTER' => '(?!\+)(?=\/|(?:\s+\w+)*\s*&gt;)',
             )
         )
     )
