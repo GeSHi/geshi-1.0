@@ -52,6 +52,7 @@ Version 1.0.8.10
      * Fixed documentation links for Groovy (SF#3152356, lifeisfoo)
      * Fixed incorrect highlighting of certain keywords in Erlang (SF#3138853, BenBE)
      * Escape chars in C++/C++QT handled incorrectly (SF#3122706, C. Pötsch)
+     * Empty parameters of LaTeX commands tipped the highlighting off (SF#3098329, James Oldfield, BenBE)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)

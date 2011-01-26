@@ -185,7 +185,7 @@ $language_data = array (
         8 => "\\\\(?:end|begin)(?=[^a-zA-Z])",
         // {parameters}
         9 => array(
-            GESHI_SEARCH => "(?<=\\{)(?!<\|!REG3XP5!>).*(?=\\})",
+            GESHI_SEARCH => "(?<=\\{)(?!<\|!REG3XP5!>).*?(?=\\})",
             GESHI_REPLACE => '\0',
             GESHI_MODIFIERS => 'Us',
             GESHI_BEFORE => '',
