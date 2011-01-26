@@ -49,6 +49,7 @@ Version 1.0.8.10
      * Added functions of the C standard library (BenBE)
      * Rework of Lua to use GeSHi's features better (BenBE)
      * Language file improvements for Python (Zbyszek Szmek)
+     * Fixed documentation links for Groovy (SF#3152356, lifeisfoo)
 Version 1.0.8.9
   -  Added language files
      * Algol68 (Neville Dempsey)
