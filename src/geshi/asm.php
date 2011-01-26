@@ -101,7 +101,7 @@ $language_data = array (
             '8086','8087','alpha','break','code','const','continue','cref','data','data?',
             'dosseg','else','elseif','endif','endw','equ','err','err1','err2','errb',
             'errdef','errdif','errdifi','erre','erridn','erridni','errnb','errndef',
-            'errnz','exit','fardata','fardata?','if','lall','lfcond','list','listall',
+            'errnz','exit','fardata','fardata?','global','if','lall','lfcond','list','listall',
             'listif','listmacro','listmacroall',' model','no87','nocref','nolist',
             'nolistif','nolistmacro','radix','repeat','sall','seq','sfcond','stack',
             'startup','tfcond','type','until','untilcxz','while','xall','xcref',
@@ -114,7 +114,7 @@ $language_data = array (
             'irp','irpc','label','le','length','lengthof','local','low','lowword','lroffset',
             'macro','mask','mod','msfloat','name','ne','offset','opattr','option','org','%out',
             'page','popcontext','private','proc','proto','ptr','public','purge','pushcontext','record',
-            'rept','seg','segment','short','size','sizeof','sizestr','struc','struct',
+            'resb','resd','resw','rept','section','seg','segment','short','size','sizeof','sizestr','struc','struct',
             'substr','subtitle','subttl','textequ','this','title','typedef','union','width',
             '.model', '.stack', '.code', '.data'
             ),
