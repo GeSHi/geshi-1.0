@@ -55,7 +55,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
         //Simple Single Char Escapes
-        1 => "#\\\\[\\\\abfnrtv\'\"?\n]#i",
+        1 => "#\\\\[abfnrtv\\\'\"?\n]#i",
         //Hexadecimal Char Specs
         2 => "#\\\\x[\da-fA-F]{2}#",
         //Hexadecimal Char Specs
