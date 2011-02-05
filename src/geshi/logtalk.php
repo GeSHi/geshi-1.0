@@ -319,24 +319,24 @@ $language_data = array(
                 'DISALLOWED_AFTER' => '(?=\.)'
             ),
             3 => array(
-                'DISALLOWED_BEFORE' => '\b',
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?=\()'
             ),
             4 => array(
-                'DISALLOWED_BEFORE' => '\b',
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?=\()'
             ),
             5 => array(
-                'DISALLOWED_BEFORE' => '\b',
-                'DISALLOWED_AFTER' => '\b'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\'"])'
             ),
             6 => array(
-                'DISALLOWED_BEFORE' => '\b',
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^&\'"])',
                 'DISALLOWED_AFTER' => '(?=\()'
             ),
             7 => array(
-                'DISALLOWED_BEFORE' => '\b',
-                'DISALLOWED_AFTER' => '\b'
+                'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9\$_\|\#;>|^&\'"])',
+                'DISALLOWED_AFTER' => '(?![a-zA-Z0-9_\|%\\-&\'"])'
             )
         )
     ),
