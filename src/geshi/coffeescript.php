@@ -4,7 +4,7 @@
  * ----------
  * Author: Trevor Burnham (trevorburnham@gmail.com)
  * Copyright: (c) 2010 Trevor Burnham (http://iterative.ly)
- * Release Version: 1.0.8.9
+ * Release Version: 1.0.8.10
  * Date Started: 2010/06/08
  *
  * CoffeeScript language file for GeSHi.
