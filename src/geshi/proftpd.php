@@ -229,7 +229,7 @@ $language_data = array (
             'TimeoutStalled', 'TransferRate', 'UseSendfile',
 
             //unknown
-            'ScoreboardFile', 'ScoreboardPath', 'ScoreboardScrub'
+            'ScoreboardPath', 'ScoreboardScrub'
             ),
         /*keywords 3*/
         3 => array(

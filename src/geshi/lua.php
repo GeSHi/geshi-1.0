@@ -100,7 +100,7 @@ $language_data = array (
             'nil', 'false', 'true'
             ),
         5 => array(
-            'Nil', 'Boolean', 'Number', 'String', 'function', 'Userdata', 'Thread', 'Table'
+            'Nil', 'Boolean', 'Number', 'String', 'Userdata', 'Thread', 'Table'
             )
         ),
     'SYMBOLS' => array(
@@ -156,7 +156,11 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => ''
+        1 => '',
+        2 => '',
+        3 => '',
+        4 => '',
+        5 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
