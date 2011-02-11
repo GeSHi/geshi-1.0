@@ -61,6 +61,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - AutoIt                 mastrboy
 - AviSynth               Ryan Jones
 - Awk                    George Pollard
+- BASCOM AVR             Michal Goralczyk
 - Bash                   Andreas Gohr
 - Basic4GL               Matthew Webb
 - BibTeX                 Quinn Taylor
@@ -68,6 +69,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - BNF                    Rowan Rodrik van der Molen
 - Boo                    Marcus Griep
 - Brainfuck \ Brainfork  Benny Baumann
+- C for Loadrunner       Stuart Moncrieff
 - C for Macs             M. Uli Kusterer
 - C#                     Alan Juden
 - C++                    Dennis Bayer, M. Uli Kusterer
@@ -80,6 +82,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Clojure                Jess Johnson
 - CMake                  Daniel Nelson
 - COBOL                  Benny Baumann
+- CoffeeScript           Trevor Burnham
 - ColdFusion             Diego
 - Cuesheet               Benny Baumann
 - D                      Thomas Kuehne
@@ -91,8 +94,11 @@ PEOPE WHO MADE LANGUAGE FILES
 - ECMAScript             Michel Mariani
 - Eiffel                 Zoran Simic
 - eMail \ mbox           Benny Baumann
+- EPC                    Thorsten Muehlfelder
 - Erlang                 Benny Baumann, Dan Forest-Barbier, Uwe Dauernheim
+- Euphoria               Nicholas Koceja
 - F#                     Julien Ortin
+- Falcon                 billykater
 - FO (abas-ERP)          Tan-Vinh Nguyen
 - FormulaOne             Juro Bystricky
 - Fortran                Cedric Arrabie
@@ -111,6 +117,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Haskell                Dagit
 - HicEst                 Georg Petrich
 - HQ9+                   Benny Baumann
+- HTML5                  Robert Lidberg
 - Icon                   Matt Oates
 - Ini                    Deguix
 - Inno                   Thomas Klinger
@@ -125,6 +132,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - LaTeX                  Matthais Pospiech
 - Liberty BASIC          Chris Iverson
 - Lisp                   Roberto Rossi
+- LLVM                   Azriel Fasten
 - Locomotive Basic       Nacho Cabanes
 - Logtalk                Paulo Moura
 - LOLcode                Benny Baumann
@@ -162,17 +170,20 @@ PEOPE WHO MADE LANGUAGE FILES
 - PIC16xxx assembler     Phil Mattison
 - Pike                   Rick E.
 - Pixel Bender           Richard Olsson
+- PL/I                   Robert Prins
 - PL/SQL                 Victor Engmark
 - PostgreSQL             Christophe Chauvet
 - POV-Ray                Carl Fürstenberg
 - PowerBuilder           Doug Porter
 - PowerShell             Frode Aarebrot
+- ProFTPd                Benny Baumann
 - Progress               Marco Aurelio de Pasqual
 - Prolog                 Benny Baumann
 - Property Files         Edy Hinzen
 - ProvideX               Jeff Wilder
 - PureBasic              Gustavo Julio Fiorenza
 - Python                 Roberto Rossi
+- PyCon                  Benny Baumann
 - q/kdb+                 Ian Roddis
 - R / S+                 Ron Fredericks
 - Rails                  Moises Deniz
@@ -196,6 +207,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - TypoScript             Jan-Philipp Halle
 - Unicon                 Matt Oates
 - Uno IDL                Cedric Bosdonnat
+- UnrealScript			 pospi
 - Vala                   Nicolas Joseph
 - VB                     Roberto Rossi
 - VB.NET                 Alan Juden
@@ -209,6 +221,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - X++                    Simon Butcher
 - XBasic                 José Gabriel Moya Yangüela
 - Xorg config            Milian Wolff
+- YAML                   Josh Ventura
 - Z80 Assembler          Benny Baumann
 - ZXBasic                Jose Rodriguez
 

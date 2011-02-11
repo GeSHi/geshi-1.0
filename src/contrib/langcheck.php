@@ -246,10 +246,13 @@ if(!$error_abort) {
 
     if(!$error_abort) {
         while ($file = readdir($dir)) {
-            if (!$file || $file[0] == '.' || strpos($file, '.') === false) {
+            if (!$file || $file[0] == '.' || strpos($file, '.php') === false) {
                 continue;
             }
             $lang = substr($file, 0,  strpos($file, '.'));
+            if(4 != strlen($file) - strlen($lang)) {
+                continue;
+            }
             $languages[] = $lang;
         }
         closedir($dir);
