@@ -42,14 +42,14 @@ $language_data = array (
     'COMMENT_SINGLE' => array('$!', '!'),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
-        2 => '/\$\s*sql\s+.*?(?:quit|exit);?\s*?$/sim' // do not highlight inline sql
+        2 => '/(?<=\$)\s*sql\s+.*?(?:quit|exit);?\s*?$/sim' // do not highlight inline sql
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'HARDESCAPE' => array(),
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
-        1 => "(''[a-zA-Z\\-_]+')"
+        1 => "/''[a-zA-Z\\-_]+'/"
         ),
     'KEYWORDS' => array(
         1 => array( // commands
@@ -171,9 +171,9 @@ $language_data = array (
         // variables
         0 => "'[a-zA-Z_\\-$]+'",
         // qualifiers and parameters
-        1 => "(\/[a-zA-Z_\/]+)[\s=]",
+        1 => "(?:\/[a-zA-Z_\/]+)[\s=]",
         // labels
-        2 => '(\$\s*[a-zA-Z\-_]+:)'
+        2 => '(?<=\$)\s*[a-zA-Z\-_]+:'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(
