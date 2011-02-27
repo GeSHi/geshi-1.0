@@ -46,8 +46,8 @@ $language_data = array (
         3 => "/{-(?:(?R)|.)-}/s", //Nested Comments
         ),
     'CASE_KEYWORDS' => 0,
-    'QUOTEMARKS' => array('"'),
-    'ESCAPE_CHAR' => "\\",
+    'QUOTEMARKS' => array('"',"'"),
+    'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         /* main haskell keywords */
         1 => array(
