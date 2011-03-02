@@ -16,6 +16,7 @@ Version 1.0.8.11
   -  Added language files
      * DCL (Petr Hendl)
   -  Improvements to language files (BenBE)
+     * Symbol and char literal handling for Scala (Paul Butcher, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
