@@ -18,6 +18,7 @@ Version 1.0.8.11
   -  Improvements to language files (BenBE)
      * Symbol and char literal handling for Scala (Paul Butcher, BenBE)
      * Multiline comments of F# weren't actually multiline (BenBE)
+     * Support for IPv6 addresses in RFC822 messages (BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
