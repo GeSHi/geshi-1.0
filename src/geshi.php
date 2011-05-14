@@ -808,7 +808,7 @@ class GeSHi {
         }
 
         // match the langname
-        if (!preg_match('/\'LANG_NAME\'\s*=>\s*\'((?:[^\']|\\\')+)\'/', $data, $matches)) {
+        if (!preg_match('/\'LANG_NAME\'\s*=>\s*\'((?:[^\']|\\\')+?)\'/', $data, $matches)) {
             $this->error = sprintf('Geshi::get_lang_fullname(%s): Regex can not detect language', $language);
             return false;
         }
