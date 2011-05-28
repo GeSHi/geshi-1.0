@@ -605,6 +605,17 @@ class GeSHi {
     }
 
     /**
+     * Returns the version of GeSHi
+     *
+     * @return string
+     * @since
+     */
+    function get_version()
+    {
+        return GESHI_VERSION;
+    }
+
+    /**
      * Returns an error message associated with the last GeSHi operation,
      * or false if no error has occured
      *
