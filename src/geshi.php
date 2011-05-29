@@ -608,7 +608,7 @@ class GeSHi {
      * Returns the version of GeSHi
      *
      * @return string
-     * @since
+     * @since 1 0.8.11
      */
     function get_version()
     {
