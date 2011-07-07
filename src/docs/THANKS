@@ -131,6 +131,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - KLone C                Mickael Auger
 - KLone C++              Mickael Auger
 - LaTeX                  Matthais Pospiech
+- LDIF                   Bruno Harbulot
 - Liberty BASIC          Chris Iverson
 - Lisp                   Roberto Rossi
 - LLVM                   Azriel Fasten
@@ -199,6 +200,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - SDLBasic               Roberto Rossi
 - Smalltalk              Bananeweizen
 - Smarty                 Alan Juden
+- SPARK                  Phil Thornley
+- StoneScript            Archimmersion
 - SystemVerilog          Sean O'Boyle
 - TCL                    Reid van Melle
 - TeraTerm               Boris Maisuradze
@@ -208,7 +211,8 @@ PEOPE WHO MADE LANGUAGE FILES
 - TypoScript             Jan-Philipp Halle
 - Unicon                 Matt Oates
 - Uno IDL                Cedric Bosdonnat
-- UnrealScript			 pospi
+- UnrealScript           pospi
+- UPC                    Viraj Sinha
 - Vala                   Nicolas Joseph
 - VB                     Roberto Rossi
 - VB.NET                 Alan Juden

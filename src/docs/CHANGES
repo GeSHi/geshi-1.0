@@ -15,11 +15,17 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.8.11
   -  Added language files
      * DCL (Petr Hendl)
+     * LDIF (Bruno Harbulot)
+     * SPARK (Phil Thornley)
+     * StoneScript (Archimmersion)
+     * UPC (Viraj Sinha)
   -  Improvements to language files (BenBE)
      * Symbol and char literal handling for Scala (Paul Butcher, BenBE)
      * Multiline comments of F# weren't actually multiline (BenBE)
      * Support for IPv6 addresses in RFC822 messages (BenBE)
      * Properly handle retrieving names from language files (MikeSee, BenBE)
+     * Changes for improved highlighting of signle line comments and end-of-code indicators
+     * Missing keywords and improved highlighting of comments
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
