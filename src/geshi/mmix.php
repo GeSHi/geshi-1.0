@@ -41,13 +41,21 @@
 
 $language_data = array (
     'LANG_NAME' => 'MMIX',
-    'COMMENT_SINGLE' => array(1 => ';'),
+    'COMMENT_SINGLE' => array(1 => ';', 2 => '%'),
     'COMMENT_MULTI' => array(),
     //Line address prefix suppression
-    'COMMENT_REGEXP' => array(2 => "/^\s*[0-9a-f]{12,16}+(?:\s+[0-9a-f]+(?:\.{3}[0-9a-f]{2,})?)?:/mi"),
+    'COMMENT_REGEXP' => array(
+        3 => "/^\s*(?!\s)[^\w].*$/m",
+        4 => "/^\s*[0-9a-f]{12,16}+(?:\s+[0-9a-f]+(?:\.{3}[0-9a-f]{2,})?)?:/mi"
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
+    'NUMBERS' => array(
+        1 => '(?<![\d\$#\w])[\da-fA-F]+(?!\w)',
+        2 => '#[\da-fA-F]+',
+        3 => '\$\d+'
+        ),
     'KEYWORDS' => array(
         /*CPU*/
         1 => array(
@@ -68,6 +76,10 @@ $language_data = array (
             'SYNCID','TDIF','TRAP','TRIP','UNSAVE','WDIF','XOR','ZSEV','ZSN',
             'ZSNN','ZSNP','ZSNZ','ZSOD','ZSP','ZSZ'
             ),
+        2 => array(
+            'BSPEC','BYTE','ESPEC','GREG','IS','LDA','LOC','LOCAL','OCTA',
+            'PREFIX','SET','TETRA','WYDE'
+            ),
         /*registers*/
         3 => array(
             'rA','rB','rC','rD','rE','rF','rG','rH','rI','rJ','rK','rL','rM',
@@ -84,7 +96,8 @@ $language_data = array (
     'SYMBOLS' => array(
         '[', ']', '(', ')',
         '+', '-', '*', '/', '%',
-        '.', ',', ';', ':'
+        '.', ',', ';', ':',
+        '<<','>>'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -104,7 +117,9 @@ $language_data = array (
             ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
-            2 => 'color: #adadad; font-style: italic;',
+            2 => 'color: #666666; font-style: italic;',
+            3 => 'color: #666666; font-style: italic;',
+            4 => 'color: #adadad; font-style: italic;',
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
@@ -116,7 +131,10 @@ $language_data = array (
             0 => 'color: #7f007f;'
             ),
         'NUMBERS' => array(
-            0 => 'color: #0000ff;'
+            0 => 'color: #0000ff;',
+            1 => 'color: #0000ff;',
+            2 => 'color: #0000ff;',
+            3 => 'color: #00007f;'
             ),
         'METHODS' => array(
             ),
@@ -137,6 +155,7 @@ $language_data = array (
         4 => '',
         5 => ''
         ),
+/*
     'NUMBERS' =>
         GESHI_NUMBER_BIN_PREFIX_PERCENT |
         GESHI_NUMBER_BIN_SUFFIX |
@@ -147,6 +166,7 @@ $language_data = array (
         GESHI_NUMBER_FLT_NONSCI |
         GESHI_NUMBER_FLT_NONSCI_F |
         GESHI_NUMBER_FLT_SCI_ZERO,
+*/
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),
