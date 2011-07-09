@@ -16,6 +16,7 @@ Version 1.0.8.11
   -  Added language files
      * DCL (Petr Hendl)
      * LDIF (Bruno Harbulot)
+     * PARI/GP (Charles R Greathouse IV)
      * SPARK (Phil Thornley)
      * StoneScript (Archimmersion)
      * UPC (Viraj Sinha)
