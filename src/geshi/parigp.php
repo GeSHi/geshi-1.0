@@ -165,7 +165,7 @@ $language_data = array(
             ),
 
         2 => array(
-            'void','bool','negbool','small','int','real','mp','var','lg','pol',
+            'void','bool','negbool','small','int',/*'real',*/'mp','var','lg','pol',
             'vecsmall','vec','list','str','genstr','gen','typ'
             ),
 
@@ -173,10 +173,10 @@ $language_data = array(
             'TeXstyle','breakloop','colors','compatible','datadir','debug',
             'debugfiles','debugmem','echo','factor_add_primes','factor_proven',
             'format','graphcolormap','graphcolors','help','histfile','histsize',
-            'lines','linewrap','log','logfile','new_galois_format','output',
+            'lines','linewrap',/*'log',*/'logfile','new_galois_format','output',
             'parisize','path','prettyprinter','primelimit','prompt_cont',
             'prompt','psfile','readline','realprecision','recover','secure',
-            'seriesprecision','simplify','strictmatch','timer'
+            'seriesprecision',/*'simplify',*/'strictmatch','timer'
             ),
 
         4 => array(
