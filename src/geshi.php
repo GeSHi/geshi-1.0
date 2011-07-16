@@ -3378,7 +3378,7 @@ class GeSHi {
 
         foreach (array_keys($this->language_data['KEYWORDS']) as $k) {
             if (!isset($this->lexic_permissions['KEYWORDS'][$k]) ||
-            $this->lexic_permissions['KEYWORDS'][$k]) {
+                $this->lexic_permissions['KEYWORDS'][$k]) {
 
                 $case_sensitive = $this->language_data['CASE_SENSITIVE'][$k];
                 $modifiers = $case_sensitive ? '' : 'i';
