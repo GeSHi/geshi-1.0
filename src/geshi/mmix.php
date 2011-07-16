@@ -86,12 +86,12 @@ $language_data = array (
             'rN','rO','rP','rQ','rR','rS','rT','rU','rV','rW','rX','rY','rZ',
             'rBB','rTT','rWW','rXX','rYY','rZZ'
             ),
-        /*Directive*/
-        4 => array(
-            ),
-        /*Operands*/
-        5 => array(
-            )
+//        /*Directive*/
+//        4 => array(
+//            ),
+//        /*Operands*/
+//        5 => array(
+//            )
         ),
     'SYMBOLS' => array(
         '[', ']', '(', ')',
@@ -104,16 +104,16 @@ $language_data = array (
         1 => true,
         2 => false,
         3 => true,
-        4 => false,
-        5 => false
+//        4 => false,
+//        5 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #00007f; font-weight: bold;',
             2 => 'color: #0000ff; font-weight: bold;',
             3 => 'color: #00007f;',
-            4 => 'color: #000000; font-weight: bold;',
-            5 => 'color: #000000; font-weight: bold;'
+//            4 => 'color: #000000; font-weight: bold;',
+//            5 => 'color: #000000; font-weight: bold;'
             ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
@@ -152,8 +152,8 @@ $language_data = array (
         1 => '',
         2 => '',
         3 => '',
-        4 => '',
-        5 => ''
+//        4 => '',
+//        5 => ''
         ),
 /*
     'NUMBERS' =>
