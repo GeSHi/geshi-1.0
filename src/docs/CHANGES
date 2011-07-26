@@ -68,7 +68,7 @@ Version 1.0.8.10
      * Language file improvements for Python (Zbyszek Szmek)
      * Fixed documentation links for Groovy (SF#3152356, lifeisfoo)
      * Fixed incorrect highlighting of certain keywords in Erlang (SF#3138853, BenBE)
-     * Escape chars in C++/C++QT handled incorrectly (SF#3122706, C. Pötsch)
+     * Escape chars in C++/C++Qt handled incorrectly (SF#3122706, C. Pötsch)
      * Empty parameters of LaTeX commands tipped the highlighting off (SF#3098329, James Oldfield, BenBE)
      * Additional Keywords and minor tweaks to Logtalk (Paulo Moura)
 Version 1.0.8.9
@@ -422,7 +422,7 @@ Version 1.0.8
      * get_attributes
   -  Second part of default style changes. Affected in this release:
      * C++
-     * C++ (QT)
+     * C++ (Qt)
      * CSS
      * VHDL
 Version 1.0.7.22
@@ -455,7 +455,7 @@ Version 1.0.7.22
   -  Implemented Compiler Directives for Delphi (SF#1914640, BenBE)
   -  Implemented minimalistic support for JavaScript \ Perl Regular Expressions (SF#1786665, SF#1754333, SF#1956631, BenBE)
   -  Fixed Strings in Matlab to be handled as comments instead of regexps, to prevent keywords being linked (BenBE)
-  -  Applied PARSER_CONTROL fix of CPP for CPP-QT-Derivative (BenBE)
+  -  Applied PARSER_CONTROL fix of C++ for C++-Qt-Derivative (BenBE)
   -  Fixed incorrect treatment of unequally long multiline comment separators (related to SF #1891630, BenBE)
   -  Added PARSER_CONTROL settings for keywords in ASM language file (SF#1835148, BenBE)
   -  Fixed missing CASSE_SENSITIVE entry for DOS language file (SF#1956314, BenBE)
@@ -548,7 +548,7 @@ Version 1.0.7.20
   -  Applied fix for bug 1705482 (Jason Frame)
      * Configurable line endings (Replace \n by custom string)
      * per-language tab-widths (Adjustable for width>=1)
-     * Included defaults for ASM (x86, m68k, z80), C, C (Mac), C++, C++ (QT), C#,
+     * Included defaults for ASM (x86, m68k, z80), C, C (Mac), C++, C++ (Qt), C#,
        Delphi, CSS,, HTML, PHP, PHP (Brief), QBasic, Ruby, XML
   -  Added a possibility to force generation of a surrounding tag around
      the highlighted source
@@ -589,7 +589,7 @@ Version 1.0.7.17
 Version 1.0.7.16
   -  Added language files
      * ActionScript (Steffen Krause)
-     * C++/QT (Iulian M)
+     * C++/Qt (Iulian M)
      * PL/SQL (Victor Engmark)
   -  Fixed up my e-mail address everywhere
   -  Fixed notice with "error" property (IZIU Zielona Góra)
