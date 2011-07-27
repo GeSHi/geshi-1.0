@@ -27,6 +27,7 @@ Version 1.0.8.11
      * Properly handle retrieving names from language files (MikeSee, BenBE)
      * Changes for improved highlighting of signle line comments and end-of-code indicators
      * Missing keywords and improved highlighting of comments
+     * Problem with DOS/Batch highlighting breaking out at variables (BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
