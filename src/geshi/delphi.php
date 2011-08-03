@@ -57,7 +57,7 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'Abstract', 'And', 'Array', 'As', 'Asm', 'At', 'Begin', 'Case',
-            'Class', 'Const', 'Constructor', 'Contains', 'Destructor',
+            'Class', 'Const', 'Constructor', 'Contains', 'delayed', 'Destructor',
             'DispInterface', 'Div', 'Do', 'DownTo', 'Else', 'End', 'Except',
             'Export', 'Exports', 'External', 'File', 'Finalization', 'Finally',
             'For', 'Function', 'Goto', 'If', 'Implementation', 'In', 'Inherited',
