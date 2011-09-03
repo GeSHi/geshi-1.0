@@ -146,7 +146,7 @@ $language_data = array (
         /*SIMD*/
         6 => array(
             'addpd','addps','addsd','addss','addsubpd','addsubps','andnpd','andnps','andpd',
-            'andps','blendpd','blendps','blendvpd','blendvps','clflush','cmppd','cmpps','cmpsd',
+            'andps','blendpd','blendps','blendvpd','blendvps','clflush','cmppd','cmpps',
             'cmpss','comisd','comiss','crc32','cvtdq2pd','cvtdq2ps','cvtpd2dq','cvtpd2pi','cvtpd2ps',
             'cvtpi2pd','cvtpi2ps','cvtps2dq','cvtps2pd','cvtps2pi','cvtsd2si','cvtsd2ss','cvtsi2sd',
             'cvtsi2ss','cvtss2sd','cvtss2si','cvttpd2dq','cvttpd2pi','cvttps2dq','cvttps2pi','cvttsd2si',
@@ -156,7 +156,7 @@ $language_data = array (
             'mfence','minpd','minps','minsd','minss','monitor','movapd','movaps','movd','movddup',
             'movdq2q','movdqa','movdqu','movhlps','movhpd','movhps','movlhps','movlpd','movlps',
             'movmskpd','movmskps','movntdq','movntdqa','movnti','movntpd','movntps','movntq','movntsd',
-            'movntss','movq','movq2dq','movsd','movshdup','movsldup','movss','movupd','movups','mpsadbw',
+            'movntss','movq','movq2dq','movshdup','movsldup','movss','movupd','movups','mpsadbw',
             'mulpd','mulps','mulsd','mulss','mwait','orpd','orps','pabsb','pabsd','pabsw','packssdw',
             'packsswb','packusdw','packuswb','paddb','paddd','paddq','paddsb','paddsiw','paddsw',
             'paddusb','paddusw','paddw','palignr','pand','pandn','pause','paveb','pavgb','pavgusb',
