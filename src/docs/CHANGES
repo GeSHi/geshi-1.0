@@ -28,6 +28,7 @@ Version 1.0.8.11
      * Changes for improved highlighting of signle line comments and end-of-code indicators
      * Missing keywords and improved highlighting of comments
      * Problem with DOS/Batch highlighting breaking out at variables (BenBE)
+     * Addition of MMX/SSE/x86-64 registers and MMX/SSE instructions (up to 4.2) (Dennis Yurichev)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)

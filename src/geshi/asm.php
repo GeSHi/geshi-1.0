@@ -3,7 +3,10 @@
  * asm.php
  * -------
  * Author: Tux (tux@inmail.cz)
- * Copyright: (c) 2004 Tux (http://tux.a4.cz/), Nigel McNie (http://qbnz.com/highlighter)
+ * Copyright: (c) 2004 Tux (http://tux.a4.cz/),
+ *                2004-2009 Nigel McNie (http://qbnz.com/highlighter),
+ *                2009-2011 Benny Baumann (http://qbnz.com/highlighter),
+ *                Dennis Yurichev (dennis@conus.info)
  * Release Version: 1.0.8.10
  * Date Started: 2004/07/27
  *
@@ -12,6 +15,8 @@
  *
  * CHANGES
  * -------
+ * 2010/07/01 (1.0.8.11)
+ *   -  Added MMX/SSE/new x86-64 registers, MMX/SSE (up to 4.2) instructions
  * 2008/05/23 (1.0.7.22)
  *   -  Added description of extra language features (SF#1970248)
  * 2004/11/27 (1.0.2)
@@ -93,7 +98,13 @@ $language_data = array (
         3 => array(
             'ah','al','ax','bh','bl','bp','bx','ch','cl','cr0','cr2','cr3','cs','cx','dh','di','dl',
             'dr0','dr1','dr2','dr3','dr6','dr7','ds','dx','eax','ebp','ebx','ecx','edi','edx',
-            'es','esi','esp','fs','gs','si','sp','ss','st','tr3','tr4','tr5','tr6','tr7'
+            'es','esi','esp','fs','gs','si','sp','ss','st','tr3','tr4','tr5','tr6','tr7',
+            'mm0', 'mm1', 'mm2', 'mm3', 'mm4', 'mm5', 'mm6', 'mm7',
+            'xmm0', 'xmm1', 'xmm2', 'xmm3', 'xmm4', 'xmm5', 'xmm6', 'xmm7', 'xmm8', 'xmm9', 'xmm10', 'xmm11', 'xmm12', 'xmm13', 'xmm14', 'xmm15',
+            'rax', 'rbx', 'rcx', 'rdx', 'rbp', 'rsp', 'rsi', 'rdi', 'r8', 'r9', 'r10', 'r11', 'r12', 'r13', 'r14', 'r15',
+            'r8d', 'r9d', 'r10d', 'r11d', 'r12d', 'r13d', 'r14d', 'r15d',
+            'r8w', 'r9w', 'r10w', 'r11w', 'r12w', 'r13w', 'r14w', 'r15w',
+            'r8b', 'r9b', 'r10b', 'r11b', 'r12b', 'r13b', 'r14b', 'r15b'
             ),
         /*Directive*/
         4 => array(
@@ -120,7 +131,7 @@ $language_data = array (
             ),
         /*Operands*/
         5 => array(
-            '@b','@f','addr','basic','byte','c','carry?','dword',
+            '@b','@f','addr','basic','byte','c','carry?','dword', 'xmmword',
             'far','far16','fortran','fword','near','near16','overflow?','parity?','pascal','qword',
             'real4',' real8','real10','sbyte','sdword','sign?','stdcall','sword','syscall','tbyte',
             'vararg','word','zero?','flat','near32','far32',
@@ -131,6 +142,42 @@ $language_data = array (
             'nooldmacros','nooldstructs','noreadonly','noscoped','nosignextend','nothing',
             'notpublic','oldmacros','oldstructs','os_dos','para','prologue',
             'readonly','req','scoped','setif2','smallstack','tiny','use16','use32','uses'
+            ),
+        /*SIMD*/
+        6 => array(
+            'addpd','addps','addsd','addss','addsubpd','addsubps','andnpd','andnps','andpd',
+            'andps','blendpd','blendps','blendvpd','blendvps','clflush','cmppd','cmpps','cmpsd',
+            'cmpss','comisd','comiss','crc32','cvtdq2pd','cvtdq2ps','cvtpd2dq','cvtpd2pi','cvtpd2ps',
+            'cvtpi2pd','cvtpi2ps','cvtps2dq','cvtps2pd','cvtps2pi','cvtsd2si','cvtsd2ss','cvtsi2sd',
+            'cvtsi2ss','cvtss2sd','cvtss2si','cvttpd2dq','cvttpd2pi','cvttps2dq','cvttps2pi','cvttsd2si',
+            'cvttss2si','divpd','divps','divsd','divss','dppd','dpps','emms','extractps','extrq',
+            'femms','fisttp','fxrstor','fxsave','haddpd','haddps','hsubpd','hsubps','insertps','insertq',
+            'lddqu','ldmxcsr','lfence','lzcnt','maskmovdqu','maskmovq','maxpd','maxps','maxsd','maxss',
+            'mfence','minpd','minps','minsd','minss','monitor','movapd','movaps','movd','movddup',
+            'movdq2q','movdqa','movdqu','movhlps','movhpd','movhps','movlhps','movlpd','movlps',
+            'movmskpd','movmskps','movntdq','movntdqa','movnti','movntpd','movntps','movntq','movntsd',
+            'movntss','movq','movq2dq','movsd','movshdup','movsldup','movss','movupd','movups','mpsadbw',
+            'mulpd','mulps','mulsd','mulss','mwait','orpd','orps','pabsb','pabsd','pabsw','packssdw',
+            'packsswb','packusdw','packuswb','paddb','paddd','paddq','paddsb','paddsiw','paddsw',
+            'paddusb','paddusw','paddw','palignr','pand','pandn','pause','paveb','pavgb','pavgusb',
+            'pavgw','pblendvb','pblendw','pcmpeqb','pcmpeqd','pcmpeqq','pcmpeqw','pcmpestri','pcmpestrm',
+            'pcmpgtb','pcmpgtd','pcmpgtq','pcmpgtw','pcmpistri','pcmpistrm','pdistib','pextrb','pextrd',
+            'pextrq','pextrw','pf2id','pf2iw','pfacc','pfadd','pfcmpeq','pfcmpge','pfcmpgt','pfmax',
+            'pfmin','pfmul','pfnacc','pfpnacc','pfrcp','pfrcpit1','pfrcpit2','pfrcpv','pfrsqit1','pfrsqrt',
+            'pfrsqrtv','pfsub','pfsubr','phaddd','phaddsw','phaddw','phminposuw','phsubd','phsubsw','phsubw',
+            'pi2fd','pi2fw','pinsrb','pinsrd','pinsrq','pinsrw','pmachriw','pmaddubsw','pmaddwd','pmagw',
+            'pmaxsb','pmaxsd','pmaxsw','pmaxub','pmaxud','pmaxuw','pminsb','pminsd','pminsw','pminub',
+            'pminud','pminuw','pmovmskb','pmovsxbd','pmovsxbq','pmovsxbw','pmovsxdq','pmovsxwd','pmovsxwq',
+            'pmovzxbd','pmovzxbq','pmovzxbw','pmovzxdq','pmovzxwd','pmovzxwq','pmuldq','pmulhriw','pmulhrsw',
+            'pmulhrw','pmulhuw','pmulhw','pmulld','pmullw','pmuludq','pmvgezb','pmvlzb','pmvnzb','pmvzb',
+            'popcnt','por','prefetch','prefetch0','prefetch1','prefetch2','prefetchnta','prefetchw','psadbw',
+            'pshufb','pshufd','pshufhw','pshuflw','pshufw','psignb','psignd','psignw','pslld','pslldq','psllq',
+            'psllw','psrad','psraw','psrld','psrldq','psrlq','psrlw','psubb','psubd','psubq','psubsb','psubsiw',
+            'psubsw','psubusb','psubusw','psubw','pswapd','ptest','punpckhbw','punpckhdq','punpckhqdq',
+            'punpckhwd','punpcklbw','punpckldq','punpcklqdq','punpcklwd','pxor','rcpps','rcpss','roundpd',
+            'roundps','roundsd','roundss','rsqrtps','rsqrtss','sfence','shufpd','shufps','sqrtpd','sqrtps',
+            'sqrtsd','sqrtss','stmxcsr','subpd','subps','subsd','subss','ucomisd','ucomiss','unpckhpd',
+            'unpckhps','unpcklpd','unpcklps','xorpd','xorps'
             )
         ),
     'SYMBOLS' => array(
@@ -144,7 +191,8 @@ $language_data = array (
         2 => false,
         3 => false,
         4 => false,
-        5 => false
+        5 => false,
+        6 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -152,11 +200,12 @@ $language_data = array (
             2 => 'color: #0000ff; font-weight: bold;',
             3 => 'color: #00007f;',
             4 => 'color: #000000; font-weight: bold;',
-            5 => 'color: #000000; font-weight: bold;'
+            5 => 'color: #000000; font-weight: bold;',
+            6 => 'color: #0000ff; font-weight: bold;'
             ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
-            2 => 'color: #adadad; font-style: italic;',
+            2 => 'color: #adadad; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
@@ -187,7 +236,8 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => ''
+        5 => '',
+        6 => ''
         ),
     'NUMBERS' =>
         GESHI_NUMBER_BIN_PREFIX_PERCENT |
