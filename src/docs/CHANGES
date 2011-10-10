@@ -33,6 +33,7 @@ Version 1.0.8.11
        ASM language file(up to 4.2) (Dennis Yurichev)
      * Further improvements to ASM language file to introduce all latest
        already documented x86 architecture instructions (Marat Dukhan)
+     * Fixed links for R/S+ language file (Fernando H.F.P. da Rosa)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
