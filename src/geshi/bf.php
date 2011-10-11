@@ -76,8 +76,8 @@ $language_data = array (
             0 => 'color: #006600;',
             1 => 'color: #660000;',
             2 => 'color: #000066;',
-            3 => 'color: #660066;',
-            4 => 'color: #666600;'
+            3 => 'color: #666600;',
+            4 => 'color: #660066;'
             ),
         'ESCAPE_CHAR' => array(
             ),
