@@ -37,6 +37,7 @@ Version 1.0.8.11
      * Fixed links for R/S+ language file (Fernando H.F.P. da Rosa)
      * Fix a problem with Delphi/Pascal regarding hex numbers/chars (BenBE)
      * Fixed a typo and missing keywords for HTML4 and HTML5 (SF#3365452, BenBE)
+     * Fixed a typo in Modula-3 language file (SF#3358216, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
