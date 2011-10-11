@@ -65,11 +65,11 @@ $language_data = array (
             'CSP','CSWAP','CSZ','DIV','DIVU','FADD','FCMP','FCMPE','FDIV',
             'FEQL','FEQLE','FINT','FIX','FIXU','FLOT','FLOTU','FMUL','FREM',
             'FSQRT','FSUB','FUN','FUNE','GET','GETA','GO','INCH','INCL','INCMH',
-            'INCML','JMP','LDB','LDBU','LDHT','LDO','LDOU','LDSF','LDT','LDTU',
-            'LDUNC','LDVTS','LDW','LDWU','MOR','MUL','MULU','MUX','MXOR','NAND',
-            'NEG','NEGU','NOR','NXOR','ODIF','OR','ORH','ORL','ORMH','ORML',
-            'ORN','PBEV','PBN','PBNN','PBNP','PBNZ','PBOD','PBP','PBZ','POP',
-            'PREGO','PRELD','PREST','PUSHGO','PUSHJ','PUT','RESUME','SADD',
+            'INCML','JMP','LDA','LDB','LDBU','LDHT','LDO','LDOU','LDSF','LDT',
+            'LDTU','LDUNC','LDVTS','LDW','LDWU','MOR','MUL','MULU','MUX','MXOR',
+            'NAND','NEG','NEGU','NOR','NXOR','ODIF','OR','ORH','ORL','ORMH',
+            'ORML','ORN','PBEV','PBN','PBNN','PBNP','PBNZ','PBOD','PBP','PBZ',
+            'POP','PREGO','PRELD','PREST','PUSHGO','PUSHJ','PUT','RESUME','SADD',
             'SAVE','SETH','SETL','SETMH','SETML','SFLOT','SFLOTU','SL','SLU',
             'SR','SRU','STB','STBU','STCO','STHT','STO','STOU','STSF','STT',
             'STTU','STUNC','STW','STWU','SUB','SUBU','SWYM','SYNC','SYNCD',
@@ -77,7 +77,7 @@ $language_data = array (
             'ZSNN','ZSNP','ZSNZ','ZSOD','ZSP','ZSZ'
             ),
         2 => array(
-            'BSPEC','BYTE','ESPEC','GREG','IS','LDA','LOC','LOCAL','OCTA',
+            'BSPEC','BYTE','ESPEC','GREG','IS','LOC','LOCAL','OCTA',
             'PREFIX','SET','TETRA','WYDE'
             ),
         /*registers*/
