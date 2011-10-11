@@ -36,6 +36,7 @@ Version 1.0.8.11
        already documented x86 architecture instructions (Marat Dukhan)
      * Fixed links for R/S+ language file (Fernando H.F.P. da Rosa)
      * Fix a problem with Delphi/Pascal regarding hex numbers/chars (BenBE)
+     * Fixed a typo and missing keywords for HTML4 and HTML5 (SF#3365452, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
