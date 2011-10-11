@@ -51,9 +51,10 @@ $language_data = array (
     'COMMENT_MULTI' => array('(*' => '*)', '{' => '}'),
     //Compiler directives
     'COMMENT_REGEXP' => array(2 => '/\\{\\$.*?}|\\(\\*\\$.*?\\*\\)/U'),
-    'CASE_KEYWORDS' => 0,
+    'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'"),
     'ESCAPE_CHAR' => '',
+
     'KEYWORDS' => array(
         1 => array(
             'Abstract', 'And', 'Array', 'As', 'Asm', 'At', 'Begin', 'Case',
@@ -250,7 +251,7 @@ $language_data = array (
             1 => 'color: #006600;'
             ),
         'REGEXPS' => array(
-            0 => 'color: #9ac;',
+            0 => 'color: #0000cc;',
             1 => 'color: #ff0000;'
             ),
         'SYMBOLS' => array(
