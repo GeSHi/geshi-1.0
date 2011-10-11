@@ -21,6 +21,7 @@ Version 1.0.8.11
      * StoneScript (Archimmersion)
      * UPC (Viraj Sinha)
      * Vedit (Pauli Lindgren)
+  - Updated aliasd.php contrib script (SF#3073275, count)
   -  Improvements to language files (BenBE)
      * Symbol and char literal handling for Scala (Paul Butcher, BenBE)
      * Multiline comments of F# weren't actually multiline (BenBE)
