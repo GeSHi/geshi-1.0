@@ -68,7 +68,7 @@ $language_data = array (
             'or','overload','override','private','procedure','program',
             'property','protected','public','published','raise','repeat',
             'resourcestring','shl','shr','stdcall','stored','switch','then',
-            'to','try','type','unit','until','uses','var','while','xor'
+            'to','try','type','unit','until','uses','var','while','with','xor'
             ),
         2 => array(
             'nil', 'false', 'true',
