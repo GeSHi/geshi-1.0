@@ -91,9 +91,9 @@ function make_header ( $title )
             if (cboxes[i].type == "checkbox") {
                 if (state == "true") {
                     cboxes[i].checked = true;
-                } else if (state == "false") {
+                } elseif (state == "false") {
                     cboxes[i].checked = false;
-                } else if (state == "invert") {
+                } elseif (state == "invert") {
                     cboxes[i].checked = !cboxes[i].checked;
                 }
             }

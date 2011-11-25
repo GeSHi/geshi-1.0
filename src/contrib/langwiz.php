@@ -202,9 +202,9 @@ if(!$error_abort) {
 if(!$error_abort) {
     if(!defined('GESHI_LANG_ROOT')) {
         report_error(TYPE_ERROR, 'There\'s no information present on where to find the language files!');
-    } else if(!is_dir(GESHI_LANG_ROOT)) {
+    } elseif(!is_dir(GESHI_LANG_ROOT)) {
         report_error(TYPE_ERROR, 'The path "'.GESHI_LANG_ROOT.'" given, does not ressemble a directory!');
-    } else if(!is_readable(GESHI_LANG_ROOT)) {
+    } elseif(!is_readable(GESHI_LANG_ROOT)) {
         report_error(TYPE_ERROR, 'The path "'.GESHI_LANG_ROOT.'" is not readable to this script!');
     }
 }
