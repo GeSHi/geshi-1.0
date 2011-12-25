@@ -3242,6 +3242,7 @@ class GeSHi {
     function handle_keyword_replace($match) {
         $k = $this->_kw_replace_group;
         $keyword = $match[0];
+        $keyword_match = $match[1];
 
         $before = '';
         $after = '';
@@ -3259,12 +3260,12 @@ class GeSHi {
                 if (!$this->language_data['CASE_SENSITIVE'][$k] &&
                     strpos($this->language_data['URLS'][$k], '{FNAME}') !== false) {
                     foreach ($this->language_data['KEYWORDS'][$k] as $word) {
-                        if (strcasecmp($word, $keyword) == 0) {
+                        if (strcasecmp($word, $keyword_match) == 0) {
                             break;
                         }
                     }
                 } else {
-                    $word = $keyword;
+                    $word = $keyword_match;
                 }
 
                 $before = '<|UR1|"' .
