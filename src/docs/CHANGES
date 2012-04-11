@@ -16,6 +16,7 @@ Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
      * DCL (Petr Hendl)
+     * DCPU-16 (Benny Baumann)
      * LDIF (Bruno Harbulot)
      * PARI/GP (Charles R Greathouse IV)
      * SPARK (Phil Thornley)
