@@ -137,7 +137,7 @@ $language_data = array (
 
             //These are external but very often usable modules
 
-            "appuifw2","ArchetypeUI","elementtree","lightblue","xml",
+            "appuifw2","ArchetypeUI","elementtree","lightblue",
             "activaprofile","Adjustor","akntextutils","aosocketnativenew",
             "appreciation","applicationmanager","appswitch","atextit","bt_teror","btconsole",
             "btswitch","cElementTree","cenrep","cerealizer","cl_gui","clipboard",
@@ -253,8 +253,9 @@ $language_data = array (
     'URLS' => array(
         1 => '',
         2 => '',
-        3 => ''
-        ),
+        3 => '',
+        4 => ''
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
