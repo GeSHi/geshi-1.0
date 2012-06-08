@@ -49,15 +49,15 @@ $language_data = array (
     'KEYWORDS' => array(
         /*CPU*/
         1 => array(
-        	'set','add','sub','mul','div','mod','shl','shr','and','bor','xor',
-        	'ife','ifn','ifg','ifb',
-        	'jsr'
+            'set','add','sub','mul','div','mod','shl','shr','and','bor','xor',
+            'ife','ifn','ifg','ifb',
+            'jsr'
             ),
         /*registers*/
         2 => array(
             'a','b','c','x','y','z','i','j',
             'pc','sp','o',
-        	'pop','peek','push' //Special cases with DCPU-16
+            'pop','peek','push' //Special cases with DCPU-16
             ),
         ),
     'SYMBOLS' => array(
@@ -101,8 +101,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => 'http://0x10c.com/doc/dcpu-16.txt',
-        2 => '',
-        3 => ''
+        2 => ''
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -120,13 +119,13 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-	'TAB_WIDTH' => 4,
-	'PARSER_CONTROL' => array(
-	    'KEYWORDS' => array(
-        	'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#\/])",
-    	    'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-])"
-	    )
-	)
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#\/])",
+            'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-])"
+            )
+        )
 );
 
 ?>

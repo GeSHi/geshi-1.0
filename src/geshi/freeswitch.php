@@ -52,8 +52,7 @@ $language_data = array (
 //        ':'
         ),
     'CASE_SENSITIVE' => array(
-        GESHI_COMMENTS => false,
-        1 => true
+        GESHI_COMMENTS => false
         ),
 
 //order is important. regexes will overwrite most things....
@@ -90,8 +89,6 @@ $language_data = array (
             5 => 'color: green; font-weight: bold;',
             6 => 'color: firebrick; font-weight: bold;',
             7 => 'color: indigo; font-weight: italic;'
-
-
             ),
         'SCRIPT' => array(
             )
