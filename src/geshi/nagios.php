@@ -121,6 +121,8 @@ $language_data = array(
             ),
         'COMMENTS' => array(
             0 => 'color: #AAAAAA; font-style: italic;',
+            1 => 'color: #AAAAAA; font-style: italic;',
+            2 => 'color: #AAAAAA; font-style: italic;'
             ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
