@@ -117,7 +117,7 @@ $language_data = array (
             ),
         'STRINGS' => array(
             0 => 'color: #ff0000;',
-            'HARD' => 'color: #ff0000;'
+            //'HARD' => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'

@@ -74,7 +74,7 @@ $language_data = array (
         6 => "/\bpkg(?!\s*\()\s+((un)?install|update|(un)?load|list|(global|local)_list|describe|prefix|(re)?build)?\b/",
         // Function handles
         7 => "/@([a-z_][a-z1-9_]*)?/i",
-	    ),
+        ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC |
         GESHI_NUMBER_OCT_PREFIX |

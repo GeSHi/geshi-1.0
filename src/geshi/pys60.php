@@ -49,19 +49,19 @@ $language_data = array (
     'KEYWORDS' => array(
 
         /*
-      ** Set 1: reserved words
-      ** http://python.org/doc/current/ref/keywords.html
-      */
+          ** Set 1: reserved words
+          ** http://python.org/doc/current/ref/keywords.html
+          */
         1 => array(
             'and', 'del', 'for', 'is', 'raise', 'assert', 'elif', 'from', 'lambda', 'return', 'break',
             'else', 'global', 'not', 'try', 'class', 'except', 'if', 'or', 'while', 'continue', 'exec',
-            'import', 'pass', 'yield', 'def', 'finally', 'in', 'print', "<<", ">>", "as", ":"
+            'import', 'pass', 'yield', 'def', 'finally', 'in', 'print', "<<", ">>", "as"
             ),
 
         /*
-      ** Set 2: builtins
-      ** http://python.org/doc/current/lib/built-in-funcs.html
-      */
+          ** Set 2: builtins
+          ** http://python.org/doc/current/lib/built-in-funcs.html
+          */
         2 => array(
             '__import__', 'abs', 'basestring', 'bool', 'callable', 'chr', 'classmethod', 'cmp',
             'compile', 'complex', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'execfile',
@@ -90,15 +90,15 @@ $language_data = array (
             ),
 
         /*
-      ** Set 3: standard library
-      ** http://python.org/doc/current/lib/modindex.html
-      */
+          ** Set 3: standard library
+          ** http://python.org/doc/current/lib/modindex.html
+          */
         3 => array(
             '__builtin__', '__future__', '__main__', '_winreg', 'aifc', 'AL', 'al', 'anydbm',
             'array', 'asynchat', 'asyncore', 'atexit', 'audioop', 'base64', 'BaseHTTPServer',
             'Bastion', 'binascii', 'binhex', 'bisect', 'bsddb', 'bz2', 'calendar', 'cd', 'cgi',
             'CGIHTTPServer', 'cgitb', 'chunk', 'cmath', 'cmd', 'code', 'codecs', 'codeop',
-            'collections', 'colorsys', 'commands', 'compileall', 'compiler', 'compiler',
+            'collections', 'colorsys', 'commands', 'compileall', 'compiler',
             'ConfigParser', 'Cookie', 'cookielib', 'copy', 'copy_reg', 'cPickle', 'crypt',
             'cStringIO', 'csv', 'curses', 'datetime', 'dbhash', 'dbm', 'decimal', 'DEVICE',
             'difflib', 'dircache', 'dis', 'distutils', 'dl', 'doctest', 'DocXMLRPCServer', 'dumbdbm',
@@ -113,7 +113,7 @@ $language_data = array (
             'optparse', 'os', 'ossaudiodev', 'parser', 'pdb', 'pickle', 'pickletools', 'pipes',
             'pkgutil', 'platform', 'popen2', 'poplib', 'posix', 'posixfile', 'pprint', 'profile',
             'pstats', 'pty', 'pwd', 'py_compile', 'pyclbr', 'pydoc', 'Queue', 'quopri', 'random',
-            're', 'readline', 'repr', 'resource', 'rexec', 'rfc822', 'rgbimg', 'rlcompleter',
+            're', 'readline', 'resource', 'rexec', 'rgbimg', 'rlcompleter',
             'robotparser', 'sched', 'ScrolledText', 'select', 'sets', 'sgmllib', 'sha', 'shelve',
             'shlex', 'shutil', 'signal', 'SimpleHTTPServer', 'SimpleXMLRPCServer', 'site', 'smtpd',
             'smtplib', 'sndhdr', 'socket', 'SocketServer', 'stat', 'statcache', 'statvfs', 'string',
@@ -132,34 +132,34 @@ $language_data = array (
             "appuifw", "globalui","e32", "telephone", "aosocket", "btsocket",
             "sysinfo","camera","graphics","keycapture","key_codes","topwindow", "gles",
             "glcanvas","sensor", "audio","messaging", "inbox","location","positioning",
-            "contacts", "e32calendar", "e32db","e32dbm","logs","scriptext","code",
+            "contacts", "e32calendar", "e32db","e32dbm","logs","scriptext",
             "series60_console",
 
             //These are external but very often usable modules
 
-            "appuifw2","aosocket","ArchetypeUI","elementtree","lightblue","xml",
-            "activaprofile","Adjustor","akntextutils","anydbm","aosocketnativenew",
+            "appuifw2","ArchetypeUI","elementtree","lightblue","xml",
+            "activaprofile","Adjustor","akntextutils","aosocketnativenew",
             "appreciation","applicationmanager","appswitch","atextit","bt_teror","btconsole",
             "btswitch","cElementTree","cenrep","cerealizer","cl_gui","clipboard",
-            "clipboard_CHN","codecs","codeop","copy","copy_reg","debugger","decompile2",
+            "clipboard_CHN","debugger","decompile2",
             "dir_iter","download","easydb","ECenrep","Edit_find","efeature","elocation","envy",
             "EProfile","erestart","error","esyagent","Execwap","exprofile","fastcamera",
             "feature","fgimage","filebrowser","firmware","fold","fonts","fraction","FTP",
-            "ftplibnew","fy_manager","fy_menu","getpass","gles_utils","gps_location","hack",
-            "HTML2TXT","HTMLParser","httplib","iapconnect","icon_image","image_decoder",
+            "ftplibnew","fy_manager","fy_menu","gles_utils","gps_location","hack",
+            "HTML2TXT","iapconnect","icon_image","image_decoder",
             "ini","interactive_console","inting","key_modifiers","key_tricks","keypress",
-            "keyword","landmarks","linecache","lite_fm","locationacq","locationrequestor",
-            "logo","markupbase","mbm","mbm2","mimetools","minidb","miniinfo","MISC",
+            "landmarks","lite_fm","locationacq","locationrequestor",
+            "logo","markupbase","mbm","mbm2","minidb","miniinfo","MISC",
             "misty","Msg","ntpath","odict","Paintbox","pathinfo","pexif","pickcolor",
             "powlite_fm","powlite_fm2","powlite_fm3","powlite_fme","prgbar","prodb",
             "profileengine","progressbar","progressbartw","progressnotes",
             "ProgressBarTW2","proshivka","py_upload","pyConnection","PyFileMan",
-            "pykeylock","PyPyc","pyqq","pys60crypto","pys60usb","quopri","repr","rfc822",
-            "RUSOS","scmk","scrollpage","select","sets","shutil","SISFIELDS","SISFIELD","sisfile",
+            "pykeylock","PyPyc","pyqq","pys60crypto","pys60usb","repr","rfc822",
+            "RUSOS","scmk","scrollpage","SISFIELDS","SISFIELD","sisfile",
             "SISINFO","sisreader","Sistools","smidi","smsreject","speechy","sre_compile",
-            "sre_constants","sre_parse","sre","stat","sysagent","syslang","TextMan",
+            "sre_constants","sre_parse","sre","sysagent","syslang","TextMan",
             "textrenderer","TextWrap","topwind","tsocket","uikludge","uikludges","uitricks",
-            "urlparse","walkfile","wallpaper","weakref","wfm_lite","whichdb","whrandom",
+            "walkfile","wallpaper","wfm_lite",
             "wif_keys","wif","window","wlanmgmt","wlantools","wt_color","wt_requesters",
             "zhkey",
 
@@ -168,9 +168,9 @@ $language_data = array (
             ),
 
         /*
-      ** Set 4: special methods
-      ** http://python.org/doc/current/ref/specialnames.html
-      */
+         ** Set 4: special methods
+         ** http://python.org/doc/current/ref/specialnames.html
+         */
         4 => array(
             /*
          // Iterator types: http://python.org/doc/current/lib/typeiter.html
@@ -201,7 +201,7 @@ $language_data = array (
             '__long__','__lshift__',
             '__mod__','__mul__','__neg__','__oct__','__or__','__pos__','__pow__',
             '__radd__','__rdiv__','__rdivmod__','__rmod__','__rpow__','__rlshift__','__rrshift__',
-            '__rshift__','__rsub__','__rmul__','__repr__','__rand__','__rxor__','__ror__',
+            '__rshift__','__rsub__','__rmul__','__rand__','__rxor__','__ror__',
             '__sub__','__xor__'
             )
 
@@ -246,13 +246,14 @@ $language_data = array (
             0 => 'color: #66ccFF;'
             ),
         'REGEXPS' => array(
-            0 => "color:red"
             ),
         'SCRIPT' => array(
             )
         ),
     'URLS' => array(
-        0 => "color: magenta"
+        1 => '',
+        2 => '',
+        3 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
