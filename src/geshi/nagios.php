@@ -208,6 +208,10 @@ $language_data = array(
         4 => ''
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        0 => false
+        ),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
