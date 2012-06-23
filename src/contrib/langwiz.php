@@ -81,16 +81,6 @@ function report_error($type, $message) {
     }
 }
 
-function extvar($name, $default){
-    if(isset($_POST[$name])) {
-        return $_POST[$name];
-    }
-    if(isset($_GET[$name])) {
-        return $_GET[$name];
-    }
-    return $default;
-}
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -146,15 +136,15 @@ function extvar($name, $default){
         margin-left: .5em;
     }
     fieldset {
-    	border: 1px dotted gray;
-    	background-color: #f0f0f0;
-    	margin-bottom: .5em;
+        border: 1px dotted gray;
+        background-color: #f0f0f0;
+        margin-bottom: .5em;
     }
     legend {
-    	font-weight: bold;
-    	background-color: #f9f9f9;
-    	border: 1px solid #a0a0a0;
-    	border-width: 1px 2px 2px 1px;
+        font-weight: bold;
+        background-color: #f9f9f9;
+        border: 1px solid #a0a0a0;
+        border-width: 1px 2px 2px 1px;
     }
     fieldset table > tbody > tr > td {
         width: 20%;
@@ -341,8 +331,6 @@ $kw_cases_sel = array(
 
 echo "<pre>";
 //var_dump($languages);
-var_dump($_GET);
-var_dump($_POST);
 
 foreach($post_var_names as $varName) { // export wanted variables of $_POST array...
     if(array_key_exists($varName, $_POST)) {
@@ -709,7 +697,7 @@ echo "</pre>";
             </fieldset>
         </fieldset>
     </fieldset>
- 
+
     <fieldset>
         <legend>Keywords</legend>
 
@@ -901,7 +889,7 @@ function validate_lang(){
             'str' => array(
                 'qm' => array(),
                 'ec' => array(
-                    'char' => ''  
+                    'char' => ''
                     ),
                 'erx' => array()
                 ),
