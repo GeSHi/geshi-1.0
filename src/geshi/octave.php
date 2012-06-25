@@ -9,7 +9,7 @@
  * Release Version: 1.0.8.11
  * Date Started: 2012/05/22
  *
- * GNU/Octave M-file language file for GeSHi.
+ * GNU Octave M-file language file for GeSHi.
  *
  * This file was heavily based on octave.lang from gtksourceview. If bugs are
  * found and/or fixed on this file, please send them to the gtksourceview
@@ -41,7 +41,7 @@
  ************************************************************************************/
 
 $language_data = array (
-    'LANG_NAME' => 'GNU/Octave',
+    'LANG_NAME' => 'GNU Octave',
     'COMMENT_SINGLE' => array(1 => '#', 2 => '%'),
     // we can't use COMMENT_MULTI since start and end of block comments need to
     // be alone on the line (optionally, with whitespace). See COMMENT_REGEXP
