@@ -65,14 +65,14 @@ $language_data = array (
             ),
         3 => array(
             'catch','else','end','finally','otherwise','then','when'
-            )
+            ),
         4 => array(
             'rc','result','self','sigl','super'
-            )
+            ),
         5 => array(
             '::attribute','::class','::constant','::method',
             '::optins','::requires','::routine'
-            )
+            ),
         6 => array(
             'abbrev','abs','b2x','c2d','c2x','center','centre',
             'changestr','compare','copies','copyindexed','countstr',
