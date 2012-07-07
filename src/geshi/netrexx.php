@@ -107,9 +107,9 @@ $language_data = array (
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000;',
-            3 => 'color: #000066;'
-            4 => 'color: #006666;'
-            5 => 'color: #006666;'
+            3 => 'color: #000066;',
+            4 => 'color: #006666;',
+            5 => 'color: #006666;',
             6 => 'color: #006666;'
             ),
         'COMMENTS' => array(
@@ -156,7 +156,14 @@ $language_data = array (
         6 => ''
         ),
     'OOLANG' => true,
-    'OBJECT_SPLITTER' => '.',
+    'OBJECT_SPLITTERS' => '.',
+    'REGEXPS' => array(
+        ),
+    'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        )
 );
 
 ?>

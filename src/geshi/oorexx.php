@@ -163,7 +163,14 @@ $language_data = array (
         6 => ''
         ),
     'OOLANG' => true,
-    'OBJECT_SPLITTER' => '~',
+    'OBJECT_SPLITTERS' => '~',
+    'REGEXPS' => array(
+        ),
+    'STRICT_MODE_APPLIES' => GESHI_NEVER,
+    'SCRIPT_DELIMITERS' => array(
+        ),
+    'HIGHLIGHT_STRICT_BLOCK' => array(
+        )
 );
 
 ?>
