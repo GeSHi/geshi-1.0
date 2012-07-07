@@ -155,7 +155,7 @@ $language_data = array (
         6 => ''
         ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => '~',
+    'OBJECT_SPLITTERS' => array('~'),
     'REGEXPS' => array(
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
