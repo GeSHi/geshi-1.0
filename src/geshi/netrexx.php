@@ -1,6 +1,6 @@
 <?php
 /*************************************************************************************
- * rexx.php
+ * netrexx.php
  * ---------------------------------
  * Author: Jon Wolfers (sahananda@windhorse.biz)
  * Copyright: (c) 2008 Jon Wolfers
@@ -16,9 +16,9 @@
  * -------
  * 2008-01-07 Jon Wolfers (jon@sahananda.fwbo.net)
  *  -  First Release
- * 2012/06/28 Walter Pachl overhauled  removed italic
+ * 2012/06/28 Walter Pachl derived from rexx.php, oorexx.php
  *
- * TODO (updated 2012/05/31)
+ * TODO (updated 2012/06/28)
  * -------------------------
  * to be tested
  *
@@ -51,47 +51,48 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'address','arg','attribute','call','constant','do',
-            'drop','exit','expose','forward','guard','if',
-            'interpret','iterate','leave','loop','nop','numeric',
-            'options','parse','procedure','pull','push','queue',
-            'raise','reply','return','say','select','signal','trace',
-            'use'),
+            'class','do','exit','if','import','iterate','leave',
+            'loop','nop','numeric','package','parse','properties',
+            'return','say','select','signal','trace'
+            ),
         2 => array(
-            'arg','by','digits','engineering','error','expose',
-            'failure','for','forever','form','fuzz','halt','linein',
-            'name','novalue','off','on','over','scientific','source',
-            'syntax','to','until','upper','value','var','version',
-            'while','with'
+            'abstract','adapter','all','ask','binary','case',
+            'constant','dependent','deprecated','extends','final',
+            'implements','inheritable','interface','label','methods',
+            'native','off','private','protect','public','results',
+            'returns','shared','signals','source','static',
+            'transient','unused','uses','version','volatile'
             ),
         3 => array(
-            'else','end','otherwise','then','when'
-            ),
+            'catch','else','end','finally','otherwise','then','when'
+            )
         4 => array(
-            'rc','result','sigl'
-            ),
+            'rc','result','self','sigl','super'
+            )
         5 => array(
-            'placeholderforoorexxdirectives'
-            ),
+            '::attribute','::class','::constant','::method',
+            '::optins','::requires','::routine'
+            )
         6 => array(
-            'abbrev','abs','address','arg','beep','bitand','bitor',
-            'bitxor','b2x','center','centre','changestr','charin',
-            'charout','chars','compare','condition','copies',
-            'countstr','c2d','c2x','datatype','date','delstr',
-            'delword','digits','directory','d2c','d2x','endlocal',
-            'errortext','filespec','form','format','fuzz','insert',
-            'lastpos','left','length','linein','lineout','lines',
-            'lower','max','min','overlay','pos','queued','random',
-            'reverse','right','rxfuncadd','rxfuncdrop','rxfuncquery',
-            'rxqueue','setlocal','sign','sourceline','space',
-            'stream','strip','substr','subword','symbol','time',
-            'trace','translate','trunc','upper','userid','value',
-            'var','verify','word','wordindex','wordlength','wordpos',
-            'words','xrange','x2b','x2c','x2d'
+            'abbrev','abs','b2x','c2d','c2x','center','centre',
+            'changestr','compare','copies','copyindexed','countstr',
+            'd2c','d2x','datatype','delstr','delword','exists',
+            'formword','hashcode','insert','lastpos','left','lower',
+            'max','min','noteq','noteqs','opadd','opand','opcc',
+            'opccblank','opdiv','opdivi','opeq','opeqs','opgt',
+            'opgteq','opgteqs','opgts','oplt','oplteq','oplteqs',
+            'oplts','opminus','opmult','opnot','opor','opplus',
+            'oppow','oprem','opsub','opxor','overlay','pos position',
+            'reverse','right','sequence','setdigits','setform',
+            'sign','space','strip','substr','subword','toboolean',
+            'tobyte','tochar','todouble','tofloat','toint','tolong',
+            'toshort','tostring','translate','trunc','upper',
+            'verify','word','wordindex','wordlength','wordpos',
+            'words','x2b','x2c','x2d'
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '&', '&&', '*', '|', '/', '\\', '<', '>', '.'
+        '(', ')', '[', ']', '&', '&&', '*', '|', '/', '\\', '<', '>'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -106,9 +107,9 @@ $language_data = array (
         'KEYWORDS' => array(
             1 => 'color: #b1b100;',
             2 => 'color: #000000;',
-            3 => 'color: #000066;',
-            4 => 'color: #006666;',
-            5 => 'color: #006666;',
+            3 => 'color: #000066;'
+            4 => 'color: #006666;'
+            5 => 'color: #006666;'
             6 => 'color: #006666;'
             ),
         'COMMENTS' => array(
@@ -154,8 +155,8 @@ $language_data = array (
         5 => '',
         6 => ''
         ),
-    'OOLANG' => false,
-    'OBJECT_SPLITTER' => '~',
+    'OOLANG' => true,
+    'OBJECT_SPLITTER' => '.',
 );
 
 ?>

@@ -1,6 +1,6 @@
 <?php
 /*************************************************************************************
- * rexx.php
+ * oorexx.php
  * ---------------------------------
  * Author: Jon Wolfers (sahananda@windhorse.biz)
  * Copyright: (c) 2008 Jon Wolfers
@@ -16,9 +16,9 @@
  * -------
  * 2008-01-07 Jon Wolfers (jon@sahananda.fwbo.net)
  *  -  First Release
- * 2012/06/28 Walter Pachl overhauled  removed italic
+ * 2012/06/28 Walter Pachl derived from rexx.php
  *
- * TODO (updated 2012/05/31)
+ * TODO (updated 2012/06/28)
  * -------------------------
  * to be tested
  *
@@ -56,22 +56,30 @@ $language_data = array (
             'interpret','iterate','leave','loop','nop','numeric',
             'options','parse','procedure','pull','push','queue',
             'raise','reply','return','say','select','signal','trace',
-            'use'),
+            'use'
+            ),
         2 => array(
-            'arg','by','digits','engineering','error','expose',
-            'failure','for','forever','form','fuzz','halt','linein',
-            'name','novalue','off','on','over','scientific','source',
-            'syntax','to','until','upper','value','var','version',
-            'while','with'
+            'abstract','any','arg','arguments','array','by',
+            'continue','digits','engineering','error','error',
+            'expose','external','failure','for','forever','form',
+            'forward','fuzz','get','guard','guarded','halt',
+            'inherit','library','linein','lostdigits','message',
+            'metaclass','mixinclass','name','nomethod','nostring',
+            'notready','novalue','off','on','options','over',
+            'private','protected','public','scientific','set',
+            'source','subclass','syntax','to','unguarded',
+            'unprotected','until','upper','user','value','var',
+            'version','while','with'
             ),
         3 => array(
             'else','end','otherwise','then','when'
             ),
         4 => array(
-            'rc','result','sigl'
+            'rc','result','self','sigl','super'
             ),
         5 => array(
-            'placeholderforoorexxdirectives'
+            '::attribute','::class','::constant','::method',
+            '::optins','::requires','::routine'
             ),
         6 => array(
             'abbrev','abs','address','arg','beep','bitand','bitor',
@@ -81,13 +89,13 @@ $language_data = array (
             'delword','digits','directory','d2c','d2x','endlocal',
             'errortext','filespec','form','format','fuzz','insert',
             'lastpos','left','length','linein','lineout','lines',
-            'lower','max','min','overlay','pos','queued','random',
-            'reverse','right','rxfuncadd','rxfuncdrop','rxfuncquery',
-            'rxqueue','setlocal','sign','sourceline','space',
-            'stream','strip','substr','subword','symbol','time',
-            'trace','translate','trunc','upper','userid','value',
-            'var','verify','word','wordindex','wordlength','wordpos',
-            'words','xrange','x2b','x2c','x2d'
+            'lower','max','min','overlay','pos','qualify','queued',
+            'random','reverse','right','rxfuncadd','rxfuncdrop',
+            'rxfuncquery','rxqueue','setlocal','sign','sourceline',
+            'space','stream','strip','substr','subword','symbol',
+            'time','trace','translate','trunc','upper','userid',
+            'value','var','verify','word','wordindex','wordlength',
+            'wordpos','words','xrange','x2b','x2c','x2d'
             )
         ),
     'SYMBOLS' => array(
@@ -154,7 +162,7 @@ $language_data = array (
         5 => '',
         6 => ''
         ),
-    'OOLANG' => false,
+    'OOLANG' => true,
     'OBJECT_SPLITTER' => '~',
 );
 
