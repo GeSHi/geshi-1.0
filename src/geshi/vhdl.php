@@ -63,7 +63,7 @@ $language_data = array (
     'KEYWORDS' => array(
         /*keywords*/
         1 => array(
-            'access','after','alias','all','assert','attribute','architecture','array','begin',
+            'access','after','alias','all','attribute','architecture','array','begin',
             'block','body','buffer','bus','case','case?','component','configuration','constant','context',
             'disconnect','downto','else','elsif','end','entity','exit','file','for','force',
             'function','generate','generic','group','guarded','if','impure','in',
@@ -89,7 +89,7 @@ $language_data = array (
             ),
         /*psl*/
         4 => array(
-            'assert','assume','assume_guarantee','boolean','clock','const','countones','cover','default',
+            'assert','assume','assume_guarantee','clock','const','countones','cover','default',
             'endpoint','fairness','fell','forall','inf','inherit','isunknown','onehot','onehot0','property',
             'prev','restrict','restrict_guarantee','rose','sequence','stable','strong','union','vmode','vprop','vunit'
             ),
@@ -97,7 +97,7 @@ $language_data = array (
         5 => array(
             'abort','always','before','before!','before!_','before_','eventually!','never',
             'next!','next_a','next_a!','next_e','next_e!','next_event','next_event!','next_event_a','next_event_a!',
-            'next_event_e','next_event_e!','union','until!','until!_','until_','within'
+            'next_event_e','next_event_e!','until!','until!_','until_','within'
             )
         ),
     'SYMBOLS' => array(
@@ -145,7 +145,7 @@ $language_data = array (
             ),
         'REGEXPS' => array(
             0 => 'color: #ff0000;',
-            1 => 'color: #ff0000;',
+            //1 => 'color: #ff0000;',
             2 => 'color: #ee82ee;'
             ),
         'SCRIPT' => array(
@@ -157,7 +157,7 @@ $language_data = array (
         3 => '',
         4 => '',
         5 => ''
-    ),
+        ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         ),
@@ -167,8 +167,8 @@ $language_data = array (
             '(\b[\d_]+(\.[\d_]+)?[eE][+\-]?[\d_]+)|'.
             '(\b(hr|min|sec|ms|us|ns|ps|fs)\b)',
         //Character literals
-	    /* Geshi won't match this pattern for some reason and QUOTEMARKS
-	     * can't be used because it interferes with attribute parsing */
+        /* GeSHi won't match this pattern for some reason and QUOTEMARKS
+         * can't be used because it interferes with attribute parsing */
         /*1 => "\b'.'\b",*/
         //Attributes
         2 => "'\w+(?!')"
