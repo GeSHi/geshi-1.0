@@ -172,16 +172,17 @@ $language_data = array (
          ** http://python.org/doc/current/ref/specialnames.html
          */
         4 => array(
-            /*
-         // Iterator types: http://python.org/doc/current/lib/typeiter.html
-         '__iter__', 'next',
-         // String types: http://python.org/doc/current/lib/string-methods.html
-         'capitalize', 'center', 'count', 'decode', 'encode', 'endswith', 'expandtabs',
-         'find', 'index', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle',
-         'isupper', 'join', 'ljust', 'lower', 'lstrip', 'replace', 'rfind', 'rindex', 'rjust',
-         'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title',
-         'translate', 'upper', 'zfill',
-         */
+            ///*
+            //// Iterator types: http://python.org/doc/current/lib/typeiter.html
+            //'__iter__', 'next',
+            //// String types: http://python.org/doc/current/lib/string-methods.html
+            //'capitalize', 'center', 'count', 'decode', 'encode', 'endswith', 'expandtabs',
+            //'find', 'index', 'isalnum', 'isalpha', 'isdigit', 'islower', 'isspace', 'istitle',
+            //'isupper', 'join', 'ljust', 'lower', 'lstrip', 'replace', 'rfind', 'rindex', 'rjust',
+            //'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase', 'title',
+            //'translate', 'upper', 'zfill',
+            // */
+
             // Basic customization: http://python.org/doc/current/ref/customization.html
             '__new__', '__init__', '__del__', '__repr__', '__str__',
             '__lt__', '__le__', '__eq__', '__ne__', '__gt__', '__ge__', '__cmp__', '__rcmp__',
