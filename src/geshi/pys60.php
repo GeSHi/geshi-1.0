@@ -49,9 +49,9 @@ $language_data = array (
     'KEYWORDS' => array(
 
         /*
-          ** Set 1: reserved words
-          ** http://python.org/doc/current/ref/keywords.html
-          */
+         ** Set 1: reserved words
+         ** http://python.org/doc/current/ref/keywords.html
+         */
         1 => array(
             'and', 'del', 'for', 'is', 'raise', 'assert', 'elif', 'from', 'lambda', 'return', 'break',
             'else', 'global', 'not', 'try', 'class', 'except', 'if', 'or', 'while', 'continue', 'exec',
@@ -59,9 +59,9 @@ $language_data = array (
             ),
 
         /*
-          ** Set 2: builtins
-          ** http://python.org/doc/current/lib/built-in-funcs.html
-          */
+         ** Set 2: builtins
+         ** http://python.org/doc/current/lib/built-in-funcs.html
+         */
         2 => array(
             '__import__', 'abs', 'basestring', 'bool', 'callable', 'chr', 'classmethod', 'cmp',
             'compile', 'complex', 'delattr', 'dict', 'dir', 'divmod', 'enumerate', 'eval', 'execfile',
@@ -90,9 +90,9 @@ $language_data = array (
             ),
 
         /*
-          ** Set 3: standard library
-          ** http://python.org/doc/current/lib/modindex.html
-          */
+         ** Set 3: standard library
+         ** http://python.org/doc/current/lib/modindex.html
+         */
         3 => array(
             '__builtin__', '__future__', '__main__', '_winreg', 'aifc', 'AL', 'al', 'anydbm',
             'array', 'asynchat', 'asyncore', 'atexit', 'audioop', 'base64', 'BaseHTTPServer',
@@ -154,7 +154,7 @@ $language_data = array (
             "powlite_fm","powlite_fm2","powlite_fm3","powlite_fme","prgbar","prodb",
             "profileengine","progressbar","progressbartw","progressnotes",
             "ProgressBarTW2","proshivka","py_upload","pyConnection","PyFileMan",
-            "pykeylock","PyPyc","pyqq","pys60crypto","pys60usb","repr","rfc822",
+            "pykeylock","PyPyc","pyqq","pys60crypto","pys60usb","rfc822",
             "RUSOS","scmk","scrollpage","SISFIELDS","SISFIELD","sisfile",
             "SISINFO","sisreader","Sistools","smidi","smsreject","speechy","sre_compile",
             "sre_constants","sre_parse","sre","sysagent","syslang","TextMan",
@@ -255,7 +255,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => ''
-    ),
+        ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
