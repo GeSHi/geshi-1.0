@@ -1481,6 +1481,7 @@ class GeSHi {
                 'gnuplot' => array('plt'),
                 'groovy' => array('groovy'),
                 'haskell' => array('hs'),
+                'haxe' => array('hx'),
                 'html4strict' => array('html', 'htm'),
                 'ini' => array('ini', 'desktop'),
                 'java' => array('java'),
