@@ -1,10 +1,10 @@
 <?php
 /*************************************************************************************
- * NetRexx.php
+ * netrexx.php
  * ---------------------------------
  * Author: Jon Wolfers (sahananda@windhorse.biz)
  * Contributors:
- *   - Walter Pachl (pachl@chello.at)
+ *    - Walter Pachl (pachl@chello.at)
  * Copyright: (c) 2008 Jon Wolfers, (c) 2012 Walter Pachl
  * Release Version: 1.0.8.11
  * Date Started: 2008/01/07
@@ -13,13 +13,12 @@
  *
  * CHANGES
  * -------
- * 2012/07/19 (1.0.0)
+ * 2012/07/29 (1.0.0)
  *    -  tried to get it syntactically right
  *
- * TODO (updated 2012/07/19)
+ * TODO (updated 2012/07/29)
  * -------------------------
  *   -  Get it working on rosettacode.org
- *
  *
  *************************************************************************************
  *
@@ -69,8 +68,7 @@ $language_data = array (
             'rc', 'result', 'self', 'sigl', 'super'
             ),
         5 => array(
-            '::attribute', '::class', '::constant', '::method',
-            '::options', '::requires', '::routine'
+            'placeholderforoorexxdirectives'
             ),
         6 => array(
             'abbrev', 'abs', 'b2x', 'c2d', 'c2x', 'center', 'centre',
@@ -91,7 +89,7 @@ $language_data = array (
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '{', '}', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':',
+        '(', ')', '<', '>', '[', ']', '=', '+', '-', '*', '/', '!', '%', '^', '&', ':',
         '<', '>'
         ),
     'CASE_SENSITIVE' => array(
@@ -113,8 +111,7 @@ $language_data = array (
             6 => 'color: #888800; font-weight: bold;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080;',
-            2 => 'color: #808080;',
+            1 => 'color: #666666;',
             'MULTI' => 'color: #808080;'
             ),
         'ESCAPE_CHAR' => array(
@@ -159,7 +156,8 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+        ),
+    'TAB_WIDTH' => 4
 );
 
 ?>

@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Jon Wolfers (sahananda@windhorse.biz)
  * Contributors:
- *   - Walter Pachl (pachl@chello.at)
+ *    - Walter Pachl (pachl@chello.at)
  * Copyright: (c) 2008 Jon Wolfers, (c) 2012 Walter Pachl
  * Release Version: 1.0.8.11
  * Date Started: 2008/01/07
@@ -13,13 +13,12 @@
  *
  * CHANGES
  * -------
- * 2012/07/21 (1.0.0)
+ * 2012/07/29 (1.0.0)
  *    -  tried to get it syntactically right
  *
- * TODO (updated 2012/07/21)
+ * TODO (updated 2012/07/29)
  * -------------------------
  *   -  Get it working on rosettacode.org
- *
  *
  *************************************************************************************
  *
@@ -51,17 +50,16 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'address', 'arg', 'attribute', 'call', 'constant', 'do',
-            'drop', 'exit', 'expose', 'forward', 'guard', 'if',
+            'drop', 'exit', 'forward', 'if',
             'interpret', 'iterate', 'leave', 'loop', 'nop', 'numeric',
             'options', 'parse', 'procedure', 'pull', 'push', 'queue',
-            'raise', 'reply', 'return', 'say', 'select', 'signal', 'trace',
-            'use'
+            'raise', 'return', 'say', 'select', 'signal', 'trace'
             ),
         2 => array(
-            'arg', 'by', 'digits', 'engineering', 'error', 'expose',
-            'failure', 'for', 'forever', 'form', 'fuzz', 'halt', 'linein',
+            'by', 'digits', 'engineering', 'error', 'expose',
+            'failure', 'for', 'forever', 'form', 'fuzz', 'halt',
             'name', 'novalue', 'off', 'on', 'over', 'scientific', 'source',
-            'syntax', 'to', 'until', 'upper', 'value', 'var', 'version',
+            'syntax', 'to', 'until', 'upper', 'version',
             'while', 'with'
             ),
         3 => array(
@@ -74,18 +72,18 @@ $language_data = array (
             'placeholderforoorexxdirectives'
             ),
         6 => array(
-            'abbrev', 'abs', 'address', 'arg', 'beep', 'bitand', 'bitor',
+            'abbrev', 'abs', 'beep', 'bitand', 'bitor',
             'bitxor', 'b2x', 'center', 'centre', 'changestr', 'charin',
             'charout', 'chars', 'compare', 'condition', 'copies',
             'countstr', 'c2d', 'c2x', 'datatype', 'date', 'delstr',
-            'delword', 'digits', 'directory', 'd2c', 'd2x', 'endlocal',
-            'errortext', 'filespec', 'form', 'format', 'fuzz', 'insert',
+            'delword', 'directory', 'd2c', 'd2x', 'endlocal',
+            'errortext', 'filespec', 'format', 'insert',
             'lastpos', 'left', 'length', 'linein', 'lineout', 'lines',
             'lower', 'max', 'min', 'overlay', 'pos', 'queued', 'random',
             'reverse', 'right', 'rxfuncadd', 'rxfuncdrop', 'rxfuncquery',
             'rxqueue', 'setlocal', 'sign', 'sourceline', 'space',
             'stream', 'strip', 'substr', 'subword', 'symbol', 'time',
-            'trace', 'translate', 'trunc', 'upper', 'userid', 'value',
+            'translate', 'trunc', 'userid', 'value',
             'var', 'verify', 'word', 'wordindex', 'wordlength', 'wordpos',
             'words', 'xrange', 'x2b', 'x2c', 'x2d'
             )
@@ -112,8 +110,7 @@ $language_data = array (
             6 => 'color: #888800; font-weight: bold;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080;',
-            2 => 'color: #808080;',
+            1 => 'color: #666666;',
             'MULTI' => 'color: #808080;'
             ),
         'ESCAPE_CHAR' => array(
@@ -150,6 +147,7 @@ $language_data = array (
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
+        1 => '.'
         ),
     'REGEXPS' => array(
         ),
@@ -157,7 +155,8 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+        ),
+    'TAB_WIDTH' => 4
 );
 
 ?>

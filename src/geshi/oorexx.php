@@ -4,7 +4,7 @@
  * ---------------------------------
  * Author: Jon Wolfers (sahananda@windhorse.biz)
  * Contributors:
- *   - Walter Pachl (pachl@chello.at)
+ *    - Walter Pachl (pachl@chello.at)
  * Copyright: (c) 2008 Jon Wolfers, (c) 2012 Walter Pachl
  * Release Version: 1.0.8.11
  * Date Started: 2008/01/07
@@ -13,13 +13,12 @@
  *
  * CHANGES
  * -------
- * 2012/07/21 (1.0.0)
- *  -  tried to get it syntactically right
+ * 2012/07/29 (1.0.0)
+ *    -  tried to get it syntactically right
  *
- * TODO (updated 2012/07/21)
+ * TODO (updated 2012/07/29)
  * -------------------------
  *   -  Get it working on rosettacode.org
- *
  *
  *************************************************************************************
  *
@@ -51,23 +50,23 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             'address', 'arg', 'attribute', 'call', 'constant', 'do',
-            'drop', 'exit', 'expose', 'forward', 'guard', 'if',
+            'drop', 'exit', 'if',
             'interpret', 'iterate', 'leave', 'loop', 'nop', 'numeric',
-            'options', 'parse', 'procedure', 'pull', 'push', 'queue',
-            'raise', 'reply', 'return', 'say', 'select', 'signal', 'trace',
+            'parse', 'procedure', 'pull', 'push', 'queue',
+            'raise', 'reply', 'return', 'say', 'select', 'signal',
             'use'
             ),
         2 => array(
-            'abstract', 'any', 'arg', 'arguments', 'array', 'by',
-            'continue', 'digits', 'engineering', 'error', 'error',
-            'expose', 'external', 'failure', 'for', 'forever', 'form',
-            'forward', 'fuzz', 'get', 'guard', 'guarded', 'halt',
-            'inherit', 'library', 'linein', 'lostdigits', 'message',
+            'abstract', 'any', 'arguments', 'array', 'by',
+            'continue', 'digits', 'engineering', 'error',
+            'expose', 'external', 'failure', 'for', 'forever',
+            'forward', 'get', 'guard', 'guarded', 'halt',
+            'inherit', 'library', 'lostdigits', 'message',
             'metaclass', 'mixinclass', 'name', 'nomethod', 'nostring',
             'notready', 'novalue', 'off', 'on', 'options', 'over',
             'private', 'protected', 'public', 'scientific', 'set',
             'source', 'subclass', 'syntax', 'to', 'unguarded',
-            'unprotected', 'until', 'upper', 'user', 'value', 'var',
+            'unprotected', 'until', 'user',
             'version', 'while', 'with'
             ),
         3 => array(
@@ -81,11 +80,11 @@ $language_data = array (
             '::optins', '::requires', '::routine'
             ),
         6 => array(
-            'abbrev', 'abs', 'address', 'arg', 'beep', 'bitand', 'bitor',
+            'abbrev', 'abs', 'beep', 'bitand', 'bitor',
             'bitxor', 'b2x', 'center', 'centre', 'changestr', 'charin',
             'charout', 'chars', 'compare', 'condition', 'copies',
             'countstr', 'c2d', 'c2x', 'datatype', 'date', 'delstr',
-            'delword', 'digits', 'directory', 'd2c', 'd2x', 'endlocal',
+            'delword', 'directory', 'd2c', 'd2x', 'endlocal',
             'errortext', 'filespec', 'form', 'format', 'fuzz', 'insert',
             'lastpos', 'left', 'length', 'linein', 'lineout', 'lines',
             'lower', 'max', 'min', 'overlay', 'pos', 'qualify', 'queued',
@@ -120,8 +119,7 @@ $language_data = array (
             6 => 'color: #888800; font-weight: bold;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080;',
-            2 => 'color: #808080;',
+            1 => 'color: #666666;',
             'MULTI' => 'color: #808080;'
             ),
         'ESCAPE_CHAR' => array(
@@ -158,7 +156,7 @@ $language_data = array (
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
-        1 => '~'
+        1 => '.'
         ),
     'REGEXPS' => array(
         ),
@@ -166,7 +164,8 @@ $language_data = array (
     'SCRIPT_DELIMITERS' => array(
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+        ),
+    'TAB_WIDTH' => 4
 );
 
 ?>
