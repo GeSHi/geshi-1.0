@@ -56,6 +56,7 @@ Version 1.0.8.11
      * Added missing keyword for Verilog (SF#3557903, BenBE)
      * Fixed typo in Haskell causing a keyword to be missing (SF#3529439, BenBE)
      * Fixed Long String handling for Lua (SF#3541510, Tim Starling)
+     * Updated JavaDoc links for Java language files (SF#3538552, jeneag, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
