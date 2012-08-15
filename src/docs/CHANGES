@@ -60,6 +60,7 @@ Version 1.0.8.11
      * Fixed Long String handling for Lua (SF#3541510, Tim Starling)
      * Updated JavaDoc links for Java language files (SF#3538552, jeneag, BenBE)
      * CSS keywords incorrectly highlighted as part of identifiers (SF#3554101, BenBE)
+     * Make variable handling compatible to PHP (SF#3489142, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
