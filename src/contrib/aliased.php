@@ -38,7 +38,7 @@ if(!file_exists($path)) {
 }
 
 // Prepare GeSHi instance
-$geshi =& new GeSHi();
+$geshi = new GeSHi();
 $geshi->set_language('text');
 $geshi->load_from_file($path);
 $geshi->set_header_type(GESHI_HEADER_PRE);
