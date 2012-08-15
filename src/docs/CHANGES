@@ -63,6 +63,7 @@ Version 1.0.8.11
      * Make variable handling compatible to PHP (SF#3489142, BenBE)
      * Fixed obsolete MySQL documentation links (SF#3441642, BenBE)
      * Add mising keywords for T-SQL (SF#3435026, BenBE)
+     * Fix discarded text when highlighting TypoScript (SF#3160238, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
