@@ -7,7 +7,7 @@
  * Release Version: 1.0.8.10
  * Date Started: 2004/07/10
  *
- * HTML 4.01 strict language file for GeSHi.
+ * HTML 5 language file for GeSHi.
  *
  * CHANGES
  * -------
