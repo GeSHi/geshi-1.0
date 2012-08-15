@@ -1448,6 +1448,8 @@ class GeSHi {
      * @todo static?
      */
     function get_language_name_from_extension( $extension, $lookup = array() ) {
+        $extension = strtolower($extension);
+
         if ( !is_array($lookup) || empty($lookup)) {
             $lookup = array(
                 '6502acme' => array( 'a', 's', 'asm', 'inc' ),
@@ -1516,6 +1518,7 @@ class GeSHi {
                 'smalltalk' => array('st'),
                 'smarty' => array(),
                 'tcl' => array('tcl'),
+                'text' => array('txt'),
                 'vb' => array('bas'),
                 'vbnet' => array(),
                 'visualfoxpro' => array(),
@@ -1530,7 +1533,8 @@ class GeSHi {
                 return $lang;
             }
         }
-        return '';
+
+        return 'text';
     }
 
     /**
