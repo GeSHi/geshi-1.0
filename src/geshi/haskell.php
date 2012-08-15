@@ -95,7 +95,7 @@ $language_data = array (
             'product', 'concat', 'concatMap', 'maximum',
             'minimum', 'scanl', 'scanl1', 'scanr', 'scanr1',
             'iterate', 'repeat', 'cycle', 'take', 'drop',
-            'splitAt', 'teakWhile', 'dropWhile', 'span',
+            'splitAt', 'takeWhile', 'dropWhile', 'span',
             'break', 'elem', 'notElem', 'lookup', 'zip',
             'zip3', 'zipWith', 'zipWith3', 'unzip', 'unzip3',
             'lines', 'words', 'unlines',

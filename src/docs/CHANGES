@@ -54,6 +54,7 @@ Version 1.0.8.11
      * Properly detect the keyword that is to be linked (BenBE)
      * Updated VHDL language file (Kevin Thibedeau)
      * Added missing keyword for Verilog (SF#3557903, BenBE)
+     * Fixed typo in Haskell causing a keyword to be missing (SF#3529439, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
