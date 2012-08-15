@@ -62,6 +62,7 @@ Version 1.0.8.11
      * CSS keywords incorrectly highlighted as part of identifiers (SF#3554101, BenBE)
      * Make variable handling compatible to PHP (SF#3489142, BenBE)
      * Fixed obsolete MySQL documentation links (SF#3441642, BenBE)
+     * Add mising keywords for T-SQL (SF#3435026, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
