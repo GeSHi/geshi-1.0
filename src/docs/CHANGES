@@ -53,6 +53,7 @@ Version 1.0.8.11
      * Added missing keywords for Pascal (SF#3176749, BenBE)
      * Properly detect the keyword that is to be linked (BenBE)
      * Updated VHDL language file (Kevin Thibedeau)
+     * Added missing keyword for Verilog (SF#3557903, BenBE)
 Version 1.0.8.10
   -  Added language files
      * BASCOM AVR (Michal Goralczyk)
