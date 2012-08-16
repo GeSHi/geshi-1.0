@@ -61,6 +61,7 @@ Version 1.0.8.11
      * Fixed Long String handling for Lua (SF#3541510, Tim Starling)
      * Updated JavaDoc links for Java language files (SF#3538552, jeneag, BenBE)
      * CSS keywords incorrectly highlighted as part of identifiers (SF#3554101, BenBE)
+     * CSS3 keywords missing from highlighting (SF#3525084, vlaKoff, BenBE)
      * Make variable handling compatible to PHP (SF#3489142, BenBE)
      * Fixed obsolete MySQL documentation links (SF#3441642, BenBE)
      * Add mising keywords for T-SQL (SF#3435026, BenBE)
