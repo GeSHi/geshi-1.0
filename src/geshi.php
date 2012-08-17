@@ -41,7 +41,7 @@
 //
 
 /** The version of this GeSHi file */
-define('GESHI_VERSION', '1.0.8.10');
+define('GESHI_VERSION', '1.0.8.11');
 
 // Define the root directory for the GeSHi code tree
 if (!defined('GESHI_ROOT')) {
@@ -1571,6 +1571,9 @@ class GeSHi {
      * @since 1.0.0
      */
     function add_keyword($key, $word) {
+        if (!is_array($this->language_data['KEYWORDS'][$key])) {
+            $this->language_data['KEYWORDS'][$key] = array();
+        }
         if (!in_array($word, $this->language_data['KEYWORDS'][$key])) {
             $this->language_data['KEYWORDS'][$key][] = $word;
 

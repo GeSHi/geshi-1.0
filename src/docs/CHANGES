@@ -36,6 +36,7 @@ Version 1.0.8.11
   -  Updated aliasd.php contrib script (SF#3073275, count)
   -  Fallback to "text" when extension is unknown (SF#3514714, murkymark, BenBE)
   -  detect extensions case-insensitive (SF#3514714, murkymark, BenBE)
+  -  Fixed two bugs within contrib scripts included with each release (BenBE)
   -  Improvements to language files (BenBE)
      * Symbol and char literal handling for Scala (Paul Butcher, BenBE)
      * Multiline comments of F# weren't actually multiline (BenBE)
