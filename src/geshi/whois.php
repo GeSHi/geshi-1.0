@@ -168,7 +168,6 @@ $language_data = array (
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER,
             'SYMBOLS' => GESHI_NEVER,
-            'BRACKETS' => GESHI_NEVER,
             'STRINGS' => GESHI_NEVER,
             'ESCAPE_CHAR' => GESHI_NEVER,
             'NUMBERS' => GESHI_NEVER,
