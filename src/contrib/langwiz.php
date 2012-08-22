@@ -43,7 +43,7 @@ define ('TYPE_ERROR', 2);
 $error_abort = false;
 $error_cache = array();
 function output_error_cache(){
-    global $error_cache, $error_abort;
+    global $error_cache;
 
     if(count($error_cache)) {
         echo "<span style=\"color: #F00; font-weight: bold;\">Failed</span><br />";

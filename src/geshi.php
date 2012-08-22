@@ -3875,9 +3875,6 @@ class GeSHi {
             // the <pre> will line-break them (and the <li>s already do this for us)
             $ls = ($this->header_type != GESHI_HEADER_PRE && $this->header_type != GESHI_HEADER_PRE_VALID) ? "\n" : '';
 
-            // Set vars to defaults for following loop
-            $i = 0;
-
             // Foreach line...
             for ($i = 0, $n = count($code); $i < $n;) {
                 //Reset the attributes for a new line ...
