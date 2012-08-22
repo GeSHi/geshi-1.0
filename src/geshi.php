@@ -3573,7 +3573,6 @@ class GeSHi {
                 $symbol_length = strlen($symbol_match);
                 $symbol_offset = $pot_symbols[$s_id][0][1];
                 unset($pot_symbols[$s_id]);
-                $symbol_end = $symbol_length + $symbol_offset;
                 $symbol_hl = "";
 
                 // if we have multiple styles, we have to handle them properly
