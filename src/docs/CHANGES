@@ -22,6 +22,7 @@ Version 1.0.8.12
      * Updated Documentation Link for LaTeX (Johannes Ähling)
      * Fix some highlighting problems with Octave (Carnë Draug, Juan Pablo Carbajal)
      * Fix a minor issue with comments in Visual Basic (Plançon, BenBE)
+     * Fix a minor issue with keywords in SQL (Gerrit, BenBE)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
