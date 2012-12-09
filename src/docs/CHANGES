@@ -18,6 +18,7 @@ Version 1.0.8.12
      * C++ with WinAPI (BenBE)
      * nginx (Cliff Wells, Deoren Moor, Thomas Joiner)
      * SCL (Leonhard Hösch)
+     * VBScript (Rory Prendergast)
   -  Allow for global setup of all keyword and comments style at once using '*' (BenBE)
   -  Improvements to language files (BenBE)
      * Updated Documentation Link for LaTeX (Johannes Ähling)
