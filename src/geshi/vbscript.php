@@ -88,7 +88,7 @@ $language_data = array (
             ),
         ),
     'SYMBOLS' => array(
-        '-', '&', '*', '/', '\\', '^', '+', '<', '<=', '<>', '=', '=', '>', '>=',
+        '-', '&', '*', '/', '\\', '^', '+', '<', '<=', '<>', '=', '>', '>='
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -144,7 +144,7 @@ $language_data = array (
         ),
     'PARSER_CONTROL' => array(
         'ENABLE_FLAGS' => array(
-            'BRACKETS' => GESHI_NEVER,
+            'BRACKETS' => GESHI_NEVER
             )
         )
 );
