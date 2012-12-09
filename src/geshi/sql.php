@@ -161,8 +161,8 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'PARSER_CONTROL' => array(
-        'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\.\|\#|^&";
+        'KEYWORDS' => array( //'
+            'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\.\|\#|^&])"
             )
         )
 );
