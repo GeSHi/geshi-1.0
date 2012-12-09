@@ -220,7 +220,7 @@ $language_data = array (
     'REGEXPS' => array(
             // xhtml tag
         2 => array(
-            GESHI_SEARCH => '(&lt;)([a-zA-Z\\/][^\\/\\|]*?)(&gt;)',
+            GESHI_SEARCH => '(&lt;)([a-zA-Z\\/][^\\/\\\x7C]*?)(&gt;)',
             GESHI_REPLACE => '\\2',
             GESHI_MODIFIERS => 's',
             GESHI_BEFORE => '\\1',
