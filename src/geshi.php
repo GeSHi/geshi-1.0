@@ -1019,10 +1019,20 @@ class GeSHi {
      */
     function set_keyword_group_style($key, $style, $preserve_defaults = false) {
         //Set the style for this keyword group
-        if (!$preserve_defaults) {
-            $this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+        if('*' == $key) {
+            for($this->language_data['STYLES']['KEYWORDS'] as $_key => $_value) {
+                if (!$preserve_defaults) {
+                    $this->language_data['STYLES']['KEYWORDS'][$_key] = $style;
+                } else {
+                    $this->language_data['STYLES']['KEYWORDS'][$_key] .= $style;
+                }
+            }
         } else {
-            $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
+            if (!$preserve_defaults) {
+                $this->language_data['STYLES']['KEYWORDS'][$key] = $style;
+            } else {
+                $this->language_data['STYLES']['KEYWORDS'][$key] .= $style;
+            }
         }
 
         //Update the lexic permissions
@@ -1054,10 +1064,20 @@ class GeSHi {
      * @since 1.0.0
      */
     function set_comments_style($key, $style, $preserve_defaults = false) {
-        if (!$preserve_defaults) {
-            $this->language_data['STYLES']['COMMENTS'][$key] = $style;
+        if('*' == $key) {
+            foreach($this->language_data['STYLES']['COMMENTS'] as $_key => $_value) {
+                if (!$preserve_defaults) {
+                    $this->language_data['STYLES']['COMMENTS'][$_key] = $style;
+                } else {
+                    $this->language_data['STYLES']['COMMENTS'][$_key] .= $style;
+                }
+            }
         } else {
-            $this->language_data['STYLES']['COMMENTS'][$key] .= $style;
+            if (!$preserve_defaults) {
+                $this->language_data['STYLES']['COMMENTS'][$key] = $style;
+            } else {
+                $this->language_data['STYLES']['COMMENTS'][$key] .= $style;
+            }
         }
     }
 
