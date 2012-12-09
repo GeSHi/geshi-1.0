@@ -1020,7 +1020,7 @@ class GeSHi {
     function set_keyword_group_style($key, $style, $preserve_defaults = false) {
         //Set the style for this keyword group
         if('*' == $key) {
-            for($this->language_data['STYLES']['KEYWORDS'] as $_key => $_value) {
+            foreach($this->language_data['STYLES']['KEYWORDS'] as $_key => $_value) {
                 if (!$preserve_defaults) {
                     $this->language_data['STYLES']['KEYWORDS'][$_key] = $style;
                 } else {

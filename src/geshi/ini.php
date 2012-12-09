@@ -46,7 +46,7 @@ $language_data = array (
     'LANG_NAME' => 'INI',
     'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array(),
-    'COMMENT_REGEXP' => array(0 => '/^\s*;.*?$/m');
+    'COMMENT_REGEXP' => array(0 => '/^\s*;.*?$/m'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"'),
     'ESCAPE_CHAR' => '',
