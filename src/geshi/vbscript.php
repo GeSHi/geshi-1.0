@@ -77,7 +77,7 @@ $language_data = array (
             'UCase', 'VarType', 'Weekday', 'WeekdayName', 'Year'
             ),
         3 => array(
-            'Call', 'Case', 'Const', 'Dim', 'Do', 'Each', 'Else', 'Erase',
+            'Call', 'Case', 'Const', 'Dim', 'Do', 'Each', 'Else', 'End', 'Erase',
             'Execute', 'Exit', 'For', 'Function', 'If', 'Loop', 'Next',
             'On Error', 'Option Explicit', 'Private', 'Public',
             'Randomize', 'ReDim', 'Rem', 'Select', 'Set', 'Sub', 'Then',
@@ -143,6 +143,9 @@ $language_data = array (
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'SPACE_AS_WHITESPACE' => true
+            ),
         'ENABLE_FLAGS' => array(
             'BRACKETS' => GESHI_NEVER
             )
