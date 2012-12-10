@@ -78,9 +78,9 @@ $language_data = array (
             ),
         3 => array(
             'Call', 'Case', 'Const', 'Dim', 'Do', 'Each', 'Else', 'End', 'Erase',
-            'Execute', 'Exit', 'For', 'Function', 'If', 'Loop', 'Next',
-            'On Error', 'Option Explicit', 'Private', 'Public',
-            'Randomize', 'ReDim', 'Rem', 'Select', 'Set', 'Sub', 'Then',
+            'Execute', 'Exit', 'For', 'Function', 'Gosub', 'Goto', 'If', 'Loop', 
+            'Next', 'On Error', 'Option Explicit', 'Private', 'Public',
+            'Randomize', 'ReDim', 'Rem', 'Resume', 'Select', 'Set', 'Sub', 'Then',
             'Wend', 'While', 'With', 'In', 'To', 'Step'
             ),
         4 => array(
