@@ -132,7 +132,7 @@ $language_data = array (
             'apt-src remove', 'apt-src update', 'apt-src upgrade',
             'apt-src version',
 
-            'basename', 'bash', 'bc', 'bison', 'bunzip2', 'bzcat',
+            'basename', 'bash', 'batctl', 'bc', 'bison', 'bunzip2', 'bzcat',
             'bzcmp', 'bzdiff', 'bzegrep', 'bzfgrep', 'bzgrep',
             'bzip2', 'bzip2recover', 'bzless', 'bzmore',
 
@@ -157,10 +157,10 @@ $language_data = array (
 
             'ed', 'egrep', 'env', 'expr',
 
-            'false', 'fbset', 'ffmpeg', 'fgconsole','fgrep', 'file', 'find',
-            'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
+            'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole','fgrep', 'file',
+            'find', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
 
-            'g++', 'gawk', 'gc','gcc', 'gdb', 'getent', 'getkeycodes',
+            'g++', 'gawk', 'gc','gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
             'gimptool', 'gmake', 'gocr', 'grep', 'groups', 'gs', 'gunzip',
             'gzexe', 'gzip',
@@ -247,7 +247,7 @@ $language_data = array (
             'git-web--browse', 'git-whatchanged', 'gitwhich', 'gitwipe',
             'git-write-tree', 'gitxgrep',
 
-            'head', 'hexdump', 'hostname',
+            'head', 'hexdump', 'hostname', 'htop',
 
             'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install',
 
@@ -283,7 +283,7 @@ $language_data = array (
             'setkeycodes', 'setleds', 'setmetamode', 'setserial', 'setterm',
             'sh', 'showkey', 'shred', 'size', 'size86', 'skill', 'sleep',
             'slogin', 'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
-            'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'stat', 'strace',
+            'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'sshfs', 'stat', 'strace',
             'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'svn',
             'svnadmin', 'svndumpfilter', 'svnlook', 'svnmerge', 'svnmucc',
             'svnserve', 'svnshell', 'svnsync', 'svnversion', 'svnwrap', 'sync',

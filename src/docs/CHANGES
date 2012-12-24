@@ -28,6 +28,7 @@ Version 1.0.8.12
      * Fix a minor issue with keywords in SQL (Gerrit, BenBE)
      * Force comments in INI files to be their own line (BenBE)
      * Fix problem with T-SQL keyword highlighting (James Horsley, BenBE)
+     * Some more keywords for Bash (BenBE)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
