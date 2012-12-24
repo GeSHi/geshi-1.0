@@ -17,6 +17,7 @@ Version 1.0.8.12
      * AIMMS (Guido Diepen)
      * C with WinAPI (BenBE)
      * C++ with WinAPI (BenBE)
+     * Job Control Language (Ramesh Vishveshwar)
      * nginx (Cliff Wells, Deoren Moor, Thomas Joiner)
      * SCL (Leonhard Hösch)
      * VBScript (Rory Prendergast)
