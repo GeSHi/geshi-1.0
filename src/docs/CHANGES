@@ -25,6 +25,7 @@ Version 1.0.8.12
      * Updated Documentation Link for LaTeX (Johannes Ähling)
      * Fix some highlighting problems with Octave (Carnë Draug, Juan Pablo Carbajal)
      * Fix a minor issue with comments in Visual Basic (Plançon, BenBE)
+     * Some LangCheck issues with Visual Basic (BenBE)
      * Fix a minor issue with keywords in SQL (Gerrit, BenBE)
      * Force comments in INI files to be their own line (BenBE)
      * Fix problem with T-SQL keyword highlighting (James Horsley, BenBE)
