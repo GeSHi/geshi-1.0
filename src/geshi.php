@@ -1465,9 +1465,8 @@ class GeSHi {
      * @since 1.0.5
      * @todo Re-think about how this method works (maybe make it private and/or make it
      *       a extension->lang lookup?)
-     * @todo static?
      */
-    function get_language_name_from_extension( $extension, $lookup = array() ) {
+    static function get_language_name_from_extension( $extension, $lookup = array() ) {
         $extension = strtolower($extension);
 
         if ( !is_array($lookup) || empty($lookup)) {
