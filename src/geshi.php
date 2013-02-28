@@ -1576,7 +1576,7 @@ class GeSHi {
     function load_from_file($file_name, $lookup = array()) {
         if (is_readable($file_name)) {
             $this->set_source(file_get_contents($file_name));
-            $this->set_language($this->get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
+            $this->set_language(self::get_language_name_from_extension(substr(strrchr($file_name, '.'), 1), $lookup));
         } else {
             $this->error = GESHI_ERROR_FILE_NOT_READABLE;
         }
