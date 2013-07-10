@@ -42,6 +42,7 @@ Version 1.0.8.12
      * Fixed double quotes in Tcl (BenBE, stecue)
      * Updated PARI/GP language file (Charles R Greathouse IV, BenBE)
      * Updated Cobol language file (Edward Hart, BenBE)
+     * Updated Verilog language file (Tony Carrillo, BenBE)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
