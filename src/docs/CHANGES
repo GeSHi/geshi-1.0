@@ -22,6 +22,7 @@ Version 1.0.8.12
      * Job Control Language (Ramesh Vishveshwar)
      * nginx (Cliff Wells, Deoren Moor, Thomas Joiner)
      * Racket (Tim Brown)
+     * RBScript (Deng Wen Gang)
      * SCL (Leonhard Hösch)
      * VBScript (Rory Prendergast)
   -  Allow for global setup of all keyword and comments style at once using '*' (BenBE)
