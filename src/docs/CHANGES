@@ -34,6 +34,7 @@ Version 1.0.8.12
      * Force comments in INI files to be their own line (BenBE)
      * Fix problem with T-SQL keyword highlighting (James Horsley, BenBE)
      * Some more keywords for Bash (BenBE)
+     * Updated LSL2 language file (BenBE, Sei Lisa)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
