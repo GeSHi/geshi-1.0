@@ -36,7 +36,8 @@ Version 1.0.8.12
      * Some more keywords for Bash (BenBE)
      * Updated LSL2 language file (BenBE, Sei Lisa)
      * Fixed langcheck errors in Lua langfile (BenBE)
-     * Fixed double quotes in Tcl (BenBE, stecue))
+     * Fixed double quotes in Tcl (BenBE, stecue)
+     * Updated PARI/GP language file (Charles R Greathouse IV, BenBE)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
