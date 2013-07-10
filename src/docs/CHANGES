@@ -24,6 +24,7 @@ Version 1.0.8.12
      * SCL (Leonhard Hösch)
      * VBScript (Rory Prendergast)
   -  Allow for global setup of all keyword and comments style at once using '*' (BenBE)
+  -  Non-persistent XSS in example contrib script (BenBE, present in intermediate dev versions)
   -  Improvements to language files (BenBE)
      * Updated Documentation Link for LaTeX (Johannes Ähling)
      * Fix some highlighting problems with Octave (Carnë Draug, Juan Pablo Carbajal)
