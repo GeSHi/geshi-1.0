@@ -55,20 +55,21 @@ $language_data = array(
         1 => array(
             'autoescape', 'endautoescape', 'block', 'endblock', 'do', 'embed', 'endembed',
             'extends', 'filter', 'endfilter', 'for', 'endfor', 'from', 'if', 'else', 'elseif', 'endif',
-            'import', 'include', 'macro', 'endmacro', 'raw', 'endraw', 'sandbox', 'set',
-            'spaceless', 'endspaceless', 'use', 'trans', 'endtrans', 'transchoice', 'endtranschoice'
+            'import', 'include', 'macro', 'endmacro', 'raw', 'endraw', 'sandbox', 'set', 'endset',
+            'spaceless', 'endspaceless', 'use', 'verbatim', 'endverbatim',
+            'trans', 'endtrans', 'transchoice', 'endtranschoice'
         ),
         //Filters
         2 => array(
-            'abs', 'capitalize', 'convert_encoding', 'date', 'date_modify', 'default',
-            'escape', 'format', 'join', 'json_encode', 'keys', 'length', 'lower', 'merge',
-            'nl2br', 'number_format', 'raw', 'replace', 'reverse', 'slice', 'sort',
+            'abs', 'batch', 'capitalize', 'convert_encoding', 'date', 'date_modify', 'default',
+            'escape', 'first', 'format', 'join', 'json_encode', 'keys', 'last', 'length', 'lower',
+            'merge', 'nl2br', 'number_format', 'raw', 'replace', 'reverse', 'slice', 'sort', 'split',
             'striptags', 'title', 'trans', 'trim', 'upper', 'url_encode'
         ),
         //Functions
         3 => array(
-            'attribute', 'block', 'constant', 'cycle', 'date', 'dump', 'parent',
-            'random', 'range'
+            'attribute', 'block', 'constant', 'cycle', 'date', 'dump', 'include',
+            'parent', 'random', 'range', 'source', 'template_from_string'
         ),
         //Tests
         4 => array(
@@ -77,7 +78,8 @@ $language_data = array(
         ),
         //Operators
         5 => array(
-            'in', 'is', 'and', 'or', 'not', 'into'
+            'in', 'is', 'and', 'b-and', 'or', 'b-or', 'b-xor', 'not', 'into',
+            'starts with', 'ends with', 'matches'
         ),
         6 => array(
             '{{', '}}', '{%', '%}'
