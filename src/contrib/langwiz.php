@@ -1138,12 +1138,10 @@ GESHI_LANGFILE_HEAD;
     $src .= $i[2] . "),\n";
     $src .= $i[1] . "'HIGHLIGHT_STRICT_BLOCK' => array(\n";
     $src .= $i[2] . "),\n";
-    $src .= $i[1] . "'TAB_WIDTH' => 4,\n";
+    $src .= $i[1] . "'TAB_WIDTH' => 4\n";
 
     $src .= <<<GESHI_LANGFILE_FOOTER
 );
-
-?>
 GESHI_LANGFILE_FOOTER;
 
     //Reduce source ...
@@ -1153,5 +1151,3 @@ GESHI_LANGFILE_FOOTER;
 
     return $src;
 }
-
-// vim: shiftwidth=4 softtabstop=4
