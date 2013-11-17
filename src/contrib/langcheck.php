@@ -309,6 +309,9 @@ if(!$error_abort) {
             if(preg_match("/(\r?\n|\r(?!\n))\\1\Z/", $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains trailing empty line before EOF!');
             }
+            if(preg_match("/[\x20\t]$/m", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains trailing whitespace at EOL!');
+            }
             if(preg_match("/\t/", $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains unescaped tabulator chars (probably for indentation)!');
             }
