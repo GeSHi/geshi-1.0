@@ -60,14 +60,14 @@ $language_data = array (
             'Single', 'Double', 'Boolean', 'String', 'Color', 'Object', 'Variant'
             ),
         2 => array(
-            'Private', 'Public', 'Protected', 
+            'Private', 'Public', 'Protected',
             'Sub', 'Function', 'Delegate', 'Exception',
             ),
         3 => array(
             'IsA',
-            'And', 'Or', 'Not', 'Xor', 
+            'And', 'Or', 'Not', 'Xor',
             'If', 'Then', 'Else', 'ElseIf',
-            'Select', 'Case', 
+            'Select', 'Case',
             'For', 'Each', 'In', 'To', 'Step', 'Next',
             'Do', 'Loop', 'Until',
             'While', 'Wend',

@@ -8,7 +8,7 @@
  * Date Started: 2012/09/01
  *
  * Easytrieve language file for GeSHi.
- * 
+ *
  * CHANGES
  * -------
  * 2012/09/22 (1.0.0)

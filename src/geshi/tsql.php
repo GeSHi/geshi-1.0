@@ -306,7 +306,7 @@ $language_data = array (
             'fn_trace_gettable', 'fn_virtualfilestats','fn_listextendedproperty',
             ),
         5 => array(
-            'ALL', 'AND', 'ANY', 'BETWEEN', 'CROSS', 'EXISTS', 'IN', 'JOIN', 'LIKE', 'NOT', 'NULL', 
+            'ALL', 'AND', 'ANY', 'BETWEEN', 'CROSS', 'EXISTS', 'IN', 'JOIN', 'LIKE', 'NOT', 'NULL',
             'OR', 'OUTER', 'SOME',
             )
         ),

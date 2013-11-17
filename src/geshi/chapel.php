@@ -55,10 +55,10 @@ $language_data = array (
     'KEYWORDS' => array(
         // statements
         1 => array(
-            'atomic', 'begin', 'break', 'class', 'cobegin', 'coforall', 
+            'atomic', 'begin', 'break', 'class', 'cobegin', 'coforall',
             'continue', 'do', 'else', 'export', 'extern', 'for', 'forall', 'if',
-            'iter', 'inline', 'label', 'let', 'local', 'module', 
-            'otherwise', 'proc', 'record', 'return', 'select', 'serial', 
+            'iter', 'inline', 'label', 'let', 'local', 'module',
+            'otherwise', 'proc', 'record', 'return', 'select', 'serial',
             'then', 'use', 'var', 'when', 'where', 'while', 'yield'
             ),
         // literals
@@ -67,18 +67,18 @@ $language_data = array (
             ),
         // built-in functions
         3 => array(
-            'by', 'delete', 'dmapped', 'domain', 'enum', 'index', 'min', 
-            'minloc', 'max', 'maxloc', 'new', 'range', 'reduce', 'scan', 
+            'by', 'delete', 'dmapped', 'domain', 'enum', 'index', 'min',
+            'minloc', 'max', 'maxloc', 'new', 'range', 'reduce', 'scan',
             'sparse', 'subdomain', 'sync', 'union', 'zip'
             ),
         // built-in types
         4 => array(
-            'config', 'const', 'in', 'inout', 'opaque', 'on', 'out', 'param', 
+            'config', 'const', 'in', 'inout', 'opaque', 'on', 'out', 'param',
             'ref', 'single', 'type'
             ),
         // library types
         5 => array(
-            'void', 'bool', 'int', 'uint', 'real', 'imag', 'complex', 'string', 
+            'void', 'bool', 'int', 'uint', 'real', 'imag', 'complex', 'string',
             'locale'
             ),
         ),
