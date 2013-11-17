@@ -300,8 +300,14 @@ if(!$error_abort) {
             if(preg_match("/\?>(?:\r?\n|\r(?!\n)){2,}\Z/", $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains trailing empty lines at EOF!');
             }
-            if(!preg_match("/\?>(?:\r?\n|\r(?!\n))?\Z/", $langfile_content)) {
-                report_error(TYPE_ERROR, 'Language file contains no PHP end marker at EOF!');
+            if(preg_match("/\?>(?:\r?\n|\r(?!\n))?\Z/", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains an PHP end marker at EOF!');
+            }
+            if(!preg_match("/(?:\r?\n|\r(?!\n))\Z/", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains no newline at EOF!');
+            }
+            if(preg_match("/(\r?\n|\r(?!\n))\\1\Z/", $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains trailing empty line before EOF!');
             }
             if(preg_match("/\t/", $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains unescaped tabulator chars (probably for indentation)!');
