@@ -80,5 +80,3 @@ $language_data = array (
         ),
     )
 );
-
-?>

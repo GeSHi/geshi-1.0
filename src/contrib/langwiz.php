@@ -1155,4 +1155,3 @@ GESHI_LANGFILE_FOOTER;
 }
 
 // vim: shiftwidth=4 softtabstop=4
-?>

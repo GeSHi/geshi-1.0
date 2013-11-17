@@ -314,5 +314,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 2
     );
-
-?>

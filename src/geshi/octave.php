@@ -511,5 +511,3 @@ $language_data = array (
         'SCRIPT' => array(),
         )
 );
-
-?>

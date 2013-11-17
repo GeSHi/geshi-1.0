@@ -314,5 +314,3 @@ $language_data = array(
     'OOLANG' => false,
     'TAB_WIDTH' => 4
 );
-
-?>

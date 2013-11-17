@@ -194,5 +194,3 @@ $language_data = array (
 );
 
 // kate: replace-tabs on; indent-width 4;
-
-?>
