@@ -18,6 +18,7 @@ Version 1.0.8.12
      * C with WinAPI (BenBE)
      * C++ with WinAPI (BenBE)
      * Chapel (Richard Molitor)
+     * Dart (Edward Hart)
      * EZT (Ramesh Vishveshwar)
      * ISPF Panel (Ramesh Vishveshwar)
      * Job Control Language (Ramesh Vishveshwar)
