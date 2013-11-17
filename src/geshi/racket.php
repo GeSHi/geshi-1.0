@@ -959,6 +959,6 @@ $language_data = array(
             'BRACKETS' => GESHI_MAYBE,
             'REGEXPS' => GESHI_MAYBE,
             'ESCAPE_CHAR' => GESHI_MAYBE,
-            ),
-        ),
+            )
+        )
 );
