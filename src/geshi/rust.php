@@ -1,34 +1,20 @@
 <?php
 /*************************************************************************************
  * rust.php
- * -------
- * Author: Dennis Bayer (Dennis.Bayer@mnifh-giessen.de)
- * Contributors:
- *  - Dave (dmh@dmh.org.uk)
- *  - M. Uli Kusterer (witness.of.teachtext@gmx.net)
- *  - Jack Lloyd (lloyd@randombit.net)
- * Copyright: (c) 2004 Dennis Bayer, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
- * Date Started: 2004/09/27
+ * --------
+ * Author: Edward Hart (edward.dan.hart@gmail.com)
+ * Copyright: (c) 2013 Edward Hart
+ * Release Version: 1.0.8.12
+ * Date Started: 2013/10/20
  *
  * Rust language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2013/09/17
- *  -  Dave forks cpp.php to create syntax file for version 0.8 of Rust language
- * 2008/05/23 (1.0.7.22)
- *  -  Added description of extra language features (SF#1970248)
- * 2004/XX/XX (1.0.2)
- *  -  Added several new keywords (Jack Lloyd)
- * 2004/11/27 (1.0.1)
- *  -  Added StdCLib function and constant names, changed color scheme to
- *     a cleaner one. (M. Uli Kusterer)
- *  -  Added support for multiple object splitters
- * 2004/10/27 (1.0.0)
- *  -  First Release
+ * 2013/10/20
+ *   -  First Release
  *
- * TODO (updated 2004/11/27)
+ * TODO (updated 2013/10/20)
  * -------------------------
  *
  *************************************************************************************
@@ -51,22 +37,19 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Rust',
-    'COMMENT_SINGLE' => array(1 => '//', 2 => '#'),
+
+    'COMMENT_SINGLE' => array('//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(
-        //Multiline-continued single-line comments
-        1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
-        //Multiline-continued preprocessor define
-        2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
-        ),
+    'COMMENT_REGEXP' => array(),
+
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
         //Simple Single Char Escapes
-        1 => "#\\\\[abfnrtv\\\'\"?\n]#i",
+        1 => "#\\\\[\\\\nrt\'\"?\n]#i",
         //Hexadecimal Char Specs
         2 => "#\\\\x[\da-fA-F]{2}#",
         //Hexadecimal Char Specs
@@ -78,72 +61,117 @@ $language_data = array (
         ),
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
-        GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
+        GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
         GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+
     'KEYWORDS' => array(
-        1 => array( // Main keywords
-            'be', 'yield', 'typeof',    // This line: reserved but unused
-            'as',
-            'break',
-            'do',
-            'else', 'enum', 'extern',
-            'false', 'fn', 'for',
-            'if', 'impl', 'in',
-            'let', 'loop',
-            'match', 'mod', 'mut',
-            'priv', 'pub',
-            'ref', 'return',
-            'self', 'static', 'struct', 'super',
-            'true', 'trait', 'type',
-            'unsafe', 'use',
-            'while'
+        // Keywords
+        1 => array(
+            'alt', 'as', 'assert', 'break', 'const', 'continue', 'copy', 'do',
+            'else', 'enum', 'extern', 'fn', 'for', 'if',
+            'impl', 'in', 'let', 'log', 'loop', 'match', 'mod', 'mut', 'of',
+            'priv', 'pub', 'ref', 'return', 'self', 'static', 'struct', 'super',
+            'to', 'trait', 'type', 'unsafe', 'use', 'with', 'while'
             ),
-        2 => array( // Syntax extensions
-            'fmt!',
-            'env!',
-            'stringify!',
-            'proto!',
-            'include!',
-            'include_str!',
-            'include_bin!',
-            'error!', 'warn!', 'info!', 'debug!'
+        // Boolean values
+        2 => array( 'true', 'false' ),
+        // Structs and built-in types
+        3 => array(
+            'u8', 'i8',
+            'u16', 'i16',
+            'u32', 'i32',
+            'u64', 'i64',
+            'f32', 'f64',
+            'int', 'uint',
+            'float',
+            'bool',
+            'str', 'char',
+            'Argument', 'AsyncWatcher', 'BorrowRecord', 'BufReader',
+            'BufWriter', 'BufferedReader', 'BufferedStream', 'BufferedWriter',
+            'ByRef', 'ByteIterator', 'CFile', 'CString', 'CStringIterator',
+            'Cell', 'Chain', 'Chan', 'ChanOne', 'CharIterator',
+            'CharOffsetIterator', 'CharRange', 'CharSplitIterator',
+            'CharSplitNIterator', 'ChunkIter', 'Condition', 'ConnectRequest',
+            'Coroutine', 'Counter', 'CrateMap', 'Cycle', 'DeflateWriter',
+            'Display', 'ElementSwaps', 'Enumerate', 'Exp', 'Exp1', 'FileDesc',
+            'FileReader', 'FileStat', 'FileStream', 'FileWriter', 'Filter',
+            'FilterMap', 'FlatMap', 'FormatSpec', 'Formatter', 'FsRequest',
+            'Fuse', 'GarbageCollector', 'GetAddrInfoRequest', 'Handle',
+            'HashMap', 'HashMapIterator', 'HashMapMoveIterator',
+            'HashMapMutIterator', 'HashSet', 'HashSetIterator',
+            'HashSetMoveIterator', 'Hint', 'IdleWatcher', 'InflateReader',
+            'Info', 'Inspect', 'Invert', 'IoError', 'Isaac64Rng', 'IsaacRng',
+            'LineBufferedWriter', 'Listener', 'LocalHeap', 'LocalStorage',
+            'Loop', 'Map', 'MatchesIndexIterator', 'MemReader', 'MemWriter',
+            'MemoryMap', 'ModEntry', 'MoveIterator', 'MovePtrAdaptor',
+            'MoveRevIterator', 'NoOpRunnable', 'NonCopyable', 'Normal',
+            'OSRng', 'OptionIterator', 'Parser', 'Path', 'Peekable',
+            'Permutations', 'Pipe', 'PipeStream', 'PluralArm', 'Port',
+            'PortOne', 'Process', 'ProcessConfig', 'ProcessOptions',
+            'ProcessOutput', 'RC', 'RSplitIterator', 'RandSample', 'Range',
+            'RangeInclusive', 'RangeStep', 'RangeStepInclusive', 'Rc', 'RcMut',
+            'ReaderRng', 'Repeat', 'ReprVisitor', 'RequestData',
+            'ReseedWithDefault', 'ReseedingRng', 'Scan', 'SchedOpts',
+            'SelectArm', 'SharedChan', 'SharedPort', 'SignalWatcher',
+            'SipState', 'Skip', 'SkipWhile', 'SocketAddr', 'SplitIterator',
+            'StackPool', 'StackSegment', 'StandardNormal', 'StdErrLogger',
+            'StdIn', 'StdOut', 'StdReader', 'StdRng', 'StdWriter',
+            'StrSplitIterator', 'StreamWatcher', 'TTY', 'Take', 'TakeWhile',
+            'Task', 'TaskBuilder', 'TaskOpts', 'TcpAcceptor', 'TcpListener',
+            'TcpStream', 'TcpWatcher', 'Timer', 'TimerWatcher', 'TrieMap',
+            'TrieMapIterator', 'TrieSet', 'TrieSetIterator', 'Tube',
+            'UdpSendRequest', 'UdpSocket', 'UdpStream', 'UdpWatcher', 'Unfold',
+            'UnixAcceptor', 'UnixListener', 'UnixStream', 'Unwinder',
+            'UvAddrInfo', 'UvError', 'UvEventLoop', 'UvFileStream',
+            'UvIoFactory', 'UvPausibleIdleCallback', 'UvPipeStream',
+            'UvProcess', 'UvRemoteCallback', 'UvSignal', 'UvTTY',
+            'UvTcpAcceptor', 'UvTcpListener', 'UvTcpStream', 'UvTimer',
+            'UvUdpSocket', 'UvUnboundPipe', 'UvUnixAcceptor', 'UvUnixListener',
+            'VecIterator', 'VecMutIterator', 'Weighted', 'WeightedChoice',
+            'WindowIter', 'WriteRequest', 'XorShiftRng', 'Zip', 'addrinfo',
+            'uv_buf_t', 'uv_err_data', 'uv_process_options_t', 'uv_stat_t',
+            'uv_stdio_container_t', 'uv_timespec_t'
             ),
-        3 => array( // Functions
-            'print', 'println',
-            'range'
-            ),
-        4 => array( // Primitive types
-            'bool', 'char', 'str',
-            'f32', 'f64', 'float',
-            'i8', 'i16', 'i32', 'i64', 'int',
-            'u8', 'u16', 'u32', 'u64', 'uint'
-            ),
+        // Enums
+        4 => array(
+            'Alignment', 'Count', 'Either', 'ExponentFormat', 'FPCategory',
+            'FileAccess', 'FileMode', 'Flag', 'IoErrorKind', 'IpAddr',
+            'KeyValue', 'MapError', 'MapOption', 'MemoryMapKind', 'Method',
+            'NullByteResolution', 'Option', 'Ordering', 'PathPrefix', 'Piece',
+            'PluralKeyword', 'Position', 'Protocol', 'Result', 'SchedHome',
+            'SchedMode', 'SeekStyle', 'SendStr', 'SignFormat',
+            'SignificantDigits', 'Signum', 'SocketType', 'StdioContainer',
+            'TaskResult', 'TaskType', 'UvSocketAddr', 'Void', 'uv_handle_type',
+            'uv_membership', 'uv_req_type'
+            )
         ),
     'SYMBOLS' => array(
-        0 => array('(', ')', '{', '}', '[', ']'),
-        1 => array('<', '>','='),
-        2 => array('+', '-', '*', '/', '%'),
-        3 => array('!', '^', '&', '|'),
-        4 => array('?', ':', ';', '#', '$')
+        '(', ')', '{', '}', '[', ']',
+        '+', '-', '*', '/', '%',
+        '&', '|', '^', '!', '<', '>', '~', '@',
+        ':',
+        ';', ',',
+        '='
         ),
+
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
-        4 => true,
+        4 => true
         ),
+
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #0000ff;',
-            2 => 'color: #0000ff;',
-            3 => 'color: #0000dd;',
-            4 => 'color: #0000ff;'
+            1 => 'color: #708;',
+            2 => 'color: #219;',
+            3 => 'color: #05a;',
+            4 => 'color: #800;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #666666;',
-            2 => 'color: #339900;',
-            'MULTI' => 'color: #ff0000; font-style: italic;'
+            0 => 'color: #a50; font-style: italic;',
+            'MULTI' => 'color: #a50; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
@@ -152,13 +180,10 @@ $language_data = array (
             3 => 'color: #660099; font-weight: bold;',
             4 => 'color: #660099; font-weight: bold;',
             5 => 'color: #006699; font-weight: bold;',
-            'HARD' => '',
-            ),
-        'BRACKETS' => array(
-            0 => 'color: #008000;'
+            'HARD' => ''
             ),
         'STRINGS' => array(
-            0 => 'color: #FF0000;'
+            0 => 'color: #a11;'
             ),
         'NUMBERS' => array(
             0 => 'color: #0000dd;',
@@ -170,16 +195,12 @@ $language_data = array (
             GESHI_NUMBER_FLT_NONSCI_F => 'color:#800080;',
             GESHI_NUMBER_FLT_NONSCI => 'color:#800080;'
             ),
+        'BRACKETS' => array(''),
         'METHODS' => array(
-            1 => 'color: #007788;',
-            2 => 'color: #007788;'
+            1 => 'color: #164;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #008000;',
-            1 => 'color: #000080;',
-            2 => 'color: #000040;',
-            3 => 'color: #000040;',
-            4 => 'color: #008080;'
+            0 => ''
             ),
         'REGEXPS' => array(
             ),
@@ -194,8 +215,7 @@ $language_data = array (
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
-        1 => '.',
-        2 => '::'
+        1 => '::'
         ),
     'REGEXPS' => array(
         ),
@@ -204,13 +224,7 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 4,
-    'PARSER_CONTROL' => array(
-        'KEYWORDS' => array(
-            'DISALLOWED_BEFORE' => "(?<![a-zA-Z0-9\$_\|\#])",
-            'DISALLOWED_AFTER' => "(?![a-zA-Z0-9_\|%\\-])"
-        )
-    )
+    'TAB_WIDTH' => 4
 );
 
 ?>

@@ -10,11 +10,18 @@
  * COBOL language file for GeSHi.
  *
  * Most of the compiler directives, reserved words and intrinsic functions are
- * from Micro Focus, with extra ones from OpenCOBOL. The lists of these were
- * found in the Micro Focus' COBOL Language Reference and the OpenCOBOL FAQ.
+ * from the 2009 COBOL Draft Standard, Micro Focus, and GNU Cobol. The lists of
+ * these were found in the draft standard (Sections 8.9, 8.10, 8.11 and 8.12),
+ * Micro Focus' COBOL Language Reference and the GNU Cobol FAQ.
  *
  * CHANGES
  * -------
+ * 2013/11/17 (1.0.8.12)
+ *  -  Changed compiler directives to be handled like comments.
+ *  -  Fixed bug where keywords in identifiers were highlighted.
+ * 2013/08/19 (1.0.8.12)
+ *  -  Added more intrinsic functions, reserved words, and compiler directives
+ *     from the (upcoming) standard.
  * 2013/07/07 (1.0.8.12)
  *  -  Added more reserved words, compiler directives and intrinsic functions.
  *  -  Added modern comment syntax and corrected the other one.
@@ -23,7 +30,7 @@
  *  -  Fixed bug where scope terminators were only the statement in
  *     end-statement was highlighted.
  *
- * TODO (updated 2007/07/02)
+ * TODO (updated 2013/11/17)
  * -------------------------
  *
  *************************************************************************************
@@ -48,172 +55,32 @@
 
 $language_data = array (
     'LANG_NAME' => 'COBOL',
-    'COMMENT_SINGLE' => array(1 => '*>'),
+    'COMMENT_SINGLE' => array(
+        1 => '*>', // COBOL 2002 inline comment
+        2 => '>>'  // COBOL compiler directive indicator
+        ),
     'COMMENT_MULTI' => array(),
-    'COMMENT_REGEXP' => array(1 => '/^......(\*.*?$)/m'),
+    'COMMENT_REGEXP' => array(
+        1 => '/^......(\*.*?$)/m', // Fixed-form comment
+        2 => '/\$SET.*/i'          // MF compiler directive indicator
+        ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
-    'ESCAPE_CHAR' => '\\', //'
+    'ESCAPE_CHAR' => '',
     'NUMBERS' =>
         GESHI_NUMBER_INT_BASIC |
         GESHI_NUMBER_FLT_NONSCI |
         GESHI_NUMBER_FLT_SCI_SHORT |
         GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
-        1 => array( //Compiler Directives
-            '&gt;&gt;D', '&gt;&gt;SOURCE',
-            'ACCEPTREFRESH', 'ACTUAL-PARAMS', 'ACU', 'ACU-COMMENT', 'ACUOPT',
-            'ACUSYNC', 'ADDRSV', 'ADDSYN', 'ADV', 'ALIGN', 'ALPHASTART',
-            'AMODE', 'ANIM', 'ANS85', 'APOST', 'AREACHECK',
-            'ASSIGN-PRINTER', 'AUTOLOCK',
-            'BINLIT', 'BOUND', 'BOUNDOPT', 'BRIEF', 'BS2000', 'BWZSTAR',
-            'BYTE-MODE-MOVE', 'CALL-RECOVERY', 'CALLFH', 'CALLMCS', 'CALLSORT',
-            'CANCELLBR', 'CASE', 'CHANGE-MESSAGE', 'CHARSET', 'CHECK',
-            'CHECKDIV', 'CHECKNUM', 'CHECKREFMOD', 'CICSECM', 'CMPR2',
-            'COBFSTATCONV', 'COBIDY', 'COBOL370', 'COBOLDIR',
-            'COMP1', 'COMP2', 'COMP5-BYTE-ORDER', 'COMS85', 'CONFIRM',
-            'CONVERTRET', 'CONVSPACE', 'COPYEXT', 'COPYLBR',
-            'COPYLIST', 'COPYLISTCOMMENT', 'COPYPATH', 'COPYSEARCH', 'CSI',
-            'CURRENCY-SIGN', 'DATA-CONTEXT',
-            'DATACOMPRESS', 'DATAMAP', 'DB2', 'DBCHECK',
-            'DBCSSOSI', 'DBSPACE', 'DE-EDIT', 'DEFAULTBYTE', 'DEFAULTCALLS',
-            'DETECT-LOCK', 'DG', 'DIALECT', 'DIRECTIVES', 'DIR',
-            'DIRECTIVES-IN-COMMENTS', 'DOSVS', 'DOTNET',
-            'DPC-IN-SUBSCRIPT', 'DYNAM', 'ECHOALL', 'ENTCOBOL',
-            'ERRFORMAT', 'ERRLIST', 'ERRQ', 'FASTCALL', 'FASTINIT', 'FASTLINK',
-            'FASTSORT', 'FAULTFIND', 'FCD3', 'FCDALIGN', 'FCDCAT', 'FCDREG',
-            'FDCLEAR', 'FILESHARE', 'FILETYPE', 'FIXOPT', 'FLAG', 'FLAGAS',
-            'FLAGEUC', 'FLAGMIG', 'FLAGQ', 'FLAGSINEDIT', 'FLAGSTD',
-            'FOLD-CALL-NAME', 'FOLD-COPY-NAME', 'FORM', 'FP-ROUNDING', 'GNT',
-            'HIDE-MESSAGE', 'HOST-NUMCOMPARE', 'HOST-NUMMOVE', 'HOSTARITHMETIC',
-            'HOSTCONTZERO', 'HOSTFD', 'HOSTRW', 'HOSTSIGNS', 'IBM-MS',
-            'IBMCOMP', 'IDENTIFIERLEN', 'IDXFORMAT', 'IDYSRCPATH', 'IGNOREEXEC',
-            'ILARRAYPROPERTY', 'ILASSEMBLY', 'ILCLR', 'ILCOMPANY',
-            'ILCOPYRIGHT', 'ILCULTURE', 'ILCUTPREFIX', 'ILDELAYSIGN',
-            'ILDESCRIPTION', 'ILDOC', 'ILDYNCALL', 'ILFILEVERSION', 'ILGEN',
-            'ILICON', 'ILKEYFILE', 'ILKEYNAME', 'ILMAIN', 'ILMANIFEST',
-            'ILNAMESPACE', 'ILNATIVE', 'ILNATIVERESOURCE', 'ILOBJECTIFY',
-            'ILOUTPUT', 'ILPINVOKE', 'ILPRODUCT', 'ILPRODUCTVERSION', 'ILREF',
-            'ILRESOURCE', 'ILSMARTLINKAGE', 'ILSMARTNEST', 'ILSMARTRESTRICT',
-            'ILSOURCE', 'ILSTACKSIZE', 'ILSTATIC', 'ILSUBSYSTEM', 'ILTARGET',
-            'ILTITLE', 'ILTRADEMARK', 'ILUSING', 'ILVERIFY', 'ILVERSION',
-            'IMPLICITSCOPE', 'INDD', 'INFORETURN', 'INITCALL', 'INITPTR', 'INT',
-            'INTDATE', 'INTLEVEL', 'IOCONV', 'ISO2002', 'IXNLSKEY', 'IXNUMKEY',
-            'JAPANESE', 'KEEP-INT', 'KEYCHECK', 'KEYCOMPRESS', 'LIBRARIAN',
-            'LINE-COUNT', 'LINKALIAS', 'LINKCHECK', 'LISTPATH',
-            'LISTWIDTH', 'LW', 'LITLINK', 'LITVAL-SIZE', 'LNKALIGN',
-            'LOCALCOUNT', 'LOCALSOURCEFORMAT', 'LOCKTYPE', 'MAKESYN', 'MAPNAME',
-            'MAX-ERROR', 'METHODDEFAULT', 'MF', 'MFCOMMENT', 'MFLEVEL',
-            'MFSYNC', 'MOVE-LEN-CHECK', 'MS', 'MVS',
-            'NATIVE-FLOATING-POINT', 'NLS', 'NOACTUAL-PARAMS', 'NOACU',
-            'NOACU-COMMENT', 'NOACUOPT', 'NOACUSYNC', 'NOADDRSV', 'NOADDSYN',
-            'NOADV', 'NOALIGN', 'NOALPHASTART', 'NOALTER', 'NOAMODE', 'NOANIM',
-            'NOANS85', 'NOAPOST', 'NOAREACHECK', 'NOARITHMETIC', 'NOASSIGN',
-            'NOASSIGN-PRINTER', 'NOAUTOLOCK', 'NOBELL', 'NOBINLIT', 'NOBOUND',
-            'NOBOUNDOPT', 'NOBRIEF', 'NOBS2000', 'NOBWZSTAR',
-            'NOBYTE-MODE-MOVE', 'NOCALL-RECOVERY', 'NOCALLFH', 'NOCALLMCS',
-            'NOCALLSORT', 'NOCANCEL', 'NOCANCELLBR', 'NOCASE',
-            'NOCHANGE-MESSAGE', 'NOCHARSET', 'NOCHECK', 'NOCHECKDIV',
-            'NOCHECKNUM', 'NOCHECKREFMOD', 'NOCICSECM', 'NOCMPR2',
-            'NOCOBFSTATCONV', 'NOCOBIDY', 'NOCOBOL370', 'NOCOBOLDIR', 'NOCOMP',
-            'NOCOMP-5', 'NOCOMP-6', 'NOCOMP1', 'NOCOMP2', 'NOCOMP5-BYTE-ORDER',
-            'NOCOMS85', 'NOCONFIRM', 'NOCONSTANT', 'NOCONVERTRET',
-            'NOCONVSPACE', 'NOCOPYEXT', 'NOCOPYLBR', 'NOCOPYLIST',
-            'NOCOPYLISTCOMMENT', 'NOCOPYPATH', 'NOCOPYSEARCH', 'NOCSI',
-            'NOCURRENCY-SIGN', 'NOCURRENT-DATE', 'NODATA', 'NODATA-CONTEXT',
-            'NODATACOMPRESS', 'NODATAMAP', 'NODATE', 'NODB2', 'NODBCHECK',
-            'NODBCS', 'NODBCSSOSI', 'NODBSPACE', 'NODE-EDIT', 'NODEFAULTBYTE',
-            'NODEFAULTCALLS', 'NODETECT-LOCK', 'NODG', 'NODIALECT',
-            'NODIRECTIVES', 'NODIR', 'NODIRECTIVES-IN-COMMENTS', 'NODISPLAY',
-            'NODOSVS', 'NODOTNET', 'NODPC-IN-SUBSCRIPT', 'NODYNAM', 'NOECHO',
-            'NOECHOALL', 'NOENTCOBOL', 'NOERRFORMAT', 'NOERRLIST', 'NOERRQ',
-            'NOFASTCALL', 'NOFASTINIT', 'NOFASTLINK', 'NOFASTSORT',
-            'NOFAULTFIND', 'NOFCD3', 'NOFCDALIGN', 'NOFCDCAT', 'NOFCDREG',
-            'NOFDCLEAR', 'NOFILESHARE', 'NOFILETYPE', 'NOFIXOPT', 'NOFLAG',
-            'NOFLAGAS', 'NOFLAGEUC', 'NOFLAGMIG', 'NOFLAGQ', 'NOFLAGSINEDIT',
-            'NOFLAGSTD', 'NOFOLD-CALL-NAME', 'NOFOLD-COPY-NAME', 'NOFORM',
-            'NOFP-ROUNDING', 'NOGNT', 'NOHIDE-MESSAGE', 'NOHOST-NUMCOMPARE',
-            'NOHOST-NUMMOVE', 'NOHOSTARITHMETIC', 'NOHOSTCONTZERO', 'NOHOSTFD',
-            'NOHOSTRW', 'NOHOSTSIGNS', 'NOIBM-MS', 'NOIBMCOMP',
-            'NOIDENTIFIERLEN', 'NOIDXFORMAT', 'NOIDYSRCPATH', 'NOIGNOREEXEC',
-            'NOILARRAYPROPERTY', 'NOILASSEMBLY', 'NOILCLR', 'NOILCOMPANY',
-            'NOILCOPYRIGHT', 'NOILCULTURE', 'NOILCUTPREFIX', 'NOILDELAYSIGN',
-            'NOILDESCRIPTION', 'NOILDOC', 'NOILDYNCALL', 'NOILFILEVERSION',
-            'NOILGEN', 'NOILICON', 'NOILKEYFILE', 'NOILKEYNAME', 'NOILMAIN',
-            'NOILMANIFEST', 'NOILNAMESPACE', 'NOILNATIVE', 'NOILNATIVERESOURCE',
-            'NOILOBJECTIFY', 'NOILOUTPUT', 'NOILPINVOKE', 'NOILPRODUCT',
-            'NOILPRODUCTVERSION', 'NOILREF', 'NOILRESOURCE', 'NOILSMARTLINKAGE',
-            'NOILSMARTNEST', 'NOILSMARTRESTRICT', 'NOILSOURCE', 'NOILSTACKSIZE',
-            'NOILSTATIC', 'NOILSUBSYSTEM', 'NOILTARGET', 'NOILTITLE',
-            'NOILTRADEMARK', 'NOILUSING', 'NOILVERIFY', 'NOILVERSION',
-            'NOIMPLICITSCOPE', 'NOINDD', 'NOINFORETURN', 'NOINITCALL',
-            'NOINITPTR', 'NOINT', 'NOINTDATE', 'NOINTLEVEL', 'NOIOCONV',
-            'NOISO2002', 'NOIXNLSKEY', 'NOIXNUMKEY', 'NOJAPANESE', 'NOKEEP-INT',
-            'NOKEYCHECK', 'NOKEYCOMPRESS', 'NOLIBRARIAN', 'NOLINE-COUNT',
-            'NOLINKALIAS', 'NOLINKCHECK', 'NOLIST', 'NOLISTPATH', 'NOLISTWIDTH',
-            'NOLW', 'NOLITLINK', 'NOLITVAL-SIZE', 'NOLNKALIGN', 'NOLOCALCOUNT',
-            'NOLOCALSOURCEFORMAT', 'NOLOCKTYPE', 'NOMAKESYN', 'NOMAPNAME',
-            'NOMAX-ERROR', 'NOMETHODDEFAULT', 'NOMF', 'NOMFCOMMENT',
-            'NOMFLEVEL', 'NOMFSYNC', 'NOMOVE-LEN-CHECK', 'NOMS', 'NOMVS',
-            'NONATIVE', 'NONATIVE-FLOATING-POINT', 'NONCHAR', 'NONLS',
-            'NONSYMBOL', 'NOOBJ', 'NOODOOSVS', 'NOODOSLIDE', 'NOOLDBLANKLINE',
-            'NOOLDCOPY', 'NOOLDINDEX', 'NOOLDNEXTSENTENCE', 'NOOLDREADINTO',
-            'NOOLDSTRMIX', 'NOOOCTRL', 'NOOPT', 'NOOPTIONAL-FILE', 'NOOS390',
-            'NOOSEXT', 'NOOSVS', 'NOOUTDD', 'NOOVERRIDE', 'NOP64', 'NOPANVALET',
-            'NOPARAMCOUNTCHECK', 'NOPC1', 'NOPCOMP', 'NOPERFORM-TYPE',
-            'NOPERFORMOPT', 'NOPPLITLINK', 'NOPREPLIST', 'NOPREPROCESS', 'NOP',
-            'NOPRESERVECASE', 'NOPRINT', 'NOPRINT-EXT', 'NOPROFILE',
-            'NOPROGID-COMMENT', 'NOPROGID-INT-NAME', 'NOPROTECT-LINKAGE',
-            'NOPROTOTYPE', 'NOQUAL', 'NOQUALPROC', 'NOQUERY', 'NOQUOTE',
-            'NORAWLIST', 'NORDFPATH', 'NORDW', 'NORECMODE', 'NORECURSECHECK',
-            'NOREENTRANT', 'NOREF', 'NOREFNO', 'NOREMAINDER', 'NOREMOVE',
-            'NOREPORT-LINE', 'NOREPOSITORY', 'NORESEQ', 'NORESTRICT-GOTO',
-            'NORETRYLOCK', 'NOREWRITE-LS', 'NORM', 'NORTNCODE-SIZE',
-            'NORUNTIME-ENCODING', 'NORWHARDPAGE', 'NOSAA', 'NOSCHEDULER',
-            'NOSEG', 'NOSEQCHK', 'NOSEQUENTIAL', 'NOSERIAL', 'NOSETTING',
-            'NOSETTINGS', 'NOSHARE-OUTDD', 'NOSHOW-DIR', 'NOSIGN',
-            'NOSIGN-FIXUP', 'NOSIGNDISCARD', 'NOSORTTYPE', 'NOSOURCE-ENCODING',
-            'NOSOURCEASM', 'NOSOURCEFORMAT', 'NOSOURCETABSTOP', 'NOSPZERO',
-            'NOSQL', 'NOSSRANGE', 'NOSTDERR', 'NOSTICKY-LINKAGE',
-            'NOSTICKY-PERFORM', 'NOSUPFF', 'NOSWITCH-TYPE', 'NOSYMBSTART',
-            'NOSYSPUNCH', 'NOTERMPAGE', 'NOTESTCOVER', 'NOTIME', 'NOTRACE',
-            'NOTRICKLE', 'NOTRUNC', 'NOTRUNCCALLNAME', 'NOTRUNCCOPY',
-            'NOTRUNCINC', 'NOUNICODE', 'NOUSE', 'NOVERBOSE', 'NOVSC2',
-            'NOWARNING', 'NOWARNINGS', 'NOWB', 'NOWB2', 'NOWB3', 'NOWRITELOCK',
-            'NOWRITE-LOCK', 'NOWRITETHROUGH', 'NOWRITETHRU', 'NOXDB', 'NOXOPEN',
-            'NOXREF', 'NOZEROLENGTHFALSE', 'NOZEROSEQ', 'NOZWB', 'NSYMBOL',
-            'OBJ', 'ODOOSVS', 'ODOSLIDE', 'OLDBLANKLINE', 'OLDCOPY', 'OLDINDEX',
-            'OLDNEXTSENTENCE', 'OLDREADINTO', 'OLDSTRMIX', 'OOCTRL', 'OPT',
-            'OPTIONAL-FILE', 'OS390', 'OSEXT', 'OSVS', 'OUTDD',
-            'P64', 'PANVALET', 'PARAMCOUNTCHECK', 'PC1', 'PCOMP',
-            'PERFORM-TYPE', 'PERFORMOPT', 'PPLITLINK', 'PREPLIST', 'PREPROCESS',
-            'PRESERVECASE', 'PRINT-EXT', 'PROFILE',
-            'PROGID-COMMENT', 'PROGID-INT-NAME', 'PROTECT-LINKAGE',
-            'QUAL', 'QUALPROC', 'QUERY', 'RAWLIST', 'RDFPATH', 'RDW',
-            'RECMODE', 'RECURSECHECK', 'REENTRANT', 'REF', 'REFNO',
-            'REMOVE', 'REPORT-LINE', 'RESEQ', 'RESTRICT-GOTO',
-            'RETRYLOCK', 'REWRITE-LS', 'RM', 'RTNCODE-SIZE', 'RUNTIME-ENCODING',
-            'RWHARDPAGE', 'SAA', 'SCHEDULER', 'SEG', 'SEQCHK',
-            'SERIAL', 'SETTING', 'SETTINGS', 'SHARE-OUTDD', 'SHOW-DIR',
-            'SIGN-FIXUP', 'SIGNDISCARD', 'SORTTYPE', 'SOURCE-ENCODING',
-            'SOURCEASM', 'SOURCEFORMAT', 'SOURCETABSTOP', 'SPZERO',
-            'SSRANGE', 'STDERR', 'STICKY-LINKAGE', 'STICKY-PERFORM', 'SUPFF',
-            'SWITCH-TYPE', 'SYMBSTART', 'TERMPAGE', 'TESTCOVER',
-            'TRICKLE', 'TRUNC', 'TRUNCCALLNAME', 'TRUNCCOPY',
-            'TRUNCINC', 'UNICODE', 'VERBOSE', 'VSC2', 'WARNING',
-            'WARNINGS', 'WB', 'WB2', 'WB3', 'WRITELOCK', 'WRITE-LOCK',
-            'WRITETHROUGH', 'WRITETHRU', 'XDB', 'XOPEN', 'XREF',
-            'ZEROLENGTHFALSE', 'ZEROSEQ', 'ZWBACCEPTREFRESH'
-            ),
-
         // Statements containing spaces. These are separate to other statements
         // so that they are highlighted correctly.
-        2 => array(
+        1 => array(
             'DELETE FILE', 'GO TO', 'NEXT SENTENCE', 'XML GENERATE',
             'XML PARSE'
             ),
 
-        3 => array( // Other Reserved Words
+        2 => array( // Other Reserved Words
             '3-D', 'ABSENT', 'ABSTRACT', 'ACCESS', 'ACQUIRE',
             'ACTION', 'ACTIVE-CLASS', 'ACTIVE-X', 'ACTUAL', 'ADDRESS',
             'ADDRESS-ARRAY', 'ADDRESS-OFFSET', 'ADJUSTABLE-COLUMNS',
@@ -228,7 +95,8 @@ $language_data = array (
             'ASSEMBLY-ATTRIBUTES', 'ASSIGN', 'AT', 'ATTRIBUTE', 'AUTHOR',
             'AUTO', 'AUTO-DECIMAL', 'AUTO-HYPHEN-SKIP', 'AUTO-MINIMIZE',
             'AUTO-RESIZE', 'AUTO-SKIP', 'AUTO-SPIN', 'AUTOMATIC',
-            'AUTOTERMINATE', 'AX-EVENT-LIST', 'B-AND', 'B-EXOR', 'B-LEFT',
+            'AUTOTERMINATE', 'AWAY-FROM-ZERO',
+            'AX-EVENT-LIST', 'B-AND', 'B-EXOR', 'B-LEFT',
             'B-NOT', 'B-OR', 'B-RIGHT', 'B-XOR', 'BACKGROUND-COLOR',
             'BACKGROUND-COLOUR', 'BACKGROUND-HIGH', 'BACKGROUND-LOW',
             'BACKGROUND-STANDARD', 'BACKWARD', 'BAR', 'BASED', 'BASIS', 'BEEP',
@@ -239,10 +107,10 @@ $language_data = array (
             'BITMAP-START', 'BITMAP-TIMER', 'BITMAP-TRAILING', 'BITMAP-WIDTH',
             'BLANK', 'BLINK', 'BLINKING', 'BLOB', 'BLOB-FILE', 'BLOB-LOCATOR',
             'BLOCK', 'BOLD', 'BOOLEAN', 'BOTTOM', 'BOX', 'BOXED', 'BROWSING',
-            'BUSY', 'BUTTONS', 'BY', 'BYTE-LENGTH', 'C01', 'C02', 'C03', 'C04',
+            'BUSY', 'BUTTONS', 'BY', 'C01', 'C02', 'C03', 'C04',
             'C05',
             'C06', 'C07', 'C08', 'C09', 'C10', 'C11', 'C12', 'CALENDAR-FONT',
-            'CALLED', 'CANCEL-BUTTON', 'CATCH', 'CBL',
+            'CALLED', 'CANCEL-BUTTON', 'CAPACITY', 'CATCH', 'CBL',
             'CBL-CTR', 'CCOL', 'CD', 'CELL', 'CELL-COLOR', 'CELL-DATA',
             'CELL-FONT', 'CELL-PROTECTION', 'CELLS', 'CENTER', 'CENTERED',
             'CENTERED-HEADINGS', 'CENTURY-DATE', 'CENTURY-DAY', 'CF', 'CH',
@@ -250,6 +118,7 @@ $language_data = array (
             'CHARACTER',
             'CHARACTERS', 'CHART', 'CHECK-BOX', 'CHECKING', 'CLASS',
             'CLASS-ATTRIBUTES', 'CLASS-CONTROL', 'CLASS-ID', 'CLASS-OBJECT',
+            'CLASSIFICATION',
             'CLEAR-SELECTION', 'CLINE', 'CLINES', 'CLOB', 'CLOB-FILE',
             'CLOB-LOCATOR', 'CLOCK-UNITS', 'COBOL', 'CODE', 'CODE-SET',
             'COERCION', 'COL', 'COLLATING', 'COLORS', 'COLOUR',
@@ -265,7 +134,7 @@ $language_data = array (
             'CONSTRAIN', 'CONSTRAINTS', 'CONTAINS', 'CONTENT',
             'CONTROL', 'CONTROL-AREA', 'CONTROLS', 'CONTROLS-UNCROPPED',
             'CONVERSION', 'CONVERT', 'CONVERTING', 'COPY-SELECTION',
-            'CORE-INDEX', 'CORR', 'CORRESPONDING', 'COUNT', 'CREATE',
+            'CORE-INDEX', 'CORR', 'CORRESPONDING', 'COUNT',
             'CREATING', 'CRT', 'CRT-UNDER', 'CSIZE', 'CSP', 'CURRENCY',
             'CURSOR', 'CURSOR-COL', 'CURSOR-COLOR',
             'CURSOR-FRAME-WIDTH', 'CURSOR-ROW', 'CURSOR-X', 'CURSOR-Y',
@@ -277,7 +146,7 @@ $language_data = array (
             'DBCLOB-LOCATOR', 'DBCS', 'DE', 'DEBUG', 'DEBUG-CONTENTS',
             'DEBUG-ITEM', 'DEBUG-LINE', 'DEBUG-NAME', 'DEBUG-SUB-1',
             'DEBUG-SUB-2', 'DEBUG-SUB-3', 'DEBUGGING', 'DECIMAL',
-            'DECIMAL-POINT', 'DECLARATIVES', 'DECLARE', 'DEFAULT',
+            'DECIMAL-POINT', 'DECLARATIVES', 'DEFAULT',
             'DEFAULT-BUTTON', 'DEFAULT-FONT', 'DEFINITION',
             'DELEGATE-ID', 'DELIMITED', 'DELIMITER', 'DEPENDING',
             'DESCENDING', 'DESTINATION', 'DESTROY', 'DETAIL', 'DICTIONARY',
@@ -285,7 +154,7 @@ $language_data = array (
             'DISPLAY-1', 'DISPLAY-COLUMNS', 'DISPLAY-FORMAT', 'DISPLAY-ST',
             'DIVIDER-COLOR', 'DIVIDERS', 'DIVISION', 'DOT-DASH',
             'DOTTED', 'DOWN', 'DRAG-COLOR', 'DRAW', 'DROP', 'DROP-DOWN',
-            'DROP-LIST', 'DUPLICATES', 'DYNAMIC', 'EBCDIC', 'ECHO', 'EGCS',
+            'DROP-LIST', 'DUPLICATES', 'DYNAMIC', 'EBCDIC', 'EC', 'ECHO', 'EGCS',
             'EGI', 'EJECT', 'ELEMENTARY', 'ELSE', 'EMI', 'EMPTY-CHECK',
             'ENABLE', 'ENABLED', 'END', 'END-ACCEPT', 'END-ADD', 'END-CALL',
             'END-CHAIN', 'END-COLOR', 'END-COMPUTE', 'END-DELEGATE',
@@ -311,7 +180,9 @@ $language_data = array (
             'FILE-LIMIT', 'FILE-LIMITS', 'FILE-NAME', 'FILE-POS', 'FILL-COLOR',
             'FILL-COLOR2', 'FILL-PERCENT', 'FILLER', 'FINAL', 'FINALLY',
             'FINISH-REASON', 'FIRST', 'FIXED', 'FIXED-FONT', 'FIXED-WIDTH',
-            'FLAT', 'FLAT-BUTTONS', 'FLOAT-EXTENDED', 'FLOAT-LONG',
+            'FLAT', 'FLAT-BUTTONS', 'FLOAT-BINARY-7', 'FLOAT-BINARY-16',
+            'FLOAT-BINARY-34', 'FLOAT-DECIMAL-16', 'FLOAT-DECIMAL-34',
+            'FLOAT-EXTENDED', 'FLOAT-LONG',
             'FLOAT-SHORT', 'FLOATING', 'FONT', 'FOOTING', 'FOR',
             'FOREGROUND-COLOR', 'FOREGROUND-COLOUR', 'FOREVER', 'FORMAT',
             'FRAME', 'FRAMED', 'FROM', 'FULL', 'FULL-HEIGHT',
@@ -324,13 +195,15 @@ $language_data = array (
             'HIDDEN-DATA', 'HIGH', 'HIGH-COLOR', 'HIGH-VALUE', 'HIGH-VALUES',
             'HIGHLIGHT', 'HORIZONTAL', 'HOT-TRACK', 'HSCROLL', 'HSCROLL-POS',
             'I-O', 'I-O-CONTROL', 'ICON', 'ID', 'IDENTIFICATION',
-            'IDENTIFIED', 'IGNORE', 'IGNORING', 'IMPLEMENTS', 'IN',
+            'IDENTIFIED', 'IFINITY', 'IGNORE', 'IGNORING', 'IMPLEMENTS', 'IN',
             'INDEPENDENT', 'INDEX', 'INDEXED', 'INDEXER', 'INDEXER-ID', 'INDIC',
-            'INDICATE', 'INDICATOR', 'INDICATORS', 'INHERITING', 'INHERITS',
+            'INDICATE', 'INDICATOR', 'INDICATORS', 'INDIRECT',
+            'INHERITING', 'INHERITS',
             'INITIAL', 'INITIALIZED', 'INPUT',
             'INPUT-OUTPUT', 'INQUIRE', 'INSERT', 'INSERT-ROWS',
             'INSERTION-INDEX', 'INSTALLATION', 'INSTANCE',
-            'INTERFACE', 'INTERFACE-ID', 'INTERNAL', 'INTO', 'INTRINSIC',
+            'INTERFACE', 'INTERFACE-ID', 'INTERMEDIATE',
+            'INTERNAL', 'INTO', 'INTRINSIC',
             'INVALID', 'INVOKED', 'IS', 'ITEM', 'ITEM-BOLD',
             'ITEM-ID', 'ITEM-TEXT', 'ITEM-TO-ADD', 'ITEM-TO-DELETE',
             'ITEM-TO-EMPTY', 'ITEM-VALUE', 'ITERATOR', 'ITERATOR-ID', 'J',
@@ -339,7 +212,7 @@ $language_data = array (
             'LARGE-FONT', 'LAST', 'LAST-ROW', 'LAYOUT-DATA', 'LAYOUT-MANAGER',
             'LC_ALL', 'LC_COLLATE', 'LC_CTYPE', 'LC_CURRENCY', 'LC_MESSAGES',
             'LC_MONETARY', 'LC_NUMERIC', 'LC_TIME', 'LEADING', 'LEADING-SHIFT',
-            'LEAVE', 'LEFT', 'LEFT-JUSTIFY', 'LEFT-TEXT', 'LEFTLINE', 'LENGTH',
+            'LEAVE', 'LEFT', 'LEFT-JUSTIFY', 'LEFT-TEXT', 'LEFTLINE',
             'LENGTH-CHECK', 'LESS', 'LIMIT', 'LIMITS', 'LIN', 'LINAGE',
             'LINAGE-COUNTER', 'LINE', 'LINE-COUNTER', 'LINES', 'LINES-AT-ROOT',
             'LINK', 'LINKAGE', 'LIST', 'LIST-BOX', 'LM-RESIZE', 'LOCAL-STORAGE',
@@ -354,12 +227,14 @@ $language_data = array (
             'MODELESS', 'MODIFIED', 'MODULES', 'MONITOR-POINTER',
             'MORE-LABELS', 'MULTILINE',
             'MUTEX-POINTER', 'NAME', 'NAMED', 'NATIONAL',
-            'NATIONAL-EDITED', 'NATIVE', 'NAVIGATE-URL', 'NCHAR', 'NEGATIVE',
+            'NATIONAL-EDITED', 'NATIVE', 'NAVIGATE-URL', 'NCHAR',
+            'NEAREST-AWAY-FROM-ZERO', 'NEAREST-EVEN', 'NEAREST-TOWARD-ZERO',
+            'NEGATIVE', 'NEGATIVE-INFINITY',
             'NESTED', 'NET-EVENT-LIST', 'NEW', 'NEWABLE', 'NEXT ', 'NEXT-ITEM',
             'NO', 'NO-AUTO-DEFAULT', 'NO-AUTOSEL', 'NO-BOX', 'NO-CELL-DRAG',
             'NO-CLOSE', 'NO-DIVIDERS', 'NO-ECHO', 'NO-F4', 'NO-FOCUS',
             'NO-GROUP-TAB', 'NO-KEY-LETTER', 'NO-SEARCH', 'NO-TAB', 'NO-UPDOWN',
-            'NOMINAL', 'NONE', 'NORMAL', 'NOT', 'NOTIFY',
+            'NOMINAL', 'NONE', 'NORMAL', 'NOT', 'NOT-A-NUMBER', 'NOTIFY',
             'NOTIFY-CHANGE', 'NOTIFY-DBLCLICK', 'NOTIFY-SELCHANGE',
             'NSTD-REELS', 'NULL', 'NULLS', 'NUM-COL-HEADINGS',
             'NUM-ROW-HEADINGS', 'NUM-ROWS', 'NUMBER', 'NUMBERS', 'NUMERIC',
@@ -375,12 +250,14 @@ $language_data = array (
             'PARAGRAPH', 'PARAMS', 'PARENT', 'PARSE', 'PARTIAL', 'PASSWORD',
             'PERMANENT', 'PF', 'PH', 'PIC', 'PICTURE', 'PIXEL',
             'PIXELS', 'PLACEMENT', 'PLUS', 'POINTER', 'POP-UP', 'POSITION',
-            'POSITION-SHIFT', 'POSITIONING', 'POSITIVE', 'PREFIXING', 'PRESENT',
+            'POSITION-SHIFT', 'POSITIONING', 'POSITIVE', 'POSITIVE-INFINITY',
+            'PREFIXED', 'PREFIXING', 'PRESENT',
             'PREVIOUS', 'PRINT', 'PRINT-CONTROL', 'PRINT-NO-PROMPT',
             'PRINT-PREVIEW', 'PRINT-SWITCH', 'PRINTER', 'PRINTER-1', 'PRINTING',
             'PRIOR', 'PRIORITY', 'PRIVATE', 'PROCEDURE', 'PROCEDURE-POINTER',
             'PROCEDURES', 'PROCEED', 'PROCESS', 'PROCESSING', 'PROGRAM',
-            'PROGRAM-ID', 'PROGRAM-POINTER', 'PROGRESS', 'PROMPT', 'PROPERTIES',
+            'PROGRAM-ID', 'PROGRAM-POINTER', 'PROGRESS', 'PROHIBITED',
+            'PROMPT', 'PROPERTIES',
             'PROPERTY', 'PROPERTY-ID', 'PROPERTY-VALUE', 'PROTECTED',
             'PROTOTYPE', 'PUBLIC', 'PURGE', 'PUSH-BUTTON', 'QUERY-INDEX',
             'QUEUE', 'QUOTE', 'QUOTES', 'RADIO-BUTTON', 'RAISED',
@@ -392,12 +269,13 @@ $language_data = array (
             'RELATIVE', 'RELOAD', 'REMAINDER', 'REMARKS', 'REMOVAL',
             'RENAMES', 'REORG-CRITERIA', 'REPEATED', 'REPLACE', 'REPLACING',
             'REPORT', 'REPORTING', 'REPORTS', 'REPOSITORY', 'REQUIRED',
-            'REREAD', 'RERUN', 'RESERVE', 'RESET', 'RESET-GRID', 'RESET-LIST',
+            'REPRESENTS-NOT-A-NUMBER',
+            'REREAD', 'RERUN', 'RESERVE', 'RESET-GRID', 'RESET-LIST',
             'RESET-TABS', 'RESIZABLE', 'RESTRICTED', 'RESULT-SET-LOCATOR',
-            'RESUME', 'RETRY', 'RETURN-CODE', 'RETURNING',
+            'RETRY', 'RETURN-CODE', 'RETURNING',
             'REVERSE-VIDEO', 'REVERSED', 'REWIND', 'RF', 'RH',
             'RIGHT', 'RIGHT-ALIGN', 'RIGHT-JUSTIFY', 'RIMMED',
-            'ROLLING', 'ROUNDED', 'ROW-COLOR', 'ROW-COLOR-PATTERN',
+            'ROLLING', 'ROUNDED', 'ROUNDING', 'ROW-COLOR', 'ROW-COLOR-PATTERN',
             'ROW-DIVIDERS', 'ROW-FONT', 'ROW-HEADINGS', 'ROW-PROTECTION',
             'ROWID', 'RUN', 'S01', 'S02', 'S03', 'S04', 'S05', 'SAME',
             'SAVE-AS', 'SAVE-AS-NO-PROMPT', 'SCREEN', 'SCROLL', 'SCROLL-BAR',
@@ -408,7 +286,7 @@ $language_data = array (
             'SEND', 'SENTENCE', 'SEPARATE', 'SEPARATION', 'SEQUENCE',
             'SEQUENTIAL', 'SETTER', 'SHADING', 'SHADOW',
             'SHARING', 'SHIFT-IN', 'SHIFT-OUT', 'SHORT-DATE', 'SHOW-LINES',
-            'SHOW-NONE', 'SHOW-SEL-ALWAYS', 'SIGN', 'SIGNED', 'SIGNED-INT',
+            'SHOW-NONE', 'SHOW-SEL-ALWAYS', 'SIGNED', 'SIGNED-INT',
             'SIGNED-LONG', 'SIGNED-SHORT', 'SIZE', 'SKIP1',
             'SKIP2', 'SKIP3', 'SMALL-FONT', 'SORT-CONTROL',
             'SORT-CORE-SIZE', 'SORT-FILE-SIZE', 'SORT-MERGE', 'SORT-MESSAGE',
@@ -416,27 +294,29 @@ $language_data = array (
             'SORT-TAPE', 'SORT-TAPES', 'SOURCE', 'SOURCE-COMPUTER', 'SOURCES',
             'SPACE', 'SPACE-FILL', 'SPACES', 'SPECIAL-NAMES', 'SPINNER', 'SQL',
             'SQUARE', 'STANDARD', 'STANDARD-1', 'STANDARD-2', 'STANDARD-3',
+            'STANDARD-BINARY', 'STANDARD-DECIMAL',
             'START-X', 'START-Y', 'STARTING', 'STATEMENT', 'STATIC',
             'STATIC-LIST',
             'STATUS', 'STATUS-BAR', 'STATUS-TEXT', 'STEP',
             'STOP-BROWSER', 'STRONG', 'STYLE', 'SUB-QUEUE-1',
             'SUB-QUEUE-2', 'SUB-QUEUE-3', 'SUBFILE', 'SUBWINDOW',
-            'SUFFIXING', 'SUPER', 'SUPPRESS', 'SYMBOL', 'SYMBOLIC',
+            'SUFFIXING', 'SUPER', 'SYMBOL', 'SYMBOLIC',
             'SYNCHRONIZED', 'SYSIN', 'SYSIPT', 'SYSLST', 'SYSOUT',
             'SYSPCH', 'SYSPUNCH', 'SYSTEM', 'SYSTEM-DEFAULT', 'SYSTEM-INFO',
             'TAB', 'TAB-CONTROL', 'TAB-TO-ADD', 'TAB-TO-DELETE', 'TABLE',
             'TALLY', 'TALLYING', 'TAPE', 'TAPES', 'TEMPORARY', 'TERMINAL',
-            'TERMINAL-INFO', 'TERMINATE', 'TERMINATION-VALUE', 'TEST', 'TEXT',
+            'TERMINAL-INFO', 'TERMINATION-VALUE', 'TEST', 'TEXT',
             'THAN', 'THEN', 'THREAD', 'THREAD-LOCAL', 'THREAD-LOCAL-STORAGE',
             'THREAD-POINTER', 'THROUGH', 'THRU', 'THUMB-POSITION',
             'TILED-HEADINGS', 'TIME', 'TIME-OF-DAY', 'TIME-OUT', 'TIME-RECORD',
             'TIMEOUT', 'TIMES', 'TIMESTAMP', 'TIMESTAMP-OFFSET',
             'TIMESTAMP-OFFSET-RECORD', 'TIMESTAMP-RECORD', 'TITLE', 'TITLE-BAR',
             'TITLE-POSITION', 'TO', 'TOOL-BAR', 'TOP', 'TOTALED', 'TOTALING',
+            'TOWARD-GREATER', 'TOWARD-LESSER',
             'TRACE', 'TRACK-AREA', 'TRACK-LIMIT', 'TRACK-THUMB', 'TRACKS',
             'TRADITIONAL-FONT', 'TRAILING', 'TRAILING-SHIFT', 'TRAILING-SIGN',
             'TRANSACTION', 'TRANSPARENT', 'TRANSPARENT-COLOR',
-            'TREE-VIEW', 'TRUE', 'TYPE', 'TYPEDEF', 'UCS-4',
+            'TREE-VIEW', 'TRUE', 'TRUNCATION', 'TYPE', 'TYPEDEF', 'UCS-4',
             'UNDERLINE', 'UNDERLINED', 'UNEQUAL', 'UNFRAMED', 'UNIT', 'UNITS',
             'UNIVERSAL', 'UNSIGNED', 'UNSIGNED-INT', 'UNSIGNED-LONG',
             'UNSIGNED-SHORT',
@@ -444,7 +324,7 @@ $language_data = array (
             'UPSI-0', 'UPSI-1', 'UPSI-2', 'UPSI-3', 'UPSI-4', 'UPSI-5',
             'UPSI-6', 'UPSI-7', 'USAGE', 'USE-ALT', 'USE-RETURN',
             'USE-TAB', 'USER', 'USER-COLORS', 'USER-DEFAULT', 'USER-GRAY',
-            'USER-WHITE', 'USING', 'UTF-16', 'UTF-8', 'VALID', 'VALIDATE',
+            'USER-WHITE', 'USING', 'UTF-16', 'UTF-8', 'VALID',
             'VAL-STATUS', 'VALIDATE-STATUS',
             'VALUE', 'VALUE-FORMAT', 'VALUES', 'VALUETYPE', 'VALUETYPE-ID',
             'VARBINARY', 'VARIABLE', 'VARIANT', 'VARYING', 'VERTICAL',
@@ -456,64 +336,59 @@ $language_data = array (
             'XML-NTEXT', 'XML-TEXT', 'YIELDING', 'YYYYDDD', 'YYYYMMDD', 'ZERO',
             'ZERO-FILL', 'ZEROES', 'ZEROS'
             ),
-
-        4 => array( // Statement Keywords containing no spaces.
-            'ACCEPT', 'ADD', 'ALTER', 'ALLOCATE', 'CALL', 'CANCEL', 'CHAIN', 
-            'CHECKPOINT', 'CLOSE', 'COLOR', 'COMPUTE', 'COMMIT', 'CONTINUE',
-            'COPY', 'DELEGATE', 'DELETE', 'DISPLAY', 'DIVIDE',
+        3 => array( // Statement Keywords containing no spaces.
+            'ACCEPT', 'ADD', 'ALTER', 'ALLOCATE', 'ATTACH', 'CALL', 'CANCEL',
+            'CHAIN', 'CREATE',
+            'CLOSE', 'COLOR', 'COMPUTE', 'COMMIT', 'CONTINUE',
+            'COPY', 'DECLARE', 'DELEGATE', 'DELETE', 'DETACH', 'DISPLAY',
+            'DIVIDE',
             'ENTER', 'ENTRY', 'EVALUATE', 'EXAMINE',
             'EXEC', 'EXECUTE', 'EXHIBIT', 'EXIT', 'FREE', 'GOBACK',
             'IF',  'INITIALIZE', 'INITIATE', 'INSPECT', 'INVOKE', 'MERGE',
             'MODIFY', 'MOVE', 'MULTIPLY', 'NOTE', 'ON', 'OPEN',
             'PERFORM', 'RAISE', 'READ', 'RECEIVE', 'RELEASE', 'RETURN',
+            'RESET', 'RESUME',
             'REWRITE', 'ROLLBACK', 'SEARCH', 'SELECT', 'SERVICE', 'SET', 'SORT',
-            'START', 'STARTBACKUP', 'STOP', 'STRING', 'SUBTRACT', 'SYNC',
+            'START', 'STOP', 'STRING', 'SUBTRACT', 'SYNC',
+            'SUPPRESS', 'TERMINATE',
             'TRANSFORM', 'TRY', 'UNLOCKFILE', 'UNLOCK', 'UNSTRING', 'USE',
-            'WAIT', 'WRITE'
+            'VALIDATE', 'WAIT', 'WRITE'
             ),
-
-        5 => array( // Intrinsic functions
-            'ACOS', 'ANNUITY', 'ASIN', 'ATAN', 'CHAR', 'CHAR-NATIONAL',
+        4 => array( // Intrinsic functions
+            'ABS', 'ACOS', 'ANNUITY', 'ASIN', 'ATAN', 'BOOLEAN-OF-INTEGER',
+            'BYTE-LENGTH', 'CHAR', 'CHAR-NATIONAL',
             'COS', 'COMBINED-DATETIME', 'CONCATENATE', 'CURRENT-DATE',
-            'DATE-OF-INTEGER', 'DATE-TO-YYYYMMDD', 'DATE-TO-YYYYDDD',
-            'DAY-OF-INTEGER', 'DISPLAY-OF', 'E', 'EXP', 'EXP10',
-            'FACTORIAL', 'FRACTION-PART', 'INTEGER', 
-            'INTEGER-OF-DATE', 'INTEGER-OF-DAY', 'INTEGER-PART',
-            'LENGTH-AN',
-            'LOCALE-DATE', 'LOCALE-TIME', 'LOCALE-TIME-FROM-SECS', 'LOG',
-            'LOG10', 'LOWER-CASE', 'MAX', 'MEAN', 'MEDIAN', 'MIDRANGE',
-            'MIN', 'MOD', 'NATIONAL-OF', 'NUMVAL', 'NUMVAL-C', 'ORD',
-            'ORD-MAX', 'ORD-MIN',
+            'DATE-OF-INTEGER', 'DATE-TO-YYYYMMDD', 'DAY-TO-YYYYDDD',
+            'DAY-OF-INTEGER', 'DISPLAY-OF', 'E', 'EXCEPTION-FILE',
+            'EXCEPTION-FILE-N', 'EXCEPTION-LOCATION',
+            'EXCEPTION-LOCATION-N', 'EXCEPTION-STATEMENT', 'EXCEPTION-STATUS',
+            'EXP', 'EXP10', 'FACTORIAL', 'FORMATTED-CURRENT-DATE',
+            'FORMATTED-DATE', 'FORMATTED-DATETIME', 'FORMATTED-TIME',
+            'FRACTION-PART', 'HIGHEST-ALGEBRAIC', 'INTEGER',
+            'INTEGER-OF-BOOLEAN', 'INTEGER-OF-DATE', 'INTEGER-OF-DAY',
+            'INTEGER-OF-FORMATTED-DATE', 'INTEGER-PART', 'LENGTH',
+            'LOCALE-COMPARE',
+            'LOCALE-DATE', 'LOCALE-TIME', 'LOCALE-TIME-FROM-SECONDS',
+            'LOCALE-TIME-FROM-SECS', 'LOG',
+            'LOG10', 'LOWER-CASE', 'LOWEST-ALGEBRAIC',
+            'MAX', 'MEAN', 'MEDIAN', 'MIDRANGE',
+            'MIN', 'MOD', 'NATIONAL-OF', 'NUMVAL', 'NUMVAL-C', 'NUMVAL-F',
+            'ORD', 'ORD-MAX', 'ORD-MIN',
             'PI', 'PRESENT-VALUE', 'RANDOM', 'RANGE', 'REM', 'REVERSE',
-            'SECONDS-FROM-FORMATTED-TIME', 'SIN', 'SQRT',
-            'SECONDS-PAST-MIDNIGHT', 'STANDARD-DEVIATION', 'STORED-CHAR-LENGTH',
+            'SECONDS-FROM-FORMATTED-TIME', 'SIGN', 'SIN', 'SQRT',
+            'SECONDS-PAST-MIDNIGHT', 'STANDARD-DEVIATION', 'STANDARD-COMPARE',
+            'STORED-CHAR-LENGTH',
             'SUBSTITUTE', 'SUBSTITUE-CASE', 'SUM', 'TAN', 'TEST-DATE-YYYYMMDD',
-            'TEST-DAY-YYYYDDD', 'TRIM', 'UPPER-CASE', 'VARIANCE',
-            'YEAR-TO-YYYY', 'WHEN-COMPILED'
+            'TEST-DAY-YYYYDDD', 'TEST-FORMATTED-TIME', 'TEST-NUMVAL',
+            'TEST-NUMVAL-C', 'TEST-NUMVAL-F',
+            'TRIM', 'UPPER-CASE', 'VARIANCE', 'YEAR-TO-YYYY', 'WHEN-COMPILED'
             ),
-
-        6 => array( //Privileged Built-in Functions
-            '#IN', '#OUT', '#TERM', '#TEMP', '#DYNAMIC', 'COBOL85^ARMTRAP',
-            'COBOL85^COMPLETION', 'COBOL_COMPLETION_', 'COBOL_CONTROL_',
-            'COBOL_GETENV_', 'COBOL_PUTENV_', 'COBOL85^RETURN^SORT^ERRORS',
-            'COBOL_RETURN_SORT_ERRORS_', 'COBOL85^REWIND^SEQUENTIAL',
-            'COBOL_REWIND_SEQUENTIAL_', 'COBOL85^SET^SORT^PARAM^TEXT',
-            'COBOL_SET_SORT_PARAM_TEXT_', 'COBOL85^SET^SORT^PARAM^VALUE',
-            'COBOL_SET_SORT_PARAM_VALUE_', 'COBOL_SET_MAX_RECORD_',
-            'COBOL_SETMODE_', 'COBOL85^SPECIAL^OPEN', 'COBOL_SPECIAL_OPEN_',
-            'COBOLASSIGN', 'COBOL_ASSIGN_', 'COBOLFILEINFO', 'COBOL_FILE_INFO_',
-            'COBOLSPOOLOPEN', 'CREATEPROCESS', 'ALTERPARAMTEXT',
-            'CHECKLOGICALNAME', 'CHECKMESSAGE', 'DELETEASSIGN', 'DELETEPARAM',
-            'DELETESTARTUP', 'GETASSIGNTEXT', 'GETASSIGNVALUE', 'GETBACKUPCPU',
-            'GETPARAMTEXT', 'GETSTARTUPTEXT', 'PUTASSIGNTEXT', 'PUTASSIGNVALUE',
-            'PUTPARAMTEXT', 'PUTSTARTUPTEXT'
-            )
         ),
     'SYMBOLS' => array(
-        //Avoid having - in identifiers marked as symbols
+        //  Arithmetic and comparison operators must be surrounded by spaces.
         ' + ', ' - ', ' * ', ' / ', ' ** ', ' ^ ',
         '.', ',',
-        '=', '<', '>', '>=', '<=',
+        ' = ', ' < ', ' > ', ' >= ', ' <= ', ' <> ',
         '(', ')', '[', ']'
         ),
     'CASE_SENSITIVE' => array(
@@ -522,24 +397,19 @@ $language_data = array (
         2 => false,
         3 => false,
         4 => false,
-        5 => false,
-        6 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #000080; font-weight: bold;',
-            2 => 'color: #000000; font-weight: bold;',
-            3 => 'color: #008000; font-weight: bold;',
-            4 => 'color: #000000; font-weight: bold;',
-            5 => 'color: #000080;',
-            6 => 'color: #008000;',
+            1 => 'color: #000000; font-weight: bold;',
+            2 => 'color: #008000; font-weight: bold;',
+            3 => 'color: #000000; font-weight: bold;',
+            4 => 'color: #9d7700;',
             ),
         'COMMENTS' => array(
             1 => 'color: #a0a0a0; font-style: italic;',
-            'MULTI' => 'color: #a0a0a0; font-style: italic;'
+            2 => 'color: #000080; font-weight: bold;',
             ),
         'ESCAPE_CHAR' => array(
-            0 => 'color: #000099; font-weight: bold;'
             ),
         'BRACKETS' => array(
             0 => 'color: #339933;'
@@ -551,7 +421,7 @@ $language_data = array (
             0 => 'color: #993399;'
             ),
         'METHODS' => array(
-            1 => 'color: #202020;'
+            1 => 'color: #800080;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #000066;'
@@ -565,9 +435,7 @@ $language_data = array (
         1 => '',
         2 => '',
         3 => '',
-        4 => '',
-        5 => '',
-        6 => ''
+        4 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
@@ -580,7 +448,12 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            'DISALLOWED_BEFORE' => '(?<![a-zA-Z0-9-\$_\|\#|^&])',
+        ),
+    ),
 );
 
 ?>

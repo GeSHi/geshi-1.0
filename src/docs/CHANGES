@@ -44,6 +44,7 @@ Version 1.0.8.12
      * Updated PARI/GP language file (Charles R Greathouse IV, BenBE)
      * Updated Cobol language file (Edward Hart, BenBE)
      * Updated Verilog language file (Tony Carrillo, BenBE)
+     * Updated Lisp language file (Edward Hart, BenBE)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
