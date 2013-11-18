@@ -638,6 +638,9 @@ class GeSHi {
      * @since 1.0.0
      */
     public function set_language($language, $force_reset = false) {
+        $this->error = false;
+        $this->strict_mode = GESHI_NEVER;
+
         if ($force_reset) {
             $this->loaded_language = false;
         }
@@ -655,9 +658,6 @@ class GeSHi {
         }
 
         $this->language = $language;
-
-        $this->error = false;
-        $this->strict_mode = GESHI_NEVER;
 
         //Check if we can read the desired file
         if (!is_readable($file_name)) {
