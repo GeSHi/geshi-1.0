@@ -763,7 +763,7 @@ if ( PHP_SAPI != 'cli' ) {
 ?></li>
 </ol>
 
-<p>Validation process completed in <? printf("%.2f", $time_diff); ?> seconds.</p>
+<p>Validation process completed in <?php printf("%.2f", $time_diff); ?> seconds.</p>
 
 <div id="footer">GeSHi &copy; 2004-2007 Nigel McNie, 2007-2008 Benny Baumann, released under the GNU GPL</div>
 </body>
@@ -771,7 +771,7 @@ if ( PHP_SAPI != 'cli' ) {
 
 <?php } else { ?>
 
-Validation process completed in <? printf("%.2f", $time_diff); ?> seconds.
+Validation process completed in <?php printf("%.2f", $time_diff); ?> seconds.
 
 GeSHi &copy; 2004-2007 Nigel McNie, 2007-2012 Benny Baumann, released under the GNU GPL
 
