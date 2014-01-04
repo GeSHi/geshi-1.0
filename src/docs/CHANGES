@@ -49,6 +49,7 @@ Version 1.0.8.12
      * Updated Lisp language file (Edward Hart, BenBE)
      * Updated list of Debian and Ubuntu releases (BenBE)
      * Implemented C++11 string literal support (BenBE)
+     * Updated list of commands on Bash language file (BenBE)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)

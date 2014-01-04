@@ -263,7 +263,7 @@ $language_data = array (
             'ip', 'ip addr', 'ip addrlabel', 'ip link', 'ip maddr', 'ip mroute',
             'ip neigh', 'ip route', 'ip rule', 'ip tunnel', 'ip xfrm',
 
-            'join',
+            'jar', 'java', 'javac', 'join',
 
             'kbd_mode','kbdrate', 'kdialog', 'kfile', 'kill', 'killall',
 
