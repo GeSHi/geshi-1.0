@@ -11,6 +11,9 @@
  *
  * CHANGES
  * -------
+ * 2014/2/25
+ *   -  Fixed to not throw missing index exception.
+ * 
  * 2008/10/31 (1.0.8.1)
  *   -  First Release
  *
@@ -38,8 +41,8 @@
  ************************************************************************************/
 $language_data = array (
     'LANG_NAME' => 'LOLcode',
-    'COMMENT_SINGLE' => array(),
-    'COMMENT_MULTI' => array(),
+    'COMMENT_SINGLE' => array('BTW'),
+    'COMMENT_MULTI' => array('BTW','WTB'),
     'COMMENT_REGEXP' => array(
         1 => "/\bBTW\b.*$/im",
         2 => "/(^|\b)(?:OBTW\b.+?\bTLDR|LOL\b.+?\/LOL)(\b|$)/si"
@@ -112,17 +115,22 @@ $language_data = array (
             0 => 'color: #ff0000;'
             ),
         'NUMBERS' => array(
+            0 => 'color: #00F;'
             ),
         'METHODS' => array(
+            0 => 'color: #0F0;'
             ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
             ),
         'ESCAPE_CHAR' => array(
+            0 => 'color: #00F;'
             ),
         'SCRIPT' => array(
+            0 => 'color: #00F;'
             ),
         'REGEXPS' => array(
+            0 => 'color: #00F;'
             )
         ),
     'URLS' => array(
@@ -148,3 +156,5 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
+
+?>
