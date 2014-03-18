@@ -11,6 +11,9 @@
  *
  * CHANGES
  * -------
+ * 2014/03/18
+ *   -  Added support for raw strings
+ *   -  Color symbols
  * 2013/10/20
  *   -  First Release
  *
@@ -42,7 +45,10 @@ $language_data = array(
 
     'COMMENT_SINGLE' => array('//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
-    'COMMENT_REGEXP' => array(),
+    'COMMENT_REGEXP' => array(
+        // Raw strings
+        1 => '/\\br(\\#*)".*?"\\1/'
+        ),
 
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -171,6 +177,7 @@ $language_data = array(
             ),
         'COMMENTS' => array(
             0 => 'color: #a50; font-style: italic;',
+            1 => 'color: #a11;',
             'MULTI' => 'color: #a50; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -200,7 +207,7 @@ $language_data = array(
             1 => 'color: #164;'
             ),
         'SYMBOLS' => array(
-            0 => ''
+            0 => 'color: #339933;'
             ),
         'REGEXPS' => array(
             ),
