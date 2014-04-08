@@ -1,7 +1,7 @@
 
               CHANGES - Changelog for GeSHi (geshi.php only)
 
-Changes to the code are listed under the version they occured in, with who suggested
+Changes to the code are listed under the version they occurred in, with who suggested
 it by each one (if there's nobody listed as suggesting it I dreamed it up :)). Users
 who suggested an idea often also provided the code that was used as a basis for the
 changes - thanks to all who suggested these ideas and gave me the code to show me how!
@@ -769,7 +769,7 @@ Version 1.0.7.6
   -  Used hardquote support for ' strings in perl (Cliff Stanford)
   -  Fixed setting of language path (Cliff Stanford)
   -  Display source correctly formatted with line numbers (if requested) if an error
-     has occured (several people)
+     has occurred (several people)
   -  Having no source to highlight is not an error condition anymore
   -  Delphi language updated to include more keywords and types (BenBE)
   -  Updated NSIS to version 2.11 (deguix)
