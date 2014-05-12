@@ -52,7 +52,7 @@ $language_data = array (
             'instance', 'let', 'in', 'module', 'newtype',
             'qualified', 'type', 'where'
             ),
-        /* define names of main librarys, so we can link to it */
+        /* define names of main libraries, so we can link to it */
         2 => array(
             'Foreign', 'Numeric', 'Prelude'
             ),
@@ -101,19 +101,21 @@ $language_data = array (
             'interact', 'readFile', 'writeFile', 'appendFile',
             'readIO', 'readLn', 'ioError', 'userError', 'catch'
             ),
-        /* here Prelude Types */
+        /* Prelude types */
         4 => array (
-            'Bool', 'Maybe', 'Either', 'Ord', 'Ordering',
-            'Char', 'String', 'Eq', 'Enum', 'Bounded',
+            'Bool', 'Maybe', 'Either', 'Ordering',
+            'Char', 'String',
             'Int', 'Integer', 'Float', 'Double', 'Rational',
-            'Num', 'Real', 'Integral', 'Fractional',
-            'Floating', 'RealFrac', 'RealFloat', 'Monad',
-            'Functor', 'Show', 'ShowS', 'Read', 'ReadS',
-            'IO'
+            'ShowS', 'ReadS',
+            'IO', 'IOError', 'IOException'
             ),
-        /* finally Prelude Exceptions */
+        /* Prelude classes */
         5 => array (
-            'IOError', 'IOException'
+            'Ord', 'Eq', 'Enum', 'Bounded',
+            'Num', 'Real', 'Integral', 'Fractional',
+            'Floating', 'RealFrac', 'RealFloat',
+            'Monad', 'Functor',
+            'Show', 'Read'
             )
         ),
     /* highlighting symbols is really important in Haskell */
@@ -126,10 +128,10 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => true,
-        2 => true, /* functions name are case seinsitive */
-        3 => true, /* types name too */
-        4 => true, /* finally exceptions too */
+        1 => true, /* Haskell is a case sensitive language */
+        2 => true,
+        3 => true,
+        4 => true,
         5 => true
         ),
     'STYLES' => array(
@@ -138,7 +140,7 @@ $language_data = array (
             2 => 'color: #06c; font-weight: bold;', /* blue as well */
             3 => 'font-weight: bold;', /* make the preduled functions bold */
             4 => 'color: #cccc00; font-weight: bold;', /* give types a different bg */
-            5 => 'color: maroon;'
+            5 => 'color: maroon; font-weight: bold;' /* similarly for classes */
             ),
         'COMMENTS' => array(
             1 => 'color: #5d478b; font-style: italic;',
