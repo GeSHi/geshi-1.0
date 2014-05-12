@@ -118,13 +118,10 @@ $language_data = array (
             'Show', 'Read'
             )
         ),
-    /* highlighting symbols is really important in Haskell */
+    /* Most symbol combinations can be valid Haskell operators */
     'SYMBOLS' => array(
-        '|', '->', '<-', '@', '!', '::', '_', '~', '=', '?',
-        '&&', '||', '==', '/=', '<', '<=', '>',
-        '>=','+', '-', '*','/', '%', '**', '^', '^^',
-        '>>=', '>>', '=<<',  '$', '.', ',', '$!',
-        '++', '!!'
+        '!', '@', '#', '$', '%', '&', '*', '-', '+', '=',
+        '^', '~', '|', '\\', '>', '<', ':', '?', '/'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -181,7 +178,7 @@ $language_data = array (
         /* link to Prelude types */
         4 => 'http://haskell.org/ghc/docs/latest/html/libraries/base/Prelude.html#t:{FNAME}',
         /* link to Prelude exceptions */
-        5 => 'http://haskell.org/ghc/docs/latest/html/libraries/base/Prelude.html#t:{FNAME}',
+        5 => 'http://haskell.org/ghc/docs/latest/html/libraries/base/Prelude.html#t:{FNAME}'
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
