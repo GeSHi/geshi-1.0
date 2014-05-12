@@ -2,20 +2,14 @@
 /*************************************************************************************
  * haskell.php
  * ----------
- * Author: Jason Dagit (dagit@codersbase.com) based on ocaml.php by Flaie (fireflaie@gmail.com)
+ * Author: Daniel Mlot (duplode_1 at yahoo dot com dot br)
+ *         Based on haskell.php by Jason Dagit (dagit@codersbase.com), which was
+ *         based on ocaml.php by Flaie (fireflaie@gmail.com).
  * Copyright: (c) 2005 Flaie, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
- * Date Started: 2005/08/27
+ * Release Version:
+ * Date Started: 2014/05/12
  *
  * Haskell language file for GeSHi.
- *
- * CHANGES
- * -------
- * 2005/08/27 (1.0.0)
- *   -  First Release
- *
- * TODO (updated 2005/08/27)
- * -------------------------
  *
  *************************************************************************************
  *
