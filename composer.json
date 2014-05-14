@@ -15,5 +15,8 @@
         "forum": "https://lists.sourceforge.net/lists/listinfo/geshi-users",
         "irc": "irc://irc.freenode.org/geshi",
         "issues": "https://sourceforge.net/p/geshi/feature-requests/"
+    },
+    "autoload": {
+        "classmap": ["src/geshi/", "src/geshi.php"]
     }
 }
