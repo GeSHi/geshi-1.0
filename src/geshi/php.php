@@ -90,7 +90,7 @@ $language_data = array(
             'as','break','case','continue','default','do','else','elseif',
             'endfor','endforeach','endif','endswitch','endwhile','for',
             'foreach','if','include','include_once','require','require_once',
-            'return','switch','throw','while', 'yield'
+            'return','switch','throw','while', 'yield',
 
             'echo','print'
             ),
