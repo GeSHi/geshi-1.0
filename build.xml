@@ -9,19 +9,28 @@
   <property file="build.properties" />
 
   <property name="version"    value="1.0.8.9" />
+  <property name="stability"  value="stable" />
   <property name="zipfile"    value="${phing.project.name}-${version}.zip" />
   <property name="gzfile"     value="${phing.project.name}-${version}.tar.gz" />
   <property name="bz2file"    value="${phing.project.name}-${version}.tar.bz2" />
+  <property name="pkgfile"    value="geshi-${version}.tgz" />
   <property name="fileprefix" value="geshi/" />
   <property name="sfproject"  value="GeSHi" />
   <property name="sffilepath" value="g/ge/geshi/" />
   <property name="svnpath"    value="https://geshi.svn.sourceforge.net/svnroot/geshi/" />
+
+  <property name="releasenotes" value="
+Version 1.0.8.9
+" />
+
 
   <fileset dir="src" id="files">
    <include name="**"/>
    <exclude name="**/.gitignore/"/>
    <exclude name="**/.svn/"/>
   </fileset>
+
+  <taskdef name="d51pearpkg2" classname="phing.tasks.ext.d51PearPkg2Task" />
 
 
 
@@ -48,7 +57,100 @@
 
 
 
-  <target name="release" depends="check,pack,deploy-sf,svntag"
+  <target name="pack-pear" depends=""
+   description="Creates the PEAR package"
+  >
+   <mkdir dir="dist/pear" />
+   <delete file="src/package.xml" failonerror="false" />
+   <d51pearpkg2 dir="src" baseinstalldir="/">
+     <name>geshi</name>
+     <summary>Generic syntax highlighter, written in PHP.</summary>
+     <description>
+      GeSHi is a generic syntax highlighter, written in PHP. You simply
+      input the source code you wish to highlight with the language you
+      wish to use, and the output will be a file syntax highlighted to
+      XHTML standards.
+     </description>
+     <channel>pear.geshi.org</channel>
+
+     <lead user="benbe" name="Benny Baumann" email="benbe@geshi.org" />
+     <license>AGPL</license>
+
+     <version   release="${version}"   api="${version}" />
+     <stability release="${stability}" api="${stability}" />
+
+     <notes>${releasenotes}</notes>
+
+     <dependencies>
+       <php minimum_version="5.3.0" />
+       <pear minimum_version="1.9.0" />
+     </dependencies>
+
+     <!-- map directory (key) to role -->
+     <dirroles key="src">.</dirroles>
+
+     <ignore>**/.gitignore</ignore>
+     <ignore>contrib/**</ignore>
+     <ignore>docs/**</ignore>
+     <ignore>*.properties</ignore>
+     <ignore>*.tgz</ignore>
+   </d51pearpkg2>
+   <!-- time to fix the package.xml file since the task does not
+        allow everything we need:
+        - strip the base directory names like src, data and www
+        - remove that dumb baseinstalldir from files
+        - md5sums are generated automatically when packaging
+   -->
+   <!-- yes, we need to generate a 2nd file and move it back -->
+   <copy file="src/package.xml" tofile="src/package2.xml" overwrite="true">
+    <filterchain>
+     <replaceregexp>
+      <!-- remove md5sums -->
+      <regexp
+       pattern="md5sum=&quot;[a-z0-9]{32}&quot; "
+       replace=""
+       />
+      <!-- remove baseinstalldir for files -->
+      <regexp
+       pattern="&lt;file baseinstalldir=&quot;/&quot;"
+       replace="&lt;file"
+       />
+      <!-- install-as for different directories -->
+      <regexp
+       pattern="(&lt;file name=&quot;data/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;doc/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;tests/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;www/(.+?)&quot;)"
+       replace="\1 install-as=&quot;phorkie/\2&quot;"
+       />
+      <regexp
+       pattern="(&lt;file name=&quot;src/(.+?)&quot;)"
+       replace="\1 install-as=&quot;\2&quot;"
+       />
+     </replaceregexp>
+    </filterchain>
+   </copy>
+   <move file="src/package2.xml" tofile="src/package.xml" overwrite="true" />
+
+   <!-- package up -->
+   <exec command="pear package" passthru="true" dir="src" />
+   <move file="src/${pkgfile}" todir="${phing.dir}/dist/pear/" />
+
+   <delete file="src/package.xml" failonerror="true" />
+  </target>
+
+
+
+  <target name="release" depends="check,pack,pack-pear,deploy-sf,svntag"
    description="Release the version on sourceforge"
    >
    <!-- meta-target -->
