@@ -150,7 +150,7 @@ Version 1.0.8.9
 
 
 
-  <target name="release" depends="check,pack,pack-pear,deploy-sf,svntag"
+  <target name="release" depends="check,pack,pack-pear,deploy-sf,gittag"
    description="Release the version on sourceforge"
    >
    <!-- meta-target -->
@@ -187,11 +187,11 @@ Version 1.0.8.9
   </target>
 
 
-  <target name="svntag"
-   description="create the svn tag for the current version"
+  <target name="gittag"
+   description="create the git tag for the current version"
    >
     <exec
-     command="svn cp ${svnpath}trunk/geshi-1.0.X ${svnpath}/tags/RELEASE_${version} -m 'Tagged release version ${version}'"
+     command="git tag v${version}'"
      escape="false" checkreturn="true"
      />
   </target>
