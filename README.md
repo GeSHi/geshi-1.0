@@ -19,7 +19,7 @@ the documentation is available in the [docs](https://github.com/GeSHi/geshi-1.0/
 directory. Documentation is also available [online](http://qbnz.com/highlighter/documentation.php).
 
 If you think you've found a bug in GeSHi, contact me with a bug
-report at <BenBE@omorphia.de>, submit to the [bug tracker at Github](https://github.com/GeSHi/geshi-1.0/issues) 
+report at <BenBE@geshi.org>, submit to the [bug tracker at GitHub](https://github.com/GeSHi/geshi-1.0/issues) 
 or submit it to the [bug tracker at SourceForge](http://sourceforge.net/p/geshi/bugs/). 
 Be aware that minor highlighting errors may well just be incorrect
 language files, but if you do find something major please contact me.
