@@ -97,7 +97,7 @@ $language_data = array(
             'SectionGetInstTypes', 'SectionGetSize', 'SectionGetText', 'SectionSetFlags', 'SectionSetInstTypes',
             'SectionSetSize', 'SectionSetText', 'SendMessage', 'SetAutoClose', 'SetBrandingImage', 'SetCtlColors',
             'SetCurInstType', 'SetDetailsPrint', 'SetDetailsView', 'SetErrorLevel', 'SetErrors', 'SetFileAttributes',
-            'SetOutPath', 'SetRebootFlag', 'SetRegView', 'SetShellVarContext', 'SetSilent', 'ShowWindow', 'Sleep', 'StrCmp', 'StrCmpS'
+            'SetOutPath', 'SetRebootFlag', 'SetRegView', 'SetShellVarContext', 'SetSilent', 'ShowWindow', 'Sleep', 'StrCmp', 'StrCmpS',
             'StrCpy', 'StrLen', 'UnRegDLL', 'WriteINIStr', 'WriteRegBin', 'WriteRegDWORD', 'WriteRegExpandStr',
             'WriteRegStr', 'WriteUninstaller'
             ),
