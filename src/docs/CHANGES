@@ -27,6 +27,7 @@ Version 1.0.8.12
      * RBScript (Deng Wen Gang)
      * Rust (Dave Hodder)
      * SCL (Leonhard Hösch)
+     * StandardML (eldesh)
      * VBScript (Rory Prendergast)
   -  Allow for global setup of all keyword and comments style at once using '*' (BenBE)
   -  Non-persistent XSS in example contrib script (BenBE, present in intermediate dev versions)
@@ -50,6 +51,14 @@ Version 1.0.8.12
      * Updated list of Debian and Ubuntu releases (BenBE)
      * Implemented C++11 string literal support (BenBE)
      * Updated list of commands on Bash language file (BenBE)
+     * Updated PHP language file (Levi Morrisson)
+     * Updated Haskell language file (duplode)
+     * Updated NSIS language file (Jan T. Scott, BenBE)
+     * Add raw string support for Rust (mbrown1413)
+     * Fix LangCheck issues with LOLcode language file (mudhailess, BenBE)
+     * Updated LSL2 language file (Sei Lisa, BenBE)
+     * Updated Oxygene language file (Carlo Kok, BenBE)
+     * Fixed TCL comment processing (Sei Lisa)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
