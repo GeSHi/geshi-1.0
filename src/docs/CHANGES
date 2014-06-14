@@ -60,6 +60,7 @@ Version 1.0.8.12
      * Updated LSL2 language file (Sei Lisa, BenBE)
      * Updated Oxygene language file (Carlo Kok, BenBE)
      * Fixed TCL comment processing (Sei Lisa)
+     * Fixed C++ (Qt) documentation links (Sei Lisa)
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
