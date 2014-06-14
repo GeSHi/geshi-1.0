@@ -106,6 +106,7 @@ $language_data = array(
             4 => 'color: #800000;'
             ),
         'COMMENTS' => array(
+            0 => 'color: #666666; style: italic;',
             1 => 'color: #666666; style: italic;',
             2 => 'color: #666666; style: italic;'
             ),
@@ -131,7 +132,6 @@ $language_data = array(
             0 => 'color: #00F;'
             ),
         'REGEXPS' => array(
-            0 => 'color: #00F;'
             )
         ),
     'URLS' => array(
