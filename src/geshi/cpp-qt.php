@@ -540,7 +540,7 @@ $language_data = array (
         2 => '',
         3 => '',
         4 => '',
-        5 => 'http://doc.trolltech.com/latest/{FNAMEL}.html'
+        5 => 'http://qt-project.org/doc/latest/{FNAMEL}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
