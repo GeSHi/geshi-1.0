@@ -13,7 +13,7 @@
  * -------
  * 2014/2/25
  *   -  Fixed to not throw missing index exception.
- * 
+ *
  * 2008/10/31 (1.0.8.1)
  *   -  First Release
  *
@@ -39,7 +39,8 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ************************************************************************************/
-$language_data = array (
+
+$language_data = array(
     'LANG_NAME' => 'LOLcode',
     'COMMENT_SINGLE' => array('BTW'),
     'COMMENT_MULTI' => array('BTW','WTB'),
@@ -156,5 +157,3 @@ $language_data = array (
         ),
     'TAB_WIDTH' => 4
 );
-
-?>

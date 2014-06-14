@@ -50,7 +50,7 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'NSIS',
     'COMMENT_SINGLE' => array(1 => ';', 2 => '#'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -69,7 +69,7 @@ $language_data = array (
             'CRCCheck', 'DetailsButtonText', 'DirText', 'DirVar', 'DirVerify', 'FileErrorText',
             'Function', 'FunctionEnd', 'Icon', 'InstallButtonText', 'InstallColors', 'InstallDir',
             'InstallDirRegKey', 'InstProgressFlags', 'InstType', 'LangString', 'LicenseBkColor',
-            'LicenseData', 'LicenseForceSelection', 'LicenseLangString', 'LicenseText', 'LoadLanguageFile', 'ManifestDPIAware', 'ManifestSupportedOS', 
+            'LicenseData', 'LicenseForceSelection', 'LicenseLangString', 'LicenseText', 'LoadLanguageFile', 'ManifestDPIAware', 'ManifestSupportedOS',
             'MiscButtonText', 'Name', 'OutFile', 'Page', 'PageEx', 'PageExEnd', 'RequestExecutionLevel', 'Section',
             'SectionEnd', 'SectionGroup', 'SectionGroupEnd', 'SetCompressor', 'SetFont', 'ShowInstDetails',
             'ShowUninstDetails', 'SilentInstall', 'SilentUnInstall', 'SpaceTexts', 'SubCaption', 'SubSection',
