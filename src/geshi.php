@@ -28,7 +28,7 @@
  * @package    geshi
  * @subpackage core
  * @author     Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
- * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
+ * @copyright  (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2014 Benny Baumann
  * @license    http://gnu.org/copyleft/gpl.html GNU GPL
  *
  */
@@ -254,7 +254,7 @@ define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
  *
  * @package   geshi
  * @author    Nigel McNie <nigel@geshi.org>, Benny Baumann <BenBE@omorphia.de>
- * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2008 Benny Baumann
+ * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2014 Benny Baumann
  */
 class GeSHi {
     /**#@+
@@ -4401,13 +4401,13 @@ class GeSHi {
                 " * --------------------------------------\n".
                 " * Dynamically generated stylesheet for {$this->language}\n".
                 " * CSS class: {$this->overall_class}, CSS id: {$this->overall_id}\n".
-                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2014 Benny Baumann\n" .
                 " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
                 " * --------------------------------------\n".
                 " */\n";
         } else {
             $stylesheet = "/**\n".
-                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann\n" .
+                " * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2014 Benny Baumann\n" .
                 " * (http://qbnz.com/highlighter/ and http://geshi.org/)\n".
                 " */\n";
         }

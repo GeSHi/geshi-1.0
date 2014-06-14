@@ -773,6 +773,6 @@ if ( PHP_SAPI != 'cli' ) {
 
 Validation process completed in <?php printf("%.2f", $time_diff); ?> seconds.
 
-GeSHi &copy; 2004-2007 Nigel McNie, 2007-2012 Benny Baumann, released under the GNU GPL
+GeSHi &copy; 2004-2007 Nigel McNie, 2007-2014 Benny Baumann, released under the GNU GPL
 
 <?php } ?>
