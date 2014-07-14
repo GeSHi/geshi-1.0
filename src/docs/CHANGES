@@ -63,6 +63,7 @@ Version 1.0.8.12
      * Updated Oxygene language file (Carlo Kok, BenBE)
      * Fixed TCL comment processing (Sei Lisa)
      * Fixed C++ (Qt) documentation links (Sei Lisa)
+     * Updated CSS language file to include CSS3 keywords (Zéfling, BenBE))
 Version 1.0.8.11
   -  Added language files
      * ARM (Marat Dukhan)
