@@ -3,7 +3,7 @@
  * nimrod.php
  * ----------
  * Author: Dennis Felsing (dennis@felsin9.de)
- * Copyright: (c) 2014 Nigel McNie (http://qbnz.com/highlighter)
+ * Copyright: (c) 2014 Dennis Felsing
  * Release Version: 1.0.8.11
  * Date Started: 2014/07/15
  *
