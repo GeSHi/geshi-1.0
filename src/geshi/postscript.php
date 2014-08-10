@@ -44,7 +44,7 @@ $language_data = array (
     'COMMENT_MULTI' => array(), //array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         // Strings
-        1 => "/\((?:[^\\]|\\[0-7]{3}|\\.|\\R)*\)/s",
+        1 => "/\((?:[^\\]|\\\\[0-7]{3}|\\\\.|\\R)*\)/s",
         // Hex Strings
         2 => "/<(?!<)[0-9a-f\s]*>/si",
         // ASCII-85 Strings
