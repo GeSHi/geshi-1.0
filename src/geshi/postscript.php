@@ -44,7 +44,7 @@ $language_data = array (
     'COMMENT_MULTI' => array(), //array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         // Strings
-        1 => "/\((?:[^\\]|\\\\[0-7]{3}|\\\\.|\\R)*\)/s",
+        1 => "/\((?:\\\\[0-7]{3}|\\\\.|(?R)|[^)])*\)/s",
         // Hex Strings
         2 => "/<(?!<)[0-9a-f\s]*>/si",
         // ASCII-85 Strings
@@ -57,7 +57,7 @@ $language_data = array (
         ),
     'NUMBERS' => array(
         0 => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
-        1 => "\d+#[0-9a-ZA-Z]+"
+        1 => "\d+#[0-9a-zA-Z]+"
         ),
     'KEYWORDS' => array(
         1 => array(
