@@ -40,29 +40,29 @@
 
 $language_data = array (
     'LANG_NAME' => 'PostScript',
-    'COMMENT_SINGLE' => array(1 => '%'),
+    'COMMENT_SINGLE' => array(0 => '%'),
     'COMMENT_MULTI' => array(), //array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         // Strings
-        1 => "/\([^)]*\)/sm",
-        //Multiline-continued single-line comments
-        //1 => '/\/\/(?:\\\\\\\\|\\\\\\n|.)*$/m',
-        //Multiline-continued preprocessor define
-        //2 => '/#(?:\\\\\\\\|\\\\\\n|.)*$/m'
+        1 => "/\((?:[^\\]|\\[0-7]{3}|\\.|\\R)*\)/s",
+        // Hex Strings
+        2 => "/<(?!<)[0-9a-f\s]*>/si",
+        // ASCII-85 Strings
+        3 => "/<~.*~>/si",
         ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '',
     'ESCAPE_REGEXP' => array(
         ),
-    'NUMBERS' =>
-        GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_INT_CSTYLE | GESHI_NUMBER_BIN_PREFIX_0B |
-        GESHI_NUMBER_OCT_PREFIX | GESHI_NUMBER_HEX_PREFIX | GESHI_NUMBER_FLT_NONSCI |
-        GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+    'NUMBERS' => array(
+        0 => GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
+        1 => "\d+#[0-9a-ZA-Z]+"
+        ),
     'KEYWORDS' => array(
         1 => array(
-            'countexecstack', 'exec', 'execstack', 'exit', 'for', 'if', 'ifelse',
-            'loop', 'quit', 'repeat', 'start', 'stop', 'stopped',
+            'countexecstack', 'def', 'dup', 'exch', 'exec', 'execstack', 'exit',
+            'for', 'if', 'ifelse', 'loop', 'pop', 'repeat',
 
             'abs', 'add', 'atan', 'ceiling', 'cos', 'div', 'exp', 'floor',
             'idiv', 'ln', 'log', 'mul', 'mod', 'neg', 'rand', 'round', 'rrand',
@@ -74,11 +74,12 @@ $language_data = array (
             'false', 'null', 'true', 'version'
             ),
         3 => array(
-            'clear', 'cleartomark', 'copy', 'count', 'counttomark', 'dup',
-            'exch', 'index', 'pop', 'roll',
+            'quit', 'start', 'stop', 'stopped',
+
+            'clear', 'cleartomark', 'copy', 'count', 'counttomark', 'index', 'roll',
 
             'aload', 'astore', 'begin', 'countdictstack', 'currentdict',
-            'def', 'dictstack', 'end', 'errordict', 'forall', 'get',
+            'dictstack', 'end', 'errordict', 'forall', 'get',
             'getinterval', 'known', 'length', 'load', 'maxlength', 'put',
             'putinterval', 'store', 'systemdict', 'userdict', 'where',
 
@@ -136,9 +137,10 @@ $language_data = array (
             ),
         ),
     'SYMBOLS' => array(
+        0 => array('==', '=', '/', '//'),
         1 => array('[', ']'),
         2 => array('{', '}'),
-        3 => array('==', '=')
+        3 => array('<<', '>>')
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -149,13 +151,16 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #b1b100; font-weight: bold;',
-            2 => 'color: #000066; font-weight: bold;',
+            1 => 'color: #000066; font-weight: bold;',
+            2 => 'color: #0000ff; font-weight: bold;',
             3 => 'color: #000000; font-weight: bold;',
             4 => 'color: #993333; font-weight: bold;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #666666; font-style: italic;',
+            0 => 'color: #333333; font-style: italic;',
+            1 => 'color: #339933;',
+            2 => 'color: #006600;',
+            3 => 'color: #666666;',
             'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
@@ -181,9 +186,9 @@ $language_data = array (
             ),
         'SYMBOLS' => array(
             0 => 'color: #339933;',
-            1 => 'color: #339933;',
-            2 => 'color: #339933;',
-            3 => 'color: #339933;'
+            1 => 'color: #009900;',
+            2 => 'color: #009900;',
+            3 => 'color: #009900;'
             ),
         'REGEXPS' => array(
             1 => 'color: #006600;'
