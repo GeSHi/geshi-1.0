@@ -34,6 +34,7 @@ Version 1.0.8.12
   -  Allow for global setup of all keyword and comments style at once using '*' (BenBE)
   -  Non-persistent XSS in example contrib script (BenBE, present in intermediate dev versions)
   -  Fix short tag usage to allow for configurations where short tags are disabled (BenBE)
+  -  Updated COPYING to use updated version of GPL 2.0 (BenBE)
   -  Improvements to language files (BenBE)
      * Updated Documentation Link for LaTeX (Johannes Ähling)
      * Fix some highlighting problems with Octave (Carnë Draug, Juan Pablo Carbajal)
