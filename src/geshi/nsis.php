@@ -60,7 +60,7 @@ $language_data = array(
     'KEYWORDS' => array(
         1 => array(
             '!addincludedir', '!addplugindir', '!appendfile', '!cd', '!define', '!delfile', '!echo', '!error',
-            '!execute', '!finalize', '!getdllversion', '!include', '!insertmacro', '!macro', '!macroend', '!packhdr',
+            '!execute', '!finalize', '!getdllversion', '!include', '!insertmacro', '!macro', '!macroend', '!makensis', '!packhdr',
             '!searchparse', '!searchreplace', '!system', '!tempfile', '!undef', '!verbose', '!warning'
             ),
         2 => array(
