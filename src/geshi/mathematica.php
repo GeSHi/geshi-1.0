@@ -19,6 +19,8 @@
  *
  * CHANGES
  * -------
+ * 2014/10/13 (1.0.8.11)
+ *  - Removed style variables for compatability
  * 2014/08/11 (1.0.8.11)
  *  - First Release
  *  - Symbols taken from http://reference.wolfram.com/language/guide/AlphabeticalListing.html
@@ -46,19 +48,21 @@
  *   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  ************************************************************************************/
-$string_style     = 'color: #666666; font-style: italic;';
-$comment_style    = 'color: #999999; font-style: italic;';
+//"Base" styles
+//string     = 'color: #666666; font-style: italic;';
+//comment    = 'color: #999999; font-style: italic;';
 
-$primary_style    = 'color: #500D75; font-weight: bold;'; //keywords
-$secondary_style  = 'color: #70A30A; font-weight: bold;'; //infix functions
-$tertiary_style   = 'color: #8C0953; font-weight: bold;'; //$variables
-$quaternary_style = 'color: #AFAF0B; font-weight: bold;'; //potentially array syntax in the future
+//Purple-green colors
+//primary    = 'color: #500D75; font-weight: bold;'; //keywords
+//secondary  = 'color: #70A30A; font-weight: bold;'; //infix functions
+//tertiary   = 'color: #8C0953; font-weight: bold;'; //$variables
+//quaternary = 'color: #AFAF0B; font-weight: bold;'; //potentially array syntax in the future
 
-//Uncomment for orange-blue colors (similar to python coloring)
-//$primary_style    = 'color: #FF7700; font-weight: bold;'; //keywords
-//$secondary_style  = 'color: #133CAC; font-weight: bold;'; //infix functions
-//$tertiary_style   = 'color: #028E9B; font-weight: bold;'; //$variables
-//$quaternary_style = 'color: #FFAD00; font-weight: bold;'; //potentially array syntax in the future
+//Orange-blue colors (similar to python coloring)
+//primary    = 'color: #FF7700; font-weight: bold;'; //keywords
+//secondary  = 'color: #133CAC; font-weight: bold;'; //infix functions
+//tertiary   = 'color: #028E9B; font-weight: bold;'; //$variables
+//quaternary = 'color: #FFAD00; font-weight: bold;'; //potentially array syntax in the future
 
 $language_data = array(
     'LANG_NAME' => 'Mathematica',
@@ -987,31 +991,31 @@ $language_data = array(
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => $primary_style
+            1 => 'color: #FF7700; font-weight: bold;',
             ),
         'COMMENTS' => array(
-            'MULTI' => $comment_style
+            'MULTI' => 'color: #999999; font-style: italic;',
             ),
         'ESCAPE_CHAR' => array(
             1 => '',
             ),
         'BRACKETS' => array(),
         'STRINGS' => array(
-            1 => $string_style,
+            1 => 'color: #666666; font-style: italic;',
             ),
         'NUMBERS' => array(
             ),
         'METHODS' => array(),
         'SYMBOLS' => array(
-            1 => $secondary_style,
-            2 => $tertiary_style,
-            3 => $quaternary_style
+            1 => 'color: #133CAC; font-weight: bold;',
+            2 => 'color: #028E9B; font-weight: bold;',
+            3 => 'color: #FFAD00; font-weight: bold;',
             ),
         //'BRACKETS' => array(
             //0 => 'color: #8C0953; font-weight: bold;', // array
             //),
         'REGEXPS' => array(
-            0 => $secondary_style
+            0 => 'color: #133CAC; font-weight: bold;',
             ),
         'SCRIPT' => array()
         ),
