@@ -104,11 +104,12 @@ $language_data = array (
             'virtual', 'public', 'private', 'protected', 'template', 'using', 'namespace',
             'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
             'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class', 'nullptr',
-            'decltype', 'override', 'final', 'noexcept', 'alignas', 'noreturn', 'constexpr',
-            'static_assert', 'mutable'
+            'decltype', 'override', 'final', 'noexcept', 'alignas', 'alignof', 'noreturn',
+            'constexpr', 'and', 'and_eq', 'asm', 'bitand', 'bitor', 'thread_local',
+            'static_assert', 'compl', 'or', 'or_eq', 'xor', 'xor_eq', 'not', 'not_eq'
             ),
         3 => array(
-            'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
+            'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this', 'export',
             'printf', 'fprintf', 'snprintf', 'sprintf', 'assert',
             'isalnum', 'isalpha', 'isdigit', 'iscntrl', 'isgraph', 'islower', 'isprint',
             'ispunct', 'isspace', 'isupper', 'isxdigit', 'tolower', 'toupper',
@@ -130,11 +131,12 @@ $language_data = array (
             'asctime', 'ctime', 'gmtime', 'localtime', 'strftime'
             ),
         4 => array(
-            'auto', 'bool', 'char', 'const', 'double', 'float', 'int', 'long', 'longint',
-            'register', 'short', 'shortint', 'signed', 'static', 'struct',
-            'typedef', 'union', 'unsigned', 'void', 'volatile', 'extern', 'jmp_buf',
-            'signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t', 'FILE', 'fpos_t',
-            'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm', 'wchar_t',
+            'auto', 'bool', 'char', 'char16_t', 'char32_t', 'const', 'double', 'float',
+            'int', 'long', 'longint','register', 'short', 'shortint', 'signed',
+            'static', 'struct', 'typedef', 'union', 'unsigned', 'void', 'volatile',
+            'extern', 'jmp_buf','signal', 'raise', 'va_list', 'ptrdiff_t', 'size_t',
+            'FILE', 'fpos_t', 'div_t', 'ldiv_t', 'clock_t', 'time_t', 'tm', 'wchar_t',
+            'mutable',
 
             'int8', 'int16', 'int32', 'int64',
             'uint8', 'uint16', 'uint32', 'uint64',
