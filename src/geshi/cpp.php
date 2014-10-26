@@ -14,6 +14,8 @@
  *
  * CHANGES
  * -------
+ * 2013/11/06
+ *  -  Added nullptr from c++11 & others
  * 2008/05/23 (1.0.7.22)
  *  -  Added description of extra language features (SF#1970248)
  * 2004/XX/XX (1.0.2)
@@ -101,7 +103,9 @@ $language_data = array (
             'EXIT_FAILURE', 'EXIT_SUCCESS', 'RAND_MAX', 'CLOCKS_PER_SEC',
             'virtual', 'public', 'private', 'protected', 'template', 'using', 'namespace',
             'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
-            'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class'
+            'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class','nullptr',
+			'decltype','override','final','noexcept','alignas','noreturn','constexpr',
+			'static_assert'
             ),
         3 => array(
             'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
