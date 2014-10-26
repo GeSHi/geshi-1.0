@@ -105,7 +105,7 @@ $language_data = array (
             'try', 'catch', 'inline', 'dynamic_cast', 'const_cast', 'reinterpret_cast',
             'static_cast', 'explicit', 'friend', 'typename', 'typeid', 'class','nullptr',
 			'decltype','override','final','noexcept','alignas','noreturn','constexpr',
-			'static_assert'
+			'static_assert', 'mutable'
             ),
         3 => array(
             'cin', 'cerr', 'clog', 'cout', 'delete', 'new', 'this',
