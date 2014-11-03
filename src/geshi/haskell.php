@@ -6,7 +6,7 @@
  *         Based on haskell.php by Jason Dagit (dagit@codersbase.com), which was
  *         based on ocaml.php by Flaie (fireflaie@gmail.com).
  * Copyright: (c) 2005 Flaie, Nigel McNie (http://qbnz.com/highlighter)
- * Release Version:
+ * Release Version: 1.0.8.12
  * Date Started: 2014/05/12
  *
  * Haskell language file for GeSHi.
