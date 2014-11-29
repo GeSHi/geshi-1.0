@@ -595,10 +595,10 @@ class GeSHi {
      * @since 1.0.0
      */
     function GeSHi($source = '', $language = '', $path = '') {
-        if (!empty($source)) {
+        if ($source !== '' ) {
             $this->set_source($source);
         }
-        if (!empty($language)) {
+        if ($language !== '') {
             $this->set_language($language);
         }
         $this->set_language_path($path);
