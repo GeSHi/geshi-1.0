@@ -595,10 +595,10 @@ class GeSHi {
      * @since 1.0.0
      */
     function __construct($source = '', $language = '', $path = '') {
-        if (!empty($source)) {
+        if ( is_string($source) && ($source !== '') ) {
             $this->set_source($source);
         }
-        if (!empty($language)) {
+        if ( is_string($language) && ($language !== '') ) {
             $this->set_language($language);
         }
         $this->set_language_path($path);
