@@ -48,7 +48,7 @@ $language_data = array (
         // comments
         2 => "/(?<=[\\s^])(s|tr|y)\\/(?!\*)(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])+(?<!\s)\\/(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])*(?<!\s)\\/[msixpogcde]*(?=[\\s$\\.\\;])|(?<=[\\s^(=])(m|q[qrwx]?)?\\/(?!\*)(?!\s)(?:\\\\.|(?!\n)[^\\/\\\\])+(?<!\s)\\/[msixpogc]*(?=[\\s$\\.\\,\\;\\)])/iU",
         // property binding
-        3 => "/([a-z][\\w\\.]+)(?=:)/",
+        3 => "/([a-z][\\w\\.]*)(?=:)/",
         // TODO: property name (fixed length lookbehind assertion?)
         4 => "/(?<=property\\s+\\w+\\s+)(\\w+)/"
         ),
@@ -57,7 +57,7 @@ $language_data = array (
     'ESCAPE_CHAR' => '\\',
     'KEYWORDS' => array(
         1 => array(
-            'as','break','case','catch','continue','const','debugger',
+            'as','alias','break','case','catch','continue','const','debugger',
             'default','delete','do','else','finally','for','function',
             'if','import','in','instanceof','new','on','public','property',
             'readonly','return','signal','switch','this','throw','try',
