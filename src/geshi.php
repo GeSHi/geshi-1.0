@@ -583,9 +583,9 @@ class GeSHi {
     /**
      * Creates a new GeSHi object, with source and language
      *
-     * @param string The source code to highlight
-     * @param string The language to highlight the source with
-     * @param string The path to the language file directory. <b>This
+     * @param string $source The source code to highlight
+     * @param string $language The language to highlight the source with
+     * @param string $path The path to the language file directory. <b>This
      *               is deprecated!</b> I've backported the auto path
      *               detection from the 1.1.X dev branch, so now it
      *               should be automatically set correctly. If you have
@@ -656,7 +656,7 @@ class GeSHi {
     /**
      * Sets the source code for this object
      *
-     * @param string The source code to highlight
+     * @param string $source The source code to highlight
      * @since 1.0.0
      */
     function set_source($source) {
@@ -670,7 +670,8 @@ class GeSHi {
      * @note since 1.0.8 this function won't reset language-settings by default anymore!
      *       if you need this set $force_reset = true
      *
-     * @param string The name of the language to use
+     * @param string $language The name of the language to use
+     * @param bool $force_reset
      * @since 1.0.0
      */
     function set_language($language, $force_reset = false) {
@@ -710,7 +711,7 @@ class GeSHi {
      * that this path is relative to the directory of the script that included
      * geshi.php, NOT geshi.php itself.
      *
-     * @param string The path to the language directory
+     * @param string $path The path to the language directory
      * @since 1.0.0
      * @deprecated The path to the language files should now be automatically
      *             detected, so this method should no longer be needed. The
@@ -748,7 +749,7 @@ class GeSHi {
 
     /**
      * Get supported langs or an associative array lang=>full_name.
-     * @param boolean $longnames
+     * @param boolean $full_names
      * @return array
      */
     function get_supported_languages($full_names=false)
@@ -839,7 +840,7 @@ class GeSHi {
      * From 1.0.7.2, you can use GESHI_HEADER_NONE to specify that no header code
      * should be outputted.
      *
-     * @param int The type of header to be used
+     * @param int $type The type of header to be used
      * @since 1.0.0
      */
     function set_header_type($type) {
@@ -859,8 +860,8 @@ class GeSHi {
      * when this object is parsed. The style should be a
      * string of valid stylesheet declarations
      *
-     * @param string  The overall style for the outputted code block
-     * @param boolean Whether to merge the styles with the current styles or not
+     * @param string $style The overall style for the outputted code block
+     * @param boolean $preserve_defaults Whether to merge the styles with the current styles or not
      * @since 1.0.0
      */
     function set_overall_style($style, $preserve_defaults = false) {
@@ -876,7 +877,7 @@ class GeSHi {
      * class can then be used in a stylesheet to style this object's
      * output
      *
-     * @param string The class name to use for this block of code
+     * @param string $class The class name to use for this block of code
      * @since 1.0.0
      */
     function set_overall_class($class) {
@@ -887,7 +888,7 @@ class GeSHi {
      * Sets the overall id for this block of code. This id can then
      * be used in a stylesheet to style this object's output
      *
-     * @param string The ID to use for this block of code
+     * @param string $id The ID to use for this block of code
      * @since 1.0.0
      */
     function set_overall_id($id) {
@@ -898,7 +899,7 @@ class GeSHi {
      * Sets whether CSS classes should be used to highlight the source. Default
      * is off, calling this method with no arguments will turn it on
      *
-     * @param boolean Whether to turn classes on or not
+     * @param boolean $flag Whether to turn classes on or not
      * @since 1.0.0
      */
     function enable_classes($flag = true) {
@@ -916,8 +917,8 @@ class GeSHi {
      * code will have the same style as the line number! Consult the
      * GeSHi documentation for more information about this.
      *
-     * @param string  The style to use for actual code
-     * @param boolean Whether to merge the current styles with the new styles
+     * @param string $style The style to use for actual code
+     * @param boolean $preserve_defaults Whether to merge the current styles with the new styles
      * @since 1.0.2
      */
     function set_code_style($style, $preserve_defaults = false) {
@@ -931,12 +932,12 @@ class GeSHi {
     /**
      * Sets the styles for the line numbers.
      *
-     * @param string The style for the line numbers that are "normal"
-     * @param string|boolean If a string, this is the style of the line
+     * @param string $style1 The style for the line numbers that are "normal"
+     * @param string|boolean $style2 If a string, this is the style of the line
      *        numbers that are "fancy", otherwise if boolean then this
      *        defines whether the normal styles should be merged with the
      *        new normal styles or not
-     * @param boolean If set, is the flag for whether to merge the "fancy"
+     * @param boolean $preserve_defaults If set, is the flag for whether to merge the "fancy"
      *        styles with the current styles or not
      * @since 1.0.2
      */
@@ -970,8 +971,8 @@ class GeSHi {
      * are to be fancy. For example, if the value of this parameter is 5 then every
      * 5th line will be fancy.
      *
-     * @param int How line numbers should be displayed
-     * @param int Defines which lines are fancy
+     * @param int $flag How line numbers should be displayed
+     * @param int $nth_row Defines which lines are fancy
      * @since 1.0.0
      */
     function enable_line_numbers($flag, $nth_row = 5) {
@@ -989,7 +990,7 @@ class GeSHi {
      * Set it to false if you want to manipulate the output or manually display
      * the code in an ordered list.
      *
-     * @param boolean Wether multiline spans are allowed or not
+     * @param boolean $flag Wether multiline spans are allowed or not
      * @since 1.0.7.22
      */
     function enable_multiline_span($flag) {
@@ -1011,9 +1012,9 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param int     The key of the keyword group to change the styles of
-     * @param string  The style to make the keywords
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param int     $key The key of the keyword group to change the styles of
+     * @param string  $style The style to make the keywords
+     * @param boolean $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
      * @since 1.0.0
      */
@@ -1044,8 +1045,8 @@ class GeSHi {
     /**
      * Turns highlighting on/off for a keyword group
      *
-     * @param int     The key of the keyword group to turn on or off
-     * @param boolean Whether to turn highlighting for that group on or off
+     * @param int     $key The key of the keyword group to turn on or off
+     * @param bool    $flag Whether to turn highlighting for that group on or off
      * @since 1.0.0
      */
     function set_keyword_group_highlighting($key, $flag = true) {
@@ -1057,9 +1058,9 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param int     The key of the comment group to change the styles of
-     * @param string  The style to make the comments
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param int     $key The key of the comment group to change the styles of
+     * @param string  $style The style to make the comments
+     * @param bool    $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
      * @since 1.0.0
      */
@@ -1084,8 +1085,8 @@ class GeSHi {
     /**
      * Turns highlighting on/off for comment groups
      *
-     * @param int     The key of the comment group to turn on or off
-     * @param boolean Whether to turn highlighting for that group on or off
+     * @param int     $key The key of the comment group to turn on or off
+     * @param bool    $flag Whether to turn highlighting for that group on or off
      * @since 1.0.0
      */
     function set_comments_highlighting($key, $flag = true) {
@@ -1097,9 +1098,10 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param string  The style to make the escape characters
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param string  $style The style to make the escape characters
+     * @param bool    $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
+     * @param int     $group
      * @since 1.0.0
      */
     function set_escape_characters_style($style, $preserve_defaults = false, $group = 0) {
@@ -1113,7 +1115,7 @@ class GeSHi {
     /**
      * Turns highlighting on/off for escaped characters
      *
-     * @param boolean Whether to turn highlighting for escape characters on or off
+     * @param bool $flag Whether to turn highlighting for escape characters on or off
      * @since 1.0.0
      */
     function set_escape_characters_highlighting($flag = true) {
@@ -1128,8 +1130,8 @@ class GeSHi {
      * This method is DEPRECATED: use set_symbols_style instead.
      * This method will be removed in 1.2.X
      *
-     * @param string  The style to make the brackets
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param string  $style The style to make the brackets
+     * @param bool    $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
      * @since 1.0.0
      * @deprecated In favour of set_symbols_style
@@ -1148,7 +1150,7 @@ class GeSHi {
      * This method is DEPRECATED: use set_symbols_highlighting instead.
      * This method will be remove in 1.2.X
      *
-     * @param boolean Whether to turn highlighting for brackets on or off
+     * @param bool $flag Whether to turn highlighting for brackets on or off
      * @since 1.0.0
      * @deprecated In favour of set_symbols_highlighting
      */
@@ -1161,10 +1163,10 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param string  The style to make the symbols
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param string  $style The style to make the symbols
+     * @param boolean $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
-     * @param int     Tells the group of symbols for which style should be set.
+     * @param int     $group Tells the group of symbols for which style should be set.
      * @since 1.0.1
      */
     function set_symbols_style($style, $preserve_defaults = false, $group = 0) {
@@ -1184,7 +1186,7 @@ class GeSHi {
     /**
      * Turns highlighting on/off for symbols
      *
-     * @param boolean Whether to turn highlighting for symbols on or off
+     * @param bool $flag Whether to turn highlighting for symbols on or off
      * @since 1.0.0
      */
     function set_symbols_highlighting($flag) {
@@ -1200,10 +1202,10 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param string  The style to make the escape characters
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param string  $style The style to make the escape characters
+     * @param bool    $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
-     * @param int     Tells the group of strings for which style should be set.
+     * @param int     $group Tells the group of strings for which style should be set.
      * @since 1.0.0
      */
     function set_strings_style($style, $preserve_defaults = false, $group = 0) {
@@ -1217,7 +1219,7 @@ class GeSHi {
     /**
      * Turns highlighting on/off for strings
      *
-     * @param boolean Whether to turn highlighting for strings on or off
+     * @param bool $flag Whether to turn highlighting for strings on or off
      * @since 1.0.0
      */
     function set_strings_highlighting($flag) {
@@ -1229,10 +1231,10 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param string  The style to make the script blocks
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param string  $style The style to make the script blocks
+     * @param boolean $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
-     * @param int     Tells the group of script blocks for which style should be set.
+     * @param int     $group Tells the group of script blocks for which style should be set.
      * @since 1.0.8.4
      */
     function set_script_style($style, $preserve_defaults = false, $group = 0) {
@@ -1249,10 +1251,10 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param string  The style to make the numbers
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param string  $style The style to make the numbers
+     * @param boolean $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
-     * @param int     Tells the group of numbers for which style should be set.
+     * @param int     $group Tells the group of numbers for which style should be set.
      * @since 1.0.0
      */
     function set_numbers_style($style, $preserve_defaults = false, $group = 0) {
@@ -1266,7 +1268,7 @@ class GeSHi {
     /**
      * Turns highlighting on/off for numbers
      *
-     * @param boolean Whether to turn highlighting for numbers on or off
+     * @param bool $flag Whether to turn highlighting for numbers on or off
      * @since 1.0.0
      */
     function set_numbers_highlighting($flag) {
@@ -1280,9 +1282,9 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param int     The key of the object splitter to change the styles of
-     * @param string  The style to make the methods
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param int     $key The key of the object splitter to change the styles of
+     * @param string  $style The style to make the methods
+     * @param boolean $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
      * @since 1.0.0
      */
@@ -1297,7 +1299,7 @@ class GeSHi {
     /**
      * Turns highlighting on/off for methods
      *
-     * @param boolean Whether to turn highlighting for methods on or off
+     * @param bool $flag Whether to turn highlighting for methods on or off
      * @since 1.0.0
      */
     function set_methods_highlighting($flag) {
@@ -1309,8 +1311,9 @@ class GeSHi {
      * true, then styles are merged with the default styles, with the
      * user defined styles having priority
      *
-     * @param string  The style to make the regular expression matches
-     * @param boolean Whether to merge the new styles with the old or just
+     * @param int     $key
+     * @param string  $style The style to make the regular expression matches
+     * @param boolean $preserve_defaults Whether to merge the new styles with the old or just
      *                to overwrite them
      * @since 1.0.0
      */
@@ -1325,8 +1328,8 @@ class GeSHi {
     /**
      * Turns highlighting on/off for regexps
      *
-     * @param int     The key of the regular expression group to turn on or off
-     * @param boolean Whether to turn highlighting for the regular expression group on or off
+     * @param int     $key The key of the regular expression group to turn on or off
+     * @param bool    $flag Whether to turn highlighting for the regular expression group on or off
      * @since 1.0.0
      */
     function set_regexps_highlighting($key, $flag) {
@@ -1336,8 +1339,8 @@ class GeSHi {
     /**
      * Sets whether a set of keywords are checked for in a case sensitive manner
      *
-     * @param int The key of the keyword group to change the case sensitivity of
-     * @param boolean Whether to check in a case sensitive manner or not
+     * @param int $key The key of the keyword group to change the case sensitivity of
+     * @param bool $case Whether to check in a case sensitive manner or not
      * @since 1.0.0
      */
     function set_case_sensitivity($key, $case) {
@@ -1351,7 +1354,7 @@ class GeSHi {
      *  - GESHI_CAPS_UPPER: convert all keywords to uppercase where found
      *  - GESHI_CAPS_LOWER: convert all keywords to lowercase where found
      *
-     * @param int A constant specifying what to do with matched keywords
+     * @param int $case A constant specifying what to do with matched keywords
      * @since 1.0.1
      */
     function set_case_keywords($case) {
@@ -1366,7 +1369,7 @@ class GeSHi {
      *
      * Widths below zero are ignored
      *
-     * @param int The tab width
+     * @param int $width The tab width
      * @since 1.0.0
      */
     function set_tab_width($width) {
@@ -1382,7 +1385,7 @@ class GeSHi {
     /**
      * Sets whether or not to use tab-stop width specifed by language
      *
-     * @param boolean Whether to use language-specific tab-stop widths
+     * @param bool $use Whether to use language-specific tab-stop widths
      * @since 1.0.7.20
      */
     function set_use_language_tab_width($use) {
@@ -1410,7 +1413,7 @@ class GeSHi {
      * method without parameters will turn it on. See documentation
      * for more details on strict mode and where to use it.
      *
-     * @param boolean Whether to enable strict mode or not
+     * @param bool $mode Whether to enable strict mode or not
      * @since 1.0.0
      */
     function enable_strict_mode($mode = true) {
@@ -1437,7 +1440,7 @@ class GeSHi {
      * to enable (true) or disable (false) all highlighting.
      *
      * @since 1.0.0
-     * @param boolean A flag specifying whether to enable or disable all highlighting
+     * @param bool $flag A flag specifying whether to enable or disable all highlighting
      * @todo  Rewrite with array traversal
      */
     function enable_highlighting($flag = true) {
@@ -1460,11 +1463,12 @@ class GeSHi {
      * Given a file extension, this method returns either a valid geshi language
      * name, or the empty string if it couldn't be found
      *
-     * @param string The extension to get a language name for
-     * @param array  A lookup array to use instead of the default one
+     * @param string $extension The extension to get a language name for
+     * @param array $lookup A lookup array to use instead of the default one
      * @since 1.0.5
      * @todo Re-think about how this method works (maybe make it private and/or make it
      *       a extension->lang lookup?)
+     * @return int|string
      */
     static function get_language_name_from_extension( $extension, $lookup = array() ) {
         $extension = strtolower($extension);
@@ -1568,8 +1572,8 @@ class GeSHi {
      *   'lang_name' ...
      * );</pre>
      *
-     * @param string The filename to load the source from
-     * @param array  A lookup array to use instead of the default one
+     * @param string $file_name The filename to load the source from
+     * @param array  $lookup A lookup array to use instead of the default one
      * @todo Complete rethink of this and above method
      * @since 1.0.5
      */
@@ -1585,8 +1589,8 @@ class GeSHi {
     /**
      * Adds a keyword to a keyword group for highlighting
      *
-     * @param int    The key of the keyword group to add the keyword to
-     * @param string The word to add to the keyword group
+     * @param int    $key The key of the keyword group to add the keyword to
+     * @param string $word The word to add to the keyword group
      * @since 1.0.0
      */
     function add_keyword($key, $word) {
@@ -1607,9 +1611,9 @@ class GeSHi {
     /**
      * Removes a keyword from a keyword group
      *
-     * @param int    The key of the keyword group to remove the keyword from
-     * @param string The word to remove from the keyword group
-     * @param bool   Wether to automatically recompile the optimized regexp list or not.
+     * @param int    $key The key of the keyword group to remove the keyword from
+     * @param string $word The word to remove from the keyword group
+     * @param bool   $recompile Wether to automatically recompile the optimized regexp list or not.
      *               Note: if you set this to false and @see GeSHi->parse_code() was already called once,
      *               for the current language, you have to manually call @see GeSHi->optimize_keyword_group()
      *               or the removed keyword will stay in cache and still be highlighted! On the other hand
@@ -1632,11 +1636,12 @@ class GeSHi {
     /**
      * Creates a new keyword group
      *
-     * @param int    The key of the keyword group to create
-     * @param string The styles for the keyword group
-     * @param boolean Whether the keyword group is case sensitive ornot
-     * @param array  The words to use for the keyword group
+     * @param int $key The key of the keyword group to create
+     * @param string $styles The styles for the keyword group
+     * @param boolean $case_sensitive Whether the keyword group is case sensitive ornot
+     * @param array $words The words to use for the keyword group
      * @since 1.0.0
+     * @return bool
      */
     function add_keyword_group($key, $styles, $case_sensitive = true, $words = array()) {
         $words = (array) $words;
@@ -1660,7 +1665,7 @@ class GeSHi {
     /**
      * Removes a keyword group
      *
-     * @param int    The key of the keyword group to remove
+     * @param int    $key The key of the keyword group to remove
      * @since 1.0.0
      */
     function remove_keyword_group ($key) {
@@ -1677,7 +1682,7 @@ class GeSHi {
     /**
      * compile optimized regexp list for keyword group
      *
-     * @param int   The key of the keyword group to compile & optimize
+     * @param int   $key The key of the keyword group to compile & optimize
      * @since 1.0.8
      */
     function optimize_keyword_group($key) {
@@ -1707,7 +1712,7 @@ class GeSHi {
     /**
      * Sets the content of the header block
      *
-     * @param string The content of the header block
+     * @param string $content The content of the header block
      * @since 1.0.2
      */
     function set_header_content($content) {
@@ -1717,7 +1722,7 @@ class GeSHi {
     /**
      * Sets the content of the footer block
      *
-     * @param string The content of the footer block
+     * @param string $content The content of the footer block
      * @since 1.0.2
      */
     function set_footer_content($content) {
@@ -1727,7 +1732,7 @@ class GeSHi {
     /**
      * Sets the style for the header content
      *
-     * @param string The style for the header content
+     * @param string $style The style for the header content
      * @since 1.0.2
      */
     function set_header_content_style($style) {
@@ -1737,7 +1742,7 @@ class GeSHi {
     /**
      * Sets the style for the footer content
      *
-     * @param string The style for the footer content
+     * @param string $style The style for the footer content
      * @since 1.0.2
      */
     function set_footer_content_style($style) {
@@ -1748,7 +1753,7 @@ class GeSHi {
      * Sets whether to force a surrounding block around
      * the highlighted code or not
      *
-     * @param boolean Tells whether to enable or disable this feature
+     * @param bool $flag Tells whether to enable or disable this feature
      * @since 1.0.7.20
      */
     function enable_inner_code_block($flag) {
@@ -1758,8 +1763,8 @@ class GeSHi {
     /**
      * Sets the base URL to be used for keywords
      *
-     * @param int The key of the keyword group to set the URL for
-     * @param string The URL to set for the group. If {FNAME} is in
+     * @param int $group The key of the keyword group to set the URL for
+     * @param string $url The URL to set for the group. If {FNAME} is in
      *               the url somewhere, it is replaced by the keyword
      *               that the URL is being made for
      * @since 1.0.2
@@ -1771,9 +1776,9 @@ class GeSHi {
     /**
      * Sets styles for links in code
      *
-     * @param int A constant that specifies what state the style is being
+     * @param int $type A constant that specifies what state the style is being
      *            set for - e.g. :hover or :visited
-     * @param string The styles to use for that state
+     * @param string $styles The styles to use for that state
      * @since 1.0.2
      */
     function set_link_styles($type, $styles) {
@@ -1783,7 +1788,7 @@ class GeSHi {
     /**
      * Sets the target for links in code
      *
-     * @param string The target for links in the code, e.g. _blank
+     * @param string $target The target for links in the code, e.g. _blank
      * @since 1.0.3
      */
     function set_link_target($target) {
@@ -1797,7 +1802,7 @@ class GeSHi {
     /**
      * Sets styles for important parts of the code
      *
-     * @param string The styles to use on important parts of the code
+     * @param string $styles The styles to use on important parts of the code
      * @since 1.0.2
      */
     function set_important_styles($styles) {
@@ -1807,7 +1812,7 @@ class GeSHi {
     /**
      * Sets whether context-important blocks are highlighted
      *
-     * @param boolean Tells whether to enable or disable highlighting of important blocks
+     * @param bool $flag Tells whether to enable or disable highlighting of important blocks
      * @todo REMOVE THIS SHIZ FROM GESHI!
      * @deprecated
      * @since 1.0.2
@@ -1819,7 +1824,7 @@ class GeSHi {
     /**
      * Whether CSS IDs should be added to each line
      *
-     * @param boolean If true, IDs will be added to each line.
+     * @param boolean $flag If true, IDs will be added to each line.
      * @since 1.0.2
      */
     function enable_ids($flag = true) {
@@ -1831,9 +1836,9 @@ class GeSHi {
      *
      * The extra style parameter was added in 1.0.7.21.
      *
-     * @param mixed An array of line numbers to highlight, or just a line
+     * @param mixed $lines An array of line numbers to highlight, or just a line
      *              number on its own.
-     * @param string A string specifying the style to use for this line.
+     * @param string $style A string specifying the style to use for this line.
      *              If null is specified, the default style is used.
      *              If false is specified, the line will be removed from
      *              special highlighting
@@ -1866,7 +1871,7 @@ class GeSHi {
     /**
      * Sets the style for extra-highlighted lines
      *
-     * @param string The style for extra-highlighted lines
+     * @param string $styles The style for extra-highlighted lines
      * @since 1.0.2
      */
     function set_highlight_lines_extra_style($styles) {
@@ -1876,7 +1881,7 @@ class GeSHi {
     /**
      * Sets the line-ending
      *
-     * @param string The new line-ending
+     * @param string $line_ending The new line-ending
      * @since 1.0.2
      */
     function set_line_ending($line_ending) {
@@ -1895,7 +1900,7 @@ class GeSHi {
      * has support for the CSS method, but (of course) IE doesn't
      * so it's not worth doing it the CSS way yet.
      *
-     * @param int The number to start line numbers at
+     * @param int $number The number to start line numbers at
      * @since 1.0.2
      */
     function start_line_numbers_at($number) {
@@ -1911,7 +1916,7 @@ class GeSHi {
      * Maybe in a future version it may make a return for speed reasons, but
      * I doubt it.
      *
-     * @param string The encoding to use for the source
+     * @param string $encoding The encoding to use for the source
      * @since 1.0.3
      */
     function set_encoding($encoding) {
@@ -1923,7 +1928,7 @@ class GeSHi {
     /**
      * Turns linking of keywords on or off.
      *
-     * @param boolean If true, links will be added to keywords
+     * @param boolean $enable If true, links will be added to keywords
      * @since 1.0.2
      */
     function enable_keyword_links($enable = true) {
@@ -2151,7 +2156,7 @@ class GeSHi {
                 }
 
                 $this->language_data['NUMBERS_RXCACHE'][$key] =
-                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!(?:<DOT>|(?>[^\<]))+>)(?![^<]*>)(?!\|>)(?!\/>)/i"; //
+                    "/(?<!<\|\/)(?<!<\|!REG3XP)(?<!<\|\/NUM!)(?<!\d\/>)($regexp)(?!(?:<DOT>|(?>[^\<]+))+>)(?![^<]*>)(?!\|>)(?!\/>)/i"; //
             }
 
             if(!isset($this->language_data['PARSER_CONTROL']['NUMBERS']['PRECHECK_RX'])) {
@@ -2171,6 +2176,7 @@ class GeSHi {
      * str_replaces to replace the &lt;span&gt;s
      *
      * @since 1.0.0
+     * @return string
      */
     function parse_code () {
         // Start the timer
@@ -3141,7 +3147,7 @@ class GeSHi {
      * Swaps out spaces and tabs for HTML indentation. Not needed if
      * the code is in a pre block...
      *
-     * @param  string The source to indent (reference!)
+     * @param  string $result The source to indent (reference!)
      * @since  1.0.0
      * @access private
      */
@@ -3240,7 +3246,7 @@ class GeSHi {
     /**
      * Changes the case of a keyword for those languages where a change is asked for
      *
-     * @param  string The keyword to change the case of
+     * @param  string $instr The keyword to change the case of
      * @return string The keyword with its case changed
      * @since  1.0.0
      * @access private
@@ -3259,8 +3265,8 @@ class GeSHi {
     /**
      * Handles replacements of keywords to include markup and links if requested
      *
-     * @param  string The keyword to add the Markup to
-     * @return The HTML for the match found
+     * @param  string $match The keyword to add the Markup to
+     * @return string The HTML for the match found
      * @since  1.0.8
      * @access private
      *
@@ -3321,8 +3327,8 @@ class GeSHi {
      *
      * @note this is a callback, don't use it directly
      *
-     * @param array the matches array
-     * @return The highlighted string
+     * @param array $matches the matches array
+     * @return string The highlighted string
      * @since 1.0.8
      * @access private
      */
@@ -3336,7 +3342,7 @@ class GeSHi {
      *
      * @note this is a callback, don't use it directly
      *
-     * @param array the matches array
+     * @param array $matches the matches array
      * @return string
      * @since 1.0.8
      * @access private
@@ -3369,10 +3375,11 @@ class GeSHi {
      * Takes a string that has no strings or comments in it, and highlights
      * stuff like keywords, numbers and methods.
      *
-     * @param string The string to parse for keyword, numbers etc.
+     * @param string $stuff_to_parse The string to parse for keyword, numbers etc.
      * @since 1.0.0
      * @access private
      * @todo BUGGY! Why? Why not build string and return?
+     * @return string
      */
     function parse_non_string_part($stuff_to_parse) {
         $stuff_to_parse = ' ' . $this->hsc($stuff_to_parse);
@@ -3690,8 +3697,8 @@ class GeSHi {
     /**
      * Sets the time taken to parse the code
      *
-     * @param microtime The time when parsing started
-     * @param microtime The time when parsing ended
+     * @param string $start_time The time when parsing started
+     * @param string $end_time The time when parsing ended
      * @since 1.0.2
      * @access private
      */
@@ -3753,7 +3760,7 @@ class GeSHi {
     /**
      * Gets language information and stores it for later use
      *
-     * @param string The filename of the language file you want to load
+     * @param string $file_name The filename of the language file you want to load
      * @since 1.0.0
      * @access private
      * @todo Needs to load keys for lexic permissions for keywords, regexps etc
@@ -3853,7 +3860,7 @@ class GeSHi {
      * Takes the parsed code and various options, and creates the HTML
      * surrounding it to make it look nice.
      *
-     * @param  string The code already parsed (reference!)
+     * @param  string $parsed_code The code already parsed (reference!)
      * @since  1.0.0
      * @access private
      */
@@ -4233,7 +4240,7 @@ class GeSHi {
      * Replaces certain keywords in the header and footer with
      * certain configuration values
      *
-     * @param  string The header or footer content to do replacement on
+     * @param  string $instr The header or footer content to do replacement on
      * @return string The header or footer with replaced keywords
      * @since  1.0.2
      * @access private
@@ -4354,6 +4361,10 @@ class GeSHi {
         return strtr($string, $aTransSpecchar);
     }
 
+    /**
+     * @param array $name
+     * @return string
+     */
     function _genCSSName($name){
         return (is_numeric($name[0]) ? '_' : '') . $name;
     }
@@ -4363,7 +4374,7 @@ class GeSHi {
      * is true, we only return the stylesheet declarations that matter for
      * this code block instead of the whole thing
      *
-     * @param  boolean Whether to use economy mode or not
+     * @param  boolean $economy_mode Whether to use economy mode or not
      * @return string A stylesheet built on the data for the current language
      * @since  1.0.0
      */
@@ -4567,9 +4578,10 @@ class GeSHi {
     /**
      * Get's the style that is used for the specified line
      *
-     * @param int The line number information is requested for
+     * @param int $line The line number information is requested for
      * @access private
      * @since 1.0.7.21
+     * @return null|string
      */
     function get_line_style($line) {
         //$style = null;
@@ -4591,8 +4603,8 @@ class GeSHi {
     * <code>$list = array('faa', 'foo', 'foobar');
     *          => string 'f(aa|oo(bar)?)'</code>
     *
-    * @param $list array of (unquoted) strings
-    * @param $regexp_delimiter your regular expression delimiter, @see preg_quote()
+    * @param array $list array of (unquoted) strings
+    * @param string $regexp_delimiter your regular expression delimiter, @see preg_quote()
     * @return string for regular expression
     * @author Milian Wolff <mail@milianw.de>
     * @since 1.0.8
@@ -4762,11 +4774,11 @@ if (!function_exists('geshi_highlight')) {
     /**
      * Easy way to highlight stuff. Behaves just like highlight_string
      *
-     * @param string The code to highlight
-     * @param string The language to highlight the code in
-     * @param string The path to the language files. You can leave this blank if you need
+     * @param string $string The code to highlight
+     * @param string $language The language to highlight the code in
+     * @param string $path The path to the language files. You can leave this blank if you need
      *               as from version 1.0.7 the path should be automatically detected
-     * @param boolean Whether to return the result or to echo
+     * @param boolean $return Whether to return the result or to echo
      * @return string The code highlighted (if $return is true)
      * @since 1.0.2
      */
