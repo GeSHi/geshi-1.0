@@ -61,7 +61,8 @@ $language_data = array (
             'String', 'Enum', 'Integer', 'Long', 'Object', 'Single', 'Variant'
             ),
         2 => array(
-            'CreateObject', 'GetObject', 'New', 'Option', 'Function',
+            //'CreateObject', 'GetObject', -- This is functions, not keywords
+            'New', 'Option', 'Function',
             'Call', 'Private', 'Public', 'Sub', 'Explicit', 'Compare', 'Exit'
             ),
         3 => array(
@@ -98,12 +99,12 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #F660AB; font-weight: bold;',
-            2 => 'color: #E56717; font-weight: bold;',
-            3 => 'color: #8D38C9; font-weight: bold;',
-            4 => 'color: #151B8D; font-weight: bold;',
-            5 => 'color: #00C2FF; font-weight: bold;',
-            6 => 'color: #3EA99F; font-weight: bold;'
+            1 => 'color: #0000FF; font-weight: bold;', // all colors of keywords set to blue color, MS VS6 Theme
+            2 => 'color: #0000FF; font-weight: bold;',
+            3 => 'color: #0000FF; font-weight: bold;',
+            4 => 'color: #0000FF; font-weight: bold;',
+            5 => 'color: #0000FF; font-weight: bold;',
+            6 => 'color: #0000FF; font-weight: bold;'
             ),
         'COMMENTS' => array(
             1 => 'color: #008000;'
