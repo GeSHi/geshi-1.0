@@ -16,7 +16,7 @@ Version 1.0.8.13
   -  Fix minor issue with CSS (BenBE)
   -  Fix compatibility for PHP 7 (pazuzu156)
   -  Qt5 API for C++ language file (neochapay)
-  -  Fixed color usage for strings in Haskell (evancz)
+  -  Fix handling of strings in Haskell (evancz, sid-kap)
 Version 1.0.8.12
   -  Added language files
      * AIMMS (Guido Diepen)
