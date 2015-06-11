@@ -152,7 +152,7 @@ $language_data = array (
             0 => 'color: green;'
             ),
         'STRINGS' => array(
-            0 => 'background-color: #3cb371;' /* nice green */
+            0 => 'color: #3cb371;' /* nice green */
             ),
         'NUMBERS' => array(
             0 => 'color: red;' /* pink */
