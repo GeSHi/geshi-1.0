@@ -48,7 +48,12 @@ $language_data = array (
     'COMMENT_SINGLE' => array(1 => '//', 2 => '#!'),
     'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
-        'string' => '/(?:"|``).*?(?:``|")/'
+        /*
+         * 1. regular line comments (see COMMENT_SINGLE)
+         * 2. shebang line comments (see COMMENT_SINGLE)
+         * 3. strings (including string templates)
+         */
+        3 => '/(?:"|``).*?(?:``|")/'
     ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'"),
@@ -102,7 +107,7 @@ $language_data = array (
         'COMMENTS' => array(
             1 => 'color:darkgray;',
             2 => 'color:darkgray;',
-            'string' => 'color:blue',
+            3 => 'color:blue',
             'MULTI' => 'color:darkgray;'
         ),
         'STRINGS' => array(
