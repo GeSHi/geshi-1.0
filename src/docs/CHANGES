@@ -15,6 +15,7 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 Version 1.0.8.13
   -  Fix minor issue with CSS (BenBE)
   -  Fix compatibility for PHP 7 (pazuzu156)
+  -  Qt5 API for C++ language file (neochapay)
 Version 1.0.8.12
   -  Added language files
      * AIMMS (Guido Diepen)
