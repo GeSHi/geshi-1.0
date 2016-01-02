@@ -23,6 +23,7 @@ Version 1.0.8.13
      * Many new keywords for C++ and onwards (Streussel)
      * Missing keywords in SQL (cblair91)
      * Properly declare no highlighting of numbers in YAML (BenBE)
+     * Fix comments in Lua (-Jerry-)
 Version 1.0.8.12
   -  Added language files
      * AIMMS (Guido Diepen)
