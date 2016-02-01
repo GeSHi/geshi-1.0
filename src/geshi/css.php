@@ -340,7 +340,10 @@ $language_data = array (
     'PARSER_CONTROL' => array(
         'KEYWORDS' => array(
             'DISALLOWED_AFTER' => '(?![\-a-zA-Z0-9_\|%\\-&\.])',
-            'DISALLOWED_BEFORE' => '(?<![\-a-zA-Z0-9_\|%\\~&\.])'
+            'DISALLOWED_BEFORE' => '(?<![\-a-zA-Z0-9_\|%\\~&\.])',
+            1 => array(
+                'DISALLOWED_AFTER' => '(?![\-a-zA-Z0-9_\|%\\-&\.])(?=\s*:)'
+            )
         )
     )
 );
