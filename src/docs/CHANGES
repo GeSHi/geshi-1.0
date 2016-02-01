@@ -13,14 +13,16 @@ Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.8.13
-  -  Fix minor issue with CSS (BenBE)
-  -  Fix compatibility for PHP 7 (pazuzu156)
-  -  Qt5 API for C++ language file (neochapay)
-  -  Fix handling of strings in Haskell (evancz, sid-kap)
-  -  Add some more encoding constant keywords for PowerBuilder (dougporter)
-  -  Many new keywords for C++ and onwards (Streussel)
-  -  Missing keywords in SQL (cblair91)
-  -  Properly declare no highlighting of numbers in YAML (BenBE)
+  -  Added language files
+  -  Improvements to language files (BenBE)
+     * Fix minor issue with CSS (BenBE)
+     * Fix compatibility for PHP 7 (pazuzu156)
+     * Qt5 API for C++ language file (neochapay)
+     * Fix handling of strings in Haskell (evancz, sid-kap)
+     * Add some more encoding constant keywords for PowerBuilder (dougporter)
+     * Many new keywords for C++ and onwards (Streussel)
+     * Missing keywords in SQL (cblair91)
+     * Properly declare no highlighting of numbers in YAML (BenBE)
 Version 1.0.8.12
   -  Added language files
      * AIMMS (Guido Diepen)
