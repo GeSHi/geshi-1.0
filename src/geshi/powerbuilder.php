@@ -129,7 +129,7 @@ $language_data = array (
             'dragleave!', 'dragobject!', 'dragwithin!', 'drawobject!',
             'dropdownlistbox!', 'dropdownpicturelistbox!', 'drophighlighttreeitem!', 'dwobject!',
             'dynamicdescriptionarea!', 'dynamicstagingarea!', 'easteuropecharset!', 'editchanged!',
-            'editmask!', 'editmenu!', 'encodingansi!', 'encodingutf8!', 
+            'editmask!', 'editmenu!', 'encodingansi!', 'encodingutf8!',
             'encodingutf16le!', 'encodingutf16be!', 'end!', 'endlabeledit!',
             'enterprise!', 'enterpriseonlyfeature!', 'enumeratedtype!', 'enumerationdefinition!',
             'enumerationitemdefinition!', 'environment!', 'error!', 'errorlogging!',
