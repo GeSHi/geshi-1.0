@@ -20,6 +20,7 @@ Version 1.0.8.13
   -  Add some more encoding constant keywords for PowerBuilder (dougporter)
   -  Many new keywords for C++ and onwards (Streussel)
   -  Missing keywords in SQL (cblair91)
+  -  Properly declare no highlighting of numbers in YAML (BenBE)
 Version 1.0.8.12
   -  Added language files
      * AIMMS (Guido Diepen)
