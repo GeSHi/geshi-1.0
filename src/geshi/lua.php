@@ -135,7 +135,8 @@ $language_data = array (
             1 => 'color: #808080; font-style: italic;',
             2 => 'color: #808080; font-style: italic;',
             // Actually a string
-            3 => 'color: #ff0000;'
+	    3 => 'color: #ff0000;',
+	    'MULTI' => 'color: #808080; font-style: italic;'
             ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
