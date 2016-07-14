@@ -25,6 +25,7 @@ Version 1.0.8.13
      * Missing keywords in SQL (cblair91)
      * Properly declare no highlighting of numbers in YAML (BenBE)
      * Fix comments in Lua (-Jerry-)
+     * Included SVG specific styles for CSS (peterdd)
 Version 1.0.8.12
   -  Added language files
      * AIMMS (Guido Diepen)
