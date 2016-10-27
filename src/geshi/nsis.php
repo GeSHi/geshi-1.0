@@ -4,7 +4,7 @@
  * --------
  * Author: deguix (cevo_deguix@yahoo.com.br), Tux (http://tux.a4.cz/), Jan T. Sott (http://github.com/idleberg)
  * Copyright: (c) 2005 deguix, 2004 Tux (http://tux.a4.cz/), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2005/12/03
  *
  * Nullsoft Scriptable Install System language file for GeSHi.
@@ -60,7 +60,7 @@ $language_data = array(
     'KEYWORDS' => array(
         1 => array(
             '!addincludedir', '!addplugindir', '!appendfile', '!cd', '!define', '!delfile', '!echo', '!error',
-            '!execute', '!finalize', '!getdllversion', '!include', '!insertmacro', '!macro', '!macroend', '!packhdr',
+            '!execute', '!finalize', '!getdllversion', '!include', '!insertmacro', '!macro', '!macroend', '!makensis', '!packhdr',
             '!searchparse', '!searchreplace', '!system', '!tempfile', '!undef', '!verbose', '!warning'
             ),
         2 => array(
