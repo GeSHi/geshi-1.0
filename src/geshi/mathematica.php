@@ -4984,7 +4984,7 @@ $language_data = array(
                 '$WolframUUID',
             ),
         3 => array( // array stuff
-            '{', '}', '[[', ']]'
+            '{', '}', '[[', ']]', '<|', '|>'
             ),
         ),
     'STYLES' => array(
