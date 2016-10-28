@@ -3301,11 +3301,13 @@ class GeSHi {
                             '{FNAME}',
                             '{FNAMEL}',
                             '{FNAMEU}',
+                            '{FNAMEUF}',
                             '.'),
                         array(
                             str_replace('+', '%20', urlencode($this->hsc($word))),
                             str_replace('+', '%20', urlencode($this->hsc(strtolower($word)))),
                             str_replace('+', '%20', urlencode($this->hsc(strtoupper($word)))),
+                            str_replace('+', '%20', urlencode($this->hsc(ucfirst($word)))),
                             '<DOT>'),
                         $this->language_data['URLS'][$k]
                     ) . '">';
