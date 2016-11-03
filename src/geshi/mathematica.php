@@ -4,7 +4,7 @@
  * --------
  * Author: Connor Glosser (glosser1@gmail.com)
  * Copyright: (c) 2014 Connor Glosser (http://www.msu.edu/~glosser1)
- * Release Version: 1.0.8.11
+ * Release Version: 1.0.8.12
  * Date Started: 2014/08/11
  *
  * Mathematica language file for GeSHi.
@@ -19,6 +19,9 @@
  *
  * CHANGES
  * -------
+ * 2016/10/27 (1.0.8.12)
+ *  - Update function list to Ver. 11
+ *  - Add delimiters for associative arrays
  * 2014/10/13 (1.0.8.11)
  *  - Removed style variables for compatability
  * 2014/08/11 (1.0.8.11)
