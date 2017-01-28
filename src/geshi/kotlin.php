@@ -51,7 +51,7 @@ $language_data = array (
             'for', 'if', 'else', 'while', 'do',
             'when', 'return', 'public', 'get', 'set',
             'private', 'protected', 'break', 'class', 'object',
-            'companion', 'data', 'sealed', 'open'
+            'companion', 'data', 'sealed', 'open', 'operator',
             'try', 'catch', 'finally', 'inner', 'constructor', 'init',
             'interface', 'throw', 'final', 'external', 'this',
             'abstract', 'is', '!is', 'as', 'as?', 'continue',
