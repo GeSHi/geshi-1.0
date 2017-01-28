@@ -50,7 +50,7 @@ $language_data = array (
             'fun', 'var', 'val', 'typeof', 'typealias', 'suspend',
             'for', 'if', 'else', 'while', 'do',
             'when', 'return', 'public', 'get', 'set',
-            'private', 'protected', 'break', 'class', 'object',
+            'private', 'protected', 'internal', 'break', 'class', 'object',
             'companion', 'data', 'sealed', 'open', 'operator',
             'try', 'catch', 'finally', 'inner', 'constructor', 'init',
             'interface', 'throw', 'final', 'external', 'this',
