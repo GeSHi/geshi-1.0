@@ -55,8 +55,8 @@ $language_data = array (
             'try', 'catch', 'finally', 'inner', 'constructor', 'init',
             'interface', 'throw', 'final', 'external', 'this',
             'abstract', 'is', '!is', 'as', 'as?', 'continue',
-            'default', 'enum', 'package', 'super', 'where'
-            'const', 'import', 'in', '!in', 'out',
+            'default', 'enum', 'package', 'super', 'where',
+            'const', 'import', 'in', '!in', 'out', 'override',
             'reified', 'inline', 'noinline', 'crossinline'
             ),
         2 => array(
