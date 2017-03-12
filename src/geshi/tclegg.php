@@ -48,14 +48,14 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'TCLEGG',
     'COMMENT_SINGLE' => array(1 => '#'),
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         1 => '/(?<!\\\\)#(?:\\\\\\\\|\\\\\\n|.)*$/m',
         //2 => '/{[^}\n]+}/'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array('"', "'"),
     'ESCAPE_CHAR' => '\\',
@@ -103,95 +103,119 @@ $language_data = array (
             '$auto_index', '$auto_oldpath', '$auto_path', '$env',
             '$tcl_interactive', '$tcl_libpath', '$tcl_library',
             '$tcl_pkgPath', '$tcl_platform', '$tcl_precision', '$tcl_traceExec',
-            ),
+        ),
 
         /*
          * Set 3: standard library
-		 * Replaced by binds
+         * Replaced by binds
          */
         3 => array(
             //'comment', 'filename', 'library', 'packagens', 'tcltest', 'tclvars',
-			'msg', 'sign', 'topc', 'kick', 'nick', 'mode', 'ctcp', 'ctcr', 'raw', 'bot', 'chon', 'dcc', 'chof', 'sent', 'rcvd', 'chat', 'link', 'disc', 'splt', 'rejn', 'filt', 'need', 'fil', 'flud', 'note', 'act', 'wall', 'bcst', 'chjn', 'chpt', 'time', 'away', 'load', 'pub', 'unld', 'nkch', 'evnt', 'lost', 'tout', 'out', 'cron', 'log', 'msgm', 'pubm', 'notc', 'join', 'part'
-            ),
+            'msg', 'sign', 'topc', 'kick', 'nick', 'mode', 'ctcp', 'ctcr', 'raw', 'bot', 'chon', 'dcc', 'chof', 'sent',
+            'rcvd', 'chat', 'link', 'disc', 'splt', 'rejn', 'filt', 'need', 'fil', 'flud', 'note', 'act', 'wall',
+            'bcst', 'chjn', 'chpt', 'away', 'pub', 'unld', 'nkch', 'evnt', 'lost', 'tout', 'out',
+            'cron', 'log', 'msgm', 'pubm', 'notc', 'part'
+        ),
 
         /*
          * Set 4: tcl-commands (eggdrop dedicated)
          */
-       4 => array(
-			'addbot', 'addchanrec', 'adduser', 'assoc', 'backup', 'banlist', 'bind', 'binds', 'boot', 'botattr', 'botishalfop', 'botisop', 'botisvoice', 'botlist', 'botonchan', 'bots', 'callevent', 'chanbans', 'chanexempts', 'chaninvites', 'chanlist', 'channel', 'channels', 'chansettype', 'chattr', 'chhandle', 'clearqueue', 'compressfile', 'connect', 'console', 'control', 'countusers', 'cp', 'ctime', 'dccbroadcast', 'dccdumpfile', 'dcclist', 'dccputchan', 'dccsend', 'dccsimul', 'dccused', 'decrypt', 'delchanrec', 'delhost', 'deludef', 'deluser', 'die', 'dnslookup', 'dumpfile', 'duration', 'echo', 'encpass', 'encrypt', 'erasenotes', 'exemptlist', 'filesend', 'finduser', 'flushmode', 'getchan', 'getchanhost', 'getchanidle', 'getchaninfo', 'getchanjoin', 'getchanmode', 'getdccaway', 'getdccidle', 'getdesc', 'getdirs', 'getfileq', 'getfiles', 'getfilesendtime', 'getflags', 'getlink', 'getowner', 'getpwd', 'getting', 'getudefs', 'getuser', 'hand', 'handonchan', 'idx', 'ignorelist', 'invitelist', 'isban', 'isbansticky', 'isbotnick', 'ischanban', 'ischanexempt', 'ischaninvite', 'ischanjuped', 'iscompressed', 'isdynamic', 'isexempt', 'isexemptsticky', 'ishalfop', 'isignore', 'isinvite', 'isinvitesticky', 'islinked', 'isop', 'ispermban', 'ispermexempt', 'isperminvite', 'isvoice', 'jump', 'killassoc', 'killban', 'killchanban', 'killchanexempt', 'killchaninvite', 'killdcc', 'killexempt', 'killignore', 'killinvite', 'killtimer', 'killutimer', 'link', 'listen', 'listnotes', 'loadchannels', 'loadhelp', 'loadmodule', 'logfile', 'maskhost', 'matchaddr', 'matchattr', 'matchban', 'matchcidr', 'matchexempt', 'matchinvite', 'matchstr', 'md', 'mkdir', 'modules', 'mv', 'myip', 'newban', 'newchanban', 'newchanexempt', 'newchaninvite', 'newexempt', 'newignore', 'newinvite', 'nick', 'notes', 'onchan', 'onchansplit', 'passwdok', 'pushmode', 'putallbots', 'putbot', 'putcmdlog', 'putdcc', 'puthelp', 'putkick', 'putlog', 'putloglev', 'putnow', 'putquick', 'putserv', 'putxferlog', 'queuesize', 'rand', 'rehash', 'reload', 'reloadhelp', 'renudef', 'resetbans', 'resetchan', 'resetchanidle', 'resetchanjoin', 'resetexempts', 'resetinvites', 'restart', 'rmdir', 'save', 'savechannels', 'sendnote', 'setchan', 'setchaninfo', 'setdccaway', 'setdesc', 'setflags', 'setlink', 'setowner', 'setpwd', 'setudef', 'setuser', 'stickban', 'stickexempt', 'stickinvite', 'storenote', 'strftime', 'strip', 'stripcodes', 'timer', 'timers', 'topic', 'traffic', 'unames', 'unbind', 'uncompressfile', 'unixtime', 'unlink', 'unloadhelp', 'unloadmodule', 'unstickban', 'unstickexempt', 'unstickinvite', 'userlist', 'utimer', 'utimers', 'validchan', 'valididx', 'validuser', 'washalfop', 'wasop', 'whom'
-            )
+        4 => array(
+            'addbot', 'addchanrec', 'adduser', 'assoc', 'backup', 'banlist', 'bind', 'binds', 'boot', 'botattr',
+            'botishalfop', 'botisop', 'botisvoice', 'botlist', 'botonchan', 'bots', 'callevent', 'chanbans',
+            'chanexempts', 'chaninvites', 'chanlist', 'channel', 'channels', 'chansettype', 'chattr', 'chhandle',
+            'clearqueue', 'compressfile', 'connect', 'console', 'control', 'countusers', 'cp', 'ctime', 'dccbroadcast',
+            'dccdumpfile', 'dcclist', 'dccputchan', 'dccsend', 'dccsimul', 'dccused', 'decrypt', 'delchanrec',
+            'delhost', 'deludef', 'deluser', 'die', 'dnslookup', 'dumpfile', 'duration', 'echo', 'encpass', 'encrypt',
+            'erasenotes', 'exemptlist', 'filesend', 'finduser', 'flushmode', 'getchan', 'getchanhost', 'getchanidle',
+            'getchaninfo', 'getchanjoin', 'getchanmode', 'getdccaway', 'getdccidle', 'getdesc', 'getdirs', 'getfileq',
+            'getfiles', 'getfilesendtime', 'getflags', 'getlink', 'getowner', 'getpwd', 'getting', 'getudefs',
+            'getuser', 'hand', 'handonchan', 'idx', 'ignorelist', 'invitelist', 'isban', 'isbansticky', 'isbotnick',
+            'ischanban', 'ischanexempt', 'ischaninvite', 'ischanjuped', 'iscompressed', 'isdynamic', 'isexempt',
+            'isexemptsticky', 'ishalfop', 'isignore', 'isinvite', 'isinvitesticky', 'islinked', 'isop', 'ispermban',
+            'ispermexempt', 'isperminvite', 'isvoice', 'jump', 'killassoc', 'killban', 'killchanban', 'killchanexempt',
+            'killchaninvite', 'killdcc', 'killexempt', 'killignore', 'killinvite', 'killtimer', 'killutimer',
+            'listen', 'listnotes', 'loadchannels', 'loadhelp', 'loadmodule', 'logfile', 'maskhost', 'matchaddr',
+            'matchattr', 'matchban', 'matchcidr', 'matchexempt', 'matchinvite', 'matchstr', 'md', 'mkdir', 'modules',
+            'mv', 'myip', 'newban', 'newchanban', 'newchanexempt', 'newchaninvite', 'newexempt', 'newignore',
+            'newinvite', 'notes', 'onchan', 'onchansplit', 'passwdok', 'pushmode', 'putallbots', 'putbot',
+            'putcmdlog', 'putdcc', 'puthelp', 'putkick', 'putlog', 'putloglev', 'putnow', 'putquick', 'putserv',
+            'putxferlog', 'queuesize', 'rand', 'rehash', 'reload', 'reloadhelp', 'renudef', 'resetbans', 'resetchan',
+            'resetchanidle', 'resetchanjoin', 'resetexempts', 'resetinvites', 'restart', 'rmdir', 'save',
+            'savechannels', 'sendnote', 'setchan', 'setchaninfo', 'setdccaway', 'setdesc', 'setflags', 'setlink',
+            'setowner', 'setpwd', 'setudef', 'setuser', 'stickban', 'stickexempt', 'stickinvite', 'storenote',
+            'strftime', 'strip', 'stripcodes', 'timer', 'timers', 'topic', 'traffic', 'unames', 'unbind',
+            'uncompressfile', 'unixtime', 'unlink', 'unloadhelp', 'unloadmodule', 'unstickban', 'unstickexempt',
+            'unstickinvite', 'userlist', 'utimer', 'utimers', 'validchan', 'valididx', 'validuser', 'washalfop',
+            'wasop', 'whom'
+        )
 
-        ),
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}', '$', '*', '&', '%', '!', ';', '<', '>', '?'
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
         4 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #ff7700;font-weight:bold;',    // Reserved
             2 => 'color: #008000;',                        // Built-ins + self
             3 => 'color: #dc143c;',                        // Standard lib
             4 => 'color: #0000cd;'                        // Special methods
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #808080; font-style: italic;',
 //            2 => 'color: #483d8b;',
             'MULTI' => 'color: #808080; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: black;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #483d8b;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #ff4500;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: black;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #66cc66;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #ff3333;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
         1 => 'http://wiki.tcl.tk/{FNAMEL}',
         2 => 'http://wiki.tcl.tk/{FNAMEUF}',
         3 => 'http://wiki.eggdrop.fr/Binds#{FNAMEU}',
         4 => 'http://wiki.eggdrop.fr/{FNAMEUF}'
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '::'
-        ),
+    ),
     'REGEXPS' => array(
         //Special variables
         0 => '[\\$]+[a-zA-Z_][a-zA-Z0-9_]*',
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'PARSER_CONTROL' => array(
         'COMMENTS' => array(
             'DISALLOWED_BEFORE' => '\\'
         )
     )
 );
-
-?>
