@@ -327,25 +327,25 @@ if(!$error_abort) {
             if(preg_match('/\/\*\*\**\s(.*?)(?:\s*\*\/)/s', $langfile_content, $m)) {
                 $langfile_comment = $m[1];
 
-                if (!preg_match('/Author: +\S+/', $langfile_content)) {
+                if (!preg_match('/Author: +\S+/', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not contain a specification of an author!');
                 }
-                if (!preg_match('/Copyright: +\S+/', $langfile_content)) {
+                if (!preg_match('/Copyright: +\S+/', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not contain a specification of the copyright!');
                 }
-                if (!preg_match('/Release Version: +\d+\.\d+\.\d+\.\d+/', $langfile_content)) {
+                if (!preg_match('/Release Version: +\d+\.\d+\.\d+\.\d+/', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not contain a specification of the release version!');
                 }
-                if (!preg_match('/Date Started: +\S+/s', $langfile_content)) {
+                if (!preg_match('/Date Started: +\S+/s', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not contain a specification of the date it was started!');
                 }
-                if (!preg_match('/This file is part of GeSHi\./', $langfile_content)) {
+                if (!preg_match('/This file is part of GeSHi\./', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not state that it belongs to GeSHi!');
                 }
-                if (!preg_match('/\S+ language file for GeSHi\./', $langfile_content)) {
+                if (!preg_match('/\S+ language file for GeSHi\./', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not state that it is a language file for GeSHi!');
                 }
-                if (!preg_match('/GNU General Public License/', $langfile_content)) {
+                if (!preg_match('/GNU General Public License/', $langfile_comment)) {
                     report_error(TYPE_WARNING, 'Language file does not state that it is provided under the terms of the GNU GPL!');
                 }
             } else {
