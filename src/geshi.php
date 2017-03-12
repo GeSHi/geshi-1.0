@@ -2258,6 +2258,10 @@ class GeSHi {
                                     'close_pos' => $matches_rx[2][1],
                                     );
                             }
+                        } else {
+                            // no match for this delimiter ever
+                            unset($delim_copy[$dk]);
+                            continue;
                         }
 
                         if ($matches[$dk]['next_match'] <= $next_match_pos) {
