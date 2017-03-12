@@ -318,27 +318,38 @@ if(!$error_abort) {
             if(preg_match('/^(?:    )*(?!    )(?! \*) /m', $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains irregular indentation (other than 4 spaces per indentation level)!');
             }
+            if(preg_match('/\015\012/s', $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains DOS line endings!');
+            } else if(preg_match('/\015/s', $langfile_content)) {
+                report_error(TYPE_ERROR, 'Language file contains MAC line endings!');
+            }
 
-            if(!preg_match('/\/\*\*((?!\*\/).)*?Author:((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not contain a specification of an author!');
-            }
-            if(!preg_match('/\/\*\*((?!\*\/).)*?Copyright:((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not contain a specification of the copyright!');
-            }
-            if(!preg_match('/\/\*\*((?!\*\/).)*?Release Version:((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not contain a specification of the release version!');
-            }
-            if(!preg_match('/\/\*\*((?!\*\/).)*?Date Started:((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not contain a specification of the date it was started!');
-            }
-            if(!preg_match('/\/\*\*((?!\*\/).)*?This file is part of GeSHi\.((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not state that it belongs to GeSHi!');
-            }
-            if(!preg_match('/\/\*\*((?!\*\/).)*?language file for GeSHi\.((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not state that it is a language file for GeSHi!');
-            }
-            if(!preg_match('/\/\*\*((?!\*\/).)*?GNU General Public License((?!\*\/).)*?\*\//s', $langfile_content)) {
-                report_error(TYPE_WARNING, 'Language file does not state that it is provided under the terms of the GNU GPL!');
+            if(preg_match('/\/\*\*\**\s(.*?)(?:\s*\*\/)/s', $langfile_content, $m)) {
+                $langfile_comment = $m[1];
+
+                if (!preg_match('/Author: +\S+/', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not contain a specification of an author!');
+                }
+                if (!preg_match('/Copyright: +\S+/', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not contain a specification of the copyright!');
+                }
+                if (!preg_match('/Release Version: +\d+\.\d+\.\d+\.\d+/', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not contain a specification of the release version!');
+                }
+                if (!preg_match('/Date Started: +\S+/s', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not contain a specification of the date it was started!');
+                }
+                if (!preg_match('/This file is part of GeSHi\./', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not state that it belongs to GeSHi!');
+                }
+                if (!preg_match('/\S+ language file for GeSHi\./', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not state that it is a language file for GeSHi!');
+                }
+                if (!preg_match('/GNU General Public License/', $langfile_content)) {
+                    report_error(TYPE_WARNING, 'Language file does not state that it is provided under the terms of the GNU GPL!');
+                }
+            } else {
+                report_error(TYPE_ERROR, 'Language file does not have an initial comment block!');
             }
 
             unset($langfile_content);
