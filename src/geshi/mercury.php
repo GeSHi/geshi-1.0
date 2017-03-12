@@ -7,7 +7,7 @@
  * Release Version: 1.0.8.12
  * Date Started: 2014/10/30
  *
- * Prolog.
+ * Mercury language file for GeSHi.
  *
  * CHANGES
  * -------
@@ -37,7 +37,7 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Mercury',
     'COMMENT_SINGLE' => array(1 => '%'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -51,16 +51,16 @@ $language_data = array (
         GESHI_NUMBER_INT_BASIC | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
         1 => array(
-            'end_module','finalise','finalize','func','implementation',
-            'include_module','initalisation','initialization',
-            'instance','interface',
-            'import_module','module','pragma','pred',
-            'type','typeclass','use_module'
-            ),
+            'end_module', 'finalise', 'finalize', 'func', 'implementation',
+            'include_module', 'initalisation', 'initialization',
+            'instance', 'interface',
+            'import_module', 'module', 'pragma', 'pred',
+            'type', 'typeclass', 'use_module'
+        ),
         2 => array(
-            'atomic','foreign_code','foreign_export','foreign_type','memo'
-            )
-         ),
+            'atomic', 'foreign_code', 'foreign_export', 'foreign_type', 'memo'
+        )
+    ),
     'SYMBOLS' => array(
         0 => array('(', ')', '[', ']', '{', '}',),
         1 => array('?-', ':-', '=:='),
@@ -69,36 +69,36 @@ $language_data = array (
         4 => array('.', ':', ',', ';'),
         5 => array('!', '@', '&', '|', '!.', '!:'),
         6 => array('<', '>', '=')
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => false
-        ),
+        1 => false,
+        2 => false
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #990000;',
             2 => 'color: #99aa77;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;',
             'HARD' => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #0000ff;',
             'HARD' => 'color: #0000ff;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #800080;'
-            ),
-        'METHODS' => array(
-            ),
+        ),
+        'METHODS' => array(),
         'SYMBOLS' => array(
             0 => 'color: #339933;',
             1 => 'color: #339933;',
@@ -107,27 +107,24 @@ $language_data = array (
             4 => 'color: #339933;',
             5 => 'color: #339933;',
             6 => 'color: #339933;'
-            ),
+        ),
         'REGEXPS' => array(
             0 => 'color: #008080;'
-            ),
-        'SCRIPT' => array(
-            )
         ),
+        'SCRIPT' => array()
+    ),
     'URLS' => array(
-        1 => 'http://www.mercurylang.org'
-        ),
+        1 => 'http://www.mercurylang.org',
+        2 => 'http://www.mercurylang.org'
+    ),
     'OOLANG' => false,
-    'OBJECT_SPLITTERS' => array(
-        ),
+    'OBJECT_SPLITTERS' => array(),
     'REGEXPS' => array(
         //Variables
         0 => "(?<![a-zA-Z0-9_])(?!(?:PIPE|SEMI|DOT)[^a-zA-Z0-9_])[A-Z_][a-zA-Z0-9_]*(?![a-zA-Z0-9_])(?!\x7C)"
-        ),
+    ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        ),
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
     'TAB_WIDTH' => 4
 );
