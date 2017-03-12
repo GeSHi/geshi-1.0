@@ -32,7 +32,7 @@
  *
  ************************************************************************************/
 
-$language_data = array (
+$language_data = array(
     'LANG_NAME' => 'Kotlin',
     'COMMENT_SINGLE' => array(1 => '//'),
     'COMMENT_MULTI' => array('/*' => '*/'),
@@ -41,7 +41,7 @@ $language_data = array (
         2 => '/(?:(?<=import[\\n\\s])|(?<=package[\\n\\s]))[\\n\\s]*([a-zA-Z0-9_]+\\.)*([a-zA-Z0-9_]+|\*)(?=[\n\s;])/i',
         // javadoc comments
         3 => '#/\*\*(?![\*\/]).*\*/#sU'
-        ),
+    ),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
     'ESCAPE_CHAR' => '\\',
@@ -58,10 +58,10 @@ $language_data = array (
             'default', 'enum', 'package', 'super', 'where',
             'const', 'import', 'in', '!in', 'out', 'override',
             'reified', 'inline', 'noinline', 'crossinline'
-            ),
+        ),
         2 => array(
             'null', 'false', 'true'
-            ),
+        ),
         3 => array(
             'AbstractAction', 'AbstractBorder', 'AbstractButton',
             'AbstractCellEditor', 'AbstractCollection',
@@ -105,7 +105,7 @@ $language_data = array (
             'AlphaComposite', 'AlreadyBound',
             'AlreadyBoundException', 'AlreadyBoundHelper',
             'AlreadyBoundHolder', 'AncestorEvent',
-            'AncestorListener', 'Annotation', 'Any', 'AnyHolder',
+            'AncestorListener', 'Annotation', 'AnyHolder',
             'AnySeqHelper', 'AnySeqHolder', 'Applet',
             'AppletContext', 'AppletInitializer', 'AppletStub',
             'ApplicationException', 'Arc2D', 'Arc2D.Double',
@@ -202,7 +202,7 @@ $language_data = array (
             'BindingListHelper', 'BindingListHolder',
             'BindingType', 'BindingTypeHelper',
             'BindingTypeHolder', 'BitSet', 'Blob', 'BlockView',
-            'Book', 'Boolean', 'BooleanControl',
+            'Book', 'BooleanControl',
             'BooleanControl.Type', 'BooleanHolder',
             'BooleanSeqHelper', 'BooleanSeqHolder', 'Border',
             'BorderFactory', 'BorderLayout', 'BorderUIResource',
@@ -219,7 +219,7 @@ $language_data = array (
             'BufferedImageFilter', 'BufferedImageOp',
             'BufferedInputStream', 'BufferedOutputStream',
             'BufferedReader', 'BufferedWriter', 'Button',
-            'ButtonGroup', 'ButtonModel', 'ButtonUI', 'Byte',
+            'ButtonGroup', 'ButtonModel', 'ButtonUI',
             'ByteArrayInputStream', 'ByteArrayOutputStream',
             'ByteHolder', 'ByteLookupTable', 'Calendar',
             'CallableStatement', 'CannotProceed',
@@ -336,7 +336,7 @@ $language_data = array (
             'DocumentEvent', 'DocumentEvent.ElementChange',
             'DocumentEvent.EventType', 'DocumentListener',
             'DocumentParser', 'DomainCombiner', 'DomainManager',
-            'DomainManagerOperations', 'Double', 'DoubleHolder',
+            'DomainManagerOperations', 'DoubleHolder',
             'DoubleSeqHelper', 'DoubleSeqHolder',
             'DragGestureEvent', 'DragGestureListener',
             'DragGestureRecognizer', 'DragSource',
@@ -377,7 +377,7 @@ $language_data = array (
             'FilterInputStream', 'FilterOutputStream',
             'FilterReader', 'FilterWriter',
             'FixedHeightLayoutCache', 'FixedHolder',
-            'FlatteningPathIterator', 'FlavorMap', 'Float',
+            'FlatteningPathIterator', 'FlavorMap',
             'FloatControl', 'FloatControl.Type', 'FloatHolder',
             'FloatSeqHelper', 'FloatSeqHolder', 'FlowLayout',
             'FlowView', 'FlowView.FlowStrategy', 'FocusAdapter',
@@ -526,7 +526,7 @@ $language_data = array (
             'ListSelectionEvent', 'ListSelectionListener',
             'ListSelectionModel', 'ListUI', 'ListView',
             'LoaderHandler', 'Locale', 'LocateRegistry',
-            'LogStream', 'Long', 'LongHolder',
+            'LogStream', 'LongHolder',
             'LongLongSeqHelper', 'LongLongSeqHolder',
             'LongSeqHelper', 'LongSeqHolder', 'LookAndFeel',
             'LookupOp', 'LookupTable', 'MalformedLinkException',
@@ -752,7 +752,7 @@ $language_data = array (
             'ServiceInformationHolder',
             'ServiceUnavailableException', 'Set',
             'SetOverrideType', 'SetOverrideTypeHelper', 'Shape',
-            'ShapeGraphicAttribute', 'Short', 'ShortHolder',
+            'ShapeGraphicAttribute', 'ShortHolder',
             'ShortLookupTable', 'ShortMessage', 'ShortSeqHelper',
             'ShortSeqHolder', 'Signature', 'SignatureException',
             'SignatureSpi', 'SignedObject', 'Signer',
@@ -888,77 +888,72 @@ $language_data = array (
             '_BindingIteratorImplBase', '_BindingIteratorStub',
             '_IDLTypeStub', '_NamingContextImplBase',
             '_NamingContextStub', '_PolicyStub', '_Remote_Stub'
-            ),
+        ),
         4 => array(
             'Double', 'Int', 'Boolean', 'Byte', 'Short', 'Long', 'Char', 'Float', 'Unit', 'Nothing', 'Any'
-            )
-        ),
+        )
+    ),
     'SYMBOLS' => array(
         '(', ')', '[', ']', '{', '}',
         '+', '-', '*', '/', '%',
         '!', '&', '|', '^',
         '<', '>', '=',
         '?', ':', ';',
-        ),
+    ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
         2 => true,
         3 => true,
         4 => true
-        ),
+    ),
     'STYLES' => array(
         'KEYWORDS' => array(
             1 => 'color: #000000; font-weight: bold;',
             2 => 'color: #000066; font-weight: bold;',
             3 => 'color: #003399;',
             4 => 'color: #000066; font-weight: bold;'
-            ),
+        ),
         'COMMENTS' => array(
             1 => 'color: #666666; font-style: italic;',
             2 => 'color: #006699;',
             3 => 'color: #008000; font-style: italic; font-weight: bold;',
             'MULTI' => 'color: #666666; font-style: italic;'
-            ),
+        ),
         'ESCAPE_CHAR' => array(
             0 => 'color: #000099; font-weight: bold;'
-            ),
+        ),
         'BRACKETS' => array(
             0 => 'color: #009900;'
-            ),
+        ),
         'STRINGS' => array(
             0 => 'color: #0000ff;'
-            ),
+        ),
         'NUMBERS' => array(
             0 => 'color: #cc66cc;'
-            ),
+        ),
         'METHODS' => array(
             1 => 'color: #006633;',
             2 => 'color: #006633;'
-            ),
+        ),
         'SYMBOLS' => array(
             0 => 'color: #339933;'
-            ),
-        'SCRIPT' => array(
-            ),
-        'REGEXPS' => array(
-            )
         ),
+        'SCRIPT' => array(),
+        'REGEXPS' => array()
+    ),
     'URLS' => array(
         1 => '',
         2 => '',
         3 => 'http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+{FNAMEL}',
         4 => ''
-        ),
+    ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
         1 => '.'
-        ),
-    'REGEXPS' => array(
-        ),
+    ),
+    'REGEXPS' => array(),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        )
+    'SCRIPT_DELIMITERS' => array(),
+    'HIGHLIGHT_STRICT_BLOCK' => array()
 );
