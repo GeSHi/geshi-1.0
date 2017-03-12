@@ -3,8 +3,11 @@
  * julia.php
  * -----------
  * Author: John Lynch (john.lynch@iname.com)
+ * Contributors:
+ *   - Magnus Lie Hetland
+ *   - Curtis Vogt
  * Copyright: (c) 2013 John Lynch
- * Release Version: 1.0.0
+ * Release Version: 1.0.8.12
  * Date Started: 2013/11/06
  *
  * Julia language file for GeSHi.
@@ -12,8 +15,8 @@
  * CHANGES
  * -------
  *
- * 2013/11/?? (1.0.0)
- *   -  First Release
+ * 2015/11/04
+ *   -  First Release submitted
  *
  *
  *************************************************************************************
