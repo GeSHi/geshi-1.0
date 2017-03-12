@@ -149,39 +149,6 @@ define('GESHI_CLASS', 5);
 /** Used in language files to mark comments */
 define('GESHI_COMMENTS', 0);
 
-/** Used to work around missing PHP features **/
-define('GESHI_PHP_PRE_433', !(version_compare(PHP_VERSION, '4.3.3') === 1));
-
-/** make sure we can call stripos **/
-if (!function_exists('stripos')) {
-    // the offset param of preg_match is not supported below PHP 4.3.3
-    if (GESHI_PHP_PRE_433) {
-        /**
-         * @ignore
-         */
-        function stripos($haystack, $needle, $offset = null) {
-            if (!is_null($offset)) {
-                $haystack = substr($haystack, $offset);
-            }
-            if (preg_match('/'. preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE)) {
-                return $match[0][1];
-            }
-            return false;
-        }
-    }
-    else {
-        /**
-         * @ignore
-         */
-        function stripos($haystack, $needle, $offset = null) {
-            if (preg_match('/'. preg_quote($needle, '/') . '/', $haystack, $match, PREG_OFFSET_CAPTURE, $offset)) {
-                return $match[0][1];
-            }
-            return false;
-        }
-    }
-}
-
 /** some old PHP / PCRE subpatterns only support up to xxx subpatterns in
     regular expressions. Set this to false if your PCRE lib is up to date
     @see GeSHi->optimize_regexp_list()
@@ -2268,8 +2235,7 @@ class GeSHi {
                          *  - Group 1 is the opener
                          *  - Group 2 is the closer
                          */
-                        if(!GESHI_PHP_PRE_433 && //Needs proper rewrite to work with PHP >=4.3.0; 4.3.3 is guaranteed to work.
-                            preg_match($delimiters, $code, $matches_rx, PREG_OFFSET_CAPTURE, $i)) {
+                        if(preg_match($delimiters, $code, $matches_rx, PREG_OFFSET_CAPTURE, $i)) {
                             //We got a match ...
                             if(isset($matches_rx['start']) && isset($matches_rx['end']))
                             {
@@ -2516,15 +2482,8 @@ class GeSHi {
                                     continue;
                                 }
                                 $match_i = $comment_regexp_cache_per_key[$comment_key]['pos'];
-                            } elseif (
-                                //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
-                                (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $i), $match, PREG_OFFSET_CAPTURE)) ||
-                                (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i))
-                                ) {
+                            } elseif (preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $i)) {
                                 $match_i = $match[0][1];
-                                if (GESHI_PHP_PRE_433) {
-                                    $match_i += $i;
-                                }
 
                                 $comment_regexp_cache_per_key[$comment_key] = array(
                                     'key' => $comment_key,
@@ -2624,15 +2583,8 @@ class GeSHi {
                                                 continue;
                                             }
                                             $match_i = $escape_regexp_cache_per_key[$escape_key]['pos'];
-                                        } elseif (
-                                            //This is to allow use of the offset parameter in preg_match and stay as compatible with older PHP versions as possible
-                                            (GESHI_PHP_PRE_433 && preg_match($regexp, substr($part, $start), $match, PREG_OFFSET_CAPTURE)) ||
-                                            (!GESHI_PHP_PRE_433 && preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $start))
-                                            ) {
+                                        } elseif (preg_match($regexp, $part, $match, PREG_OFFSET_CAPTURE, $start)) {
                                             $match_i = $match[0][1];
-                                            if (GESHI_PHP_PRE_433) {
-                                                $match_i += $start;
-                                            }
 
                                             $escape_regexp_cache_per_key[$escape_key] = array(
                                                 'key' => $escape_key,
@@ -2700,7 +2652,7 @@ class GeSHi {
                                     if(function_exists('mb_substr')) {
                                         $es_char_m = mb_substr(substr($part, $es_pos+1, 16), 0, 1, $this->encoding);
                                         $string .= $es_char_m . '</span>';
-                                    } elseif (!GESHI_PHP_PRE_433 && 'utf-8' == $this->encoding) {
+                                    } elseif ('utf-8' == $this->encoding) {
                                         if(preg_match("/[\xC2-\xDF][\x80-\xBF]".
                                             "|\xE0[\xA0-\xBF][\x80-\xBF]".
                                             "|[\xE1-\xEC\xEE\xEF][\x80-\xBF]{2}".
