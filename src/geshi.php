@@ -224,45 +224,43 @@ define('GESHI_ERROR_INVALID_LINE_NUMBER_TYPE', 5);
  * @copyright (C) 2004 - 2007 Nigel McNie, (C) 2007 - 2014 Benny Baumann
  */
 class GeSHi {
-    /**#@+
-     * @access private
-     */
+
     /**
      * The source code to highlight
      * @var string
      */
-    var $source = '';
+    protected $source = '';
 
     /**
      * The language to use when highlighting
      * @var string
      */
-    var $language = '';
+    protected $language = '';
 
     /**
      * The data for the language used
      * @var array
      */
-    var $language_data = array();
+    protected $language_data = array();
 
     /**
      * The path to the language files
      * @var string
      */
-    var $language_path = GESHI_LANG_ROOT;
+    protected $language_path = GESHI_LANG_ROOT;
 
     /**
      * The error message associated with an error
      * @var string
      * @todo check err reporting works
      */
-    var $error = false;
+    protected $error = false;
 
     /**
      * Possible error messages
      * @var array
      */
-    var $error_messages = array(
+    protected $error_messages = array(
         GESHI_ERROR_NO_SUCH_LANG => 'GeSHi could not find the language {LANGUAGE} (using path {PATH})',
         GESHI_ERROR_FILE_NOT_READABLE => 'The file specified for load_from_file was not readable',
         GESHI_ERROR_INVALID_HEADER_TYPE => 'The header type specified is invalid',
@@ -273,13 +271,13 @@ class GeSHi {
      * Whether highlighting is strict or not
      * @var boolean
      */
-    var $strict_mode = false;
+    protected $strict_mode = false;
 
     /**
      * Whether to use CSS classes in output
      * @var boolean
      */
-    var $use_classes = false;
+    protected $use_classes = false;
 
     /**
      * The type of header to use. Can be one of the following
@@ -291,13 +289,13 @@ class GeSHi {
      *
      * @var int
      */
-    var $header_type = GESHI_HEADER_PRE;
+    protected $header_type = GESHI_HEADER_PRE;
 
     /**
      * Array of permissions for which lexics should be highlighted
      * @var array
      */
-    var $lexic_permissions = array(
+    protected $lexic_permissions = array(
         'KEYWORDS' =>    array(),
         'COMMENTS' =>    array('MULTI' => true),
         'REGEXPS' =>     array(),
@@ -314,44 +312,44 @@ class GeSHi {
      * The time it took to parse the code
      * @var double
      */
-    var $time = 0;
+    protected $time = 0;
 
     /**
      * The content of the header block
      * @var string
      */
-    var $header_content = '';
+    protected $header_content = '';
 
     /**
      * The content of the footer block
      * @var string
      */
-    var $footer_content = '';
+    protected $footer_content = '';
 
     /**
      * The style of the header block
      * @var string
      */
-    var $header_content_style = '';
+    protected $header_content_style = '';
 
     /**
      * The style of the footer block
      * @var string
      */
-    var $footer_content_style = '';
+    protected $footer_content_style = '';
 
     /**
      * Tells if a block around the highlighted source should be forced
      * if not using line numbering
      * @var boolean
      */
-    var $force_code_block = false;
+    protected $force_code_block = false;
 
     /**
      * The styles for hyperlinks in the code
      * @var array
      */
-    var $link_styles = array();
+    protected $link_styles = array();
 
     /**
      * Whether important blocks should be recognised or not
@@ -359,7 +357,7 @@ class GeSHi {
      * @deprecated
      * @todo REMOVE THIS FUNCTIONALITY!
      */
-    var $enable_important_blocks = false;
+    protected $enable_important_blocks = false;
 
     /**
      * Styles for important parts of the code
@@ -368,31 +366,31 @@ class GeSHi {
      * @todo As above - rethink the whole idea of important blocks as it is buggy and
      * will be hard to implement in 1.2
      */
-    var $important_styles = 'font-weight: bold; color: red;'; // Styles for important parts of the code
+    protected $important_styles = 'font-weight: bold; color: red;'; // Styles for important parts of the code
 
     /**
      * Whether CSS IDs should be added to the code
      * @var boolean
      */
-    var $add_ids = false;
+    protected $add_ids = false;
 
     /**
      * Lines that should be highlighted extra
      * @var array
      */
-    var $highlight_extra_lines = array();
+    protected $highlight_extra_lines = array();
 
     /**
      * Styles of lines that should be highlighted extra
      * @var array
      */
-    var $highlight_extra_lines_styles = array();
+    protected $highlight_extra_lines_styles = array();
 
     /**
      * Styles of extra-highlighted lines
      * @var string
      */
-    var $highlight_extra_lines_style = 'background-color: #ffc;';
+    protected $highlight_extra_lines_style = 'background-color: #ffc;';
 
     /**
      * The line ending
@@ -400,112 +398,112 @@ class GeSHi {
      * Otherwise, all instances of \n will be replaced with $line_ending
      * @var string
      */
-    var $line_ending = null;
+    protected $line_ending = null;
 
     /**
      * Number at which line numbers should start at
      * @var int
      */
-    var $line_numbers_start = 1;
+    protected $line_numbers_start = 1;
 
     /**
      * The overall style for this code block
      * @var string
      */
-    var $overall_style = 'font-family:monospace;';
+    protected $overall_style = 'font-family:monospace;';
 
     /**
      *  The style for the actual code
      * @var string
      */
-    var $code_style = 'font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;';
+    protected $code_style = 'font: normal normal 1em/1.2em monospace; margin:0; padding:0; background:none; vertical-align:top;';
 
     /**
      * The overall class for this code block
      * @var string
      */
-    var $overall_class = '';
+    protected $overall_class = '';
 
     /**
      * The overall ID for this code block
      * @var string
      */
-    var $overall_id = '';
+    protected $overall_id = '';
 
     /**
      * Line number styles
      * @var string
      */
-    var $line_style1 = 'font-weight: normal; vertical-align:top;';
+    protected $line_style1 = 'font-weight: normal; vertical-align:top;';
 
     /**
      * Line number styles for fancy lines
      * @var string
      */
-    var $line_style2 = 'font-weight: bold; vertical-align:top;';
+    protected $line_style2 = 'font-weight: bold; vertical-align:top;';
 
     /**
      * Style for line numbers when GESHI_HEADER_PRE_TABLE is chosen
      * @var string
      */
-    var $table_linenumber_style = 'width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;';
+    protected $table_linenumber_style = 'width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;';
 
     /**
      * Flag for how line numbers are displayed
      * @var boolean
      */
-    var $line_numbers = GESHI_NO_LINE_NUMBERS;
+    protected $line_numbers = GESHI_NO_LINE_NUMBERS;
 
     /**
      * Flag to decide if multi line spans are allowed. Set it to false to make sure
      * each tag is closed before and reopened after each linefeed.
      * @var boolean
      */
-    var $allow_multiline_span = true;
+    protected $allow_multiline_span = true;
 
     /**
      * The "nth" value for fancy line highlighting
      * @var int
      */
-    var $line_nth_row = 0;
+    protected $line_nth_row = 0;
 
     /**
      * The size of tab stops
      * @var int
      */
-    var $tab_width = 8;
+    protected $tab_width = 8;
 
     /**
      * Should we use language-defined tab stop widths?
      * @var int
      */
-    var $use_language_tab_width = false;
+    protected $use_language_tab_width = false;
 
     /**
      * Default target for keyword links
      * @var string
      */
-    var $link_target = '';
+    protected $link_target = '';
 
     /**
      * The encoding to use for entity encoding
      * NOTE: Used with Escape Char Sequences to fix UTF-8 handling (cf. SF#2037598)
      * @var string
      */
-    var $encoding = 'utf-8';
+    protected $encoding = 'utf-8';
 
     /**
      * Should keywords be linked?
      * @var boolean
      */
-    var $keyword_links = true;
+    protected $keyword_links = true;
 
     /**
      * Currently loaded language file
      * @var    string
      * @since 1.0.7.22
      */
-    var $loaded_language = '';
+    protected $loaded_language = '';
 
     /**
      * Wether the caches needed for parsing are built or not
@@ -513,7 +511,7 @@ class GeSHi {
      * @var   bool
      * @since 1.0.8
      */
-    var $parse_cache_built = false;
+    protected $parse_cache_built = false;
 
     /**
      * Work around for Suhosin Patch with disabled /e modifier
@@ -530,8 +528,8 @@ class GeSHi {
      * @var   array
      * @since 1.0.8
      */
-    var $_kw_replace_group = 0;
-    var $_rx_key = 0;
+    protected $_kw_replace_group = 0;
+    protected $_rx_key = 0;
 
     /**
      * some "callback parameters" for handle_multiline_regexps
@@ -540,12 +538,10 @@ class GeSHi {
      * @access private
      * @var    string
      */
-    var $_hmr_before = '';
-    var $_hmr_replace = '';
-    var $_hmr_after = '';
-    var $_hmr_key = 0;
-
-    /**#@-*/
+    protected $_hmr_before = '';
+    protected $_hmr_replace = '';
+    protected $_hmr_after = '';
+    protected $_hmr_key = 0;
 
     /**
      * Creates a new GeSHi object, with source and language
