@@ -297,47 +297,47 @@ if(!$error_abort) {
             report_error(TYPE_ERROR, 'Cannot read file "' .$langfile. '"!');
         } else {
             $langfile_content = file_get_contents($langfile);
-            if(preg_match("/\?>(?:\r?\n|\r(?!\n)){2,}\Z/", $langfile_content)) {
+            if(preg_match('/\?>(?:\r?\n|\r(?!\n)){2,}\Z/', $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains trailing empty lines at EOF!');
             }
-            if(preg_match("/\?>(?:\r?\n|\r(?!\n))?\Z/", $langfile_content)) {
+            if(preg_match('/\?>(?:\r?\n|\r(?!\n))?\Z/', $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains an PHP end marker at EOF!');
             }
-            if(!preg_match("/(?:\r?\n|\r(?!\n))\Z/", $langfile_content)) {
+            if(!preg_match('/(?:\r?\n|\r(?!\n))\Z/', $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains no newline at EOF!');
             }
-            if(preg_match("/(\r?\n|\r(?!\n))\\1\Z/", $langfile_content)) {
+            if(preg_match('/(\r?\n|\r(?!\n))\\1\Z/', $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains trailing empty line before EOF!');
             }
-            if(preg_match("/[\x20\t]$/m", $langfile_content)) {
+            if(preg_match('/[\x20\t]$/m', $langfile_content)) {
                 report_error(TYPE_ERROR, 'Language file contains trailing whitespace at EOL!');
             }
-            if(preg_match("/\t/", $langfile_content)) {
+            if(preg_match('/\t/', $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains unescaped tabulator chars (probably for indentation)!');
             }
             if(preg_match('/^(?:    )*(?!    )(?! \*) /m', $langfile_content)) {
                 report_error(TYPE_NOTICE, 'Language file contains irregular indentation (other than 4 spaces per indentation level)!');
             }
 
-            if(!preg_match("/\/\*\*((?!\*\/).)*?Author:((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?Author:((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not contain a specification of an author!');
             }
-            if(!preg_match("/\/\*\*((?!\*\/).)*?Copyright:((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?Copyright:((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not contain a specification of the copyright!');
             }
-            if(!preg_match("/\/\*\*((?!\*\/).)*?Release Version:((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?Release Version:((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not contain a specification of the release version!');
             }
-            if(!preg_match("/\/\*\*((?!\*\/).)*?Date Started:((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?Date Started:((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not contain a specification of the date it was started!');
             }
-            if(!preg_match("/\/\*\*((?!\*\/).)*?This file is part of GeSHi\.((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?This file is part of GeSHi\.((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not state that it belongs to GeSHi!');
             }
-            if(!preg_match("/\/\*\*((?!\*\/).)*?language file for GeSHi\.((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?language file for GeSHi\.((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not state that it is a language file for GeSHi!');
             }
-            if(!preg_match("/\/\*\*((?!\*\/).)*?GNU General Public License((?!\*\/).)*?\*\//s", $langfile_content)) {
+            if(!preg_match('/\/\*\*((?!\*\/).)*?GNU General Public License((?!\*\/).)*?\*\//s', $langfile_content)) {
                 report_error(TYPE_WARNING, 'Language file does not state that it is provided under the terms of the GNU GPL!');
             }
 
