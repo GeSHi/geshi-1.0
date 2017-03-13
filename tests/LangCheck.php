@@ -197,72 +197,70 @@ class LangCheck {
     }
 
     /**
-     * Check the major keys in the language array
+     * Check that the given key exists and has the correct type
      *
-     * @fixme generalize this into a utility function
+     * Logs errors and returns the result
+     *
+     * @param string $name
+     * @param string $type the type as understood by gettype(), multiple can be joined by '|'
+     * @param bool $optional is it okay when the key does not exist?
+     * @return bool true if all is okay
+     */
+    protected function ensureKeyType($name, $type = 'array', $optional = false) {
+        $types = explode('|', $type);
+
+        if (!isset($this->langdata[$name])) {
+            if ($optional) return true;
+            $this->issue(self::TYPE_ERROR, "Language file contains no \$language_data['$name'] specification!");
+            return false;
+        }
+
+        if (!in_array(gettype($this->langdata[$name]), $types)) {
+            $this->issue(self::TYPE_ERROR, "Language file contains a \$language_data['$name'] specification which is not a $type!");
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Check the major keys in the language array
      */
     protected function checkMainKeys() {
 
-        if (!isset($this->langdata['LANG_NAME'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'LANG_NAME\'] specification!');
-        } elseif (!is_string($this->langdata['LANG_NAME'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'LANG_NAME\'] specification which is not a string!');
-        }
+        // these just need a type check:
 
-        if (!isset($this->langdata['COMMENT_SINGLE'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'COMMENT_SIGNLE\'] structure to check!');
-        } elseif (!is_array($this->langdata['COMMENT_SINGLE'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'COMMENT_SINGLE\'] structure which is not an array!');
-        }
+        $this->ensureKeyType('LANG_NAME', 'string');
+        $this->ensureKeyType('COMMENT_SINGLE');
+        $this->ensureKeyType('COMMENT_MULTI');
+        $this->ensureKeyType('COMMENT_REGEXP', 'array', true);
+        $this->ensureKeyType('QUOTEMARKS');
+        $this->ensureKeyType('HARDQUOTE', 'array', true);
+        $this->ensureKeyType('SYMBOLS');
+        $this->ensureKeyType('OBJECT_SPLITTERS');
+        $this->ensureKeyType('REGEXPS');
+        $this->ensureKeyType('SCRIPT_DELIMITERS');
+        $this->ensureKeyType('HIGHLIGHT_STRICT_BLOCK');
+        $this->ensureKeyType('PARSER_CONTROL', 'array', true);
 
-        if (!isset($this->langdata['COMMENT_MULTI'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'COMMENT_MULTI\'] structure to check!');
-        } elseif (!is_array($this->langdata['COMMENT_MULTI'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'COMMENT_MULTI\'] structure which is not an array!');
-        }
+        // these need additional simple checks after the type checks out
 
-        if (isset($this->langdata['COMMENT_REGEXP'])) {
-            if (!is_array($this->langdata['COMMENT_REGEXP'])) {
-                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'COMMENT_REGEXP\'] structure which is not an array!');
+        if ($this->ensureKeyType('ESCAPE_CHAR', 'string')) {
+            if (1 < strlen($this->langdata['ESCAPE_CHAR'])) {
+                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'ESCAPE_CHAR\'] specification is not empty or exactly one char!');
             }
         }
 
-        if (!isset($this->langdata['QUOTEMARKS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'QUOTEMARKS\'] structure to check!');
-        } elseif (!is_array($this->langdata['QUOTEMARKS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'QUOTEMARKS\'] structure which is not an array!');
-        }
-
-        if (isset($this->langdata['HARDQUOTE'])) {
-            if (!is_array($this->langdata['HARDQUOTE'])) {
-                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'HARDQUOTE\'] structure which is not an array!');
+        if ($this->ensureKeyType('CASE_KEYWORDS', 'integer')) {
+            if (GESHI_CAPS_NO_CHANGE != $this->langdata['CASE_KEYWORDS'] &&
+                GESHI_CAPS_LOWER != $this->langdata['CASE_KEYWORDS'] &&
+                GESHI_CAPS_UPPER != $this->langdata['CASE_KEYWORDS']
+            ) {
+                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'CASE_KEYWORDS\'] specification which is neither of GESHI_CAPS_NO_CHANGE, GESHI_CAPS_LOWER nor GESHI_CAPS_UPPER!');
             }
         }
 
-        if (!isset($this->langdata['ESCAPE_CHAR'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'ESCAPE_CHAR\'] specification to check!');
-        } elseif (!is_string($this->langdata['ESCAPE_CHAR'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'ESCAPE_CHAR\'] specification which is not a string!');
-        } elseif (1 < strlen($this->langdata['ESCAPE_CHAR'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'ESCAPE_CHAR\'] specification is not empty or exactly one char!');
-        }
-
-        if (!isset($this->langdata['CASE_KEYWORDS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'CASE_KEYWORDS\'] specification!');
-        } elseif (!is_int($this->langdata['CASE_KEYWORDS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'CASE_KEYWORDS\'] specification which is not an integer!');
-        } elseif (GESHI_CAPS_NO_CHANGE != $this->langdata['CASE_KEYWORDS'] &&
-            GESHI_CAPS_LOWER != $this->langdata['CASE_KEYWORDS'] &&
-            GESHI_CAPS_UPPER != $this->langdata['CASE_KEYWORDS']
-        ) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'CASE_KEYWORDS\'] specification which is neither of GESHI_CAPS_NO_CHANGE, GESHI_CAPS_LOWER nor GESHI_CAPS_UPPER!');
-        }
-
-        if (!isset($this->langdata['KEYWORDS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'KEYWORDS\'] structure to check!');
-        } elseif (!is_array($this->langdata['KEYWORDS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'KEYWORDS\'] structure which is not an array!');
-        } else {
+        if ($this->ensureKeyType('KEYWORDS')) {
             foreach ($this->langdata['KEYWORDS'] as $kw_key => $kw_value) {
                 if (!is_integer($kw_key)) {
                     $this->issue(self::TYPE_WARNING, "Language file contains an key '$kw_key' in \$language_data['KEYWORDS'] that is not integer!");
@@ -272,17 +270,7 @@ class LangCheck {
             }
         }
 
-        if (!isset($this->langdata['SYMBOLS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'SYMBOLS\'] structure to check!');
-        } elseif (!is_array($this->langdata['SYMBOLS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'SYMBOLS\'] structure which is not an array!');
-        }
-
-        if (!isset($this->langdata['CASE_SENSITIVE'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'CASE_SENSITIVE\'] structure to check!');
-        } elseif (!is_array($this->langdata['CASE_SENSITIVE'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'CASE_SENSITIVE\'] structure which is not an array!');
-        } else {
+        if ($this->ensureKeyType('CASE_SENSITIVE')) {
             foreach ($this->langdata['CASE_SENSITIVE'] as $cs_key => $cs_value) {
                 if (!is_integer($cs_key)) {
                     $this->issue(self::TYPE_WARNING, "Language file contains an key '$cs_key' in \$language_data['CASE_SENSITIVE'] that is not integer!");
@@ -292,11 +280,7 @@ class LangCheck {
             }
         }
 
-        if (!isset($this->langdata['URLS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'URLS\'] structure to check!');
-        } elseif (!is_array($this->langdata['URLS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'URLS\'] structure which is not an array!');
-        } else {
+        if ($this->ensureKeyType('URLS')) {
             foreach ($this->langdata['URLS'] as $url_key => $url_value) {
                 if (!is_integer($url_key)) {
                     $this->issue(self::TYPE_WARNING, "Language file contains an key '$url_key' in \$language_data['URLS'] that is not integer!");
@@ -308,71 +292,32 @@ class LangCheck {
             }
         }
 
-        if (!isset($this->langdata['OOLANG'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'OOLANG\'] specification!');
-        } elseif (!is_int($this->langdata['OOLANG']) && !is_bool($this->langdata['OOLANG'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'OOLANG\'] specification which is neither boolean nor integer!');
-        } elseif (false !== $this->langdata['OOLANG'] &&
-            true !== $this->langdata['OOLANG'] &&
-            2 !== $this->langdata['OOLANG']
-        ) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'OOLANG\'] specification which is neither of false, true or 2!');
+        if ($this->ensureKeyType('OOLANG', 'boolean|integer')) {
+            if (false !== $this->langdata['OOLANG'] &&
+                true !== $this->langdata['OOLANG'] &&
+                2 !== $this->langdata['OOLANG']
+            ) {
+                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'OOLANG\'] specification which is neither of false, true or 2!');
+            }
         }
 
-        if (!isset($this->langdata['OBJECT_SPLITTERS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'OBJECT_SPLITTERS\'] structure to check!');
-        } elseif (!is_array($this->langdata['OBJECT_SPLITTERS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'OBJECT_SPLITTERS\'] structure which is not an array!');
+        if ($this->ensureKeyType('STRICT_MODE_APPLIES', 'integer')) {
+            if (GESHI_MAYBE != $this->langdata['STRICT_MODE_APPLIES'] &&
+                GESHI_ALWAYS != $this->langdata['STRICT_MODE_APPLIES'] &&
+                GESHI_NEVER != $this->langdata['STRICT_MODE_APPLIES']
+            ) {
+                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'STRICT_MODE_APPLIES\'] specification which is neither of GESHI_MAYBE, GESHI_ALWAYS nor GESHI_NEVER!');
+            }
         }
 
-        if (!isset($this->langdata['REGEXPS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'REGEXPS\'] structure to check!');
-        } elseif (!is_array($this->langdata['REGEXPS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'REGEXPS\'] structure which is not an array!');
-        }
-
-        if (!isset($this->langdata['STRICT_MODE_APPLIES'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'STRICT_MODE_APPLIES\'] specification!');
-        } elseif (!is_int($this->langdata['STRICT_MODE_APPLIES'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'STRICT_MODE_APPLIES\'] specification which is not an integer!');
-        } elseif (GESHI_MAYBE != $this->langdata['STRICT_MODE_APPLIES'] &&
-            GESHI_ALWAYS != $this->langdata['STRICT_MODE_APPLIES'] &&
-            GESHI_NEVER != $this->langdata['STRICT_MODE_APPLIES']
-        ) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'STRICT_MODE_APPLIES\'] specification which is neither of GESHI_MAYBE, GESHI_ALWAYS nor GESHI_NEVER!');
-        }
-
-        if (!isset($this->langdata['SCRIPT_DELIMITERS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'SCRIPT_DELIMITERS\'] structure to check!');
-        } elseif (!is_array($this->langdata['SCRIPT_DELIMITERS'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'SCRIPT_DELIMITERS\'] structure which is not an array!');
-        }
-
-        if (!isset($this->langdata['HIGHLIGHT_STRICT_BLOCK'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'HIGHLIGHT_STRICT_BLOCK\'] structure to check!');
-        } elseif (!is_array($this->langdata['HIGHLIGHT_STRICT_BLOCK'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'HIGHLIGHT_STRICT_BLOCK\'] structure which is not an array!');
-        }
-
-        if (isset($this->langdata['TAB_WIDTH'])) {
-            if (!is_int($this->langdata['TAB_WIDTH'])) {
-                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'TAB_WIDTH\'] specification which is not an integer!');
-            } elseif (1 > $this->langdata['TAB_WIDTH']) {
+        if ($this->ensureKeyType('TAB_WIDTH', 'integer', true)) {
+            if (1 > $this->langdata['TAB_WIDTH']) {
                 $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'TAB_WIDTH\'] specification which is less than 1!');
             }
         }
 
-        if (isset($this->langdata['PARSER_CONTROL'])) {
-            if (!is_array($this->langdata['PARSER_CONTROL'])) {
-                $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'PARSER_CONTROL\'] structure which is not an array!');
-            }
-        }
 
-        if (!isset($this->langdata['STYLES'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains no $language_data[\'STYLES\'] structure to check!');
-        } elseif (!is_array($this->langdata['STYLES'])) {
-            $this->issue(self::TYPE_ERROR, 'Language file contains a $language_data[\'STYLES\'] structure which is not an array!');
-        } else {
+        if ($this->ensureKeyType('STYLES')) {
             $style_arrays = array('KEYWORDS', 'COMMENTS', 'ESCAPE_CHAR',
                 'BRACKETS', 'STRINGS', 'NUMBERS', 'METHODS', 'SYMBOLS',
                 'REGEXPS', 'SCRIPT');
