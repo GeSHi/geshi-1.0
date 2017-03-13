@@ -10,11 +10,12 @@ class langcheck_TestCase extends PHPUnit_Framework_TestCase {
      * @return array
      */
     public function languageProvider() {
-        $files = glob(__DIR__ . '/../src/geshi/*.php');
-        $files = array_map(function ($in) {
-            return array($in);
-        }, $files);
-        return $files;
+        $data = array();
+        foreach (glob(__DIR__ . '/../src/geshi/*.php') as $file) {
+            $base = basename($file, '.php');
+            $data[$base] = array($file);
+        }
+        return $data;
     }
 
 
@@ -22,7 +23,7 @@ class langcheck_TestCase extends PHPUnit_Framework_TestCase {
      * @dataProvider languageProvider
      * @param string $file
      */
-    public function test_file($file) {
+    public function test_langfile($file) {
 
         $check = new LangCheck($file);
         $result = $check->runChecks();
