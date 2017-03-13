@@ -52,6 +52,7 @@ define ('TYPE_OK', 3);
 
 $error_abort = false;
 $error_cache = array();
+$had_warning = false;
 function output_error_cache(){
     global $error_cache;
 
@@ -105,11 +106,13 @@ function output_error_cache(){
 }
 
 function report_error($type, $message) {
-    global $error_cache, $error_abort;
+    global $error_cache, $error_abort, $had_warning;
 
     $error_cache[] = array('t' => $type, 'm' => $message);
     if(TYPE_ERROR == $type) {
         $error_abort = true;
+    } else if (TYPE_WARNING == $type) {
+        $had_warning = true;
     }
 }
 
@@ -775,4 +778,11 @@ Validation process completed in <?php printf("%.2f", $time_diff); ?> seconds.
 
 GeSHi &copy; 2004-2007 Nigel McNie, 2007-2014 Benny Baumann, released under the GNU GPL
 
-<?php } ?>
+<?php }
+
+if ($error_abort) {
+    exit(1);
+} else if ($had_warning) {
+    exit(2);
+}
+?>
