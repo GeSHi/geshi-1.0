@@ -5,7 +5,8 @@
  *
  * Runs sanity checks on the given language file
  */
-class LangCheck {
+class LangCheck
+{
 
     const TYPE_NOTICE = 1;
     const TYPE_WARNING = 2;
@@ -37,7 +38,8 @@ class LangCheck {
      *
      * @param string $file the file to check
      */
-    public function __construct($file) {
+    public function __construct($file)
+    {
         $this->file = $file;
     }
 
@@ -46,17 +48,17 @@ class LangCheck {
      *
      * @return bool true if all checks pass
      */
-    public function runChecks() {
-        try {
-            $this->loadFile();
-            $this->checkGeneral();
-            $this->checkComment();
-            $this->loadLanguageData();
-            $this->checkMainKeys();
-            // additional checks only if no errors before
-            if (!$this->issues) $this->checkKeyContents();
-        } catch (Exception $ignored) {
-            // the error has already been logged, we just abort all processing
+    public function runChecks()
+    {
+        $this->issues = array();
+        $this->loadFile();
+        $this->checkGeneral();
+        $this->checkComment();
+        $this->loadLanguageData();
+        $this->checkMainKeys();
+        // additional checks only if no errors before
+        if (!$this->issues) {
+            $this->checkKeyContents();
         }
 
         if ($this->issues) {
@@ -70,7 +72,8 @@ class LangCheck {
      *
      * @return array
      */
-    public function getIssues() {
+    public function getIssues()
+    {
         return $this->issues;
     }
 
@@ -79,7 +82,8 @@ class LangCheck {
      *
      * @return string
      */
-    public function getIssuesAsString() {
+    public function getIssuesAsString()
+    {
         $string = '';
         foreach ($this->issues as $issue) {
             $string .= $this->severityNames[$issue[0]] . ' ' . $issue[1] . "\n";
@@ -92,7 +96,8 @@ class LangCheck {
      *
      * Logs a fatal error if the file can't be read
      */
-    protected function loadFile() {
+    protected function loadFile()
+    {
         if (!is_file($this->file)) {
             $this->issue(self::TYPE_FATAL, 'The path "' . $this->file . '" does not ressemble a regular file!');
         }
@@ -107,7 +112,8 @@ class LangCheck {
     /**
      * Check some general file properties
      */
-    protected function checkGeneral() {
+    protected function checkGeneral()
+    {
         if (preg_match('/\?>(?:\r?\n|\r(?!\n)){2,}\Z/', $this->content)) {
             $this->issue(self::TYPE_ERROR, 'Language file contains trailing empty lines at EOF!');
         }
@@ -139,7 +145,8 @@ class LangCheck {
     /**
      * Check that the needed information is in the initial file comment
      */
-    protected function checkComment() {
+    protected function checkComment()
+    {
         if (!preg_match('/\/\*\*\**\s(.*?)(?:\s*\*\/)/s', $this->content, $m)) {
             $this->issue(self::TYPE_ERROR, 'Language file does not have an initial comment block!');
             return;
@@ -174,7 +181,8 @@ class LangCheck {
      *
      * Logs a fatal error if the file does not define it
      */
-    protected function loadLanguageData() {
+    protected function loadLanguageData()
+    {
         $language_data = array();
 
         include $this->file;
@@ -206,11 +214,14 @@ class LangCheck {
      * @param bool $optional is it okay when the key does not exist?
      * @return bool true if all is okay
      */
-    protected function ensureKeyType($name, $type = 'array', $optional = false) {
+    protected function ensureKeyType($name, $type = 'array', $optional = false)
+    {
         $types = explode('|', $type);
 
         if (!isset($this->langdata[$name])) {
-            if ($optional) return true;
+            if ($optional) {
+                return false;
+            }
             $this->issue(self::TYPE_ERROR, "Language file contains no \$language_data['$name'] specification!");
             return false;
         }
@@ -226,7 +237,8 @@ class LangCheck {
     /**
      * Check the major keys in the language array
      */
-    protected function checkMainKeys() {
+    protected function checkMainKeys()
+    {
 
         // these just need a type check:
 
@@ -346,7 +358,8 @@ class LangCheck {
      *
      * @fixme split this into some sane chunks, maybe generalize
      */
-    protected function checkKeyContents() {
+    protected function checkKeyContents()
+    {
         foreach ($this->langdata['KEYWORDS'] as $key => $keywords) {
             if (!isset($this->langdata['CASE_SENSITIVE'][$key])) {
                 $this->issue(self::TYPE_ERROR, "Language file contains no \$language_data['CASE_SENSITIVE'] specification for keyword group $key!");
@@ -367,7 +380,7 @@ class LangCheck {
                 }
             }
             if (isset($this->langdata['CASE_SENSITIVE'][$key]) && !$this->langdata['CASE_SENSITIVE'][$key]) {
-                array_walk($keywords, 'dupfind_strtolower');
+                array_walk($keywords, array($this, 'strtolower'));
             }
             if (count($keywords) != count(array_unique($keywords))) {
                 $kw_diffs = array_count_values($keywords);
@@ -544,8 +557,6 @@ class LangCheck {
                 $this->issue(self::TYPE_NOTICE, "Language file contains an superfluous \$language_data['STYLES']['REGEXPS'] specification for regexp key $rk!");
             }
         }
-
-
     }
 
 
@@ -556,7 +567,8 @@ class LangCheck {
      * @param string $msg
      * @throws Exception
      */
-    protected function issue($type, $msg) {
+    protected function issue($type, $msg)
+    {
         $this->issues[] = array($type, $msg);
 
         // abort all processing on fatal errors
@@ -565,4 +577,8 @@ class LangCheck {
         }
     }
 
+    public function strtolower(&$value)
+    {
+        $value = strtolower($value);
+    }
 }
