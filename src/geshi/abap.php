@@ -1368,9 +1368,9 @@ $language_data = array(
             )
         ),
     'URLS' => array(
-        1 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
-        2 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
-        3 => 'http://help.sap.com/abapdocu/en/ABAP{FNAMEU}.htm',
+        1 => 'http://help.sap.com/abapdocu_740/en/ABAP{FNAMEU}.htm',
+        2 => 'http://help.sap.com/abapdocu_740/en/ABAP{FNAMEU}.htm',
+        3 => 'http://help.sap.com/abapdocu_740/en/ABAP{FNAMEU}.htm',
         4 => '',
         5 => '',
         6 => '',
