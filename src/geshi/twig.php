@@ -4,7 +4,7 @@
  * ----------
  * Author: Keyvan Akbary (keyvan@kiwwito.com)
  * Copyright: (c) 2011 Keyvan Akbary (http://www.kiwwito.com/)
- * Release Version: 1.0.0
+ * Release Version: 1.0.8.12
  * Date Started: 2011/12/05
  *
  * Twig template language file for GeSHi.
@@ -15,7 +15,7 @@
  *   - Added new tags, filters and functions
  *   - Added regexps for variables, objects and properties
  *   - Lots of other minor tweaks (delimites, comments, ...)
- * 
+ *
  * 2011/12/05 (1.0.0 by Keyvan Akbary)
  *   -  Initial Release
  *
@@ -44,7 +44,7 @@
 
 $language_data = array(
     'LANG_NAME' => 'Twig',
-    'COMMENT_SINGLE' => array('{#' => '#}'),
+    'COMMENT_SINGLE' => array(),
     'COMMENT_MULTI' => array('{#' => '#}'),
     'CASE_KEYWORDS' => GESHI_CAPS_NO_CHANGE,
     'QUOTEMARKS' => array("'", '"'),
@@ -53,42 +53,141 @@ $language_data = array(
         //TWIG
         //Tags
         1 => array(
-            'autoescape', 'endautoescape', 'block', 'endblock', 'do', 'embed', 'endembed',
-            'extends', 'filter', 'endfilter', 'for', 'endfor', 'from', 'if', 'else', 'elseif', 'endif',
-            'import', 'include', 'macro', 'endmacro', 'raw', 'endraw', 'sandbox', 'set', 'endset',
-            'spaceless', 'endspaceless', 'use', 'verbatim', 'endverbatim',
-            'trans', 'endtrans', 'transchoice', 'endtranschoice'
+            'autoescape',
+            'endautoescape',
+            'block',
+            'endblock',
+            'do',
+            'embed',
+            'endembed',
+            'extends',
+            'filter',
+            'endfilter',
+            'for',
+            'endfor',
+            'from',
+            'if',
+            'else',
+            'elseif',
+            'endif',
+            'import',
+            'include',
+            'macro',
+            'endmacro',
+            'raw',
+            'endraw',
+            'sandbox',
+            'set',
+            'endset',
+            'spaceless',
+            'endspaceless',
+            'use',
+            'verbatim',
+            'endverbatim',
+            'trans',
+            'endtrans',
+            'transchoice',
+            'endtranschoice'
         ),
         //Filters
         2 => array(
-            'abs', 'batch', 'capitalize', 'convert_encoding', 'date', 'date_modify', 'default',
-            'escape', 'first', 'format', 'join', 'json_encode', 'keys', 'last', 'length', 'lower',
-            'merge', 'nl2br', 'number_format', 'raw', 'replace', 'reverse', 'slice', 'sort', 'split',
-            'striptags', 'title', 'trans', 'trim', 'upper', 'url_encode'
+            'abs',
+            'batch',
+            'capitalize',
+            'convert_encoding',
+            'date',
+            'date_modify',
+            'default',
+            'escape',
+            'first',
+            'format',
+            'join',
+            'json_encode',
+            'keys',
+            'last',
+            'length',
+            'lower',
+            'merge',
+            'nl2br',
+            'number_format',
+            'replace',
+            'reverse',
+            'slice',
+            'sort',
+            'split',
+            'striptags',
+            'title',
+            'trim',
+            'upper',
+            'url_encode'
         ),
         //Functions
         3 => array(
-            'attribute', 'block', 'constant', 'cycle', 'date', 'dump', 'include',
-            'parent', 'random', 'range', 'source', 'template_from_string'
+            'attribute',
+            'cycle',
+            'dump',
+            'parent',
+            'random',
+            'range',
+            'source',
+            'template_from_string'
         ),
         //Tests
         4 => array(
-            'constant', 'defined', 'divisibleby', 'empty', 'even', 'iterable', 'null',
-            'odd', 'sameas'
+            'constant',
+            'defined',
+            'divisibleby',
+            'empty',
+            'even',
+            'iterable',
+            'null',
+            'odd',
+            'sameas'
         ),
         //Operators
         5 => array(
-            'in', 'is', 'and', 'b-and', 'or', 'b-or', 'b-xor', 'not', 'into',
-            'starts with', 'ends with', 'matches'
-        ),
-        6 => array(
-            '{{', '}}', '{%', '%}'
-        ),
+            'in',
+            'is',
+            'and',
+            'b-and',
+            'or',
+            'b-or',
+            'b-xor',
+            'not',
+            'into',
+            'starts with',
+            'ends with',
+            'matches'
+        )
     ),
     'SYMBOLS' => array(
-        '+', '-', '/', '/', '*', '**', //Math operators
-        '==', '!=', '<', '>', '>=', '<=', '===', //Logic operators
-        '..', '|', '~', '[', ']', '.', '?', ':', '(', ')', //Other
+        '{{',
+        '}}',
+        '{%',
+        '%}',
+        '+',
+        '-',
+        '/',
+        '/',
+        '*',
+        '**', //Math operators
+        '==',
+        '!=',
+        '<',
+        '>',
+        '>=',
+        '<=',
+        '===', //Logic operators
+        '..',
+        '|',
+        '~',
+        '[',
+        ']',
+        '.',
+        '?',
+        ':',
+        '(',
+        ')', //Other
         '=' //HTML (attributes)
     ),
     'CASE_SENSITIVE' => array(
@@ -98,8 +197,7 @@ $language_data = array(
         2 => true,
         3 => true,
         4 => true,
-        5 => true,
-        6 => false
+        5 => true
     ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -107,8 +205,7 @@ $language_data = array(
             2 => 'color: #008000;', //Filters
             3 => 'color: #0600FF;', //Functions
             4 => 'color: #804040;', //Tests
-            5 => 'color: #008000;', //Operators
-            6 => 'color: #008000;'  // {{ and {%
+            5 => 'color: #008000;'
         ),
         'COMMENTS' => array(
             'MULTI' => 'color: #008080; font-style: italic;'
@@ -151,7 +248,7 @@ $language_data = array(
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
         1 => '.',
-        ),
+    ),
     'REGEXPS' => array(
         0 => array(
             GESHI_SEARCH => "([[:space:]])([a-zA-Z_][a-zA-Z0-9_]*)",
@@ -159,23 +256,23 @@ $language_data = array(
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\\1',
             GESHI_AFTER => ''
-            ),
+        ),
         1 => array(
             GESHI_SEARCH => "\.([a-zA-Z_][a-zA-Z0-9_]*)",
             GESHI_REPLACE => '.\\1',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
-            ),
+        ),
     ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
         0 => array(
             '{{' => '}}',
-            '{%' => '%}'         
+            '{%' => '%}'
         ),
         1 => array(
-            '{#' => '#}',          
+            '{#' => '#}',
         )
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
@@ -184,7 +281,6 @@ $language_data = array(
         2 => true
     ),
     'PARSER_CONTROL' => array(
-        'KEYWORDS' => array(
-        )
+        'KEYWORDS' => array()
     )
 );
