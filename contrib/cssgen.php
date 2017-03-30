@@ -30,7 +30,6 @@
  *
  ************************************************************************************/
 
-set_magic_quotes_runtime(0);
 //
 // Functions
 //
@@ -165,21 +164,23 @@ if ( !$step || $step == 1 )
     $geshi_lang_path = get_var('geshi-lang-path');
 
     if(strstr($geshi_path, '..')) {
-        unset($geshi_path);
+        $geshi_path = null;
     }
     if(strstr($geshi_lang_path, '..')) {
-        unset($geshi_lang_path);
+        $geshi_lang_path = null;
     }
 
     if ( !$geshi_path )
     {
-        $geshi_path = '../geshi.php';
+        $geshi_path = '../src/geshi.php';
     }
     if ( !$geshi_lang_path )
     {
-        $geshi_lang_path = '../geshi/';
+        $geshi_lang_path = '../src/geshi/';
     }
 
+    $no_geshi_dot_php_error = false;
+    $no_lang_dir_error = false;
     if ( is_file($geshi_path) && is_readable($geshi_path) )
     {
         // Get file contents and see if GeSHi is in here
