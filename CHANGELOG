@@ -12,6 +12,41 @@ modified by me for consistency/bug fixing.
 Please send any bug reports to BenBE@omorphia.de, or use the bug report tracker
 at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
+Version 1.0.9.0
+  -  Added language files
+     * Ceylon (Lucas Werkmeister)
+     * eggdrop (CrazyCat)
+     * Julia (Curtis Vogt)
+     * Kotlin (Ole Kristian Sandum)
+     * Mathematica (Connor Glosser)
+     * Mercury (Sebastian Godelet)
+     * MetaPost (Maxime Chupin)
+     * phix (Pete Lomax)
+     * SASS (Javier Eguiluz)
+     * Swift (Ken Woo)
+     * TeXgraph (Patrick Fradin)
+     * Twig templates (Javier Eguiluz)
+     * windows batch (Lev)
+     * Xojo (Massimo Zappino)
+  -  Add public/protected method & property visibility.
+     THIS MAY BREAK YOUR CODE
+  -  Restructure git repository
+  -  Compatible with PHP7
+  -  Remove PHP4 compatibility code
+  -  Improvements to language files
+     * AutoIt: new version (Jonathan Bennett)
+     * C++11 keywords (Streusel)
+     * CSS attributes (BenBE)
+     * CSS: SVG fill styles (peterdd)
+     * Haskell: Non-standard string highlighting (Evan Czaplicki)
+     * Haskell: Quote mark handling (Sidharth Kapur)
+     * Lua: match comments non-greedily (Jerry)
+     * PowerBuilder: additional encoding constants (Doug Porter)
+     * QML updates (Thibaut Cuvelier)
+     * SQL: ELSEIF keyword (Kris)
+     * YAML numbers specification (BenBE)
+  -  Automatically run langcheck when committing code
+
 Version 1.0.8.13
   -  Added language files
      - Ceylon (Lucas Werkmeister)
