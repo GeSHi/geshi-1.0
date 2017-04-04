@@ -5,13 +5,13 @@
  * Author: Maïeul Rouquette from
  * Quinn Taylor (quinntaylor@mac.com)
  * Copyright: (c) 2009 Quinn Taylor (quinntaylor@mac.com), Nigel McNie (http://qbnz.com/highlighter)
- * Release Version: 1.1.0
+ * Release Version: 1.0.8.12
  * Date Started: 2009/04/29
  *
  * BibLaTeX language file for GeSHi.
  *
  * CHANGES
- * 2015/12/29 (1.1.0) Regexp pour avoir les champs personnalisés de biblatex
+ * 2015/12/29 (1.0.8.12) Biblatex parser 
  * CHANGES
  * -------
  * 2009/04/29 (1.0.8.4)
@@ -198,4 +198,7 @@ $language_data = array (
                 ),
             )
         )
-);
+			)
+;
+
+
