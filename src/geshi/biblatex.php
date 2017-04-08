@@ -176,7 +176,7 @@ $language_data = array (
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
-    ),
+        ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'OBJECT_SPLITTERS' => array(
