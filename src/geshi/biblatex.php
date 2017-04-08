@@ -83,7 +83,6 @@ $language_data = array (
             'contents','copyright','date-added','date-modified','doi','eprint',
             'isbn','issn','keywords','language','lccn','lib-congress',
             'location','price','rating','read','size','source','url',
-      ""
             )
         ),
     'URLS' => array(
@@ -177,7 +176,7 @@ $language_data = array (
             GESHI_BEFORE => '',
             GESHI_AFTER => ''
             ),
-  ),
+    ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
     'OBJECT_SPLITTERS' => array(
