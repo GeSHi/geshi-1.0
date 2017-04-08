@@ -11,7 +11,7 @@
  * BibLaTeX language file for GeSHi.
  *
  * CHANGES
- * 2015/12/29 (1.0.8.12) Biblatex parser 
+ * 2015/12/29 (1.0.8.12) Biblatex parser
  * CHANGES
  * -------
  * 2009/04/29 (1.0.8.4)
@@ -200,5 +200,3 @@ $language_data = array (
         )
 			)
 ;
-
-
