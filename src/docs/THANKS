@@ -67,8 +67,9 @@ PEOPE WHO MADE LANGUAGE FILES
 - BASCOM AVR             Michal Goralczyk
 - Bash                   Andreas Gohr
 - Basic4GL               Matthew Webb
+- Biblatex               Maïeul Rouquette
 - BibTeX                 Quinn Taylor
-- BlitzBasic             P�draig O`Connel
+- BlitzBasic             Padraig O`Connel
 - BNF                    Rowan Rodrik van der Molen
 - Boo                    Marcus Griep
 - Brainfuck \ Brainfork  Benny Baumann
@@ -142,9 +143,11 @@ PEOPE WHO MADE LANGUAGE FILES
 - Javascript             Ben Keen
 - Job Control Language   Ramesh Vishveshwar
 - jQuery                 Rob Loach
+- Julia                  John Lynch
 - KiXtart                Riley McArdle
 - KLone C                Mickael Auger
 - KLone C++              Mickael Auger
+- Kotlin                 Ole Sandum
 - LaTeX                  Matthais Pospiech
 - LDIF                   Bruno Harbulot
 - Liberty BASIC          Chris Iverson
@@ -158,9 +161,12 @@ PEOPE WHO MADE LANGUAGE FILES
 - Lua                    Roberto Rossi
 - m86k                   Benny Baumann
 - MagikSF                Sjoerd van Leent
+- Mathematica            Connor Glosser
 - MapBasic               Tomasz Berus
-- mIRC                   Alberto de Areba Sánchez
+- MetaPost               Maxime Chupin
 - Mercury                Sebastian Godelet
+- mIRC                   Alberto de Areba Sánchez
+- МК-61                  Russkiy
 - Modula 2               Benjamin Kowarsch
 - Modula-3               Martin Bishop
 - Motorola 6502 ASM      Warren Willmey
@@ -191,6 +197,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - PCRE                   Benny Baumann
 - Perl                   Andreas Gohr, Ben Keen
 - Perl6                  Kodi Arfer
+- Phix                   Pete Lomax
 - PIC16xxx assembler     Phil Mattison
 - Pike                   Rick E.
 - Pixel Bender           Richard Olsson
@@ -224,6 +231,7 @@ PEOPE WHO MADE LANGUAGE FILES
 - Ruby                   Amit Gupta, Moises Deniz
 - Rust                   Dave Hodder
 - SAS                    Galen Johnson
+- SASS                   Javier Eguiluz
 - Scheme                 Jon Raphaelson
 - SciLab                 Christophe David
 - SCL                    Leonhard Hösch
@@ -234,13 +242,17 @@ PEOPE WHO MADE LANGUAGE FILES
 - SPARQL                 Karima Rafes
 - StandardML             eldesh
 - StoneScript            Archimmersion
+- Swift                  Ken Woo
 - SystemVerilog          Sean O'Boyle
 - TCL                    Reid van Melle
+- TCL/eggdrop            Reid van Melle
 - TeraTerm               Boris Maisuradze
+- TexGraph               Patrick Fradin
 - Text                   SmokingRope
 - thinBasic              Eros Olmi
 - T-SQL                  Duncan Lock
 - TypoScript             Jan-Philipp Halle
+- Twig                   Keyvan Akbary
 - Unicon                 Matt Oates
 - Uno IDL                Cedric Bosdonnat
 - UnrealScript           pospi
@@ -259,8 +271,10 @@ PEOPE WHO MADE LANGUAGE FILES
 - Whitespace             Benny Baumann
 - Whois \ RPSL format    Benny Baumann
 - Winbatch               Craig Storey
+- Windows Batch          FraidZZ
 - X++                    Simon Butcher
 - XBasic                 José Gabriel Moya Yangüela
+- Xojo                   Garry Pettet
 - Xorg config            Milian Wolff
 - YAML                   Josh Ventura
 - Z80 Assembler          Benny Baumann
