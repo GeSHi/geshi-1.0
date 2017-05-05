@@ -4,7 +4,7 @@
  * -----
  * Author: Richard Molitor (richard.molitor@student.kit.edu)
  * Copyright: (c) 2013 Richard Molitor
- * Release Version: 1.0.8.13
+ * Release Version: 1.0.9.0
  * Date Started: 2013/06/22
  *
  * Chapel language file for GeSHi.

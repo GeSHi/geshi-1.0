@@ -4,7 +4,7 @@
  * --------
  * Author: Dr Garry Pettet (contact@garrypettet.com)
  * Copyright: (c) 2014 Dr Garry Pettet (http://garrypettet.com)
- * Release Version: 1.0.8.13
+ * Release Version: 1.0.9.0
  * Date Started: 2014/10/19
  *
  * Xojo language file for GeSHi.

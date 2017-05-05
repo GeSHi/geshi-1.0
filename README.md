@@ -1,6 +1,6 @@
 GeSHi - Generic Syntax Highlighter
 ==================================
-### Version 1.0.8.13
+### Version 1.0.9.0
 
 Author:          [Benny Baumann](http://blog.benny-baumann.de/), [Nigel McNie](http://nigel.mcnie.name/)
 Email:           <BenBE@geshi.org>, <nigel@geshi.org>

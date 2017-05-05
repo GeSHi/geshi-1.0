@@ -4,7 +4,7 @@
  * --------------
  * Author: J-P Nurmi <jpnurmi@gmail.com>
  * Copyright: (c) 2012-2014 J-P Nurmi <jpnurmi@gmail.com>
- * Release Version: 1.0.8.13
+ * Release Version: 1.0.9.0
  * Date Started: 2012/08/19
  *
  * QML language file for GeSHi.
