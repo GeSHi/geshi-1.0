@@ -4,7 +4,7 @@
  * -----------
  * Author: Patrick Fradin (patrick.fradin@gmail.com)
  * Copyright: (c) 2011 Patrick Fradin
- * Release Version: 1.0.0.0
+ * Release Version: 1.0.8.13
  * Date Started: 2011-09-18
  *
  * TeXgraph language file for GeSHi.
