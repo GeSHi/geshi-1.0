@@ -12,7 +12,7 @@
  *
  * CHANGES
  * -------
- * 2014/01/09 (1.0.8.12)
+ * 2014/01/09 (1.0.8.13)
  *   -  New keywords & updated languge name
  * 2012/06/28 (1.0.8.11)
  *   -  Added "write" keyword for properties

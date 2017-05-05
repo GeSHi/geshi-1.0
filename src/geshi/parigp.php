@@ -13,7 +13,7 @@
  * -------
  * 2011/07/09 (1.0.8.11)
  *  -  First Release
- * 2013/02/05 (1.0.8.12)
+ * 2013/02/05 (1.0.8.13)
  *  -  Added 2.6.0 commands, default, member functions, and error-handling
  *
  * TODO (updated 2011/07/09)

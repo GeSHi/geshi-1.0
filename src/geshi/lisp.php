@@ -11,7 +11,7 @@
  *
  * CHANGES
  * -------
- * 2013/11/13 (1.0.8.12)
+ * 2013/11/13 (1.0.8.13)
  *  -  Fixed bug where a keyword was highlighted in identifiers (Edward Hart)
  * 2005/12/9  (1.0.2)
  *  -  Added support for :keywords and ::access (Denis Mashkevich)
