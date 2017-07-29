@@ -52,10 +52,11 @@ $language_data = array (
             ),
         2 => array(
             'Authentication-Results','Comment','Content-Description','Content-Type',
-            'Content-Disposition','Content-Transfer-Encoding','Delivered-To',
-            'Dkim-Signature','Domainkey-Signature','In-Reply-To','Message-Id',
-            'MIME-Version','OpenPGP','Received','Received-SPF','References',
-            'Reply-To', 'Resend-From','Resend-To','Return-Path','User-Agent'
+            'Content-Disposition','Content-Transfer-Encoding','Content-Location',
+            'Content-Id','Delivered-To','Dkim-Signature','Domainkey-Signature',
+            'In-Reply-To','Message-Id','MIME-Version','OpenPGP','Received',
+            'Received-SPF','References','Reply-To', 'Resend-From','Resend-To',
+            'Return-Path','User-Agent'
             ),
         3 => array(
             'Date','From','Sender','Subject','To','CC'
