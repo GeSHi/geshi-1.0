@@ -143,6 +143,7 @@ $language_data = array (
             ),
         'SCRIPT' => array(
             0 => 'color: #000040;',
+            1 => 'color: #002040;',
             ),
         'REGEXPS' => array(
             1 => 'color: #000000; font-weight: bold;',
@@ -231,10 +232,12 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_ALWAYS,
     'SCRIPT_DELIMITERS' => array(
-        0 => "/(?P<start>^)[A-Za-z][a-zA-Z0-9\-]*\s*:\s*(?:.|(?=\n\s)\n)*(?P<end>$)/m"
+        0 => "/(?P<start>^)[A-Za-z][a-zA-Z0-9\-]*\s*:\s*(?:.|(?=\n\s)\n)*(?P<end>$)/m",
+        1 => "/(?P<start>^)--[a-zA-Z0-9_=\-]+[a-zA-Z0-9_](?:--)?(?P<end>$)/m"
     ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         0 => true,
+        1 => false
         ),
     'TAB_WIDTH' => 4,
     'PARSER_CONTROL' => array(
