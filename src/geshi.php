@@ -1970,6 +1970,11 @@ class GeSHi {
      * @since 1.0.8
      */
     protected function build_parse_cache() {
+        // check whether language_data is available
+        if (empty($this->language_data)) {
+            return false;
+        }
+
         // cache symbol regexp
         //As this is a costy operation, we avoid doing it for multiple groups ...
         //Instead we perform it for all symbols at once.
@@ -2151,13 +2156,18 @@ class GeSHi {
      *
      * @since 1.0.0
      */
-    public function parse_code () {
+    public function parse_code() {
         // Start the timer
         $start_time = microtime();
 
         // Replace all newlines to a common form.
         $code = str_replace("\r\n", "\n", $this->source);
         $code = str_replace("\r", "\n", $code);
+
+        // check whether language_data is available
+        if (empty($this->language_data)) {
+            $this->error = GESHI_ERROR_NO_SUCH_LANG;
+        }
 
         // Firstly, if there is an error, we won't highlight
         if ($this->error) {
