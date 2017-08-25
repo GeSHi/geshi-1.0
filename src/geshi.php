@@ -628,6 +628,19 @@ class GeSHi {
     }
 
     /**
+     * Clean up the language name to prevent malicious code injection
+     *
+     * @param string $language The name of the language to strip
+     * @since 1.0.9.1
+     */
+    public function strip_language_name($language) {
+        $language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
+        $language = strtolower($language);
+
+        return $language;
+    }
+
+    /**
      * Sets the language for this object
      *
      * @note since 1.0.8 this function won't reset language-settings by default anymore!
@@ -646,9 +659,7 @@ class GeSHi {
         }
 
         //Clean up the language name to prevent malicious code injection
-        $language = preg_replace('#[^a-zA-Z0-9\-_]#', '', $language);
-
-        $language = strtolower($language);
+        $language = $this->strip_language_name($language);
 
         //Retreive the full filename
         $file_name = $this->language_path . $language . '.php';
