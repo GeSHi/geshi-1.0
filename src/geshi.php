@@ -634,10 +634,11 @@ class GeSHi {
      *       if you need this set $force_reset = true
      *
      * @param string $language    The name of the language to use
+     * @param string $file_name   The filename of the language file you want to load, optional
      * @param bool   $force_reset
      * @since 1.0.0
      */
-    public function set_language($language, $force_reset = false) {
+    public function set_language($language, $file_name = '', $force_reset = false) {
         $this->error = false;
         $this->strict_mode = GESHI_NEVER;
 
@@ -651,7 +652,11 @@ class GeSHi {
         $language = strtolower($language);
 
         //Retreive the full filename
-        $file_name = $this->language_path . $language . '.php';
+        if ($file_name == '') $file_name = $this->language_path . $language . '.php';
+        if (dirname($file_name) != rtrim($this->language_path, DIRECTORY_SEPARATOR)) {
+            // this file is not in the correct directory!
+            return;
+        }
         if ($file_name == $this->loaded_language) {
             // this language is already loaded!
             return;
