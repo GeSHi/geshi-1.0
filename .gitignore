@@ -1,3 +1,4 @@
 dist
 build.properties
-
+vendor
+composer.lock
