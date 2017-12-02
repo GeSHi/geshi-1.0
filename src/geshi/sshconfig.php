@@ -4,15 +4,16 @@
  * --------
  * Author: Kevin Ernst (kevin.ernst -at- cchmc.org)
  * Copyright: (c) 2017 Kevin Ernst
- * Release Version: 1.0.9.0
+ * Release Version: 1.0.9.1
  * Date Started: 2017/12/01
  *
  * OpenSSH config file (~/.ssh/config) language file for GeSHi.
  *
  * CHANGES
  * -------
- * 2017/??/?? (1.0.0)
- *   -  First Release
+ * 2017/12/02 (1.0.0)
+ *   -  First release; couldn't figure out how to separately highlight negated
+        hostnames/wildcards, but it's good enough for a basic ~/.ssh/config
  *
  *************************************************************************************
  *
@@ -121,7 +122,7 @@ $language_data = array (
             ),
         'REGEXPS' => array(
             0 => 'color: darkmagenta;',
-            1 => 'color: red; font-weight: bold',
+            //1 => 'color: red; font-weight: bold',
             2 => 'color: magenta; font-weight: bold',
             ),
         'SCRIPT' => array(
