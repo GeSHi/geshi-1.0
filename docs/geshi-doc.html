@@ -3555,7 +3555,8 @@ array for the number markup, copy the keys used there and assign the styles acco
 make sure you include a key for symbols group 0.</li>
 <li><strong>&#8216;REGEXPS&#8217;:</strong> This is an array with a style for each matching regex. Also, since 1.0.7.21, you can specify the
 name of a function to be called, that will be given the text matched by the regex, each time a match is found.
-Note that my testing found that <code>create_function</code> would not work with this due to a <abbr title="PHP: HTML Preprocessor">PHP</abbr> bug, so you have to
+Note that my testing found that <code>create_function</code> would not work with this due to a <abbr title="PHP: HTML Preprocessor">PHP</abbr> bug
+(not to mention that <code>create_function</code> is deprecated as of <abbr title="PHP: HTML Preprocessor">PHP</abbr> 7.2.0), so you have to
 put the function definition at the top of the language file. Be sure to prefix the function name
 with <code>geshi_[languagename]_</code> as to not conflict with other functions!</li>
 <li><strong>&#8216;SCRIPT&#8217;:</strong> For languages that use script delimiters, this is where you can style each block of script. For
