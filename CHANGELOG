@@ -16,6 +16,7 @@ Version 1.0.9.1
   -  Added language files
      * OpenSSH config (Kevin Ernst)
      * roff (Artur Iwicki)
+     * Wolfram (Mysterious Light)
   -  Some minor tweaks for RFC822 email support (BenBE)
   -  Introduce strip_language function (phy25)
   -  Recognize additional file extensions (RealityRipple)
