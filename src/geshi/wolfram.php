@@ -916,8 +916,7 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        1 => true, /* Wolfram is a case sensitive language */
-        2 => true
+        1 => true /* Wolfram is a case sensitive language */
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
