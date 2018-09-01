@@ -1483,7 +1483,7 @@ class GeSHi {
                 'haskell' => array('hs'),
                 'haxe' => array('hx'),
                 'html4strict' => array('html', 'htm'),
-                'ini' => array('ini', 'desktop'),
+                'ini' => array('ini', 'desktop', 'vbp'),
                 'java' => array('java'),
                 'javascript' => array('js'),
                 'klonec' => array('kl1'),
@@ -1517,11 +1517,11 @@ class GeSHi {
                 'smarty' => array(),
                 'tcl' => array('tcl'),
                 'text' => array('txt'),
-                'vb' => array('bas'),
-                'vbnet' => array(),
+                'vb' => array('bas', 'ctl', 'frm'),
+                'vbnet' => array('vb', 'sln'),
                 'visualfoxpro' => array(),
                 'whitespace' => array('ws'),
-                'xml' => array('xml', 'svg', 'xrc'),
+                'xml' => array('xml', 'svg', 'xrc', 'vbproj', 'csproj', 'userprefs', 'resx', 'stetic', 'settings', 'manifest', 'myapp'),
                 'z80' => array('z80', 'asm', 'inc')
             );
         }
