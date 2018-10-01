@@ -864,5 +864,10 @@ $language_data = array (
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
     'SCRIPT_DELIMITERS' => array(),
-    'HIGHLIGHT_STRICT_BLOCK' => array()
+    'HIGHLIGHT_STRICT_BLOCK' => array(),
+    'PARSER_CONTROL' => array(
+        'ENABLE_FLAGS' => array(
+            'NUMBERS' => GESHI_NEVER
+            )
+        )
 );
