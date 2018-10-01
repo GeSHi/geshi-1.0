@@ -14,6 +14,14 @@ at sourceforge (http://sourceforge.net/tracker/?group_id=114997&atid=670231)
 
 Version 1.0.9.1
   -  Some minor tweaks for RFC822 email support (BenBE)
+  -  Introduce strip_language function (phy25)
+  -  Recognize additional file extensions (RealityRipple)
+  -  Code style update by avoiding create_function (cweiske)
+  -  Backported CLI tool from GeSHi 1.1 branch (cweiske)
+  -  Improvements to language files
+     * MySQL: Some missing keywords (Abu3safeer)
+     * MySQL: Updated documentation links (splitbrain)
+     * SQL: Some missing keywords (peterdd)
 Version 1.0.9.0
   -  Add public/protected method & property visibility.
      THIS MAY BREAK YOUR CODE
