@@ -105,7 +105,7 @@ $language_data = array (
         4 => array (
             'Bool', 'Maybe', 'Either', 'Ordering',
             'Char', 'String',
-            'Int', 'Integer', 'Float', 'Double', 'Rational',
+            'Int', 'Integer', 'Float', 'Double', 'Rational', 'Word',
             'ShowS', 'ReadS',
             'IO', 'IOError', 'IOException'
             ),
@@ -114,7 +114,9 @@ $language_data = array (
             'Ord', 'Eq', 'Enum', 'Bounded',
             'Num', 'Real', 'Integral', 'Fractional',
             'Floating', 'RealFrac', 'RealFloat',
-            'Monad', 'Functor',
+	    'Semigroup', 'Monoid',
+            'Monad', 'Applicative', 'Functor',
+	    'Foldable', 'Traversable', 
             'Show', 'Read'
             )
         ),
