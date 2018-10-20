@@ -114,9 +114,9 @@ $language_data = array (
             'Ord', 'Eq', 'Enum', 'Bounded',
             'Num', 'Real', 'Integral', 'Fractional',
             'Floating', 'RealFrac', 'RealFloat',
-	    'Semigroup', 'Monoid',
+            'Semigroup', 'Monoid',
             'Monad', 'Applicative', 'Functor',
-	    'Foldable', 'Traversable',
+            'Foldable', 'Traversable',
             'Show', 'Read'
             )
         ),
