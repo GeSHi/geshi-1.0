@@ -116,7 +116,7 @@ $language_data = array (
             'Floating', 'RealFrac', 'RealFloat',
 	    'Semigroup', 'Monoid',
             'Monad', 'Applicative', 'Functor',
-	    'Foldable', 'Traversable', 
+	    'Foldable', 'Traversable',
             'Show', 'Read'
             )
         ),
