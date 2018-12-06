@@ -11,7 +11,10 @@
  *
  * CHANGES
  * -------
- * 2017-11-20 (1.0)
+ * 2018-12-06 (1.0.1)
+ *  - Fix reqex for line-start requests (must start with [.'], not [\.'])
+ *  - Add some missing whitespace escapes
+ * 2017-11-20 (1.0.0)
  *  - First Release
  *
  *************************************************************************************
@@ -399,6 +402,7 @@ $language_data = array (
             '\\[DI]',    '\\(DI',
             ),
         1 => array(
+            // Special characters
             '\\\\', '\\´', '\\`', '\\-',
             '\\_',  '\\.', '\\%', '\\!',
             '\\0',  '\\|', '\\^', '\\&',
@@ -407,6 +411,10 @@ $language_data = array (
             '\\c',  '\\d', '\\e', '\\E',
             '\\p',  '\\r', '\\t', '\\u',
 
+            // Whitespace escapes
+            '\\ ', '\\h', "\\\n",
+
+            // Text modifiers
             '\\fB', '\\fI', '\\fR', '\\fP',
             '\\f0', '\\f1', '\\f2', '\\f3', '\\f4', '\\f5', '\\f6', '\\f7', '\\f8', '\\f9',
             ),
@@ -486,7 +494,7 @@ $language_data = array (
             ),
         5 => array(
             // Line start macros (.TP, .SH, et cetera)
-            GESHI_SEARCH => "^([\\.']{1}[a-zA-Z]+)",
+            GESHI_SEARCH => "^([.']{1}[a-zA-Z]+)",
             GESHI_REPLACE => '\\1',
             GESHI_MODIFIERS => 'm',
             GESHI_BEFORE => '',
