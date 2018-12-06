@@ -4,9 +4,10 @@
  * ---------------------------------
  * Author: Artur Iwicki (iwicki DOT artur AT svgames DOT pl)
  * Copyright: (c) 2017 Artur Iwicki
+ * Release Version: 1.0.9.1
  * Date Started: 2017-11-17
  *
- * roff language (Unix man page) file for GeSHi.
+ * roff (Unix man page) language file for GeSHi.
  *
  * CHANGES
  * -------
