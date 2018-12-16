@@ -23,6 +23,7 @@ Version 1.0.9.1
   -  Code style update by avoiding create_function (cweiske)
   -  Backported CLI tool from GeSHi 1.1 branch (cweiske)
   -  Improvements to language files
+     * bash: Update list of keywords (apjanke)
      * Haskell: Updated doc links and types from Prelude (Jeremy Singer)
      * Matlab: Add keywords and functions from recent Matlab releases (apjanke)
      * MySQL: Some missing keywords (Abu3safeer)
