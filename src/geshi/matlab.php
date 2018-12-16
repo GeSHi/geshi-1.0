@@ -207,7 +207,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => 'http://www.mathworks.com/access/helpdesk/help/techdoc/ref/{FNAMEL}.html'
+        2 => 'https://www.mathworks.com/help/matlab/ref/{FNAMEL}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
