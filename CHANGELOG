@@ -19,6 +19,7 @@ Version 1.0.9.1
   -  Code style update by avoiding create_function (cweiske)
   -  Backported CLI tool from GeSHi 1.1 branch (cweiske)
   -  Improvements to language files
+     * Matlab: Add keywords and functions from recent Matlab releases (apjanke)
      * MySQL: Some missing keywords (Abu3safeer)
      * MySQL: Updated documentation links (splitbrain)
      * SQL: Some missing keywords (peterdd)
