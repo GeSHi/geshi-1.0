@@ -1,7 +1,10 @@
 <?php
+
+use PHPUnit\Framework\TestCase;
+
 require_once __DIR__ . '/LangCheck.php';
 
-class LangCheckTest extends PHPUnit_Framework_TestCase
+class LangCheckTest extends TestCase
 {
     /**
      * Read all available language files
