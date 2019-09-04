@@ -25,6 +25,7 @@ Version 1.0.9.1
   -  Improvements to language files
      * bash: Update list of keywords (apjanke)
      * Haskell: Updated doc links and types from Prelude (Jeremy Singer)
+     * INI files: support single quotes (peterdd)
      * Matlab: Add keywords and functions from recent Matlab releases (apjanke)
      * MySQL: Some missing keywords (Abu3safeer)
      * MySQL: Updated documentation links (splitbrain)
