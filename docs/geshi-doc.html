@@ -427,7 +427,7 @@ a breeze.</p>
 <li><a href="#feedback">1.4 Feedback</a></li>
 </ul></li>
 <li><a href="#the-basics">2 The Basics</a><ul>
-<li><a href="#getting-geshi">2.1 Getting <abbr title="Generic Syntax Highlighter">GeSHi</abbr> work</a><ul>
+<li><a href="#getting-geshi">2.1 Getting <abbr title="Generic Syntax Highlighter">GeSHi</abbr> to work</a><ul>
 <li><a href="#requirements">2.1.1 Requirements</a></li>
 <li><a href="#downloading-geshi">2.1.2 Downloading <abbr title="Generic Syntax Highlighter">GeSHi</abbr></a></li>
 <li><a href="#extracting-geshi">2.1.3 Extracting <abbr title="Generic Syntax Highlighter">GeSHi</abbr></a></li>
@@ -616,7 +616,7 @@ the best it can be, and I need your help! You can contact me in the following wa
 <p>In this section, you&#8217;ll learn a bit about <abbr title="Generic Syntax Highlighter">GeSHi</abbr>, how it works and what it uses, how to install it and how to use
 it to perform basic highlighting.</p>
 
-<h3 id="getting-geshi">2.1 Getting <abbr title="Generic Syntax Highlighter">GeSHi</abbr> work</h3><div class="nav"><a href="#the-basics">Previous</a> | <a href="#the-basics">Top</a> | <a href="#requirements">Next</a></div>
+<h3 id="getting-geshi">2.1 Getting <abbr title="Generic Syntax Highlighter">GeSHi</abbr> to work</h3><div class="nav"><a href="#the-basics">Previous</a> | <a href="#the-basics">Top</a> | <a href="#requirements">Next</a></div>
 
 <p>If you&#8217;re reading this and don&#8217;t have <abbr title="Generic Syntax Highlighter">GeSHi</abbr>, that&#8217;s a problem ;). So, how do you get your hands on it?</p>
 
@@ -644,28 +644,27 @@ This is suitable especially when you plan on using <abbr title="Generic Syntax H
 or otherwise need a stable copy for flawless operation.</p>
 
 <p>If you are somewhat more sophisticated or need a feature just recently implemented
-you might consider getting <abbr title="Generic Syntax Highlighter">GeSHi</abbr> by downloading via SVN. There are multiple ways
-for doing so and each one has its own advantages and disadvantages. Let&#8217;s cover
-the various locations in the SVN you might download from:</p>
+you might consider getting <abbr title="Generic Syntax Highlighter">GeSHi</abbr> by downloading from GitHub:</p>
 
-<ul>
-<li><a href="https://geshi.svn.sourceforge.net/svnroot/geshi/tags/">https://geshi.svn.sourceforge.net/svnroot/geshi/tags/</a>:<br />
-This directory holds all previous releases of <abbr title="Generic Syntax Highlighter">GeSHi</abbr> each as a subdirectory. By downloading from here you can test your code with various old versions
-in case something has been broken recently.</li>
-<li><a href="https://geshi.svn.sourceforge.net/svnroot/geshi/branches/RELEASE_1_0_X_STABLE/geshi-1.0.X/src/">https://geshi.svn.sourceforge.net/svnroot/geshi/branches/RELEASE_1_0_X_STABLE/geshi-1.0.X/src/</a>:<br />
-This directory is the right place for you if you want to have reasonably current versions of <abbr title="Generic Syntax Highlighter">GeSHi</abbr> but need something that is stable. This directory
-is updated once in a while between updates whenever there&#8217;s something new but which is already reasonably stable. This branch is used to form the
-actual release once the work is done.</li>
-<li><a href="https://geshi.svn.sourceforge.net/svnroot/geshi/trunk/geshi-1.0.X/src/">https://geshi.svn.sourceforge.net/svnroot/geshi/trunk/geshi-1.0.X/src/</a>:<br />
-This directory is the working directory where every new feature, patch or improvement is committed to. This directory is updated regularly, but is not
-guaranteed to be tested and stable at all times. With this version you&#8217;ll always get the latest version of <abbr title="Generic Syntax Highlighter">GeSHi</abbr> out there, but beware of bugs! There
-will be loads of them here! So this is absolutely <strong>not recommended</strong> for productive use!</li>
-</ul>
+<p>The GeSHi 1.0.x series code is in the <a href="https://github.com/GeSHi/geshi-1.0">GeShi/geshi-1.0</a>
+repo on GitHub. This repo contains the full code history, and is where current development
+happens, including all new features, patches, and improvements. This directory is updated regularly, but is not
+guaranteed to be tested and stable at all times.</p>
 
-<p>If you have choosen the right SVN directory for you do a quick
-<code class="highlighted bash"><span class="kw2">svn co</span> <span class="re1">$SVNPATH</span> geshi</code> where <code class="highlighted bash"><span class="co4">$</span>SVNPATH</code> is one of the above paths and your desired version of <abbr title="Generic Syntax Highlighter">GeSHi</abbr> will be
-downloaded into an subdirectory called &#8220;geshi&#8221;. If you got a version of <abbr title="Generic Syntax Highlighter">GeSHi</abbr>
-you can go on installing as shown below.</p>
+<p>With this version you&#8217;ll always get the latest version of <abbr title="Generic Syntax Highlighter">GeSHi</abbr> out there, but beware of bugs! There
+will be loads of them here! So this is absolutely <strong>not recommended</strong> for production use!</p>
+
+<p>To get a copy of the latest source code (with full history), clone the repo to your
+local system:</p>
+
+<pre>
+  git clone https://github.com/GeSHi/geshi-1.0
+</pre>
+
+<p>The cloned repo will be in the subdirectory <code>geshi-1.0</code>.</p>
+
+<p>You can also find older GeSHi 1.0.x releases on the project's
+<a href="https://github.com/GeSHi/geshi-1.0/releases">GitHub Releases page</a>.
 
 <h4 id="extracting-geshi">2.1.3 Extracting <abbr title="Generic Syntax Highlighter">GeSHi</abbr></h4><div class="nav"><a href="#downloading-geshi">Previous</a> | <a href="#getting-geshi">Top</a> | <a href="#installing-geshi">Next</a></div>
 
