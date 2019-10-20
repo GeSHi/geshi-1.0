@@ -4,7 +4,7 @@
  * ----------
  * Author: Mysterious Light (youngmysteriouslight@gmail.com)
  * Copyright: (c) 2018 Mysterious Light (youngmysteriouslight@gmail.com)
- * Release Version: 1.0.9.0
+ * Release Version: 1.0.9.1
  * Date Started: 2018/01/12
  *
  * Wolfram language file for GeSHi.

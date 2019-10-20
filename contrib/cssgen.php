@@ -4,7 +4,7 @@
  * ----------
  * Author: Nigel McNie (nigel@geshi.org)
  * Copyright: (c) 2004 Nigel McNie
- * Release Version: 1.0.9.0
+ * Release Version: 1.0.9.1
  * Date Started: 2004/05/20
  *
  * Application to generate custom CSS files for GeSHi (based on an idea by Andreas
