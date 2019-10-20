@@ -374,7 +374,7 @@ $language_data = array (
             'getS3method', 'getTxtProgressBar', 'glob2rx', 'head', 'head.matrix', 'help', 'help.request', 'help.search',
             'help.start', 'history', 'index.search', 'install.packages', 'installed.packages', 'is.relistable',
             'limitedLabels', 'loadhistory', 'localeToCharset', 'ls.str', 'lsf.str', 'make.packages.html', 'make.socket',
-            'makeRweaveLatexCodeRunner', 'memory.limit', 'memory.size', 'menu', 'methods', 'mirror2html', 'modifyList',
+            'makeRweaveLatexCodeRunner', 'memory.limit', 'memory.size', 'menu', 'mirror2html', 'modifyList',
             'new.packages', 'normalizePath', 'nsl', 'object.size', 'old.packages', 'package.contents', 'package.skeleton',
             'packageDescription', 'packageStatus', 'page', 'person', 'personList', 'pico', 'prompt', 'promptData',
             'promptPackage', 'rc.getOption', 'rc.options', 'rc.settings', 'rc.status', 'read.csv', 'read.csv2', 'read.delim',
