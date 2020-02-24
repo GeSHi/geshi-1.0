@@ -2060,7 +2060,7 @@ $language_data = array (
     'REGEXPS' => array(
         // environment
         1 => array(
-            GESHI_SEARCH => '(?<=\\\\)(begin|end)(\{)(\w*)(\})',
+            GESHI_SEARCH => '(?<=\\\\)(begin|end)(\{)([\w\*]*)(\})',
             GESHI_REPLACE => '\3',
             GESHI_MODIFIERS => '',
             GESHI_BEFORE => '\1\2',
