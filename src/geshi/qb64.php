@@ -73,15 +73,11 @@ $language_data = array (
         GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT |
         GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
-        1 => array(
-            ),
         3 => array(
             'DO', 'LOOP', 'WHILE', 'WEND', 'THEN', 'ELSE', 'ELSEIF', 'IF',
             'FOR', 'TO', 'NEXT', 'STEP', 'GOTO', 'GOSUB', 'CALL', 'CALLS',
             'SUB', 'FUNCTION', 'RETURN', 'RESUME', 'SELECT', 'CASE', 'UNTIL',
-            '?', '$CHECKING', '$CONSOLE', 'ONLY', '$DYNAMIC', '$ELSE', '$ELSEIF', '$END',
-            '$ENDIF', '$EXEICON', '$IF', '$INCLUDE', '$LET', '$RESIZE', '$SCREENHIDE', '$SCREENSHOW',
-            '$STATIC', '$VERSIONINFO', '$VIRTUALKEYBOARD', 'ABS', 'ABSOLUTE', 'ACCESS',
+            'ONLY', 'ABS', 'ABSOLUTE', 'ACCESS',
             'ALIAS', 'AND', 'APPEND', 'AS', 'ASC', 'ATN', 'BASE', 'BEEP', 'BINARY', 'BLOAD',
             'BSAVE', 'BYVAL', 'IS', 'CDBL', 'CDECL', 'CHAIN', 'CHDIR', 'CHR$', 'CINT', 'CIRCLE',
             'CLEAR', 'CLNG', 'CLOSE', 'CLS', 'COLOR', 'COM', 'COMMAND$', 'COMMON', 'CONST',
@@ -206,12 +202,17 @@ $language_data = array (
             '_SMOOTHSTRETCHED', '_SOFTWARE', '_SQUAREPIXELS', '_STRETCH', '_ALLOWFULLSCREEN',
             '_ALL', '_ECHO', '_INSTRREV', '_TRIM$', '_ACCEPTFILEDROP', '_FINISHDROP', '_TOTALDROPPEDFILES',
             '_DROPPEDFILE', '_DROPPEDFILE$', '_SHR', '_SHL', '_DEFLATE$', '_INFLATE$', '_READBIT', '_RESETBIT',
-            '_SETBIT', '_TOGGLEBIT', '$ASSERTS', '_ASSERT', '_CAPSLOCK', '_NUMLOCK', '_SCROLLLOCK', '_TOGGLE',
-            '_CONSOLEFONT', '_CONSOLECURSOR', '_CONSOLEINPUT', '_CINP', '$NOPREFIX', '$COLOR',
+            '_SETBIT', '_TOGGLEBIT', '_ASSERT', '_CAPSLOCK', '_NUMLOCK', '_SCROLLLOCK', '_TOGGLE',
+            '_CONSOLEFONT', '_CONSOLECURSOR', '_CONSOLEINPUT', '_CINP',
+            ),
+        4 => array(
+            '$CHECKING', '$CONSOLE', '$DYNAMIC', '$ELSE', '$ELSEIF', '$END', '$STATIC', '$VERSIONINFO',
+            '$VIRTUALKEYBOARD', '$ENDIF', '$EXEICON', '$IF', '$INCLUDE', '$LET', '$RESIZE', '$SCREENHIDE',
+            '$SCREENSHOW', '$ASSERTS', '$NOPREFIX', '$COLOR',
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
+        '?', '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -220,8 +221,8 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #a1a100;',
-            3 => 'color: #000066;'
+            3 => 'color: #000066;',
+            4 => 'color: #008000;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
@@ -253,8 +254,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => '',
-        3 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}'
+        3 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}',
+        4 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}'
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -268,5 +269,5 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 8
+    'TAB_WIDTH' => 4
 );

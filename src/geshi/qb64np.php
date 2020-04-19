@@ -73,15 +73,11 @@ $language_data = array (
         GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT |
         GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
-        1 => array(
-            ),
         3 => array(
             'DO', 'LOOP', 'WHILE', 'WEND', 'THEN', 'ELSE', 'ELSEIF', 'IF',
             'FOR', 'TO', 'NEXT', 'STEP', 'GOTO', 'GOSUB', 'CALL', 'CALLS',
-            'SUB', 'FUNCTION', 'RETURN', 'RESUME', 'SELECT', 'CASE', 'UNTIL',
-            '?', '$CHECKING', '$CONSOLE', 'ONLY', '$DYNAMIC', '$ELSE', '$ELSEIF', '$END',
-            '$ENDIF', '$EXEICON', '$IF', '$INCLUDE', '$LET', '$RESIZE', '$SCREENHIDE', '$SCREENSHOW',
-            '$STATIC', '$VERSIONINFO', '$VIRTUALKEYBOARD', 'ABS', 'ABSOLUTE', 'ACCESS',
+            'SUB', 'FUNCTION', 'RETURN', 'RESUME', 'SELECT', 'CASE', 'UNTIL', 'ONLY',
+            'ABS', 'ABSOLUTE', 'ACCESS',
             'ALIAS', 'AND', 'APPEND', 'AS', 'ASC', 'ATN', 'BASE', 'BEEP', 'BINARY', 'BLOAD',
             'BSAVE', 'BYVAL', 'IS', 'CDBL', 'CDECL', 'CHAIN', 'CHDIR', 'CHR$', 'CINT', 'CIRCLE',
             'CLEAR', 'CLNG', 'CLOSE', 'CLS', 'COLOR', 'COM', 'COMMAND$', 'COMMON', 'CONST',
@@ -206,9 +202,10 @@ $language_data = array (
             '_SMOOTHSTRETCHED', '_SOFTWARE', '_SQUAREPIXELS', '_STRETCH', '_ALLOWFULLSCREEN',
             '_ALL', '_ECHO', '_INSTRREV', '_TRIM$', '_ACCEPTFILEDROP', '_FINISHDROP', '_TOTALDROPPEDFILES',
             '_DROPPEDFILE', '_DROPPEDFILE$', '_SHR', '_SHL', '_DEFLATE$', '_INFLATE$', '_READBIT', '_RESETBIT',
-            '_SETBIT', '_TOGGLEBIT', '$ASSERTS', '_ASSERT', '_CAPSLOCK', '_NUMLOCK', '_SCROLLLOCK', '_TOGGLE',
-            '_CONSOLEFONT', '_CONSOLECURSOR', '_CONSOLEINPUT', '_CINP', '$NOPREFIX', '$COLOR',
-
+            '_SETBIT', '_TOGGLEBIT', '_ASSERT', '_CAPSLOCK', '_NUMLOCK', '_SCROLLLOCK', '_TOGGLE',
+            '_CONSOLEFONT', '_CONSOLECURSOR', '_CONSOLEINPUT', '_CINP',
+            ),
+        4 => array(
             'ACOS', 'ACOSH', 'ALPHA', 'ALPHA32', 'ARCCOT', 'ARCCSC', 'ARCSEC', 'ASIN', 'ASINH', 'ATAN2', 'ATANH',
             'AUTODISPLAY', 'AXIS', 'BACKGROUNDCOLOR', 'BIT', 'BLEND', 'BLINK', 'BLUE', 'BLUE32', 'BUTTON',
             'BUTTONCHANGE', 'BYTE', 'CEIL', 'CLEARCOLOR', 'CLIP', 'CLIPBOARD$', 'CLIPBOARDIMAGE', 'COMMANDCOUNT',
@@ -216,7 +213,7 @@ $language_data = array (
             'CONTROLCHR', 'COPYIMAGE', 'COPYPALETTE', 'COSH', 'COT', 'COTH', 'CSC', 'CSCH', 'CV', 'CWD$', 'D2G',
             'D2R', 'DEFAULTCOLOR', 'DEFINE', 'DELAY', 'DEPTHBUFFER', 'DESKTOPHEIGHT', 'DESKTOPWIDTH', 'DEST',
             'DEVICE$', 'DEVICEINPUT', 'DEVICES', 'DIR$', 'DIREXISTS', 'DISPLAY', 'DISPLAYORDER', 'DONTBLEND',
-            'DONTWAIT', 'ERRORLINE', 'EXIT', 'EXPLICIT', 'FILEEXISTS', 'FLOAT', 'FONT', 'FONTHEIGHT', 'FONTWIDTH',
+            'DONTWAIT', 'ERRORLINE', 'EXPLICIT', 'FILEEXISTS', 'FLOAT', 'FONT', 'FONTHEIGHT', 'FONTWIDTH',
             'FREEFONT', 'FREEIMAGE', 'FREETIMER', 'FULLSCREEN', 'G2D', 'G2R', 'GLRENDER', 'GREEN', 'GREEN32',
             'HEIGHT', 'HIDE', 'HYPOT', 'ICON', 'INCLERRORFILE$', 'INCLERRORLINE', 'INTEGER64', 'KEYCLEAR',
             'KEYDOWN', 'KEYHIT', 'LASTAXIS', 'LASTBUTTON', 'LASTWHEEL', 'LIMIT', 'LOADFONT', 'LOADIMAGE',
@@ -231,7 +228,7 @@ $language_data = array (
             'SINH', 'SNDBAL', 'SNDCLOSE', 'SNDCOPY', 'SNDGETPOS', 'SNDLEN', 'SNDLIMIT', 'SNDLOOP', 'SNDOPEN',
             'SNDOPENRAW', 'SNDPAUSE', 'SNDPAUSED', 'SNDPLAY', 'SNDPLAYCOPY', 'SNDPLAYFILE', 'SNDPLAYING', 'SNDRATE',
             'SNDRAW', 'SNDRAWDONE', 'SNDRAWLEN', 'SNDSETPOS', 'SNDSTOP', 'SNDVOL', 'SOURCE', 'STARTDIR$', 'STRCMP',
-            'STRICMP', 'TANH', 'TITLE', 'TITLE$', 'UNSIGNED', 'WHEEL', 'WIDTH', 'WINDOWHANDLE', 'WINDOWHASFOCUS',
+            'STRICMP', 'TANH', 'TITLE', 'TITLE$', 'UNSIGNED', 'WHEEL', 'WINDOWHANDLE', 'WINDOWHASFOCUS',
             'GLACCUM', 'GLALPHAFUNC', 'GLARETEXTURESRESIDENT', 'GLARRAYELEMENT', 'GLBEGIN', 'GLBINDTEXTURE', 'GLBITMAP',
             'GLBLENDFUNC', 'GLCALLLIST', 'GLCALLLISTS', 'GLCLEAR', 'GLCLEARACCUM', 'GLCLEARCOLOR', 'GLCLEARDEPTH',
             'GLCLEARINDEX', 'GLCLEARSTENCIL', 'GLCLIPPLANE', 'GLCOLOR3B', 'GLCOLOR3BV', 'GLCOLOR3D', 'GLCOLOR3DV',
@@ -278,16 +275,21 @@ $language_data = array (
             'GLTRANSLATEF', 'GLVERTEX2D', 'GLVERTEX2DV', 'GLVERTEX2F', 'GLVERTEX2FV', 'GLVERTEX2I', 'GLVERTEX2IV', 'GLVERTEX2S',
             'GLVERTEX2SV', 'GLVERTEX3D', 'GLVERTEX3DV', 'GLVERTEX3F', 'GLVERTEX3FV', 'GLVERTEX3I', 'GLVERTEX3IV', 'GLVERTEX3S',
             'GLVERTEX3SV', 'GLVERTEX4D', 'GLVERTEX4DV', 'GLVERTEX4F', 'GLVERTEX4FV', 'GLVERTEX4I', 'GLVERTEX4IV', 'GLVERTEX4S',
-            'GLVERTEX4SV', 'GLVERTEXPOINTER', 'GLVIEWPORT', 'ANTICLOCKWISE', 'BEHIND', 'CLEAR', 'FILLBACKGROUND', 'GLUPERSPECTIVE',
-            'HARDWARE', 'HARDWARE1', 'KEEPBACKGROUND', 'NONE', 'OFF', 'ONLY', 'ONLYBACKGROUND', 'ONTOP', 'SEAMLESS', 'SMOOTH',
-            'SMOOTHSHRUNK', 'SMOOTHSTRETCHED', 'SOFTWARE', 'SQUAREPIXELS', 'STRETCH', 'ALLOWFULLSCREEN', 'ALL', 'ECHO', 'INSTRREV',
+            'GLVERTEX4SV', 'GLVERTEXPOINTER', 'GLVIEWPORT', 'ANTICLOCKWISE', 'BEHIND', 'FILLBACKGROUND', 'GLUPERSPECTIVE',
+            'HARDWARE', 'HARDWARE1', 'KEEPBACKGROUND', 'NONE', 'ONLYBACKGROUND', 'ONTOP', 'SEAMLESS',
+            'SMOOTHSHRUNK', 'SMOOTHSTRETCHED', 'SOFTWARE', 'SQUAREPIXELS', 'ALLOWFULLSCREEN', 'ALL', 'ECHO', 'INSTRREV',
             'TRIM$', 'ACCEPTFILEDROP', 'FINISHDROP', 'TOTALDROPPEDFILES', 'DROPPEDFILE', 'DROPPEDFILE$', 'SHR', 'SHL', 'DEFLATE$',
             'INFLATE$', 'READBIT', 'RESETBIT', 'SETBIT', 'TOGGLEBIT', 'ASSERT', 'CAPSLOCK', 'NUMLOCK', 'SCROLLLOCK', 'TOGGLE',
             'CONSOLEFONT', 'CONSOLECURSOR', 'CONSOLEINPUT', 'CINP',
+            ),
+        5 => array(
+            '$CHECKING', '$CONSOLE', '$DYNAMIC', '$ELSE', '$ELSEIF', '$END', '$STATIC', '$VERSIONINFO',
+            '$VIRTUALKEYBOARD', '$ENDIF', '$EXEICON', '$IF', '$INCLUDE', '$LET', '$RESIZE', '$SCREENHIDE',
+            '$SCREENSHOW', '$ASSERTS', '$NOPREFIX', '$COLOR',
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
+        '?', '(', ')', ',', '+', '-', '*', '/', '=', '<', '>', '^'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
@@ -296,8 +298,9 @@ $language_data = array (
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #a1a100;',
-            3 => 'color: #000066;'
+            3 => 'color: #000066;',
+            4 => 'color: #000066;',
+            5 => 'color: #008000;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
@@ -329,8 +332,9 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => '',
-        3 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}'
+        3 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}',
+        4 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}',
+        5 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}'
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
@@ -344,5 +348,5 @@ $language_data = array (
         ),
     'HIGHLIGHT_STRICT_BLOCK' => array(
         ),
-    'TAB_WIDTH' => 8
+    'TAB_WIDTH' => 4
 );
