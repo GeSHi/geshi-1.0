@@ -17,6 +17,7 @@ Version 1.0.9.1
      * OpenSSH config (Kevin Ernst)
      * roff (Artur Iwicki)
      * Wolfram (Mysterious Light)
+     * QB64 (changes to Nigel McNie's work on qbasic.php made by Fellippe Heitor/QB64 Team)
   -  Some minor tweaks for RFC822 email support (BenBE)
   -  Introduce strip_language function (phy25)
   -  Recognize additional file extensions (RealityRipple)
