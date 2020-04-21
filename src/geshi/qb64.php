@@ -1,40 +1,21 @@
 <?php
 /*************************************************************************************
  * qb64.php
- * Mod by: Fellippe Heitor (fellippe@qb64.org)
  * ----------
- * Original file: qbasic.php
- * Author: Nigel McNie (nigel@geshi.org)
- * Copyright: (c) 2004 Nigel McNie (http://qbnz.com/highlighter/)
- * Release Version: 1.0.9.0
- * Date Started: 2004/06/20
+ * Author: Fellippe Heitor (fellippe@qb64.org)
+ * Release Version: 1.0.9.2
+ * Date Started: 2019/04/27
  *
- * QBasic/QuickBASIC language file for GeSHi.
+ * QB64 language file for GeSHi.
  *
  * CHANGES
  * -------
+ * 2020/04/21
+ *  -  Tweaks to comply with latest version of geshi.
  * 2020/02/25
  *  -  New keywords for QB64 v1.4. (Fellippe Heitor)
  * 2019/04/27
- *  -  Modifications for QB64. (Fellippe Heitor)
- * 2008/05/23 (1.0.7.22)
- *  -  Added description of extra language features (SF#1970248)
- * 2004/11/27 (1.0.3)
- *  -  Added support for multiple object splitters
- * 2004/10/27 (1.0.2)
- *   -  Added support for URLs
- * 2004/08/05 (1.0.1)
- *   -  Added support for symbols
- *   -  Removed unnessecary slashes from some keywords
- * 2004/07/14 (1.0.0)
- *   -  First Release
- *
- * TODO (updated 2004/11/27)
- * -------------------------
- * * Make sure all possible combinations of keywords with
- *   a space in them (EXIT FOR, END SELECT) are added
- *   to the first keyword group
- * * Update colours, especially for the first keyword group
+ *  -  Modifications for QB64 based on Nigel McNie's work on qbasic.php
  *
  *************************************************************************************
  *
@@ -61,7 +42,7 @@ $language_data = array (
     'COMMENT_MULTI' => array(),
     'COMMENT_REGEXP' => array(
         //Single-Line Comments using REM command
-        2 => "/\bREM.*?$/i",
+        2 => "/\bREM\b.*?$/i",
         //Line numbers
         3 => "/^\s*\d+/im"
         ),
@@ -73,7 +54,7 @@ $language_data = array (
         GESHI_NUMBER_FLT_NONSCI_F | GESHI_NUMBER_FLT_SCI_SHORT |
         GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
-        3 => array(
+        1 => array(
             'DO', 'LOOP', 'WHILE', 'WEND', 'THEN', 'ELSE', 'ELSEIF', 'IF',
             'FOR', 'TO', 'NEXT', 'STEP', 'GOTO', 'GOSUB', 'CALL', 'CALLS',
             'SUB', 'FUNCTION', 'RETURN', 'RESUME', 'SELECT', 'CASE', 'UNTIL',
@@ -205,7 +186,7 @@ $language_data = array (
             '_SETBIT', '_TOGGLEBIT', '_ASSERT', '_CAPSLOCK', '_NUMLOCK', '_SCROLLLOCK', '_TOGGLE',
             '_CONSOLEFONT', '_CONSOLECURSOR', '_CONSOLEINPUT', '_CINP',
             ),
-        4 => array(
+        2 => array(
             '$CHECKING', '$CONSOLE', '$DYNAMIC', '$ELSE', '$ELSEIF', '$END', '$STATIC', '$VERSIONINFO',
             '$VIRTUALKEYBOARD', '$ENDIF', '$EXEICON', '$IF', '$INCLUDE', '$LET', '$RESIZE', '$SCREENHIDE',
             '$SCREENSHOW', '$ASSERTS', '$NOPREFIX', '$COLOR',
@@ -216,13 +197,13 @@ $language_data = array (
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
-        3 => false,
-        4 => false
+        1 => false,
+        2 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            3 => 'color: #000066;',
-            4 => 'color: #008000;'
+            1 => 'color: #000066;',
+            2 => 'color: #008000;'
             ),
         'COMMENTS' => array(
             1 => 'color: #808080;',
@@ -254,8 +235,8 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        3 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}',
-        4 => 'http://www.qb64.org/wiki/index.php/{FNAMEU}'
+        1 => 'https://www.qb64.org/wiki/index.php/{FNAMEU}',
+        2 => 'https://www.qb64.org/wiki/index.php/{FNAMEU}'
         ),
     'OOLANG' => false,
     'OBJECT_SPLITTERS' => array(
