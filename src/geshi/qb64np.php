@@ -3,6 +3,7 @@
  * qb64np.php
  * ----------
  * Author: Fellippe Heitor (fellippe@qb64.org)
+ * Copyright: (c) 2020 Fellippe Heitor (https://qb64.org/)
  * Release Version: 1.0.9.2
  * Date Started: 2019/04/27
  *
