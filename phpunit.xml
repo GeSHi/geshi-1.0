@@ -3,7 +3,8 @@
          backupStaticAttributes="false"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true">
+         convertWarningsToExceptions="true"
+         bootstrap="vendor/autoload.php">
     <testsuites>
         <testsuite name="Test Suite">
             <directory suffix=".php">./tests/</directory>
