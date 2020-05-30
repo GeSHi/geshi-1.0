@@ -53,11 +53,9 @@ $language_data = array (
             'break', 'case', 'continue', 'do', 'else', 'elseif', 'end', 'for', 'halt', 'if', 'pause', 'resume',
             'return', 'select', 'then', 'try', 'while'
             ),
-        2 => array(
-            'STDIN', 'STDOUT', 'STDERR',
-            '%i', '%pi', '%e', '%eps', '%nan', '%inf', '%s', '%t', '%f',
-            'usual', 'polynomial', 'boolean', 'character', 'function', 'rational', 'state-space',
-            'sparse', 'boolean sparse', 'list', 'tlist', 'library', 'endfunction'
+        2 => array(  // constant
+            'SCI', 'WSCI', 'SCIHOME', 'TMPDIR', 'home', '%e', '%eps', '%f', '%F', '%i', '%inf', '%nan', '%pi', '%s',
+            '%t', '%T', '%z'
             ),
         3 => array(
             '%asn', '%helps', '%k', '%sn', 'abcd', 'abinv', 'abort', 'about', 'About_M2SCI_tools',
