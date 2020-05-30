@@ -39,7 +39,7 @@
 $language_data = array (
     'LANG_NAME' => 'SciLab',
     'COMMENT_SINGLE' => array(1 => '//'),
-    'COMMENT_MULTI' => array(),
+    'COMMENT_MULTI' => array('/*' => '*/'),
     'COMMENT_REGEXP' => array(
         2 => "/(?<=\)|\]|\w)'/"
         ),
@@ -49,8 +49,9 @@ $language_data = array (
     'HARDQUOTE' => array("'", "'"),
     'HARDESCAPE' => array(),
     'KEYWORDS' => array(
-        1 => array(
-            'if', 'else', 'elseif', 'end', 'select', 'case', 'for', 'while', 'break'
+        1 => array(  // control flow
+            'break', 'case', 'continue', 'do', 'else', 'elseif', 'end', 'for', 'halt', 'if', 'pause', 'resume',
+            'return', 'select', 'then', 'try', 'while'
             ),
         2 => array(
             'STDIN', 'STDOUT', 'STDERR',
