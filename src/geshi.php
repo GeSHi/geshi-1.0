@@ -669,6 +669,8 @@ class GeSHi {
         }
 
         $this->language = $language;
+        // ensure the language name is set even if the file cannot be loaded in the next step
+        $this->language_data['LANGUAGE_NAME'] = $language;
 
         //Check if we can read the desired file
         if (!is_readable($file_name)) {
