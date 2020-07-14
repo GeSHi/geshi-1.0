@@ -331,7 +331,7 @@ $language_data = array (
             'SSLProxyProtocol','SSLProxyVerify','SSLProxyVerifyDepth',
             'SSLRandomSeed','SSLRenegBufferSize','SSLRequire','SSLRequireSSL',
             'SSLSessionCache','SSLSessionCacheTimeout','SSLUserName',
-            'SSLVerifyClient','SSLVerifyDepth',
+            'SSLVerifyClient','SSLVerifyDepth', 'SSLUseStapling', 'SSLStaplingCache',
 
             //mod_status.c
             'ExtendedStatus','SeeRequestTail',
