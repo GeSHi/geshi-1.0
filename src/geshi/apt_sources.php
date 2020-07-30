@@ -78,11 +78,14 @@ $language_data = array (
             'quantal', 'quantal-updates', 'quantal-security', 'quantal-proposed', 'quantal-backports',
             'raring', 'raring-updates', 'raring-security', 'raring-proposed', 'raring-backports',
             'saucy', 'saucy-updates', 'saucy-security', 'saucy-proposed', 'saucy-backports',
-            'trusty', 'trusty-updates', 'trusty-security', 'trusty-proposed', 'trusty-backports'
+            'trusty', 'trusty-updates', 'trusty-security', 'trusty-proposed', 'trusty-backports',
+            'xenial', 'xenial-updates', 'xenial-security', 'xenial-proposed', 'xenial-backports',
+            'bionic', 'bionic-updates', 'bionic-security', 'bionic-proposed', 'bionic-backports',
+            'focal', 'focal-updates', 'focal-security', 'focal-proposed', 'focal-backports'
             ),
         3 => array(
             'main', 'restricted', 'preview', 'contrib', 'non-free',
-            'commercial', 'universe', 'multiverse'
+            'commercial', 'universe', 'multiverse', 'partner'
             )
         ),
     'REGEXPS' => array(
