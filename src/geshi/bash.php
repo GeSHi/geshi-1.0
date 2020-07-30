@@ -96,7 +96,7 @@ $language_data = array (
         // Common Unix commands
         2 => array(
             'aclocal', 'aconnect', 'apachectl', 'apache2ctl', 'aplay', 'apm',
-            'apmsleep', 'apropos', 'apt-cache', 'apt-cdrom', 'apt-config',
+            'apmsleep', 'apropos', 'apt', 'apt-cache', 'apt-cdrom', 'apt-config',
             'apt-file', 'apt-ftparchive', 'apt-get', 'apt-key', 'apt-listbugs',
             'apt-listchanges', 'apt-mark', 'apt-mirror', 'apt-sortpkgs',
             'apt-src', 'apticron', 'aptitude', 'aptsh', 'apxs', 'apxs2', 'ar',
@@ -111,6 +111,9 @@ $language_data = array (
             'apache2ctl graceful-stop', 'apache2ctl configtest',
             'apache2ctl status', 'apache2ctl fullstatus', 'apache2ctl help',
 
+            'apt autoremove', 'apt edit-sources', 'apt full-upgrade', 'apt install',
+            'apt list', 'apt purge', 'apt reinstall', 'apt remove', 'apt search', 
+            'apt show', 'apt update', 'apt upgrade',
             'apt-cache add', 'apt-cache depends', 'apt-cache dotty',
             'apt-cache dump', 'apt-cache dumpavail', 'apt-cache gencaches',
             'apt-cache pkgnames', 'apt-cache policy', 'apt-cache rdepends',
