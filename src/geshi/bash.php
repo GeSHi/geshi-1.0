@@ -306,6 +306,20 @@ $language_data = array (
             'pip3 freeze', 'pip3 hash', 'pip3 help', 'pip3 install', 'pip3 list',
             'pip3 search', 'pip3 show', 'pip3 uninstall', 'pip3 wheel',
 
+            'pct clone', 'pct create', 'pct destroy', 'pct list', 'pct migrate',
+            'pct move_volume', 'pct pending', 'pct resize', 'pct restore', 'pct template',
+
+            'pct config', 'pct set', 
+            
+            'pct delsnapshot', 'pct listsnapshot', 'pct rollback', 'pct snapshot',
+
+            'pct reboot', 'pct resume', 'pct shutdown', 'pct start', 'pct stop',
+            'pct suspend',
+
+            'pct console', 'pct cpusets', 'pct df', 'pct enter', 'pct exec',
+            'pct fsck', 'pct fstrim', 'pct mount', 'pct pull', 'pct push',
+            'pct rescan', 'pct status', 'pct unlock', 'pct unlock',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
