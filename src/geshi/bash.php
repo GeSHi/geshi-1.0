@@ -320,6 +320,9 @@ $language_data = array (
             'pct fsck', 'pct fstrim', 'pct mount', 'pct pull', 'pct push',
             'pct rescan', 'pct status', 'pct unlock', 'pct unlock',
 
+            'pveam download', 'pveam available', 'pveam list', 'pveam remove',
+            'pveam update', 'pveam help',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
