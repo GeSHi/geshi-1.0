@@ -277,6 +277,13 @@ $language_data = array (
             'logname', 'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old',
             'lspci', 'ltrace', 'lynx',
 
+            'lxc-attach', 'lxc-autostart', 'lxc-cgroup', 'lxc-checkconfig',
+            'lxc-checkpoint', 'lxc-config', 'lxc-console', 'lxc-copy', 'lxc-create',
+            'lxc-destroy', 'lxc-device', 'lxc-execute', 'lxc-freeze', 'lxcfs',
+            'lxc-info', 'lxc-ls', 'lxc-monitor', 'lxc-snapshot', 'lxc-start',
+            'lxc-stop', 'lxc-unfreeze', 'lxc-unshare', 'lxc-update-config',
+            'lxc-usernsexec', 'lxc-wait',
+
             'm4', 'make', 'man', 'mapscrn', 'mesg', 'mkdir', 'mkfifo',
             'mknod', 'mktemp', 'more', 'mount', 'mplayer', 'msgfmt', 'mv',
 
