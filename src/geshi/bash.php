@@ -349,6 +349,7 @@ $language_data = array (
             'pveum user list', 'pveum user modify',
 
             'pveum passwd', 'pveum ticket', 'pveum help',
+
             'qm cloudinit dump', 'qm guest cmd', 'qm guest exec-status',
             'qm guest passwd', 'qm guest exec',
 
