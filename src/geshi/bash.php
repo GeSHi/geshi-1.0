@@ -323,6 +323,19 @@ $language_data = array (
             'pveam download', 'pveam available', 'pveam list', 'pveam remove',
             'pveam update', 'pveam help',
 
+            'qm cloudinit dump', 'qm guest cmd', 'qm guest exec-status',
+            'qm guest passwd', 'qm guest exec',
+
+            'qm clone', 'qm config', 'qm create', 'qm delsnapshot', 'qm destroy',
+            'qm list', 'qm listsnapshot', 'qm migrate', 'qm move_disk', 'qm pending',
+            'qm reboot', 'qm reset', 'qm resize', 'qm resume', 'qm rollback',
+            'qm sendkey', 'qm set', 'qm shutdown', 'qm snapshot', 'qm start',
+            'qm stop', 'qm suspend', 'qm template', 'qm unlink',
+
+            'qm cleanup', 'qm importdisk', 'qm importovf', 'qm monitor', 'qm mtunnel',
+            'qm nbdstop', 'qm rescan', 'qm showcmd', 'qm status', 'qm terminal',
+            'qm unlock', 'qm vncproxy', 'qm wait', 'qm help',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
