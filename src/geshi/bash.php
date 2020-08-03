@@ -359,7 +359,7 @@ $language_data = array (
             'sash', 'scp', 'screen', 'sed', 'seq', 'sendmail', 'setfont',
             'setkeycodes', 'setleds', 'setmetamode', 'setserial', 'setterm',
             'sh', 'showkey', 'shred', 'size', 'size86', 'skill', 'sleep',
-            'slogin', 'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
+            'slogin', 'snice', 'sort', 'sox', 'split', 'ss', 'ssed', 'ssh', 'ssh-add',
             'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'sshfs', 'stat', 'strace',
             'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'svn',
             'svnadmin', 'svndumpfilter', 'svnlook', 'svnmerge', 'svnmucc',
