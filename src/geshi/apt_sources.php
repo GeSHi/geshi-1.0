@@ -56,6 +56,8 @@ $language_data = array (
             //Debian
             'buzz', 'rex', 'bo', 'hamm', 'slink', 'potato', 'woody', 'sarge',
             'etch', 'lenny', 'wheezy', 'jessie', 'sid',
+            'stretch', 'stretch-backports', 'buster', 'buster-backports',
+            'bullseye', 'bullseye-backports', 'bookworm', 'bookworm-backports',
             //Ubuntu
             'warty', 'warty-updates', 'warty-security', 'warty-proposed', 'warty-backports',
             'hoary', 'hoary-updates', 'hoary-security', 'hoary-proposed', 'hoary-backports',
