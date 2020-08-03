@@ -403,6 +403,44 @@ $language_data = array (
             'svnsync init', 'svnsync initialize', 'svnsync sync',
             'svnsync synchronize',
 
+            // Unit Commands
+            'systemctl', 'systemctl list-units', 'systemctl list-sockets',
+            'systemctl list-timers', 'systemctl start', 'systemctl stop',
+            'systemctl reload', 'systemctl restart', 'systemctl try-restart',
+            'systemctl reload-or-restart', 'systemctl try-reload-or-restart',
+            'systemctl isolate', 'systemctl kill', 'systemctl is-active',
+            'systemctl is-failed', 'systemctl status', 'systemctl show',
+            'systemctl cat', 'systemctl set-property', 'systemctl help',
+            'systemctl reset-failed', 'systemctl list-dependencies',
+
+            // Unit File Commands
+            'systemctl list-unit-files', 'systemctl enable', 'systemctl disable',
+            'systemctl reenable', 'systemctl preset', 'systemctl preset-all',
+            'systemctl is-enabled', 'systemctl mask', 'systemctl unmask',
+            'systemctl link', 'systemctl revert',
+            'systemctl add-wants', 'systemctl add-requires ',
+            'systemctl edit', 'systemctl get-default', 'systemctl set-default',
+
+            // Machine Commands
+            'systemctl list-machines',
+
+            // Job Commands
+            'systemctl list-jobs', 'systemctl cancel',
+
+            // Environment Commands
+            'systemctl show-environment', 'systemctl set-environment',
+            'systemctl unset-environment', 'systemctl import-environment',
+
+            // Manager Lifecycle Commands
+            'systemctl daemon-reload', 'systemctl daemon-reexec',
+
+            // System Commands
+            'systemctl is-system-running', 'systemctl default', 'systemctl rescue',
+            'systemctl emergency', 'systemctl halt', 'systemctl poweroff',
+            'systemctl reboot', 'systemctl kexec', 'systemctl exit',
+            'systemctl switch-root', 'systemctl suspend', 'systemctl hibernate',
+            'systemctl hybrid-sleep', 'systemctl suspend-then-hibernate',
+
             'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'tree',
             'true',
 
