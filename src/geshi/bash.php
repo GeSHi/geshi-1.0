@@ -263,7 +263,7 @@ $language_data = array (
 
             'head', 'hexdump', 'hostname', 'htop',
 
-            'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install',
+            'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install', 'inxi',
 
             'ip', 'ip addr', 'ip addrlabel', 'ip link', 'ip maddr', 'ip mroute',
             'ip neigh', 'ip route', 'ip rule', 'ip tunnel', 'ip xfrm',
