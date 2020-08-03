@@ -172,7 +172,7 @@ $language_data = array (
             'ed', 'egrep', 'env', 'eyeD3', 'expr',
 
             'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole','fgrep', 'file',
-            'find', 'flac', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 
+            'find', 'flac', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip',
             'fuser',
 
             'g++', 'gawk', 'gc','gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
@@ -310,9 +310,8 @@ $language_data = array (
             'pct clone', 'pct create', 'pct destroy', 'pct list', 'pct migrate',
             'pct move_volume', 'pct pending', 'pct resize', 'pct restore', 'pct template',
 
-            'pct config', 'pct set', 
-            
-            'pct delsnapshot', 'pct listsnapshot', 'pct rollback', 'pct snapshot',
+            'pct config', 'pct set', 'pct delsnapshot', 'pct listsnapshot',
+            'pct rollback', 'pct snapshot',
 
             'pct reboot', 'pct resume', 'pct shutdown', 'pct start', 'pct stop',
             'pct suspend',
