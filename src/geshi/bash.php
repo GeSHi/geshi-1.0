@@ -96,7 +96,7 @@ $language_data = array (
         // Common Unix commands
         2 => array(
             'aclocal', 'aconnect', 'apachectl', 'apache2ctl', 'aplay', 'apm',
-            'apmsleep', 'apropos', 'apt-cache', 'apt-cdrom', 'apt-config',
+            'apmsleep', 'apropos', 'apt', 'apt-cache', 'apt-cdrom', 'apt-config',
             'apt-file', 'apt-ftparchive', 'apt-get', 'apt-key', 'apt-listbugs',
             'apt-listchanges', 'apt-mark', 'apt-mirror', 'apt-sortpkgs',
             'apt-src', 'apticron', 'aptitude', 'aptsh', 'apxs', 'apxs2', 'ar',
@@ -111,6 +111,9 @@ $language_data = array (
             'apache2ctl graceful-stop', 'apache2ctl configtest',
             'apache2ctl status', 'apache2ctl fullstatus', 'apache2ctl help',
 
+            'apt autoremove', 'apt edit-sources', 'apt full-upgrade', 'apt install',
+            'apt list', 'apt purge', 'apt reinstall', 'apt remove', 'apt search',
+            'apt show', 'apt update', 'apt upgrade',
             'apt-cache add', 'apt-cache depends', 'apt-cache dotty',
             'apt-cache dump', 'apt-cache dumpavail', 'apt-cache gencaches',
             'apt-cache pkgnames', 'apt-cache policy', 'apt-cache rdepends',
@@ -166,10 +169,11 @@ $language_data = array (
             'dirname', 'dmesg', 'dnsdomainname', 'domainname', 'dpkg',
             'dselect', 'du', 'dumpkeys',
 
-            'ed', 'egrep', 'env', 'expr',
+            'ed', 'egrep', 'env', 'expr', 'eyeD3',
 
             'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole','fgrep', 'file',
-            'find', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
+            'find', 'flac', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip',
+            'fuser',
 
             'g++', 'gawk', 'gc','gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
@@ -260,7 +264,7 @@ $language_data = array (
 
             'head', 'hexdump', 'hostname', 'htop',
 
-            'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install',
+            'id', 'ifconfig', 'ifdown', 'ifup', 'igawk', 'install', 'inxi',
 
             'ip', 'ip addr', 'ip addrlabel', 'ip link', 'ip maddr', 'ip mroute',
             'ip neigh', 'ip route', 'ip rule', 'ip tunnel', 'ip xfrm',
@@ -274,7 +278,14 @@ $language_data = array (
             'logname', 'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old',
             'lspci', 'ltrace', 'lynx',
 
-            'm4', 'make', 'man', 'mapscrn', 'mesg', 'mkdir', 'mkfifo',
+            'lxc-attach', 'lxc-autostart', 'lxc-cgroup', 'lxc-checkconfig',
+            'lxc-checkpoint', 'lxc-config', 'lxc-console', 'lxc-copy', 'lxc-create',
+            'lxc-destroy', 'lxc-device', 'lxc-execute', 'lxc-freeze', 'lxcfs',
+            'lxc-info', 'lxc-ls', 'lxc-monitor', 'lxc-snapshot', 'lxc-start',
+            'lxc-stop', 'lxc-unfreeze', 'lxc-unshare', 'lxc-update-config',
+            'lxc-usernsexec', 'lxc-wait',
+
+            'm4', 'make', 'man', 'mapscrn', 'mesg', 'metaflac', 'mkdir', 'mkfifo',
             'mknod', 'mktemp', 'more', 'mount', 'mplayer', 'msgfmt', 'mv',
 
             'namei', 'nano', 'nasm', 'nawk', 'netstat', 'nice',
@@ -288,13 +299,67 @@ $language_data = array (
             'ps2pdf', 'ps2ps', 'psbook', 'psmerge', 'psnup', 'psresize',
             'psselect', 'pstops',
 
+            'pct clone', 'pct create', 'pct destroy', 'pct list', 'pct migrate',
+            'pct move_volume', 'pct pending', 'pct resize', 'pct restore', 'pct template',
+
+            'pct config', 'pct set', 'pct delsnapshot', 'pct listsnapshot',
+            'pct rollback', 'pct snapshot',
+
+            'pct reboot', 'pct resume', 'pct shutdown', 'pct start', 'pct stop',
+            'pct suspend',
+
+            'pct console', 'pct cpusets', 'pct df', 'pct enter', 'pct exec',
+            'pct fsck', 'pct fstrim', 'pct mount', 'pct pull', 'pct push',
+            'pct rescan', 'pct status', 'pct unlock',
+
+            'pip check', 'pip completion', 'pip config', 'pip download',
+            'pip freeze', 'pip hash', 'pip help', 'pip install', 'pip list',
+            'pip search', 'pip show', 'pip uninstall', 'pip wheel',
+
+            'pip3 check', 'pip3 completion', 'pip3 config', 'pip3 download',
+            'pip3 freeze', 'pip3 hash', 'pip3 help', 'pip3 install', 'pip3 list',
+            'pip3 search', 'pip3 show', 'pip3 uninstall', 'pip3 wheel',
+
+            'pveam download', 'pveam available', 'pveam list', 'pveam remove',
+            'pveam update', 'pveam help',
+
+            'pvesm scan cifs', 'pvesm scan glusterfs', 'pvesm scan iscsi',
+            'pvesm scan lvm', 'pvesm scan lvmthin', 'pvesm scan nfs', 'pvesm scan zfs',
+            'pvesm add', 'pvesm remove', 'pvesm set',
+            'pvesm alloc', 'pvesm free', 'pvesm list', 'pvesm status',
+            'pvesm apiinfo', 'pvesm export', 'pvesm extractconfig', 'pvesm import',
+            'pvesm path', 'pvesm help',
+
+            'pveum acl delete', 'pveum acl list', 'pveum acl modify',
+            'pveum group add', 'pveum group delete', 'pveum group list',
+            'pveum group modify',
+            'pveum realm add', 'pveum realm delete', 'pveum realm list',
+            'pveum realm modify', 'pveum realm sync',
+            'pveum role add', 'pveum role delete', 'pve role list', 'pveum role modify',
+            'pveum user tfa delete', 'pveum user token add', 'pveum user token list',
+            'pveum user token modify', 'pveum user token remove',
+            'pveum user token permissions', 'pveum user add', 'pveum user delete',
+            'pveum user list', 'pveum user modify',
+            'pveum passwd', 'pveum ticket', 'pveum help',
+
+            'qm cloudinit dump', 'qm guest cmd', 'qm guest exec-status',
+            'qm guest passwd', 'qm guest exec',
+            'qm clone', 'qm config', 'qm create', 'qm delsnapshot', 'qm destroy',
+            'qm list', 'qm listsnapshot', 'qm migrate', 'qm move_disk', 'qm pending',
+            'qm reboot', 'qm reset', 'qm resize', 'qm resume', 'qm rollback',
+            'qm sendkey', 'qm set', 'qm shutdown', 'qm snapshot', 'qm start',
+            'qm stop', 'qm suspend', 'qm template', 'qm unlink',
+            'qm cleanup', 'qm importdisk', 'qm importovf', 'qm monitor', 'qm mtunnel',
+            'qm nbdstop', 'qm rescan', 'qm showcmd', 'qm status', 'qm terminal',
+            'qm unlock', 'qm vncproxy', 'qm wait', 'qm help',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
             'sash', 'scp', 'screen', 'sed', 'seq', 'sendmail', 'setfont',
             'setkeycodes', 'setleds', 'setmetamode', 'setserial', 'setterm',
             'sh', 'showkey', 'shred', 'size', 'size86', 'skill', 'sleep',
-            'slogin', 'snice', 'sort', 'sox', 'split', 'ssed', 'ssh', 'ssh-add',
+            'slogin', 'snice', 'sort', 'sox', 'split', 'ss', 'ssed', 'ssh', 'ssh-add',
             'ssh-agent', 'ssh-keygen', 'ssh-keyscan', 'sshfs', 'stat', 'strace',
             'strings', 'strip', 'stty', 'su', 'sudo', 'suidperl', 'sum', 'svn',
             'svnadmin', 'svndumpfilter', 'svnlook', 'svnmerge', 'svnmucc',
@@ -338,6 +403,44 @@ $language_data = array (
             'svnsync init', 'svnsync initialize', 'svnsync sync',
             'svnsync synchronize',
 
+            // Unit Commands
+            'systemctl', 'systemctl list-units', 'systemctl list-sockets',
+            'systemctl list-timers', 'systemctl start', 'systemctl stop',
+            'systemctl reload', 'systemctl restart', 'systemctl try-restart',
+            'systemctl reload-or-restart', 'systemctl try-reload-or-restart',
+            'systemctl isolate', 'systemctl kill', 'systemctl is-active',
+            'systemctl is-failed', 'systemctl status', 'systemctl show',
+            'systemctl cat', 'systemctl set-property', 'systemctl help',
+            'systemctl reset-failed', 'systemctl list-dependencies',
+
+            // Unit File Commands
+            'systemctl list-unit-files', 'systemctl enable', 'systemctl disable',
+            'systemctl reenable', 'systemctl preset', 'systemctl preset-all',
+            'systemctl is-enabled', 'systemctl mask', 'systemctl unmask',
+            'systemctl link', 'systemctl revert',
+            'systemctl add-wants', 'systemctl add-requires ',
+            'systemctl edit', 'systemctl get-default', 'systemctl set-default',
+
+            // Machine Commands
+            'systemctl list-machines',
+
+            // Job Commands
+            'systemctl list-jobs', 'systemctl cancel',
+
+            // Environment Commands
+            'systemctl show-environment', 'systemctl set-environment',
+            'systemctl unset-environment', 'systemctl import-environment',
+
+            // Manager Lifecycle Commands
+            'systemctl daemon-reload', 'systemctl daemon-reexec',
+
+            // System Commands
+            'systemctl is-system-running', 'systemctl default', 'systemctl rescue',
+            'systemctl emergency', 'systemctl halt', 'systemctl poweroff',
+            'systemctl reboot', 'systemctl kexec', 'systemctl exit',
+            'systemctl switch-root', 'systemctl suspend', 'systemctl hibernate',
+            'systemctl hybrid-sleep', 'systemctl suspend-then-hibernate',
+
             'tac', 'tail', 'tar', 'tee', 'tempfile', 'touch', 'tr', 'tree',
             'true',
 
@@ -346,6 +449,114 @@ $language_data = array (
             'utmpdump', 'uuidgen',
 
             'valgrind', 'vdir', 'vi', 'vim', 'vmstat',
+
+            // Domain Management
+            'virsh attach-device', 'virsh attach-disk', 'virsh attach-interface',
+            'virsh autostart', 'virsh blkdeviotune', 'virsh blkiotune',
+            'virsh blockcommit', 'virsh blockcopy', 'virsh blockjob',
+            'virsh blockpull', 'virsh blockresize', 'virsh change-media',
+            'virsh console', 'virsh cpu-stats', 'virsh create', 'virsh define',
+            'virsh desc', 'virsh destroy', 'virsh detach-device',
+            'virsh detach-device-alias', 'virsh detach-disk', 'virsh detach-interface',
+            'virsh domdisplay', 'virsh domfsfreeze', 'virsh domfsthaw',
+            'virsh domfsinfo', 'virsh domfstrim', 'virsh domhostname', 'virsh domid',
+            'virsh domif-setlink', 'virsh domiftune', 'virsh domjobabort',
+            'virsh domjobinfo', 'virsh domname', 'virsh domrename',
+            'virsh dompmsuspend', 'virsh dompmwakeup', 'virsh domuuid',
+            'virsh domxml-from-native', 'virsh domxml-to-native', 'virsh dump',
+            'virsh dumpxml', 'virsh edit', 'virsh event', 'virsh inject-nmi',
+            'virsh iothreadinfo', 'virsh iothreadpin', 'virsh iothreadadd',
+            'virsh iothreadset', 'virsh iothreaddel', 'virsh send-key',
+            'virsh send-process-signal', 'virsh lxc-enter-namespace',
+            'virsh managedsave', 'virsh managedsave-remove', 'virsh managedsave-edit',
+            'virsh managedsave-dumpxml', 'virsh managedsave-define', 'virsh memtune',
+            'virsh perf', 'virsh metadata', 'virsh migrate',
+            'virsh migrate-setmaxdowntime', 'virsh migrate-getmaxdowntime',
+            'virsh migrate-compcache', 'virsh migrate-setspeed',
+            'virsh migrate-getspeed', 'virsh migrate-postcopy', 'virsh numatune',
+            'virsh qemu-attach', 'virsh qemu-monitor-command',
+            'virsh qemu-monitor-event', 'virsh qemu-agent-command', 'virsh reboot',
+            'virsh reset', 'virsh restore', 'virsh resume', 'virsh save',
+            'virsh save-image-define', 'virsh save-image-dumpxml',
+            'virsh save-image-edit', 'virsh schedinfo', 'virsh screenshot',
+            'virsh set-lifecycle-action', 'virsh set-user-password', 'virsh setmaxmem',
+            'virsh setmem', 'virsh setvcpus', 'virsh shutdown', 'virsh start',
+            'virsh suspend', 'virsh ttyconsole', 'virsh undefine', 'virsh update-device',
+            'virsh vcpucount', 'virsh vcpuinfo', 'virsh vcpupin', 'virsh emulatorpin',
+            'virsh vncdisplay', 'virsh guestvcpus', 'virsh setvcpu',
+            'virsh domblkthreshold',
+
+            // Domain Monitoring
+            'virsh domblkerror', 'virsh domblkinfo',
+            'virsh domblklist', 'virsh domblkstat', 'virsh domcontrol',
+            'virsh domif-getlink', 'virsh domifaddr', 'virsh domiflist',
+            'virsh domifstat', 'virsh dominfo', 'virsh dommemstat',
+            'virsh domstate', 'virsh domstats', 'virsh domtime', 'virsh list',
+
+            // Host and Hypervisor
+            'virsh allocpages', 'virsh capabilities', 'virsh cpu-baseline',
+            'virsh cpu-compare', 'virsh cpu-models', 'virsh domcapabilities',
+            'virsh freecell', 'virsh freepages', 'virsh hostname',
+            'virsh hypervisor-cpu-baseline', 'virsh hypervisor-cpu-compare',
+            'virsh maxvcpus', 'virsh node-memory-tune', 'virsh nodecpumap',
+            'virsh nodecpustats', 'virsh nodeinfo', 'virsh nodememstats',
+            'virsh nodesuspend', 'virsh sysinfo', 'virsh uri', 'virsh version',
+
+            // Interface
+            'virsh iface-begin', 'virsh iface-bridge', 'virsh iface-commit',
+            'virsh iface-define', 'virsh iface-destroy', 'virsh iface-dumpxml',
+            'virsh iface-edit', 'virsh iface-list', 'virsh iface-mac',
+            'virsh iface-name', 'virsh iface-rollback', 'virsh iface-start',
+            'virsh iface-unbridge', 'virsh iface-undefine',
+
+            // Network Filter
+            'virsh nwfilter-define', 'virsh nwfilter-dumpxml', 'virsh nwfilter-edit',
+            'virsh nwfilter-list', 'virsh nwfilter-undefine',
+            'virsh nwfilter-binding-create', 'virsh nwfilter-binding-delete',
+            'virsh nwfilter-binding-dumpxml', 'virsh nwfilter-binding-list',
+
+            // Networking
+            'virsh net-autostart', 'virsh net-create', 'virsh net-define',
+            'virsh rom an XML file', 'virsh net-destroy', 'virsh net-dhcp-leases',
+            'virsh net-dumpxml', 'virsh net-edit', 'virsh net-event', 'virsh net-info',
+            'virsh net-list', 'virsh net-name', 'virsh net-start', 'virsh net-undefine',
+            'virsh net-update', 'virsh net-uuid',
+
+            // Node Device
+            'virsh nodedev-create', 'virsh nodedev-destroy', 'virsh nodedev-detach',
+            'virsh nodedev-dumpxml', 'virsh nodedev-list', 'virsh nodedev-reattach',
+            'virsh nodedev-reset', 'virsh nodedev-event',
+
+            // Secret
+            'virsh secret-define', 'virsh secret-dumpxml', 'virsh secret-event',
+            'virsh secret-get-value', 'virsh secret-list', 'virsh secret-set-value',
+            'virsh secret-undefine',
+
+            // Snapshot
+            'virsh snapshot-create', 'virsh snapshot-create-as',
+            'virsh snapshot-current', 'virsh snapshot-delete', 'virsh snapshot-dumpxml',
+            'virsh snapshot-edit', 'virsh snapshot-info', 'virsh snapshot-list',
+            'virsh snapshot-parent', 'virsh snapshot-revert',
+
+            // Storage Pool
+            'virsh find-storage-pool-sources-as', 'virsh find-storage-pool-sources',
+            'virsh pool-autostart', 'virsh pool-build', 'virsh pool-create-as',
+            'virsh pool-create', 'virsh pool-define-as', 'virsh pool-define',
+            'virsh pool-delete', 'virsh pool-destroy', 'virsh pool-dumpxml',
+            'virsh pool-edit', 'virsh pool-info', 'virsh pool-list', 'virsh pool-name',
+            'virsh pool-refresh', 'virsh pool-start', 'virsh pool-undefine',
+            'virsh pool-uuid', 'virsh pool-event',
+
+            // Storage Volume
+            'virsh vol-clone', 'virsh vol-create-as', 'virsh vol-create',
+            'virsh vol-create-from', 'virsh vol-delete', 'virsh vol-download',
+            'virsh vol-dumpxml', 'virsh vol-info', 'virsh vol-key', 'virsh vol-list',
+            'virsh vol-name', 'virsh vol-path', 'virsh vol-pool', 'virsh vol-resize',
+            'virsh vol-upload', 'virsh vol-wipe',
+
+            // Virsh itself
+            'virsh cd', 'virsh echo', 'virsh exit', 'virsh help', 'virsh pwd',
+            'virsh quit',
 
             'w', 'wall', 'watch', 'wc', 'wget', 'whatis', 'whereis',
             'which', 'whiptail', 'who', 'whoami', 'whois', 'wine', 'wineboot',
