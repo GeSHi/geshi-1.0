@@ -320,6 +320,9 @@ $language_data = array (
             'pip3 freeze', 'pip3 hash', 'pip3 help', 'pip3 install', 'pip3 list',
             'pip3 search', 'pip3 show', 'pip3 uninstall', 'pip3 wheel',
 
+            'pveam download', 'pveam available', 'pveam list', 'pveam remove',
+            'pveam update', 'pveam help',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
