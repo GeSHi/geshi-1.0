@@ -330,6 +330,18 @@ $language_data = array (
             'pvesm apiinfo', 'pvesm export', 'pvesm extractconfig', 'pvesm import',
             'pvesm path', 'pvesm help',
 
+            'pveum acl delete', 'pveum acl list', 'pveum acl modify',
+            'pveum group add', 'pveum group delete', 'pveum group list',
+            'pveum group modify',
+            'pveum realm add', 'pveum realm delete', 'pveum realm list',
+            'pveum realm modify', 'pveum realm sync',
+            'pveum role add', 'pveum role delete', 'pve role list', 'pveum role modify',
+            'pveum user tfa delete', 'pveum user token add', 'pveum user token list',
+            'pveum user token modify', 'pveum user token remove',
+            'pveum user token permissions', 'pveum user add', 'pveum user delete',
+            'pveum user list', 'pveum user modify',
+            'pveum passwd', 'pveum ticket', 'pveum help',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
