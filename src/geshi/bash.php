@@ -323,6 +323,13 @@ $language_data = array (
             'pveam download', 'pveam available', 'pveam list', 'pveam remove',
             'pveam update', 'pveam help',
 
+            'pvesm scan cifs', 'pvesm scan glusterfs', 'pvesm scan iscsi',
+            'pvesm scan lvm', 'pvesm scan lvmthin', 'pvesm scan nfs', 'pvesm scan zfs',
+            'pvesm add', 'pvesm remove', 'pvesm set',
+            'pvesm alloc', 'pvesm free', 'pvesm list', 'pvesm status',
+            'pvesm apiinfo', 'pvesm export', 'pvesm extractconfig', 'pvesm import',
+            'pvesm path', 'pvesm help',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
