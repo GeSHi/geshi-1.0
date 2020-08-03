@@ -169,10 +169,11 @@ $language_data = array (
             'dirname', 'dmesg', 'dnsdomainname', 'domainname', 'dpkg',
             'dselect', 'du', 'dumpkeys',
 
-            'ed', 'egrep', 'env', 'expr',
+            'ed', 'egrep', 'env', 'expr', 'eyeD3',
 
             'false', 'fbset', 'fdisk', 'ffmpeg', 'fgconsole','fgrep', 'file',
-            'find', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip', 'fuser',
+            'find', 'flac', 'flex', 'flex++', 'fmt', 'free', 'ftp', 'funzip',
+            'fuser',
 
             'g++', 'gawk', 'gc','gcc', 'gdb', 'gdisk', 'getent', 'getkeycodes',
             'getopt', 'gettext', 'gettextize', 'gimp', 'gimp-remote',
@@ -277,7 +278,7 @@ $language_data = array (
             'logname', 'lp', 'lpr', 'ls', 'lsattr', 'lsmod', 'lsmod.old',
             'lspci', 'ltrace', 'lynx',
 
-            'm4', 'make', 'man', 'mapscrn', 'mesg', 'mkdir', 'mkfifo',
+            'm4', 'make', 'man', 'mapscrn', 'mesg', 'metaflac', 'mkdir', 'mkfifo',
             'mknod', 'mktemp', 'more', 'mount', 'mplayer', 'msgfmt', 'mv',
 
             'namei', 'nano', 'nasm', 'nawk', 'netstat', 'nice',
