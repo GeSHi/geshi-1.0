@@ -450,6 +450,114 @@ $language_data = array (
 
             'valgrind', 'vdir', 'vi', 'vim', 'vmstat',
 
+            // Domain Management
+            'virsh attach-device', 'virsh attach-disk', 'virsh attach-interface',
+            'virsh autostart', 'virsh blkdeviotune', 'virsh blkiotune',
+            'virsh blockcommit', 'virsh blockcopy', 'virsh blockjob',
+            'virsh blockpull', 'virsh blockresize', 'virsh change-media',
+            'virsh console', 'virsh cpu-stats', 'virsh create', 'virsh define',
+            'virsh desc', 'virsh destroy', 'virsh detach-device',
+            'virsh detach-device-alias', 'virsh detach-disk', 'virsh detach-interface',
+            'virsh domdisplay', 'virsh domfsfreeze', 'virsh domfsthaw',
+            'virsh domfsinfo', 'virsh domfstrim', 'virsh domhostname', 'virsh domid',
+            'virsh domif-setlink', 'virsh domiftune', 'virsh domjobabort',
+            'virsh domjobinfo', 'virsh domname', 'virsh domrename',
+            'virsh dompmsuspend', 'virsh dompmwakeup', 'virsh domuuid',
+            'virsh domxml-from-native', 'virsh domxml-to-native', 'virsh dump',
+            'virsh dumpxml', 'virsh edit', 'virsh event', 'virsh inject-nmi',
+            'virsh iothreadinfo', 'virsh iothreadpin', 'virsh iothreadadd',
+            'virsh iothreadset', 'virsh iothreaddel', 'virsh send-key',
+            'virsh send-process-signal', 'virsh lxc-enter-namespace',
+            'virsh managedsave', 'virsh managedsave-remove', 'virsh managedsave-edit',
+            'virsh managedsave-dumpxml', 'virsh managedsave-define', 'virsh memtune',
+            'virsh perf', 'virsh metadata', 'virsh migrate',
+            'virsh migrate-setmaxdowntime', 'virsh migrate-getmaxdowntime',
+            'virsh migrate-compcache', 'virsh migrate-setspeed',
+            'virsh migrate-getspeed', 'virsh migrate-postcopy', 'virsh numatune',
+            'virsh qemu-attach', 'virsh qemu-monitor-command',
+            'virsh qemu-monitor-event', 'virsh qemu-agent-command', 'virsh reboot',
+            'virsh reset', 'virsh restore', 'virsh resume', 'virsh save',
+            'virsh save-image-define', 'virsh save-image-dumpxml',
+            'virsh save-image-edit', 'virsh schedinfo', 'virsh screenshot',
+            'virsh set-lifecycle-action', 'virsh set-user-password', 'virsh setmaxmem',
+            'virsh setmem', 'virsh setvcpus', 'virsh shutdown', 'virsh start',
+            'virsh suspend', 'virsh ttyconsole', 'virsh undefine', 'virsh update-device',
+            'virsh vcpucount', 'virsh vcpuinfo', 'virsh vcpupin', 'virsh emulatorpin',
+            'virsh vncdisplay', 'virsh guestvcpus', 'virsh setvcpu',
+            'virsh domblkthreshold',
+
+            // Domain Monitoring
+            'virsh domblkerror', 'virsh domblkinfo',
+            'virsh domblklist', 'virsh domblkstat', 'virsh domcontrol',
+            'virsh domif-getlink', 'virsh domifaddr', 'virsh domiflist',
+            'virsh domifstat', 'virsh dominfo', 'virsh dommemstat',
+            'virsh domstate', 'virsh domstats', 'virsh domtime', 'virsh list',
+
+            // Host and Hypervisor
+            'virsh allocpages', 'virsh capabilities', 'virsh cpu-baseline',
+            'virsh cpu-compare', 'virsh cpu-models', 'virsh domcapabilities',
+            'virsh freecell', 'virsh freepages', 'virsh hostname',
+            'virsh hypervisor-cpu-baseline', 'virsh hypervisor-cpu-compare',
+            'virsh maxvcpus', 'virsh node-memory-tune', 'virsh nodecpumap',
+            'virsh nodecpustats', 'virsh nodeinfo', 'virsh nodememstats',
+            'virsh nodesuspend', 'virsh sysinfo', 'virsh uri', 'virsh version',
+
+            // Interface
+            'virsh iface-begin', 'virsh iface-bridge', 'virsh iface-commit',
+            'virsh iface-define', 'virsh iface-destroy', 'virsh iface-dumpxml',
+            'virsh iface-edit', 'virsh iface-list', 'virsh iface-mac',
+            'virsh iface-name', 'virsh iface-rollback', 'virsh iface-start',
+            'virsh iface-unbridge', 'virsh iface-undefine',
+
+            // Network Filter
+            'virsh nwfilter-define', 'virsh nwfilter-dumpxml', 'virsh nwfilter-edit',
+            'virsh nwfilter-list', 'virsh nwfilter-undefine',
+            'virsh nwfilter-binding-create', 'virsh nwfilter-binding-delete',
+            'virsh nwfilter-binding-dumpxml', 'virsh nwfilter-binding-list',
+
+            // Networking
+            'virsh net-autostart', 'virsh net-create', 'virsh net-define',
+            'virsh rom an XML file', 'virsh net-destroy', 'virsh net-dhcp-leases',
+            'virsh net-dumpxml', 'virsh net-edit', 'virsh net-event', 'virsh net-info',
+            'virsh net-list', 'virsh net-name', 'virsh net-start', 'virsh net-undefine',
+            'virsh net-update', 'virsh net-uuid',
+
+            // Node Device
+            'virsh nodedev-create', 'virsh nodedev-destroy', 'virsh nodedev-detach',
+            'virsh nodedev-dumpxml', 'virsh nodedev-list', 'virsh nodedev-reattach',
+            'virsh nodedev-reset', 'virsh nodedev-event',
+
+            // Secret
+            'virsh secret-define', 'virsh secret-dumpxml', 'virsh secret-event',
+            'virsh secret-get-value', 'virsh secret-list', 'virsh secret-set-value',
+            'virsh secret-undefine',
+
+            // Snapshot
+            'virsh snapshot-create', 'virsh snapshot-create-as',
+            'virsh snapshot-current', 'virsh snapshot-delete', 'virsh snapshot-dumpxml',
+            'virsh snapshot-edit', 'virsh snapshot-info', 'virsh snapshot-list',
+            'virsh snapshot-parent', 'virsh snapshot-revert',
+
+            // Storage Pool
+            'virsh find-storage-pool-sources-as', 'virsh find-storage-pool-sources',
+            'virsh pool-autostart', 'virsh pool-build', 'virsh pool-create-as',
+            'virsh pool-create', 'virsh pool-define-as', 'virsh pool-define',
+            'virsh pool-delete', 'virsh pool-destroy', 'virsh pool-dumpxml',
+            'virsh pool-edit', 'virsh pool-info', 'virsh pool-list', 'virsh pool-name',
+            'virsh pool-refresh', 'virsh pool-start', 'virsh pool-undefine',
+            'virsh pool-uuid', 'virsh pool-event',
+
+            // Storage Volume
+            'virsh vol-clone', 'virsh vol-create-as', 'virsh vol-create',
+            'virsh vol-create-from', 'virsh vol-delete', 'virsh vol-download',
+            'virsh vol-dumpxml', 'virsh vol-info', 'virsh vol-key', 'virsh vol-list',
+            'virsh vol-name', 'virsh vol-path', 'virsh vol-pool', 'virsh vol-resize',
+            'virsh vol-upload', 'virsh vol-wipe',
+
+            // Virsh itself
+            'virsh cd', 'virsh echo', 'virsh exit', 'virsh help', 'virsh pwd',
+            'virsh quit',
+
             'w', 'wall', 'watch', 'wc', 'wget', 'whatis', 'whereis',
             'which', 'whiptail', 'who', 'whoami', 'whois', 'wine', 'wineboot',
             'winebuild', 'winecfg', 'wineconsole', 'winedbg', 'winedump',
