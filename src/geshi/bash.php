@@ -312,6 +312,14 @@ $language_data = array (
             'pct fsck', 'pct fstrim', 'pct mount', 'pct pull', 'pct push',
             'pct rescan', 'pct status', 'pct unlock',
 
+            'pip check', 'pip completion', 'pip config', 'pip download',
+            'pip freeze', 'pip hash', 'pip help', 'pip install', 'pip list',
+            'pip search', 'pip show', 'pip uninstall', 'pip wheel',
+
+            'pip3 check', 'pip3 completion', 'pip3 config', 'pip3 download',
+            'pip3 freeze', 'pip3 hash', 'pip3 help', 'pip3 install', 'pip3 list',
+            'pip3 search', 'pip3 show', 'pip3 uninstall', 'pip3 wheel',
+
             'rbash', 'rcs', 'rcs2log', 'readlink', 'red', 'resizecons',
             'rev', 'rm', 'rmdir', 'rsh', 'run-parts',
 
