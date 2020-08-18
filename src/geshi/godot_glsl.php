@@ -4,7 +4,7 @@
  * -----------
  * Author: Jean-Michel Bernard (bernardjm@gmail.com)
  * Copyright: (C) 2020 Jean-Michel Bernard
- * Release Version: 1.0.0.0
+ * Release Version: 1.0.9.1
  * Date Started: 18/08/07
  *
  * Godot Gdscript language file for GeSHi.
