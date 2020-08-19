@@ -90,9 +90,7 @@ $language_data = array (
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => true,
-        2 => true,
-        3 => true,
-        4 => true
+        2 => true
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
@@ -130,9 +128,7 @@ $language_data = array (
         ),
     'URLS' => array(
         1 => '',
-        2 => '',
-        3 => '',
-        4 => ''
+        2 => ''
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
