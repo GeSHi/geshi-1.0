@@ -56,7 +56,7 @@ $language_data = array (
         ** https://docs.godotengine.org/en/3.1/getting_started/scripting/gdscript/gdscript_basics.html
         */
         1 => array(
-            'if','elif','else','for','while','match','break','continue','pass','return','class','extends','is','as','self','tool','signal','func','static','const','enum','var','onready','export','setget','breakpoint','preload','yield','assert','remote','master','puppet','remotesync','mastersync','puppetsync','PI','TAU','INF','NAN', 'and'
+            'if','elif','else','for','while','match','break','continue','pass','return','class','extends','is','as','self','tool','signal','func','static','const','enum','var','onready','export','setget','breakpoint','remote','master','puppet','remotesync','mastersync','puppetsync','PI','TAU','INF','NAN', 'and'
             ),
 
         /*

@@ -48,7 +48,6 @@ $language_data = array (
         GESHI_NUMBER_FLT_NONSCI | GESHI_NUMBER_FLT_NONSCI_F |
         GESHI_NUMBER_FLT_SCI_SHORT | GESHI_NUMBER_FLT_SCI_ZERO,
     'KEYWORDS' => array(
-
         /*
         ** Set 1: Identifiers
         ** https://docs.godotengine.org/en/3.0/tutorials/shading/shading_language.html#
@@ -59,7 +58,6 @@ $language_data = array (
             'if','else','for','while','break','continue','return','const','uniform','varying','default',
             'hint_color','hint_range','hint_albedo','hint_black_albedo','hint_normal','hint_white','hint_black','hint_aniso'
             ),
-
         /*
         ** Set 2: builtins
         ** https://docs.godotengine.org/en/3.0/tutorials/shading/shading_language.html#
@@ -83,7 +81,7 @@ $language_data = array (
             'TEXTURE','TEXTURE_PIXEL_SIZE','textureLod','textureProj','textureProjLod','textureSize','TIME','TRANSFORM','TRANSMISSION','transpose',
             'trunc','uintBitsToFloat','unshaded','UV','UV2','VERTEX','vertex_lighting','VIEW','VIEWPORT_SIZE','WORLD_MATRIX','world_vertex_coords'
             ),
-               ),
+        ),
     'SYMBOLS' => array(
         '<', '>', '=', '!', '<=', '>=',             //·comparison·operators
         '~', '@',                                   //·unary·operators
