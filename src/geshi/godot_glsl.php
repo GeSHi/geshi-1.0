@@ -83,9 +83,7 @@ $language_data = array (
             'TEXTURE','TEXTURE_PIXEL_SIZE','textureLod','textureProj','textureProjLod','textureSize','TIME','TRANSFORM','TRANSMISSION','transpose',
             'trunc','uintBitsToFloat','unshaded','UV','UV2','VERTEX','vertex_lighting','VIEW','VIEWPORT_SIZE','WORLD_MATRIX','world_vertex_coords'
             ),
-
-        
-        ),
+               ),
     'SYMBOLS' => array(
         '<', '>', '=', '!', '<=', '>=',             //·comparison·operators
         '~', '@',                                   //·unary·operators
