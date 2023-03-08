@@ -80,7 +80,7 @@ Version 1.0.9.1
      <channel>pear.geshi.org</channel>
 
      <lead user="benbe" name="Benny Baumann" email="benbe@geshi.org" />
-     <license>AGPL</license>
+     <license>GPL</license>
 
      <version   release="${version}"   api="${version}" />
      <stability release="${stability}" api="${stability}" />
