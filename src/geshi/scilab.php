@@ -277,9 +277,9 @@ $language_data = array (
             )
         ),
     'URLS' => array(
-        1 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm',
-        2 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm',
-        3 => 'http://www.scilab.org/product/dic-mat-sci/M2SCI_doc.htm'
+        1 => 'https://help.scilab.org/docs/current/en_US/{FNAME}.html',
+        2 => 'https://help.scilab.org/docs/current/en_US/{FNAME}.html',
+        3 => 'https://help.scilab.org/docs/current/en_US/{FNAME}.html'
         ),
     'OOLANG' => true,
     'OBJECT_SPLITTERS' => array(
@@ -287,9 +287,9 @@ $language_data = array (
         2 => '::'
         ),
     'REGEXPS' => array(
-        //Variable
+        // Variable
         0 => '[\\$%@]+[a-zA-Z_][a-zA-Z0-9_]*',
-        //File Descriptor
+        // File Descriptor
         1 => '&lt;[a-zA-Z_][a-zA-Z0-9_]*&gt;',
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
