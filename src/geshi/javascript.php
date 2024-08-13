@@ -3,7 +3,7 @@
  * javascript.php
  * --------------
  * Author: Ben Keen (ben.keen@gmail.com)
- * Copyright: (c) 2004 Ben Keen (ben.keen@gmail.com), Nigel McNie (http://qbnz.com/highlighter)
+ * Copyright: (c) 2004 Ben Keen (ben.keen@gmail.com), Nigel McNie (http://qbnz.com/highlighter),  Zéfling (zefling@ikilote.net)
  * Release Version: 1.0.9.1
  * Date Started: 2004/06/20
  *
@@ -11,6 +11,8 @@
  *
  * CHANGES
  * -------
+ * 2024/08/13 (1.0.9.1)
+ *  -  Add more keywords
  * 2012/06/27 (1.0.8.11)
  *  -  Reordered Keyword Groups to reflect syntactical meaning of keywords
  * 2008/05/23 (1.0.7.22)
@@ -57,18 +59,26 @@ $language_data = array (
     'KEYWORDS' => array(
         1 => array(
             //reserved/keywords; also some non-reserved keywords
-            'break','case','catch','const','continue',
+            'abstract','await', 'async', 'as',
+            'break',
+            'case','catch','const','continue', 'class','const',
             'default','delete','do',
-            'else',
-            'finally','for','function',
+            'debugger',
+            'export','extends','else',
+            'finally','for','function', 'function*', 'from',
             'get','goto',
-            'if','in','instanceof',
+            'interface','if','in','instanceof', 'import','implements',
+            'let',
             'new',
+            'of',
             'prototype',
             'return',
-            'set','static','switch',
+            'set','static','switch', 'super',
             'this','throw','try','typeof',
-            'var','void'
+            'var','void',
+            'yield',
+            'volatile',
+            'while', 'with'
             ),
         2 => array(
             //reserved/non-keywords; metaconstants
@@ -80,13 +90,13 @@ $language_data = array (
             ),
         4 => array(
             //type constructors
-            'Object', 'Function', 'Date', 'Math', 'String', 'Number', 'Boolean', 'Array'
+            'Object', 'Function', 'Date', 'Math', 'String', 'Number', 'Boolean', 'Array', 'Promise'
             ),
         5 => array(
             //reserved, but invalid in language
-            'abstract','boolean','byte','char','class','debugger','double','enum','export','extends',
-            'final','float','implements','import','int','interface','long','native',
-            'short','super','synchronized','throws','transient','volatile'
+            'boolean','byte','char','double','enum',
+            'final','float','int','long','native',
+            'short','synchronized','transient','volatile'
             ),
         ),
     'SYMBOLS' => array(
