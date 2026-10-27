@@ -47,260 +47,90 @@ $language_data = array (
     'ESCAPE_CHAR' => '',
     'KEYWORDS' => array(
         1 => array(
-            'While', 'Loop',
-            'Use',
-            'Small',
-            'Sleep',
-            'Shell',
-            'SetTime',
-            'SetM',
-            'SetL',
-            'Set',
-            'Select', 'Case',
-            'Run',
-            'Return',
-            'Redim',
-            'RD',
-            'Quit',
-            'Play',
-            'Move',
-            'MD',
-            'Include',
-            'If', 'Else', 'Endif',
-            'GoTo',
-            'GoSub',
-            'Go',
-            'Global',
-            'GetS',
-            'Get',
-            'Function', 'Endfunction',
-            'For', 'Next',
-            'Each',
-            'FlushKb',
-            'Exit',
-            'Do', 'Until',
-            'Display',
-            'Dim',
-            'Del',
-            'Debug',
-            'Copy',
-            'Cookie1',
-            'Color',
-            'CLS',
-            'CD',
-            'Call',
-            'Break',
-            'Big',
-            'Beep',
+            '?', 'Beep', 'Big', 'Break', 'Call', 'Case', 'CD', 'CLS', 'Color',
+            'Cookie1', 'Copy', 'Debug', 'Del', 'Dim', 'Display', 'Do', 'Each',
+            'Else', 'EndFunction', 'EndIf', 'EndSelect', 'Exit', 'FlushKB',
+            'For', 'Function', 'Get', 'GetS', 'Global', 'Go', 'GoSub', 'Goto',
+            'If', 'Include', 'Loop', 'MD', 'Move', 'Next', 'Password', 'Play',
+            'Quit', 'RD', 'ReDim', 'Return', 'Run', 'Select', 'Set', 'SetL',
+            'SetM', 'SetTime', 'Shell', 'Sleep', 'Small', 'Until', 'Use',
+            'While'
             ),
         2 => array(
-            '@Address',
-            '@Build',
-            '@Color',
-            '@Comment',
-            '@CPU',
-            '@CRLF',
-            '@CSD',
-            '@CurDir',
-            '@Date',
-            '@Day',
-            '@Domain',
-            '@DOS',
-            '@Error',
-            '@FullName',
-            '@HomeDir',
-            '@HomeDrive',
-            '@HomeShr',
-            '@HostName',
-            '@InWin',
-            '@IPaddressX',
-            '@KiX',
-            '@LanRoot',
-            '@LDomain',
-            '@LDrive',
-            '@LM',
-            '@LogonMode',
-            '@LongHomeDir',
-            '@LServer',
-            '@MaxPWAge',
-            '@MDayNo',
-            '@MHz',
-            '@MonthNo',
-            '@Month',
-            '@MSecs',
-            '@OnWoW64',
-            '@PID',
-            '@PrimaryGroup',
-            '@Priv',
-            '@ProductSuite',
-            '@ProductType',
-            '@PWAge',
-            '@RAS',
-            '@Result',
-            '@RServer',
-            '@ScriptDir',
-            '@ScriptExe',
-            '@ScriptName',
-            '@SError',
-            '@SID',
-            '@Site',
-            '@StartDir',
-            '@SysLang',
-            '@Ticks',
-            '@Time',
-            '@TsSession',
-            '@UserID',
-            '@UserLang',
-            '@WDayNo',
-            '@Wksta',
-            '@WUserID',
-            '@YDayNo',
-            '@Year',
-            ),
+            '@Address', '@Build', '@Color', '@Comment', '@CPU', '@CRLF', '@CSD',
+            '@CurDir', '@Date', '@Day', '@Domain', '@DOS', '@Error',
+            '@FullName', '@HomeDir', '@HomeDrive', '@HomeShr', '@HostName',
+            '@InUDF', '@InWin', '@IPAddress0', '@IPAddress1', '@IPAddress2',
+            '@IPAddress3', '@Kix', '@LanRoot', '@LDomain', '@LDrive', '@LM',
+            '@LogonMode', '@LongHomeDir', '@LServer', '@MaxPwAge', '@MDayNo',
+            '@Mhz', '@Month', '@MonthNo', '@MSecs', '@OnWOW64', '@PID',
+            '@PrimaryGroup', '@Priv', '@ProductSuite', '@ProductType',
+            '@ProgramFilesx86', '@PwAge', '@RAS', '@ReleaseID', '@ReleaseName',
+            '@Result', '@RServer', '@ScriptDir', '@ScriptExe', '@ScriptName',
+            '@SError', '@SID', '@Site', '@StartDir', '@SysLang', '@Ticks',
+            '@Time', '@TSSession', '@UserID', '@UserLang', '@WDayNo', '@WkSta',
+            '@WUserID', '@YDayNo', '@Year'),
         3 => array(
-            'WriteValue',
-            'WriteProfileString',
-            'WriteLine',
-            'VarTypeName',
-            'VarType',
-            'Val',
-            'UnloadHive',
-            'UCase',
-            'Ubound',
-            'Trim',
-            'Substr',
-            'SRnd',
-            'Split',
-            'SidToName',
-            'ShutDown',
-            'ShowProgramGroup',
-            'SetWallpaper',
-            'SetTitle',
-            'SetSystemState',
-            'SetOption',
-            'SetFocus',
-            'SetFileAttr',
-            'SetDefaultPrinter',
-            'SetConsole',
-            'SetAscii',
-            'SendMessage',
-            'SendKeys',
-            'SaveKey',
-            'RTrim',
-            'Round',
-            'Rnd',
-            'Right',
-            'RedirectOutput',
-            'ReadValue',
-            'ReadType',
-            'ReadProfileString',
-            'ReadLine',
-            'Open',
-            'MessageBox',
-            'MemorySize',
-            'LTrim',
-            'Logoff',
-            'LogEvent',
-            'LoadKey',
-            'LoadHive',
-            'Len',
-            'Left',
-            'LCase',
-            'KeyExist',
-            'KbHit',
-            'Join',
-            'IsDeclared',
-            'Int',
-            'InStrRev',
-            'InStr',
-            'InGroup',
-            'IIF',
-            'GetObject',
-            'GetFileVersion',
-            'GetFileTime',
-            'GetFileSize',
-            'GetFileAttr',
-            'GetDiskSpace',
-            'FreeFileHandle',
-            'FormatNumber',
-            'Fix',
-            'ExpandEnvironmentVars',
-            'Exist',
-            'Execute',
-            'EnumValue',
-            'EnumLocalGroup',
-            'EnumKey',
-            'EnumIpInfo',
-            'EnumGroup',
-            'Dir',
-            'DelValue',
-            'DelTree',
-            'DelProgramItem',
-            'DelProgramGroup',
-            'DelPrinterConnection',
-            'DelKey',
-            'DecToHex',
-            'CStr',
-            'CreateObject',
-            'CompareFileTimes',
-            'Close',
-            'ClearEventLog',
-            'CInt',
-            'Chr',
-            'CDbl',
-            'Box',
-            'BackupEventLog',
-            'At',
-            'AScan',
-            'Asc',
-            'AddProgramItem',
-            'AddProgramGroup',
-            'AddPrinterConnection',
-            'AddKey',
-            'Abs'
+            'Abs', 'AddKey', 'AddPrinterConnection', 'AddProgramGroup',
+            'AddProgramItem', 'Asc', 'AScan', 'At', 'BackupEventLog', 'Box',
+            'CDbl', 'Chr', 'CInt', 'ClearEventLog', 'Close', 'CompareFileTimes',
+            'CreateObject', 'CStr', 'DecToHex', 'DelKey',
+            'DelPrinterConnection', 'DelProgramGroup', 'DelProgramItem',
+            'DelTree', 'DelValue', 'Dir', 'EnumGroup', 'EnumIPInfo', 'EnumKey',
+            'EnumLocalGroup', 'EnumValue', 'Execute', 'Exist', 'ExistKey',
+            'ExpandEnvironmentVars', 'Fix', 'FormatNumber', 'FreeFileHandle',
+            'GetCommandLine', 'GetDiskSpace', 'GetFileAttr', 'GetFileSize',
+            'GetFileTime', 'GetFileVersion', 'GetObject', 'IIf', 'InGroup',
+            'InStr', 'InStrRev', 'Int', 'IsDeclared', 'Join', 'KBHit',
+            'KeyExist', 'LCase', 'Left', 'Len', 'LoadHive', 'LoadKey',
+            'LogEvent', 'LogOff', 'LTrim', 'MemorySize', 'MessageBox', 'Open',
+            'ReadLine', 'ReadProfileString', 'ReadType', 'ReadValue',
+            'RedirectOutput', 'Replace', 'Right', 'Rnd', 'Round', 'RTrim',
+            'SaveKey', 'SendKeys', 'SendMessage', 'SetASCII', 'SetConsole',
+            'SetDefaultPrinter', 'SetFileAttr', 'SetFocus', 'SetOption',
+            'SetSystemState', 'SetTitle', 'SetWallpaper', 'ShowProgramGroup',
+            'Shutdown', 'SIDToName', 'Split', 'SRnd', 'SubStr', 'Trim',
+            'UBound', 'UCase', 'UnloadHive', 'Val', 'VarType', 'VarTypeName',
+            'WriteLine', 'WriteProfileString', 'WriteValue'
             )
         ),
     'SYMBOLS' => array(
-        '(', ')', '[', ']', '?', ':', '+', '-', '*', '/', '&', '|', '^', '~', '<', '>', '='
+        '&', '(', ')', '*', '+', '-', '/', '<', '=', '>', '?', '[', ']', '^',
+        '|', '~'
         ),
     'CASE_SENSITIVE' => array(
         GESHI_COMMENTS => false,
         1 => false,
         2 => false,
-        3 => false,
+        3 => false
         ),
     'STYLES' => array(
         'KEYWORDS' => array(
-            1 => 'color: #b1b100;',
-            2 => 'color: #000000; font-weight: bold;',
-            3 => 'color: #000066;'
+            // Commands.
+            1 => 'color: #904201;',
+            // Macros.
+            2 => 'color: #8f02c2;',
+            // Functions.
+            3 => 'color: #0254b3;'
             ),
         'COMMENTS' => array(
-            1 => 'color: #808080; font-style: italic;',
-            'MULTI' => 'color: #808080; font-style: italic;'
-            ),
-        'ESCAPE_CHAR' => array(
-            0 => 'color: #000099; font-weight: bold;'
-            ),
-        'BRACKETS' => array(
-            0 => 'color: #66cc66;'
+            1 => 'color: #585858; font-style: italic;',
+            'MULTI' => 'color: #585858; font-style: italic;'
             ),
         'STRINGS' => array(
-            0 => 'color: #ff0000;'
-            ),
-        'NUMBERS' => array(
-            0 => 'color: #cc66cc;'
+            0 => 'color: #b20724;'
             ),
         'METHODS' => array(
-            1 => 'color: #006600;',
-            2 => 'color: #006600;'
+            1 => 'color: #5b5b04;'
             ),
         'SYMBOLS' => array(
-            0 => 'color: #66cc66;'
+            0 => 'color: #3d3d3d;'
             ),
         'REGEXPS' => array(
-            ),
-        'SCRIPT' => array(
+            // Variables.
+            0 => 'color: #016701;',
+            // Labels.
+            1 => 'color: #01635b;'
             )
         ),
     'URLS' => array(
@@ -313,15 +143,34 @@ $language_data = array (
         1 => '.'
         ),
     'REGEXPS' => array(
+        // Variables.
+        0 => '\\$[0-9A-Za-z!#%:\\\\_`{}]*',
+        // Labels (following a KiXtart symbol boundary).
+        1 => '(?<![0-9A-Za-z!#%:@\\\\_`{}]):[0-9A-Za-z!#%:\\\\_`{}]+'
         ),
     'STRICT_MODE_APPLIES' => GESHI_NEVER,
-    'SCRIPT_DELIMITERS' => array(
-        ),
-    'HIGHLIGHT_STRICT_BLOCK' => array(
-        0 => true,
-        1 => true,
-        2 => true,
-        3 => true
-        ),
-    'TAB_WIDTH' => 4
+    'TAB_WIDTH' => 4,
+    'PARSER_CONTROL' => array(
+        'KEYWORDS' => array(
+            // Only match commands with KiXtart symbol boundaries.
+            1 => array(
+                'DISALLOWED_BEFORE' => '(?<![0-9A-Za-z!#$%:@?.\\\\_`{}])',
+                'DISALLOWED_AFTER' => '(?![0-9A-Za-z!#$%:@?\\\\_`{}])'
+                ),
+            // Match macros anywhere.
+            2 => array(
+                'DISALLOWED_BEFORE' => '',
+                'DISALLOWED_AFTER' => ''
+                ),
+            // Only match functions with KiXtart symbol boundaries.
+            3 => array(
+                'DISALLOWED_BEFORE' => '(?<![0-9A-Za-z!#$%:@?.\\\\_`{}])',
+                'DISALLOWED_AFTER' => '(?![0-9A-Za-z!#$%:@?\\\\_`{}])'
+                )
+            ),
+        'ENABLE_FLAGS' => array(
+            'BRACKETS' => GESHI_NEVER,
+            'NUMBERS' => GESHI_NEVER
+            )
+        )
 );
