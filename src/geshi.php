@@ -1486,6 +1486,7 @@ class GeSHi {
                 'ini' => array('ini', 'desktop', 'vbp'),
                 'java' => array('java'),
                 'javascript' => array('js'),
+                'json' => array('json'),
                 'klonec' => array('kl1'),
                 'klonecpp' => array('klx'),
                 'latex' => array('tex'),
